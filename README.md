@@ -1,7 +1,7 @@
 ﻿# Startpage
 
 ## Überblick
-Startpage ist eine personalisierbare Startseite im Dashboard-Stil, die komplett clientseitig in `index.html` umgesetzt ist. Widgets für Suche, Wetter, Aufgaben, Notizen, News und Systemstatus bieten einen schnellen Überblick über den Alltag. Alle Daten verbleiben lokal im Browser (localStorage) und lassen sich bei Bedarf exportieren oder importieren.
+Startpage ist eine personalisierbare Startseite im Dashboard-Stil, die komplett clientseitig in `index.html` umgesetzt ist. Widgets für Suche, Wetter, Aufgaben, Notizen, News und Systemstatus bieten einen schnellen Überblick über den Alltag. Alle Daten verbleiben lokal im Browser (localStorage) und lassen sich bei Bedarf exportieren oder importieren. Aktuelle Version: **v1.3**.
 
 Eine Live-Version ist unter https://julianverse.de/startpage/ erreichbar.
 
@@ -13,7 +13,7 @@ Eine Live-Version ist unter https://julianverse.de/startpage/ erreichbar.
 - **News-Feed**: RSS-Leser mit auswählbaren Quellen, erweiterbar über eigene Feeds. Abruf erfolgt via AllOrigins (CORS-Proxy).
 - **Zuletzt & Systemstatus**: Historie der eigenen Suchen/Klicks sowie Verbindungs- und Akkustand (soweit vom Browser verfügbar).
 - **Quote & Kommandopalette**: Tageszitat zur Motivation und eine Palette (`Strg/⌘ + K`) für Aktionen wie Theme-Wechsel, Tile-Suche oder Widget-Updates.
-- **Themes & Hintergründe**: Dark-/Light-/Auto-Modus, konfigurierbare Widgetfarben und optionales Hintergrundbild.
+- **Layout & Styling**: Dark-/Light-/Auto-Modus, vier globale Karten-Stile (Glas, Vollfläche, Transparent, Soft Minimal), konfigurierbare Widgetfarben sowie separate Farbwahlen für Suche und Zeit/Datum.
 
 ## Projektstruktur
 - `index.html` – Enthält das komplette Markup, CSS und JavaScript. Neue Skripte sollten im unteren `<script>`-Block ergänzt und innerhalb von `init()` initialisiert werden.
@@ -36,7 +36,8 @@ Die Seite ist anschließend unter `http://localhost:4173` (oder dem jeweiligen P
 ## Anpassung und Erweiterung
 - **Suche**: Aktivieren/Deaktivieren von Engines und eigene !Shortcuts über das Einstellungsmodal („Daten“-Tab). Platzhalter `{q}` steht für die Suchphrase.
 - **Wetter & News**: Standardstadt und individuelle RSS-Feeds im Modal („Widgets“ bzw. „Daten“) konfigurieren.
-- **Widgets**: Sichtbarkeit einzelner Karten sowie deren Farben lassen sich in den Einstellungen toggeln.
+- **Widgets & Layout**: Sichtbarkeit einzelner Karten, globale Karten-Stile und Akzentfarben je Widget lassen sich im Einstellungsmodal anpassen.
+- **Header & Suche**: Eigene Farben für Zeit/Datum sowie die Suche festlegen oder per Reset auf den aktuellen Karten-Stil zurücksetzen.
 - **Hintergrund**: Eine Bild-URL im Einstellungsmodal hinterlegen, um den Hintergrund zu überschreiben.
 - **Datenverwaltung**: Export und Import aller localStorage-Einträge als JSON über das Modal („Daten“-Tab).
 - **Kommandopalette**: `Strg/⌘ + K` öffnet eine fuzzy durchsuchbare Aktionsliste (z. B. Tiles aufrufen, Theme wechseln, Widgets neu laden).

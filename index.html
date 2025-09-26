@@ -24,6 +24,22 @@
       --ring: color-mix(in srgb, var(--accent) 55%, transparent);
       --link: var(--accent-2);
       --link-visited: var(--accent-2);
+      --card-bg-current: var(--glass);
+      --card-border-current: rgba(255,255,255,.06);
+      --card-shadow-current: var(--shadow);
+      --card-backdrop-current: blur(10px);
+      --tile-bg-current: var(--glass);
+      --tile-border-current: rgba(255,255,255,.08);
+      --tile-shadow-current: var(--shadow);
+      --tile-backdrop-current: blur(10px);
+      --clock-bg: var(--card-bg-current);
+      --clock-border: var(--card-border-current);
+      --clock-shadow: var(--card-shadow-current);
+      --clock-backdrop: var(--card-backdrop-current);
+      --search-bg: var(--card-bg-current);
+      --search-border: var(--card-border-current);
+      --search-shadow: var(--card-shadow-current);
+      --search-backdrop: var(--card-backdrop-current);
     }
     [data-theme="light"] {
       --bg: #f7f8fb;
@@ -41,6 +57,8 @@
       --ring: color-mix(in srgb, var(--accent) 45%, transparent);
       --link: var(--accent);
       --link-visited: var(--accent);
+      --card-border-current: rgba(0,0,0,.06);
+      --tile-border-current: rgba(0,0,0,.08);
     }
     * { box-sizing: border-box }
     html, body { height: 100% }
@@ -76,6 +94,63 @@
       position: relative;
       z-index: 1;
     }
+
+    body[data-card-style="glass"] {
+      --card-bg-current: var(--glass);
+      --card-border-current: rgba(255,255,255,.06);
+      --card-shadow-current: var(--shadow);
+      --card-backdrop-current: blur(10px);
+      --tile-bg-current: var(--glass);
+      --tile-border-current: rgba(255,255,255,.08);
+      --tile-shadow-current: var(--shadow);
+      --tile-backdrop-current: blur(10px);
+    }
+    body[data-card-style="solid"] {
+      --card-bg-current: var(--bg-soft);
+      --card-border-current: rgba(255,255,255,.10);
+      --card-shadow-current: 0 4px 18px rgba(0,0,0,.22);
+      --card-backdrop-current: none;
+      --tile-bg-current: var(--bg-soft);
+      --tile-border-current: rgba(255,255,255,.12);
+      --tile-shadow-current: 0 4px 18px rgba(0,0,0,.22);
+      --tile-backdrop-current: none;
+    }
+    html[data-theme="light"] body[data-card-style="solid"] {
+      --card-border-current: rgba(0,0,0,.06);
+      --card-shadow-current: 0 4px 18px rgba(0,0,0,.08);
+      --tile-border-current: rgba(0,0,0,.08);
+      --tile-shadow-current: 0 4px 18px rgba(0,0,0,.08);
+    }
+    body[data-card-style="transparent"] {
+      --card-bg-current: transparent;
+      --card-border-current: rgba(255,255,255,.18);
+      --card-shadow-current: none;
+      --card-backdrop-current: none;
+      --tile-bg-current: transparent;
+      --tile-border-current: rgba(255,255,255,.20);
+      --tile-shadow-current: none;
+      --tile-backdrop-current: none;
+    }
+    html[data-theme="light"] body[data-card-style="transparent"] {
+      --card-border-current: rgba(0,0,0,.12);
+      --tile-border-current: rgba(0,0,0,.14);
+    }
+    body[data-card-style="minimal"] {
+      --card-bg-current: color-mix(in srgb, var(--bg) 80%, transparent);
+      --card-border-current: rgba(255,255,255,.05);
+      --card-shadow-current: 0 2px 12px rgba(0,0,0,.18);
+      --card-backdrop-current: none;
+      --tile-bg-current: color-mix(in srgb, var(--bg-soft) 85%, transparent);
+      --tile-border-current: rgba(255,255,255,.07);
+      --tile-shadow-current: 0 2px 12px rgba(0,0,0,.18);
+      --tile-backdrop-current: none;
+    }
+    html[data-theme="light"] body[data-card-style="minimal"] {
+      --card-border-current: rgba(0,0,0,.03);
+      --tile-border-current: rgba(0,0,0,.04);
+    }
+
+    body { transition: background .4s ease; }
     header {
       display: flex;
       gap: 16px;
@@ -86,22 +161,29 @@
       display: flex;
       gap: 16px;
       align-items: baseline;
+      background: var(--clock-bg);
+      border: 1px solid var(--clock-border);
+      border-radius: 16px;
+      padding: 16px 20px;
+      box-shadow: var(--clock-shadow);
+      backdrop-filter: var(--clock-backdrop);
+      transition: background .3s ease, border-color .3s ease, box-shadow .3s ease, color .3s ease;
     }
     .time h1 { font-size: 56px; margin: 0; letter-spacing: -1px; font-weight: 700; }
     .time .date { color: var(--muted); font-weight: 500 }
 
     .controls { display: flex; gap: 8px; align-items: center }
     .btn {
-      background: var(--glass);
-      border: 1px solid rgba(255,255,255,.06);
+      background: var(--tile-bg-current);
+      border: 1px solid var(--tile-border-current);
       color: var(--fg);
       border-radius: 12px;
       padding: 10px 14px;
       cursor: pointer;
-      box-shadow: var(--shadow);
+      box-shadow: var(--tile-shadow-current);
       transition: transform .06s ease, background .2s ease, border-color .2s ease;
       user-select: none;
-      backdrop-filter: blur(10px);
+      backdrop-filter: var(--tile-backdrop-current);
     }
     .btn:hover { transform: translateY(-1px) }
     .btn:active { transform: translateY(0) }
@@ -112,16 +194,17 @@
 
     /* Search */
     .search {
-      background: var(--glass);
-      border: 1px solid rgba(255,255,255,.06);
+      background: var(--search-bg);
+      border: 1px solid var(--search-border);
       border-radius: 16px;
       padding: 12px;
       display: grid;
       grid-template-columns: 160px 1fr 56px;
       gap: 8px;
       align-items: center;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
+      box-shadow: var(--search-shadow);
+      backdrop-filter: var(--search-backdrop);
+      transition: background .3s ease, border-color .3s ease, box-shadow .3s ease;
     }
     select, input[type="text"], textarea {
       width: 100%;
@@ -143,13 +226,14 @@
       gap: 16px;
     }
     .card {
-      background: var(--glass);
-      border: 1px solid rgba(255,255,255,.06);
+      background: var(--card-bg-current);
+      border: 1px solid var(--card-border-current);
       border-radius: 16px;
       padding: 16px;
-      box-shadow: var(--shadow);
+      box-shadow: var(--card-shadow-current);
       min-height: 120px;
-      backdrop-filter: blur(10px);
+      backdrop-filter: var(--card-backdrop-current);
+      transition: background .3s ease, border-color .3s ease, box-shadow .3s ease;
     }
     .card h3 { margin: 0 0 10px; font-size: 18px }
     .muted { color: var(--muted) }
@@ -179,18 +263,18 @@
       gap: 16px;
     }
     .tile {
-      background: var(--glass);
-      border: 1px solid rgba(255,255,255,.08);
+      background: var(--tile-bg-current);
+      border: 1px solid var(--tile-border-current);
       border-radius: 16px;
       padding: 16px;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       gap: 8px;
-      box-shadow: var(--shadow);
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: var(--tile-shadow-current);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background .3s ease, border-color .3s ease;
       cursor: grab;
-      backdrop-filter: blur(10px);
+      backdrop-filter: var(--tile-backdrop-current);
     }
     .tile:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0,0,0,.35); }
     .tile:active { cursor: grabbing; }
@@ -368,7 +452,7 @@
 
     <footer class="muted" style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:6px">
       <div>Local‑first Dashboard · speichert nur im Browser (localStorage)</div>
-      <div>v1.2</div>
+      <div>v1.3</div>
     </footer>
   </div>
 
@@ -436,7 +520,39 @@
         <div id="widgetToggles" style="display:flex; gap:12px; flex-wrap:wrap"></div>
       </div>
       <div class="row">
-        <label>Widget‑Farben</label>
+        <label for="cardStyle">Kachel-Stil</label>
+        <div>
+          <select id="cardStyle">
+            <option value="glass">Glas (Standard)</option>
+            <option value="solid">Vollfläche</option>
+            <option value="transparent">Transparent</option>
+            <option value="minimal">Soft Minimal</option>
+          </select>
+          <div class="muted" style="margin-top:6px">Wirkt auf alle Widgets & Favoriten-Kacheln.</div>
+        </div>
+      </div>
+      <div class="row">
+        <label for="clockColor">Zeit & Datum</label>
+        <div>
+          <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
+            <input type="color" id="clockColor" />
+            <button class="btn" id="clockColorReset" type="button">Reset</button>
+          </div>
+          <div class="muted" style="margin-top:6px">Legt den Hintergrund der Kopfzeile fest (leer = Stil-Vorgabe).</div>
+        </div>
+      </div>
+      <div class="row">
+        <label for="searchColor">Suche</label>
+        <div>
+          <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
+            <input type="color" id="searchColor" />
+            <button class="btn" id="searchColorReset" type="button">Reset</button>
+          </div>
+          <div class="muted" style="margin-top:6px">Farbe für den Suchbereich (leer = Stil-Vorgabe).</div>
+        </div>
+      </div>
+      <div class="row">
+        <label>Widget-Farben</label>
         <div id="widgetColorEditor" style="display:flex; gap:12px; flex-wrap:wrap"></div>
       </div>
       <div class="row">
@@ -932,6 +1048,18 @@
       box.appendChild(label); box.appendChild(input); box.appendChild(clear);
       editor.appendChild(box);
     });
+
+    const cardStyle = store.get('ui.cardStyle', 'glass');
+    const styleSelect = $('#cardStyle'); if(styleSelect) styleSelect.value = ['glass','solid','transparent','minimal'].includes(cardStyle) ? cardStyle : 'glass';
+
+    const clockInput = $('#clockColor'); if(clockInput){
+      const value = store.get('ui.clock.color','');
+      clockInput.value = value && /^#([0-9a-f]{6})$/i.test(value) ? value : '#7c5cff';
+    }
+    const searchInput = $('#searchColor'); if(searchInput){
+      const value = store.get('ui.search.color','');
+      searchInput.value = value && /^#([0-9a-f]{6})$/i.test(value) ? value : '#54d6ff';
+    }
   }
 
   function selectSettingsTab(name){
@@ -976,7 +1104,7 @@
       const has = sel => row.querySelector(sel);
       if(has('#themeSelect') || has('#bgUrl') || has('#defaultCity')) assign(row, panelGeneral);
       else if(has('#enginePills') || has('#shortcutConfig') || has('#feedsConfig')) assign(row, panelSearch);
-      else if(has('#widgetToggles') || has('#widgetColorEditor')) assign(row, panelWidgets);
+      else if(has('#widgetToggles') || has('#widgetColorEditor') || has('#cardStyle') || has('#clockColor') || has('#searchColor')) assign(row, panelWidgets);
       else if(has('#exportData') || has('#importData')) assign(row, panelData);
       else assign(row, panelGeneral);
     });
@@ -997,6 +1125,7 @@
             <li>/ : Suche fokussieren (über Palette auswählbar)</li>
             <li>Enter in Suche: Startet die Suche</li>
             <li>ESC: Modals schließen</li>
+            <li>Palette: Taste C wechselt den Kachel-Stil, "Header-Farben zurücksetzen" stellt Suche & Uhr zurück</li>
           </ul>
           <h5>Suche & Bangs</h5>
           <ul>
@@ -1009,10 +1138,12 @@
             <li>+ Kachel: Neue Favoriten hinzufügen</li>
             <li>Reset: Standardfavoriten wiederherstellen</li>
           </ul>
-          <h5>Widgets</h5>
+          <h5>Widgets & Layout</h5>
           <ul>
             <li>Sichtbarkeit je Widget umschaltbar</li>
-            <li>Widget-Farben: Eigene Akzenttöne je Kachel</li>
+            <li>Kachel-Stil global anpassbar (Glas, Vollfläche, Transparent, Soft Minimal)</li>
+            <li>Eigenes Farbschema für Zeit/Datum und Suche; Reset bringt Stilvorgabe zurück</li>
+            <li>Widget-Farben: Eigene Akzenttöne je Kachel möglich</li>
           </ul>
           <h5>Daten</h5>
           <ul>
@@ -1102,6 +1233,72 @@
     });
   }
 
+  function normalizeHex(hex){
+    if(typeof hex !== 'string') return '';
+    let h = hex.trim();
+    if(!/^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(h)) return '';
+    if(h.length === 4) h = '#' + h[1]+h[1]+h[2]+h[2]+h[3]+h[3];
+    return `#${h.slice(1).toLowerCase()}`;
+  }
+
+  function applySurfaceColor(prefix, raw){
+    const root = document.documentElement; if(!root) return;
+    const hex = normalizeHex(raw);
+    if(hex){
+      const border = hexToRgba(hex, 0.42) || hex;
+      const shadow = hexToRgba(hex, prefix==='search' ? 0.2 : 0.24) || 'rgba(0,0,0,.2)';
+      root.style.setProperty(`--${prefix}-bg`, hex);
+      root.style.setProperty(`--${prefix}-border`, border);
+      root.style.setProperty(`--${prefix}-shadow`, `0 10px 28px ${shadow}`);
+      root.style.setProperty(`--${prefix}-backdrop`, 'none');
+    } else {
+      const body = document.body;
+      const bodyStyle = body ? getComputedStyle(body) : null;
+      const rootStyle = getComputedStyle(root);
+      const bg = (bodyStyle && bodyStyle.getPropertyValue('--card-bg-current').trim()) || rootStyle.getPropertyValue('--card-bg-current').trim() || 'transparent';
+      const border = (bodyStyle && bodyStyle.getPropertyValue('--card-border-current').trim()) || rootStyle.getPropertyValue('--card-border-current').trim() || 'transparent';
+      const shadow = (bodyStyle && bodyStyle.getPropertyValue('--card-shadow-current').trim()) || rootStyle.getPropertyValue('--card-shadow-current').trim() || 'none';
+      const backdrop = (bodyStyle && bodyStyle.getPropertyValue('--card-backdrop-current').trim()) || rootStyle.getPropertyValue('--card-backdrop-current').trim() || 'none';
+      root.style.setProperty(`--${prefix}-bg`, bg);
+      root.style.setProperty(`--${prefix}-border`, border);
+      root.style.setProperty(`--${prefix}-shadow`, shadow);
+      root.style.setProperty(`--${prefix}-backdrop`, backdrop);
+    }
+  }
+
+  function applySurfaceColors(){
+    applySurfaceColor('clock', store.get('ui.clock.color',''));
+    applySurfaceColor('search', store.get('ui.search.color',''));
+  }
+
+  function applyCardStyle(){
+    const body = document.body; if(!body) return;
+    const current = store.get('ui.cardStyle','glass');
+    const allowed = ['glass','solid','transparent','minimal'];
+    const value = allowed.includes(current) ? current : 'glass';
+    body.setAttribute('data-card-style', value);
+    applySurfaceColors();
+  }
+
+  function cycleCardStyle(){
+    const order = ['glass','solid','transparent','minimal'];
+    const current = store.get('ui.cardStyle','glass');
+    const idx = order.indexOf(current);
+    const next = order[(idx + 1) % order.length];
+    store.set('ui.cardStyle', next);
+    applyCardStyle();
+    const modal = $('#settingsModal');
+    if(modal && modal.classList.contains('open')) fillSettings();
+  }
+
+  function resetSurfaceColors(){
+    store.set('ui.clock.color','');
+    store.set('ui.search.color','');
+    applySurfaceColors();
+    const modal = $('#settingsModal');
+    if(modal && modal.classList.contains('open')) fillSettings();
+  }
+
   // ===== Command Palette (Ctrl/Cmd+K)
   function buildPaletteItems(){
     const items = [];
@@ -1109,6 +1306,8 @@
     items.push({ t:'Suche fokussieren', k:'/', a: ()=> $('#query').focus() });
     items.push({ t:'Einstellungen öffnen', k:'S', a: openSettings });
     items.push({ t:'Theme wechseln (Auto/Dark/Light)', k:'T', a: ()=>{ const cur=store.get('theme','auto'); const next = cur==='dark' ? 'light' : cur==='light' ? 'auto' : 'dark'; store.set('theme', next); applyTheme(next); }});
+    items.push({ t:'Kachel-Stil wechseln', k:'C', a: cycleCardStyle });
+    items.push({ t:'Header-Farben zurücksetzen', a: resetSurfaceColors });
     items.push({ t:'Tile hinzufügen', k:'+', a: addTile });
     items.push({ t:'Erledigte Todos löschen', k:'⌫', a: ()=>{ const list=store.get('todos',[]).filter(t=>!t.done); store.set('todos', list); renderTodos(); }});
     items.push({ t:'News aktualisieren', a: loadNews });
@@ -1164,6 +1363,7 @@
     // Theme
     const theme = store.get('theme','auto');
     applyTheme(theme);
+    applyCardStyle();
     $('#themeToggle').addEventListener('click', ()=>{
       const current = store.get('theme','auto');
       const next = current==='dark' ? 'light' : current==='light' ? 'auto' : 'dark';
@@ -1174,6 +1374,15 @@
     $('#themeSelect').addEventListener('change', e=>{ store.set('theme', e.target.value); applyTheme(e.target.value); });
     $('#bgUrl').addEventListener('change', e=>{ store.set('bg.url', e.target.value.trim()); applyBackground(); });
     $('#defaultCity').addEventListener('change', e=>{ store.set('weather.city', e.target.value.trim()); loadWeather(); });
+
+    const cardSelect = $('#cardStyle');
+    if(cardSelect) cardSelect.addEventListener('change', e=>{ const allowed = ['glass','solid','transparent','minimal']; const val = allowed.includes(e.target.value) ? e.target.value : 'glass'; store.set('ui.cardStyle', val); applyCardStyle(); if(val !== e.target.value) fillSettings(); });
+    const clockColorInput = $('#clockColor');
+    if(clockColorInput) clockColorInput.addEventListener('input', ()=>{ const val = normalizeHex(clockColorInput.value); store.set('ui.clock.color', val); applySurfaceColors(); });
+    const clockReset = $('#clockColorReset'); if(clockReset) clockReset.addEventListener('click', ()=>{ store.set('ui.clock.color',''); applySurfaceColors(); fillSettings(); });
+    const searchColorInput = $('#searchColor');
+    if(searchColorInput) searchColorInput.addEventListener('input', ()=>{ const val = normalizeHex(searchColorInput.value); store.set('ui.search.color', val); applySurfaceColors(); });
+    const searchReset = $('#searchColorReset'); if(searchReset) searchReset.addEventListener('click', ()=>{ store.set('ui.search.color',''); applySurfaceColors(); fillSettings(); });
 
     // Engines & Search
     renderEngines();
