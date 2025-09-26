@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Startpage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f1220;
+      --bg-soft: #13172a;
+      --fg: #e6e8f0;
+      --muted: #a7aec0;
+      --card: #171b31;
+      --accent: #7c5cff;
+      --accent-2: #54d6ff;
+      --ok: #36d399;
+      --warn: #f4bf50;
+      --danger: #ef6a6a;
+      --shadow: 0 8px 30px rgba(0,0,0,.25);
+      --glass: rgba(255,255,255,0.06);
+      --ring: color-mix(in srgb, var(--accent) 55%, transparent);
+      --link: var(--accent-2);
+      --link-visited: var(--accent-2);
+    }
+    [data-theme="light"] {
+      --bg: #f7f8fb;
+      --bg-soft: #eef0f7;
+      --fg: #0f1220;
+      --muted: #5a6378;
+      --card: #ffffff;
+      --accent: #5b43ff;
+      --accent-2: #17a4da;
+      --ok: #0e915f;
+      --warn: #9e6b00;
+      --danger: #c33b3b;
+      --shadow: 0 8px 20px rgba(0,0,0,.08);
+      --glass: rgba(255,255,255,0.55);
+      --ring: color-mix(in srgb, var(--accent) 45%, transparent);
+      --link: var(--accent);
+      --link-visited: var(--accent);
+    }
+    * { box-sizing: border-box }
+    html, body { height: 100% }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--fg);
+      background: radial-gradient(1200px 800px at 10% 0%, rgba(124,92,255,.12), transparent 60%),
+                  radial-gradient(1200px 800px at 90% 10%, rgba(84,214,255,.10), transparent 60%),
+                  linear-gradient(180deg, var(--bg), var(--bg));
+      min-height: 100vh;
+    }
+    /* Links: enforce accessible contrast and disable default purple visited */
+    a { color: var(--link); }
+    a:visited { color: var(--link-visited); }
+    a:hover { color: var(--accent-2); }
+    /* Background orbs */
+    .bg-orbs { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden }
+    .bg-orbs span { position: absolute; filter: blur(60px); opacity: .35; border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, var(--accent), transparent 60%);
+      animation: float 18s ease-in-out infinite alternate }
+    .bg-orbs .o1 { width: 38vmax; height: 38vmax; left: -10vmax; top: -8vmax; }
+    .bg-orbs .o2 { width: 30vmax; height: 30vmax; right: -8vmax; top: 2vmax; background: radial-gradient(circle at 70% 30%, var(--accent-2), transparent 60%); animation-duration: 22s }
+    .bg-orbs .o3 { width: 28vmax; height: 28vmax; left: 15vmax; bottom: -8vmax; background: radial-gradient(circle at 50% 50%, #36d399, transparent 60%); animation-duration: 26s }
+    @keyframes float { to { transform: translateY(4vh) translateX(2vw) scale(1.04) } }
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px 20px 40px;
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      gap: 16px;
+      position: relative;
+      z-index: 1;
+    }
+    header {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .time {
+      display: flex;
+      gap: 16px;
+      align-items: baseline;
+    }
+    .time h1 { font-size: 56px; margin: 0; letter-spacing: -1px; font-weight: 700; }
+    .time .date { color: var(--muted); font-weight: 500 }
+
+    .controls { display: flex; gap: 8px; align-items: center }
+    .btn {
+      background: var(--glass);
+      border: 1px solid rgba(255,255,255,.06);
+      color: var(--fg);
+      border-radius: 12px;
+      padding: 10px 14px;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: transform .06s ease, background .2s ease, border-color .2s ease;
+      user-select: none;
+      backdrop-filter: blur(10px);
+    }
+    .btn:hover { transform: translateY(-1px) }
+    .btn:active { transform: translateY(0) }
+    .btn:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, a:focus-visible {
+      outline: 2px solid var(--ring);
+      outline-offset: 2px;
+    }
+
+    /* Search */
+    .search {
+      background: var(--glass);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 16px;
+      padding: 12px;
+      display: grid;
+      grid-template-columns: 160px 1fr 56px;
+      gap: 8px;
+      align-items: center;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+    select, input[type="text"], textarea {
+      width: 100%;
+      background: var(--bg-soft);
+      color: var(--fg);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 16px;
+      outline: none;
+    }
+    input[type="text"]::placeholder { color: var(--muted) }
+    .search .btn-go { height: 44px; display:flex; align-items:center; justify-content:center }
+
+    /* Grid */
+    main.grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
+    .card {
+      background: var(--glass);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+      min-height: 120px;
+      backdrop-filter: blur(10px);
+    }
+    .card h3 { margin: 0 0 10px; font-size: 18px }
+    .muted { color: var(--muted) }
+
+    /* Widgets sizes */
+    .col-4 { grid-column: span 4 }
+    .col-6 { grid-column: span 6 }
+    .col-8 { grid-column: span 8 }
+    .col-12 { grid-column: span 12 }
+
+    /* Todo */
+    .todo-input { display:flex; gap:8px; margin-bottom:10px }
+    .todo-list { display:flex; flex-direction:column; gap:8px; max-height: 260px; overflow:auto }
+    .todo-item { display:flex; align-items:center; gap:10px; background: var(--bg-soft); border:1px solid rgba(255,255,255,.06); padding:10px 12px; border-radius:12px }
+    .todo-item input[type="checkbox"]{ width:18px; height:18px }
+    .todo-item .title { flex:1 }
+    .todo-item.done .title { text-decoration: line-through; color: var(--muted) }
+
+    /* Notes */
+    .notes { width: 100%; min-height: 200px; background: var(--bg-soft); color: var(--fg); border:1px solid rgba(255,255,255,.06); border-radius: 12px; padding:12px; resize: vertical }
+
+    
+    /* Tiles */
+    .tiles {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+    }
+    .tile {
+      background: var(--glass);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      box-shadow: var(--shadow);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      cursor: grab;
+      backdrop-filter: blur(10px);
+    }
+    .tile:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0,0,0,.35); }
+    .tile:active { cursor: grabbing; }
+    .tile .favicon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--bg-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .tile .favicon img { width:100%; height:100%; display:block }
+    .tile .meta { display: flex; flex-direction: column; gap: 2px; }
+    .tile .meta .title { font-weight: 600; font-size: 16px; color: var(--fg); text-decoration: none; }
+    .tile .meta .title:visited { color: var(--fg); }
+    .tile .meta .title:hover { text-decoration: underline; color: var(--accent-2); }
+    .tile .meta .url { font-size: 12px; color: var(--muted); word-break: break-all; }
+    .tile .actions { margin-top: auto; display: flex; gap: 8px; }
+    .tile .actions button { background: transparent; border: none; color: var(--muted); cursor: pointer; font-size: 14px; transition: color .2s; }
+    .tile .actions button:hover { color: var(--accent-2); }
+
+    /* Weather */
+    .weather-top { display:flex; align-items:center; justify-content:space-between; gap:8px }
+    .weather-main { display:flex; gap:16px; align-items:center; margin-top:8px }
+    .weather-temp { font-size:42px; font-weight:700 }
+    .weather-minmax { color: var(--muted) }
+    .weather-hourly { margin-top:10px; display:flex; gap:10px; overflow:auto }
+    .chip { background: var(--bg-soft); padding:6px 10px; border:1px solid rgba(255,255,255,.06); border-radius:999px; font-size:12px; white-space:nowrap }
+
+    /* Recent */
+    .recent-list { display:flex; gap:10px; flex-wrap:wrap }
+    .recent-list a { text-decoration:none }
+
+    /* Quote */
+    .quote { font-style: italic; color: var(--muted) }
+
+    /* Settings modal */
+    .modal { position: fixed; inset:0; display:none; align-items:center; justify-content:center; background: rgba(0,0,0,.5); padding:20px; z-index: 1000 }
+    .modal.open { display:flex }
+    .modal .sheet { background: var(--card); border:1px solid rgba(255,255,255,.08); padding:16px; border-radius:16px; width:min(780px, 96vw); max-height: min(90vh, 900px); overflow: auto }
+    .sheet h4 { margin:0 0 10px }
+    .row { display:grid; grid-template-columns: 220px 1fr; gap:10px; align-items:center; margin-bottom:10px }
+    .sheet input[type="text"], .sheet input[type="url"], .sheet textarea, .sheet select { width:100% }
+
+    /* Tabs */
+    .tabs { display:flex; gap:8px; border-bottom: 1px solid rgba(255,255,255,.08); margin: 10px 0 12px; position: sticky; top: 0; background: inherit; padding-bottom: 8px; z-index: 2 }
+    .tab-btn { background: var(--glass); border:1px solid rgba(255,255,255,.08); color: var(--fg); padding:8px 12px; border-radius:999px; cursor:pointer }
+    .tab-btn.active { background: var(--accent); border-color: var(--accent); color: #fff }
+    .tab-panel { display: none }
+    .tab-panel.active { display: block }
+    body.modal-open { overflow: hidden }
+
+    /* Command Palette */
+    #palette .sheet { width: min(640px, 96vw); }
+    .palette-input { width:100%; background: var(--bg-soft); color: var(--fg); border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:12px 14px; font-size:16px; margin-bottom:10px }
+    .palette-list { list-style:none; margin:0; padding:0; max-height: 360px; overflow:auto }
+    .palette-item { padding:10px 12px; border-radius:10px; display:flex; gap:8px; align-items:center; cursor:pointer }
+    .palette-item:hover, .palette-item.active { background: var(--bg-soft) }
+    .palette-item .k { margin-left:auto; color: var(--muted); font-size:12px }
+
+    /* Weather icon */
+    .weather-icon { width:42px; height:42px; display:flex; align-items:center; justify-content:center }
+
+    /* Responsive */
+    @media (max-width: 1000px) {
+      .tiles { grid-template-columns: repeat(3, 1fr); }
+      .col-6 { grid-column: span 12 }
+      .col-8 { grid-column: span 12 }
+      .col-4 { grid-column: span 12 }
+      .search { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .tiles { grid-template-columns: repeat(2, 1fr); }
+      .time h1 { font-size: 40px }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-orbs"><span class="o1"></span><span class="o2"></span><span class="o3"></span></div>
+  <div class="wrap">
+    <header>
+      <div class="time">
+        <h1 id="clock">--:--</h1>
+        <div class="date" id="date">—</div>
+      </div>
+      <div class="controls">
+        <button class="btn" id="themeToggle" title="Dark/Light">🌓</button>
+        <button class="btn" id="openSettings" title="Einstellungen">⚙️</button>
+      </div>
+    </header>
+
+    <section class="search" id="searchBox">
+      <select id="engine"></select>
+      <input id="query" type="text" placeholder="Suche… (z. B. !yt lo‑fi, !etc Home)" autocomplete="on" />
+      <button class="btn btn-go" id="go">⏎</button>
+    </section>
+
+    <main class="grid">
+      <section class="card col-6" id="todo">
+        <h3>To‑Do</h3>
+        <div class="todo-input">
+          <input id="todoInput" type="text" placeholder="Neue Aufgabe…" />
+          <button class="btn" id="todoAdd">Hinzufügen</button>
+          <button class="btn" id="todoClearDone" title="Erledigte entfernen">✓ löschen</button>
+        </div>
+        <div class="todo-list" id="todoList"></div>
+      </section>
+
+      <section class="card col-6" id="notes">
+        <h3>Notizen</h3>
+        <textarea class="notes" id="notesArea" placeholder="Schreib dir schnell was auf…"></textarea>
+      </section>
+
+      <section class="card col-8" id="tilesCard">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:8px">
+          <h3>Favoriten</h3>
+          <div style="display:flex; gap:8px">
+            <button class="btn" id="addTile">+ Kachel</button>
+            <button class="btn" id="resetTiles" title="Standard wiederherstellen">↺</button>
+          </div>
+        </div>
+        <div class="tiles" id="tiles"></div>
+      </section>
+
+      <section class="card col-4" id="weather">
+        <div class="weather-top">
+          <h3>Wetter heute</h3>
+          <div style="display:flex; gap:6px">
+            <input type="text" id="cityInput" placeholder="Stadt eingeben…" style="width: 160px" />
+            <button class="btn" id="setCity">Setzen</button>
+          </div>
+        </div>
+        <div class="weather-main">
+          <div id="weatherIcon" class="weather-icon" aria-hidden="true"></div>
+          <div class="weather-temp" id="tempNow">—°</div>
+          <div>
+            <div id="weatherText" class="muted">Ort wählen…</div>
+            <div class="weather-minmax" id="minmax">— / — °C</div>
+          </div>
+        </div>
+        <div class="weather-hourly" id="hourly"></div>
+        <div class="muted" id="weatherFoot" style="margin-top:8px; font-size:12px">Quelle: Open‑Meteo</div>
+      </section>
+
+      <section class="card col-4" id="quoteCard">
+        <h3>Quote / Nerd‑Impulse</h3>
+        <div class="quote" id="quote">—</div>
+      </section>
+
+      <section class="card col-4" id="recent">
+        <h3>Zuletzt</h3>
+        <div class="recent-list" id="recentList"></div>
+        <div class="muted" style="margin-top:8px; font-size:12px">Hinweis: Zeigt nur Aktionen von dieser Startseite (geklickte Kacheln & Suchen).</div>
+      </section>
+
+      <section class="card col-4" id="systemCard">
+        <h3>Systemstatus</h3>
+        <div id="systemInfo" class="muted">Lade…</div>
+      </section>
+
+      <section class="card col-12" id="newsCard">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+          <h3>News</h3>
+          <div style="display:flex;gap:8px;align-items:center">
+            <select id="newsSource"></select>
+            <button class="btn" id="refreshNews" title="Neu laden">↻</button>
+          </div>
+        </div>
+        <ul id="newsList"></ul>
+        <div class="muted" style="margin-top:8px; font-size:12px">RSS via AllOrigins (CORS‑Proxy)</div>
+      </section>
+    </main>
+
+    <footer class="muted" style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:6px">
+      <div>Local‑first Dashboard · speichert nur im Browser (localStorage)</div>
+      <div>v1.2</div>
+    </footer>
+  </div>
+
+  <!-- Settings Modal -->
+  <div class="modal" id="settingsModal" aria-hidden="true">
+    <div class="sheet">
+      <div style="display:flex; align-items:center; justify-content:space-between">
+        <h4>Einstellungen</h4>
+        <button class="btn" id="closeSettings">Schließen</button>
+      </div>
+      <div class="tabs" role="tablist">
+        <button class="tab-btn" data-tab="general" role="tab" aria-selected="true">Allgemein</button>
+        <button class="tab-btn" data-tab="search" role="tab">Suche</button>
+        <button class="tab-btn" data-tab="widgets" role="tab">Widgets</button>
+        <button class="tab-btn" data-tab="data" role="tab">Daten</button>
+        <button class="tab-btn" data-tab="guide" role="tab">Guide</button>
+      </div>
+      <div id="tab-general" class="tab-panel active" role="tabpanel">
+      <div class="row">
+        <label for="themeSelect">Theme</label>
+        <select id="themeSelect">
+          <option value="auto">Auto (System)</option>
+          <option value="dark">Dark</option>
+          <option value="light">Light</option>
+        </select>
+      </div>
+      </div>
+      <div id="tab-search" class="tab-panel" role="tabpanel">
+      <div class="row">
+        <label for="bgUrl">Hintergrundbild‑URL (optional)</label>
+        <input id="bgUrl" type="url" placeholder="https://…" />
+      </div>
+      </div>
+      <div id="tab-widgets" class="tab-panel" role="tabpanel">
+      <div class="row">
+        <label for="defaultCity">Standard‑Stadt (Wetter)</label>
+        <input id="defaultCity" type="text" placeholder="z. B. Hannover" />
+      </div>
+      </div>
+      <div id="tab-data" class="tab-panel" role="tabpanel">
+      <div class="row">
+        <label>Suchmaschinen</label>
+        <div>
+          <div class="muted" style="margin-bottom:6px">Unterstützte Bang‑Shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> · Eigene Shortcuts unten</div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap" id="enginePills"></div>
+        </div>
+      </div>
+      </div>
+      <div class="row">
+        <label for="shortcutConfig">Eigene !Shortcuts</label>
+        <div>
+          <textarea id="shortcutConfig" rows="5" placeholder='{"!etc":"https://julianverse.de/etc","!git":"https://github.com/{q}"}'></textarea>
+          <div class="muted" style="margin-top:6px">Verwende <code>{q}</code> als Platzhalter für die Suchphrase. Ohne <code>{q}</code> wird <code>?q=…</code> angehängt.</div>
+        </div>
+      </div>
+      <div class="row">
+        <label for="feedsConfig">Custom RSS‑Feeds</label>
+        <div>
+          <textarea id="feedsConfig" rows="4" placeholder='{"Heise":"https://www.heise.de/rss/heise-atom.xml","Tagesschau":"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml","TechCrunch":"https://techcrunch.com/feed/"}'></textarea>
+          <div class="muted" style="margin-top:6px">JSON: Name → Feed‑URL. Diese Liste wird mit den Standardfeeds gemerged.</div>
+        </div>
+      </div>
+      <div class="row">
+        <label>Widgets sichtbar</label>
+        <div id="widgetToggles" style="display:flex; gap:12px; flex-wrap:wrap"></div>
+      </div>
+      <div class="row">
+        <label>Widget‑Farben</label>
+        <div id="widgetColorEditor" style="display:flex; gap:12px; flex-wrap:wrap"></div>
+      </div>
+      <div class="row">
+        <label>Daten</label>
+        <div style="display:flex; gap:8px; flex-wrap:wrap">
+          <button class="btn" id="exportData">Export (.json)</button>
+          <button class="btn" id="importData">Import (.json)</button>
+          <input type="file" id="importFile" accept="application/json" style="display:none" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Command Palette -->
+  <div class="modal" id="palette" aria-hidden="true">
+    <div class="sheet">
+      <input class="palette-input" id="paletteInput" type="text" placeholder="Befehl oder Favorit suchen… (Strg/⌘+K)" autocomplete="off" />
+      <ul id="paletteList" class="palette-list"></ul>
+    </div>
+  </div>
+
+  <script>
+  // ===== Utilities
+  const $ = (q, el=document) => el.querySelector(q);
+  const $$ = (q, el=document) => Array.from(el.querySelectorAll(q));
+  const store = {
+    get: (k, d) => { try { return JSON.parse(localStorage.getItem(k)) ?? d } catch { return d } },
+    set: (k, v) => localStorage.setItem(k, JSON.stringify(v))
+  };
+
+  function exportData(){
+    const data = {};
+    for(let i=0;i<localStorage.length;i++){
+      const k = localStorage.key(i);
+      try { data[k] = JSON.parse(localStorage.getItem(k)); } catch { data[k] = localStorage.getItem(k); }
+    }
+    const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+    const a = document.createElement('a');
+    const d = new Date();
+    const ts = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    a.href = URL.createObjectURL(blob);
+    a.download = `startpage-backup-${ts}.json`;
+    document.body.appendChild(a); a.click(); URL.revokeObjectURL(a.href); a.remove();
+  }
+  function importDataFromFile(ev){
+    const file = ev.target.files && ev.target.files[0]; if(!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const obj = JSON.parse(reader.result);
+        if(!obj || typeof obj !== 'object') throw new Error('Invalid JSON');
+        if(!confirm('Daten importieren? Bestehende Einträge werden überschrieben.')) return;
+        Object.keys(obj).forEach(k=> localStorage.setItem(k, JSON.stringify(obj[k])));
+        location.reload();
+      } catch(err){ alert('Import fehlgeschlagen: ' + err.message); }
+    };
+    reader.readAsText(file);
+    ev.target.value = '';
+  }
+
+  function prettyDate(d=new Date()) {
+    const fmt = new Intl.DateTimeFormat(undefined, { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+    return fmt.format(d);
+  }
+
+  function openUrl(url, title='Link') {
+    addRecent({ title, url });
+    window.location.href = url;
+  }
+
+  // ===== Clock & Date
+  function tickClock(){
+    const now = new Date();
+    $('#clock').textContent = now.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+    $('#date').textContent = prettyDate(now);
+    requestAnimationFrame(()=> setTimeout(tickClock, 1000 - (now.getTime()%1000)));
+  }
+
+  // ===== Theme
+  function applyTheme(mode){
+    const root = document.documentElement;
+    if(mode === 'auto'){
+      const prefers = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark':'light';
+      root.setAttribute('data-theme', prefers);
+    } else {
+      root.setAttribute('data-theme', mode);
+    }
+  }
+
+  // ===== Search with engines + bangs + custom shortcuts
+  const ENGINES = {
+    google: q => `https://www.google.com/search?q=${encodeURIComponent(q)}`,
+    ddg: q => `https://duckduckgo.com/?q=${encodeURIComponent(q)}`,
+    bing: q => `https://www.bing.com/search?q=${encodeURIComponent(q)}`,
+    yt: q => `https://www.youtube.com/results?search_query=${encodeURIComponent(q)}`,
+    wikipedia: q => `https://de.wikipedia.org/wiki/Spezial:Suche?search=${encodeURIComponent(q)}`,
+    maps: q => `https://www.google.com/maps/search/${encodeURIComponent(q)}`
+  };
+  const BANGS = { '!g':'google', '!ddg':'ddg', '!bing':'bing', '!yt':'yt', '!wiki':'wikipedia', '!maps':'maps' };
+
+  function getShortcuts(){
+    return store.get('shortcuts', { '!etc':'https://julianverse.de/etc' });
+  }
+
+  function doSearch(){
+    let q = $('#query').value.trim();
+    if(!q) return;
+    const first = q.split(/\s+/)[0];
+
+    // custom shortcuts first
+    const shortcuts = getShortcuts();
+    if(first.startsWith('!') && shortcuts[first]){
+      const rest = q.replace(first, '').trim();
+      let target = String(shortcuts[first]);
+      if(target.includes('{q}')) target = target.replaceAll('{q}', encodeURIComponent(rest));
+      else if(rest) target += (target.includes('?') ? '&' : '?') + 'q=' + encodeURIComponent(rest);
+      addRecent({ title: `Shortcut ${first} – ${rest||''}`, url: target });
+      window.location.href = target; return;
+    }
+
+    // built-in bangs
+    let engine = $('#engine').value;
+    if(BANGS[first]){ engine = BANGS[first]; q = q.replace(first, '').trim(); }
+    const url = ENGINES[engine](q);
+    addRecent({ title: `Suche (${engine}) – ${q}`, url });
+    window.location.href = url;
+  }
+
+  // ===== Todo
+  function renderTodos(){
+    const list = store.get('todos', []);
+    const wrap = $('#todoList');
+    wrap.innerHTML = '';
+    list.forEach((t, i) => {
+      const el = document.createElement('div');
+      el.className = 'todo-item' + (t.done ? ' done' : '');
+      el.innerHTML = `
+        <input type="checkbox" ${t.done?'checked':''} aria-label="Fertig">
+        <div class="title">${escapeHtml(t.text)}</div>
+        <button class="btn" title="Löschen">🗑️</button>
+      `;
+      el.querySelector('input').addEventListener('change', e=>{
+        list[i].done = e.target.checked; store.set('todos', list); renderTodos();
+      });
+      el.querySelector('button').addEventListener('click', ()=>{
+        list.splice(i,1); store.set('todos', list); renderTodos();
+      });
+      wrap.appendChild(el);
+    });
+  }
+
+  function addTodo(text){
+    const list = store.get('todos', []);
+    list.unshift({ text, done:false, ts: Date.now() });
+    store.set('todos', list); renderTodos();
+  }
+
+  // ===== Notes
+  function initNotes(){
+    const area = $('#notesArea');
+    area.value = store.get('notes','');
+    area.addEventListener('input', ()=> store.set('notes', area.value));
+  }
+
+  // ===== Tiles (CRUD + drag&drop + favicons)
+  function defaultTiles(){
+    return [
+      { title:'GitHub', url:'https://github.com', key:'gh' },
+      { title:'YouTube', url:'https://youtube.com', key:'yt' },
+      { title:'Gmail', url:'https://mail.google.com', key:'gm' },
+      { title:'ChatGPT', url:'https://chat.openai.com', key:'ai' },
+      { title:'Hacker News', url:'https://news.ycombinator.com', key:'hn' },
+      { title:'Wikipedia', url:'https://de.wikipedia.org', key:'wk' },
+      { title:'Docs', url:'https://devdocs.io', key:'dd' },
+      { title:'Calendar', url:'https://calendar.google.com', key:'cal' }
+    ];
+  }
+
+  function escapeHtml(s){
+    return s.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[m]));
+  }
+
+  function renderTiles(){
+    const data = store.get('tiles', defaultTiles());
+    const grid = $('#tiles'); grid.innerHTML = '';
+    data.forEach((t, i)=>{
+      const el = document.createElement('div');
+      el.className='tile';
+      el.draggable = true;
+      const host = (new URL(t.url)).hostname;
+      const firstLetter = host.split('.')[0][0]?.toUpperCase() || '·';
+      el.innerHTML = `
+        <div class="favicon"><img alt="favicon" src="https://www.google.com/s2/favicons?sz=64&domain_url=${encodeURIComponent(t.url)}"></div>
+        <div class="meta">
+          <a href="#" class="title">${escapeHtml(t.title)}</a>
+          <div class="url">${escapeHtml(host)}</div>
+        </div>
+        <div class="actions">
+          <button title="Bearbeiten" aria-label="Bearbeiten">✏️</button>
+          <button title="Löschen" aria-label="Löschen">🗑️</button>
+        </div>`;
+
+      // Fallback, wenn Favicon nicht lädt → Buchstabe zeigen
+      const img = el.querySelector('.favicon img');
+      img.addEventListener('error', ()=>{ const fv=el.querySelector('.favicon'); fv.textContent=firstLetter; img.remove(); });
+
+      el.querySelector('.title').addEventListener('click', (e)=>{ e.preventDefault(); openUrl(t.url, t.title); });
+      el.querySelectorAll('button')[1].addEventListener('click', ()=>{ data.splice(i,1); store.set('tiles', data); renderTiles(); });
+      el.querySelectorAll('button')[0].addEventListener('click', ()=> editTile(i));
+
+      // Drag & drop
+      el.addEventListener('dragstart', e=>{
+        e.dataTransfer.setData('text/plain', i.toString());
+        el.classList.add('dragging');
+      });
+      el.addEventListener('dragend', ()=> el.classList.remove('dragging'));
+      el.addEventListener('dragover', e=> e.preventDefault());
+      el.addEventListener('drop', e=>{
+        e.preventDefault();
+        const from = +e.dataTransfer.getData('text/plain');
+        const to = i; if(from===to) return;
+        const item = data.splice(from,1)[0];
+        data.splice(to,0,item);
+        store.set('tiles', data); renderTiles();
+      });
+
+      grid.appendChild(el);
+    });
+  }
+
+  function editTile(index){
+    const data = store.get('tiles', defaultTiles());
+    const t = data[index];
+    const title = prompt('Titel', t.title);
+    if(title===null) return;
+    const url = prompt('URL', t.url);
+    if(url===null) return;
+    try { new URL(url) } catch { alert('Ungültige URL'); return }
+    data[index] = { ...t, title, url };
+    store.set('tiles', data); renderTiles();
+  }
+
+  function addTile(){
+    const title = prompt('Titel der Kachel'); if(!title) return;
+    const url = prompt('URL (https://…)'); if(!url) return;
+    try { new URL(url) } catch { alert('Ungültige URL'); return }
+    const data = store.get('tiles', defaultTiles());
+    data.unshift({ title, url });
+    store.set('tiles', data); renderTiles();
+  }
+
+  // ===== Recent actions
+  function addRecent(entry){
+    const list = store.get('recent', []);
+    list.unshift({ ...entry, ts: Date.now() });
+    store.set('recent', list.slice(0, 12));
+  }
+  function renderRecent(){
+    const list = store.get('recent', []);
+    const wrap = $('#recentList');
+    wrap.innerHTML='';
+    list.forEach(it=>{
+      const a = document.createElement('a');
+      a.href = it.url; a.className='chip'; a.textContent = it.title; a.target='_self';
+      wrap.appendChild(a);
+    })
+  }
+
+  // ===== Weather (Open‑Meteo)
+  async function lookupCity(name){
+    const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(name)}&count=1&language=de&format=json`);
+    if(!res.ok) throw new Error('Geocoding fehlgeschlagen');
+    const data = await res.json();
+    if(!data || !data.results || !data.results.length) throw new Error('Ort nicht gefunden');
+    const c = data.results[0];
+    return { name: `${c.name}${c.admin1 ? ', '+c.admin1 : ''}`, lat: c.latitude, lon: c.longitude };
+  }
+
+  function wmoText(code){
+    const map = { 0:'Klar', 1:'Überwiegend klar', 2:'Wechselhaft', 3:'Bewölkt', 45:'Nebel', 48:'Nebel', 51:'Sprühregen', 53:'Sprühregen', 55:'Sprühregen', 61:'Regen', 63:'Regen', 65:'Starker Regen', 71:'Schnee', 80:'Schauer', 95:'Gewitter' };
+    return map[code] || 'Wetter';
+  }
+
+  function weatherIconSVG(code){
+    const c = Number(code);
+    const sun = '<circle cx="20" cy="20" r="8" fill="#FFD166"/><g stroke="#FFD166" stroke-width="2">'
+      + '<line x1="20" y1="2" x2="20" y2="8"/>'
+      + '<line x1="20" y1="32" x2="20" y2="38"/>'
+      + '<line x1="2" y1="20" x2="8" y2="20"/>'
+      + '<line x1="32" y1="20" x2="38" y2="20"/>'
+      + '<line x1="6" y1="6" x2="10" y2="10"/>'
+      + '<line x1="30" y1="30" x2="34" y2="34"/>'
+      + '<line x1="6" y1="34" x2="10" y2="30"/>'
+      + '<line x1="30" y1="10" x2="34" y2="6"/></g>';
+    const cloud = '<ellipse cx="22" cy="24" rx="12" ry="8" fill="#cfd8e3"/><ellipse cx="14" cy="26" rx="9" ry="6" fill="#d9e3ef"/>';
+    const rain = '<g stroke="#4dabf7" stroke-width="2"><line x1="14" y1="32" x2="12" y2="38"/><line x1="20" y1="32" x2="18" y2="38"/><line x1="26" y1="32" x2="24" y2="38"/></g>';
+    const snow = '<g fill="#a5b4fc"><circle cx="14" cy="34" r="2"/><circle cx="20" cy="34" r="2"/><circle cx="26" cy="34" r="2"/></g>';
+    const bolt = '<polygon points="22,30 16,30 24,18 24,24 30,24 22,36" fill="#F59E0B"/>';
+    const fog = '<g stroke="#cbd5e1" stroke-width="2"><line x1="10" y1="30" x2="30" y2="30"/><line x1="8" y1="34" x2="28" y2="34"/></g>';
+    let body = '';
+    if([0,1].includes(c)) body = sun;
+    else if([2,3].includes(c)) body = sun + cloud;
+    else if([45,48].includes(c)) body = cloud + fog;
+    else if([51,53,55,61,63,65,80].includes(c)) body = cloud + rain;
+    else if([71].includes(c)) body = cloud + snow;
+    else if([95].includes(c)) body = cloud + bolt;
+    else body = cloud;
+    return `<svg viewBox="0 0 40 40" width="36" height="36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">${body}</svg>`;
+  }
+  function updateWeatherIcon(code){
+    const el = document.getElementById('weatherIcon');
+    if(!el) return;
+    try { el.innerHTML = weatherIconSVG(code); } catch { el.textContent = ''; }
+  }
+
+  async function loadWeather(){
+    const city = store.get('weather.city', 'Hannover');
+    $('#cityInput').value = city;
+    try {
+      const loc = await lookupCity(city);
+      const url = `https://api.open-meteo.com/v1/forecast?latitude=${loc.lat}&longitude=${loc.lon}&hourly=temperature_2m,weathercode&current_weather=true&timezone=auto&daily=temperature_2m_max,temperature_2m_min&forecast_days=1`;
+      const res = await fetch(url);
+      if(!res.ok) throw new Error('Wetter abrufen fehlgeschlagen');
+      const data = await res.json();
+      const curr = data.current_weather || {};
+      updateWeatherIcon(curr.weathercode);
+      const t = Math.round(curr.temperature ?? NaN);
+      $('#tempNow').textContent = isFinite(t) ? `${t}°C` : '—°C';
+      $('#weatherText').textContent = `${loc.name} · ${wmoText(curr.weathercode)}`;
+      const dmax = Math.round((data.daily?.temperature_2m_max?.[0]) ?? NaN);
+      const dmin = Math.round((data.daily?.temperature_2m_min?.[0]) ?? NaN);
+      $('#minmax').textContent = isFinite(dmin)&&isFinite(dmax) ? `${dmin} / ${dmax} °C` : '— / — °C';
+
+      const hours = data.hourly?.time || [];
+      const temps = data.hourly?.temperature_2m || [];
+      const codes = data.hourly?.weathercode || [];
+      const container = $('#hourly'); container.innerHTML='';
+      for(let i=0;i<hours.length;i+=3){
+        const time = new Date(hours[i]);
+        const chip = document.createElement('div');
+        chip.className='chip';
+        chip.textContent = `${time.toLocaleTimeString([], {hour:'2-digit'})} · ${Math.round(temps[i])}°`;
+        chip.title = wmoText(codes[i]);
+        container.appendChild(chip);
+      }
+      // Normalize degree symbols / overwrite any garbled text
+      try {
+        const t2 = Math.round((data.current_weather||{}).temperature ?? NaN);
+        $('#tempNow').textContent = isFinite(t2) ? `${t2}°C` : '-°C';
+        const dmax2 = Math.round((data.daily?.temperature_2m_max?.[0]) ?? NaN);
+        const dmin2 = Math.round((data.daily?.temperature_2m_min?.[0]) ?? NaN);
+        $('#minmax').textContent = isFinite(dmin2)&&isFinite(dmax2) ? `${dmin2} / ${dmax2} °C` : '- / - °C';
+      } catch {}
+    } catch(err){
+      console.warn(err);
+      $('#weatherText').textContent = 'Wetter konnte nicht geladen werden.';
+      $('#hourly').innerHTML='';
+    }
+  }
+
+  // ===== Quote of the day (local)
+  const QUOTES = [
+    'Move fast, refactor often.',
+    'Accessibility isn\'t a feature – it\'s the default.',
+    'Done > Perfect. Iterate.',
+    'If it\'s not monitored, it doesn\'t exist.',
+    'Good UX is invisible. Bad UX is unforgettable.',
+    'Make it work, make it right, make it fast.',
+    'Small steps. Massive outcomes.',
+    'Simplicity scales. Complexity fails.',
+    'Automate the boring stuff.',
+    'Measure twice, deploy once.'
+  ];
+  function loadQuote(){
+    const day = Math.floor(Date.now() / (1000*60*60*24));
+    $('#quote').textContent = QUOTES[day % QUOTES.length];
+  }
+
+  // ===== News (RSS)
+  function defaultFeeds(){
+    return {
+      'Heise': 'https://www.heise.de/rss/heise-atom.xml',
+      'Tagesschau': 'https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml',
+      'TechCrunch': 'https://techcrunch.com/feed/'
+    };
+  }
+  function getFeeds(){
+    const custom = store.get('news.custom', {});
+    return { ...defaultFeeds(), ...custom };
+  }
+  function fillNewsSources(){
+    const select = $('#newsSource');
+    const sources = getFeeds();
+    const current = store.get('news.source', Object.keys(sources)[0]);
+    select.innerHTML='';
+    Object.keys(sources).forEach(name=>{
+      const opt = document.createElement('option'); opt.value=name; opt.textContent=name; if(name===current) opt.selected=true; select.appendChild(opt);
+    });
+  }
+  async function loadNews(){
+    const sources = getFeeds();
+    const sourceName = store.get('news.source', Object.keys(sources)[0]);
+    const feedUrl = sources[sourceName];
+    $('#newsList').innerHTML = '<li class="muted">Lade…</li>';
+    try{
+      const res = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(feedUrl)}`);
+      const data = await res.json();
+      const parser = new DOMParser();
+      const xml = parser.parseFromString(data.contents, 'text/xml');
+      const items = xml.querySelectorAll('item');
+      const ul = $('#newsList'); ul.innerHTML='';
+      const max = 8;
+      items.forEach((it,i)=>{ if(i<max){
+        const title = it.querySelector('title')?.textContent || '—';
+        const link = it.querySelector('link')?.textContent || '#';
+        const li = document.createElement('li');
+        li.innerHTML = `<a href="${link}" target="_blank" rel="noopener">${title}</a>`;
+        ul.appendChild(li);
+      }});
+      if(!ul.children.length){ ul.innerHTML = '<li class="muted">Keine Items</li>'; }
+    }catch(e){ $('#newsList').innerHTML = '<li class="muted">Fehler beim Laden</li>'; }
+  }
+
+  // ===== Settings UI
+  function openSettings(){
+    const modal = $('#settingsModal');
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
+    rebuildSettingsPanels();
+    fillSettings();
+    initSettingsTabs();
+    const last = store.get('settings.tab','general');
+    selectSettingsTab(last);
+  }
+  function closeSettings(){
+    const modal = $('#settingsModal');
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
+  }
+  function fillSettings(){
+    const theme = store.get('theme','auto');
+    $('#themeSelect').value = theme;
+    $('#bgUrl').value = store.get('bg.url','');
+    $('#defaultCity').value = store.get('weather.city','Hannover');
+
+    // Engines
+    const pills = $('#enginePills'); pills.innerHTML='';
+    Object.keys(ENGINES).forEach(key=>{
+      const on = (store.get('engines.enabled', Object.keys(ENGINES))).includes(key);
+      const pill = document.createElement('button');
+      pill.className='btn'; pill.textContent = key + (on?' ✓':' ✕');
+      pill.addEventListener('click', ()=>{
+        let enabled = store.get('engines.enabled', Object.keys(ENGINES));
+        if(on) enabled = enabled.filter(e=>e!==key); else enabled = Array.from(new Set([...enabled, key]));
+        store.set('engines.enabled', enabled);
+        fillSettings(); renderEngines();
+      });
+      pills.appendChild(pill);
+    });
+
+    // Shortcuts
+    $('#shortcutConfig').value = JSON.stringify(getShortcuts(), null, 2);
+
+    // Feeds
+    $('#feedsConfig').value = JSON.stringify(store.get('news.custom', {}), null, 2);
+
+    // Widgets toggle list
+    const defaults = widgetDefaults();
+    const conf = store.get('widgets', defaults);
+    const wrap = $('#widgetToggles'); wrap.innerHTML='';
+    Object.keys(defaults).forEach(k=>{
+      const id = `w_${k}`;
+      const label = document.createElement('label'); label.style.display='inline-flex'; label.style.alignItems='center'; label.style.gap='6px';
+      const cb = document.createElement('input'); cb.type='checkbox'; cb.id=id; cb.checked = conf[k];
+      cb.addEventListener('change', ()=>{ const cur=store.get('widgets', defaults); cur[k]=cb.checked; store.set('widgets', cur); applyWidgets(); });
+      label.appendChild(cb); label.appendChild(document.createTextNode(k));
+      wrap.appendChild(label);
+    });
+
+    // Widget colors editor
+    const editor = $('#widgetColorEditor'); editor.innerHTML='';
+    const names = { todo:'To‑Do', notes:'Notizen', tiles:'Favoriten', weather:'Wetter', quote:'Quote', recent:'Zuletzt', system:'System', news:'News' };
+    const colors = store.get('widget.colors', widgetColorDefaults());
+    Object.keys(names).forEach(k=>{
+      const box = document.createElement('div'); box.style.display='inline-flex'; box.style.alignItems='center'; box.style.gap='6px'; box.style.padding='6px 8px'; box.style.background='var(--glass)'; box.style.border='1px solid rgba(255,255,255,.08)'; box.style.borderRadius='10px';
+      const label = document.createElement('span'); label.textContent = names[k];
+      const input = document.createElement('input'); input.type='color'; input.value = (colors[k] && /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(colors[k])) ? colors[k] : '#7c5cff';
+      input.addEventListener('input', ()=>{ const cur = store.get('widget.colors', widgetColorDefaults()); cur[k]=input.value; store.set('widget.colors', cur); applyWidgetColors(); });
+      const clear = document.createElement('button'); clear.className='btn'; clear.textContent='Reset';
+      clear.addEventListener('click', ()=>{ const cur = store.get('widget.colors', widgetColorDefaults()); cur[k]=''; store.set('widget.colors', cur); applyWidgetColors(); fillSettings(); });
+      box.appendChild(label); box.appendChild(input); box.appendChild(clear);
+      editor.appendChild(box);
+    });
+  }
+
+  function selectSettingsTab(name){
+    const valid = ['general','search','widgets','data','guide'];
+    if(!valid.includes(name)) name = 'general';
+    const buttons = $$('.tab-btn', $('#settingsModal'));
+    const panels = [
+      {n:'general', el: $('#tab-general')},
+      {n:'search', el: $('#tab-search')},
+      {n:'widgets', el: $('#tab-widgets')},
+      {n:'data', el: $('#tab-data')},
+      {n:'guide', el: $('#tab-guide')},
+    ];
+    buttons.forEach(b=>{ const on = b.getAttribute('data-tab')===name; b.classList.toggle('active', on); b.setAttribute('aria-selected', on?'true':'false'); });
+    panels.forEach(p=>{ if(p.el) p.el.classList.toggle('active', p.n===name); });
+    store.set('settings.tab', name);
+  }
+  function initSettingsTabs(){
+    const root = $('#settingsModal'); if(!root) return;
+    $$('.tab-btn', root).forEach(btn=>{
+      btn.addEventListener('click', ()=> selectSettingsTab(btn.getAttribute('data-tab')));
+    });
+  }
+
+  // Make sure tabs contain the right rows regardless of initial HTML structure
+  function rebuildSettingsPanels(){
+    const sheet = $('#settingsModal .sheet'); if(!sheet) return;
+    const tabs = sheet.querySelector('.tabs'); if(!tabs) return;
+    // Collect rows from root and any pre-existing panels BEFORE removing them
+    const rows = Array.from(sheet.querySelectorAll(':scope > .row, :scope > .tab-panel > .row'));
+    // Remove old panels
+    sheet.querySelectorAll(':scope > .tab-panel').forEach(p=> p.remove());
+
+    const panelGeneral = document.createElement('div'); panelGeneral.id='tab-general'; panelGeneral.className='tab-panel';
+    const panelSearch = document.createElement('div'); panelSearch.id='tab-search'; panelSearch.className='tab-panel';
+    const panelWidgets = document.createElement('div'); panelWidgets.id='tab-widgets'; panelWidgets.className='tab-panel';
+    const panelData = document.createElement('div'); panelData.id='tab-data'; panelData.className='tab-panel';
+    const panelGuide = document.createElement('div'); panelGuide.id='tab-guide'; panelGuide.className='tab-panel';
+
+    const assign = (row, target)=>{ if(!row) return; if(row.parentElement) row.parentElement.removeChild(row); target.appendChild(row); };
+    rows.forEach(row=>{
+      const has = sel => row.querySelector(sel);
+      if(has('#themeSelect') || has('#bgUrl') || has('#defaultCity')) assign(row, panelGeneral);
+      else if(has('#enginePills') || has('#shortcutConfig') || has('#feedsConfig')) assign(row, panelSearch);
+      else if(has('#widgetToggles') || has('#widgetColorEditor')) assign(row, panelWidgets);
+      else if(has('#exportData') || has('#importData')) assign(row, panelData);
+      else assign(row, panelGeneral);
+    });
+
+    // Build static guide content
+    panelGuide.innerHTML = `
+      <div class="row"><label>User Guide</label>
+        <div>
+          <h5>Overview</h5>
+          <ul>
+            <li>Startseite mit Suche, Favoriten, To-Do, Notizen, Wetter, News.</li>
+            <li>Alles lokal: Daten bleiben im Browser (localStorage).</li>
+          </ul>
+          <h5>Shortcuts</h5>
+          <ul>
+            <li>Ctrl/Cmd+K: Command Palette öffnen</li>
+            <li>1–9: Erste 9 Favoriten öffnen (wenn nicht tippen)</li>
+            <li>/ : Suche fokussieren (über Palette auswählbar)</li>
+            <li>Enter in Suche: Startet die Suche</li>
+            <li>ESC: Modals schließen</li>
+          </ul>
+          <h5>Suche & Bangs</h5>
+          <ul>
+            <li>Bangs: !g !ddg !bing !yt !wiki !maps</li>
+            <li>Eigene Shortcuts: JSON in den Einstellungen; {q} als Platzhalter</li>
+          </ul>
+          <h5>Tiles</h5>
+          <ul>
+            <li>Drag&Drop zum Sortieren, Klick zum Öffnen</li>
+            <li>+ Kachel: Neue Favoriten hinzufügen</li>
+            <li>Reset: Standardfavoriten wiederherstellen</li>
+          </ul>
+          <h5>Widgets</h5>
+          <ul>
+            <li>Sichtbarkeit je Widget umschaltbar</li>
+            <li>Widget-Farben: Eigene Akzenttöne je Kachel</li>
+          </ul>
+          <h5>Daten</h5>
+          <ul>
+            <li>Export/Import als JSON</li>
+          </ul>
+        </div>
+      </div>`;
+
+    tabs.insertAdjacentElement('afterend', panelGeneral);
+    panelGeneral.insertAdjacentElement('afterend', panelSearch);
+    panelSearch.insertAdjacentElement('afterend', panelWidgets);
+    panelWidgets.insertAdjacentElement('afterend', panelData);
+    panelData.insertAdjacentElement('afterend', panelGuide);
+
+    // Activate default panel before selectSettingsTab runs
+    panelGeneral.classList.add('active');
+  }
+  function renderEngines(){
+    const enabled = store.get('engines.enabled', Object.keys(ENGINES));
+    const select = $('#engine');
+    const current = select.value;
+    select.innerHTML = '';
+    enabled.forEach(k=>{
+      const opt = document.createElement('option');
+      opt.value = k; opt.textContent = ({google:'Google',ddg:'DuckDuckGo',bing:'Bing',yt:'YouTube',wikipedia:'Wikipedia',maps:'Google Maps'})[k]||k;
+      select.appendChild(opt);
+    });
+    if(enabled.includes(current)) select.value = current; else select.value = enabled[0];
+  }
+
+  // ===== Background image (optional)
+  function applyBackground(){
+    const url = store.get('bg.url','');
+    if(url){ document.body.style.backgroundImage = `url('${url}')`; document.body.style.backgroundSize = 'cover'; document.body.style.backgroundPosition='center'; document.body.style.backgroundAttachment='fixed'; }
+    else { document.body.style.backgroundImage = '' }
+  }
+
+  // ===== System Status
+  function renderSystem(){
+    const info = [];
+    if('deviceMemory' in navigator) info.push(`RAM: ${navigator.deviceMemory} GB`);
+    if('hardwareConcurrency' in navigator) info.push(`CPU‑Kerne: ${navigator.hardwareConcurrency}`);
+    if('connection' in navigator && navigator.connection){
+      const c = navigator.connection;
+      info.push(`Netz: ${c.downlink ?? '–'} Mbit/s · ${c.effectiveType ?? '–'}${c.saveData? ' · SaveData':''}`);
+    }
+    $('#systemInfo').innerHTML = info.length? info.join('<br>') : 'Keine Daten verfügbar';
+  }
+
+  // ===== Widgets visibility
+  function widgetDefaults(){
+    return { todo:true, notes:true, tiles:true, weather:true, quote:true, recent:true, system:true, news:true };
+  }
+  function applyWidgets(){
+    const conf = store.get('widgets', widgetDefaults());
+    const map = { todo:'#todo', notes:'#notes', tiles:'#tilesCard', weather:'#weather', quote:'#quoteCard', recent:'#recent', system:'#systemCard', news:'#newsCard' };
+    Object.entries(map).forEach(([k,sel])=>{ const el=$(sel); if(el) el.style.display = conf[k] ? '' : 'none'; });
+  }
+
+  // ===== Widget colors
+  function widgetColorDefaults(){
+    return { todo:'', notes:'', tiles:'', weather:'', quote:'', recent:'', system:'', news:'' };
+  }
+  function hexToRgba(hex, a=0.18){
+    if(!hex) return '';
+    let h = hex.replace('#','');
+    if(h.length===3) h = h.split('').map(c=>c+c).join('');
+    const r = parseInt(h.slice(0,2),16); const g = parseInt(h.slice(2,4),16); const b = parseInt(h.slice(4,6),16);
+    if([r,g,b].some(v=>Number.isNaN(v))) return '';
+    return `rgba(${r},${g},${b},${a})`;
+  }
+  function applyWidgetColors(){
+    const colors = store.get('widget.colors', widgetColorDefaults());
+    const map = { todo:'#todo', notes:'#notes', tiles:'#tilesCard', weather:'#weather', quote:'#quoteCard', recent:'#recent', system:'#systemCard', news:'#newsCard' };
+    Object.entries(map).forEach(([k,sel])=>{
+      const el = $(sel); if(!el) return;
+      const hex = colors[k];
+      if(hex){
+        const tint = hexToRgba(hex, 0.18);
+        const border = hexToRgba(hex, 0.28);
+        el.style.background = `linear-gradient(0deg, ${tint}, ${tint}), var(--glass)`;
+        el.style.borderColor = border || 'rgba(255,255,255,.08)';
+      } else {
+        el.style.background = '';
+        el.style.borderColor = '';
+      }
+    });
+  }
+
+  // ===== Command Palette (Ctrl/Cmd+K)
+  function buildPaletteItems(){
+    const items = [];
+    // Commands
+    items.push({ t:'Suche fokussieren', k:'/', a: ()=> $('#query').focus() });
+    items.push({ t:'Einstellungen öffnen', k:'S', a: openSettings });
+    items.push({ t:'Theme wechseln (Auto/Dark/Light)', k:'T', a: ()=>{ const cur=store.get('theme','auto'); const next = cur==='dark' ? 'light' : cur==='light' ? 'auto' : 'dark'; store.set('theme', next); applyTheme(next); }});
+    items.push({ t:'Tile hinzufügen', k:'+', a: addTile });
+    items.push({ t:'Erledigte Todos löschen', k:'⌫', a: ()=>{ const list=store.get('todos',[]).filter(t=>!t.done); store.set('todos', list); renderTodos(); }});
+    items.push({ t:'News aktualisieren', a: loadNews });
+    items.push({ t:'Wetter aktualisieren', a: loadWeather });
+
+    // Tiles
+    const tiles = store.get('tiles', defaultTiles());
+    tiles.forEach((t,i)=> items.push({ t:`${t.title}`, s:t.url, a: ()=> openUrl(t.url, t.title) }));
+    return items;
+  }
+  function fuzzyIncludes(text, q){
+    text = (text||'').toLowerCase(); q = (q||'').toLowerCase();
+    if(!q) return true;
+    let i=0; for(const ch of text){ if(ch===q[i]) i++; if(i===q.length) return true; }
+    return false;
+  }
+  function openPalette(){
+    const modal = $('#palette'); const input = $('#paletteInput'); const list = $('#paletteList');
+    const all = buildPaletteItems(); let filtered = all.slice(); let idx = 0;
+    function render(){
+      list.innerHTML='';
+      filtered.forEach((it,i)=>{
+        const li = document.createElement('li');
+        li.className = 'palette-item' + (i===idx ? ' active':'');
+        li.innerHTML = `<span>${escapeHtml(it.t)}</span>${it.s?`<span class="muted">${escapeHtml(it.s)}</span>`:''}${it.k?`<span class="k">${it.k}</span>`:''}`;
+        li.addEventListener('click', ()=>{ it.a && it.a(); closePalette(); });
+        list.appendChild(li);
+      });
+    }
+    function applyFilter(){ const q=input.value.trim(); filtered = all.filter(it=> fuzzyIncludes(it.t+' '+(it.s||''), q)); idx=0; render(); }
+    function onKey(e){
+      if(e.key==='Escape'){ e.preventDefault(); closePalette(); }
+      else if(e.key==='ArrowDown'){ e.preventDefault(); idx = Math.min(idx+1, Math.max(0, filtered.length-1)); render(); }
+      else if(e.key==='ArrowUp'){ e.preventDefault(); idx = Math.max(idx-1, 0); render(); }
+      else if(e.key==='Enter'){ e.preventDefault(); const it=filtered[idx]; if(it){ it.a && it.a(); closePalette(); } }
+    }
+    modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
+    input.value=''; input.focus(); render();
+    input.addEventListener('input', applyFilter);
+    document.addEventListener('keydown', onKey);
+    modal.addEventListener('click', e=>{ if(e.target.id==='palette') closePalette(); });
+    function closePalette(){
+      modal.classList.remove('open'); modal.setAttribute('aria-hidden','true');
+      input.removeEventListener('input', applyFilter);
+      document.removeEventListener('keydown', onKey);
+    }
+    // expose for ESC in global handler
+    window.__closePalette = closePalette;
+  }
+
+  // ===== Init
+  function init(){
+    // Theme
+    const theme = store.get('theme','auto');
+    applyTheme(theme);
+    $('#themeToggle').addEventListener('click', ()=>{
+      const current = store.get('theme','auto');
+      const next = current==='dark' ? 'light' : current==='light' ? 'auto' : 'dark';
+      store.set('theme', next); applyTheme(next);
+    });
+    $('#openSettings').addEventListener('click', openSettings);
+    $('#closeSettings').addEventListener('click', closeSettings);
+    $('#themeSelect').addEventListener('change', e=>{ store.set('theme', e.target.value); applyTheme(e.target.value); });
+    $('#bgUrl').addEventListener('change', e=>{ store.set('bg.url', e.target.value.trim()); applyBackground(); });
+    $('#defaultCity').addEventListener('change', e=>{ store.set('weather.city', e.target.value.trim()); loadWeather(); });
+
+    // Engines & Search
+    renderEngines();
+    $('#go').addEventListener('click', doSearch);
+    $('#query').addEventListener('keydown', e=>{ if(e.key==='Enter') doSearch(); });
+
+    // Export / Import
+    const exp = $('#exportData'); if(exp) exp.addEventListener('click', exportData);
+    const imp = $('#importData'); if(imp) imp.addEventListener('click', ()=> $('#importFile').click());
+    const file = $('#importFile'); if(file) file.addEventListener('change', importDataFromFile);
+
+    // Persist settings fields (shortcuts & feeds)
+    $('#shortcutConfig').addEventListener('change', ()=>{ try{ const j=JSON.parse($('#shortcutConfig').value); store.set('shortcuts', j);}catch{ alert('Ungültiges Shortcuts‑JSON'); } });
+    $('#feedsConfig').addEventListener('change', ()=>{ try{ const j=JSON.parse($('#feedsConfig').value); store.set('news.custom', j); fillNewsSources(); loadNews(); }catch{ alert('Ungültiges Feeds‑JSON'); } });
+
+    // Clock
+    tickClock();
+
+    // Todo
+    renderTodos();
+    $('#todoAdd').addEventListener('click', ()=>{ const v=$('#todoInput').value.trim(); if(v){ addTodo(v); $('#todoInput').value=''; }});
+    $('#todoInput').addEventListener('keydown', e=>{ if(e.key==='Enter'){ e.preventDefault(); $('#todoAdd').click(); } });
+    $('#todoClearDone').addEventListener('click', ()=>{ const list=store.get('todos',[]).filter(t=>!t.done); store.set('todos', list); renderTodos(); });
+
+    // Notes
+    initNotes();
+
+    // Tiles
+    if(!localStorage.getItem('tiles')) store.set('tiles', defaultTiles());
+    renderTiles();
+    $('#addTile').addEventListener('click', addTile);
+    $('#resetTiles').addEventListener('click', ()=>{ if(confirm('Standard‑Kacheln wiederherstellen?')){ store.set('tiles', defaultTiles()); renderTiles(); }});
+
+    // Weather
+    $('#setCity').addEventListener('click', ()=>{ const v=$('#cityInput').value.trim(); if(v){ store.set('weather.city', v); loadWeather(); }});
+    loadWeather();
+
+    // Quote
+    loadQuote();
+
+    // Recent
+    renderRecent();
+
+    // Background
+    applyBackground();
+
+    // System
+    renderSystem();
+    if(navigator.connection && 'onchange' in navigator.connection){ navigator.connection.addEventListener('change', renderSystem); }
+
+    // News
+    fillNewsSources(); loadNews();
+    $('#newsSource').addEventListener('change', e=>{ store.set('news.source', e.target.value); loadNews(); });
+    $('#refreshNews').addEventListener('click', loadNews);
+
+    // Widgets visibility
+    applyWidgets();
+    applyWidgetColors();
+
+    // Close modal on Escape / overlay click
+    $('#settingsModal').addEventListener('click', e=>{ if(e.target.id==='settingsModal') closeSettings(); });
+    document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeSettings(); });
+
+    // Command Palette (Ctrl/Cmd+K)
+    document.addEventListener('keydown', e=>{
+      const target = e.target;
+      const isTyping = target && (target.tagName==='INPUT' || target.tagName==='TEXTAREA' || target.isContentEditable);
+      if((e.ctrlKey||e.metaKey) && (e.key==='k' || e.key==='K')){ e.preventDefault(); openPalette(); return; }
+      // Quick keys 1-9 for tiles when not typing
+      if(!isTyping && !e.altKey && !e.ctrlKey && !e.metaKey && /^[1-9]$/.test(e.key)){
+        const n = Number(e.key)-1; const tiles = store.get('tiles', defaultTiles());
+        if(tiles[n]) openUrl(tiles[n].url, tiles[n].title);
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
