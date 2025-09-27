@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="utf-8" />
@@ -319,6 +319,67 @@
     .modal .sheet { background: var(--card); border:1px solid rgba(255,255,255,.08); padding:16px; border-radius:16px; width:min(780px, 96vw); max-height: min(90vh, 900px); overflow: auto }
     .sheet h4 { margin:0 0 10px }
     .row { display:grid; grid-template-columns: 220px 1fr; gap:10px; align-items:center; margin-bottom:10px }
+    .bg-engine { display:flex; flex-direction:column; gap:12px; background: rgba(0,0,0,0.18); border:1px solid rgba(255,255,255,0.08); padding:14px; border-radius:16px; }
+    .bg-current { display:flex; gap:12px; align-items:stretch; }
+    .bg-current-preview { width:160px; min-width:160px; aspect-ratio:16/9; border-radius:12px; background-color: var(--bg-soft); background-size:cover; background-position:center; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08); }
+    .bg-current-info { flex:1; display:flex; flex-direction:column; gap:8px; }
+    .bg-current-title { font-weight:600; font-size:15px; }
+    .bg-current-meta { font-size:12px; color: var(--muted); line-height:1.4; min-height:18px; }
+    .bg-quick-actions { display:flex; gap:8px; flex-wrap:wrap; }
+    .bg-quick-actions button { padding:8px 14px; border-radius:999px; border:1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04); color: var(--fg); font-size:13px; cursor:pointer; transition: background .2s, border-color .2s, transform .2s; }
+    .bg-quick-actions button:hover:not([disabled]) { background: rgba(255,255,255,0.12); }
+    .bg-quick-actions button[disabled] { opacity:0.5; cursor:not-allowed; }
+    .bg-tabs { display:flex; flex-wrap:wrap; gap:8px; }
+    .bg-tab { padding:6px 14px; border-radius:999px; border:1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.04); color: var(--fg); font-size:14px; cursor:pointer; transition: background .2s, border-color .2s, transform .2s; }
+    .bg-tab:hover { transform: translateY(-1px); }
+    .bg-tab.active { background: var(--accent); border-color: var(--accent); color:#fff; }
+    .bg-panels { display:block; }
+    .bg-panel { display:none; margin-top:6px; border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:14px; background: rgba(0,0,0,0.22); backdrop-filter: blur(18px); }
+    .bg-panel.active { display:block; }
+    .bg-panel h5 { margin:0 0 8px; font-size:14px; font-weight:600; }
+    .bg-panel p { margin:0 0 10px; font-size:13px; color: var(--muted); }
+    .bg-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap:12px; }
+    .bg-card { display:flex; flex-direction:column; gap:8px; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:10px; background: rgba(0,0,0,0.18); }
+    .bg-card.highlight { border-color: var(--accent); box-shadow:0 0 0 1px color-mix(in srgb, var(--accent) 45%, transparent); }
+    .bg-thumb { position:relative; width:100%; aspect-ratio:16/9; border-radius:10px; background-color: var(--bg-soft); background-size:cover; background-position:center; overflow:hidden; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05); }
+    .bg-thumb::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.35)); opacity:0; transition: opacity .2s; }
+    .bg-card:hover .bg-thumb::after { opacity:1; }
+    .bg-card-title { font-weight:600; font-size:14px; }
+    .bg-card-meta { font-size:12px; color: var(--muted); }
+    .bg-card-actions { display:flex; gap:8px; flex-wrap:wrap; }
+    .bg-card-actions button { padding:6px 10px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04); color: var(--fg); font-size:13px; cursor:pointer; transition: background .2s, border-color .2s, color .2s; }
+    .bg-card-actions button:hover { background: rgba(255,255,255,0.16); }
+    .bg-card-actions button[data-active="true"] { background: var(--accent); border-color: var(--accent); color:#fff; }
+    .bg-upload-drop { border:2px dashed rgba(255,255,255,0.18); border-radius:14px; padding:20px; text-align:center; color: var(--muted); display:flex; flex-direction:column; gap:8px; align-items:center; justify-content:center; background: rgba(0,0,0,0.18); transition: border-color .2s, background .2s, color .2s; }
+    .bg-upload-drop.dragging { border-color: var(--accent); background: rgba(124,92,255,0.12); color: var(--fg); }
+    .bg-upload-drop button { padding:8px 16px; border-radius:999px; border:1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.06); color: var(--fg); cursor:pointer; }
+    .bg-upload-note { font-size:12px; color: var(--muted); text-align:center; }
+    .bg-collection { border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px; background: rgba(0,0,0,0.18); display:flex; flex-direction:column; gap:8px; }
+    .bg-collection-header { display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:center; }
+    .bg-collection-title { font-weight:600; font-size:14px; }
+    .bg-collection-count { font-size:12px; color: var(--muted); }
+    .bg-collection-actions { display:flex; gap:8px; flex-wrap:wrap; }
+    .bg-collection-actions button { padding:6px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04); color: var(--fg); font-size:13px; cursor:pointer; }
+    .bg-collection-actions button:hover { background: rgba(255,255,255,0.16); }
+    .bg-collection-list { display:flex; flex-direction:column; gap:12px; margin-top:14px; }
+    .bg-rotation-grid { display:grid; gap:12px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .bg-rotation-card { background: rgba(0,0,0,0.18); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px; display:flex; flex-direction:column; gap:8px; }
+    .bg-rotation-card label { font-weight:600; font-size:13px; }
+    .bg-rotation-card input, .bg-rotation-card select, .bg-rotation-card textarea { width:100%; }
+    .bg-mini-text { font-size:12px; color: var(--muted); }
+    .bg-badge { display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border-radius:999px; background: rgba(0,0,0,0.24); border:1px solid rgba(255,255,255,0.08); font-size:11px; color: var(--muted); }
+    .bg-inline-actions { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+    .bg-selector { display:flex; flex-direction:column; gap:8px; }
+    .bg-selector select { width:100%; }
+    .bg-favorite-marker { display:inline-flex; align-items:center; gap:4px; font-size:12px; color: var(--muted); }
+    .bg-favorite-marker::before { content:'★'; color: var(--accent); }
+    .bg-empty { font-size:13px; color: var(--muted); text-align:center; padding:20px; border:1px dashed rgba(255,255,255,0.12); border-radius:12px; background: rgba(0,0,0,0.12); }
+    @media (max-width: 720px) {
+      .bg-current { flex-direction:column; }
+      .bg-current-preview { width:100%; min-width:0; }
+      .bg-engine { padding:12px; }
+    }
+
     .sheet input[type="text"], .sheet input[type="url"], .sheet textarea, .sheet select { width:100% }
 
     /* Tabs */
@@ -364,14 +425,14 @@
       </div>
       <div class="controls">
         <button class="btn" id="themeToggle" title="Dark/Light">🌓</button>
-        <button class="btn" id="openSettings" title="Einstellungen">⚙️</button>
+        <button class="btn" id="openSettings" title="Einstellungen">⚙</button>
       </div>
     </header>
 
     <section class="search" id="searchBox">
       <select id="engine"></select>
       <input id="query" type="text" placeholder="Suche… (z. B. !yt lo‑fi, !etc Home)" autocomplete="on" />
-      <button class="btn btn-go" id="go">⏎</button>
+      <button class="btn btn-go" id="go"></button>
     </section>
 
     <main class="grid">
@@ -452,7 +513,7 @@
 
     <footer class="muted" style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:6px">
       <div>Local‑first Dashboard · speichert nur im Browser (localStorage)</div>
-      <div>v1.3</div>
+      <div>v1.4</div>
     </footer>
   </div>
 
@@ -465,105 +526,140 @@
       </div>
       <div class="tabs" role="tablist">
         <button class="tab-btn" data-tab="general" role="tab" aria-selected="true">Allgemein</button>
-        <button class="tab-btn" data-tab="search" role="tab">Suche</button>
+        <button class="tab-btn" data-tab="background" role="tab">Hintergrund &amp; Erscheinung</button>
+        <button class="tab-btn" data-tab="search" role="tab">Suche &amp; Feeds</button>
         <button class="tab-btn" data-tab="widgets" role="tab">Widgets</button>
         <button class="tab-btn" data-tab="data" role="tab">Daten</button>
         <button class="tab-btn" data-tab="guide" role="tab">Guide</button>
       </div>
       <div id="tab-general" class="tab-panel active" role="tabpanel">
-      <div class="row">
-        <label for="themeSelect">Theme</label>
-        <select id="themeSelect">
-          <option value="auto">Auto (System)</option>
-          <option value="dark">Dark</option>
-          <option value="light">Light</option>
-        </select>
+        <div class="row">
+          <label for="themeSelect">Theme</label>
+          <select id="themeSelect">
+            <option value="auto">Auto (System)</option>
+            <option value="dark">Dark</option>
+            <option value="light">Light</option>
+          </select>
+        </div>
       </div>
+      <div id="tab-background" class="tab-panel" role="tabpanel">
+        <div class="row">
+          <label for="bgEngine">Hintergrund</label>
+          <div id="bgEngine" class="bg-engine">
+            <div class="bg-current">
+              <div class="bg-current-preview" id="bgCurrentPreview" role="img" aria-label="Aktuelles Hintergrundbild"></div>
+              <div class="bg-current-info">
+                <div class="bg-current-title" id="bgCurrentTitle">Kein Hintergrund</div>
+                <div class="bg-current-meta" id="bgCurrentMeta"></div>
+                <div class="bg-quick-actions">
+                  <button type="button" id="bgActionRandom" data-action="bg-random">Zufaellig neu laden</button>
+                  <button type="button" id="bgActionUndo" data-action="bg-undo" disabled>Letztes Bild wiederherstellen</button>
+                  <button type="button" id="bgActionLock" data-action="bg-lock">Rotation sperren</button>
+                </div>
+              </div>
+            </div>
+            <div class="bg-tabs" id="bgTabs">
+              <button type="button" class="bg-tab active" data-panel="presets">Presets</button>
+              <button type="button" class="bg-tab" data-panel="favorites">Favoriten</button>
+              <button type="button" class="bg-tab" data-panel="uploads">Uploads</button>
+              <button type="button" class="bg-tab" data-panel="collections">Sammlungen</button>
+              <button type="button" class="bg-tab" data-panel="rotation">Rotation</button>
+              <button type="button" class="bg-tab" data-panel="custom">Custom</button>
+            </div>
+            <div class="bg-panels">
+              <div class="bg-panel active" id="bgPanel-presets"></div>
+              <div class="bg-panel" id="bgPanel-favorites"></div>
+              <div class="bg-panel" id="bgPanel-uploads"></div>
+              <div class="bg-panel" id="bgPanel-collections"></div>
+              <div class="bg-panel" id="bgPanel-rotation"></div>
+              <div class="bg-panel" id="bgPanel-custom"></div>
+            </div>
+          </div>
+        </div>
       </div>
       <div id="tab-search" class="tab-panel" role="tabpanel">
-      <div class="row">
-        <label for="bgUrl">Hintergrundbild‑URL (optional)</label>
-        <input id="bgUrl" type="url" placeholder="https://…" />
-      </div>
+        <div class="row">
+          <label>Suchmaschinen</label>
+          <div>
+            <div class="muted" style="margin-bottom:6px">Unterstuetzte Bang-Shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Eigene Shortcuts unten</div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap" id="enginePills"></div>
+          </div>
+        </div>
+        <div class="row">
+          <label for="shortcutConfig">Eigene !Shortcuts</label>
+          <div>
+            <textarea id="shortcutConfig" rows="5" placeholder='{"!etc":"https://julianverse.de/etc","!git":"https://github.com/{q}"}'></textarea>
+            <div class="muted" style="margin-top:6px">Verwende <code>{q}</code> als Platzhalter fuer die Suchphrase. Ohne <code>{q}</code> wird <code>?q=...</code> angehaengt.</div>
+          </div>
+        </div>
+        <div class="row">
+          <label for="feedsConfig">Custom RSS-Feeds</label>
+          <div>
+            <textarea id="feedsConfig" rows="4" placeholder='{"Heise":"https://www.heise.de/rss/heise-atom.xml","Tagesschau":"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml","TechCrunch":"https://techcrunch.com/feed/"}'></textarea>
+            <div class="muted" style="margin-top:6px">JSON: Name - Feed-URL. Diese Liste wird mit den Standardfeeds gemerged.</div>
+          </div>
+        </div>
       </div>
       <div id="tab-widgets" class="tab-panel" role="tabpanel">
-      <div class="row">
-        <label for="defaultCity">Standard‑Stadt (Wetter)</label>
-        <input id="defaultCity" type="text" placeholder="z. B. Hannover" />
-      </div>
+        <div class="row">
+          <label>Widgets sichtbar</label>
+          <div id="widgetToggles" style="display:flex; gap:12px; flex-wrap:wrap"></div>
+        </div>
+        <div class="row">
+          <label for="defaultCity">Standard-Stadt (Wetter)</label>
+          <input id="defaultCity" type="text" placeholder="z.B. Hannover" />
+        </div>
+        <div class="row">
+          <label for="cardStyle">Kachel-Stil</label>
+          <div>
+            <select id="cardStyle">
+              <option value="glass">Glas (Standard)</option>
+              <option value="solid">Vollflaeche</option>
+              <option value="transparent">Transparent</option>
+              <option value="minimal">Soft Minimal</option>
+            </select>
+            <div class="muted" style="margin-top:6px">Wirkt auf alle Widgets & Favoriten-Kacheln.</div>
+          </div>
+        </div>
+        <div class="row">
+          <label for="clockColor">Zeit & Datum</label>
+          <div>
+            <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
+              <input type="color" id="clockColor" />
+              <button class="btn" id="clockColorReset" type="button">Reset</button>
+            </div>
+            <div class="muted" style="margin-top:6px">Legt den Hintergrund der Kopfzeile fest (leer = Stil-Vorgabe).</div>
+          </div>
+        </div>
+        <div class="row">
+          <label for="searchColor">Suche</label>
+          <div>
+            <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
+              <input type="color" id="searchColor" />
+              <button class="btn" id="searchColorReset" type="button">Reset</button>
+            </div>
+            <div class="muted" style="margin-top:6px">Farbe fuer den Suchbereich (leer = Stil-Vorgabe).</div>
+          </div>
+        </div>
+        <div class="row">
+          <label>Widget-Farben</label>
+          <div id="widgetColorEditor" style="display:flex; gap:12px; flex-wrap:wrap"></div>
+        </div>
       </div>
       <div id="tab-data" class="tab-panel" role="tabpanel">
-      <div class="row">
-        <label>Suchmaschinen</label>
-        <div>
-          <div class="muted" style="margin-bottom:6px">Unterstützte Bang‑Shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> · Eigene Shortcuts unten</div>
-          <div style="display:flex; gap:8px; flex-wrap:wrap" id="enginePills"></div>
-        </div>
-      </div>
-      </div>
-      <div class="row">
-        <label for="shortcutConfig">Eigene !Shortcuts</label>
-        <div>
-          <textarea id="shortcutConfig" rows="5" placeholder='{"!etc":"https://julianverse.de/etc","!git":"https://github.com/{q}"}'></textarea>
-          <div class="muted" style="margin-top:6px">Verwende <code>{q}</code> als Platzhalter für die Suchphrase. Ohne <code>{q}</code> wird <code>?q=…</code> angehängt.</div>
-        </div>
-      </div>
-      <div class="row">
-        <label for="feedsConfig">Custom RSS‑Feeds</label>
-        <div>
-          <textarea id="feedsConfig" rows="4" placeholder='{"Heise":"https://www.heise.de/rss/heise-atom.xml","Tagesschau":"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml","TechCrunch":"https://techcrunch.com/feed/"}'></textarea>
-          <div class="muted" style="margin-top:6px">JSON: Name → Feed‑URL. Diese Liste wird mit den Standardfeeds gemerged.</div>
-        </div>
-      </div>
-      <div class="row">
-        <label>Widgets sichtbar</label>
-        <div id="widgetToggles" style="display:flex; gap:12px; flex-wrap:wrap"></div>
-      </div>
-      <div class="row">
-        <label for="cardStyle">Kachel-Stil</label>
-        <div>
-          <select id="cardStyle">
-            <option value="glass">Glas (Standard)</option>
-            <option value="solid">Vollfläche</option>
-            <option value="transparent">Transparent</option>
-            <option value="minimal">Soft Minimal</option>
-          </select>
-          <div class="muted" style="margin-top:6px">Wirkt auf alle Widgets & Favoriten-Kacheln.</div>
-        </div>
-      </div>
-      <div class="row">
-        <label for="clockColor">Zeit & Datum</label>
-        <div>
-          <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
-            <input type="color" id="clockColor" />
-            <button class="btn" id="clockColorReset" type="button">Reset</button>
+        <div class="row">
+          <label>Daten</label>
+          <div style="display:flex; gap:8px; flex-wrap:wrap">
+            <button class="btn" id="exportData">Export (.json)</button>
+            <button class="btn" id="importData">Import (.json)</button>
+            <input type="file" id="importFile" accept="application/json" style="display:none" />
           </div>
-          <div class="muted" style="margin-top:6px">Legt den Hintergrund der Kopfzeile fest (leer = Stil-Vorgabe).</div>
         </div>
-      </div>
-      <div class="row">
-        <label for="searchColor">Suche</label>
-        <div>
-          <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
-            <input type="color" id="searchColor" />
-            <button class="btn" id="searchColorReset" type="button">Reset</button>
-          </div>
-          <div class="muted" style="margin-top:6px">Farbe für den Suchbereich (leer = Stil-Vorgabe).</div>
+        <div class="row">
+          <label>Hinweis</label>
+          <div class="muted" id="dataNote">Export speichert saemtliche Einstellungen & Daten lokal als JSON. Import ueberschreibt vorhandene Eintraege.</div>
         </div>
-      </div>
-      <div class="row">
-        <label>Widget-Farben</label>
-        <div id="widgetColorEditor" style="display:flex; gap:12px; flex-wrap:wrap"></div>
-      </div>
-      <div class="row">
-        <label>Daten</label>
-        <div style="display:flex; gap:8px; flex-wrap:wrap">
-          <button class="btn" id="exportData">Export (.json)</button>
-          <button class="btn" id="importData">Import (.json)</button>
-          <input type="file" id="importFile" accept="application/json" style="display:none" />
-        </div>
-      </div>
-    </div>
+      </div>    </div>
   </div>
 
   <!-- Command Palette -->
@@ -640,6 +736,7 @@
     } else {
       root.setAttribute('data-theme', mode);
     }
+    bgOnThemeChange();
   }
 
   // ===== Search with engines + bangs + custom shortcuts
@@ -692,7 +789,7 @@
       el.innerHTML = `
         <input type="checkbox" ${t.done?'checked':''} aria-label="Fertig">
         <div class="title">${escapeHtml(t.text)}</div>
-        <button class="btn" title="Löschen">🗑️</button>
+        <button class="btn" title="Löschen">🗑</button>
       `;
       el.querySelector('input').addEventListener('change', e=>{
         list[i].done = e.target.checked; store.set('todos', list); renderTodos();
@@ -751,8 +848,8 @@
           <div class="url">${escapeHtml(host)}</div>
         </div>
         <div class="actions">
-          <button title="Bearbeiten" aria-label="Bearbeiten">✏️</button>
-          <button title="Löschen" aria-label="Löschen">🗑️</button>
+          <button title="Bearbeiten" aria-label="Bearbeiten"></button>
+          <button title="Löschen" aria-label="Löschen">🗑</button>
         </div>`;
 
       // Fallback, wenn Favicon nicht lädt → Buchstabe zeigen
@@ -984,6 +1081,7 @@
     document.body.classList.add('modal-open');
     rebuildSettingsPanels();
     fillSettings();
+    bgRenderSettings();
     initSettingsTabs();
     const last = store.get('settings.tab','general');
     selectSettingsTab(last);
@@ -997,7 +1095,6 @@
   function fillSettings(){
     const theme = store.get('theme','auto');
     $('#themeSelect').value = theme;
-    $('#bgUrl').value = store.get('bg.url','');
     $('#defaultCity').value = store.get('weather.city','Hannover');
 
     // Engines
@@ -1063,11 +1160,12 @@
   }
 
   function selectSettingsTab(name){
-    const valid = ['general','search','widgets','data','guide'];
+    const valid = ['general','background','search','widgets','data','guide'];
     if(!valid.includes(name)) name = 'general';
     const buttons = $$('.tab-btn', $('#settingsModal'));
     const panels = [
       {n:'general', el: $('#tab-general')},
+      {n:'background', el: $('#tab-background')},
       {n:'search', el: $('#tab-search')},
       {n:'widgets', el: $('#tab-widgets')},
       {n:'data', el: $('#tab-data')},
@@ -1076,6 +1174,7 @@
     buttons.forEach(b=>{ const on = b.getAttribute('data-tab')===name; b.classList.toggle('active', on); b.setAttribute('aria-selected', on?'true':'false'); });
     panels.forEach(p=>{ if(p.el) p.el.classList.toggle('active', p.n===name); });
     store.set('settings.tab', name);
+    if(name === 'background') bgRenderSettings();
   }
   function initSettingsTabs(){
     const root = $('#settingsModal'); if(!root) return;
@@ -1094,6 +1193,7 @@
     sheet.querySelectorAll(':scope > .tab-panel').forEach(p=> p.remove());
 
     const panelGeneral = document.createElement('div'); panelGeneral.id='tab-general'; panelGeneral.className='tab-panel';
+    const panelBackground = document.createElement('div'); panelBackground.id='tab-background'; panelBackground.className='tab-panel';
     const panelSearch = document.createElement('div'); panelSearch.id='tab-search'; panelSearch.className='tab-panel';
     const panelWidgets = document.createElement('div'); panelWidgets.id='tab-widgets'; panelWidgets.className='tab-panel';
     const panelData = document.createElement('div'); panelData.id='tab-data'; panelData.className='tab-panel';
@@ -1102,10 +1202,11 @@
     const assign = (row, target)=>{ if(!row) return; if(row.parentElement) row.parentElement.removeChild(row); target.appendChild(row); };
     rows.forEach(row=>{
       const has = sel => row.querySelector(sel);
-      if(has('#themeSelect') || has('#bgUrl') || has('#defaultCity')) assign(row, panelGeneral);
+      if(has('#themeSelect')) assign(row, panelGeneral);
+      else if(has('#bgEngine')) assign(row, panelBackground);
       else if(has('#enginePills') || has('#shortcutConfig') || has('#feedsConfig')) assign(row, panelSearch);
-      else if(has('#widgetToggles') || has('#widgetColorEditor') || has('#cardStyle') || has('#clockColor') || has('#searchColor')) assign(row, panelWidgets);
-      else if(has('#exportData') || has('#importData')) assign(row, panelData);
+      else if(has('#widgetToggles') || has('#widgetColorEditor') || has('#cardStyle') || has('#clockColor') || has('#searchColor') || has('#defaultCity')) assign(row, panelWidgets);
+      else if(has('#exportData') || has('#importData') || has('#dataNote')) assign(row, panelData);
       else assign(row, panelGeneral);
     });
 
@@ -1153,8 +1254,10 @@
       </div>`;
 
     tabs.insertAdjacentElement('afterend', panelGeneral);
-    panelGeneral.insertAdjacentElement('afterend', panelSearch);
+    panelGeneral.insertAdjacentElement('afterend', panelBackground);
+    panelBackground.insertAdjacentElement('afterend', panelSearch);
     panelSearch.insertAdjacentElement('afterend', panelWidgets);
+
     panelWidgets.insertAdjacentElement('afterend', panelData);
     panelData.insertAdjacentElement('afterend', panelGuide);
 
@@ -1174,11 +1277,1192 @@
     if(enabled.includes(current)) select.value = current; else select.value = enabled[0];
   }
 
-  // ===== Background image (optional)
-  function applyBackground(){
-    const url = store.get('bg.url','');
-    if(url){ document.body.style.backgroundImage = `url('${url}')`; document.body.style.backgroundSize = 'cover'; document.body.style.backgroundPosition='center'; document.body.style.backgroundAttachment='fixed'; }
-    else { document.body.style.backgroundImage = '' }
+  // ===== Background engine
+  
+  const BG_PRESETS = [
+    {
+      id: 'aurora',
+      label: 'Aurora Ridge',
+      url: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1920&q=80',
+      tone: 'dark',
+      tags: ['night', 'nature'],
+      credit: 'Photo: Joshua Earle - Unsplash'
+    },
+    {
+      id: 'city-neon',
+      label: 'Neon City',
+      url: 'https://images.unsplash.com/photo-1499346030926-9a72daac6c63?auto=format&fit=crop&w=1920&q=80',
+      tone: 'dark',
+      tags: ['city', 'urban'],
+      credit: 'Photo: Denys Nevozhai - Unsplash'
+    },
+    {
+      id: 'mountain-dawn',
+      label: 'Mountain Dawn',
+      url: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1920&q=80',
+      tone: 'light',
+      tags: ['mountain', 'sunrise'],
+      credit: 'Photo: Nathan Anderson - Unsplash'
+    },
+    {
+      id: 'forest-mist',
+      label: 'Forest Mist',
+      url: 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1920&q=80',
+      tone: 'neutral',
+      tags: ['forest', 'mist'],
+      credit: 'Photo: Julia Caesar - Unsplash'
+    },
+    {
+      id: 'ocean-calm',
+      label: 'Ocean Calm',
+      url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80',
+      tone: 'light',
+      tags: ['ocean', 'blue'],
+      credit: 'Photo: Fabian Wiktor - Unsplash'
+    }
+  ];
+  const BG_TIME_SLOTS = [
+    { id: 'morning', label: 'Morning 05-11' },
+    { id: 'day', label: 'Day 11-17' },
+    { id: 'evening', label: 'Evening 17-21' },
+    { id: 'night', label: 'Night 21-05' }
+  ];
+  const BG_MAX_UPLOADS = 8;
+  let bgRotationTimer = null;
+
+  function bgCloneRef(ref){
+    return ref ? JSON.parse(JSON.stringify(ref)) : null;
+  }
+
+  function bgCssBg(url){
+    if(!url) return '';
+    const safe = String(url).replace(/'/g, "\'");
+    return "background-image:url('" + safe + "')";
+  }
+
+function bgDefaultState(){
+    const makePreset = index => BG_PRESETS[index] ? { type: 'preset', id: BG_PRESETS[index].id } : null;
+    const first = makePreset(0);
+    const fallback = first ? bgCloneRef(first) : { type: 'custom', url: '' };
+    const morning = makePreset(2) || (first ? bgCloneRef(first) : null);
+    const day = makePreset(3) || (first ? bgCloneRef(first) : null);
+    const evening = makePreset(1) || (first ? bgCloneRef(first) : null);
+    const night = makePreset(0) || makePreset(1) || bgCloneRef(fallback);
+    return {
+      active: first ? bgCloneRef(first) : bgCloneRef(fallback),
+      customUrl: '',
+      uploads: [],
+      favorites: first ? [bgCloneRef(first)] : [],
+      collections: [],
+      history: [],
+      rotation: {
+        enabled: false,
+        strategy: 'time',
+        intervalMinutes: 90,
+        locked: false,
+        lastApplied: 0,
+        sources: { presets: true, favorites: true, uploads: true, collections: true, custom: true },
+        schedule: {
+          morning: morning ? bgCloneRef(morning) : bgCloneRef(fallback),
+          day: day ? bgCloneRef(day) : bgCloneRef(fallback),
+          evening: evening ? bgCloneRef(evening) : bgCloneRef(fallback),
+          night: night ? bgCloneRef(night) : bgCloneRef(fallback),
+          light: day ? bgCloneRef(day) : bgCloneRef(fallback),
+          dark: night ? bgCloneRef(night) : bgCloneRef(fallback)
+        }
+      },
+      ui: { tab: 'presets' }
+    };
+  }
+
+  function bgNormalizeState(raw){
+    const base = bgDefaultState();
+    if(!raw || typeof raw !== 'object') return base;
+    const state = { ...base, ...raw };
+    state.customUrl = typeof raw.customUrl === 'string' ? raw.customUrl.trim() : '';
+    state.uploads = Array.isArray(raw.uploads) ? raw.uploads.filter(Boolean).map(u => ({
+      id: String(u.id || 'upload-' + Date.now()),
+      name: typeof u.name === 'string' ? u.name : 'Upload',
+      dataUrl: typeof u.dataUrl === 'string' ? u.dataUrl : '',
+      width: Number(u.width) || 0,
+      height: Number(u.height) || 0,
+      created: Number(u.created) || Date.now()
+    })).filter(u => u.dataUrl).slice(0, BG_MAX_UPLOADS) : [];
+    state.favorites = Array.isArray(raw.favorites) ? raw.favorites.map(bgCloneRef).filter(Boolean).slice(0, 32) : base.favorites;
+    state.collections = Array.isArray(raw.collections) ? raw.collections.map(col => ({
+      id: String(col.id || 'col-' + Math.random().toString(36).slice(2,8)),
+      name: typeof col.name === 'string' && col.name.trim() ? col.name.trim() : 'Collection',
+      urls: Array.isArray(col.urls) ? col.urls.map(String).map(u => u.trim()).filter(Boolean).slice(0, 40) : [],
+      cache: col.cache && typeof col.cache === 'object' ? col.cache : {},
+      allowRotation: col.allowRotation !== false,
+      created: Number(col.created) || Date.now(),
+      updated: Number(col.updated) || Date.now()
+    })).filter(col => col.urls.length).slice(0, 12) : [];
+    state.history = Array.isArray(raw.history) ? raw.history.map(bgCloneRef).filter(Boolean).slice(0, 20) : [];
+    const rotationRaw = raw.rotation && typeof raw.rotation === 'object' ? raw.rotation : {};
+    state.rotation = {
+      ...base.rotation,
+      ...rotationRaw,
+      intervalMinutes: Number(rotationRaw.intervalMinutes) || base.rotation.intervalMinutes,
+      sources: { ...base.rotation.sources, ...(rotationRaw.sources || {}) },
+      schedule: { ...base.rotation.schedule }
+    };
+    if(rotationRaw.schedule && typeof rotationRaw.schedule === 'object'){
+      Object.keys(rotationRaw.schedule).forEach(key => {
+        state.rotation.schedule[key] = rotationRaw.schedule[key] ? bgCloneRef(rotationRaw.schedule[key]) : null;
+      });
+    }
+    if(rotationRaw.locked === true || rotationRaw.locked === false) state.rotation.locked = rotationRaw.locked;
+    state.active = raw.active ? bgCloneRef(raw.active) : base.active;
+    if(!state.active) state.active = base.active;
+    state.ui = {
+      tab: raw.ui && typeof raw.ui === 'object' && typeof raw.ui.tab === 'string' ? raw.ui.tab : base.ui.tab
+    };
+    return state;
+  }
+
+  function bgLoadState(){
+    const raw = store.get('bg.state', null);
+    if(raw) return bgNormalizeState(raw);
+    const legacy = store.get('bg.url', '');
+    if(legacy){
+      try { localStorage.removeItem('bg.url'); } catch (err) {}
+      const base = bgDefaultState();
+      base.customUrl = legacy;
+      base.active = { type: 'custom', url: legacy };
+      return base;
+    }
+    return bgDefaultState();
+  }
+
+  function bgSaveState(state){
+    store.set('bg.state', bgNormalizeState(state));
+  }
+
+  function bgUpdateState(mutator){
+    const state = bgLoadState();
+    const next = mutator ? mutator(state) || state : state;
+    const normalized = bgNormalizeState(next);
+    bgSaveState(normalized);
+    return normalized;
+  }
+
+  function bgEncodeRef(ref){
+    if(!ref || !ref.type) return '';
+    if(ref.type === 'preset') return 'preset::' + (ref.id || '');
+    if(ref.type === 'upload') return 'upload::' + (ref.id || '');
+    if(ref.type === 'collection') return 'collection::' + (ref.collectionId || '') + '::' + encodeURIComponent(ref.url || '');
+    if(ref.type === 'custom') return 'custom::' + encodeURIComponent(ref.url || '');
+    return '';
+  }
+
+  function bgDecodeRef(token){
+    if(!token) return null;
+    const parts = token.split('::');
+    const type = parts[0];
+    if(type === 'preset') return { type: 'preset', id: parts[1] || '' };
+    if(type === 'upload') return { type: 'upload', id: parts[1] || '' };
+    if(type === 'collection') return { type: 'collection', collectionId: parts[1] || '', url: decodeURIComponent(parts[2] || '') };
+    if(type === 'custom') return { type: 'custom', url: decodeURIComponent(parts[1] || '') };
+    return null;
+  }
+
+  function bgRefKey(ref){
+    return bgEncodeRef(ref);
+  }
+
+  function bgResolveRef(state, ref){
+    if(!ref || !ref.type) return null;
+    if(ref.type === 'preset'){
+      const preset = BG_PRESETS.find(p => p.id === ref.id);
+      if(!preset) return null;
+      return {
+        ref: { type: 'preset', id: preset.id },
+        url: preset.url,
+        title: preset.label,
+        subtitle: 'Preset',
+        meta: preset.tags && preset.tags.length ? preset.tags.join(', ') : '',
+        credit: preset.credit || ''
+      };
+    }
+    if(ref.type === 'upload'){
+      const upload = (state.uploads || []).find(u => u.id === ref.id);
+      if(!upload) return null;
+      return {
+        ref: { type: 'upload', id: upload.id },
+        url: upload.dataUrl,
+        title: upload.name || 'Upload',
+        subtitle: 'Upload',
+        meta: upload.width && upload.height ? Math.round(upload.width) + 'x' + Math.round(upload.height) : ''
+      };
+    }
+    if(ref.type === 'collection'){
+      const collection = (state.collections || []).find(c => c.id === ref.collectionId);
+      if(!collection || !collection.urls.length) return null;
+      const url = ref.url || collection.urls[0];
+      if(!url) return null;
+      const cached = collection.cache && collection.cache[url];
+      return {
+        ref: { type: 'collection', collectionId: collection.id, url },
+        url: cached || url,
+        title: collection.name,
+        subtitle: 'Collection',
+        meta: url
+      };
+    }
+    if(ref.type === 'custom'){
+      const url = ref.url || state.customUrl;
+      if(!url) return null;
+      return {
+        ref: { type: 'custom', url },
+        url,
+        title: 'Custom URL',
+        subtitle: 'Custom',
+        meta: url
+      };
+    }
+    return null;
+  }
+  function bgApplyResolved(resolved, state){
+    const body = document.body;
+    if(!body) return;
+    if(resolved && resolved.url){
+      const safe = resolved.url.replace(/"/g, '\\"');
+      body.style.backgroundImage = 'url("' + safe + '")';
+      body.style.backgroundSize = 'cover';
+      body.style.backgroundPosition = 'center';
+      body.style.backgroundAttachment = 'fixed';
+    } else {
+      body.style.backgroundImage = '';
+    }
+    body.dataset.bgType = resolved ? resolved.ref.type : '';
+  }
+
+  function bgRenderPreview(state, resolved){
+    const preview = document.getElementById('bgCurrentPreview');
+    if(preview){
+      preview.style.backgroundImage = resolved && resolved.url ? 'url("' + resolved.url.replace(/"/g, '\\"') + '")' : '';
+    }
+    const title = document.getElementById('bgCurrentTitle');
+    if(title) title.textContent = resolved ? resolved.title : 'Kein Hintergrund';
+    const meta = document.getElementById('bgCurrentMeta');
+    if(meta){
+      const parts = [];
+      if(resolved){
+        if(resolved.subtitle) parts.push(resolved.subtitle);
+        if(resolved.meta) parts.push(resolved.meta);
+        if(resolved.credit) parts.push(resolved.credit);
+      }
+      meta.textContent = parts.length ? parts.join(' | ') : 'Kein Bild ausgewaehlt';
+    }
+    const undoBtn = document.getElementById('bgActionUndo');
+    if(undoBtn) undoBtn.disabled = !(state.history && state.history.length);
+    const lockBtn = document.getElementById('bgActionLock');
+    if(lockBtn){
+      lockBtn.textContent = state.rotation && state.rotation.locked ? 'Rotation fortsetzen' : 'Rotation sperren';
+      lockBtn.dataset.locked = state.rotation && state.rotation.locked ? 'true' : 'false';
+    }
+  }
+
+  function bgRenderPresets(state){
+    const panel = document.getElementById('bgPanel-presets');
+    if(!panel) return;
+    if(!BG_PRESETS.length){
+      panel.innerHTML = '<div class="bg-empty">Keine Presets vorhanden.</div>';
+      return;
+    }
+    const favKeys = new Set((state.favorites || []).map(bgRefKey));
+    const activeKey = bgRefKey(state.active);
+    const cards = BG_PRESETS.map(p => {
+      const ref = { type: 'preset', id: p.id };
+      const key = bgRefKey(ref);
+      const isActive = key && key === activeKey;
+      const isFav = favKeys.has(key);
+      const metaParts = [];
+      if(p.tags && p.tags.length) metaParts.push(p.tags.join(', '));
+      if(p.tone) metaParts.push('Tone: ' + p.tone);
+      const meta = metaParts.join(' | ');
+      return '<div class="bg-card' + (isActive ? ' highlight' : '') + '" data-ref="' + key + '">' +
+        '<div class="bg-thumb" style="' + bgCssBg(p.url) + '"></div>' +
+        '<div class="bg-card-title">' + escapeHtml(p.label) + '</div>' +
+        '<div class="bg-card-meta">' + (meta ? escapeHtml(meta) : '') + '</div>' +
+        '<div class="bg-card-actions">' +
+          '<button type="button" data-action="bg-apply" data-ref="' + key + '"' + (isActive ? ' data-active="true"' : '') + '>Setzen</button>' +
+          '<button type="button" data-action="bg-favorite" data-ref="' + key + '">' + (isFav ? 'Favorit' : 'Favorisieren') + '</button>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+    panel.innerHTML = '<div class="bg-grid">' + cards + '</div>';
+  }
+
+  function bgRenderFavorites(state){
+    const panel = document.getElementById('bgPanel-favorites');
+    if(!panel) return;
+    if(!state.favorites.length){
+      panel.innerHTML = '<div class="bg-empty">Noch keine Favoriten. Markiere Presets oder Uploads.</div>';
+      return;
+    }
+    const activeKey = bgRefKey(state.active);
+    const cards = state.favorites.map(ref => {
+      const resolved = bgResolveRef(state, ref);
+      if(!resolved) return '';
+      const key = bgRefKey(resolved.ref);
+      const isActive = key === activeKey;
+      return '<div class="bg-card' + (isActive ? ' highlight' : '') + '" data-ref="' + key + '">' +
+        '<div class="bg-thumb" style="' + bgCssBg(resolved.url) + '"></div>' +
+        '<div class="bg-card-title">' + escapeHtml(resolved.title) + '</div>' +
+        '<div class="bg-card-meta">' + (resolved.meta ? escapeHtml(resolved.meta) : '') + '</div>' +
+        '<div class="bg-card-actions">' +
+          '<button type="button" data-action="bg-apply" data-ref="' + key + '"' + (isActive ? ' data-active="true"' : '') + '>Setzen</button>' +
+          '<button type="button" data-action="bg-favorite-remove" data-ref="' + key + '">Entfernen</button>' +
+        '</div>' +
+      '</div>';
+    }).filter(Boolean).join('');
+    panel.innerHTML = '<div class="bg-grid">' + cards + '</div>';
+  }
+
+  function bgRenderUploads(state){
+    const panel = document.getElementById('bgPanel-uploads');
+    if(!panel) return;
+    const activeKey = bgRefKey(state.active);
+    const list = (state.uploads || []).map(upload => {
+      const ref = { type: 'upload', id: upload.id };
+      const key = bgRefKey(ref);
+      const isActive = key === activeKey;
+      const size = upload.width && upload.height ? Math.round(upload.width) + 'x' + Math.round(upload.height) : '';
+      return '<div class="bg-card' + (isActive ? ' highlight' : '') + '">' +
+        '<div class="bg-thumb" style="' + bgCssBg(upload.dataUrl) + '"></div>' +
+        '<div class="bg-card-title">' + escapeHtml(upload.name || 'Upload') + '</div>' +
+        '<div class="bg-card-meta">' + escapeHtml(size) + '</div>' +
+        '<div class="bg-card-actions">' +
+          '<button type="button" data-action="bg-apply" data-ref="' + key + '"' + (isActive ? ' data-active="true"' : '') + '>Setzen</button>' +
+          '<button type="button" data-action="bg-favorite" data-ref="' + key + '">Favorisieren</button>' +
+          '<button type="button" data-action="bg-delete-upload" data-upload="' + upload.id + '">Entfernen</button>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+    panel.innerHTML =
+      '<div class="bg-upload-drop" id="bgUploadDrop">' +
+        '<div>Dateien hier ablegen</div>' +
+        '<button type="button" data-action="bg-upload-browse">Datei auswaehlen</button>' +
+        '<input type="file" id="bgUploadInput" multiple accept="image/*" hidden>' +
+        '<div class="bg-upload-note">Wir verkleinern Bilder automatisch (16:9, max 2560px) und speichern sie lokal. Max ' + BG_MAX_UPLOADS + ' Dateien.</div>' +
+      '</div>' +
+      (state.uploads && state.uploads.length ? '<div class="bg-grid">' + list + '</div>' : '<div class="bg-empty">Noch keine Uploads vorhanden.</div>');
+  }
+
+  function bgRenderCollections(state){
+    const panel = document.getElementById('bgPanel-collections');
+    if(!panel) return;
+    const cards = (state.collections || []).map(col => {
+      const count = col.urls.length;
+      const previewUrl = col.urls.length ? (col.cache && col.cache[col.urls[0]]) || col.urls[0] : '';
+      return '<div class="bg-collection" data-collection="' + col.id + '">' +
+        '<div class="bg-collection-header">' +
+          '<div>' +
+            '<div class="bg-collection-title">' + escapeHtml(col.name) + '</div>' +
+            '<div class="bg-collection-count">' + count + ' Quellen</div>' +
+          '</div>' +
+          '<div class="bg-collection-actions">' +
+            '<button type="button" data-action="bg-collection-apply" data-collection="' + col.id + '">Zufaellig</button>' +
+            '<button type="button" data-action="bg-collection-cache" data-collection="' + col.id + '">Offline speichern</button>' +
+            '<button type="button" data-action="bg-collection-remove" data-collection="' + col.id + '">Entfernen</button>' +
+          '</div>' +
+        '</div>' +
+        (previewUrl ? '<div class="bg-thumb" style="' + bgCssBg(previewUrl) + '"></div>' : '') +
+        '<details>' +
+          '<summary>Quellen ansehen</summary>' +
+          '<ul>' + col.urls.map(u => '<li><code>' + escapeHtml(u) + '</code></li>').join('') + '</ul>' +
+          '<label style="display:inline-flex;align-items:center;gap:6px;margin-top:8px;">' +
+            '<input type="checkbox" data-action="bg-collection-rotation" data-collection="' + col.id + '"' + (col.allowRotation !== false ? ' checked' : '') + '> Rotation verwenden' +
+          '</label>' +
+        '</details>' +
+      '</div>';
+    }).join('');
+    panel.innerHTML =
+      '<div class="bg-selector">' +
+        '<label for="bgCollectionName">Neue Sammlung</label>' +
+        '<input id="bgCollectionName" type="text" placeholder="Meine Sammlung">' +
+        '<textarea id="bgCollectionUrls" rows="4" placeholder="Eine Bild-URL pro Zeile"></textarea>' +
+        '<div class="bg-inline-actions">' +
+          '<button type="button" data-action="bg-collection-save">Speichern</button>' +
+          '<button type="button" data-action="bg-collection-clear">Felder leeren</button>' +
+        '</div>' +
+        '<p class="bg-mini-text">URLs werden lokal gespeichert. Remote Quellen benoetigen CORS fuer Bilder.</p>' +
+      '</div>' +
+      (cards ? '<div class="bg-collection-list">' + cards + '</div>' : '<div class="bg-empty">Noch keine Sammlungen angelegt.</div>');
+  }
+
+  function bgBuildRotationOptions(state){
+    const options = [];
+    const seen = new Set();
+    const add = (label, ref) => {
+      const key = bgRefKey(ref);
+      if(!key || seen.has(key)) return;
+      seen.add(key);
+      options.push({ value: key, label });
+    };
+    BG_PRESETS.forEach(p => add('Preset: ' + p.label, { type: 'preset', id: p.id }));
+    (state.uploads || []).forEach(u => add('Upload: ' + (u.name || u.id), { type: 'upload', id: u.id }));
+    (state.favorites || []).forEach(f => {
+      const resolved = bgResolveRef(state, f);
+      add('Favorit: ' + (resolved ? resolved.title : bgRefKey(f)), f);
+    });
+    if(state.customUrl) add('Custom: gespeicherte URL', { type: 'custom', url: state.customUrl });
+    return options;
+  }
+
+  function bgRenderRotation(state){
+    const panel = document.getElementById('bgPanel-rotation');
+    if(!panel) return;
+    const options = bgBuildRotationOptions(state);
+    const schedule = state.rotation.schedule || {};
+    const buildSelect = slot => {
+      const selected = schedule[slot] ? bgRefKey(schedule[slot]) : '';
+      const opts = ['<option value="">Kein festes Bild</option>']
+        .concat(options.map(opt => '<option value="' + opt.value + '"' + (opt.value === selected ? ' selected' : '') + '>' + escapeHtml(opt.label) + '</option>'))
+        .join('');
+      return '<select data-action="bg-rotation-slot" data-slot="' + slot + '">' + opts + '</select>';
+    };
+    const sources = state.rotation.sources || {};
+    const sourceControls = [
+      { key: 'presets', label: 'Presets' },
+      { key: 'favorites', label: 'Favoriten' },
+      { key: 'uploads', label: 'Uploads' },
+      { key: 'collections', label: 'Sammlungen' },
+      { key: 'custom', label: 'Custom URL' }
+    ].map(item => '<label style="display:flex;align-items:center;gap:6px;"><input type="checkbox" data-action="bg-rotation-source" data-source="' + item.key + '"' + (sources[item.key] ? ' checked' : '') + '> ' + item.label + '</label>').join('');
+    panel.innerHTML =
+      '<div class="bg-rotation-grid">' +
+        '<div class="bg-rotation-card">' +
+          '<label><input type="checkbox" id="bgRotationEnabled"' + (state.rotation.enabled ? ' checked' : '') + '> Automatische Rotation aktiv</label>' +
+          '<div class="bg-mini-text">' + (state.rotation.locked ? 'Rotation ist aktuell gesperrt.' : 'Hintergruende wechseln nach dem Plan.') + '</div>' +
+          '<div class="bg-selector">' +
+            '<label for="bgRotationStrategy">Modus</label>' +
+            '<select id="bgRotationStrategy">' +
+              '<option value="time"' + (state.rotation.strategy === 'time' ? ' selected' : '') + '>Zeitabhaengig</option>' +
+              '<option value="interval"' + (state.rotation.strategy === 'interval' ? ' selected' : '') + '>Intervall</option>' +
+              '<option value="theme"' + (state.rotation.strategy === 'theme' ? ' selected' : '') + '>Theme</option>' +
+            '</select>' +
+          '</div>' +
+          '<div class="bg-selector">' +
+            '<label for="bgRotationInterval">Intervall in Minuten</label>' +
+            '<input id="bgRotationInterval" type="number" min="5" step="5" value="' + (Number(state.rotation.intervalMinutes) || 60) + '">' +
+            '<div class="bg-mini-text">Relevanz nur im Intervall Modus.</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="bg-rotation-card">' +
+          '<label>Quellen fuer Zufall</label>' +
+          '<div class="bg-selector">' + sourceControls + '</div>' +
+        '</div>' +
+        '<div class="bg-rotation-card">' +
+          '<label>Zeitplan</label>' +
+          BG_TIME_SLOTS.map(slot => '<div class="bg-selector"><span>' + slot.label + '</span>' + buildSelect(slot.id) + '</div>').join('') +
+        '</div>' +
+        '<div class="bg-rotation-card">' +
+          '<label>Theme Plan</label>' +
+          '<div class="bg-selector"><span>Theme Light</span>' + buildSelect('light') + '</div>' +
+          '<div class="bg-selector"><span>Theme Dark</span>' + buildSelect('dark') + '</div>' +
+          '<div class="bg-mini-text">Theme Plan wird genutzt, wenn der Modus auf Theme steht.</div>' +
+        '</div>' +
+      '</div>';
+  }
+
+  function bgRenderCustom(state){
+    const panel = document.getElementById('bgPanel-custom');
+    if(!panel) return;
+    panel.innerHTML =
+      '<div class="bg-selector">' +
+        '<label for="bgCustomUrl">Eigene Bild URL</label>' +
+        '<input id="bgCustomUrl" type="url" placeholder="https://example.com/image.jpg" value="' + escapeHtml(state.customUrl || '') + '">' +
+        '<div class="bg-inline-actions">' +
+          '<button type="button" data-action="bg-custom-apply">Setzen</button>' +
+          '<button type="button" data-action="bg-custom-save">Speichern</button>' +
+          (state.customUrl ? '<button type="button" data-action="bg-custom-clear">Loeschen</button>' : '') +
+        '</div>' +
+        '<p class="bg-mini-text">URL wird lokal gespeichert. Server muss CORS fuer Bilder erlauben.</p>' +
+      '</div>';
+  }
+
+  function bgBindUploadInput(){
+    const input = document.getElementById('bgUploadInput');
+    if(input && !input.dataset.bound){
+      input.addEventListener('change', event => {
+        const files = Array.from(event.target.files || []);
+        bgHandleFiles(files);
+        input.value = '';
+      });
+      input.dataset.bound = 'true';
+    }
+  }
+
+  function bgRenderSettings(){
+    const engine = document.getElementById('bgEngine');
+    if(!engine) return;
+    const state = bgLoadState();
+    const resolved = bgResolveRef(state, state.active);
+    bgRenderPreview(state, resolved);
+    bgRenderPresets(state);
+    bgRenderFavorites(state);
+    bgRenderUploads(state);
+    bgRenderCollections(state);
+    bgRenderRotation(state);
+    bgRenderCustom(state);
+    bgSetActiveTab((state.ui && state.ui.tab) || 'presets', false);
+    bgBindUploadInput();
+  }
+
+  function bgSetActiveTab(name, persist){
+    const engine = document.getElementById('bgEngine');
+    if(!engine) return;
+    engine.querySelectorAll('.bg-tab').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.panel === name);
+    });
+    engine.querySelectorAll('.bg-panel').forEach(panel => {
+      panel.classList.toggle('active', panel.id === 'bgPanel-' + name);
+    });
+    if(persist){
+      bgUpdateState(state => {
+        if(!state.ui) state.ui = { tab: name };
+        else state.ui.tab = name;
+        return state;
+      });
+    }
+  }
+  function bgApply(ref, options){
+    const opts = options || {};
+    if(!ref){
+      const state = bgLoadState();
+      const resolved = bgResolveRef(state, state.active);
+      bgApplyResolved(resolved, state);
+      bgRenderPreview(state, resolved);
+      return resolved;
+    }
+    let resolved = null;
+    const state = bgUpdateState(current => {
+      const candidate = bgResolveRef(current, ref);
+      if(!candidate) return current;
+      resolved = candidate;
+      const currentKey = bgRefKey(current.active);
+      const nextKey = bgRefKey(candidate.ref);
+      if(!opts.skipHistory && currentKey && nextKey && currentKey !== nextKey){
+        current.history = [bgCloneRef(current.active), ...(current.history || [])].filter(Boolean).slice(0, 20);
+      }
+      current.active = bgCloneRef(candidate.ref);
+      current.rotation.lastApplied = Date.now();
+      return current;
+    });
+    if(resolved) bgApplyResolved(resolved, state);
+    bgRenderSettings();
+    if(!opts.skipSchedule) bgRestartTimer(state);
+    return resolved;
+  }
+
+  function bgToggleFavorite(ref){
+    if(!ref) return;
+    const key = bgRefKey(ref);
+    bgUpdateState(state => {
+      const list = state.favorites || [];
+      const index = list.findIndex(item => bgRefKey(item) === key);
+      if(index >= 0) list.splice(index, 1);
+      else list.unshift(bgCloneRef(ref));
+      state.favorites = list.slice(0, 32);
+      return state;
+    });
+    bgRenderSettings();
+  }
+
+  function bgRemoveFavorite(ref){
+    if(!ref) return;
+    const key = bgRefKey(ref);
+    bgUpdateState(state => {
+      state.favorites = (state.favorites || []).filter(item => bgRefKey(item) !== key);
+      return state;
+    });
+    bgRenderSettings();
+  }
+
+  function bgDeleteUpload(id){
+    if(!id) return;
+    let removedActive = false;
+    bgUpdateState(state => {
+      state.uploads = (state.uploads || []).filter(u => u.id !== id);
+      state.history = (state.history || []).filter(r => !(r && r.type === 'upload' && r.id === id));
+      if(state.active && state.active.type === 'upload' && state.active.id === id){
+        removedActive = true;
+        state.active = bgDefaultState().active;
+      }
+      return state;
+    });
+    if(removedActive) bgApply(null, { skipHistory: true });
+    bgRenderSettings();
+  }
+
+  function bgSaveCollection(){
+    const nameInput = document.getElementById('bgCollectionName');
+    const urlsInput = document.getElementById('bgCollectionUrls');
+    if(!urlsInput) return;
+    const name = nameInput ? nameInput.value.trim() : '';
+    const urls = urlsInput.value.split(/\r?\n/).map(v => v.trim()).filter(Boolean);
+    if(!urls.length){
+      alert('Mindestens eine URL eintragen.');
+      return;
+    }
+    bgUpdateState(state => {
+      const collection = {
+        id: 'col-' + Date.now().toString(36),
+        name: name || 'Sammlung ' + (state.collections.length + 1),
+        urls,
+        cache: {},
+        allowRotation: true,
+        created: Date.now(),
+        updated: Date.now()
+      };
+      state.collections.unshift(collection);
+      state.collections = state.collections.slice(0, 12);
+      return state;
+    });
+    if(nameInput) nameInput.value = '';
+    urlsInput.value = '';
+    bgRenderSettings();
+  }
+
+  function bgClearCollectionForm(){
+    const nameInput = document.getElementById('bgCollectionName');
+    if(nameInput) nameInput.value = '';
+    const urlsInput = document.getElementById('bgCollectionUrls');
+    if(urlsInput) urlsInput.value = '';
+  }
+
+  function bgApplyCollection(id){
+    const state = bgLoadState();
+    const collection = state.collections.find(c => c.id === id);
+    if(!collection || !collection.urls.length){
+      alert('Sammlung ist leer.');
+      return;
+    }
+    const options = collection.urls.map(url => ({ type: 'collection', collectionId: collection.id, url }));
+    const pick = options[Math.floor(Math.random() * options.length)];
+    bgApply(bgCloneRef(pick));
+  }
+
+  async function bgCacheCollection(id){
+    const state = bgLoadState();
+    const collection = state.collections.find(c => c.id === id);
+    if(!collection || !collection.urls.length){
+      alert('Sammlung ist leer.');
+      return;
+    }
+    const button = document.querySelector('[data-action="bg-collection-cache"][data-collection="' + id + '"]');
+    if(button) button.disabled = true;
+    const cached = {};
+    try {
+      for(const url of collection.urls){
+        const data = await bgFetchImageData(url);
+        if(data) cached[url] = data;
+      }
+      bgUpdateState(stateUpdate => {
+        const target = stateUpdate.collections.find(c => c.id === id);
+        if(target){
+          target.cache = { ...target.cache, ...cached };
+          target.updated = Date.now();
+        }
+        return stateUpdate;
+      });
+      alert('Sammlung lokal gespeichert.');
+    } catch (err) {
+      console.error(err);
+      alert('Fehler beim Laden. Pruefe CORS Vorgaben.');
+    } finally {
+      if(button) button.disabled = false;
+    }
+    bgRenderSettings();
+  }
+
+  function bgHandleCustom(action){
+    const input = document.getElementById('bgCustomUrl');
+    if(!input) return;
+    const value = input.value.trim();
+    if(action === 'save'){
+      bgUpdateState(state => { state.customUrl = value; return state; });
+      bgRenderSettings();
+      return;
+    }
+    if(action === 'apply'){
+      if(!value){
+        alert('Bitte eine URL eintragen.');
+        return;
+      }
+      bgUpdateState(state => { state.customUrl = value; return state; });
+      bgApply({ type: 'custom', url: value });
+      return;
+    }
+    if(action === 'clear'){
+      bgUpdateState(state => {
+        state.customUrl = '';
+        state.history = (state.history || []).filter(ref => ref.type !== 'custom');
+        if(state.active && state.active.type === 'custom') state.active = bgDefaultState().active;
+        return state;
+      });
+      bgApply(null, { skipHistory: true });
+      bgRenderSettings();
+    }
+  }
+
+  function bgHandleClick(event){
+    const target = event.target;
+    if(!target) return;
+    const tabBtn = target.closest('.bg-tab');
+    if(tabBtn){
+      bgSetActiveTab(tabBtn.dataset.panel, true);
+      return;
+    }
+    const action = target.dataset.action;
+    if(!action) return;
+    if(action === 'bg-random'){
+      bgRandomPick();
+      return;
+    }
+    if(action === 'bg-undo'){
+      bgUndo();
+      return;
+    }
+    if(action === 'bg-lock'){
+      bgToggleLock();
+      return;
+    }
+    if(action === 'bg-apply'){
+      const ref = bgDecodeRef(target.dataset.ref);
+      if(ref) bgApply(ref);
+      return;
+    }
+    if(action === 'bg-favorite'){
+      const ref = bgDecodeRef(target.dataset.ref);
+      if(ref) bgToggleFavorite(ref);
+      return;
+    }
+    if(action === 'bg-favorite-remove'){
+      const ref = bgDecodeRef(target.dataset.ref);
+      if(ref) bgRemoveFavorite(ref);
+      return;
+    }
+    if(action === 'bg-delete-upload'){
+      bgDeleteUpload(target.dataset.upload);
+      return;
+    }
+    if(action === 'bg-upload-browse'){
+      const input = document.getElementById('bgUploadInput');
+      if(input) input.click();
+      return;
+    }
+    if(action === 'bg-collection-save'){
+      bgSaveCollection();
+      return;
+    }
+    if(action === 'bg-collection-clear'){
+      bgClearCollectionForm();
+      return;
+    }
+    if(action === 'bg-collection-apply'){
+      bgApplyCollection(target.dataset.collection);
+      return;
+    }
+    if(action === 'bg-collection-cache'){
+      bgCacheCollection(target.dataset.collection);
+      return;
+    }
+    if(action === 'bg-collection-remove'){
+      const id = target.dataset.collection;
+      bgUpdateState(state => {
+        state.collections = (state.collections || []).filter(c => c.id !== id);
+        state.history = (state.history || []).filter(ref => !(ref && ref.type === 'collection' && ref.collectionId === id));
+        if(state.active && state.active.type === 'collection' && state.active.collectionId === id){
+          state.active = bgDefaultState().active;
+        }
+        return state;
+      });
+      bgApply(null, { skipHistory: true });
+      bgRenderSettings();
+      return;
+    }
+    if(action === 'bg-custom-apply'){
+      bgHandleCustom('apply');
+      return;
+    }
+    if(action === 'bg-custom-save'){
+      bgHandleCustom('save');
+      return;
+    }
+    if(action === 'bg-custom-clear'){
+      bgHandleCustom('clear');
+      return;
+    }
+  }
+
+  function bgHandleChange(event){
+    const target = event.target;
+    if(!target) return;
+    if(target.id === 'bgRotationEnabled'){
+      const checked = target.checked;
+      const state = bgUpdateState(state => { state.rotation.enabled = checked; return state; });
+      if(checked) bgEvaluateRotation('enabled');
+      bgRestartTimer(state);
+      bgRenderSettings();
+      return;
+    }
+    if(target.id === 'bgRotationStrategy'){
+      const strategy = target.value || 'time';
+      const state = bgUpdateState(state => { state.rotation.strategy = strategy; return state; });
+      bgEvaluateRotation('strategy');
+      bgRestartTimer(state);
+      bgRenderSettings();
+      return;
+    }
+    if(target.id === 'bgRotationInterval'){
+      const mins = Math.max(5, Number(target.value) || 5);
+      const state = bgUpdateState(state => { state.rotation.intervalMinutes = mins; return state; });
+      bgRestartTimer(state);
+      bgRenderSettings();
+      return;
+    }
+    const action = target.dataset.action;
+    if(action === 'bg-rotation-source'){
+      const key = target.dataset.source;
+      bgUpdateState(state => {
+        state.rotation.sources[key] = target.checked;
+        return state;
+      });
+      bgRestartTimer(bgLoadState());
+      return;
+    }
+    if(action === 'bg-rotation-slot'){
+      const slot = target.dataset.slot;
+      const token = target.value;
+      bgUpdateState(state => {
+        state.rotation.schedule[slot] = token ? bgCloneRef(bgDecodeRef(token)) : null;
+        return state;
+      });
+      bgRenderSettings();
+      bgEvaluateRotation('schedule');
+      return;
+    }
+    if(action === 'bg-collection-rotation'){
+      const id = target.dataset.collection;
+      bgUpdateState(state => {
+        const collection = (state.collections || []).find(c => c.id === id);
+        if(collection) collection.allowRotation = target.checked;
+        return state;
+      });
+    }
+  }
+
+  function bgHandleDrag(event){
+    const drop = document.getElementById('bgUploadDrop');
+    if(!drop) return;
+    if(event.type === 'dragover'){
+      event.preventDefault();
+      drop.classList.add('dragging');
+    } else if(event.type === 'dragleave'){
+      drop.classList.remove('dragging');
+    }
+  }
+
+  function bgHandleDrop(event){
+    const drop = document.getElementById('bgUploadDrop');
+    if(!drop) return;
+    event.preventDefault();
+    drop.classList.remove('dragging');
+    const files = Array.from(event.dataTransfer && event.dataTransfer.files ? event.dataTransfer.files : []);
+    if(files.length) bgHandleFiles(files);
+  }
+  async function bgHandleFiles(files){
+    if(!files || !files.length) return;
+    const queue = [];
+    for(const file of files){
+      if(queue.length >= BG_MAX_UPLOADS) break;
+      if(file.type && !file.type.startsWith('image/')) continue;
+      queue.push(file);
+    }
+    for(const file of queue){
+      try {
+        await bgProcessFile(file);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    bgRenderSettings();
+  }
+
+  async function bgProcessFile(file){
+    const dataUrl = await bgReadFileAsDataUrl(file);
+    const img = await bgLoadImage(dataUrl);
+    const scaled = bgResizeImage(img);
+    const entry = {
+      id: 'upload-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2,6),
+      name: file.name ? file.name.replace(/\.[^.]+$/, '') : 'Upload',
+      dataUrl: scaled.dataUrl,
+      width: scaled.width,
+      height: scaled.height,
+      created: Date.now()
+    };
+    bgUpdateState(state => {
+      state.uploads.unshift(entry);
+      state.uploads = state.uploads.slice(0, BG_MAX_UPLOADS);
+      return state;
+    });
+  }
+
+  function bgReadFileAsDataUrl(file){
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = () => reject(new Error('Lesen fehlgeschlagen'));
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function bgLoadImage(dataUrl){
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.onerror = () => reject(new Error('Bild konnte nicht geladen werden'));
+      img.src = dataUrl;
+    });
+  }
+
+  function bgResizeImage(img){
+    const targetRatio = 16 / 9;
+    const maxWidth = 2560;
+    const maxHeight = 1440;
+    let width = maxWidth;
+    let height = Math.round(width / targetRatio);
+    if(height > maxHeight){
+      height = maxHeight;
+      width = Math.round(height * targetRatio);
+    }
+    const canvas = document.createElement('canvas');
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext('2d');
+    if(!ctx){
+      return { dataUrl: img.src, width: img.width, height: img.height };
+    }
+    const sourceRatio = img.width / img.height;
+    let sx = 0, sy = 0, sw = img.width, sh = img.height;
+    if(sourceRatio > targetRatio){
+      sh = img.height;
+      sw = sh * targetRatio;
+      sx = (img.width - sw) / 2;
+    } else {
+      sw = img.width;
+      sh = sw / targetRatio;
+      sy = (img.height - sh) / 2;
+    }
+    ctx.drawImage(img, sx, sy, sw, sh, 0, 0, width, height);
+    let dataUrl;
+    try {
+      dataUrl = canvas.toDataURL('image/jpeg', 0.82);
+    } catch (err) {
+      dataUrl = img.src;
+    }
+    return { dataUrl, width, height };
+  }
+
+  function bgFetchImageData(url){
+    return fetch(url, { mode: 'cors' })
+      .then(res => {
+        if(!res.ok) throw new Error('Fetch fehlgeschlagen');
+        return res.blob();
+      })
+      .then(blob => new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = () => reject(new Error('Konvertierung fehlgeschlagen'));
+        reader.readAsDataURL(blob);
+      }));
+  }
+
+  function bgCollectCandidates(state, includeActive){
+    const allow = state.rotation.sources || {};
+    const list = [];
+    const activeKey = bgRefKey(state.active);
+    if(allow.presets){
+      BG_PRESETS.forEach(p => list.push({ type: 'preset', id: p.id }));
+    }
+    if(allow.uploads){
+      (state.uploads || []).forEach(u => list.push({ type: 'upload', id: u.id }));
+    }
+    if(allow.favorites){
+      (state.favorites || []).forEach(f => list.push(bgCloneRef(f)));
+    }
+    if(allow.collections){
+      (state.collections || []).forEach(col => {
+        if(col.allowRotation === false) return;
+        col.urls.forEach(url => list.push({ type: 'collection', collectionId: col.id, url }));
+      });
+    }
+    if(allow.custom && state.customUrl){
+      list.push({ type: 'custom', url: state.customUrl });
+    }
+    return list.filter(ref => {
+      const key = bgRefKey(ref);
+      if(!key) return false;
+      if(!includeActive && key === activeKey) return false;
+      return !!bgResolveRef(state, ref);
+    });
+  }
+
+  function bgRandomPick(){
+    const state = bgLoadState();
+    const candidates = bgCollectCandidates(state, false);
+    if(!candidates.length){
+      alert('Keine Hintergruende verfuegbar.');
+      return;
+    }
+    const pick = bgCloneRef(candidates[Math.floor(Math.random() * candidates.length)]);
+    bgApply(pick);
+  }
+
+  function bgUndo(){
+    let resolved = null;
+    const state = bgUpdateState(current => {
+      if(!current.history || !current.history.length) return current;
+      const previous = current.history.shift();
+      const candidate = bgResolveRef(current, previous);
+      if(!candidate) return current;
+      resolved = candidate;
+      current.active = bgCloneRef(candidate.ref);
+      return current;
+    });
+    if(resolved) bgApplyResolved(resolved, state);
+    bgRenderSettings();
+  }
+
+  function bgToggleLock(){
+    const state = bgUpdateState(current => {
+      current.rotation.locked = !current.rotation.locked;
+      return current;
+    });
+    if(state.rotation.locked && bgRotationTimer){
+      clearTimeout(bgRotationTimer);
+      bgRotationTimer = null;
+    }
+    if(!state.rotation.locked) bgEvaluateRotation('unlock');
+    bgRenderSettings();
+  }
+
+  function bgGetEffectiveTheme(){
+    const mode = store.get('theme', 'auto');
+    if(mode === 'dark' || mode === 'light') return mode;
+    return matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+
+  function bgCurrentSlot(){
+    const hour = new Date().getHours();
+    if(hour >= 5 && hour < 11) return 'morning';
+    if(hour >= 11 && hour < 17) return 'day';
+    if(hour >= 17 && hour < 21) return 'evening';
+    return 'night';
+  }
+
+  function bgPickSlot(state){
+    const schedule = state.rotation.schedule || {};
+    const ref = schedule[bgCurrentSlot()];
+    return ref ? bgCloneRef(ref) : null;
+  }
+
+  function bgPickTheme(state){
+    const schedule = state.rotation.schedule || {};
+    const theme = bgGetEffectiveTheme();
+    return schedule[theme] ? bgCloneRef(schedule[theme]) : null;
+  }
+
+  function bgComputeDelay(state){
+    if(state.rotation.strategy === 'interval'){
+      const mins = Math.max(5, Number(state.rotation.intervalMinutes) || 60);
+      return mins * 60000;
+    }
+    if(state.rotation.strategy === 'time'){
+      const now = new Date();
+      const hour = now.getHours();
+      const minute = now.getMinutes();
+      const checkpoints = [5, 11, 17, 21];
+      let nextHour = checkpoints.find(h => h > hour || (h === hour && minute < 1));
+      const target = new Date(now);
+      if(nextHour === undefined){
+        target.setDate(target.getDate() + 1);
+        target.setHours(5, 0, 5, 0);
+      } else {
+        target.setHours(nextHour, 0, 5, 0);
+      }
+      const diff = target.getTime() - now.getTime();
+      return Math.max(diff, 60000);
+    }
+    if(state.rotation.strategy === 'theme'){
+      return 5 * 60000;
+    }
+    return null;
+  }
+
+  function bgRestartTimer(state){
+    if(bgRotationTimer){
+      clearTimeout(bgRotationTimer);
+      bgRotationTimer = null;
+    }
+    if(!state.rotation.enabled || state.rotation.locked) return;
+    const delay = bgComputeDelay(state);
+    if(!delay) return;
+    bgRotationTimer = setTimeout(() => bgRunRotation('timer'), delay);
+  }
+
+  function bgRunRotation(trigger){
+    const state = bgLoadState();
+    if(!state.rotation.enabled || state.rotation.locked) return;
+    let ref = null;
+    if(state.rotation.strategy === 'time') ref = bgPickSlot(state);
+    else if(state.rotation.strategy === 'theme') ref = bgPickTheme(state);
+    if(!ref){
+      const candidates = bgCollectCandidates(state, false);
+      if(candidates.length) ref = bgCloneRef(candidates[Math.floor(Math.random() * candidates.length)]);
+    }
+    if(ref) bgApply(ref, { skipSchedule: true, fromAuto: true });
+    bgRestartTimer(bgLoadState());
+  }
+
+  function bgEvaluateRotation(reason){
+    const state = bgLoadState();
+    if(!state.rotation.enabled || state.rotation.locked) return;
+    let ref = null;
+    if(state.rotation.strategy === 'time') ref = bgPickSlot(state);
+    else if(state.rotation.strategy === 'theme') ref = bgPickTheme(state);
+    if(ref){
+      const nextKey = bgRefKey(ref);
+      if(nextKey && nextKey !== bgRefKey(state.active)) bgApply(ref, { fromAuto: true });
+    }
+    bgRestartTimer(bgLoadState());
+  }
+
+  function bgInitBackgroundEngine(){
+    const engine = document.getElementById('bgEngine');
+    if(!engine) return;
+    engine.addEventListener('click', bgHandleClick);
+    engine.addEventListener('change', bgHandleChange);
+    engine.addEventListener('dragover', bgHandleDrag);
+    engine.addEventListener('dragleave', bgHandleDrag);
+    engine.addEventListener('drop', bgHandleDrop);
+    bgRenderSettings();
+    bgApply();
+    const state = bgLoadState();
+    bgRestartTimer(state);
+    bgEvaluateRotation('startup');
+  }
+
+  function bgOnThemeChange(){
+    bgEvaluateRotation('theme');
+  }
+
+  function applyBackground(ref){
+    return bgApply(ref);
   }
 
   // ===== System Status
@@ -1372,7 +2656,12 @@
     $('#openSettings').addEventListener('click', openSettings);
     $('#closeSettings').addEventListener('click', closeSettings);
     $('#themeSelect').addEventListener('change', e=>{ store.set('theme', e.target.value); applyTheme(e.target.value); });
-    $('#bgUrl').addEventListener('change', e=>{ store.set('bg.url', e.target.value.trim()); applyBackground(); });
+    if(window.matchMedia){
+      const media = matchMedia('(prefers-color-scheme: dark)');
+      if(media && media.addEventListener){
+        media.addEventListener('change', () => { if(store.get('theme','auto') === 'auto') bgOnThemeChange(); });
+      }
+    }
     $('#defaultCity').addEventListener('change', e=>{ store.set('weather.city', e.target.value.trim()); loadWeather(); });
 
     const cardSelect = $('#cardStyle');
@@ -1427,6 +2716,7 @@
     renderRecent();
 
     // Background
+    bgInitBackgroundEngine();
     applyBackground();
 
     // System
@@ -1463,3 +2753,30 @@
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
