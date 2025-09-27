@@ -432,7 +432,7 @@
     <section class="search" id="searchBox">
       <select id="engine"></select>
       <input id="query" type="text" placeholder="Suche… (z. B. !yt lo‑fi, !etc Home)" autocomplete="on" />
-      <button class="btn btn-go" id="go"></button>
+      <button class="btn btn-go" id="go">🔍</button>
     </section>
 
     <main class="grid">
@@ -552,7 +552,7 @@
                 <div class="bg-current-title" id="bgCurrentTitle">Kein Hintergrund</div>
                 <div class="bg-current-meta" id="bgCurrentMeta"></div>
                 <div class="bg-quick-actions">
-                  <button type="button" id="bgActionRandom" data-action="bg-random">Zufaellig neu laden</button>
+                  <button type="button" id="bgActionRandom" data-action="bg-random">Zufällig neu laden</button>
                   <button type="button" id="bgActionUndo" data-action="bg-undo" disabled>Letztes Bild wiederherstellen</button>
                   <button type="button" id="bgActionLock" data-action="bg-lock">Rotation sperren</button>
                 </div>
@@ -581,7 +581,7 @@
         <div class="row">
           <label>Suchmaschinen</label>
           <div>
-            <div class="muted" style="margin-bottom:6px">Unterstuetzte Bang-Shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Eigene Shortcuts unten</div>
+            <div class="muted" style="margin-bottom:6px">Unterstützte Bang-Shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Eigene Shortcuts unten</div>
             <div style="display:flex; gap:8px; flex-wrap:wrap" id="enginePills"></div>
           </div>
         </div>
@@ -589,7 +589,7 @@
           <label for="shortcutConfig">Eigene !Shortcuts</label>
           <div>
             <textarea id="shortcutConfig" rows="5" placeholder='{"!etc":"https://julianverse.de/etc","!git":"https://github.com/{q}"}'></textarea>
-            <div class="muted" style="margin-top:6px">Verwende <code>{q}</code> als Platzhalter fuer die Suchphrase. Ohne <code>{q}</code> wird <code>?q=...</code> angehaengt.</div>
+            <div class="muted" style="margin-top:6px">Verwende <code>{q}</code> als Platzhalter für die Suchphrase. Ohne <code>{q}</code> wird <code>?q=...</code> angehängt.</div>
           </div>
         </div>
         <div class="row">
@@ -614,7 +614,7 @@
           <div>
             <select id="cardStyle">
               <option value="glass">Glas (Standard)</option>
-              <option value="solid">Vollflaeche</option>
+              <option value="solid">Vollfläche</option>
               <option value="transparent">Transparent</option>
               <option value="minimal">Soft Minimal</option>
             </select>
@@ -638,7 +638,7 @@
               <input type="color" id="searchColor" />
               <button class="btn" id="searchColorReset" type="button">Reset</button>
             </div>
-            <div class="muted" style="margin-top:6px">Farbe fuer den Suchbereich (leer = Stil-Vorgabe).</div>
+            <div class="muted" style="margin-top:6px">Farbe für den Suchbereich (leer = Stil-Vorgabe).</div>
           </div>
         </div>
         <div class="row">
@@ -657,7 +657,7 @@
         </div>
         <div class="row">
           <label>Hinweis</label>
-          <div class="muted" id="dataNote">Export speichert saemtliche Einstellungen & Daten lokal als JSON. Import ueberschreibt vorhandene Eintraege.</div>
+          <div class="muted" id="dataNote">Export speichert sämtliche Einstellungen & Daten lokal als JSON. Import überschreibt vorhandene Einträge.</div>
         </div>
       </div>    </div>
   </div>
@@ -848,8 +848,8 @@
           <div class="url">${escapeHtml(host)}</div>
         </div>
         <div class="actions">
-          <button title="Bearbeiten" aria-label="Bearbeiten"></button>
-          <button title="Löschen" aria-label="Löschen">🗑</button>
+          <button title="Bearbeiten" aria-label="Bearbeiten">✏️</button>
+          <button title="Löschen" aria-label="Löschen">🗑️</button>
         </div>`;
 
       // Fallback, wenn Favicon nicht lädt → Buchstabe zeigen
@@ -1644,7 +1644,7 @@ function bgDefaultState(){
     panel.innerHTML =
       '<div class="bg-upload-drop" id="bgUploadDrop">' +
         '<div>Dateien hier ablegen</div>' +
-        '<button type="button" data-action="bg-upload-browse">Datei auswaehlen</button>' +
+        '<button type="button" data-action="bg-upload-browse">Datei auswählen</button>' +
         '<input type="file" id="bgUploadInput" multiple accept="image/*" hidden>' +
         '<div class="bg-upload-note">Wir verkleinern Bilder automatisch (16:9, max 2560px) und speichern sie lokal. Max ' + BG_MAX_UPLOADS + ' Dateien.</div>' +
       '</div>' +
@@ -1778,7 +1778,7 @@ function bgDefaultState(){
         '<div class="bg-inline-actions">' +
           '<button type="button" data-action="bg-custom-apply">Setzen</button>' +
           '<button type="button" data-action="bg-custom-save">Speichern</button>' +
-          (state.customUrl ? '<button type="button" data-action="bg-custom-clear">Loeschen</button>' : '') +
+          (state.customUrl ? '<button type="button" data-action="bg-custom-clear">Löschen</button>' : '') +
         '</div>' +
         '<p class="bg-mini-text">URL wird lokal gespeichert. Server muss CORS fuer Bilder erlauben.</p>' +
       '</div>';
@@ -2753,30 +2753,3 @@ function bgDefaultState(){
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
