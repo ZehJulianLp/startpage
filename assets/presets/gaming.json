@@ -39,6 +39,7 @@
     "!steam": "https://store.steampowered.com/search/?term={q}",
     "!gg": "https://www.google.com/search?q={q}"
   },
+  "wordlist.inline": ["level","quest","loot","boss","fps"],
   "engines.enabled": ["google", "ddg", "bing", "yt", "wikipedia", "maps"],
   "news.custom": {
     "PC Gamer": "https://www.pcgamer.com/rss/",

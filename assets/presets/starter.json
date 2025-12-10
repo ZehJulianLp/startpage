@@ -36,6 +36,7 @@
   "shortcuts": {
     "!etc": "https://julianverse.de/etc"
   },
+  "wordlist.inline": ["start","home","welcome","daily","checklist"],
   "engines.enabled": ["google", "ddg", "bing", "yt", "wikipedia", "maps"],
   "news.custom": {},
   "news.source": "Heise",

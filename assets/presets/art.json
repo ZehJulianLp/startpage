@@ -39,6 +39,7 @@
     "!unsplash": "https://unsplash.com/s/photos/{q}",
     "!fig": "https://www.figma.com/community/search?modelType=everything&q={q}"
   },
+  "wordlist.inline": ["palette","canvas","sketch","gallery","color"],
   "engines.enabled": ["google", "ddg", "bing", "yt", "wikipedia", "maps"],
   "news.custom": {
     "Colossal": "https://www.thisiscolossal.com/feed/",

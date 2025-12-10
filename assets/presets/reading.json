@@ -39,6 +39,7 @@
     "!md": "https://medium.com/search?q={q}",
     "!gr": "https://www.goodreads.com/search?q={q}"
   },
+  "wordlist.inline": ["novel","essay","bookmark","chapter","quote"],
   "engines.enabled": ["google", "ddg", "bing", "wikipedia"],
   "news.custom": {
     "NYTimes Tech": "https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml",

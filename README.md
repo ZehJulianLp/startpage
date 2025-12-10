@@ -4,7 +4,7 @@
 Startpage ist eine personalisierbare Startseite im Dashboard-Stil. Suche, Wetter, Aufgaben, Notizen, News und Systemstatus laufen vollstaendig im Browser (localStorage). Version: **v1.4**. Live: https://julianverse.de/startpage/
 
 ## Kernfunktionen
-- Schnellsuche: Mehrere Engines, !Bangs (!g, !ddg, !bing, !yt, !wiki, !maps), eigene Shortcuts und Autocomplete (Bangs, Shortcuts, Recent, Wortliste aus assets/wordlist-de.json).
+- Schnellsuche: Mehrere Engines, !Bangs (!g, !ddg, !bing, !yt, !wiki, !maps), eigene Shortcuts und Autocomplete (Bangs, Shortcuts, Recent, globale Wortliste + Preset-Wortliste).
 - Hintergrund-Engine: Presets, Uploads, Sammlungen, Rotation (Zeit/Thema/Intervall), Quick Actions (Random, Undo, Lock) und automatische Akzentfarbe aus dem Hintergrund.
 - Favoriten-Kacheln: Drag & Drop, Schnellzugriff 1-9, Reset auf Defaults.
 - To-Do & Notizen: Persistente Liste und Notizfeld.
@@ -17,7 +17,7 @@ Startpage ist eine personalisierbare Startseite im Dashboard-Stil. Suche, Wetter
 
 ## Projektstruktur
 - index.html ? Markup, Styles, JS; neue Logik unten im <script> und aus init() starten.
-- script.js / style.css ? zentrale Logik/Styles; Wortliste unter assets/wordlist-de.json.
+- script.js / style.css ? zentrale Logik/Styles; Wortliste global unter assets/wordlist.json, Preset-Wordlists inline in assets/presets/*.json.
 - assets/ ? optionale Dateien (Wortliste, Bilder).
 - LICENSE ? MIT-Lizenz.
 
@@ -34,7 +34,7 @@ Danach: http://localhost:4173.
 
 ## Anpassung & Erweiterung
 - Hintergrund & Erscheinung: Presets/Uploads/Sammlungen/Rotation im Tab; Akzentfarbe wird aus dem aktiven Bild gesetzt.
-- Suche & Feeds: Engines ein-/ausschalten, !Shortcuts + {q} im Tab "Suche & Feeds" pflegen; Autocomplete nutzt Bangs/Shortcuts/Recent + Wortliste.
+- Suche & Feeds: Engines ein-/ausschalten, !Shortcuts + {q} im Tab "Suche & Feeds" pflegen; Autocomplete nutzt Bangs/Shortcuts/Recent + globale & Preset-Wortliste.
 - Widgets & Layout: Sichtbarkeit, Karten-Stil, Standard-Stadt (Wetter), Widget-Farben, Uhr/Suche-Farben; Reset stellt Stilvorgaben her.
 - Daten: Export/Import aller localStorage-Eintraege als JSON oder fertige Data Presets laden (assets/data-presets.json + assets/presets/*).
 - Palette: Strg/Cmd+K fuer Befehle (Tiles oeffnen, Theme wechseln, Widgets einfuegen, etc.).

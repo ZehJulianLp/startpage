@@ -39,6 +39,7 @@
     "!yt": "https://www.youtube.com/results?search_query={q}",
     "!gh": "https://github.com/search?q={q}"
   },
+  "wordlist.inline": ["lecture","exam","notes","campus","library"],
   "engines.enabled": ["google", "ddg", "bing", "wikipedia", "maps"],
   "news.custom": {
     "Hacker News": "https://hnrss.org/frontpage",

@@ -40,6 +40,7 @@
     "!mdn": "https://developer.mozilla.org/search?q={q}",
     "!dd": "https://devdocs.io/#{q}"
   },
+  "wordlist.inline": ["refactor","commit","deploy","debug","merge"],
   "engines.enabled": ["google", "ddg", "bing", "yt", "wikipedia", "maps"],
   "news.custom": {
     "GitHub Changelog": "https://github.blog/changelog/feed/",

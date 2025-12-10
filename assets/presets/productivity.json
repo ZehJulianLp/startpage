@@ -40,6 +40,7 @@
     "!notion": "https://www.notion.so/search?q={q}",
     "!ddg": "https://duckduckgo.com/?q={q}"
   },
+  "wordlist.inline": ["sprint","kanban","deadline","priority","focus"],
   "engines.enabled": ["google", "ddg", "bing", "yt", "wikipedia", "maps"],
   "news.custom": {
     "WSJ Tech": "https://feeds.a.dj.com/rss/RSSWSJD.xml",

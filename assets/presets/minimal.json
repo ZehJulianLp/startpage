@@ -25,6 +25,7 @@
   },
   "tiles": [],
   "shortcuts": {},
+  "wordlist.inline": ["focus","calm","clean","simple","zen"],
   "engines.enabled": ["google", "ddg", "wikipedia"],
   "news.custom": {},
   "news.source": "Heise",

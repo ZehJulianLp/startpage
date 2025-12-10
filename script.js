@@ -6,6 +6,12 @@
     set: (k, v) => localStorage.setItem(k, JSON.stringify(v))
   };
 
+  function normalizeInlineWordlist(list){
+    if(!Array.isArray(list)) return [];
+    const cleaned = list.map(w => String(w || '').trim()).filter(Boolean);
+    return Array.from(new Set(cleaned));
+  }
+
   function exportData(){
     const data = {};
     for(let i=0;i<localStorage.length;i++){
@@ -27,7 +33,9 @@
       try {
         const obj = JSON.parse(reader.result);
         if(!obj || typeof obj !== 'object') throw new Error('Invalid JSON');
-        if(!confirm('Daten importieren? Bestehende Einträge werden überschrieben.')) return;
+        if(!confirm('Daten importieren? Bestehende Eintraege werden ueberschrieben.')) return;
+        if(!('wordlist.inline' in obj)) obj['wordlist.inline'] = [];
+        obj['wordlist.inline'] = normalizeInlineWordlist(obj['wordlist.inline']);
         Object.keys(obj).forEach(k=> localStorage.setItem(k, JSON.stringify(obj[k])));
         location.reload();
       } catch(err){ alert('Import fehlgeschlagen: ' + err.message); }
@@ -107,6 +115,8 @@
       if(!res.ok) throw new Error('Datei nicht gefunden');
       const obj = await res.json();
       if(!obj || typeof obj !== 'object') throw new Error('Preset ungueltig');
+      if(!('wordlist.inline' in obj)) obj['wordlist.inline'] = [];
+      obj['wordlist.inline'] = normalizeInlineWordlist(obj['wordlist.inline']);
       if(!confirm(`Preset "${current.name || current.id || 'Preset'}" anwenden? Bestehende Eintraege werden ueberschrieben.`)) return;
       Object.keys(obj).forEach(k=> localStorage.setItem(k, JSON.stringify(obj[k])));
       location.reload();
@@ -155,18 +165,40 @@
     maps: q => `https://www.google.com/maps/search/${encodeURIComponent(q)}`
   };
   const BANGS = { '!g':'google', '!ddg':'ddg', '!bing':'bing', '!yt':'yt', '!wiki':'wikipedia', '!maps':'maps' };
-  const WORDLIST_URL = 'assets/wordlist-de.json';
-  let wordlistPromise = null;
+  const WORDLIST_URL = 'assets/wordlist.json';
+  let globalWordlistPromise = null;
   let searchSuggest = { box:null, items:[], active:-1 };
 
   function getShortcuts(){
     return store.get('shortcuts', { '!etc':'https://julianverse.de/etc' });
   }
 
-  function loadWordlist(){
-    if(wordlistPromise) return wordlistPromise;
-    wordlistPromise = fetch(WORDLIST_URL).then(r=> r.ok ? r.json() : []).catch(()=>[]);
-    return wordlistPromise;
+  function loadGlobalWordlist(){
+    if(globalWordlistPromise) return globalWordlistPromise;
+    globalWordlistPromise = fetch(WORDLIST_URL).then(r=> r.ok ? r.json() : []).catch(()=>[]);
+    return globalWordlistPromise;
+  }
+
+  function getInlineWordlist(){
+    return normalizeInlineWordlist(store.get('wordlist.inline', []));
+  }
+
+  function setInlineWordlist(list){
+    const normalized = normalizeInlineWordlist(list);
+    store.set('wordlist.inline', normalized);
+    return normalized;
+  }
+
+  function parseWordlistInput(str){
+    if(!str) return [];
+    return str.split(/[\n,]/).map(w=> w.trim()).filter(Boolean);
+  }
+
+  async function loadWordlist(){
+    const globalWords = await loadGlobalWordlist();
+    const presetWords = getInlineWordlist();
+    const all = Array.from(new Set([...(Array.isArray(globalWords)?globalWords:[]), ...presetWords].map(w=> String(w||'').trim()).filter(Boolean)));
+    return all;
   }
 
   function recentSearchQueries(){
@@ -667,6 +699,10 @@
     // Shortcuts
     $('#shortcutConfig').value = JSON.stringify(getShortcuts(), null, 2);
 
+    // Wordlist
+    const inlineWords = getInlineWordlist();
+    const wordlistEditor = $('#wordlistEditor'); if(wordlistEditor) wordlistEditor.value = inlineWords.join('\n');
+
     // Feeds
     $('#feedsConfig').value = JSON.stringify(store.get('news.custom', {}), null, 2);
 
@@ -756,7 +792,7 @@
       const has = sel => row.querySelector(sel);
       if(has('#themeSelect')) assign(row, panelGeneral);
       else if(has('#bgEngine')) assign(row, panelBackground);
-      else if(has('#enginePills') || has('#shortcutConfig') || has('#feedsConfig')) assign(row, panelSearch);
+      else if(has('#enginePills') || has('#shortcutConfig') || has('#feedsConfig') || has('#wordlistEditor')) assign(row, panelSearch);
       else if(has('#widgetToggles') || has('#widgetColorEditor') || has('#cardStyle') || has('#clockColor') || has('#searchColor') || has('#defaultCity')) assign(row, panelWidgets);
       else if(has('#exportData') || has('#importData') || has('#dataNote') || has('#dataPresetSelect') || has('#applyPreset')) assign(row, panelData);
       else assign(row, panelGeneral);
@@ -784,7 +820,7 @@
           <ul>
             <li>Bangs: !g !ddg !bing !yt !wiki !maps</li>
             <li>Eigene Shortcuts: JSON in den Einstellungen; {q} als Platzhalter</li>
-            <li>Autocomplete: Bangs, Shortcuts, Recent-Suchen, Wortliste (wordlist-de.json)</li>
+            <li>Autocomplete: Bangs, Shortcuts, Recent-Suchen, Wortliste (global + Preset)</li>
             <li>Tab/Leertaste uebernimmt Vorschlag, Enter startet Suche</li>
           </ul>
           <h5>Tiles</h5>
@@ -2499,9 +2535,16 @@
     const presetSelect = $('#dataPresetSelect'); if(presetSelect) presetSelect.addEventListener('change', updateDataPresetMeta);
     const presetApply = $('#applyPreset'); if(presetApply) presetApply.addEventListener('click', applyDataPreset);
 
-    // Persist settings fields (shortcuts & feeds)
-    $('#shortcutConfig').addEventListener('change', ()=>{ try{ const j=JSON.parse($('#shortcutConfig').value); store.set('shortcuts', j);}catch{ alert('Ungültiges Shortcuts‑JSON'); } });
-    $('#feedsConfig').addEventListener('change', ()=>{ try{ const j=JSON.parse($('#feedsConfig').value); store.set('news.custom', j); fillNewsSources(); loadNews(); }catch{ alert('Ungültiges Feeds‑JSON'); } });
+    // Persist settings fields (shortcuts, feeds, wordlist)
+    $('#shortcutConfig').addEventListener('change', ()=>{ try{ const j=JSON.parse($('#shortcutConfig').value); store.set('shortcuts', j);}catch{ alert('Ungueltiges Shortcuts-JSON'); } });
+    $('#feedsConfig').addEventListener('change', ()=>{ try{ const j=JSON.parse($('#feedsConfig').value); store.set('news.custom', j); fillNewsSources(); loadNews(); }catch{ alert('Ungueltiges Feeds-JSON'); } });
+    const wordlistEditor = $('#wordlistEditor');
+    const wordlistSave = $('#wordlistSave');
+    const wordlistReset = $('#wordlistReset');
+    const applyInlineWordlist = ()=>{ if(!wordlistEditor) return; const words = setInlineWordlist(parseWordlistInput(wordlistEditor.value)); wordlistEditor.value = words.join('\n'); updateSearchSuggest(); };
+    if(wordlistSave) wordlistSave.addEventListener('click', applyInlineWordlist);
+    if(wordlistEditor) wordlistEditor.addEventListener('change', applyInlineWordlist);
+    if(wordlistReset) wordlistReset.addEventListener('click', ()=>{ setInlineWordlist([]); if(wordlistEditor) wordlistEditor.value=''; updateSearchSuggest(); });
 
     // Clock
     tickClock();

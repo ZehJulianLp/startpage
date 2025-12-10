@@ -181,6 +181,17 @@
           </div>
         </div>
         <div class="row">
+          <label for="wordlistEditor">Wortliste für Autocomplete</label>
+          <div>
+            <textarea id="wordlistEditor" rows="4" placeholder="Begriffe zeilenweise oder mit Komma getrennt"></textarea>
+            <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:6px">
+              <button class="btn" type="button" id="wordlistSave">Speichern</button>
+              <button class="btn" type="button" id="wordlistReset">Leeren</button>
+            </div>
+            <div class="muted" style="margin-top:6px">Globale Wortliste (assets/wordlist.json) und die Preset-Wortliste werden gemerged. Leer lassen, um nur die globale Liste zu nutzen.</div>
+          </div>
+        </div>
+        <div class="row">
           <label for="shortcutConfig">Eigene !Shortcuts</label>
           <div>
             <textarea id="shortcutConfig" rows="5" placeholder='{"!etc":"https://julianverse.de/etc","!git":"https://github.com/{q}"}'></textarea>

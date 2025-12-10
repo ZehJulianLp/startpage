@@ -37,6 +37,7 @@
     "!sp": "https://www.startpage.com/do/search?query={q}",
     "!gh": "https://github.com/search?q={q}"
   },
+  "wordlist.inline": ["vpn","tor","cipher","secure","anon"],
   "engines.enabled": ["ddg", "wikipedia", "maps"],
   "news.custom": {},
   "news.source": "Heise",

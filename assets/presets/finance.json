@@ -39,6 +39,7 @@
     "!mw": "https://www.marketwatch.com/search?q={q}",
     "!bb": "https://www.bloomberg.com/search?query={q}"
   },
+  "wordlist.inline": ["budget","portfolio","stocks","etf","tax"],
   "engines.enabled": ["google", "ddg", "bing", "wikipedia", "maps"],
   "news.custom": {
     "Bloomberg Markets": "https://feeds.bloomberg.com/markets/news.rss",
