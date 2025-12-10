@@ -684,7 +684,7 @@
     });
 
     // Build static guide content
-    panelGuide.innerHTML = 
+    panelGuide.innerHTML = `
       <div class="row"><label>User Guide</label>
         <div>
           <h5>Overview</h5>
@@ -731,7 +731,9 @@
             <li>Export/Import als JSON</li>
           </ul>
         </div>
-      </div>;    tabs.insertAdjacentElement('afterend', panelGeneral);
+      </div>`;
+
+    tabs.insertAdjacentElement('afterend', panelGeneral);
     panelGeneral.insertAdjacentElement('afterend', panelBackground);
     panelBackground.insertAdjacentElement('afterend', panelSearch);
     panelSearch.insertAdjacentElement('afterend', panelWidgets);
