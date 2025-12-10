@@ -195,7 +195,15 @@
       box-shadow: var(--search-shadow);
       backdrop-filter: var(--search-backdrop);
       transition: background .3s ease, border-color .3s ease, box-shadow .3s ease;
+      position: relative;
+      z-index: 10;
     }
+    .search-suggest { position:absolute; left: calc(12px + 160px + 8px); right: calc(12px + 56px + 8px); top: calc(100% - 4px); background: var(--bg); border:1px solid var(--card-border-current); box-shadow: var(--card-shadow-current); backdrop-filter: none; border-radius:12px; padding:6px; max-height:240px; overflow:auto; z-index: 30; }
+    .search-suggest.hidden { display:none; }
+    .suggest-item { display:flex; align-items:center; gap:8px; padding:8px 10px; border-radius:8px; cursor:pointer; transition: background .15s ease; }
+    .suggest-item:hover, .suggest-item.active { background: color-mix(in srgb, var(--accent) 16%, transparent); }
+    .suggest-type { font-size:11px; text-transform:uppercase; color: var(--muted); letter-spacing: 0.5px; }
+    .suggest-text { flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color: var(--fg); }
     select, input[type="text"], textarea {
       width: 100%;
       background: var(--bg-soft);

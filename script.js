@@ -698,6 +698,12 @@
     { id: 'night', label: 'Night 21-05' }
   ];
   const BG_MAX_UPLOADS = 8;
+  const BG_ACCENT_DEFAULTS = {
+    dark: { primary: '#7c5cff', secondary: '#54d6ff' },
+    light: { primary: '#5b43ff', secondary: '#17a4da' }
+  };
+  let bgCurrentAccent = null;
+  let bgAccentCache = {};
   let bgRotationTimer = null;
 
   function bgCloneRef(ref){
@@ -710,7 +716,7 @@
     return "background-image:url('" + safe + "')";
   }
 
-function bgDefaultState(){
+  function bgDefaultState(){
     const makePreset = index => BG_PRESETS[index] ? { type: 'preset', id: BG_PRESETS[index].id } : null;
     const first = makePreset(0);
     const fallback = first ? bgCloneRef(first) : { type: 'custom', url: '' };
@@ -725,6 +731,7 @@ function bgDefaultState(){
       favorites: first ? [bgCloneRef(first)] : [],
       collections: [],
       history: [],
+      accentCache: {},
       rotation: {
         enabled: false,
         strategy: 'time',
@@ -743,6 +750,135 @@ function bgDefaultState(){
       },
       ui: { tab: 'presets' }
     };
+  }
+
+  function bgClampByte(v){ return Math.max(0, Math.min(255, Math.round(v))); }
+  function bgRgbToHex(r,g,b){
+    const toHex = (n)=> bgClampByte(n).toString(16).padStart(2,'0');
+    return '#' + toHex(r) + toHex(g) + toHex(b);
+    }
+  function bgHexToRgb(hex){
+    if(typeof hex !== 'string') return null;
+    let h = hex.trim();
+    if(!/^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(h)) return null;
+    if(h.length === 4) h = '#' + h[1]+h[1]+h[2]+h[2]+h[3]+h[3];
+    const r = parseInt(h.slice(1,3),16); const g = parseInt(h.slice(3,5),16); const b = parseInt(h.slice(5,7),16);
+    if([r,g,b].some(x=>Number.isNaN(x))) return null;
+    return { r, g, b };
+  }
+  function bgRgbSaturation(r,g,b){
+    const rn=r/255, gn=g/255, bn=b/255;
+    const max = Math.max(rn, gn, bn); const min = Math.min(rn, gn, bn);
+    if(max === min) return 0;
+    const l = (max + min) / 2;
+    const d = max - min;
+    const s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    return s;
+  }
+  function bgAdjustHex(hex, factor=0){
+    const rgb = bgHexToRgb(hex); if(!rgb) return '';
+    const f = Math.max(-1, Math.min(1, factor));
+    const target = f >= 0 ? 255 : 0;
+    const mix = (v)=> bgClampByte(v + (target - v) * Math.abs(f));
+    return bgRgbToHex(mix(rgb.r), mix(rgb.g), mix(rgb.b));
+  }
+  function bgAccentFallback(){
+    const theme = bgGetEffectiveTheme ? bgGetEffectiveTheme() : 'dark';
+    return (BG_ACCENT_DEFAULTS[theme] || BG_ACCENT_DEFAULTS.dark);
+  }
+  function bgApplyAccentVars(primary, secondary){
+    const root = document.documentElement; if(!root) return;
+    const fallback = bgAccentFallback();
+    const p = normalizeHex(primary) || fallback.primary;
+    let s = normalizeHex(secondary);
+    if(!s) s = bgAdjustHex(p, 0.18);
+    if(!s) s = fallback.secondary;
+    root.style.setProperty('--accent', p);
+    root.style.setProperty('--accent-2', s);
+    root.style.setProperty('--ring', `color-mix(in srgb, ${p} 55%, transparent)`);
+    root.style.setProperty('--link', s);
+    root.style.setProperty('--link-visited', s);
+    const cardBase = bgGetBaseVar('--card-border-current');
+    const tileBase = bgGetBaseVar('--tile-border-current');
+    const cardTint = p && cardBase ? `color-mix(in srgb, ${p} 32%, ${cardBase})` : cardBase;
+    const tileTint = p && tileBase ? `color-mix(in srgb, ${p} 32%, ${tileBase})` : tileBase;
+    if(cardTint) root.style.setProperty('--card-border-current', cardTint);
+    if(tileTint) root.style.setProperty('--tile-border-current', tileTint);
+    bgCurrentAccent = { primary: p, secondary: s };
+  }
+  function bgExtractAccent(url){
+    return new Promise((resolve, reject)=>{
+      if(!url) return reject(new Error('missing url'));
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.decoding = 'async';
+      img.onload = ()=> {
+        try {
+          const size = 42;
+          const canvas = document.createElement('canvas');
+          canvas.width = size; canvas.height = size;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, size, size);
+          const data = ctx.getImageData(0,0,size,size).data;
+          const buckets = {};
+          const quant = v => Math.min(255, Math.max(0, Math.round(v / 24) * 24));
+          for(let i=0;i<data.length;i+=4){
+            const a = data[i+3]; if(a < 40) continue;
+            const r = data[i], g = data[i+1], b = data[i+2];
+            const lum = 0.2126*r + 0.7152*g + 0.0722*b;
+            if(lum < 24 || lum > 240) continue;
+            const bucketKey = `${quant(r)},${quant(g)},${quant(b)}`;
+            if(!buckets[bucketKey]) buckets[bucketKey] = { r: quant(r), g: quant(g), b: quant(b), count:0, sat:0, lum:0 };
+            buckets[bucketKey].count++;
+            buckets[bucketKey].sat += bgRgbSaturation(r,g,b);
+            buckets[bucketKey].lum += lum;
+          }
+          let best = null; let bestScore = -Infinity;
+          Object.values(buckets).forEach(b=>{
+            const avgSat = b.sat / b.count;
+            const avgLum = b.lum / b.count;
+            const balance = 1 - Math.abs(avgLum - 140) / 140;
+            const score = (avgSat * 1.35) + balance + Math.min(1, b.count / 160);
+            if(score > bestScore){
+              bestScore = score;
+              best = b;
+            }
+          });
+          if(best){
+            const primary = bgRgbToHex(best.r, best.g, best.b);
+            const secondary = bgAdjustHex(primary, 0.2);
+            resolve({ primary, secondary });
+          } else {
+            reject(new Error('no accent'));
+          }
+        } catch(err){ reject(err); }
+      };
+      img.onerror = ()=> reject(new Error('image load failed'));
+      img.src = url;
+    });
+  }
+  function bgApplyAccent(resolved, state){
+    const fallback = bgAccentFallback();
+    if(!resolved || !resolved.url){
+      bgApplyAccentVars(fallback.primary, fallback.secondary);
+      return;
+    }
+    const key = resolved.url;
+    const cache = bgAccentCache[key] || (state && state.accentCache && state.accentCache[key]);
+    if(cache && cache.primary){
+      bgCurrentAccent = { primary: cache.primary, secondary: cache.secondary || fallback.secondary };
+      bgApplyAccentVars(cache.primary, cache.secondary);
+      return;
+    }
+    bgExtractAccent(key).then(acc=>{
+      bgCurrentAccent = acc;
+      bgAccentCache[key] = { ...acc, ts: Date.now() };
+      if(state && state.accentCache){
+        state.accentCache[key] = bgAccentCache[key];
+        bgSaveState(state);
+      }
+      bgApplyAccentVars(acc.primary, acc.secondary);
+    }).catch(()=> bgApplyAccentVars(fallback.primary, fallback.secondary));
   }
 
   function bgNormalizeState(raw){
@@ -768,6 +904,7 @@ function bgDefaultState(){
       created: Number(col.created) || Date.now(),
       updated: Number(col.updated) || Date.now()
     })).filter(col => col.urls.length).slice(0, 12) : [];
+    state.accentCache = raw.accentCache && typeof raw.accentCache === 'object' ? raw.accentCache : {};
     state.history = Array.isArray(raw.history) ? raw.history.map(bgCloneRef).filter(Boolean).slice(0, 20) : [];
     const rotationRaw = raw.rotation && typeof raw.rotation === 'object' ? raw.rotation : {};
     state.rotation = {
@@ -906,6 +1043,7 @@ function bgDefaultState(){
       body.style.backgroundImage = '';
     }
     body.dataset.bgType = resolved ? resolved.ref.type : '';
+    bgApplyAccent(resolved, state);
   }
 
   function bgRenderPreview(state, resolved){
@@ -1467,6 +1605,10 @@ function bgDefaultState(){
       bgHandleCustom('clear');
       return;
     }
+    if(action === 'bg-tint-widgets'){
+      tintWidgets();
+      return;
+    }
   }
 
   function bgHandleChange(event){
@@ -1829,6 +1971,8 @@ function bgDefaultState(){
 
   function bgOnThemeChange(){
     bgEvaluateRotation('theme');
+    if(bgCurrentAccent) bgApplyAccentVars(bgCurrentAccent.primary, bgCurrentAccent.secondary);
+    else bgApplyAccentVars();
   }
 
   function applyBackground(ref){
@@ -1869,22 +2013,73 @@ function bgDefaultState(){
     if([r,g,b].some(v=>Number.isNaN(v))) return '';
     return `rgba(${r},${g},${b},${a})`;
   }
+  function bgGetBaseVar(name){
+    const body = document.body;
+    const root = document.documentElement;
+    const target = body || root; if(!target) return '';
+    const prev = target.style.getPropertyValue(name);
+    if(prev) target.style.removeProperty(name);
+    let val = getComputedStyle(target).getPropertyValue(name).trim();
+    if(prev) target.style.setProperty(name, prev);
+    if(val) return val;
+    if(target !== root && root){
+      const rootPrev = root.style.getPropertyValue(name);
+      if(rootPrev) root.style.removeProperty(name);
+      val = getComputedStyle(root).getPropertyValue(name).trim();
+      if(rootPrev) root.style.setProperty(name, rootPrev);
+    }
+    return val;
+  }
   function applyWidgetColors(){
     const colors = store.get('widget.colors', widgetColorDefaults());
     const map = { todo:'#todo', notes:'#notes', tiles:'#tilesCard', weather:'#weather', quote:'#quoteCard', recent:'#recent', system:'#systemCard', news:'#newsCard' };
+    const theme = bgGetEffectiveTheme ? bgGetEffectiveTheme() : 'dark';
+    const baseBgRaw = bgGetBaseVar('--card-bg-current') || '';
+    const baseBorderRaw = bgGetBaseVar('--card-border-current') || '';
+    const fallbackBg = (baseBgRaw && baseBgRaw !== 'transparent') ? baseBgRaw : (theme === 'light' ? 'rgba(0,0,0,0.04)' : 'rgba(255,255,255,0.06)');
+    const fallbackBorder = baseBorderRaw || (theme === 'light' ? 'rgba(0,0,0,0.08)' : 'rgba(255,255,255,0.10)');
     Object.entries(map).forEach(([k,sel])=>{
       const el = $(sel); if(!el) return;
       const hex = colors[k];
       if(hex){
-        const tint = hexToRgba(hex, 0.18);
-        const border = hexToRgba(hex, 0.28);
-        el.style.background = `linear-gradient(0deg, ${tint}, ${tint}), var(--glass)`;
-        el.style.borderColor = border || 'rgba(255,255,255,.08)';
+        const tint = hexToRgba(hex, 0.32);
+        const border = hexToRgba(hex, 0.42);
+        const bgLayer = tint ? `linear-gradient(0deg, ${tint}, ${tint}), ${fallbackBg}` : fallbackBg;
+        el.style.background = bgLayer;
+        el.style.borderColor = border || fallbackBorder;
       } else {
         el.style.background = '';
         el.style.borderColor = '';
       }
     });
+  }
+
+  function tintWidgets(){
+    const root = document.documentElement;
+    const style = root ? getComputedStyle(root) : null;
+    const primary = normalizeHex(style?.getPropertyValue('--accent').trim()) || '#7c5cff';
+    const secondary = normalizeHex(style?.getPropertyValue('--accent-2').trim()) || primary;
+    const colors = store.get('widget.colors', widgetColorDefaults());
+    const assignments = {
+      todo: primary,
+      notes: secondary,
+      tiles: primary,
+      weather: secondary,
+      quote: primary,
+      recent: secondary,
+      system: primary,
+      news: secondary
+    };
+    Object.entries(assignments).forEach(([k,v])=> colors[k] = normalizeHex(v));
+    colors.tiles = colors.tiles || primary;
+    store.set('widget.colors', colors);
+    applyWidgetColors();
+    // also tint clock & search to stay consistent
+    store.set('ui.clock.color', primary);
+    store.set('ui.search.color', secondary);
+    applySurfaceColors();
+    const modal = $('#settingsModal');
+    if(modal && modal.classList.contains('open')) fillSettings();
   }
 
   function normalizeHex(hex){
@@ -1895,28 +2090,45 @@ function bgDefaultState(){
     return `#${h.slice(1).toLowerCase()}`;
   }
 
+  function applyAccentTint(){
+    const root = document.documentElement; if(!root) return;
+    const style = getComputedStyle(root);
+    const accent = normalizeHex(style.getPropertyValue('--accent'));
+    const secondary = normalizeHex(style.getPropertyValue('--accent-2'));
+    const cardBase = bgGetBaseVar('--card-border-current');
+    const tileBase = bgGetBaseVar('--tile-border-current');
+    const cardTint = accent && cardBase ? `color-mix(in srgb, ${accent} 32%, ${cardBase})` : cardBase;
+    const tileTint = accent && tileBase ? `color-mix(in srgb, ${accent} 32%, ${tileBase})` : tileBase;
+    if(cardTint) root.style.setProperty('--card-border-current', cardTint);
+    if(tileTint) root.style.setProperty('--tile-border-current', tileTint);
+    if(accent) root.style.setProperty('--ring', `color-mix(in srgb, ${accent} 55%, transparent)`);
+    if(secondary) root.style.setProperty('--link', secondary);
+    if(secondary) root.style.setProperty('--link-visited', secondary);
+  }
+
   function applySurfaceColor(prefix, raw){
     const root = document.documentElement; if(!root) return;
+    const body = document.body;
+    const bodyStyle = body ? getComputedStyle(body) : null;
+    const rootStyle = getComputedStyle(root);
+    const baseBg = (bodyStyle && bodyStyle.getPropertyValue('--card-bg-current').trim()) || rootStyle.getPropertyValue('--card-bg-current').trim() || 'transparent';
+    const baseBorder = (bodyStyle && bodyStyle.getPropertyValue('--card-border-current').trim()) || rootStyle.getPropertyValue('--card-border-current').trim() || 'transparent';
+    const baseShadow = (bodyStyle && bodyStyle.getPropertyValue('--card-shadow-current').trim()) || rootStyle.getPropertyValue('--card-shadow-current').trim() || 'none';
+    const baseBackdrop = (bodyStyle && bodyStyle.getPropertyValue('--card-backdrop-current').trim()) || rootStyle.getPropertyValue('--card-backdrop-current').trim() || 'none';
     const hex = normalizeHex(raw);
     if(hex){
-      const border = hexToRgba(hex, 0.42) || hex;
-      const shadow = hexToRgba(hex, prefix==='search' ? 0.2 : 0.24) || 'rgba(0,0,0,.2)';
-      root.style.setProperty(`--${prefix}-bg`, hex);
-      root.style.setProperty(`--${prefix}-border`, border);
-      root.style.setProperty(`--${prefix}-shadow`, `0 10px 28px ${shadow}`);
-      root.style.setProperty(`--${prefix}-backdrop`, 'none');
+      const tint = hexToRgba(hex, 0.22);
+      const border = hexToRgba(hex, 0.34) || baseBorder;
+      const bgLayer = tint ? `linear-gradient(0deg, ${tint}, ${tint}), ${baseBg}` : baseBg;
+      root.style.setProperty(`--${prefix}-bg`, bgLayer);
+      root.style.setProperty(`--${prefix}-border`, border || baseBorder);
+      root.style.setProperty(`--${prefix}-shadow`, baseShadow);
+      root.style.setProperty(`--${prefix}-backdrop`, baseBackdrop);
     } else {
-      const body = document.body;
-      const bodyStyle = body ? getComputedStyle(body) : null;
-      const rootStyle = getComputedStyle(root);
-      const bg = (bodyStyle && bodyStyle.getPropertyValue('--card-bg-current').trim()) || rootStyle.getPropertyValue('--card-bg-current').trim() || 'transparent';
-      const border = (bodyStyle && bodyStyle.getPropertyValue('--card-border-current').trim()) || rootStyle.getPropertyValue('--card-border-current').trim() || 'transparent';
-      const shadow = (bodyStyle && bodyStyle.getPropertyValue('--card-shadow-current').trim()) || rootStyle.getPropertyValue('--card-shadow-current').trim() || 'none';
-      const backdrop = (bodyStyle && bodyStyle.getPropertyValue('--card-backdrop-current').trim()) || rootStyle.getPropertyValue('--card-backdrop-current').trim() || 'none';
-      root.style.setProperty(`--${prefix}-bg`, bg);
-      root.style.setProperty(`--${prefix}-border`, border);
-      root.style.setProperty(`--${prefix}-shadow`, shadow);
-      root.style.setProperty(`--${prefix}-backdrop`, backdrop);
+      root.style.setProperty(`--${prefix}-bg`, baseBg);
+      root.style.setProperty(`--${prefix}-border`, baseBorder);
+      root.style.setProperty(`--${prefix}-shadow`, baseShadow);
+      root.style.setProperty(`--${prefix}-backdrop`, baseBackdrop);
     }
   }
 
@@ -1932,6 +2144,8 @@ function bgDefaultState(){
     const value = allowed.includes(current) ? current : 'glass';
     body.setAttribute('data-card-style', value);
     applySurfaceColors();
+    applyWidgetColors();
+    applyAccentTint();
   }
 
   function cycleCardStyle(){
@@ -2088,6 +2302,8 @@ function bgDefaultState(){
     // Background
     bgInitBackgroundEngine();
     applyBackground();
+    const tintBtn = document.getElementById('bgActionTintWidgets');
+    if(tintBtn) tintBtn.addEventListener('click', e=>{ e.preventDefault(); tintWidgets(); });
 
     // System
     renderSystem();
@@ -2117,6 +2333,7 @@ function bgDefaultState(){
         if(tiles[n]) openUrl(tiles[n].url, tiles[n].title);
       }
     });
+    applyAccentTint();
   }
 
   document.addEventListener('DOMContentLoaded', init);
