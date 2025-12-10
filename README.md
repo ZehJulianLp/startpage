@@ -1,66 +1,59 @@
-﻿# Startpage
+# Startpage
 
-## Überblick
-Startpage ist eine personalisierbare Startseite im Dashboard-Stil, die komplett clientseitig in index.html umgesetzt ist. Widgets für Suche, Wetter, Aufgaben, Notizen, News und Systemstatus liefern einen schnellen Überblick über den Alltag. Alle Daten verbleiben lokal im Browser (localStorage) und lassen sich bei Bedarf exportieren oder importieren. Aktuelle Version: **v1.4**.
-
-Eine Live-Version ist unter https://julianverse.de/startpage/ erreichbar.
+## Ueberblick
+Startpage ist eine personalisierbare Startseite im Dashboard-Stil. Suche, Wetter, Aufgaben, Notizen, News und Systemstatus laufen vollstaendig im Browser (localStorage). Version: **v1.4**. Live: https://julianverse.de/startpage/
 
 ## Kernfunktionen
-- **Schnellsuche**: Auswahl zwischen mehreren Suchmaschinen, Unterstützung von !Bang-Shortcuts (!g, !ddg, !wiki, …) sowie eigenen Kürzeln.
-- **Hintergrund-Engine**: Presets, eigene Uploads, Sammlungen und Rotationsplanung inklusive Quick Actions (Zufall, Undo, Rotation sperren) – alles nur im localStorage.
-- **Favoriten-Kacheln**: Frei konfigurierbares Linkgitter mit Drag-&-Drop-Reihenfolge, Schnellzugriff per Zahlentasten (1-9) und Reset auf Standard-Kacheln.
-- **To-Do & Notizen**: Aufgabenliste mit Persistenz sowie ein Notizfeld zum schnellen Festhalten von Gedanken.
-- **Wetter heute**: Aktuelle Bedingungen, Tageshöchst-/Tiefstwerte und 3-Stunden-Vorschau auf Basis von Open-Meteo; Standardstadt frei wählbar.
-- **News-Feed**: RSS-Leser mit auswählbaren Quellen, erweiterbar über eigene Feeds (Abruf via AllOrigins CORS-Proxy).
-- **Zuletzt & Systemstatus**: Historie der eigenen Suchen/Klicks sowie Verbindungsinformationen (soweit vom Browser verfügbar).
-- **Quote & Kommandopalette**: Tageszitat zur Motivation und eine Palette (Strg/? + K) für Aktionen wie Theme-Wechsel, Tile-Suche oder Widget-Updates.
-- **Layout & Styling**: Dark-/Light-/Auto-Modus, vier Karten-Stile (Glas, Vollfläche, Transparent, Soft Minimal), konfigurierbare Widgetfarben sowie separate Farbwahlen für Suche und Zeit/Datum.
+- Schnellsuche: Mehrere Engines, !Bangs (!g, !ddg, !bing, !yt, !wiki, !maps), eigene Shortcuts und Autocomplete (Bangs, Shortcuts, Recent, Wortliste aus assets/wordlist-de.json).
+- Hintergrund-Engine: Presets, Uploads, Sammlungen, Rotation (Zeit/Thema/Intervall), Quick Actions (Random, Undo, Lock) und automatische Akzentfarbe aus dem Hintergrund.
+- Favoriten-Kacheln: Drag & Drop, Schnellzugriff 1-9, Reset auf Defaults.
+- To-Do & Notizen: Persistente Liste und Notizfeld.
+- Wetter: Aktuell + Tages-Min/Max + 3h-Prognose via Open-Meteo; Standardstadt setzbar.
+- News: RSS-Reader mit Standardquellen, erweiterbar um eigene Feeds (AllOrigins Proxy).
+- Zuletzt & Systemstatus: Verlaufs-Chips sowie Browser-Infos (RAM, CPU-Kerne, Netztyp).
+- Layout & Styling: Dark/Light/Auto, Karten-Stile (Glas, Vollflaeche, Transparent, Soft Minimal), Widget-Farben, separate Farben fuer Uhr/Suche, Button "Widgets einfaerben".
+- Kommandopalette: Strg/Cmd+K fuer Aktionen (Theme, Tiles, Widget-Updates etc.).
 
 ## Projektstruktur
-- index.html – Enthält das komplette Markup, CSS und JavaScript. Neue Skripte sollten im unteren <script>-Block ergänzt und innerhalb von init() initialisiert werden.
-- ssets/ – (optional) Ablage für zusätzliche Bilder oder Medien, die von der Startseite referenziert werden.
-- LICENSE – MIT-Lizenz für den Code.
+- index.html ? Markup, Styles, JS; neue Logik unten im <script> und aus init() starten.
+- script.js / style.css ? zentrale Logik/Styles; Wortliste unter assets/wordlist-de.json.
+- assets/ ? optionale Dateien (Wortliste, Bilder).
+- LICENSE ? MIT-Lizenz.
 
 ## Lokale Nutzung
-Es ist kein Build-Schritt notwendig; ein beliebiger statischer Server genügt. Empfohlene Varianten:
-
+Kein Build notwendig. Starte z.B.:
 `ash
 python -m http.server 4173
 `
-
+oder
 `ash
 npx serve .
 `
+Danach: http://localhost:4173.
 
-Die Seite ist anschließend unter http://localhost:4173 (oder dem jeweiligen Port) erreichbar.
+## Anpassung & Erweiterung
+- Hintergrund & Erscheinung: Presets/Uploads/Sammlungen/Rotation im Tab; Akzentfarbe wird aus dem aktiven Bild gesetzt.
+- Suche & Feeds: Engines ein-/ausschalten, !Shortcuts + {q} im Tab "Suche & Feeds" pflegen; Autocomplete nutzt Bangs/Shortcuts/Recent + Wortliste.
+- Widgets & Layout: Sichtbarkeit, Karten-Stil, Standard-Stadt (Wetter), Widget-Farben, Uhr/Suche-Farben; Reset stellt Stilvorgaben her.
+- Daten: Export/Import aller localStorage-Eintraege als JSON.
+- Palette: Strg/Cmd+K fuer Befehle (Tiles oeffnen, Theme wechseln, Widgets einfuegen, etc.).
 
-## Anpassung und Erweiterung
-- **Hintergrund & Erscheinung**: Presets, Uploads, Sammlungen, Favoriten und Rotation über den gleichnamigen Tab im Einstellungsmodal verwalten.
-- **Suche & Feeds**: Engines aktivieren/deaktivieren, eigene !Shortcuts und RSS-Feeds im Tab „Suche & Feeds“ pflegen; {q} steht als Platzhalter für die Suchphrase.
-- **Widgets & Layout**: Sichtbarkeit einzelner Karten, globale Karten-Stile, Standard-Stadt für das Wetter und Widget-Akzentfarben im Tab „Widgets“ anpassen.
-- **Header & Suche**: Farben für Zeit/Datum sowie die Suche festlegen oder per Reset auf den aktuellen Karten-Stil zurücksetzen.
-- **Datenverwaltung**: Export und Import aller localStorage-Einträge als JSON über den Tab „Daten“.
-- **Kommandopalette**: Strg/? + K öffnet eine fuzzy durchsuchbare Aktionsliste (z. B. Tiles öffnen, Theme wechseln, Widgets neu laden).
-
-Neue Komponenten sollten im vorhandenen Stil ergänzt werden (2-Spaces-Einrückung, camelCase für JavaScript, hyphen-case für CSS-Klassen). Wiederverwendbare Logik wird idealerweise als Funktion unterhalb der bestehenden Utilities abgelegt und aus init() gestartet.
+Neue Komponenten bitte mit 2-Spaces-Indent, camelCase (JS), hyphen-case (CSS). Wiederverwendbare Logik unter den Utilities platzieren und in init() aufrufen.
 
 ## Daten & Integrationen
-- **Speicherung**: Alle Nutzerdaten werden lokal im Browser gespeichert (localStorage). Es findet keine serverseitige Synchronisation statt.
-- **APIs**:
-  - [Open-Meteo](https://open-meteo.com/) für Wetterdaten (inkl. Geocoding).
-  - [AllOrigins](https://allorigins.win/) als Proxy für RSS-Feeds.
-  - Google Fonts (Inter) für die Typografie.
+- Speicherung: localStorage only.
+- APIs: Open-Meteo (Wetter/Geocoding), AllOrigins (RSS), Google Fonts (Inter).
 
-## Tests & Qualitätssicherung
-Der Fokus liegt auf manuellen Smoke-Tests:
-- Suche mit mehreren Engines und !Shortcuts ausführen.
-- Wetterstadt setzen, Seite neu laden und Datenabruf prüfen.
-- To-Dos und Notizen anlegen, erledigen und Browser neu laden.
-- Theme-Toggle (Dark/Light/Auto) sowie Hintergrundrotation validieren.
-- News-Feeds wechseln, eigene Feeds hinterlegen und das Neu-Laden testen.
-- localStorage ggf. leeren, um Migrationen zu überprüfen.
+## Tests
+Manuelle Smoke-Tests:
+- Suche/Bangs/Shortcuts + Autocomplete pruefen.
+- Wetterstadt setzen, Reload.
+- Todos/Notizen anlegen, Reload.
+- Theme/Card-Style wechseln, Hintergrundrotation + Akzent kontrollieren.
+- Feeds wechseln/Custom Feeds laden.
+- localStorage ggf. leeren fuer Migrations-Check.
 
-Automatisierte End-to-End-Tests können mit Playwright oder Cypress ergänzt und unter 	ests/*.e2e.spec.js abgelegt werden.
+Automatisierte E2E-Tests optional (Playwright/Cypress) unter tests/*.e2e.spec.js.
 
 ## Lizenz
-Der Code steht unter der [MIT-Lizenz](LICENSE).
+MIT-Lizenz (siehe LICENSE).

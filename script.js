@@ -76,9 +76,111 @@
     maps: q => `https://www.google.com/maps/search/${encodeURIComponent(q)}`
   };
   const BANGS = { '!g':'google', '!ddg':'ddg', '!bing':'bing', '!yt':'yt', '!wiki':'wikipedia', '!maps':'maps' };
+  const WORDLIST_URL = 'assets/wordlist-de.json';
+  let wordlistPromise = null;
+  let searchSuggest = { box:null, items:[], active:-1 };
 
   function getShortcuts(){
     return store.get('shortcuts', { '!etc':'https://julianverse.de/etc' });
+  }
+
+  function loadWordlist(){
+    if(wordlistPromise) return wordlistPromise;
+    wordlistPromise = fetch(WORDLIST_URL).then(r=> r.ok ? r.json() : []).catch(()=>[]);
+    return wordlistPromise;
+  }
+
+  function recentSearchQueries(){
+    const list = store.get('recent', []);
+    const out = [];
+    list.forEach(entry=>{
+      if(entry.type === 'search' && entry.query) out.push(String(entry.query));
+      else if(entry.title && entry.title.startsWith('Suche')){
+        const parts = entry.title.split(' – ');
+        if(parts[1]) out.push(parts[1].trim());
+      }
+    });
+    return out;
+  }
+
+  async function buildSearchSuggestions(queryRaw){
+    const raw = String(queryRaw||'');
+    const q = raw.trim().toLowerCase();
+    const lastSpace = raw.lastIndexOf(' ');
+    const prefix = lastSpace >= 0 ? raw.slice(0, lastSpace + 1) : '';
+    const lastToken = (raw.slice(lastSpace + 1) || '').toLowerCase();
+    const suggestions = [];
+    const seen = new Set();
+    const push = (value, label, type)=>{
+      if(!value) return;
+      const key = `${type}:${String(value).toLowerCase()}`;
+      if(seen.has(key)) return;
+      seen.add(key);
+      suggestions.push({ value, label: label||value, type });
+    };
+
+    const shortcuts = getShortcuts();
+    Object.keys(BANGS).forEach(b=>{ if(!q || b.startsWith(q)) push(b, `${b} (Bang)`, 'bang'); });
+    Object.keys(shortcuts).forEach(s=>{ if(!q || s.startsWith(q)) push(s, `${s} (Shortcut)`, 'shortcut'); });
+    recentSearchQueries().forEach(r=>{ if(!q || r.toLowerCase().includes(q)) push(r, r, 'recent'); });
+
+    if(lastToken.length){
+      const words = await loadWordlist();
+      words.forEach(w=>{ if(w.toLowerCase().startsWith(lastToken)) push(prefix + w, w, 'word'); });
+    }
+
+    return suggestions.slice(0, 8);
+  }
+
+  function renderSearchSuggest(list){
+    const box = searchSuggest.box;
+    if(!box) return;
+    box.innerHTML = '';
+    searchSuggest.items = list;
+    searchSuggest.active = list.length ? 0 : -1;
+    if(!list.length){ box.classList.add('hidden'); return; }
+    list.forEach((s, i)=>{
+      const li = document.createElement('div');
+      li.className = 'suggest-item' + (i===0 ? ' active' : '');
+      li.setAttribute('data-index', String(i));
+      li.innerHTML = `<span class="suggest-type">${s.type}</span><span class="suggest-text">${escapeHtml(s.label)}</span>`;
+      li.addEventListener('mouseenter', ()=> setSearchSuggestActive(i, false));
+      li.addEventListener('mousedown', e=>{ e.preventDefault(); selectSearchSuggestion(i, false); });
+      box.appendChild(li);
+    });
+    box.classList.remove('hidden');
+  }
+
+  function setSearchSuggestActive(idx, scroll=true){
+    const box = searchSuggest.box; if(!box) return;
+    const children = Array.from(box.children);
+    children.forEach(c=> c.classList.remove('active'));
+    if(idx >=0 && idx < children.length){
+      children[idx].classList.add('active');
+      searchSuggest.active = idx;
+      if(scroll) children[idx].scrollIntoView({ block:'nearest' });
+    } else {
+      searchSuggest.active = -1;
+    }
+  }
+
+  function selectSearchSuggestion(idx, submit){
+    const s = searchSuggest.items[idx];
+    const input = $('#query'); if(!s || !input) return;
+    if(s.type === 'word'){
+      // ensure a trailing space for smooth multi-word entry
+      input.value = s.value.endsWith(' ') ? s.value : (s.value + ' ');
+    } else {
+      input.value = s.value;
+    }
+    renderSearchSuggest([]);
+    if(submit) doSearch();
+  }
+
+  async function updateSearchSuggest(){
+    const input = $('#query'); if(!input) return;
+    const list = await buildSearchSuggestions(input.value);
+    renderSearchSuggest(list);
   }
 
   function doSearch(){
@@ -101,7 +203,8 @@
     let engine = $('#engine').value;
     if(BANGS[first]){ engine = BANGS[first]; q = q.replace(first, '').trim(); }
     const url = ENGINES[engine](q);
-    addRecent({ title: `Suche (${engine}) – ${q}`, url });
+    addRecent({ title: `Suche (${engine}) – ${q}`, url, query:q, type:'search' });
+    renderSearchSuggest([]);
     window.location.href = url;
   }
 
@@ -581,7 +684,7 @@
     });
 
     // Build static guide content
-    panelGuide.innerHTML = `
+    panelGuide.innerHTML = 
       <div class="row"><label>User Guide</label>
         <div>
           <h5>Overview</h5>
@@ -591,39 +694,44 @@
           </ul>
           <h5>Shortcuts</h5>
           <ul>
-            <li>Ctrl/Cmd+K: Command Palette öffnen</li>
-            <li>1–9: Erste 9 Favoriten öffnen (wenn nicht tippen)</li>
-            <li>/ : Suche fokussieren (über Palette auswählbar)</li>
+            <li>Ctrl/Cmd+K: Command Palette oeffnen</li>
+            <li>1-9: Erste 9 Favoriten oeffnen (wenn nicht tippen)</li>
+            <li>/ : Suche fokussieren (auch ueber Palette)</li>
             <li>Enter in Suche: Startet die Suche</li>
-            <li>ESC: Modals schließen</li>
-            <li>Palette: Taste C wechselt den Kachel-Stil, "Header-Farben zurücksetzen" stellt Suche & Uhr zurück</li>
+            <li>ESC: Modals schliessen</li>
+            <li>Palette: Taste C wechselt den Kachel-Stil, "Header-Farben zuruecksetzen" stellt Suche & Uhr zurueck</li>
           </ul>
-          <h5>Suche & Bangs</h5>
+          <h5>Suche & Autocomplete</h5>
           <ul>
             <li>Bangs: !g !ddg !bing !yt !wiki !maps</li>
             <li>Eigene Shortcuts: JSON in den Einstellungen; {q} als Platzhalter</li>
+            <li>Autocomplete: Bangs, Shortcuts, Recent-Suchen, Wortliste (wordlist-de.json)</li>
+            <li>Tab/Leertaste uebernimmt Vorschlag, Enter startet Suche</li>
           </ul>
           <h5>Tiles</h5>
           <ul>
-            <li>Drag&Drop zum Sortieren, Klick zum Öffnen</li>
-            <li>+ Kachel: Neue Favoriten hinzufügen</li>
+            <li>Drag&Drop zum Sortieren, Klick zum oeffnen</li>
+            <li>+ Kachel: Neue Favoriten hinzufuegen</li>
             <li>Reset: Standardfavoriten wiederherstellen</li>
           </ul>
           <h5>Widgets & Layout</h5>
           <ul>
             <li>Sichtbarkeit je Widget umschaltbar</li>
-            <li>Kachel-Stil global anpassbar (Glas, Vollfläche, Transparent, Soft Minimal)</li>
-            <li>Eigenes Farbschema für Zeit/Datum und Suche; Reset bringt Stilvorgabe zurück</li>
-            <li>Widget-Farben: Eigene Akzenttöne je Kachel möglich</li>
+            <li>Kachel-Stil global anpassbar (Glas, Vollflaeche, Transparent, Soft Minimal)</li>
+            <li>Eigene Farben fuer Uhr/Suche; Reset bringt Stilvorgabe zurueck</li>
+            <li>Widget-Farben & Button "Widgets einfaerben" setzen Akzent pro Karte</li>
+          </ul>
+          <h5>Hintergrund</h5>
+          <ul>
+            <li>Presets, Uploads, Sammlungen, Rotation (Zeit/Thema/Intervall)</li>
+            <li>Akzentfarbe wird aus dem aktiven Hintergrund extrahiert</li>
           </ul>
           <h5>Daten</h5>
           <ul>
             <li>Export/Import als JSON</li>
           </ul>
         </div>
-      </div>`;
-
-    tabs.insertAdjacentElement('afterend', panelGeneral);
+      </div>;    tabs.insertAdjacentElement('afterend', panelGeneral);
     panelGeneral.insertAdjacentElement('afterend', panelBackground);
     panelBackground.insertAdjacentElement('afterend', panelSearch);
     panelSearch.insertAdjacentElement('afterend', panelWidgets);
@@ -2259,8 +2367,46 @@
 
     // Engines & Search
     renderEngines();
-    $('#go').addEventListener('click', doSearch);
-    $('#query').addEventListener('keydown', e=>{ if(e.key==='Enter') doSearch(); });
+    const suggestBox = document.createElement('div');
+    suggestBox.id = 'searchSuggest';
+    suggestBox.className = 'search-suggest hidden';
+    const searchBox = $('#searchBox');
+    if(searchBox) searchBox.appendChild(suggestBox);
+    searchSuggest.box = suggestBox;
+    $('#go').addEventListener('click', ()=>{ renderSearchSuggest([]); doSearch(); });
+    $('#query').addEventListener('input', ()=> updateSearchSuggest());
+    $('#query').addEventListener('focus', ()=> updateSearchSuggest());
+    $('#query').addEventListener('keydown', e=>{
+      if(e.key === 'ArrowDown'){ e.preventDefault(); setSearchSuggestActive(Math.min(searchSuggest.active+1, searchSuggest.items.length-1)); return; }
+      if(e.key === 'ArrowUp'){ e.preventDefault(); setSearchSuggestActive(Math.max(searchSuggest.active-1, 0)); return; }
+      if(e.key === 'Tab'){
+        if(searchSuggest.items.length){
+          e.preventDefault();
+          const idx = searchSuggest.active >=0 ? searchSuggest.active : 0;
+          selectSearchSuggestion(idx, false);
+        }
+      }
+      if(e.key === ' '){
+        if(searchSuggest.items.length && searchSuggest.items[searchSuggest.active >=0 ? searchSuggest.active : 0]?.type === 'word'){
+          e.preventDefault();
+          const idx = searchSuggest.active >=0 ? searchSuggest.active : 0;
+          selectSearchSuggestion(idx, false);
+          return;
+        }
+      }
+      if(e.key === 'Enter'){
+        if(searchSuggest.active >=0 && searchSuggest.items[searchSuggest.active]){
+          e.preventDefault(); selectSearchSuggestion(searchSuggest.active, true); return;
+        }
+        renderSearchSuggest([]); doSearch(); return;
+      }
+      if(e.key === 'Escape'){ renderSearchSuggest([]); }
+    });
+    document.addEventListener('click', e=>{
+      const s = $('#searchBox');
+      if(!s) return;
+      if(!s.contains(e.target)) renderSearchSuggest([]);
+    });
 
     // Export / Import
     const exp = $('#exportData'); if(exp) exp.addEventListener('click', exportData);
