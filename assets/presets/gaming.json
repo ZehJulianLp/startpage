@@ -1,0 +1,78 @@
+{
+  "theme": "dark",
+  "ui.cardStyle": "solid",
+  "ui.clock.color": "#0f172a",
+  "ui.search.color": "#0b1224",
+  "widgets": {
+    "todo": true,
+    "notes": true,
+    "tiles": true,
+    "weather": true,
+    "quote": true,
+    "recent": true,
+    "system": true,
+    "news": true
+  },
+  "widget.colors": {
+    "todo": "#e11d48",
+    "notes": "#14b8a6",
+    "tiles": "#e11d48",
+    "weather": "#14b8a6",
+    "quote": "#e11d48",
+    "recent": "#14b8a6",
+    "system": "#e11d48",
+    "news": "#14b8a6"
+  },
+  "tiles": [
+    { "title": "Steam", "url": "https://store.steampowered.com", "key": "st" },
+    { "title": "Twitch", "url": "https://www.twitch.tv", "key": "tw" },
+    { "title": "YouTube Gaming", "url": "https://www.youtube.com/gaming", "key": "yg" },
+    { "title": "Discord", "url": "https://discord.com/app", "key": "dc" },
+    { "title": "Game Pass", "url": "https://www.xbox.com/play", "key": "gp" },
+    { "title": "PC Gamer", "url": "https://www.pcgamer.com", "key": "pg" },
+    { "title": "Speedrun", "url": "https://www.speedrun.com", "key": "sr" },
+    { "title": "Metacritic Games", "url": "https://www.metacritic.com/game", "key": "mc" }
+  ],
+  "shortcuts": {
+    "!yt": "https://www.youtube.com/results?search_query={q}",
+    "!tw": "https://www.twitch.tv/search?term={q}",
+    "!steam": "https://store.steampowered.com/search/?term={q}",
+    "!gg": "https://www.google.com/search?q={q}"
+  },
+  "engines.enabled": ["google", "ddg", "bing", "yt", "wikipedia", "maps"],
+  "news.custom": {
+    "PC Gamer": "https://www.pcgamer.com/rss/",
+    "IGN": "https://feeds.ign.com/ign/all",
+    "Kotaku": "https://kotaku.com/rss"
+  },
+  "news.source": "PC Gamer",
+  "todos": [],
+  "notes": "",
+  "recent": [],
+  "weather.city": "Hamburg",
+  "bg.state": {
+    "active": { "type": "preset", "id": "city-neon" },
+    "customUrl": "",
+    "uploads": [],
+    "favorites": [{ "type": "preset", "id": "city-neon" }],
+    "collections": [],
+    "history": [],
+    "accentCache": {},
+    "rotation": {
+      "enabled": false,
+      "strategy": "time",
+      "intervalMinutes": 90,
+      "locked": false,
+      "sources": { "presets": true, "favorites": true, "uploads": true, "collections": true, "custom": true },
+      "schedule": {
+        "morning": { "type": "preset", "id": "mountain-dawn" },
+        "day": { "type": "preset", "id": "forest-mist" },
+        "evening": { "type": "preset", "id": "city-neon" },
+        "night": { "type": "preset", "id": "aurora" },
+        "light": { "type": "preset", "id": "forest-mist" },
+        "dark": { "type": "preset", "id": "city-neon" }
+      }
+    },
+    "ui": { "tab": "presets" }
+  }
+}

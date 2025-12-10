@@ -1,0 +1,71 @@
+{
+  "theme": "auto",
+  "ui.cardStyle": "glass",
+  "ui.clock.color": "",
+  "ui.search.color": "",
+  "widgets": {
+    "todo": true,
+    "notes": true,
+    "tiles": true,
+    "weather": true,
+    "quote": true,
+    "recent": true,
+    "system": true,
+    "news": true
+  },
+  "widget.colors": {
+    "todo": "",
+    "notes": "",
+    "tiles": "",
+    "weather": "",
+    "quote": "",
+    "recent": "",
+    "system": "",
+    "news": ""
+  },
+  "tiles": [
+    { "title": "GitHub", "url": "https://github.com", "key": "gh" },
+    { "title": "YouTube", "url": "https://youtube.com", "key": "yt" },
+    { "title": "Gmail", "url": "https://mail.google.com", "key": "gm" },
+    { "title": "ChatGPT", "url": "https://chat.openai.com", "key": "ai" },
+    { "title": "Hacker News", "url": "https://news.ycombinator.com", "key": "hn" },
+    { "title": "Wikipedia", "url": "https://de.wikipedia.org", "key": "wk" },
+    { "title": "Docs", "url": "https://devdocs.io", "key": "dd" },
+    { "title": "Calendar", "url": "https://calendar.google.com", "key": "cal" }
+  ],
+  "shortcuts": {
+    "!etc": "https://julianverse.de/etc"
+  },
+  "engines.enabled": ["google", "ddg", "bing", "yt", "wikipedia", "maps"],
+  "news.custom": {},
+  "news.source": "Heise",
+  "todos": [],
+  "notes": "",
+  "recent": [],
+  "weather.city": "Hannover",
+  "bg.state": {
+    "active": { "type": "preset", "id": "aurora" },
+    "customUrl": "",
+    "uploads": [],
+    "favorites": [{ "type": "preset", "id": "aurora" }],
+    "collections": [],
+    "history": [],
+    "accentCache": {},
+    "rotation": {
+      "enabled": false,
+      "strategy": "time",
+      "intervalMinutes": 90,
+      "locked": false,
+      "sources": { "presets": true, "favorites": true, "uploads": true, "collections": true, "custom": true },
+      "schedule": {
+        "morning": { "type": "preset", "id": "mountain-dawn" },
+        "day": { "type": "preset", "id": "forest-mist" },
+        "evening": { "type": "preset", "id": "city-neon" },
+        "night": { "type": "preset", "id": "aurora" },
+        "light": { "type": "preset", "id": "forest-mist" },
+        "dark": { "type": "preset", "id": "aurora" }
+      }
+    },
+    "ui": { "tab": "presets" }
+  }
+}

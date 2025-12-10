@@ -13,6 +13,7 @@ Startpage ist eine personalisierbare Startseite im Dashboard-Stil. Suche, Wetter
 - Zuletzt & Systemstatus: Verlaufs-Chips sowie Browser-Infos (RAM, CPU-Kerne, Netztyp).
 - Layout & Styling: Dark/Light/Auto, Karten-Stile (Glas, Vollflaeche, Transparent, Soft Minimal), Widget-Farben, separate Farben fuer Uhr/Suche, Button "Widgets einfaerben".
 - Kommandopalette: Strg/Cmd+K fuer Aktionen (Theme, Tiles, Widget-Updates etc.).
+- Daten: Export/Import als JSON plus Data Presets direkt aus assets/presets/ (starter, coding, gaming, minimal, productivity, reading, art, privacy, student, finance).
 
 ## Projektstruktur
 - index.html ? Markup, Styles, JS; neue Logik unten im <script> und aus init() starten.
@@ -35,7 +36,7 @@ Danach: http://localhost:4173.
 - Hintergrund & Erscheinung: Presets/Uploads/Sammlungen/Rotation im Tab; Akzentfarbe wird aus dem aktiven Bild gesetzt.
 - Suche & Feeds: Engines ein-/ausschalten, !Shortcuts + {q} im Tab "Suche & Feeds" pflegen; Autocomplete nutzt Bangs/Shortcuts/Recent + Wortliste.
 - Widgets & Layout: Sichtbarkeit, Karten-Stil, Standard-Stadt (Wetter), Widget-Farben, Uhr/Suche-Farben; Reset stellt Stilvorgaben her.
-- Daten: Export/Import aller localStorage-Eintraege als JSON.
+- Daten: Export/Import aller localStorage-Eintraege als JSON oder fertige Data Presets laden (assets/data-presets.json + assets/presets/*).
 - Palette: Strg/Cmd+K fuer Befehle (Tiles oeffnen, Theme wechseln, Widgets einfuegen, etc.).
 
 Neue Komponenten bitte mit 2-Spaces-Indent, camelCase (JS), hyphen-case (CSS). Wiederverwendbare Logik unter den Utilities platzieren und in init() aufrufen.

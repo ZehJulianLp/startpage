@@ -1,0 +1,78 @@
+{
+  "theme": "light",
+  "ui.cardStyle": "glass",
+  "ui.clock.color": "#e2e8f0",
+  "ui.search.color": "#e2e8f0",
+  "widgets": {
+    "todo": true,
+    "notes": true,
+    "tiles": true,
+    "weather": true,
+    "quote": true,
+    "recent": true,
+    "system": true,
+    "news": true
+  },
+  "widget.colors": {
+    "todo": "#2563eb",
+    "notes": "#10b981",
+    "tiles": "#2563eb",
+    "weather": "#10b981",
+    "quote": "#2563eb",
+    "recent": "#10b981",
+    "system": "#2563eb",
+    "news": "#10b981"
+  },
+  "tiles": [
+    { "title": "Moodle", "url": "https://moodle.org", "key": "md" },
+    { "title": "Notion", "url": "https://www.notion.so", "key": "nt" },
+    { "title": "Overleaf", "url": "https://www.overleaf.com", "key": "ol" },
+    { "title": "Google Drive", "url": "https://drive.google.com", "key": "dr" },
+    { "title": "Google Scholar", "url": "https://scholar.google.com", "key": "gs" },
+    { "title": "YouTube Edu", "url": "https://www.youtube.com/education", "key": "yt" },
+    { "title": "GitHub Classroom", "url": "https://classroom.github.com", "key": "gc" },
+    { "title": "Figma", "url": "https://www.figma.com", "key": "fg" }
+  ],
+  "shortcuts": {
+    "!gs": "https://scholar.google.com/scholar?q={q}",
+    "!wiki": "https://de.wikipedia.org/wiki/Spezial:Suche?search={q}",
+    "!yt": "https://www.youtube.com/results?search_query={q}",
+    "!gh": "https://github.com/search?q={q}"
+  },
+  "engines.enabled": ["google", "ddg", "bing", "wikipedia", "maps"],
+  "news.custom": {
+    "Hacker News": "https://hnrss.org/frontpage",
+    "Ars Technica": "http://feeds.arstechnica.com/arstechnica/index",
+    "The Verge": "https://www.theverge.com/rss/index.xml"
+  },
+  "news.source": "Hacker News",
+  "todos": [],
+  "notes": "",
+  "recent": [],
+  "weather.city": "Munich",
+  "bg.state": {
+    "active": { "type": "preset", "id": "forest-mist" },
+    "customUrl": "",
+    "uploads": [],
+    "favorites": [{ "type": "preset", "id": "forest-mist" }],
+    "collections": [],
+    "history": [],
+    "accentCache": {},
+    "rotation": {
+      "enabled": false,
+      "strategy": "time",
+      "intervalMinutes": 90,
+      "locked": false,
+      "sources": { "presets": true, "favorites": true, "uploads": true, "collections": true, "custom": true },
+      "schedule": {
+        "morning": { "type": "preset", "id": "mountain-dawn" },
+        "day": { "type": "preset", "id": "forest-mist" },
+        "evening": { "type": "preset", "id": "city-neon" },
+        "night": { "type": "preset", "id": "aurora" },
+        "light": { "type": "preset", "id": "forest-mist" },
+        "dark": { "type": "preset", "id": "aurora" }
+      }
+    },
+    "ui": { "tab": "presets" }
+  }
+}

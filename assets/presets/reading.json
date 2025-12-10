@@ -1,0 +1,78 @@
+{
+  "theme": "light",
+  "ui.cardStyle": "minimal",
+  "ui.clock.color": "#f3f4f6",
+  "ui.search.color": "#f3f4f6",
+  "widgets": {
+    "todo": false,
+    "notes": true,
+    "tiles": true,
+    "weather": false,
+    "quote": false,
+    "recent": true,
+    "system": false,
+    "news": true
+  },
+  "widget.colors": {
+    "todo": "",
+    "notes": "#0ea5e9",
+    "tiles": "#a855f7",
+    "weather": "",
+    "quote": "",
+    "recent": "#0ea5e9",
+    "system": "",
+    "news": "#a855f7"
+  },
+  "tiles": [
+    { "title": "Pocket", "url": "https://getpocket.com", "key": "pk" },
+    { "title": "Kindle", "url": "https://read.amazon.com", "key": "kd" },
+    { "title": "Feedly", "url": "https://feedly.com/i/latest", "key": "fd" },
+    { "title": "Goodreads", "url": "https://www.goodreads.com", "key": "gr" },
+    { "title": "Medium", "url": "https://medium.com", "key": "md" },
+    { "title": "Longreads", "url": "https://longreads.com", "key": "lr" },
+    { "title": "Instapaper", "url": "https://www.instapaper.com/u", "key": "ip" },
+    { "title": "Libby", "url": "https://libbyapp.com", "key": "lb" }
+  ],
+  "shortcuts": {
+    "!nyt": "https://www.nytimes.com/search?query={q}",
+    "!wiki": "https://de.wikipedia.org/wiki/Spezial:Suche?search={q}",
+    "!md": "https://medium.com/search?q={q}",
+    "!gr": "https://www.goodreads.com/search?q={q}"
+  },
+  "engines.enabled": ["google", "ddg", "bing", "wikipedia"],
+  "news.custom": {
+    "NYTimes Tech": "https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml",
+    "Ars Technica": "http://feeds.arstechnica.com/arstechnica/index",
+    "Spiegel Netzwelt": "https://www.spiegel.de/schlagzeilen/tops/index.rss"
+  },
+  "news.source": "NYTimes Tech",
+  "todos": [],
+  "notes": "",
+  "recent": [],
+  "weather.city": "Hamburg",
+  "bg.state": {
+    "active": { "type": "preset", "id": "forest-mist" },
+    "customUrl": "",
+    "uploads": [],
+    "favorites": [{ "type": "preset", "id": "forest-mist" }],
+    "collections": [],
+    "history": [],
+    "accentCache": {},
+    "rotation": {
+      "enabled": false,
+      "strategy": "time",
+      "intervalMinutes": 90,
+      "locked": false,
+      "sources": { "presets": true, "favorites": true, "uploads": true, "collections": true, "custom": true },
+      "schedule": {
+        "morning": { "type": "preset", "id": "mountain-dawn" },
+        "day": { "type": "preset", "id": "forest-mist" },
+        "evening": { "type": "preset", "id": "city-neon" },
+        "night": { "type": "preset", "id": "aurora" },
+        "light": { "type": "preset", "id": "forest-mist" },
+        "dark": { "type": "preset", "id": "aurora" }
+      }
+    },
+    "ui": { "tab": "presets" }
+  }
+}

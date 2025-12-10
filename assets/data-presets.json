@@ -1,0 +1,72 @@
+[
+  {
+    "id": "starter",
+    "name": "Starter",
+    "description": "Reset auf das Standard-Setup mit Default-Kacheln und neutralen Farben.",
+    "file": "assets/presets/starter.json",
+    "tags": ["neutral", "reset"]
+  },
+  {
+    "id": "coding",
+    "name": "Coding",
+    "description": "Dark-Setup mit Dev-Kacheln, Tech-Feeds, Neon City Hintergrund.",
+    "file": "assets/presets/coding.json",
+    "tags": ["dark", "dev"]
+  },
+  {
+    "id": "gaming",
+    "name": "Gaming",
+    "description": "Gaming/Streaming-Favoriten, Game-Feeds und Neon-Look.",
+    "file": "assets/presets/gaming.json",
+    "tags": ["dark", "games"]
+  },
+  {
+    "id": "minimal",
+    "name": "Minimal",
+    "description": "Hell oder Auto, Soft Minimal/transparent, Fokus auf Suche & Notizen.",
+    "file": "assets/presets/minimal.json",
+    "tags": ["light", "focus"]
+  },
+  {
+    "id": "productivity",
+    "name": "Productivity",
+    "description": "Klarer Solid-Stil, Todos/Notes/System an, Office/Dev Kacheln, Tech/News-Feeds.",
+    "file": "assets/presets/productivity.json",
+    "tags": ["work", "auto"]
+  },
+  {
+    "id": "reading",
+    "name": "Reading",
+    "description": "Lese-Modus mit Soft Minimal, Pocket/Kindle/Feedly Kacheln, News-lastige Feeds.",
+    "file": "assets/presets/reading.json",
+    "tags": ["light", "news"]
+  },
+  {
+    "id": "art",
+    "name": "Art & Photo",
+    "description": "Visueller Look mit Art/Photo-Links, rotierendem Hintergrund und satten Farben.",
+    "file": "assets/presets/art.json",
+    "tags": ["visual", "auto"]
+  },
+  {
+    "id": "privacy",
+    "name": "Privacy",
+    "description": "Privacy-orientiert: DDG first, schlanke Tiles, keine News, dunkler transparenter Stil.",
+    "file": "assets/presets/privacy.json",
+    "tags": ["privacy", "minimal"]
+  },
+  {
+    "id": "student",
+    "name": "Student",
+    "description": "Campus/Study Links, helle Karte, Notion/Overleaf/Moodle Tiles, Uni/Tech Feeds.",
+    "file": "assets/presets/student.json",
+    "tags": ["study", "light"]
+  },
+  {
+    "id": "finance",
+    "name": "Finance",
+    "description": "Boerse/Portfolio Kacheln, Finanz-Feeds, dunkler Stil mit knackigen Akzenten.",
+    "file": "assets/presets/finance.json",
+    "tags": ["finance", "dark"]
+  }
+]

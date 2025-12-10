@@ -36,6 +36,85 @@
     ev.target.value = '';
   }
 
+  const DATA_PRESETS_MANIFEST = 'assets/data-presets.json';
+  let dataPresetsCache = null;
+
+  async function loadDataPresets(){
+    if(dataPresetsCache) return dataPresetsCache;
+    try{
+      const res = await fetch(DATA_PRESETS_MANIFEST);
+      if(!res.ok) throw new Error('Manifest nicht gefunden');
+      const json = await res.json();
+      dataPresetsCache = Array.isArray(json) ? json : [];
+    }catch(err){
+      console.warn('Presets laden fehlgeschlagen', err);
+      dataPresetsCache = [];
+    }
+    return dataPresetsCache;
+  }
+
+  async function renderDataPresets(){
+    const select = $('#dataPresetSelect');
+    const meta = $('#dataPresetMeta');
+    const btn = $('#applyPreset');
+    if(!select || !meta) return;
+    select.innerHTML = '';
+    select.disabled = true;
+    if(btn) btn.disabled = true;
+    meta.textContent = 'Lade Presets...';
+    const presets = await loadDataPresets();
+    if(!presets.length){
+      const opt = document.createElement('option'); opt.value=''; opt.textContent='Keine Presets gefunden';
+      select.appendChild(opt);
+      meta.textContent = 'Lege exportierte JSONs unter assets/presets/ ab und trage sie in assets/data-presets.json ein.';
+      return;
+    }
+    presets.forEach((p,i)=>{
+      const opt = document.createElement('option');
+      opt.value = p.id || 'preset-' + i;
+      opt.textContent = p.name || p.id || ('Preset ' + (i+1));
+      select.appendChild(opt);
+    });
+    select.disabled = false;
+    if(btn) btn.disabled = false;
+    updateDataPresetMeta();
+  }
+
+  async function updateDataPresetMeta(){
+    const select = $('#dataPresetSelect');
+    const meta = $('#dataPresetMeta');
+    if(!select || !meta) return;
+    const presets = await loadDataPresets();
+    const current = presets.find(p => String(p.id||'') === select.value) || presets[0];
+    if(current){
+      const tags = current.tags && current.tags.length ? ` (Tags: ${current.tags.join(', ')})` : '';
+      meta.textContent = (current.description || 'Preset anwenden') + tags;
+      select.value = current.id || select.value;
+    } else {
+      meta.textContent = 'Kein Preset ausgewaehlt.';
+    }
+  }
+
+  async function applyDataPreset(){
+    const select = $('#dataPresetSelect');
+    if(!select) return;
+    const presets = await loadDataPresets();
+    const current = presets.find(p => String(p.id||'') === select.value) || presets[0];
+    if(!current){ alert('Kein Preset verfuegbar.'); return; }
+    if(!current.file){ alert('Preset-Datei fehlt.'); return; }
+    try{
+      const res = await fetch(current.file);
+      if(!res.ok) throw new Error('Datei nicht gefunden');
+      const obj = await res.json();
+      if(!obj || typeof obj !== 'object') throw new Error('Preset ungueltig');
+      if(!confirm(`Preset "${current.name || current.id || 'Preset'}" anwenden? Bestehende Eintraege werden ueberschrieben.`)) return;
+      Object.keys(obj).forEach(k=> localStorage.setItem(k, JSON.stringify(obj[k])));
+      location.reload();
+    }catch(err){
+      alert('Preset laden fehlgeschlagen: ' + err.message);
+    }
+  }
+
   function prettyDate(d=new Date()) {
     const fmt = new Intl.DateTimeFormat(undefined, { weekday:'long', year:'numeric', month:'long', day:'numeric' });
     return fmt.format(d);
@@ -679,7 +758,7 @@
       else if(has('#bgEngine')) assign(row, panelBackground);
       else if(has('#enginePills') || has('#shortcutConfig') || has('#feedsConfig')) assign(row, panelSearch);
       else if(has('#widgetToggles') || has('#widgetColorEditor') || has('#cardStyle') || has('#clockColor') || has('#searchColor') || has('#defaultCity')) assign(row, panelWidgets);
-      else if(has('#exportData') || has('#importData') || has('#dataNote')) assign(row, panelData);
+      else if(has('#exportData') || has('#importData') || has('#dataNote') || has('#dataPresetSelect') || has('#applyPreset')) assign(row, panelData);
       else assign(row, panelGeneral);
     });
 
@@ -729,6 +808,7 @@
           <h5>Daten</h5>
           <ul>
             <li>Export/Import als JSON</li>
+            <li>Data Presets laden (assets/presets/*.json aus dem Repo)</li>
           </ul>
         </div>
       </div>`;
@@ -2414,6 +2494,10 @@
     const exp = $('#exportData'); if(exp) exp.addEventListener('click', exportData);
     const imp = $('#importData'); if(imp) imp.addEventListener('click', ()=> $('#importFile').click());
     const file = $('#importFile'); if(file) file.addEventListener('change', importDataFromFile);
+    const dataNote = $('#dataNote'); if(dataNote) dataNote.textContent = 'Export speichert saemtliche Einstellungen und Daten lokal als JSON. Import ueberschreibt vorhandene Eintraege.';
+    renderDataPresets();
+    const presetSelect = $('#dataPresetSelect'); if(presetSelect) presetSelect.addEventListener('change', updateDataPresetMeta);
+    const presetApply = $('#applyPreset'); if(presetApply) presetApply.addEventListener('click', applyDataPreset);
 
     // Persist settings fields (shortcuts & feeds)
     $('#shortcutConfig').addEventListener('change', ()=>{ try{ const j=JSON.parse($('#shortcutConfig').value); store.set('shortcuts', j);}catch{ alert('Ungültiges Shortcuts‑JSON'); } });

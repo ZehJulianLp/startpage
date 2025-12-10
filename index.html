@@ -251,6 +251,16 @@
           </div>
         </div>
         <div class="row">
+          <label>Data Presets</label>
+          <div style="display:flex; flex-direction:column; gap:8px">
+            <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center">
+              <select id="dataPresetSelect"></select>
+              <button class="btn" id="applyPreset">Preset laden</button>
+            </div>
+            <div class="muted" id="dataPresetMeta">Presets liegen als exportierte JSONs unter assets/presets/. Wer mag, kann eigene Presets ins Repo legen.</div>
+          </div>
+        </div>
+        <div class="row">
           <label>Hinweis</label>
           <div class="muted" id="dataNote">Export speichert sämtliche Einstellungen & Daten lokal als JSON. Import überschreibt vorhandene Einträge.</div>
         </div>

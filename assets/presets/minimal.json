@@ -1,0 +1,60 @@
+{
+  "theme": "auto",
+  "ui.cardStyle": "minimal",
+  "ui.clock.color": "#f8fafc",
+  "ui.search.color": "#f8fafc",
+  "widgets": {
+    "todo": false,
+    "notes": true,
+    "tiles": false,
+    "weather": false,
+    "quote": false,
+    "recent": false,
+    "system": false,
+    "news": false
+  },
+  "widget.colors": {
+    "todo": "",
+    "notes": "",
+    "tiles": "",
+    "weather": "",
+    "quote": "",
+    "recent": "",
+    "system": "",
+    "news": ""
+  },
+  "tiles": [],
+  "shortcuts": {},
+  "engines.enabled": ["google", "ddg", "wikipedia"],
+  "news.custom": {},
+  "news.source": "Heise",
+  "todos": [],
+  "notes": "",
+  "recent": [],
+  "weather.city": "",
+  "bg.state": {
+    "active": { "type": "preset", "id": "forest-mist" },
+    "customUrl": "",
+    "uploads": [],
+    "favorites": [{ "type": "preset", "id": "forest-mist" }],
+    "collections": [],
+    "history": [],
+    "accentCache": {},
+    "rotation": {
+      "enabled": false,
+      "strategy": "time",
+      "intervalMinutes": 90,
+      "locked": false,
+      "sources": { "presets": true, "favorites": true, "uploads": true, "collections": true, "custom": true },
+      "schedule": {
+        "morning": { "type": "preset", "id": "forest-mist" },
+        "day": { "type": "preset", "id": "forest-mist" },
+        "evening": { "type": "preset", "id": "forest-mist" },
+        "night": { "type": "preset", "id": "forest-mist" },
+        "light": { "type": "preset", "id": "forest-mist" },
+        "dark": { "type": "preset", "id": "aurora" }
+      }
+    },
+    "ui": { "tab": "presets" }
+  }
+}

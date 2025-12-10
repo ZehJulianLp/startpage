@@ -1,0 +1,78 @@
+{
+  "theme": "dark",
+  "ui.cardStyle": "solid",
+  "ui.clock.color": "#0f172a",
+  "ui.search.color": "#0f172a",
+  "widgets": {
+    "todo": true,
+    "notes": true,
+    "tiles": true,
+    "weather": true,
+    "quote": true,
+    "recent": true,
+    "system": true,
+    "news": true
+  },
+  "widget.colors": {
+    "todo": "#16a34a",
+    "notes": "#f59e0b",
+    "tiles": "#16a34a",
+    "weather": "#f59e0b",
+    "quote": "#16a34a",
+    "recent": "#f59e0b",
+    "system": "#16a34a",
+    "news": "#f59e0b"
+  },
+  "tiles": [
+    { "title": "TradingView", "url": "https://www.tradingview.com", "key": "tv" },
+    { "title": "Yahoo Finance", "url": "https://finance.yahoo.com", "key": "yf" },
+    { "title": "MarketWatch", "url": "https://www.marketwatch.com", "key": "mw" },
+    { "title": "Bloomberg", "url": "https://www.bloomberg.com/markets", "key": "bb" },
+    { "title": "FT", "url": "https://www.ft.com/markets", "key": "ft" },
+    { "title": "CoinMarketCap", "url": "https://coinmarketcap.com", "key": "cm" },
+    { "title": "Investing.com", "url": "https://www.investing.com", "key": "iv" },
+    { "title": "Revolut", "url": "https://app.revolut.com", "key": "rv" }
+  ],
+  "shortcuts": {
+    "!tv": "https://www.tradingview.com/chart/?symbol={q}",
+    "!yf": "https://finance.yahoo.com/quote/{q}",
+    "!mw": "https://www.marketwatch.com/search?q={q}",
+    "!bb": "https://www.bloomberg.com/search?query={q}"
+  },
+  "engines.enabled": ["google", "ddg", "bing", "wikipedia", "maps"],
+  "news.custom": {
+    "Bloomberg Markets": "https://feeds.bloomberg.com/markets/news.rss",
+    "FT Markets": "https://www.ft.com/rss/markets",
+    "MarketWatch": "https://www.marketwatch.com/rss/topstories"
+  },
+  "news.source": "Bloomberg Markets",
+  "todos": [],
+  "notes": "",
+  "recent": [],
+  "weather.city": "Frankfurt",
+  "bg.state": {
+    "active": { "type": "preset", "id": "city-neon" },
+    "customUrl": "",
+    "uploads": [],
+    "favorites": [{ "type": "preset", "id": "city-neon" }],
+    "collections": [],
+    "history": [],
+    "accentCache": {},
+    "rotation": {
+      "enabled": false,
+      "strategy": "time",
+      "intervalMinutes": 90,
+      "locked": false,
+      "sources": { "presets": true, "favorites": true, "uploads": true, "collections": true, "custom": true },
+      "schedule": {
+        "morning": { "type": "preset", "id": "mountain-dawn" },
+        "day": { "type": "preset", "id": "forest-mist" },
+        "evening": { "type": "preset", "id": "city-neon" },
+        "night": { "type": "preset", "id": "aurora" },
+        "light": { "type": "preset", "id": "forest-mist" },
+        "dark": { "type": "preset", "id": "city-neon" }
+      }
+    },
+    "ui": { "tab": "presets" }
+  }
+}
