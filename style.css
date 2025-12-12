@@ -383,6 +383,10 @@
     }
 
     .sheet input[type="text"], .sheet input[type="url"], .sheet textarea, .sheet select { width:100% }
+    .sheet input[type="checkbox"]{ appearance:none; width:16px; height:16px; border-radius:6px; border:1px solid rgba(255,255,255,0.2); background: var(--glass); display:inline-flex; align-items:center; justify-content:center; cursor:pointer; transition: border-color .2s, background .2s, box-shadow .2s; vertical-align: middle; }
+    .sheet input[type="checkbox"]:hover{ border-color: var(--accent); box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent); }
+    .sheet input[type="checkbox"]:checked{ background: var(--accent); border-color: var(--accent); box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent); }
+    .sheet input[type="checkbox"]:checked::after{ content:'✓'; color:#fff; font-size:12px; line-height:1; }
 
     /* Tabs */
     .tabs { display:flex; gap:8px; border-bottom: 1px solid rgba(255,255,255,.08); margin: 10px 0 12px; position: sticky; top: 0; background: inherit; padding-bottom: 8px; z-index: 2 }
@@ -400,6 +404,18 @@
     .palette-item:hover, .palette-item.active { background: var(--bg-soft) }
     .palette-item .k { margin-left:auto; color: var(--muted); font-size:12px }
 
+    /* Onboarding */
+    .onboarding-sheet { max-width: 760px; }
+    .onb-header { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .onb-steps { min-height: 220px; margin-top: 8px; }
+    .onb-step { display:none; flex-direction:column; gap:10px; }
+    .onb-step.active { display:flex; }
+    .onb-field { display:flex; flex-direction:column; gap:6px; margin-bottom:10px; }
+    .onb-footer { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:12px; }
+    .onb-dots { display:flex; align-items:center; gap:6px; }
+    .onb-dot { width:10px; height:10px; border-radius:12px; background: var(--glass-strong); }
+    .onb-dot.active { background: var(--accent); }
+    .onb-step select, .onb-step input { width: 100%; }
     /* Weather icon */
     .weather-icon { width:42px; height:42px; display:flex; align-items:center; justify-content:center }
 

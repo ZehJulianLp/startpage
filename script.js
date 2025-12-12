@@ -45,20 +45,103 @@
   }
 
   const DATA_PRESETS_MANIFEST = 'assets/data-presets.json';
+  const DATA_USER_PRESETS_MANIFEST = 'assets/user-presets/data-presets.json';
+  const DATA_USER_PRESETS_DIR = 'assets/user-presets/';
   let dataPresetsCache = null;
+  const onboardingState = { step: 0, pendingReload: false };
+
+  function resolvePresetFilePath(file, source){
+    if(!file) return '';
+    const f = String(file).trim();
+    if(/^https?:\/\//i.test(f)) return f;
+    if(f.startsWith('assets/')) return f;
+    if(source === 'user') return DATA_USER_PRESETS_DIR + f.replace(/^\.?\/+/, '');
+    return f;
+  }
+
+  function normalizePresetEntry(p, source, idx){
+    if(!p) return null;
+    const id = String(p.id || `${source || 'preset'}-${idx}`);
+    return {
+      ...p,
+      id,
+      name: p.name || id,
+      file: resolvePresetFilePath(p.file || '', source),
+      source: source || 'preset',
+      tags: Array.isArray(p.tags) ? p.tags : []
+    };
+  }
+
+  async function loadPresetManifest(url, source){
+    try{
+      const res = await fetch(url);
+      if(!res.ok) throw new Error('Manifest nicht gefunden');
+      const json = await res.json();
+      if(!Array.isArray(json)) throw new Error('Manifest ist kein Array');
+      return json.map((p,i)=> normalizePresetEntry(p, source, i)).filter(Boolean);
+    }catch(err){
+      console.warn(`Presets (${source||'preset'}) laden fehlgeschlagen`, err);
+      return [];
+    }
+  }
+
+  async function discoverUserPresetsFromListing(){
+    try{
+      const res = await fetch(DATA_USER_PRESETS_DIR);
+      if(!res.ok) return [];
+      const text = await res.text();
+      const matches = Array.from(text.matchAll(/href="([^"]+\.json)"/gi)).map(m=> decodeURIComponent(m[1]));
+      const files = Array.from(new Set(matches.map(f=> f.split('/').pop()).filter(Boolean)));
+      return files.map((file, idx)=>{
+        const base = file.replace(/\.json$/i,'');
+        const human = base.replace(/[-_]+/g,' ').replace(/\s+/g,' ').trim();
+        const safeId = base.replace(/[^a-z0-9]+/ig,'-').replace(/^-+|-+$/g,'') || idx;
+        return normalizePresetEntry({
+          id: `user-${safeId}`,
+          name: human || `User Preset ${idx+1}`,
+          description: 'Lokales Preset aus assets/user-presets/',
+          file: file,
+          tags: ['user']
+        }, 'user', idx);
+      });
+    }catch(err){
+      console.warn('User-Presets nicht gefunden', err);
+      return [];
+    }
+  }
 
   async function loadDataPresets(){
     if(dataPresetsCache) return dataPresetsCache;
-    try{
-      const res = await fetch(DATA_PRESETS_MANIFEST);
-      if(!res.ok) throw new Error('Manifest nicht gefunden');
-      const json = await res.json();
-      dataPresetsCache = Array.isArray(json) ? json : [];
-    }catch(err){
-      console.warn('Presets laden fehlgeschlagen', err);
-      dataPresetsCache = [];
-    }
+    const [builtIn, userManifest] = await Promise.all([
+      loadPresetManifest(DATA_PRESETS_MANIFEST, 'preset'),
+      loadPresetManifest(DATA_USER_PRESETS_MANIFEST, 'user')
+    ]);
+    const userFound = userManifest.length ? userManifest : await discoverUserPresetsFromListing();
+    const merged = [...builtIn, ...userFound];
+    const deduped = new Map();
+    merged.forEach(p=>{ if(!p) return; deduped.set(String(p.id), p); });
+    dataPresetsCache = Array.from(deduped.values());
     return dataPresetsCache;
+  }
+
+  async function applyPresetFromEntry(current, contextLabel='Preset', opts={ reload:true, markDone:true }){
+    if(!current){ alert('Kein Preset verfuegbar.'); return; }
+    if(!current.file){ alert('Preset-Datei fehlt.'); return; }
+    try{
+      const res = await fetch(current.file);
+      if(!res.ok) throw new Error('Datei nicht gefunden');
+      const obj = await res.json();
+      if(!obj || typeof obj !== 'object') throw new Error('Preset ungueltig');
+      if(!('wordlist.inline' in obj)) obj['wordlist.inline'] = [];
+      obj['wordlist.inline'] = normalizeInlineWordlist(obj['wordlist.inline']);
+      const name = current.name || current.id || 'Preset';
+      if(!confirm(`${contextLabel} "${name}" anwenden? Bestehende Eintraege werden ueberschrieben.`)) return;
+      Object.keys(obj).forEach(k=> localStorage.setItem(k, JSON.stringify(obj[k])));
+      if(opts.markDone) store.set('onboarding.done', true);
+      if(opts.reload !== false) location.reload();
+    }catch(err){
+      alert('Preset laden fehlgeschlagen: ' + err.message);
+    }
   }
 
   async function renderDataPresets(){
@@ -74,13 +157,15 @@
     if(!presets.length){
       const opt = document.createElement('option'); opt.value=''; opt.textContent='Keine Presets gefunden';
       select.appendChild(opt);
-      meta.textContent = 'Lege exportierte JSONs unter assets/presets/ ab und trage sie in assets/data-presets.json ein.';
+      meta.textContent = 'Lege exportierte JSONs unter assets/presets/ (Manifest: assets/data-presets.json) oder lokal unter assets/user-presets/ ab.';
       return;
     }
     presets.forEach((p,i)=>{
       const opt = document.createElement('option');
       opt.value = p.id || 'preset-' + i;
-      opt.textContent = p.name || p.id || ('Preset ' + (i+1));
+      const label = p.name || p.id || ('Preset ' + (i+1));
+      const prefix = p.source === 'user' && !/^user:/i.test(String(label).trim()) ? 'User: ' : '';
+      opt.textContent = prefix + label;
       select.appendChild(opt);
     });
     select.disabled = false;
@@ -95,8 +180,11 @@
     const presets = await loadDataPresets();
     const current = presets.find(p => String(p.id||'') === select.value) || presets[0];
     if(current){
-      const tags = current.tags && current.tags.length ? ` (Tags: ${current.tags.join(', ')})` : '';
-      meta.textContent = (current.description || 'Preset anwenden') + tags;
+      const tags = Array.isArray(current.tags) ? [...current.tags] : [];
+      if(current.source === 'user' && !tags.includes('user')) tags.unshift('user');
+      const tagText = tags.length ? ` (Tags: ${tags.join(', ')})` : '';
+      const description = current.description || (current.source === 'user' ? 'Lokales Preset anwenden' : 'Preset anwenden');
+      meta.textContent = description + tagText;
       select.value = current.id || select.value;
     } else {
       meta.textContent = 'Kein Preset ausgewaehlt.';
@@ -108,21 +196,7 @@
     if(!select) return;
     const presets = await loadDataPresets();
     const current = presets.find(p => String(p.id||'') === select.value) || presets[0];
-    if(!current){ alert('Kein Preset verfuegbar.'); return; }
-    if(!current.file){ alert('Preset-Datei fehlt.'); return; }
-    try{
-      const res = await fetch(current.file);
-      if(!res.ok) throw new Error('Datei nicht gefunden');
-      const obj = await res.json();
-      if(!obj || typeof obj !== 'object') throw new Error('Preset ungueltig');
-      if(!('wordlist.inline' in obj)) obj['wordlist.inline'] = [];
-      obj['wordlist.inline'] = normalizeInlineWordlist(obj['wordlist.inline']);
-      if(!confirm(`Preset "${current.name || current.id || 'Preset'}" anwenden? Bestehende Eintraege werden ueberschrieben.`)) return;
-      Object.keys(obj).forEach(k=> localStorage.setItem(k, JSON.stringify(obj[k])));
-      location.reload();
-    }catch(err){
-      alert('Preset laden fehlgeschlagen: ' + err.message);
-    }
+    await applyPresetFromEntry(current, 'Preset');
   }
 
   function prettyDate(d=new Date()) {
@@ -794,7 +868,7 @@
       else if(has('#bgEngine')) assign(row, panelBackground);
       else if(has('#enginePills') || has('#shortcutConfig') || has('#feedsConfig') || has('#wordlistEditor')) assign(row, panelSearch);
       else if(has('#widgetToggles') || has('#widgetColorEditor') || has('#cardStyle') || has('#clockColor') || has('#searchColor') || has('#defaultCity')) assign(row, panelWidgets);
-      else if(has('#exportData') || has('#importData') || has('#dataNote') || has('#dataPresetSelect') || has('#applyPreset')) assign(row, panelData);
+      else if(has('#exportData') || has('#importData') || has('#dataNote') || has('#dataPresetSelect') || has('#applyPreset') || has('#restartOnboarding')) assign(row, panelData);
       else assign(row, panelGeneral);
     });
 
@@ -871,6 +945,248 @@
       select.appendChild(opt);
     });
     if(enabled.includes(current)) select.value = current; else select.value = enabled[0];
+  }
+
+  // ===== Onboarding
+  async function onboardingRenderPresets(){
+    const select = $('#onbPresetSelect');
+    const meta = $('#onbPresetMeta');
+    if(!select || !meta) return;
+    select.innerHTML = '';
+    meta.textContent = 'Lade Presets...';
+    const presets = await loadDataPresets();
+    if(!presets.length){
+      const opt = document.createElement('option');
+      opt.value = '';
+      opt.textContent = 'Keine Presets gefunden';
+      select.appendChild(opt);
+      meta.textContent = 'Leg ein Preset unter assets/presets/ oder assets/user-presets/ ab.';
+      return;
+    }
+    presets.forEach((p,i)=>{
+      const opt = document.createElement('option');
+      opt.value = p.id || 'preset-' + i;
+      const label = p.name || p.id || ('Preset ' + (i+1));
+      const prefix = p.source === 'user' && !/^user:/i.test(String(label).trim()) ? 'User: ' : '';
+      opt.textContent = prefix + label;
+      select.appendChild(opt);
+    });
+    const current = presets[0];
+    select.value = current ? current.id : select.value;
+    onboardingUpdatePresetMeta();
+  }
+
+  function onboardingRenderBgPresets(){
+    const select = $('#onbBgPreset');
+    if(!select) return;
+    select.innerHTML = '';
+    const optNone = document.createElement('option'); optNone.value=''; optNone.textContent='Aktives Bild behalten';
+    select.appendChild(optNone);
+    BG_PRESETS.forEach(p=>{
+      const opt = document.createElement('option');
+      opt.value = p.id;
+      opt.textContent = p.label || p.id;
+      select.appendChild(opt);
+    });
+    const state = bgLoadState();
+    if(state && state.active && state.active.type==='preset' && state.active.id){
+      select.value = state.active.id;
+    }
+  }
+
+  async function onboardingUpdatePresetMeta(){
+    const select = $('#onbPresetSelect');
+    const meta = $('#onbPresetMeta');
+    if(!select || !meta) return;
+    const presets = await loadDataPresets();
+    const current = presets.find(p => String(p.id||'') === select.value) || presets[0];
+    if(current){
+      meta.textContent = current.description || 'Preset anwenden oder ueberspringen.';
+    } else {
+      meta.textContent = 'Preset optional.';
+    }
+  }
+
+  async function onboardingApplyPreset(){
+    const select = $('#onbPresetSelect');
+    if(!select) return;
+    const presets = await loadDataPresets();
+    const current = presets.find(p => String(p.id||'') === select.value) || presets[0];
+    await applyPresetFromEntry(current, 'Setup-Preset', { reload:false, markDone:false });
+    store.set('onboarding.done', false);
+    store.set('onboarding.resume', true);
+    store.set('onboarding.step', onboardingState.step);
+    onboardingState.pendingReload = true;
+    onboardingUpdatePresetMeta();
+    location.reload();
+  }
+
+  function onboardingUpdateUi(){
+    const modal = $('#onboarding');
+    if(!modal) return;
+    const steps = $$('.onb-step', modal);
+    const total = steps.length || 1;
+    steps.forEach((stepEl, idx)=> stepEl.classList.toggle('active', idx === onboardingState.step));
+    const prev = $('#onbPrev'); if(prev) prev.disabled = onboardingState.step === 0;
+    const next = $('#onbNext'); if(next) next.textContent = onboardingState.step >= total-1 ? 'Fertig' : 'Weiter';
+    const label = $('#onbProgressLabel'); if(label) label.textContent = `Schritt ${Math.min(onboardingState.step+1,total)} von ${total}`;
+    const dots = $('#onbDots');
+    if(dots){
+      dots.innerHTML = '';
+      for(let i=0;i<total;i++){
+        const dot = document.createElement('span');
+        dot.className = 'onb-dot' + (i === onboardingState.step ? ' active' : '');
+        dots.appendChild(dot);
+      }
+    }
+  }
+
+  function onboardingCommitStep(){
+    const modal = $('#onboarding'); if(!modal) return;
+    const steps = $$('.onb-step', modal);
+    const current = steps[onboardingState.step];
+    const stepId = current ? current.getAttribute('data-step') : '';
+    if(stepId === 'appearance'){
+      const themeSelect = $('#onbTheme'); if(themeSelect){ const v = themeSelect.value; store.set('theme', v); applyTheme(v); }
+      const cardSelect = $('#onbCardStyle'); if(cardSelect){ const allowed=['glass','solid','transparent','minimal']; const val = allowed.includes(cardSelect.value) ? cardSelect.value : 'glass'; store.set('ui.cardStyle', val); applyCardStyle(); }
+      const bgSelect = $('#onbBgPreset');
+      const bgRotate = $('#onbBgRotate');
+      if(bgSelect){
+        const val = bgSelect.value;
+        if(val){
+          bgApply({ type:'preset', id: val });
+        }
+        if(bgRotate){
+          bgUpdateState(state => {
+            state.rotation.enabled = !!bgRotate.checked;
+            return state;
+          });
+        }
+      }
+    } else if(stepId === 'search'){
+      const engineSelect = $('#onbEngine');
+      if(engineSelect){
+        const val = engineSelect.value;
+        const enabled = store.get('engines.enabled', Object.keys(ENGINES)).filter(k=>k!==val);
+        store.set('engines.enabled', [val, ...enabled]);
+        renderEngines();
+      }
+    } else if(stepId === 'widgets'){
+      const checks = $$('.onb-widget-toggle');
+      if(checks.length){
+        const conf = store.get('widgets', widgetDefaults());
+        checks.forEach(cb=>{ const key=cb.getAttribute('data-widget'); if(key) conf[key]=!!cb.checked; });
+        store.set('widgets', conf);
+        applyWidgets();
+      }
+      const tint = $('#onbTint');
+      if(tint && tint.checked) tintWidgets();
+    } else if(stepId === 'weather'){
+      const city = $('#onbCity');
+      if(city){
+        const val = city.value.trim();
+        store.set('weather.city', val);
+        loadWeather();
+      }
+    }
+  }
+
+  function onboardingNext(){
+    onboardingCommitStep();
+    const modal = $('#onboarding');
+    if(!modal) return;
+    const steps = $$('.onb-step', modal);
+    const total = steps.length || 1;
+    if(onboardingState.step >= total-1){
+      onboardingFinish();
+      return;
+    }
+    onboardingState.step = Math.min(total-1, onboardingState.step + 1);
+    onboardingUpdateUi();
+  }
+
+  function onboardingPrev(){
+    onboardingState.step = Math.max(0, onboardingState.step - 1);
+    onboardingUpdateUi();
+  }
+
+  function onboardingFinish(){
+    onboardingCommitStep();
+    if(onboardingState.pendingReload){
+      store.set('onboarding.resume', false);
+      store.set('onboarding.step', 0);
+      store.set('onboarding.done', true);
+      location.reload();
+      return;
+    }
+    store.set('onboarding.resume', false);
+    store.set('onboarding.step', 0);
+    store.set('onboarding.done', true);
+    onboardingClose();
+  }
+
+  function onboardingSkip(){
+    const shouldReload = onboardingState.pendingReload;
+    onboardingState.pendingReload = false;
+    store.set('onboarding.resume', false);
+    store.set('onboarding.step', 0);
+    store.set('onboarding.done', true);
+    if(shouldReload){
+      location.reload();
+      return;
+    }
+    onboardingClose();
+  }
+
+  function onboardingClose(){
+    const modal = $('#onboarding');
+    if(!modal) return;
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    const settingsOpen = $('#settingsModal') && $('#settingsModal').classList.contains('open');
+    if(!settingsOpen) document.body.classList.remove('modal-open');
+  }
+
+  function onboardingFillFields(){
+    const theme = store.get('theme','auto');
+    const themeSelect = $('#onbTheme');
+    if(themeSelect){ themeSelect.value = theme; }
+    const cardStyle = store.get('ui.cardStyle','glass');
+    const cardSelect = $('#onbCardStyle');
+    if(cardSelect){ cardSelect.value = cardStyle; }
+    onboardingRenderBgPresets();
+    const bgRotate = $('#onbBgRotate'); if(bgRotate){ const state=bgLoadState(); bgRotate.checked = !!(state && state.rotation && state.rotation.enabled); }
+    const engineSelect = $('#onbEngine');
+    if(engineSelect){
+      const enabled = store.get('engines.enabled', Object.keys(ENGINES));
+      engineSelect.value = enabled[0] || 'google';
+    }
+    const widgetConf = store.get('widgets', widgetDefaults());
+    $$('.onb-widget-toggle').forEach(cb=>{ const key=cb.getAttribute('data-widget'); if(key && key in widgetConf) cb.checked = !!widgetConf[key]; });
+    const tint = $('#onbTint'); if(tint){ tint.checked = false; }
+    const city = store.get('weather.city','');
+    const cityInput = $('#onbCity');
+    if(cityInput){ cityInput.value = city; }
+  }
+
+  function onboardingOpen(force=false){
+    const modal = $('#onboarding');
+    if(!modal) return;
+    const resume = store.get('onboarding.resume', false);
+    if(store.get('onboarding.done', false) && !force && !resume) return;
+    const steps = $$('.onb-step', modal);
+    const maxStep = Math.max(0, steps.length - 1);
+    const resumeStep = Number(store.get('onboarding.step', 0)) || 0;
+    onboardingState.step = resumeStep >=0 ? Math.min(resumeStep, maxStep) : 0;
+    onboardingState.pendingReload = false;
+    store.set('onboarding.resume', false);
+    store.set('onboarding.step', 0);
+    onboardingFillFields();
+    onboardingRenderPresets();
+    onboardingUpdateUi();
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
   }
 
   // ===== Background engine
@@ -2534,6 +2850,21 @@
     renderDataPresets();
     const presetSelect = $('#dataPresetSelect'); if(presetSelect) presetSelect.addEventListener('change', updateDataPresetMeta);
     const presetApply = $('#applyPreset'); if(presetApply) presetApply.addEventListener('click', applyDataPreset);
+    const restartOnb = $('#restartOnboarding'); if(restartOnb) restartOnb.addEventListener('click', ()=>{ store.set('onboarding.done', false); onboardingOpen(true); });
+
+    // Onboarding modal
+    const onbNext = $('#onbNext'); if(onbNext) onbNext.addEventListener('click', onboardingNext);
+    const onbPrev = $('#onbPrev'); if(onbPrev) onbPrev.addEventListener('click', onboardingPrev);
+    const onbSkip = $('#onbSkip'); if(onbSkip) onbSkip.addEventListener('click', onboardingSkip);
+    const onbClose = $('#onbClose'); if(onbClose) onbClose.addEventListener('click', onboardingSkip);
+    const onbPresetSelect = $('#onbPresetSelect'); if(onbPresetSelect) onbPresetSelect.addEventListener('change', onboardingUpdatePresetMeta);
+    const onbApplyPresetBtn = $('#onbApplyPreset'); if(onbApplyPresetBtn) onbApplyPresetBtn.addEventListener('click', onboardingApplyPreset);
+    const onbTheme = $('#onbTheme'); if(onbTheme) onbTheme.addEventListener('change', e=>{ const v=e.target.value; store.set('theme', v); applyTheme(v); });
+    const onbCardStyle = $('#onbCardStyle'); if(onbCardStyle) onbCardStyle.addEventListener('change', e=>{ const allowed=['glass','solid','transparent','minimal']; const val = allowed.includes(e.target.value) ? e.target.value : 'glass'; store.set('ui.cardStyle', val); applyCardStyle(); });
+    const onbBgPreset = $('#onbBgPreset'); if(onbBgPreset) onbBgPreset.addEventListener('change', ()=>{ const val=onbBgPreset.value; if(val) bgApply({ type:'preset', id: val }); });
+    const onbBgRotate = $('#onbBgRotate'); if(onbBgRotate) onbBgRotate.addEventListener('change', ()=>{ const checked=!!onbBgRotate.checked; bgUpdateState(state=>{ state.rotation.enabled = checked; return state; }); });
+    const onbCity = $('#onbCity'); if(onbCity) onbCity.addEventListener('keydown', e=>{ if(e.key==='Enter'){ e.preventDefault(); onboardingNext(); } });
+    const onbModal = $('#onboarding'); if(onbModal) onbModal.addEventListener('click', e=>{ if(e.target.id==='onboarding') onboardingSkip(); });
 
     // Persist settings fields (shortcuts, feeds, wordlist)
     $('#shortcutConfig').addEventListener('change', ()=>{ try{ const j=JSON.parse($('#shortcutConfig').value); store.set('shortcuts', j);}catch{ alert('Ungueltiges Shortcuts-JSON'); } });
@@ -2595,7 +2926,12 @@
 
     // Close modal on Escape / overlay click
     $('#settingsModal').addEventListener('click', e=>{ if(e.target.id==='settingsModal') closeSettings(); });
-    document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeSettings(); });
+    document.addEventListener('keydown', e=>{
+      if(e.key==='Escape'){
+        if($('#onboarding') && $('#onboarding').classList.contains('open')) onboardingSkip();
+        else closeSettings();
+      }
+    });
 
     // Command Palette (Ctrl/Cmd+K)
     document.addEventListener('keydown', e=>{
@@ -2608,6 +2944,7 @@
         if(tiles[n]) openUrl(tiles[n].url, tiles[n].title);
       }
     });
+    setTimeout(()=> onboardingOpen(false), 350);
     applyAccentTint();
   }
 

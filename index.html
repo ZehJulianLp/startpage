@@ -228,7 +228,7 @@
           </div>
         </div>
         <div class="row">
-          <label for="clockColor">Zeit & Datum</label>
+          <label for="clockColor">Zeit & Datum</label>       
           <div>
             <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
               <input type="color" id="clockColor" />
@@ -268,7 +268,14 @@
               <select id="dataPresetSelect"></select>
               <button class="btn" id="applyPreset">Preset laden</button>
             </div>
-            <div class="muted" id="dataPresetMeta">Presets liegen als exportierte JSONs unter assets/presets/. Wer mag, kann eigene Presets ins Repo legen.</div>
+            <div class="muted" id="dataPresetMeta">Presets liegen als exportierte JSONs unter assets/presets/. User-Presets aus assets/user-presets/ werden automatisch gemerged.</div>
+          </div>
+        </div>
+        <div class="row">
+          <label>Setup</label>
+          <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center">
+            <button class="btn" id="restartOnboarding" type="button">Setup neu starten</button>
+            <div class="muted">Startet den kompakten Einrichtungs-Dialog erneut.</div>
           </div>
         </div>
         <div class="row">
@@ -276,6 +283,108 @@
           <div class="muted" id="dataNote">Export speichert sämtliche Einstellungen & Daten lokal als JSON. Import überschreibt vorhandene Einträge.</div>
         </div>
       </div>    </div>
+  </div>
+
+  <!-- Onboarding Modal -->
+  <div class="modal" id="onboarding" aria-hidden="true">
+    <div class="sheet onboarding-sheet">
+      <div class="onb-header">
+        <div>
+          <h4>Setup starten</h4>
+          <div class="muted" id="onbProgressLabel">Schritt 1 von 5</div>
+        </div>
+        <div style="display:flex; gap:8px">
+          <button class="btn" type="button" id="onbSkip">Setup überspringen</button>
+          <button class="btn" type="button" id="onbClose">Schließen</button>
+        </div>
+      </div>
+      <div class="onb-steps">
+        <div class="onb-step active" data-step="preset">
+          <h5>Preset wählen</h5>
+          <div class="muted" id="onbPresetHint">Wähle ein Preset oder überspringe diesen Schritt.</div>
+          <select id="onbPresetSelect"></select>
+          <div class="muted" id="onbPresetMeta"></div>
+          <div style="display:flex; gap:8px; margin-top:8px">
+            <button class="btn" type="button" id="onbApplyPreset">Preset anwenden</button>
+          </div>
+        </div>
+        <div class="onb-step" data-step="appearance">
+          <h5>Darstellung</h5>
+          <div class="onb-field">
+            <label for="onbTheme">Theme</label>
+            <select id="onbTheme">
+              <option value="auto">Auto (System)</option>
+              <option value="dark">Dark</option>
+              <option value="light">Light</option>
+            </select>
+          </div>
+          <div class="onb-field">
+            <label for="onbCardStyle">Karten-Stil</label>
+            <select id="onbCardStyle">
+              <option value="glass">Glas (Standard)</option>
+              <option value="solid">Vollfläche</option>
+              <option value="transparent">Transparent</option>
+              <option value="minimal">Soft Minimal</option>
+            </select>
+          </div>
+          <div class="onb-field">
+            <label for="onbBgPreset">Hintergrund</label>
+            <select id="onbBgPreset"></select>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap">
+            <label style="display:flex; align-items:center; gap:6px; font-size:14px">
+              <input type="checkbox" id="onbBgRotate" />
+              Rotation aktivieren
+            </label>
+          </div>
+        </div>
+        <div class="onb-step" data-step="search">
+          <h5>Suche</h5>
+          <div class="onb-field">
+            <label for="onbEngine">Standard-Suchmaschine</label>
+            <select id="onbEngine">
+              <option value="google">Google</option>
+              <option value="ddg">DuckDuckGo</option>
+              <option value="bing">Bing</option>
+              <option value="yt">YouTube</option>
+              <option value="wikipedia">Wikipedia</option>
+              <option value="maps">Google Maps</option>
+            </select>
+          </div>
+        </div>
+        <div class="onb-step" data-step="widgets">
+          <h5>Widgets</h5>
+          <div style="display:flex; flex-wrap:wrap; gap:10px">
+            <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="todo" /> To-Do</label>
+            <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="notes" /> Notizen</label>
+            <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="tiles" /> Favoriten</label>
+            <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="weather" /> Wetter</label>
+            <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="news" /> News</label>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px; margin-top:10px">
+            <label style="display:flex; align-items:center; gap:6px; font-size:14px">
+              <input type="checkbox" id="onbTint" />
+              Widgets an Akzent einfärben
+            </label>
+          </div>
+        </div>
+        <div class="onb-step" data-step="weather">
+          <h5>Wetter</h5>
+          <div class="onb-field">
+            <label for="onbCity">Standard-Stadt</label>
+            <input id="onbCity" type="text" placeholder="z.B. Hannover" />
+          </div>
+          <div class="muted">Du kannst später jederzeit alles in den Einstellungen ändern.</div>
+        </div>
+      </div>
+      <div class="onb-footer">
+        <div class="onb-dots" id="onbDots"></div>
+        <div style="display:flex; gap:8px; margin-left:auto">
+          <button class="btn" type="button" id="onbPrev">Zurück</button>
+          <button class="btn" type="button" id="onbNext">Weiter</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Command Palette -->

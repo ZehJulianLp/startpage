@@ -11,9 +11,10 @@ Startpage ist eine personalisierbare Startseite im Dashboard-Stil. Suche, Wetter
 - Wetter: Aktuell + Tages-Min/Max + 3h-Prognose via Open-Meteo; Standardstadt setzbar.
 - News: RSS-Reader mit Standardquellen, erweiterbar um eigene Feeds (AllOrigins Proxy).
 - Zuletzt & Systemstatus: Verlaufs-Chips sowie Browser-Infos (RAM, CPU-Kerne, Netztyp).
+- Setup-Assistent: Kompakter Dialog mit Preset-Wahl, Theme/Stil + Hintergrund, Suchmaschine, Widgets & Wetter (überspringbar, später erneut startbar).
 - Layout & Styling: Dark/Light/Auto, Karten-Stile (Glas, Vollflaeche, Transparent, Soft Minimal), Widget-Farben, separate Farben fuer Uhr/Suche, Button "Widgets einfaerben".
 - Kommandopalette: Strg/Cmd+K fuer Aktionen (Theme, Tiles, Widget-Updates etc.).
-- Daten: Export/Import als JSON plus Data Presets direkt aus assets/presets/ (starter, coding, gaming, minimal, productivity, reading, art, privacy, student, finance).
+- Daten: Export/Import als JSON plus Data Presets direkt aus assets/presets/ (starter, coding, gaming, minimal, productivity, reading, art, privacy, student, finance); lokale User-Presets unter assets/user-presets/ werden automatisch erkannt.
 
 ## Projektstruktur
 - index.html ? Markup, Styles, JS; neue Logik unten im <script> und aus init() starten.
@@ -23,20 +24,21 @@ Startpage ist eine personalisierbare Startseite im Dashboard-Stil. Suche, Wetter
 
 ## Lokale Nutzung
 Kein Build notwendig. Starte z.B.:
-`ash
+```bash
 python -m http.server 4173
-`
+```
 oder
-`ash
+```bash
 npx serve .
-`
+```
 Danach: http://localhost:4173.
 
 ## Anpassung & Erweiterung
 - Hintergrund & Erscheinung: Presets/Uploads/Sammlungen/Rotation im Tab; Akzentfarbe wird aus dem aktiven Bild gesetzt.
 - Suche & Feeds: Engines ein-/ausschalten, !Shortcuts + {q} im Tab "Suche & Feeds" pflegen; Autocomplete nutzt Bangs/Shortcuts/Recent + globale & Preset-Wortliste.
 - Widgets & Layout: Sichtbarkeit, Karten-Stil, Standard-Stadt (Wetter), Widget-Farben, Uhr/Suche-Farben; Reset stellt Stilvorgaben her.
-- Daten: Export/Import aller localStorage-Eintraege als JSON oder fertige Data Presets laden (assets/data-presets.json + assets/presets/*).
+- Daten: Export/Import aller localStorage-Eintraege als JSON oder fertige Data Presets laden (assets/data-presets.json + assets/presets/*); User-Presets kannst du unter assets/user-presets/ ablegen (optional eigenes data-presets.json Manifest).
+- Setup: Der Assistent erscheint beim ersten Start, ist überspringbar und lässt sich im Tab "Daten" via "Setup neu starten" erneut öffnen.
 - Palette: Strg/Cmd+K fuer Befehle (Tiles oeffnen, Theme wechseln, Widgets einfuegen, etc.).
 
 Neue Komponenten bitte mit 2-Spaces-Indent, camelCase (JS), hyphen-case (CSS). Wiederverwendbare Logik unter den Utilities platzieren und in init() aufrufen.
@@ -57,4 +59,4 @@ Manuelle Smoke-Tests:
 Automatisierte E2E-Tests optional (Playwright/Cypress) unter tests/*.e2e.spec.js.
 
 ## Lizenz
-MIT-Lizenz (siehe LICENSE).
+MIT-Lizenz (siehe LICENSE)
