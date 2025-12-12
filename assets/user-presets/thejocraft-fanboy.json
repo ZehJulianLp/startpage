@@ -1,0 +1,113 @@
+{
+  "theme": "auto",
+  "ui.cardStyle": "minimal",
+  "ui.clock.color": "#ff0000",
+  "ui.search.color": "#ff3333",
+
+  "widgets": {
+    "todo": true,
+    "notes": true,
+    "tiles": true,
+    "weather": true,
+    "quote": true,
+    "recent": true,
+    "system": true,
+    "news": false
+  },
+
+  "widget.colors": {
+    "todo": "#ff0000",
+    "notes": "#ff3333",
+    "tiles": "#ff0000",
+    "weather": "#ff3333",
+    "quote": "#ff0000",
+    "recent": "#ff3333",
+    "system": "#ff0000",
+    "news": "#ff3333"
+  },
+
+  "weather.city": "Münster",
+
+  "shortcuts": {
+    "!tjc": "https://thejocraft.de/",
+    "!tjcvid": "https://www.youtube.com/thejocraft",
+    "!tjcstream": "https://www.twitch.tv/thejocraft_live",
+    "!tjcdiscord": "https://discord.com/invite/thejocraft",
+    "!tjcmap": "https://thejocraft.de/map",
+    "!tjcwiki": "https://minecraft.wiki/w/Special:Search?search=TheJoCraft+{q}",
+    "!tjcmerch": "https://lolingo.de/pages/thejocraft",
+    "!tjctwitter": "https://x.com/thejocraft",
+    "!tjcinsta": "https://www.instagram.com/josef__heinrich/",
+    "!tjctt": "https://www.tiktok.com/@thejocraft42"
+  },
+
+"wordlist.inline": [
+  "thejocraft","tjc","josef","heinrich",
+  "minecraft","takumi","labor","kaiser","gommehd",
+
+  "craftattack","crunch","kamin","jojun",
+  "baugeschichte","storymode","server","map","projekt",
+
+  "updatevideo","strukturen","timelapse","konzept","ideen",
+  "architektur","ästhetik","megabau","historie","dokumentation",
+
+  "event","clip","reaction","short","karte","welt","rp","projekt",
+  "baustelle","planung","terraforming","projektvorstellung",
+
+  "redstone","commandblock","commandblocks","kommandoblock","kommandoblöcke"
+],
+
+
+  "todos": [
+    { "text": "TheJoCraft Videos schauen",        "done": false },
+    { "text": "Neue Folgen liken",                "done": false },
+    { "text": "Community-Events verfolgen",        "done": false },
+    { "text": "Map / Projekte regelmäßig ansehen", "done": false }
+  ],
+
+  "tiles": [
+    { "title": "YouTube – TheJoCraft",       "url": "https://www.youtube.com/thejocraft" },
+    { "title": "Twitch – TheJoCraft",        "url": "https://www.twitch.tv/thejocraft_live" },
+    { "title": "Discord – TheJoCraft",       "url": "https://discord.com/invite/thejocraft" },
+    { "title": "TheJoCraft Website",         "url": "https://thejocraft.de/" },
+    { "title": "TheJoCraft Map",             "url": "https://thejocraft.de/map" },
+    { "title": "Uploadplan",                 "url": "https://thejocraft.de/uploadplan" },
+    { "title": "Merch",                      "url": "https://lolingo.de/pages/thejocraft" },
+    { "title": "TJC TikTok",                 "url": "https://www.tiktok.com/@thejocraft42" },
+    { "title": "TJC Instagram",              "url": "https://www.instagram.com/josef__heinrich/" },
+    { "title": "TJC Twitter",                "url": "https://x.com/thejocraft" }
+  ],
+
+  "notes": "TheJoCraft ist ein deutscher Minecraft-Content-Creator, der für seine detailverliebten Erklärvideos, Projekte, Karten, Stadtbaukonzepte und Minecraft-Bildungsansätze bekannt ist. Er verbindet Minecraft mit Architektur, Gamification und didaktischen Ideen. Als Master-of-Education zeigt er, wie man kreative Projekte strukturiert, dokumentiert und verständlich aufbereitet.",
+
+  "recent": [],
+
+  "bg.state": {
+    "active": {
+      "type": "custom",
+      "url": "https://static-cdn.jtvnw.net/jtv_user_pictures/449e0a0a-3400-4370-829c-3c93a111ba82-profile_image-300x300.png"
+    },
+    "customUrl": "https://static-cdn.jtvnw.net/jtv_user_pictures/449e0a0a-3400-4370-829c-3c93a111ba82-profile_image-300x300.png",
+    "uploads": [],
+    "favorites": [],
+    "collections": [],
+    "history": [],
+    "accentCache": {},
+    "rotation": {
+      "enabled": false,
+      "strategy": "interval",
+      "intervalMinutes": 90,
+      "locked": false,
+      "sources": {
+        "presets": false,
+        "favorites": false,
+        "uploads": false,
+        "collections": false,
+        "custom": true
+      }
+    },
+    "ui": {
+      "tab": "custom"
+    }
+  }
+}
