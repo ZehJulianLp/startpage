@@ -1,9 +1,16 @@
 ﻿[
   {
     "id": "thejocraft-fanboy",
-    "name": "TheJoCraft Fanboy",
-    "description": "Lokales Preset mit TheJoCraft-Setup",
+    "name": "TheJoCraft Fanboy preset by Julian",
+    "description": "TheJoCraft Fanboy preset with red color scheme.",
     "file": "thejocraft-fanboy.json",
     "tags": ["user", "minecraft"]
+  },
+  {
+    "id": "fallout",
+    "name": "Fallout Preset by Peter101",
+    "description": "Fallout themed preset with a dark green and rugged look.",
+    "file": "fallout.json",
+    "tags": ["user", "fallout"]
   }
 ]
