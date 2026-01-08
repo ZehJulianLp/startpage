@@ -12,5 +12,12 @@
     "description": "Fallout themed preset with a dark green and rugged look.",
     "file": "fallout.json",
     "tags": ["user", "fallout"]
+  },
+  {
+    "id": "patchnote",
+    "name": "El Patchnote Preset",
+    "description": "A preset for funny Ausmistungs Stuff. Includes links to Patchnotes Socials and other useful stuff.",
+    "file": "patchnote.json",
+    "tags": ["user", "ausmistung", "patchnote"]
   }
 ]
