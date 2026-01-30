@@ -11,7 +11,8 @@
     "quote": true,
     "recent": true,
     "system": true,
-    "news": true
+    "news": true,
+    "transport": true
   },
   "widget.colors": {
     "todo": "#2563eb",
@@ -21,17 +22,50 @@
     "quote": "#2563eb",
     "recent": "#22c55e",
     "system": "#2563eb",
-    "news": "#22c55e"
+    "news": "#22c55e",
+    "transport": ""
   },
   "tiles": [
-    { "title": "Gmail", "url": "https://mail.google.com", "key": "gm" },
-    { "title": "Drive", "url": "https://drive.google.com", "key": "dr" },
-    { "title": "Calendar", "url": "https://calendar.google.com", "key": "cal" },
-    { "title": "Notion", "url": "https://www.notion.so", "key": "nt" },
-    { "title": "Jira", "url": "https://www.atlassian.com/software/jira", "key": "ji" },
-    { "title": "Linear", "url": "https://linear.app", "key": "ln" },
-    { "title": "Slack", "url": "https://app.slack.com/client", "key": "sl" },
-    { "title": "GitHub", "url": "https://github.com", "key": "gh" }
+    {
+      "title": "Gmail",
+      "url": "https://mail.google.com",
+      "key": "gm"
+    },
+    {
+      "title": "Drive",
+      "url": "https://drive.google.com",
+      "key": "dr"
+    },
+    {
+      "title": "Calendar",
+      "url": "https://calendar.google.com",
+      "key": "cal"
+    },
+    {
+      "title": "Notion",
+      "url": "https://www.notion.so",
+      "key": "nt"
+    },
+    {
+      "title": "Jira",
+      "url": "https://www.atlassian.com/software/jira",
+      "key": "ji"
+    },
+    {
+      "title": "Linear",
+      "url": "https://linear.app",
+      "key": "ln"
+    },
+    {
+      "title": "Slack",
+      "url": "https://app.slack.com/client",
+      "key": "sl"
+    },
+    {
+      "title": "GitHub",
+      "url": "https://github.com",
+      "key": "gh"
+    }
   ],
   "shortcuts": {
     "!cal": "https://calendar.google.com/calendar/r/search?q={q}",
@@ -40,8 +74,21 @@
     "!notion": "https://www.notion.so/search?q={q}",
     "!ddg": "https://duckduckgo.com/?q={q}"
   },
-  "wordlist.inline": ["sprint","kanban","deadline","priority","focus"],
-  "engines.enabled": ["google", "ddg", "bing", "yt", "wikipedia", "maps"],
+  "wordlist.inline": [
+    "sprint",
+    "kanban",
+    "deadline",
+    "priority",
+    "focus"
+  ],
+  "engines.enabled": [
+    "google",
+    "ddg",
+    "bing",
+    "yt",
+    "wikipedia",
+    "maps"
+  ],
   "news.custom": {
     "WSJ Tech": "https://feeds.a.dj.com/rss/RSSWSJD.xml",
     "The Verge": "https://www.theverge.com/rss/index.xml"
@@ -52,10 +99,18 @@
   "recent": [],
   "weather.city": "Berlin",
   "bg.state": {
-    "active": { "type": "preset", "id": "mountain-dawn" },
+    "active": {
+      "type": "preset",
+      "id": "mountain-dawn"
+    },
     "customUrl": "",
     "uploads": [],
-    "favorites": [{ "type": "preset", "id": "mountain-dawn" }],
+    "favorites": [
+      {
+        "type": "preset",
+        "id": "mountain-dawn"
+      }
+    ],
     "collections": [],
     "history": [],
     "accentCache": {},
@@ -64,16 +119,46 @@
       "strategy": "time",
       "intervalMinutes": 90,
       "locked": false,
-      "sources": { "presets": true, "favorites": true, "uploads": true, "collections": true, "custom": true },
+      "sources": {
+        "presets": true,
+        "favorites": true,
+        "uploads": true,
+        "collections": true,
+        "custom": true
+      },
       "schedule": {
-        "morning": { "type": "preset", "id": "mountain-dawn" },
-        "day": { "type": "preset", "id": "forest-mist" },
-        "evening": { "type": "preset", "id": "city-neon" },
-        "night": { "type": "preset", "id": "aurora" },
-        "light": { "type": "preset", "id": "forest-mist" },
-        "dark": { "type": "preset", "id": "city-neon" }
+        "morning": {
+          "type": "preset",
+          "id": "mountain-dawn"
+        },
+        "day": {
+          "type": "preset",
+          "id": "forest-mist"
+        },
+        "evening": {
+          "type": "preset",
+          "id": "city-neon"
+        },
+        "night": {
+          "type": "preset",
+          "id": "aurora"
+        },
+        "light": {
+          "type": "preset",
+          "id": "forest-mist"
+        },
+        "dark": {
+          "type": "preset",
+          "id": "city-neon"
+        }
       }
     },
-    "ui": { "tab": "presets" }
-  }
+    "ui": {
+      "tab": "presets"
+    }
+  },
+  "transport.default": {
+    "name": "Berlin Hbf"
+  },
+  "transport.query": "Berlin Hbf"
 }

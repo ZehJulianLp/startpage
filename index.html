@@ -76,12 +76,34 @@
         <div class="muted" id="weatherFoot" style="margin-top:8px; font-size:12px">Quelle: Open‑Meteo</div>
       </section>
 
+      <section class="card col-8" id="transportCard">
+        <div class="transport-top">
+          <h3>Transport</h3>
+          <div style="display:flex; gap:8px; align-items:center">
+            <select id="transportDuration" aria-label="Zeitraum" style="width: 110px">
+              <option value="30">30 min</option>
+              <option value="60">60 min</option>
+              <option value="90">90 min</option>
+              <option value="120">120 min</option>
+            </select>
+            <button class="btn" id="refreshTransport" title="Neu laden">↻</button>
+          </div>
+        </div>
+        <div class="transport-search">
+          <input type="text" id="transportQuery" placeholder="Station suchen…" autocomplete="off" />
+          <div id="transportSuggest" class="transport-suggest hidden"></div>
+        </div>
+        <div class="transport-selected muted" id="transportSelected">Keine Station gewählt</div>
+        <ul id="transportList" class="transport-list"></ul>
+        <div class="muted" id="transportFoot" style="margin-top:8px; font-size:12px">Quelle: transport.rest</div>
+      </section>
+
       <section class="card col-4" id="quoteCard">
         <h3>Quote / Nerd‑Impulse</h3>
         <div class="quote" id="quote">—</div>
       </section>
 
-      <section class="card col-4" id="recent">
+      <section class="card col-8" id="recent">
         <h3>Zuletzt</h3>
         <div class="recent-list" id="recentList"></div>
         <div class="muted" style="margin-top:8px; font-size:12px">Hinweis: Zeigt nur Aktionen von dieser Startseite (geklickte Kacheln & Suchen).</div>
@@ -101,13 +123,13 @@
           </div>
         </div>
         <ul id="newsList"></ul>
-        <div class="muted" style="margin-top:8px; font-size:12px">RSS via AllOrigins (CORS‑Proxy)</div>
+        <div class="muted" style="margin-top:8px; font-size:12px">RSS via Startpage Proxy (CORS‑Proxy)</div>
       </section>
     </main>
 
     <footer class="muted" style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:6px">
       <div>Local‑first Dashboard · speichert nur im Browser (localStorage)</div>
-      <div>v1.5</div>
+      <div>v1.6</div>
     </footer>
   </div>
 
@@ -214,6 +236,13 @@
         <div class="row">
           <label for="defaultCity">Standard-Stadt (Wetter)</label>
           <input id="defaultCity" type="text" placeholder="z.B. Hannover" />
+        </div>
+        <div class="row">
+          <label for="transportDefaultInput">Standard-Haltestelle (Transport)</label>
+          <div style="position:relative">
+            <input id="transportDefaultInput" type="text" placeholder="Station suchen…" autocomplete="off" />
+            <div id="transportDefaultSuggest" class="transport-suggest hidden"></div>
+          </div>
         </div>
         <div class="row">
           <label for="cardStyle">Kachel-Stil</label>
@@ -359,7 +388,15 @@
             <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="notes" /> Notizen</label>
             <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="tiles" /> Favoriten</label>
             <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="weather" /> Wetter</label>
+            <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="transport" /> Transport</label>
             <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="news" /> News</label>
+          </div>
+          <div class="onb-field" id="onbTransportField" style="display:none; margin-top:12px">
+            <label for="onbTransportInput">Standard-Haltestelle (Transport)</label>
+            <div style="position:relative">
+              <input id="onbTransportInput" type="text" placeholder="Station suchen…" autocomplete="off" />
+              <div id="onbTransportSuggest" class="transport-suggest hidden"></div>
+            </div>
           </div>
           <div style="display:flex; align-items:center; gap:8px; margin-top:10px">
             <label style="display:flex; align-items:center; gap:6px; font-size:14px">

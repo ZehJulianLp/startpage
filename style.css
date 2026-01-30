@@ -306,6 +306,29 @@
     .weather-hourly .chip-top { display:flex; width:100%; align-items:center; justify-content:space-between; gap:8px; font-weight:600 }
     .weather-hourly .chip-temp { font-variant-numeric:tabular-nums }
     .weather-hourly .chip-text { color: var(--muted); font-size:12px }
+
+    /* Transport */
+    .transport-top { display:flex; align-items:center; justify-content:space-between; gap:8px }
+    .transport-search { position:relative; margin-top:8px }
+    .transport-suggest { position:absolute; left:0; right:0; top: calc(100% - 4px); background: var(--bg); border:1px solid var(--card-border-current); box-shadow: var(--card-shadow-current); border-radius:12px; padding:6px; max-height:220px; overflow:auto; z-index: 20; }
+    .transport-suggest.hidden { display:none; }
+    .transport-suggest-item { width:100%; text-align:left; display:flex; align-items:center; justify-content:space-between; gap:8px; padding:8px 10px; border-radius:8px; background: transparent; border: none; color: var(--fg); cursor:pointer; font-size:14px; }
+    .transport-suggest-item:hover { background: color-mix(in srgb, var(--accent) 16%, transparent); }
+    .transport-suggest-name { flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .transport-suggest-meta { font-size:11px; text-transform:uppercase; color: var(--muted); letter-spacing:0.5px; }
+    .transport-selected { margin-top:6px; font-size:12px }
+    .transport-list { list-style:none; padding:0; margin:10px 0 0; display:flex; flex-direction:column; gap:8px; max-height:260px; overflow:auto }
+    .transport-item { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:8px 10px; border-radius:12px; background: var(--bg-soft); border:1px solid rgba(255,255,255,.06); }
+    .transport-main { display:flex; flex-direction:column; gap:2px; min-width:0 }
+    .transport-line { font-weight:600 }
+    .transport-dir { color: var(--muted); font-size:12px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:180px }
+    .transport-meta { display:flex; align-items:center; gap:8px; font-variant-numeric:tabular-nums }
+    .transport-time { font-weight:600 }
+    .transport-platform { color: var(--muted); font-size:12px }
+    .transport-delay { font-size:12px; font-weight:600 }
+    .transport-delay.late { color: var(--danger) }
+    .transport-delay.early { color: var(--ok) }
+    .transport-cancelled { color: var(--danger); font-weight:600; font-size:12px }
     .chip { background: var(--bg-soft); padding:6px 10px; border:1px solid rgba(255,255,255,.06); border-radius:999px; font-size:12px; white-space:nowrap }
 
     /* Recent */

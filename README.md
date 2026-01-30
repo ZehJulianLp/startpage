@@ -1,7 +1,7 @@
 # Startpage
 
 ## Ueberblick
-Startpage ist eine personalisierbare Startseite im Dashboard-Stil. Suche, Wetter, Aufgaben, Notizen, News und Systemstatus laufen vollstaendig im Browser (localStorage). Version: **v1.4**. Live: https://julianverse.de/startpage/
+Startpage ist eine personalisierbare Startseite im Dashboard-Stil. Suche, Wetter, Aufgaben, Notizen, News und Systemstatus laufen vollstaendig im Browser (localStorage). Version: **v1.6**. Live: https://julianverse.de/startpage/
 
 ## Kernfunktionen
 - Schnellsuche: Mehrere Engines, !Bangs (!g, !ddg, !bing, !yt, !wiki, !maps), eigene Shortcuts und Autocomplete (Bangs, Shortcuts, Recent, globale Wortliste + Preset-Wortliste).
@@ -9,9 +9,10 @@ Startpage ist eine personalisierbare Startseite im Dashboard-Stil. Suche, Wetter
 - Favoriten-Kacheln: Drag & Drop, Schnellzugriff 1-9, Reset auf Defaults.
 - To-Do & Notizen: Persistente Liste und Notizfeld.
 - Wetter: Aktuell + Tages-Min/Max + 3h-Prognose via Open-Meteo; Standardstadt setzbar.
-- News: RSS-Reader mit Standardquellen, erweiterbar um eigene Feeds (AllOrigins Proxy).
+- Transport: Haltestellen-Suche + Abfahrten (via Startpage-Proxy fuer transport.rest); Standard-Haltestelle setzbar.
+- News: RSS-Reader mit Standardquellen, erweiterbar um eigene Feeds (Startpage RSS Proxy).
 - Zuletzt & Systemstatus: Verlaufs-Chips sowie Browser-Infos (RAM, CPU-Kerne, Netztyp).
-- Setup-Assistent: Kompakter Dialog mit Preset-Wahl, Theme/Stil + Hintergrund, Suchmaschine, Widgets & Wetter (überspringbar, später erneut startbar).
+- Setup-Assistent: Kompakter Dialog mit Preset-Wahl, Theme/Stil + Hintergrund, Suchmaschine, Widgets + Transport-Default sowie Wetter (ueberspringbar, spaeter erneut startbar).
 - Layout & Styling: Dark/Light/Auto, Karten-Stile (Glas, Vollflaeche, Transparent, Soft Minimal), Widget-Farben, separate Farben fuer Uhr/Suche, Button "Widgets einfaerben".
 - Kommandopalette: Strg/Cmd+K fuer Aktionen (Theme, Tiles, Widget-Updates etc.).
 - Daten: Export/Import als JSON plus Data Presets direkt aus assets/presets/ (starter, coding, gaming, minimal, productivity, reading, art, privacy, student, finance); lokale User-Presets unter assets/user-presets/ werden automatisch erkannt.
@@ -36,7 +37,7 @@ Danach: http://localhost:4173.
 ## Anpassung & Erweiterung
 - Hintergrund & Erscheinung: Presets/Uploads/Sammlungen/Rotation im Tab; Akzentfarbe wird aus dem aktiven Bild gesetzt.
 - Suche & Feeds: Engines ein-/ausschalten, !Shortcuts + {q} im Tab "Suche & Feeds" pflegen; Autocomplete nutzt Bangs/Shortcuts/Recent + globale & Preset-Wortliste.
-- Widgets & Layout: Sichtbarkeit, Karten-Stil, Standard-Stadt (Wetter), Widget-Farben, Uhr/Suche-Farben; Reset stellt Stilvorgaben her.
+- Widgets & Layout: Sichtbarkeit, Karten-Stil, Standard-Stadt (Wetter) + Standard-Haltestelle (Transport), Widget-Farben, Uhr/Suche-Farben; Reset stellt Stilvorgaben her.
 - Daten: Export/Import aller localStorage-Eintraege als JSON oder fertige Data Presets laden (assets/data-presets.json + assets/presets/*); User-Presets kannst du unter assets/user-presets/ ablegen (optional eigenes data-presets.json Manifest).
 - Setup: Der Assistent erscheint beim ersten Start, ist überspringbar und lässt sich im Tab "Daten" via "Setup neu starten" erneut öffnen.
 - Palette: Strg/Cmd+K fuer Befehle (Tiles oeffnen, Theme wechseln, Widgets einfuegen, etc.).
@@ -45,7 +46,7 @@ Neue Komponenten bitte mit 2-Spaces-Indent, camelCase (JS), hyphen-case (CSS). W
 
 ## Daten & Integrationen
 - Speicherung: localStorage only.
-- APIs: Open-Meteo (Wetter/Geocoding), AllOrigins (RSS), Google Fonts (Inter).
+- APIs: Open-Meteo (Wetter/Geocoding), Startpage-Proxy (transport.rest + RSS), Google Fonts (Inter).
 
 ## Tests
 Manuelle Smoke-Tests:

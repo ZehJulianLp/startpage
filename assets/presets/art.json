@@ -11,7 +11,8 @@
     "quote": true,
     "recent": true,
     "system": true,
-    "news": true
+    "news": true,
+    "transport": true
   },
   "widget.colors": {
     "todo": "#d946ef",
@@ -21,17 +22,50 @@
     "quote": "#d946ef",
     "recent": "#22d3ee",
     "system": "#d946ef",
-    "news": "#22d3ee"
+    "news": "#22d3ee",
+    "transport": ""
   },
   "tiles": [
-    { "title": "Behance", "url": "https://www.behance.net", "key": "bh" },
-    { "title": "Dribbble", "url": "https://dribbble.com", "key": "dr" },
-    { "title": "Unsplash", "url": "https://unsplash.com", "key": "un" },
-    { "title": "Pinterest", "url": "https://www.pinterest.com", "key": "pt" },
-    { "title": "Figma Community", "url": "https://www.figma.com/community", "key": "fg" },
-    { "title": "Awwwards", "url": "https://www.awwwards.com", "key": "aw" },
-    { "title": "DeviantArt", "url": "https://www.deviantart.com", "key": "da" },
-    { "title": "Muzli", "url": "https://muz.li", "key": "mz" }
+    {
+      "title": "Behance",
+      "url": "https://www.behance.net",
+      "key": "bh"
+    },
+    {
+      "title": "Dribbble",
+      "url": "https://dribbble.com",
+      "key": "dr"
+    },
+    {
+      "title": "Unsplash",
+      "url": "https://unsplash.com",
+      "key": "un"
+    },
+    {
+      "title": "Pinterest",
+      "url": "https://www.pinterest.com",
+      "key": "pt"
+    },
+    {
+      "title": "Figma Community",
+      "url": "https://www.figma.com/community",
+      "key": "fg"
+    },
+    {
+      "title": "Awwwards",
+      "url": "https://www.awwwards.com",
+      "key": "aw"
+    },
+    {
+      "title": "DeviantArt",
+      "url": "https://www.deviantart.com",
+      "key": "da"
+    },
+    {
+      "title": "Muzli",
+      "url": "https://muz.li",
+      "key": "mz"
+    }
   ],
   "shortcuts": {
     "!bh": "https://www.behance.net/search/projects?search={q}",
@@ -39,8 +73,21 @@
     "!unsplash": "https://unsplash.com/s/photos/{q}",
     "!fig": "https://www.figma.com/community/search?modelType=everything&q={q}"
   },
-  "wordlist.inline": ["palette","canvas","sketch","gallery","color"],
-  "engines.enabled": ["google", "ddg", "bing", "yt", "wikipedia", "maps"],
+  "wordlist.inline": [
+    "palette",
+    "canvas",
+    "sketch",
+    "gallery",
+    "color"
+  ],
+  "engines.enabled": [
+    "google",
+    "ddg",
+    "bing",
+    "yt",
+    "wikipedia",
+    "maps"
+  ],
   "news.custom": {
     "Colossal": "https://www.thisiscolossal.com/feed/",
     "PetaPixel": "https://petapixel.com/feed/",
@@ -52,10 +99,18 @@
   "recent": [],
   "weather.city": "Hamburg",
   "bg.state": {
-    "active": { "type": "preset", "id": "ocean-calm" },
+    "active": {
+      "type": "preset",
+      "id": "ocean-calm"
+    },
     "customUrl": "",
     "uploads": [],
-    "favorites": [{ "type": "preset", "id": "ocean-calm" }],
+    "favorites": [
+      {
+        "type": "preset",
+        "id": "ocean-calm"
+      }
+    ],
     "collections": [],
     "history": [],
     "accentCache": {},
@@ -64,16 +119,46 @@
       "strategy": "time",
       "intervalMinutes": 120,
       "locked": false,
-      "sources": { "presets": true, "favorites": true, "uploads": true, "collections": true, "custom": true },
+      "sources": {
+        "presets": true,
+        "favorites": true,
+        "uploads": true,
+        "collections": true,
+        "custom": true
+      },
       "schedule": {
-        "morning": { "type": "preset", "id": "forest-mist" },
-        "day": { "type": "preset", "id": "ocean-calm" },
-        "evening": { "type": "preset", "id": "city-neon" },
-        "night": { "type": "preset", "id": "aurora" },
-        "light": { "type": "preset", "id": "forest-mist" },
-        "dark": { "type": "preset", "id": "city-neon" }
+        "morning": {
+          "type": "preset",
+          "id": "forest-mist"
+        },
+        "day": {
+          "type": "preset",
+          "id": "ocean-calm"
+        },
+        "evening": {
+          "type": "preset",
+          "id": "city-neon"
+        },
+        "night": {
+          "type": "preset",
+          "id": "aurora"
+        },
+        "light": {
+          "type": "preset",
+          "id": "forest-mist"
+        },
+        "dark": {
+          "type": "preset",
+          "id": "city-neon"
+        }
       }
     },
-    "ui": { "tab": "presets" }
-  }
+    "ui": {
+      "tab": "presets"
+    }
+  },
+  "transport.default": {
+    "name": "Hamburg Hbf"
+  },
+  "transport.query": "Hamburg Hbf"
 }

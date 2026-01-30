@@ -11,7 +11,8 @@
     "quote": true,
     "recent": true,
     "system": true,
-    "news": true
+    "news": true,
+    "transport": true
   },
   "widget.colors": {
     "todo": "#2563eb",
@@ -21,17 +22,50 @@
     "quote": "#2563eb",
     "recent": "#10b981",
     "system": "#2563eb",
-    "news": "#10b981"
+    "news": "#10b981",
+    "transport": ""
   },
   "tiles": [
-    { "title": "Moodle", "url": "https://moodle.org", "key": "md" },
-    { "title": "Notion", "url": "https://www.notion.so", "key": "nt" },
-    { "title": "Overleaf", "url": "https://www.overleaf.com", "key": "ol" },
-    { "title": "Google Drive", "url": "https://drive.google.com", "key": "dr" },
-    { "title": "Google Scholar", "url": "https://scholar.google.com", "key": "gs" },
-    { "title": "YouTube Edu", "url": "https://www.youtube.com/education", "key": "yt" },
-    { "title": "GitHub Classroom", "url": "https://classroom.github.com", "key": "gc" },
-    { "title": "Figma", "url": "https://www.figma.com", "key": "fg" }
+    {
+      "title": "Moodle",
+      "url": "https://moodle.org",
+      "key": "md"
+    },
+    {
+      "title": "Notion",
+      "url": "https://www.notion.so",
+      "key": "nt"
+    },
+    {
+      "title": "Overleaf",
+      "url": "https://www.overleaf.com",
+      "key": "ol"
+    },
+    {
+      "title": "Google Drive",
+      "url": "https://drive.google.com",
+      "key": "dr"
+    },
+    {
+      "title": "Google Scholar",
+      "url": "https://scholar.google.com",
+      "key": "gs"
+    },
+    {
+      "title": "YouTube Edu",
+      "url": "https://www.youtube.com/education",
+      "key": "yt"
+    },
+    {
+      "title": "GitHub Classroom",
+      "url": "https://classroom.github.com",
+      "key": "gc"
+    },
+    {
+      "title": "Figma",
+      "url": "https://www.figma.com",
+      "key": "fg"
+    }
   ],
   "shortcuts": {
     "!gs": "https://scholar.google.com/scholar?q={q}",
@@ -39,8 +73,20 @@
     "!yt": "https://www.youtube.com/results?search_query={q}",
     "!gh": "https://github.com/search?q={q}"
   },
-  "wordlist.inline": ["lecture","exam","notes","campus","library"],
-  "engines.enabled": ["google", "ddg", "bing", "wikipedia", "maps"],
+  "wordlist.inline": [
+    "lecture",
+    "exam",
+    "notes",
+    "campus",
+    "library"
+  ],
+  "engines.enabled": [
+    "google",
+    "ddg",
+    "bing",
+    "wikipedia",
+    "maps"
+  ],
   "news.custom": {
     "Hacker News": "https://hnrss.org/frontpage",
     "Ars Technica": "http://feeds.arstechnica.com/arstechnica/index",
@@ -52,10 +98,18 @@
   "recent": [],
   "weather.city": "Munich",
   "bg.state": {
-    "active": { "type": "preset", "id": "forest-mist" },
+    "active": {
+      "type": "preset",
+      "id": "forest-mist"
+    },
     "customUrl": "",
     "uploads": [],
-    "favorites": [{ "type": "preset", "id": "forest-mist" }],
+    "favorites": [
+      {
+        "type": "preset",
+        "id": "forest-mist"
+      }
+    ],
     "collections": [],
     "history": [],
     "accentCache": {},
@@ -64,16 +118,46 @@
       "strategy": "time",
       "intervalMinutes": 90,
       "locked": false,
-      "sources": { "presets": true, "favorites": true, "uploads": true, "collections": true, "custom": true },
+      "sources": {
+        "presets": true,
+        "favorites": true,
+        "uploads": true,
+        "collections": true,
+        "custom": true
+      },
       "schedule": {
-        "morning": { "type": "preset", "id": "mountain-dawn" },
-        "day": { "type": "preset", "id": "forest-mist" },
-        "evening": { "type": "preset", "id": "city-neon" },
-        "night": { "type": "preset", "id": "aurora" },
-        "light": { "type": "preset", "id": "forest-mist" },
-        "dark": { "type": "preset", "id": "aurora" }
+        "morning": {
+          "type": "preset",
+          "id": "mountain-dawn"
+        },
+        "day": {
+          "type": "preset",
+          "id": "forest-mist"
+        },
+        "evening": {
+          "type": "preset",
+          "id": "city-neon"
+        },
+        "night": {
+          "type": "preset",
+          "id": "aurora"
+        },
+        "light": {
+          "type": "preset",
+          "id": "forest-mist"
+        },
+        "dark": {
+          "type": "preset",
+          "id": "aurora"
+        }
       }
     },
-    "ui": { "tab": "presets" }
-  }
+    "ui": {
+      "tab": "presets"
+    }
+  },
+  "transport.default": {
+    "name": "Muenchen Hbf"
+  },
+  "transport.query": "Muenchen Hbf"
 }

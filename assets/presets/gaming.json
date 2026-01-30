@@ -11,7 +11,8 @@
     "quote": true,
     "recent": true,
     "system": true,
-    "news": true
+    "news": true,
+    "transport": true
   },
   "widget.colors": {
     "todo": "#e11d48",
@@ -21,17 +22,50 @@
     "quote": "#e11d48",
     "recent": "#14b8a6",
     "system": "#e11d48",
-    "news": "#14b8a6"
+    "news": "#14b8a6",
+    "transport": ""
   },
   "tiles": [
-    { "title": "Steam", "url": "https://store.steampowered.com", "key": "st" },
-    { "title": "Twitch", "url": "https://www.twitch.tv", "key": "tw" },
-    { "title": "YouTube Gaming", "url": "https://www.youtube.com/gaming", "key": "yg" },
-    { "title": "Discord", "url": "https://discord.com/app", "key": "dc" },
-    { "title": "Game Pass", "url": "https://www.xbox.com/play", "key": "gp" },
-    { "title": "PC Gamer", "url": "https://www.pcgamer.com", "key": "pg" },
-    { "title": "Speedrun", "url": "https://www.speedrun.com", "key": "sr" },
-    { "title": "Metacritic Games", "url": "https://www.metacritic.com/game", "key": "mc" }
+    {
+      "title": "Steam",
+      "url": "https://store.steampowered.com",
+      "key": "st"
+    },
+    {
+      "title": "Twitch",
+      "url": "https://www.twitch.tv",
+      "key": "tw"
+    },
+    {
+      "title": "YouTube Gaming",
+      "url": "https://www.youtube.com/gaming",
+      "key": "yg"
+    },
+    {
+      "title": "Discord",
+      "url": "https://discord.com/app",
+      "key": "dc"
+    },
+    {
+      "title": "Game Pass",
+      "url": "https://www.xbox.com/play",
+      "key": "gp"
+    },
+    {
+      "title": "PC Gamer",
+      "url": "https://www.pcgamer.com",
+      "key": "pg"
+    },
+    {
+      "title": "Speedrun",
+      "url": "https://www.speedrun.com",
+      "key": "sr"
+    },
+    {
+      "title": "Metacritic Games",
+      "url": "https://www.metacritic.com/game",
+      "key": "mc"
+    }
   ],
   "shortcuts": {
     "!yt": "https://www.youtube.com/results?search_query={q}",
@@ -39,8 +73,21 @@
     "!steam": "https://store.steampowered.com/search/?term={q}",
     "!gg": "https://www.google.com/search?q={q}"
   },
-  "wordlist.inline": ["level","quest","loot","boss","fps"],
-  "engines.enabled": ["google", "ddg", "bing", "yt", "wikipedia", "maps"],
+  "wordlist.inline": [
+    "level",
+    "quest",
+    "loot",
+    "boss",
+    "fps"
+  ],
+  "engines.enabled": [
+    "google",
+    "ddg",
+    "bing",
+    "yt",
+    "wikipedia",
+    "maps"
+  ],
   "news.custom": {
     "PC Gamer": "https://www.pcgamer.com/rss/",
     "IGN": "https://feeds.ign.com/ign/all",
@@ -52,10 +99,18 @@
   "recent": [],
   "weather.city": "Hamburg",
   "bg.state": {
-    "active": { "type": "preset", "id": "city-neon" },
+    "active": {
+      "type": "preset",
+      "id": "city-neon"
+    },
     "customUrl": "",
     "uploads": [],
-    "favorites": [{ "type": "preset", "id": "city-neon" }],
+    "favorites": [
+      {
+        "type": "preset",
+        "id": "city-neon"
+      }
+    ],
     "collections": [],
     "history": [],
     "accentCache": {},
@@ -64,16 +119,46 @@
       "strategy": "time",
       "intervalMinutes": 90,
       "locked": false,
-      "sources": { "presets": true, "favorites": true, "uploads": true, "collections": true, "custom": true },
+      "sources": {
+        "presets": true,
+        "favorites": true,
+        "uploads": true,
+        "collections": true,
+        "custom": true
+      },
       "schedule": {
-        "morning": { "type": "preset", "id": "mountain-dawn" },
-        "day": { "type": "preset", "id": "forest-mist" },
-        "evening": { "type": "preset", "id": "city-neon" },
-        "night": { "type": "preset", "id": "aurora" },
-        "light": { "type": "preset", "id": "forest-mist" },
-        "dark": { "type": "preset", "id": "city-neon" }
+        "morning": {
+          "type": "preset",
+          "id": "mountain-dawn"
+        },
+        "day": {
+          "type": "preset",
+          "id": "forest-mist"
+        },
+        "evening": {
+          "type": "preset",
+          "id": "city-neon"
+        },
+        "night": {
+          "type": "preset",
+          "id": "aurora"
+        },
+        "light": {
+          "type": "preset",
+          "id": "forest-mist"
+        },
+        "dark": {
+          "type": "preset",
+          "id": "city-neon"
+        }
       }
     },
-    "ui": { "tab": "presets" }
-  }
+    "ui": {
+      "tab": "presets"
+    }
+  },
+  "transport.default": {
+    "name": "Hamburg Hbf"
+  },
+  "transport.query": "Hamburg Hbf"
 }

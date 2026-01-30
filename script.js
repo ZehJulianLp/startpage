@@ -668,6 +668,350 @@
     }
   }
 
+  // ===== Transport (departures)
+  const TRANSPORT_API = 'https://api-startpage.julianverse.de/api';
+  const TRANSPORT_MAX_DURATION = 120;
+  const TRANSPORT_MIN_INTERVAL = 800;
+  const transportSearchSeqs = { main: 0, settings: 0, default: 0, onboarding: 0 };
+  let transportSearchTimer = null;
+  let transportSearchSeq = 0;
+  let transportSuggestItems = [];
+  const TRANSPORT_MIN_QUERY = 3;
+  let transportLastRequestAt = 0;
+
+  async function transportFetch(url, options){
+    const now = Date.now();
+    const wait = transportLastRequestAt ? Math.max(0, TRANSPORT_MIN_INTERVAL - (now - transportLastRequestAt)) : 0;
+    if(wait) await new Promise(r=> setTimeout(r, wait));
+    transportLastRequestAt = Date.now();
+    return fetch(url, options);
+  }
+
+  function clampTransportDuration(value){
+    const v = Number(value);
+    if(!Number.isFinite(v)) return 60;
+    return Math.min(Math.max(v, 10), TRANSPORT_MAX_DURATION);
+  }
+  function getTransportDuration(){
+    return clampTransportDuration(store.get('transport.duration', 60));
+  }
+  function setTransportDuration(value){
+    const v = clampTransportDuration(value);
+    store.set('transport.duration', v);
+    return v;
+  }
+  function formatTransportTime(raw){
+    if(!raw) return '-';
+    const d = new Date(raw);
+    if(Number.isNaN(d.getTime())) return '-';
+    return d.toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
+  }
+  function formatTransportDelay(raw){
+    const n = Number(raw);
+    if(!Number.isFinite(n) || n === 0) return '';
+    return n > 0 ? `+${n}` : `${n}`;
+  }
+  function transportTypeLabel(type){
+    if(type === 'station') return 'Station';
+    if(type === 'stop') return 'Stop';
+    return '';
+  }
+  function normalizeTransportLocation(loc){
+    if(!loc || !loc.id || !loc.name) return null;
+    let type = loc.type;
+    if(type !== 'station' && type !== 'stop'){
+      type = (loc.station || loc.isStation) ? 'station' : 'stop';
+    }
+    return {
+      id: String(loc.id),
+      name: String(loc.name),
+      type,
+      place: loc.place || loc.address || (loc.location && loc.location.name) || ''
+    };
+  }
+  function setTransportSelectedText(text){
+    const el = $('#transportSelected');
+    if(el) el.textContent = text;
+  }
+  function renderTransportSuggestTo(box, items, message, onSelect){
+    transportSuggestItems = items || [];
+    if(!box) return;
+    box.innerHTML = '';
+    if((!items || !items.length) && message){
+      const hint = document.createElement('div');
+      hint.className = 'muted';
+      hint.style.padding = '6px 10px';
+      hint.textContent = message;
+      box.appendChild(hint);
+      box.classList.remove('hidden');
+      return;
+    }
+    if(!items || !items.length){
+      box.classList.add('hidden');
+      return;
+    }
+    items.forEach(item=>{
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'transport-suggest-item';
+      const name = document.createElement('span');
+      name.className = 'transport-suggest-name';
+      name.textContent = item.place ? `${item.name} - ${item.place}` : item.name;
+      const meta = document.createElement('span');
+      meta.className = 'transport-suggest-meta';
+      meta.textContent = transportTypeLabel(item.type);
+      btn.appendChild(name);
+      if(meta.textContent) btn.appendChild(meta);
+      btn.addEventListener('click', ()=> onSelect && onSelect(item));
+      box.appendChild(btn);
+    });
+    box.classList.remove('hidden');
+  }
+  function renderTransportSuggest(items, message){
+    const box = $('#transportSuggest');
+    renderTransportSuggestTo(box, items, message, selectTransportStation);
+  }
+  async function transportSearchCore(query, attempt, seqKey, renderFn){
+    const q = String(query || '').trim();
+    if(!q || q.length < TRANSPORT_MIN_QUERY){
+      renderFn([], `Mindestens ${TRANSPORT_MIN_QUERY} Zeichen`);
+      return;
+    }
+    const seq = ++transportSearchSeqs[seqKey];
+    try{
+      const url = `${TRANSPORT_API}/locations?query=${encodeURIComponent(q)}&results=8&stops=true&addresses=false&poi=false`;
+      const res = await transportFetch(url);
+      if(!res.ok){
+        if(res.status === 504 && attempt < 1){
+          await new Promise(r=> setTimeout(r, 350));
+          return transportSearchCore(q, attempt + 1, seqKey, renderFn);
+        }
+        throw new Error(`Transport search error: ${res.status}`);
+      }
+      const data = await res.json();
+      if(seq !== transportSearchSeqs[seqKey]) return;
+      const list = Array.isArray(data) ? data : (data.locations || data.data || data.results || []);
+      const items = (Array.isArray(list) ? list : []).map(normalizeTransportLocation).filter(Boolean);
+      if(!items.length) renderFn([], 'Keine Treffer');
+      else renderFn(items);
+    }catch(e){
+      if(seq !== transportSearchSeqs[seqKey]) return;
+      const msg = e && /504/.test(String(e.message)) ? 'Proxy Timeout' : 'Fehler beim Laden';
+      renderFn([], msg);
+    }
+  }
+  async function transportSearch(query, attempt=0){
+    return transportSearchCore(query, attempt, 'main', renderTransportSuggest);
+  }
+  function selectTransportStation(item){
+    if(!item || !item.id) return;
+    store.set('transport.station', { id: item.id, name: item.name, type: item.type, place: item.place || '' });
+    store.set('transport.query', item.name);
+    const input = $('#transportQuery'); if(input) input.value = item.name;
+    renderTransportSuggest([]);
+    loadTransportDepartures();
+  }
+  function isLocalTransit(dep){
+    const line = dep && dep.line ? dep.line : null;
+    const raw = String((line && (line.product || line.mode || line.name || line.id)) || '').toLowerCase();
+    if(!raw) return false;
+    return raw.includes('bus') || raw.includes('tram') || raw.includes('street') || raw.includes('strassen') || raw.includes('straße') || raw.includes('strasse') || raw.includes('u-bahn') || raw.includes('ubahn') || raw.includes('subway') || raw.includes('metro') || raw.includes('stadtbahn') || raw.includes('urban') || raw.includes('s-bahn') || raw.includes('sbahn');
+  }
+  function renderTransportList(items){
+    const ul = $('#transportList'); if(!ul) return;
+    ul.innerHTML = '';
+    const filtered = (items || []).filter(dep=>{
+      if(dep && dep.cancelled) return true;
+      const delayVal = (typeof dep.delay === 'number') ? dep.delay : (dep.stop && typeof dep.stop.departureDelay === 'number' ? dep.stop.departureDelay : 0);
+      if(!Number.isFinite(delayVal)) return true;
+      if(isLocalTransit(dep)) return delayVal <= 60;
+      return true;
+    });
+    if(!filtered.length){
+      ul.innerHTML = '<li class="muted">Keine Abfahrten</li>';
+      return;
+    }
+    const duration = getTransportDuration();
+    const cutoff = Date.now() + (duration * 60 * 1000);
+    const within = filtered.filter(dep=>{
+      const whenRaw = dep.when || dep.plannedWhen || (dep.stop && (dep.stop.departure || dep.stop.plannedDeparture));
+      if(!whenRaw) return true;
+      const t = new Date(whenRaw).getTime();
+      if(Number.isNaN(t)) return true;
+      return t <= cutoff;
+    });
+    within.forEach(dep=>{
+      const li = document.createElement('li');
+      li.className = 'transport-item';
+      const main = document.createElement('div');
+      main.className = 'transport-main';
+      const line = document.createElement('div');
+      line.className = 'transport-line';
+      line.textContent = (dep.line && (dep.line.name || dep.line.id || dep.line.product || dep.line.mode)) || '-';
+      const dir = document.createElement('div');
+      dir.className = 'transport-dir';
+      dir.textContent = dep.direction || dep.destination || dep.provenance || '-';
+      main.appendChild(line);
+      main.appendChild(dir);
+
+      const meta = document.createElement('div');
+      meta.className = 'transport-meta';
+      const time = document.createElement('div');
+      time.className = 'transport-time';
+      const whenRaw = dep.when || dep.plannedWhen || (dep.stop && (dep.stop.departure || dep.stop.plannedDeparture));
+      time.textContent = formatTransportTime(whenRaw);
+      meta.appendChild(time);
+
+      const platformRaw = dep.platform ?? dep.plannedPlatform ?? (dep.stop && (dep.stop.platform ?? dep.stop.plannedPlatform));
+      if(platformRaw){
+        const platform = document.createElement('div');
+        platform.className = 'transport-platform';
+        platform.textContent = `Gl. ${platformRaw}`;
+        meta.appendChild(platform);
+      }
+
+      const delayVal = (typeof dep.delay === 'number') ? dep.delay : (dep.stop && typeof dep.stop.departureDelay === 'number' ? dep.stop.departureDelay : null);
+      const delayText = formatTransportDelay(delayVal);
+      if(delayText){
+        const delay = document.createElement('div');
+        delay.className = 'transport-delay' + (delayVal > 0 ? ' late' : ' early');
+        delay.textContent = delayText;
+        meta.appendChild(delay);
+      }
+
+      if(dep.cancelled){
+        const cancelled = document.createElement('div');
+        cancelled.className = 'transport-cancelled';
+        cancelled.textContent = 'Faellt aus';
+        meta.appendChild(cancelled);
+      }
+
+      li.appendChild(main);
+      li.appendChild(meta);
+      ul.appendChild(li);
+    });
+  }
+  async function loadTransportDepartures(){
+    const ul = $('#transportList'); if(!ul) return;
+    const station = store.get('transport.station', null);
+    if(!station || !station.id){
+      ul.innerHTML = '<li class="muted">Station auswaehlen...</li>';
+      setTransportSelectedText('Keine Station gewaehlt');
+      return;
+    }
+    const duration = getTransportDuration();
+    setTransportSelectedText(station.place ? `${station.name} - ${station.place}` : station.name);
+    ul.innerHTML = '<li class="muted">Lade...</li>';
+    try{
+      const preferStation = (station.type === 'station' || station.isStation);
+      const first = preferStation ? 'stations' : 'stops';
+      const second = preferStation ? 'stops' : 'stations';
+      const fetchDepartures = async (kind)=>{
+        const url = `${TRANSPORT_API}/${kind}/${encodeURIComponent(station.id)}/departures?duration=${duration}`;
+        const res = await transportFetch(url);
+        return { res, kind };
+      };
+      let { res } = await fetchDepartures(first);
+      if(res.status === 404){
+        const retry = await fetchDepartures(second);
+        res = retry.res;
+      }
+      if(!res.ok) throw new Error(`Transport error: ${res.status}`);
+      const data = await res.json();
+      const list = Array.isArray(data) ? data : (data.departures || data.results || []);
+      renderTransportList(Array.isArray(list) ? list : []);
+    }catch(err){
+      ul.innerHTML = '<li class="muted">Fehler beim Laden</li>';
+    }
+  }
+  function initTransport(){
+    const input = $('#transportQuery');
+    const select = $('#transportDuration');
+    const refresh = $('#refreshTransport');
+    if(store.get('transport.duration', null) == null) store.set('transport.duration', 60);
+    if(select){
+      const val = getTransportDuration();
+      select.value = String(val);
+      select.addEventListener('change', e=>{
+        const next = setTransportDuration(e.target.value);
+        if(select.value !== String(next)) select.value = String(next);
+        loadTransportDepartures();
+      });
+    }
+    if(input){
+      let savedStation = store.get('transport.station', null);
+      const defaultStation = store.get('transport.default', null);
+      if(!savedStation && defaultStation && defaultStation.id){
+        savedStation = defaultStation;
+        store.set('transport.station', defaultStation);
+        store.set('transport.query', defaultStation.name || '');
+      }
+      const savedQuery = store.get('transport.query', '');
+      input.value = (savedStation && savedStation.name) ? savedStation.name : (savedQuery || '');
+      input.addEventListener('input', ()=>{
+        const q = input.value.trim();
+        store.set('transport.query', q);
+        if(transportSearchTimer) clearTimeout(transportSearchTimer);
+        if(!q){
+          renderTransportSuggest([]);
+          store.set('transport.station', null);
+          setTransportSelectedText('Keine Station gewaehlt');
+          return;
+        }
+        if(q.length < TRANSPORT_MIN_QUERY){
+          renderTransportSuggest([], `Mindestens ${TRANSPORT_MIN_QUERY} Zeichen`);
+          return;
+        }
+        const current = store.get('transport.station', null);
+        if(current && q !== current.name){
+          store.set('transport.station', null);
+          setTransportSelectedText('Keine Station gewaehlt');
+        }
+        transportSearchTimer = setTimeout(()=> transportSearch(q), 320);
+      });
+      input.addEventListener('focus', ()=>{
+        const q=input.value.trim();
+        if(!q) return;
+        if(q.length < TRANSPORT_MIN_QUERY){
+          renderTransportSuggest([], `Mindestens ${TRANSPORT_MIN_QUERY} Zeichen`);
+          return;
+        }
+        transportSearch(q);
+      });
+      input.addEventListener('keydown', e=>{
+        if(e.key === 'Enter'){
+          e.preventDefault();
+          if(transportSuggestItems.length) selectTransportStation(transportSuggestItems[0]);
+          else if(input.value.trim()) transportSearch(input.value.trim());
+        }
+        if(e.key === 'Escape') renderTransportSuggest([]);
+      });
+    }
+    if(refresh) refresh.addEventListener('click', loadTransportDepartures);
+    document.addEventListener('click', e=>{
+      const card = $('#transportCard');
+      if(!card) return;
+      if(!card.contains(e.target)) renderTransportSuggest([]);
+    });
+    if(!store.get('transport.station', null)){
+      const defaultStation = store.get('transport.default', null);
+      if(defaultStation && defaultStation.name && !defaultStation.id){
+        transportSearchCore(defaultStation.name, 0, 'default', (items)=>{
+          if(!items || !items.length) return;
+          const pick = items[0];
+          const payload = { id: pick.id, name: pick.name, type: pick.type, place: pick.place || '' };
+          store.set('transport.default', payload);
+          store.set('transport.station', payload);
+          store.set('transport.query', pick.name);
+          const input = $('#transportQuery'); if(input) input.value = pick.name;
+          loadTransportDepartures();
+        });
+        return;
+      }
+    }
+    loadTransportDepartures();
+  }
+
   // ===== Quote of the day (local)
   const QUOTES = [
     'Move fast, refactor often.',
@@ -713,8 +1057,9 @@
     const feedUrl = sources[sourceName];
     $('#newsList').innerHTML = '<li class="muted">Lade…</li>';
     try{
-      const res = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(feedUrl)}`);
-      const data = await res.json();
+      const res = await fetch(`https://api-startpage.julianverse.de/api/rss?url=${encodeURIComponent(feedUrl)}`);
+      if(!res.ok) throw new Error(`RSS proxy error: ${res.status}`);
+      const data = { contents: await res.text() };
       const parser = new DOMParser();
       const xml = parser.parseFromString(data.contents, 'text/xml');
       const items = xml.querySelectorAll('item');
@@ -754,6 +1099,11 @@
     const theme = store.get('theme','auto');
     $('#themeSelect').value = theme;
     $('#defaultCity').value = store.get('weather.city','Hannover');
+    const defaultTransport = store.get('transport.default', null);
+    const transportDefaultInput = $('#transportDefaultInput');
+    if(transportDefaultInput){
+      transportDefaultInput.value = defaultTransport && defaultTransport.name ? defaultTransport.name : '';
+    }
 
     // Engines
     const pills = $('#enginePills'); pills.innerHTML='';
@@ -795,7 +1145,7 @@
 
     // Widget colors editor
     const editor = $('#widgetColorEditor'); editor.innerHTML='';
-    const names = { todo:'To‑Do', notes:'Notizen', tiles:'Favoriten', weather:'Wetter', quote:'Quote', recent:'Zuletzt', system:'System', news:'News' };
+    const names = { todo:'To‑Do', notes:'Notizen', tiles:'Favoriten', weather:'Wetter', transport:'Transport', quote:'Quote', recent:'Zuletzt', system:'System', news:'News' };
     const colors = store.get('widget.colors', widgetColorDefaults());
     Object.keys(names).forEach(k=>{
       const box = document.createElement('div'); box.style.display='inline-flex'; box.style.alignItems='center'; box.style.gap='6px'; box.style.padding='6px 8px'; box.style.background='var(--glass)'; box.style.border='1px solid rgba(255,255,255,.08)'; box.style.borderRadius='10px';
@@ -867,7 +1217,7 @@
       if(has('#themeSelect')) assign(row, panelGeneral);
       else if(has('#bgEngine')) assign(row, panelBackground);
       else if(has('#enginePills') || has('#shortcutConfig') || has('#feedsConfig') || has('#wordlistEditor')) assign(row, panelSearch);
-      else if(has('#widgetToggles') || has('#widgetColorEditor') || has('#cardStyle') || has('#clockColor') || has('#searchColor') || has('#defaultCity')) assign(row, panelWidgets);
+      else if(has('#widgetToggles') || has('#widgetColorEditor') || has('#cardStyle') || has('#clockColor') || has('#searchColor') || has('#defaultCity') || has('#transportDefaultInput')) assign(row, panelWidgets);
       else if(has('#exportData') || has('#importData') || has('#dataNote') || has('#dataPresetSelect') || has('#applyPreset') || has('#restartOnboarding')) assign(row, panelData);
       else assign(row, panelGeneral);
     });
@@ -1081,6 +1431,28 @@
       }
       const tint = $('#onbTint');
       if(tint && tint.checked) tintWidgets();
+      const transportInput = $('#onbTransportInput');
+      if(transportInput){
+        const conf = store.get('widgets', widgetDefaults());
+        const val = transportInput.value.trim();
+        if(conf.transport){
+          if(val){
+            const existing = store.get('transport.default', null);
+            if(existing && existing.name === val && existing.id){
+              store.set('transport.station', existing);
+            } else {
+              store.set('transport.default', { name: val });
+              store.set('transport.station', null);
+            }
+            store.set('transport.query', val);
+            const transportQuery = $('#transportQuery');
+            if(transportQuery) transportQuery.value = val;
+            initTransport();
+          }
+        } else {
+          store.set('transport.default', null);
+        }
+      }
     } else if(stepId === 'weather'){
       const city = $('#onbCity');
       if(city){
@@ -1167,6 +1539,15 @@
     const city = store.get('weather.city','');
     const cityInput = $('#onbCity');
     if(cityInput){ cityInput.value = city; }
+    const onbTransportField = $('#onbTransportField');
+    const onbTransportInput = $('#onbTransportInput');
+    const transportOn = widgetConf.transport;
+    if(onbTransportField) onbTransportField.style.display = transportOn ? '' : 'none';
+    if(onbTransportInput){
+      const def = store.get('transport.default', null);
+      const query = store.get('transport.query', '');
+      onbTransportInput.value = (def && def.name) ? def.name : (query || '');
+    }
   }
 
   function onboardingOpen(force=false){
@@ -2535,17 +2916,17 @@
 
   // ===== Widgets visibility
   function widgetDefaults(){
-    return { todo:true, notes:true, tiles:true, weather:true, quote:true, recent:true, system:true, news:true };
+    return { todo:true, notes:true, tiles:true, weather:true, transport:true, quote:true, recent:true, system:true, news:true };
   }
   function applyWidgets(){
     const conf = store.get('widgets', widgetDefaults());
-    const map = { todo:'#todo', notes:'#notes', tiles:'#tilesCard', weather:'#weather', quote:'#quoteCard', recent:'#recent', system:'#systemCard', news:'#newsCard' };
+    const map = { todo:'#todo', notes:'#notes', tiles:'#tilesCard', weather:'#weather', transport:'#transportCard', quote:'#quoteCard', recent:'#recent', system:'#systemCard', news:'#newsCard' };
     Object.entries(map).forEach(([k,sel])=>{ const el=$(sel); if(el) el.style.display = conf[k] ? '' : 'none'; });
   }
 
   // ===== Widget colors
   function widgetColorDefaults(){
-    return { todo:'', notes:'', tiles:'', weather:'', quote:'', recent:'', system:'', news:'' };
+    return { todo:'', notes:'', tiles:'', weather:'', transport:'', quote:'', recent:'', system:'', news:'' };
   }
   function hexToRgba(hex, a=0.18){
     if(!hex) return '';
@@ -2574,7 +2955,7 @@
   }
   function applyWidgetColors(){
     const colors = store.get('widget.colors', widgetColorDefaults());
-    const map = { todo:'#todo', notes:'#notes', tiles:'#tilesCard', weather:'#weather', quote:'#quoteCard', recent:'#recent', system:'#systemCard', news:'#newsCard' };
+    const map = { todo:'#todo', notes:'#notes', tiles:'#tilesCard', weather:'#weather', transport:'#transportCard', quote:'#quoteCard', recent:'#recent', system:'#systemCard', news:'#newsCard' };
     const theme = bgGetEffectiveTheme ? bgGetEffectiveTheme() : 'dark';
     const baseBgRaw = bgGetBaseVar('--card-bg-current') || '';
     const baseBorderRaw = bgGetBaseVar('--card-border-current') || '';
@@ -2607,6 +2988,7 @@
       notes: secondary,
       tiles: primary,
       weather: secondary,
+      transport: primary,
       quote: primary,
       recent: secondary,
       system: primary,
@@ -2789,6 +3171,54 @@
       }
     }
     $('#defaultCity').addEventListener('change', e=>{ store.set('weather.city', e.target.value.trim()); loadWeather(); });
+    const transportDefaultInput = $('#transportDefaultInput');
+    const transportDefaultSuggest = $('#transportDefaultSuggest');
+    if(transportDefaultInput && transportDefaultSuggest){
+      let timer = null;
+      transportDefaultInput.addEventListener('input', ()=>{
+        const q = transportDefaultInput.value.trim();
+        if(timer) clearTimeout(timer);
+        if(!q){
+          store.set('transport.default', null);
+          transportDefaultSuggest.classList.add('hidden');
+          transportDefaultSuggest.innerHTML = '';
+          return;
+        }
+        if(q.length < TRANSPORT_MIN_QUERY){
+          renderTransportSuggestTo(transportDefaultSuggest, [], `Mindestens ${TRANSPORT_MIN_QUERY} Zeichen`, null);
+          return;
+        }
+        timer = setTimeout(()=> transportSearchCore(q, 0, 'settings', (items, message)=>{
+          renderTransportSuggestTo(transportDefaultSuggest, items, message, item=>{
+            store.set('transport.default', { id: item.id, name: item.name, type: item.type, place: item.place || '' });
+            transportDefaultInput.value = item.name;
+            transportDefaultSuggest.classList.add('hidden');
+            transportDefaultSuggest.innerHTML = '';
+          });
+        }), 320);
+      });
+      transportDefaultInput.addEventListener('focus', ()=>{
+        const q = transportDefaultInput.value.trim();
+        if(!q) return;
+        if(q.length < TRANSPORT_MIN_QUERY){
+          renderTransportSuggestTo(transportDefaultSuggest, [], `Mindestens ${TRANSPORT_MIN_QUERY} Zeichen`, null);
+          return;
+        }
+        transportSearchCore(q, 0, 'settings', (items, message)=>{
+          renderTransportSuggestTo(transportDefaultSuggest, items, message, item=>{
+            store.set('transport.default', { id: item.id, name: item.name, type: item.type, place: item.place || '' });
+            transportDefaultInput.value = item.name;
+            transportDefaultSuggest.classList.add('hidden');
+            transportDefaultSuggest.innerHTML = '';
+          });
+        });
+      });
+      document.addEventListener('click', e=>{
+        if(!transportDefaultSuggest.contains(e.target) && e.target !== transportDefaultInput){
+          transportDefaultSuggest.classList.add('hidden');
+        }
+      });
+    }
 
     const cardSelect = $('#cardStyle');
     if(cardSelect) cardSelect.addEventListener('change', e=>{ const allowed = ['glass','solid','transparent','minimal']; const val = allowed.includes(e.target.value) ? e.target.value : 'glass'; store.set('ui.cardStyle', val); applyCardStyle(); if(val !== e.target.value) fillSettings(); });
@@ -2865,6 +3295,57 @@
     const onbBgRotate = $('#onbBgRotate'); if(onbBgRotate) onbBgRotate.addEventListener('change', ()=>{ const checked=!!onbBgRotate.checked; bgUpdateState(state=>{ state.rotation.enabled = checked; return state; }); });
     const onbCity = $('#onbCity'); if(onbCity) onbCity.addEventListener('keydown', e=>{ if(e.key==='Enter'){ e.preventDefault(); onboardingNext(); } });
     const onbModal = $('#onboarding'); if(onbModal) onbModal.addEventListener('click', e=>{ if(e.target.id==='onboarding') onboardingSkip(); });
+    const onbTransportToggle = document.querySelector('.onb-widget-toggle[data-widget="transport"]');
+    const onbTransportField = $('#onbTransportField');
+    const onbTransportInput = $('#onbTransportInput');
+    const onbTransportSuggest = $('#onbTransportSuggest');
+    if(onbTransportToggle && onbTransportField){
+      onbTransportToggle.addEventListener('change', ()=>{
+        onbTransportField.style.display = onbTransportToggle.checked ? '' : 'none';
+      });
+    }
+    if(onbTransportInput && onbTransportSuggest){
+      let timer = null;
+      const handleSelect = item=>{
+        store.set('transport.default', { id: item.id, name: item.name, type: item.type, place: item.place || '' });
+        store.set('transport.query', item.name);
+        onbTransportInput.value = item.name;
+        onbTransportSuggest.classList.add('hidden');
+        onbTransportSuggest.innerHTML = '';
+      };
+      onbTransportInput.addEventListener('input', ()=>{
+        const q = onbTransportInput.value.trim();
+        if(timer) clearTimeout(timer);
+        if(!q){
+          onbTransportSuggest.classList.add('hidden');
+          onbTransportSuggest.innerHTML = '';
+          return;
+        }
+        if(q.length < TRANSPORT_MIN_QUERY){
+          renderTransportSuggestTo(onbTransportSuggest, [], `Mindestens ${TRANSPORT_MIN_QUERY} Zeichen`, null);
+          return;
+        }
+        timer = setTimeout(()=> transportSearchCore(q, 0, 'onboarding', (items, message)=>{
+          renderTransportSuggestTo(onbTransportSuggest, items, message, handleSelect);
+        }), 320);
+      });
+      onbTransportInput.addEventListener('focus', ()=>{
+        const q = onbTransportInput.value.trim();
+        if(!q) return;
+        if(q.length < TRANSPORT_MIN_QUERY){
+          renderTransportSuggestTo(onbTransportSuggest, [], `Mindestens ${TRANSPORT_MIN_QUERY} Zeichen`, null);
+          return;
+        }
+        transportSearchCore(q, 0, 'onboarding', (items, message)=>{
+          renderTransportSuggestTo(onbTransportSuggest, items, message, handleSelect);
+        });
+      });
+      document.addEventListener('click', e=>{
+        if(!onbTransportSuggest.contains(e.target) && e.target !== onbTransportInput){
+          onbTransportSuggest.classList.add('hidden');
+        }
+      });
+    }
 
     // Persist settings fields (shortcuts, feeds, wordlist)
     $('#shortcutConfig').addEventListener('change', ()=>{ try{ const j=JSON.parse($('#shortcutConfig').value); store.set('shortcuts', j);}catch{ alert('Ungueltiges Shortcuts-JSON'); } });
@@ -2898,6 +3379,9 @@
     // Weather
     $('#setCity').addEventListener('click', ()=>{ const v=$('#cityInput').value.trim(); if(v){ store.set('weather.city', v); loadWeather(); }});
     loadWeather();
+
+    // Transport
+    initTransport();
 
     // Quote
     loadQuote();

@@ -11,7 +11,8 @@
     "quote": false,
     "recent": false,
     "system": true,
-    "news": false
+    "news": false,
+    "transport": false
   },
   "widget.colors": {
     "todo": "",
@@ -21,24 +22,63 @@
     "quote": "",
     "recent": "",
     "system": "",
-    "news": ""
+    "news": "",
+    "transport": ""
   },
   "tiles": [
-    { "title": "Proton Mail", "url": "https://mail.proton.me", "key": "pm" },
-    { "title": "Proton Drive", "url": "https://drive.proton.me", "key": "pd" },
-    { "title": "Signal Web", "url": "https://signal.org", "key": "sg" },
-    { "title": "DuckDuckGo", "url": "https://duckduckgo.com", "key": "dd" },
-    { "title": "Startpage", "url": "https://www.startpage.com", "key": "sp" },
-    { "title": "Mullvad", "url": "https://mullvad.net", "key": "mv" },
-    { "title": "GitHub", "url": "https://github.com", "key": "gh" }
+    {
+      "title": "Proton Mail",
+      "url": "https://mail.proton.me",
+      "key": "pm"
+    },
+    {
+      "title": "Proton Drive",
+      "url": "https://drive.proton.me",
+      "key": "pd"
+    },
+    {
+      "title": "Signal Web",
+      "url": "https://signal.org",
+      "key": "sg"
+    },
+    {
+      "title": "DuckDuckGo",
+      "url": "https://duckduckgo.com",
+      "key": "dd"
+    },
+    {
+      "title": "Startpage",
+      "url": "https://www.startpage.com",
+      "key": "sp"
+    },
+    {
+      "title": "Mullvad",
+      "url": "https://mullvad.net",
+      "key": "mv"
+    },
+    {
+      "title": "GitHub",
+      "url": "https://github.com",
+      "key": "gh"
+    }
   ],
   "shortcuts": {
     "!ddg": "https://duckduckgo.com/?q={q}",
     "!sp": "https://www.startpage.com/do/search?query={q}",
     "!gh": "https://github.com/search?q={q}"
   },
-  "wordlist.inline": ["vpn","tor","cipher","secure","anon"],
-  "engines.enabled": ["ddg", "wikipedia", "maps"],
+  "wordlist.inline": [
+    "vpn",
+    "tor",
+    "cipher",
+    "secure",
+    "anon"
+  ],
+  "engines.enabled": [
+    "ddg",
+    "wikipedia",
+    "maps"
+  ],
   "news.custom": {},
   "news.source": "Heise",
   "todos": [],
@@ -46,10 +86,18 @@
   "recent": [],
   "weather.city": "",
   "bg.state": {
-    "active": { "type": "preset", "id": "aurora" },
+    "active": {
+      "type": "preset",
+      "id": "aurora"
+    },
     "customUrl": "",
     "uploads": [],
-    "favorites": [{ "type": "preset", "id": "aurora" }],
+    "favorites": [
+      {
+        "type": "preset",
+        "id": "aurora"
+      }
+    ],
     "collections": [],
     "history": [],
     "accentCache": {},
@@ -58,16 +106,42 @@
       "strategy": "time",
       "intervalMinutes": 90,
       "locked": false,
-      "sources": { "presets": true, "favorites": true, "uploads": true, "collections": true, "custom": true },
+      "sources": {
+        "presets": true,
+        "favorites": true,
+        "uploads": true,
+        "collections": true,
+        "custom": true
+      },
       "schedule": {
-        "morning": { "type": "preset", "id": "aurora" },
-        "day": { "type": "preset", "id": "forest-mist" },
-        "evening": { "type": "preset", "id": "city-neon" },
-        "night": { "type": "preset", "id": "aurora" },
-        "light": { "type": "preset", "id": "forest-mist" },
-        "dark": { "type": "preset", "id": "aurora" }
+        "morning": {
+          "type": "preset",
+          "id": "aurora"
+        },
+        "day": {
+          "type": "preset",
+          "id": "forest-mist"
+        },
+        "evening": {
+          "type": "preset",
+          "id": "city-neon"
+        },
+        "night": {
+          "type": "preset",
+          "id": "aurora"
+        },
+        "light": {
+          "type": "preset",
+          "id": "forest-mist"
+        },
+        "dark": {
+          "type": "preset",
+          "id": "aurora"
+        }
       }
     },
-    "ui": { "tab": "presets" }
+    "ui": {
+      "tab": "presets"
+    }
   }
 }

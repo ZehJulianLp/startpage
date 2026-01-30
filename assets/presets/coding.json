@@ -11,7 +11,8 @@
     "quote": true,
     "recent": true,
     "system": true,
-    "news": true
+    "news": true,
+    "transport": true
   },
   "widget.colors": {
     "todo": "#7c5cff",
@@ -21,17 +22,50 @@
     "quote": "#7c5cff",
     "recent": "#54d6ff",
     "system": "#7c5cff",
-    "news": "#54d6ff"
+    "news": "#54d6ff",
+    "transport": ""
   },
   "tiles": [
-    { "title": "GitHub", "url": "https://github.com", "key": "gh" },
-    { "title": "Stack Overflow", "url": "https://stackoverflow.com", "key": "so" },
-    { "title": "DevDocs", "url": "https://devdocs.io", "key": "dd" },
-    { "title": "MDN", "url": "https://developer.mozilla.org", "key": "md" },
-    { "title": "npm", "url": "https://www.npmjs.com", "key": "np" },
-    { "title": "Can I Use", "url": "https://caniuse.com", "key": "ci" },
-    { "title": "ChatGPT", "url": "https://chat.openai.com", "key": "ai" },
-    { "title": "CodeSandbox", "url": "https://codesandbox.io", "key": "cs" }
+    {
+      "title": "GitHub",
+      "url": "https://github.com",
+      "key": "gh"
+    },
+    {
+      "title": "Stack Overflow",
+      "url": "https://stackoverflow.com",
+      "key": "so"
+    },
+    {
+      "title": "DevDocs",
+      "url": "https://devdocs.io",
+      "key": "dd"
+    },
+    {
+      "title": "MDN",
+      "url": "https://developer.mozilla.org",
+      "key": "md"
+    },
+    {
+      "title": "npm",
+      "url": "https://www.npmjs.com",
+      "key": "np"
+    },
+    {
+      "title": "Can I Use",
+      "url": "https://caniuse.com",
+      "key": "ci"
+    },
+    {
+      "title": "ChatGPT",
+      "url": "https://chat.openai.com",
+      "key": "ai"
+    },
+    {
+      "title": "CodeSandbox",
+      "url": "https://codesandbox.io",
+      "key": "cs"
+    }
   ],
   "shortcuts": {
     "!gh": "https://github.com/search?q={q}",
@@ -40,8 +74,21 @@
     "!mdn": "https://developer.mozilla.org/search?q={q}",
     "!dd": "https://devdocs.io/#{q}"
   },
-  "wordlist.inline": ["refactor","commit","deploy","debug","merge"],
-  "engines.enabled": ["google", "ddg", "bing", "yt", "wikipedia", "maps"],
+  "wordlist.inline": [
+    "refactor",
+    "commit",
+    "deploy",
+    "debug",
+    "merge"
+  ],
+  "engines.enabled": [
+    "google",
+    "ddg",
+    "bing",
+    "yt",
+    "wikipedia",
+    "maps"
+  ],
   "news.custom": {
     "GitHub Changelog": "https://github.blog/changelog/feed/",
     "Stack Overflow Blog": "https://stackoverflow.blog/feed/",
@@ -53,10 +100,18 @@
   "recent": [],
   "weather.city": "Berlin",
   "bg.state": {
-    "active": { "type": "preset", "id": "city-neon" },
+    "active": {
+      "type": "preset",
+      "id": "city-neon"
+    },
     "customUrl": "",
     "uploads": [],
-    "favorites": [{ "type": "preset", "id": "city-neon" }],
+    "favorites": [
+      {
+        "type": "preset",
+        "id": "city-neon"
+      }
+    ],
     "collections": [],
     "history": [],
     "accentCache": {},
@@ -65,16 +120,46 @@
       "strategy": "time",
       "intervalMinutes": 90,
       "locked": false,
-      "sources": { "presets": true, "favorites": true, "uploads": true, "collections": true, "custom": true },
+      "sources": {
+        "presets": true,
+        "favorites": true,
+        "uploads": true,
+        "collections": true,
+        "custom": true
+      },
       "schedule": {
-        "morning": { "type": "preset", "id": "mountain-dawn" },
-        "day": { "type": "preset", "id": "forest-mist" },
-        "evening": { "type": "preset", "id": "city-neon" },
-        "night": { "type": "preset", "id": "aurora" },
-        "light": { "type": "preset", "id": "forest-mist" },
-        "dark": { "type": "preset", "id": "city-neon" }
+        "morning": {
+          "type": "preset",
+          "id": "mountain-dawn"
+        },
+        "day": {
+          "type": "preset",
+          "id": "forest-mist"
+        },
+        "evening": {
+          "type": "preset",
+          "id": "city-neon"
+        },
+        "night": {
+          "type": "preset",
+          "id": "aurora"
+        },
+        "light": {
+          "type": "preset",
+          "id": "forest-mist"
+        },
+        "dark": {
+          "type": "preset",
+          "id": "city-neon"
+        }
       }
     },
-    "ui": { "tab": "presets" }
-  }
+    "ui": {
+      "tab": "presets"
+    }
+  },
+  "transport.default": {
+    "name": "Berlin Hbf"
+  },
+  "transport.query": "Berlin Hbf"
 }

@@ -11,7 +11,8 @@
     "quote": false,
     "recent": true,
     "system": false,
-    "news": true
+    "news": true,
+    "transport": true
   },
   "widget.colors": {
     "todo": "",
@@ -21,17 +22,50 @@
     "quote": "",
     "recent": "#0ea5e9",
     "system": "",
-    "news": "#a855f7"
+    "news": "#a855f7",
+    "transport": ""
   },
   "tiles": [
-    { "title": "Pocket", "url": "https://getpocket.com", "key": "pk" },
-    { "title": "Kindle", "url": "https://read.amazon.com", "key": "kd" },
-    { "title": "Feedly", "url": "https://feedly.com/i/latest", "key": "fd" },
-    { "title": "Goodreads", "url": "https://www.goodreads.com", "key": "gr" },
-    { "title": "Medium", "url": "https://medium.com", "key": "md" },
-    { "title": "Longreads", "url": "https://longreads.com", "key": "lr" },
-    { "title": "Instapaper", "url": "https://www.instapaper.com/u", "key": "ip" },
-    { "title": "Libby", "url": "https://libbyapp.com", "key": "lb" }
+    {
+      "title": "Pocket",
+      "url": "https://getpocket.com",
+      "key": "pk"
+    },
+    {
+      "title": "Kindle",
+      "url": "https://read.amazon.com",
+      "key": "kd"
+    },
+    {
+      "title": "Feedly",
+      "url": "https://feedly.com/i/latest",
+      "key": "fd"
+    },
+    {
+      "title": "Goodreads",
+      "url": "https://www.goodreads.com",
+      "key": "gr"
+    },
+    {
+      "title": "Medium",
+      "url": "https://medium.com",
+      "key": "md"
+    },
+    {
+      "title": "Longreads",
+      "url": "https://longreads.com",
+      "key": "lr"
+    },
+    {
+      "title": "Instapaper",
+      "url": "https://www.instapaper.com/u",
+      "key": "ip"
+    },
+    {
+      "title": "Libby",
+      "url": "https://libbyapp.com",
+      "key": "lb"
+    }
   ],
   "shortcuts": {
     "!nyt": "https://www.nytimes.com/search?query={q}",
@@ -39,8 +73,19 @@
     "!md": "https://medium.com/search?q={q}",
     "!gr": "https://www.goodreads.com/search?q={q}"
   },
-  "wordlist.inline": ["novel","essay","bookmark","chapter","quote"],
-  "engines.enabled": ["google", "ddg", "bing", "wikipedia"],
+  "wordlist.inline": [
+    "novel",
+    "essay",
+    "bookmark",
+    "chapter",
+    "quote"
+  ],
+  "engines.enabled": [
+    "google",
+    "ddg",
+    "bing",
+    "wikipedia"
+  ],
   "news.custom": {
     "NYTimes Tech": "https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml",
     "Ars Technica": "http://feeds.arstechnica.com/arstechnica/index",
@@ -52,10 +97,18 @@
   "recent": [],
   "weather.city": "Hamburg",
   "bg.state": {
-    "active": { "type": "preset", "id": "forest-mist" },
+    "active": {
+      "type": "preset",
+      "id": "forest-mist"
+    },
     "customUrl": "",
     "uploads": [],
-    "favorites": [{ "type": "preset", "id": "forest-mist" }],
+    "favorites": [
+      {
+        "type": "preset",
+        "id": "forest-mist"
+      }
+    ],
     "collections": [],
     "history": [],
     "accentCache": {},
@@ -64,16 +117,46 @@
       "strategy": "time",
       "intervalMinutes": 90,
       "locked": false,
-      "sources": { "presets": true, "favorites": true, "uploads": true, "collections": true, "custom": true },
+      "sources": {
+        "presets": true,
+        "favorites": true,
+        "uploads": true,
+        "collections": true,
+        "custom": true
+      },
       "schedule": {
-        "morning": { "type": "preset", "id": "mountain-dawn" },
-        "day": { "type": "preset", "id": "forest-mist" },
-        "evening": { "type": "preset", "id": "city-neon" },
-        "night": { "type": "preset", "id": "aurora" },
-        "light": { "type": "preset", "id": "forest-mist" },
-        "dark": { "type": "preset", "id": "aurora" }
+        "morning": {
+          "type": "preset",
+          "id": "mountain-dawn"
+        },
+        "day": {
+          "type": "preset",
+          "id": "forest-mist"
+        },
+        "evening": {
+          "type": "preset",
+          "id": "city-neon"
+        },
+        "night": {
+          "type": "preset",
+          "id": "aurora"
+        },
+        "light": {
+          "type": "preset",
+          "id": "forest-mist"
+        },
+        "dark": {
+          "type": "preset",
+          "id": "aurora"
+        }
       }
     },
-    "ui": { "tab": "presets" }
-  }
+    "ui": {
+      "tab": "presets"
+    }
+  },
+  "transport.default": {
+    "name": "Hamburg Hbf"
+  },
+  "transport.query": "Hamburg Hbf"
 }
