@@ -33,7 +33,7 @@
       try {
         const obj = JSON.parse(reader.result);
         if(!obj || typeof obj !== 'object') throw new Error('Invalid JSON');
-        if(!confirm('Daten importieren? Bestehende Eintraege werden ueberschrieben.')) return;
+        if(!confirm('Daten importieren? Bestehende Einträge werden überschrieben.')) return;
         if(!('wordlist.inline' in obj)) obj['wordlist.inline'] = [];
         obj['wordlist.inline'] = normalizeInlineWordlist(obj['wordlist.inline']);
         Object.keys(obj).forEach(k=> localStorage.setItem(k, JSON.stringify(obj[k])));
@@ -125,17 +125,17 @@
   }
 
   async function applyPresetFromEntry(current, contextLabel='Preset', opts={ reload:true, markDone:true }){
-    if(!current){ alert('Kein Preset verfuegbar.'); return; }
+    if(!current){ alert('Kein Preset verfügbar.'); return; }
     if(!current.file){ alert('Preset-Datei fehlt.'); return; }
     try{
       const res = await fetch(current.file);
       if(!res.ok) throw new Error('Datei nicht gefunden');
       const obj = await res.json();
-      if(!obj || typeof obj !== 'object') throw new Error('Preset ungueltig');
+      if(!obj || typeof obj !== 'object') throw new Error('Preset ungültig');
       if(!('wordlist.inline' in obj)) obj['wordlist.inline'] = [];
       obj['wordlist.inline'] = normalizeInlineWordlist(obj['wordlist.inline']);
       const name = current.name || current.id || 'Preset';
-      if(!confirm(`${contextLabel} "${name}" anwenden? Bestehende Eintraege werden ueberschrieben.`)) return;
+      if(!confirm(`${contextLabel} "${name}" anwenden? Bestehende Einträge werden überschrieben.`)) return;
       Object.keys(obj).forEach(k=> localStorage.setItem(k, JSON.stringify(obj[k])));
       if(opts.markDone) store.set('onboarding.done', true);
       if(opts.reload !== false) location.reload();
@@ -187,7 +187,7 @@
       meta.textContent = description + tagText;
       select.value = current.id || select.value;
     } else {
-      meta.textContent = 'Kein Preset ausgewaehlt.';
+      meta.textContent = 'Kein Preset ausgewählt.';
     }
   }
 
@@ -882,7 +882,7 @@
       if(dep.cancelled){
         const cancelled = document.createElement('div');
         cancelled.className = 'transport-cancelled';
-        cancelled.textContent = 'Faellt aus';
+        cancelled.textContent = 'Fällt aus';
         meta.appendChild(cancelled);
       }
 
@@ -895,8 +895,8 @@
     const ul = $('#transportList'); if(!ul) return;
     const station = store.get('transport.station', null);
     if(!station || !station.id){
-      ul.innerHTML = '<li class="muted">Station auswaehlen...</li>';
-      setTransportSelectedText('Keine Station gewaehlt');
+      ul.innerHTML = '<li class="muted">Station auswählen...</li>';
+      setTransportSelectedText('Keine Station gewählt');
       return;
     }
     const duration = getTransportDuration();
@@ -955,7 +955,7 @@
         if(!q){
           renderTransportSuggest([]);
           store.set('transport.station', null);
-          setTransportSelectedText('Keine Station gewaehlt');
+          setTransportSelectedText('Keine Station gewählt');
           return;
         }
         if(q.length < TRANSPORT_MIN_QUERY){
@@ -965,7 +965,7 @@
         const current = store.get('transport.station', null);
         if(current && q !== current.name){
           store.set('transport.station', null);
-          setTransportSelectedText('Keine Station gewaehlt');
+          setTransportSelectedText('Keine Station gewählt');
         }
         transportSearchTimer = setTimeout(()=> transportSearch(q), 320);
       });
@@ -1234,33 +1234,33 @@
           </ul>
           <h5>Shortcuts</h5>
           <ul>
-            <li>Ctrl/Cmd+K: Command Palette oeffnen</li>
-            <li>1-9: Erste 9 Favoriten oeffnen (wenn nicht tippen)</li>
-            <li>/ : Suche fokussieren (auch ueber Palette)</li>
+            <li>Ctrl/Cmd+K: Command Palette öffnen</li>
+            <li>1-9: Erste 9 Favoriten öffnen (wenn nicht tippen)</li>
+            <li>/ : Suche fokussieren (auch über Palette)</li>
             <li>Enter in Suche: Startet die Suche</li>
             <li>ESC: Modals schliessen</li>
-            <li>Palette: Schnellaktionen fuer Widgets, Theme, Hintergrund, Daten, Favoriten</li>
-            <li>Palette: Taste C wechselt den Kachel-Stil, "Header-Farben zuruecksetzen" stellt Suche & Uhr zurueck</li>
+            <li>Palette: Schnellaktionen für Widgets, Theme, Hintergrund, Daten, Favoriten</li>
+            <li>Palette: Taste C wechselt den Kachel-Stil, "Header-Farben zurücksetzen" stellt Suche & Uhr zurück</li>
           </ul>
           <h5>Suche & Autocomplete</h5>
           <ul>
             <li>Bangs: !g !ddg !bing !yt !wiki !maps</li>
             <li>Eigene Shortcuts: JSON in den Einstellungen; {q} als Platzhalter</li>
             <li>Autocomplete: Bangs, Shortcuts, Recent-Suchen, Wortliste (global + Preset)</li>
-            <li>Tab uebernimmt Vorschlag, Enter startet Suche</li>
+            <li>Tab übernimmt Vorschlag, Enter startet Suche</li>
           </ul>
           <h5>Tiles</h5>
           <ul>
-            <li>Drag&Drop zum Sortieren, Klick zum oeffnen</li>
-            <li>+ Kachel: Neue Favoriten hinzufuegen</li>
+            <li>Drag&Drop zum Sortieren, Klick zum öffnen</li>
+            <li>+ Kachel: Neue Favoriten hinzufügen</li>
             <li>Reset: Standardfavoriten wiederherstellen</li>
           </ul>
           <h5>Widgets & Layout</h5>
           <ul>
             <li>Sichtbarkeit je Widget umschaltbar</li>
-            <li>Kachel-Stil global anpassbar (Glas, Vollflaeche, Transparent, Soft Minimal)</li>
-            <li>Eigene Farben fuer Uhr/Suche; Reset bringt Stilvorgabe zurueck</li>
-            <li>Widget-Farben & Button "Widgets einfaerben" setzen Akzent pro Karte</li>
+            <li>Kachel-Stil global anpassbar (Glas, Vollfläche, Transparent, Soft Minimal)</li>
+            <li>Eigene Farben für Uhr/Suche; Reset bringt Stilvorgabe zurück</li>
+            <li>Widget-Farben & Button "Widgets einfürben" setzen Akzent pro Karte</li>
           </ul>
           <h5>Hintergrund</h5>
           <ul>
@@ -1353,7 +1353,7 @@
     const presets = await loadDataPresets();
     const current = presets.find(p => String(p.id||'') === select.value) || presets[0];
     if(current){
-      meta.textContent = current.description || 'Preset anwenden oder ueberspringen.';
+      meta.textContent = current.description || 'Preset anwenden oder überspringen.';
     } else {
       meta.textContent = 'Preset optional.';
     }
@@ -1986,7 +1986,7 @@
         if(resolved.meta) parts.push(resolved.meta);
         if(resolved.credit) parts.push(resolved.credit);
       }
-      meta.textContent = parts.length ? parts.join(' | ') : 'Kein Bild ausgewaehlt';
+      meta.textContent = parts.length ? parts.join(' | ') : 'Kein Bild ausgewählt';
     }
     const undoBtn = document.getElementById('bgActionUndo');
     if(undoBtn) undoBtn.disabled = !(state.history && state.history.length);
@@ -2097,7 +2097,7 @@
             '<div class="bg-collection-count">' + count + ' Quellen</div>' +
           '</div>' +
           '<div class="bg-collection-actions">' +
-            '<button type="button" data-action="bg-collection-apply" data-collection="' + col.id + '">Zufaellig</button>' +
+            '<button type="button" data-action="bg-collection-apply" data-collection="' + col.id + '">Zufällig</button>' +
             '<button type="button" data-action="bg-collection-cache" data-collection="' + col.id + '">Offline speichern</button>' +
             '<button type="button" data-action="bg-collection-remove" data-collection="' + col.id + '">Entfernen</button>' +
           '</div>' +
@@ -2121,7 +2121,7 @@
           '<button type="button" data-action="bg-collection-save">Speichern</button>' +
           '<button type="button" data-action="bg-collection-clear">Felder leeren</button>' +
         '</div>' +
-        '<p class="bg-mini-text">URLs werden lokal gespeichert. Remote Quellen benoetigen CORS fuer Bilder.</p>' +
+        '<p class="bg-mini-text">URLs werden lokal gespeichert. Remote Quellen benötigen CORS für Bilder.</p>' +
       '</div>' +
       (cards ? '<div class="bg-collection-list">' + cards + '</div>' : '<div class="bg-empty">Noch keine Sammlungen angelegt.</div>');
   }
@@ -2169,11 +2169,11 @@
       '<div class="bg-rotation-grid">' +
         '<div class="bg-rotation-card">' +
           '<label><input type="checkbox" id="bgRotationEnabled"' + (state.rotation.enabled ? ' checked' : '') + '> Automatische Rotation aktiv</label>' +
-          '<div class="bg-mini-text">' + (state.rotation.locked ? 'Rotation ist aktuell gesperrt.' : 'Hintergruende wechseln nach dem Plan.') + '</div>' +
+          '<div class="bg-mini-text">' + (state.rotation.locked ? 'Rotation ist aktuell gesperrt.' : 'Hintergründe wechseln nach dem Plan.') + '</div>' +
           '<div class="bg-selector">' +
             '<label for="bgRotationStrategy">Modus</label>' +
             '<select id="bgRotationStrategy">' +
-              '<option value="time"' + (state.rotation.strategy === 'time' ? ' selected' : '') + '>Zeitabhaengig</option>' +
+              '<option value="time"' + (state.rotation.strategy === 'time' ? ' selected' : '') + '>Zeitabhängig</option>' +
               '<option value="interval"' + (state.rotation.strategy === 'interval' ? ' selected' : '') + '>Intervall</option>' +
               '<option value="theme"' + (state.rotation.strategy === 'theme' ? ' selected' : '') + '>Theme</option>' +
             '</select>' +
@@ -2185,7 +2185,7 @@
           '</div>' +
         '</div>' +
         '<div class="bg-rotation-card">' +
-          '<label>Quellen fuer Zufall</label>' +
+          '<label>Quellen für Zufall</label>' +
           '<div class="bg-selector">' + sourceControls + '</div>' +
         '</div>' +
         '<div class="bg-rotation-card">' +
@@ -2213,7 +2213,7 @@
           '<button type="button" data-action="bg-custom-save">Speichern</button>' +
           (state.customUrl ? '<button type="button" data-action="bg-custom-clear">Löschen</button>' : '') +
         '</div>' +
-        '<p class="bg-mini-text">URL wird lokal gespeichert. Server muss CORS fuer Bilder erlauben.</p>' +
+        '<p class="bg-mini-text">URL wird lokal gespeichert. Server muss CORS für Bilder erlauben.</p>' +
       '</div>';
   }
 
@@ -2405,7 +2405,7 @@
       alert('Sammlung lokal gespeichert.');
     } catch (err) {
       console.error(err);
-      alert('Fehler beim Laden. Pruefe CORS Vorgaben.');
+      alert('Fehler beim Laden. Prüfe CORS Vorgaben.');
     } finally {
       if(button) button.disabled = false;
     }
@@ -2753,7 +2753,7 @@
     const state = bgLoadState();
     const candidates = bgCollectCandidates(state, false);
     if(!candidates.length){
-      alert('Keine Hintergruende verfuegbar.');
+      alert('Keine Hintergründe verfügbar.');
       return;
     }
     const pick = bgCloneRef(candidates[Math.floor(Math.random() * candidates.length)]);
@@ -3155,7 +3155,7 @@
     // Commands
     add('Suche fokussieren', { k:'/', g:'command', a: ()=> $('#query').focus() });
     add('Suche starten', { g:'search', a: ()=>{ renderSearchSuggest([]); doSearch(); } });
-    add('Einstellungen oeffnen', { k:'S', g:'settings', a: openSettings });
+    add('Einstellungen öffnen', { k:'S', g:'settings', a: openSettings });
     add('Einstellungen: Allgemein', { g:'settings', a: ()=> openSettingsTab('general') });
     add('Einstellungen: Hintergrund', { g:'settings', a: ()=> openSettingsTab('background') });
     add('Einstellungen: Suche', { g:'settings', a: ()=> openSettingsTab('search') });
@@ -3170,7 +3170,7 @@
     add('Kachel-Stil: Solid', { g:'theme', a: ()=>{ store.set('ui.cardStyle','solid'); applyCardStyle(); }});
     add('Kachel-Stil: Transparent', { g:'theme', a: ()=>{ store.set('ui.cardStyle','transparent'); applyCardStyle(); }});
     add('Kachel-Stil: Minimal', { g:'theme', a: ()=>{ store.set('ui.cardStyle','minimal'); applyCardStyle(); }});
-    add('Header-Farben zuruecksetzen', { g:'theme', a: resetSurfaceColors });
+    add('Header-Farben zurücksetzen', { g:'theme', a: resetSurfaceColors });
     add('Akzentfarben neu berechnen', { g:'theme', a: applyAccentTint });
     add('Hintergrund: Rotation umschalten', { g:'theme', a: ()=>{ bgUpdateState(state=>{ state.rotation.enabled = !state.rotation.enabled; return state; }); bgRenderSettings(); }});
     add('Hintergrund: Rotation sperren/fortsetzen', { g:'theme', a: ()=>{ bgUpdateState(state=>{ state.rotation.locked = !state.rotation.locked; return state; }); bgRenderSettings(); }});
@@ -3184,12 +3184,12 @@
     });
 
     // Quick add
-    add('Todo hinzufuegen', { g:'quick', a: ()=>{ const v = prompt('Todo'); if(v && v.trim()) addTodo(v.trim()); }});
-    add('Notiz hinzufuegen', { g:'quick', a: ()=>{ const v = prompt('Notiz'); if(v && v.trim()) appendNote(v.trim()); }});
+    add('Todo hinzufügen', { g:'quick', a: ()=>{ const v = prompt('Todo'); if(v && v.trim()) addTodo(v.trim()); }});
+    add('Notiz hinzufügen', { g:'quick', a: ()=>{ const v = prompt('Notiz'); if(v && v.trim()) appendNote(v.trim()); }});
 
     // Tiles and widgets refresh
-    add('Tile hinzufuegen', { k:'+', g:'tiles', a: addTile });
-    add('Tiles zuruecksetzen', { g:'tiles', a: ()=>{ if(confirm('Standard-Kacheln wiederherstellen?')){ store.set('tiles', defaultTiles()); renderTiles(); }} });
+    add('Tile hinzufügen', { k:'+', g:'tiles', a: addTile });
+    add('Tiles zurücksetzen', { g:'tiles', a: ()=>{ if(confirm('Standard-Kacheln wiederherstellen?')){ store.set('tiles', defaultTiles()); renderTiles(); }} });
     add('Wetter aktualisieren', { g:'command', a: loadWeather });
     add('News aktualisieren', { g:'command', a: loadNews });
     add('Transport aktualisieren', { g:'command', a: loadTransportDepartures });
@@ -3479,7 +3479,7 @@
     const exp = $('#exportData'); if(exp) exp.addEventListener('click', exportData);
     const imp = $('#importData'); if(imp) imp.addEventListener('click', ()=> $('#importFile').click());
     const file = $('#importFile'); if(file) file.addEventListener('change', importDataFromFile);
-    const dataNote = $('#dataNote'); if(dataNote) dataNote.textContent = 'Export speichert saemtliche Einstellungen und Daten lokal als JSON. Import ueberschreibt vorhandene Eintraege.';
+    const dataNote = $('#dataNote'); if(dataNote) dataNote.textContent = 'Export speichert sämtliche Einstellungen und Daten lokal als JSON. Import überschreibt vorhandene Einträge.';
     renderDataPresets();
     const presetSelect = $('#dataPresetSelect'); if(presetSelect) presetSelect.addEventListener('change', updateDataPresetMeta);
     const presetApply = $('#applyPreset'); if(presetApply) presetApply.addEventListener('click', applyDataPreset);
@@ -3551,8 +3551,8 @@
     }
 
     // Persist settings fields (shortcuts, feeds, wordlist)
-    $('#shortcutConfig').addEventListener('change', ()=>{ try{ const j=JSON.parse($('#shortcutConfig').value); store.set('shortcuts', j);}catch{ alert('Ungueltiges Shortcuts-JSON'); } });
-    $('#feedsConfig').addEventListener('change', ()=>{ try{ const j=JSON.parse($('#feedsConfig').value); store.set('news.custom', j); fillNewsSources(); loadNews(); }catch{ alert('Ungueltiges Feeds-JSON'); } });
+    $('#shortcutConfig').addEventListener('change', ()=>{ try{ const j=JSON.parse($('#shortcutConfig').value); store.set('shortcuts', j);}catch{ alert('Ungültiges Shortcuts-JSON'); } });
+    $('#feedsConfig').addEventListener('change', ()=>{ try{ const j=JSON.parse($('#feedsConfig').value); store.set('news.custom', j); fillNewsSources(); loadNews(); }catch{ alert('Ungültiges Feeds-JSON'); } });
     const wordlistEditor = $('#wordlistEditor');
     const wordlistSave = $('#wordlistSave');
     const wordlistReset = $('#wordlistReset');
