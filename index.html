@@ -129,7 +129,7 @@
 
     <footer class="muted" style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:6px">
       <div>Local‑first Dashboard · speichert nur im Browser (localStorage)</div>
-      <div>v1.6</div>
+      <div>v1.7</div>
     </footer>
   </div>
 
@@ -427,8 +427,8 @@
   <!-- Command Palette -->
   <div class="modal" id="palette" aria-hidden="true">
     <div class="sheet">
-      <input class="palette-input" id="paletteInput" type="text" placeholder="Befehl oder Favorit suchen… (Strg/⌘+K)" autocomplete="off" />
-      <ul id="paletteList" class="palette-list"></ul>
+      <input class="palette-input" id="paletteInput" type="text" placeholder="Befehl oder Favorit suchen… (Strg/⌘+K)" autocomplete="off" aria-controls="paletteList" aria-autocomplete="list" aria-activedescendant="" />
+      <ul id="paletteList" class="palette-list" role="listbox"></ul>
     </div>
   </div>
   <script src="script.js"></script>

@@ -1200,7 +1200,8 @@
     const sheet = $('#settingsModal .sheet'); if(!sheet) return;
     const tabs = sheet.querySelector('.tabs'); if(!tabs) return;
     // Collect rows from root and any pre-existing panels BEFORE removing them
-    const rows = Array.from(sheet.querySelectorAll(':scope > .row, :scope > .tab-panel > .row'));
+    const rows = Array.from(sheet.querySelectorAll(':scope > .row, :scope > .tab-panel > .row'))
+      .filter(row=> !row.closest('#tab-guide'));
     // Remove old panels
     sheet.querySelectorAll(':scope > .tab-panel').forEach(p=> p.remove());
 
@@ -1238,6 +1239,7 @@
             <li>/ : Suche fokussieren (auch ueber Palette)</li>
             <li>Enter in Suche: Startet die Suche</li>
             <li>ESC: Modals schliessen</li>
+            <li>Palette: Schnellaktionen fuer Widgets, Theme, Hintergrund, Daten, Favoriten</li>
             <li>Palette: Taste C wechselt den Kachel-Stil, "Header-Farben zuruecksetzen" stellt Suche & Uhr zurueck</li>
           </ul>
           <h5>Suche & Autocomplete</h5>
@@ -1245,7 +1247,7 @@
             <li>Bangs: !g !ddg !bing !yt !wiki !maps</li>
             <li>Eigene Shortcuts: JSON in den Einstellungen; {q} als Platzhalter</li>
             <li>Autocomplete: Bangs, Shortcuts, Recent-Suchen, Wortliste (global + Preset)</li>
-            <li>Tab/Leertaste uebernimmt Vorschlag, Enter startet Suche</li>
+            <li>Tab uebernimmt Vorschlag, Enter startet Suche</li>
           </ul>
           <h5>Tiles</h5>
           <ul>
@@ -3092,22 +3094,133 @@
   }
 
   // ===== Command Palette (Ctrl/Cmd+K)
-  function buildPaletteItems(){
+  function openSettingsTab(name){
+    openSettings();
+    selectSettingsTab(name);
+  }
+  function toggleWidget(key, force){
+    const defaults = widgetDefaults();
+    const conf = store.get('widgets', defaults);
+    const next = typeof force == 'boolean' ? force : !conf[key];
+    conf[key] = next;
+    store.set('widgets', conf);
+    applyWidgets();
+    const modal = $('#settingsModal');
+    if(modal && modal.classList.contains('open')) fillSettings();
+    return next;
+  }
+  function focusWidget(key){
+    const focusMap = {
+      todo: '#todoInput',
+      notes: '#notesArea',
+      tiles: '#tiles',
+      weather: '#weather',
+      transport: '#transportQuery',
+      quote: '#quoteCard',
+      recent: '#recent',
+      system: '#systemCard',
+      news: '#newsCard'
+    };
+    const sel = focusMap[key];
+    const el = sel ? $(sel) : null;
+    if(!el) return;
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if(el.focus) el.focus();
+  }
+  function appendNote(text){
+    const clean = String(text || '').trim();
+    if(!clean) return;
+    const current = store.get('notes', '');
+    const next = current ? current + '\n' + clean : clean;
+    store.set('notes', next);
+    const area = $('#notesArea');
+    if(area) area.value = next;
+  }
+  function setSearchEngine(key){
+    const enabled = store.get('engines.enabled', Object.keys(ENGINES));
+    if(!enabled.includes(key)){
+      enabled.unshift(key);
+      store.set('engines.enabled', enabled);
+      renderEngines();
+    }
+    const select = $('#engine');
+    if(select) select.value = key;
+  }
+  async function buildPaletteItems(){
     const items = [];
+    const add = (t, opts)=> items.push({ t, ...opts });
+    const widgetNames = { todo:'Todo', notes:'Notizen', tiles:'Favoriten', weather:'Wetter', transport:'Transport', quote:'Quote', recent:'Zuletzt', system:'System', news:'News' };
+    const engineLabels = { google:'Google', ddg:'DuckDuckGo', bing:'Bing', yt:'YouTube', wikipedia:'Wikipedia', maps:'Google Maps' };
+
     // Commands
-    items.push({ t:'Suche fokussieren', k:'/', a: ()=> $('#query').focus() });
-    items.push({ t:'Einstellungen öffnen', k:'S', a: openSettings });
-    items.push({ t:'Theme wechseln (Auto/Dark/Light)', k:'T', a: ()=>{ const cur=store.get('theme','auto'); const next = cur==='dark' ? 'light' : cur==='light' ? 'auto' : 'dark'; store.set('theme', next); applyTheme(next); }});
-    items.push({ t:'Kachel-Stil wechseln', k:'C', a: cycleCardStyle });
-    items.push({ t:'Header-Farben zurücksetzen', a: resetSurfaceColors });
-    items.push({ t:'Tile hinzufügen', k:'+', a: addTile });
-    items.push({ t:'Erledigte Todos löschen', k:'⌫', a: ()=>{ const list=store.get('todos',[]).filter(t=>!t.done); store.set('todos', list); renderTodos(); }});
-    items.push({ t:'News aktualisieren', a: loadNews });
-    items.push({ t:'Wetter aktualisieren', a: loadWeather });
+    add('Suche fokussieren', { k:'/', g:'command', a: ()=> $('#query').focus() });
+    add('Suche starten', { g:'search', a: ()=>{ renderSearchSuggest([]); doSearch(); } });
+    add('Einstellungen oeffnen', { k:'S', g:'settings', a: openSettings });
+    add('Einstellungen: Allgemein', { g:'settings', a: ()=> openSettingsTab('general') });
+    add('Einstellungen: Hintergrund', { g:'settings', a: ()=> openSettingsTab('background') });
+    add('Einstellungen: Suche', { g:'settings', a: ()=> openSettingsTab('search') });
+    add('Einstellungen: Widgets', { g:'settings', a: ()=> openSettingsTab('widgets') });
+    add('Einstellungen: Daten', { g:'settings', a: ()=> openSettingsTab('data') });
+    add('Einstellungen: Guide', { g:'settings', a: ()=> openSettingsTab('guide') });
+    add('Theme wechseln (Auto/Dark/Light)', { k:'T', g:'theme', a: ()=>{ const cur=store.get('theme','auto'); const next = cur==='dark' ? 'light' : cur==='light' ? 'auto' : 'dark'; store.set('theme', next); applyTheme(next); }});
+    add('Theme: Auto', { g:'theme', a: ()=>{ store.set('theme','auto'); applyTheme('auto'); }});
+    add('Theme: Dark', { g:'theme', a: ()=>{ store.set('theme','dark'); applyTheme('dark'); }});
+    add('Theme: Light', { g:'theme', a: ()=>{ store.set('theme','light'); applyTheme('light'); }});
+    add('Kachel-Stil: Glass', { g:'theme', a: ()=>{ store.set('ui.cardStyle','glass'); applyCardStyle(); }});
+    add('Kachel-Stil: Solid', { g:'theme', a: ()=>{ store.set('ui.cardStyle','solid'); applyCardStyle(); }});
+    add('Kachel-Stil: Transparent', { g:'theme', a: ()=>{ store.set('ui.cardStyle','transparent'); applyCardStyle(); }});
+    add('Kachel-Stil: Minimal', { g:'theme', a: ()=>{ store.set('ui.cardStyle','minimal'); applyCardStyle(); }});
+    add('Header-Farben zuruecksetzen', { g:'theme', a: resetSurfaceColors });
+    add('Akzentfarben neu berechnen', { g:'theme', a: applyAccentTint });
+    add('Hintergrund: Rotation umschalten', { g:'theme', a: ()=>{ bgUpdateState(state=>{ state.rotation.enabled = !state.rotation.enabled; return state; }); bgRenderSettings(); }});
+    add('Hintergrund: Rotation sperren/fortsetzen', { g:'theme', a: ()=>{ bgUpdateState(state=>{ state.rotation.locked = !state.rotation.locked; return state; }); bgRenderSettings(); }});
+
+    // Widget actions
+    add('Widgets: Alle anzeigen', { g:'widgets', a: ()=>{ const next = {}; Object.keys(widgetNames).forEach(k=> next[k]=true); store.set('widgets', next); applyWidgets(); if($('#settingsModal') && $('#settingsModal').classList.contains('open')) fillSettings(); }});
+    add('Widgets: Alle ausblenden', { g:'widgets', a: ()=>{ const next = {}; Object.keys(widgetNames).forEach(k=> next[k]=false); store.set('widgets', next); applyWidgets(); if($('#settingsModal') && $('#settingsModal').classList.contains('open')) fillSettings(); }});
+    Object.keys(widgetNames).forEach(key=>{
+      add(`Widget: ${widgetNames[key]} umschalten`, { g:'widgets', a: ()=> toggleWidget(key) });
+      add(`Widget: ${widgetNames[key]} fokussieren`, { g:'widgets', a: ()=> focusWidget(key) });
+    });
+
+    // Quick add
+    add('Todo hinzufuegen', { g:'quick', a: ()=>{ const v = prompt('Todo'); if(v && v.trim()) addTodo(v.trim()); }});
+    add('Notiz hinzufuegen', { g:'quick', a: ()=>{ const v = prompt('Notiz'); if(v && v.trim()) appendNote(v.trim()); }});
+
+    // Tiles and widgets refresh
+    add('Tile hinzufuegen', { k:'+', g:'tiles', a: addTile });
+    add('Tiles zuruecksetzen', { g:'tiles', a: ()=>{ if(confirm('Standard-Kacheln wiederherstellen?')){ store.set('tiles', defaultTiles()); renderTiles(); }} });
+    add('Wetter aktualisieren', { g:'command', a: loadWeather });
+    add('News aktualisieren', { g:'command', a: loadNews });
+    add('Transport aktualisieren', { g:'command', a: loadTransportDepartures });
+    add('System aktualisieren', { g:'command', a: renderSystem });
+    add('Alle Widgets aktualisieren', { g:'command', a: ()=>{ loadWeather(); loadNews(); loadTransportDepartures(); renderSystem(); }});
+
+    // Search engines
+    Object.keys(ENGINES).forEach(key=>{
+      const label = engineLabels[key] || key;
+      add(`Engine: ${label}`, { g:'search', a: ()=>{ setSearchEngine(key); $('#query').focus(); } });
+    });
+
+    // Background presets
+    BG_PRESETS.forEach(p=>{
+      add(`Hintergrund: ${p.label}`, { g:'theme', a: ()=> bgApply({ type:'preset', id: p.id }) });
+    });
+
+    // Data actions + presets
+    add('Daten exportieren', { g:'data', a: exportData });
+    add('Daten importieren', { g:'data', a: ()=>{ const file = $('#importFile'); if(file) file.click(); }});
+    try{
+      const presets = await loadDataPresets();
+      presets.forEach(p=>{
+        const label = p.label || p.id || 'Preset';
+        add(`Data Preset: ${label}`, { g:'data', a: ()=> applyPresetFromEntry(p, `Preset: ${label}`) });
+      });
+    }catch{}
 
     // Tiles
     const tiles = store.get('tiles', defaultTiles());
-    tiles.forEach((t,i)=> items.push({ t:`${t.title}`, s:t.url, a: ()=> openUrl(t.url, t.title) }));
+    tiles.forEach(t=> items.push({ t:`${t.title}`, s:t.url, g:'tile', a: ()=> openUrl(t.url, t.title) }));
     return items;
   }
   function fuzzyIncludes(text, q){
@@ -3116,41 +3229,139 @@
     let i=0; for(const ch of text){ if(ch===q[i]) i++; if(i===q.length) return true; }
     return false;
   }
+  function scoreMatch(text, q){
+    const t = (text||'').toLowerCase();
+    const query = (q||'').toLowerCase();
+    if(!query) return 1;
+    if(t.startsWith(query)) return 100;
+    if(t.split(/\s+/).some(w=> w.startsWith(query))) return 80;
+    if(t.includes(query)) return 60;
+    if(fuzzyIncludes(t, query)) return 40;
+    return 0;
+  }
   function openPalette(){
     const modal = $('#palette'); const input = $('#paletteInput'); const list = $('#paletteList');
-    const all = buildPaletteItems(); let filtered = all.slice(); let idx = 0;
+    if(modal.classList.contains('open')){
+      input.focus();
+      return;
+    }
+    const groupOrder = ['command','settings','search','widgets','theme','data','tiles','tile','quick'];
+    const groupLabels = {
+      command: 'Befehle',
+      settings: 'Einstellungen',
+      search: 'Suche',
+      widgets: 'Widgets',
+      theme: 'Theme & Hintergrund',
+      data: 'Daten',
+      tiles: 'Tiles',
+      tile: 'Favoriten',
+      quick: 'Schnell'
+    };
+    let isLoading = true;
+    let all = [];
+    let filtered = [];
+    let flat = [];
+    let idx = 0;
+    function flatten(items){
+      const out = [];
+      const remaining = items.slice();
+      groupOrder.forEach(g=>{
+        items.forEach(it=>{ if(it.g===g) out.push(it); });
+        for(let i=remaining.length-1;i>=0;i--){ if(remaining[i].g===g) remaining.splice(i,1); }
+      });
+      remaining.forEach(it=> out.push(it));
+      return out;
+    }
     function render(){
       list.innerHTML='';
-      filtered.forEach((it,i)=>{
-        const li = document.createElement('li');
-        li.className = 'palette-item' + (i===idx ? ' active':'');
-        li.innerHTML = `<span>${escapeHtml(it.t)}</span>${it.s?`<span class="muted">${escapeHtml(it.s)}</span>`:''}${it.k?`<span class="k">${it.k}</span>`:''}`;
-        li.addEventListener('click', ()=>{ it.a && it.a(); closePalette(); });
-        list.appendChild(li);
-      });
+      if(isLoading){
+        const loading = document.createElement('li');
+        loading.className = 'palette-empty';
+        loading.textContent = 'Lade...';
+        list.appendChild(loading);
+        input.setAttribute('aria-activedescendant','');
+        return;
+      }
+      if(!flat.length){
+        const empty = document.createElement('li');
+        empty.className = 'palette-empty';
+        empty.textContent = 'Keine Treffer';
+        list.appendChild(empty);
+        input.setAttribute('aria-activedescendant','');
+        return;
+      }
+      const addSection = (group)=>{
+        const items = filtered.filter(it=> it.g===group);
+        if(!items.length) return;
+        const header = document.createElement('li');
+        header.className = 'palette-section';
+        header.textContent = groupLabels[group] || group;
+        list.appendChild(header);
+        items.forEach(it=>{
+          const i = flat.indexOf(it);
+          const li = document.createElement('li');
+          li.className = 'palette-item' + (i===idx ? ' active':'');
+          li.setAttribute('role','option');
+          li.id = `palette-item-${i}`;
+          li.innerHTML = `<span>${escapeHtml(it.t)}</span>${it.s?`<span class="muted">${escapeHtml(it.s)}</span>`:''}${it.k?`<span class="k">${it.k}</span>`:''}`;
+          li.addEventListener('click', ()=>{ it.a && it.a(); closePalette(); });
+          li.addEventListener('mouseenter', ()=>{ idx = i; input.focus({ preventScroll: true }); render(); });
+          list.appendChild(li);
+        });
+      };
+      groupOrder.forEach(addSection);
+      const active = list.querySelector('.palette-item.active');
+      if(active) active.scrollIntoView({ block:'nearest' });
+      input.setAttribute('aria-activedescendant', `palette-item-${idx}`);
     }
-    function applyFilter(){ const q=input.value.trim(); filtered = all.filter(it=> fuzzyIncludes(it.t+' '+(it.s||''), q)); idx=0; render(); }
+    function applyFilter(){
+      if(isLoading) return;
+      const q = input.value.trim();
+      const scored = all.map((it, i)=> {
+        const score = scoreMatch(it.t+' '+(it.s||''), q);
+        return { it, i, score };
+      }).filter(x=> x.score > 0);
+      scored.sort((a,b)=> b.score - a.score || a.i - b.i);
+      filtered = scored.map(x=> x.it);
+      flat = flatten(filtered);
+      idx = 0;
+      render();
+    }
     function onKey(e){
       if(e.key==='Escape'){ e.preventDefault(); closePalette(); }
-      else if(e.key==='ArrowDown'){ e.preventDefault(); idx = Math.min(idx+1, Math.max(0, filtered.length-1)); render(); }
+      else if(e.key==='ArrowDown'){ e.preventDefault(); idx = Math.min(idx+1, Math.max(0, flat.length-1)); render(); }
       else if(e.key==='ArrowUp'){ e.preventDefault(); idx = Math.max(idx-1, 0); render(); }
-      else if(e.key==='Enter'){ e.preventDefault(); const it=filtered[idx]; if(it){ it.a && it.a(); closePalette(); } }
+      else if(e.key==='Home'){ e.preventDefault(); idx = 0; render(); }
+      else if(e.key==='End'){ e.preventDefault(); idx = Math.max(0, flat.length-1); render(); }
+      else if(e.key==='Enter'){ e.preventDefault(); const it=flat[idx]; if(it){ it.a && it.a(); closePalette(); } }
+    }
+    function onOverlayClick(e){ if(e.target.id==='palette') closePalette(); }
+    function onListMouseDown(e){ e.preventDefault(); input.focus({ preventScroll: true }); }
+    async function loadItems(){
+      all = await buildPaletteItems();
+      isLoading = false;
+      applyFilter();
     }
     modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
     input.value=''; input.focus(); render();
     input.addEventListener('input', applyFilter);
-    document.addEventListener('keydown', onKey);
-    modal.addEventListener('click', e=>{ if(e.target.id==='palette') closePalette(); });
+    input.addEventListener('keydown', onKey);
+    modal.addEventListener('click', onOverlayClick);
+    list.addEventListener('mousedown', onListMouseDown);
+    loadItems();
     function closePalette(){
       modal.classList.remove('open'); modal.setAttribute('aria-hidden','true');
       input.removeEventListener('input', applyFilter);
-      document.removeEventListener('keydown', onKey);
+      input.removeEventListener('keydown', onKey);
+      modal.removeEventListener('click', onOverlayClick);
+      list.removeEventListener('mousedown', onListMouseDown);
+      input.setAttribute('aria-activedescendant','');
     }
     // expose for ESC in global handler
     window.__closePalette = closePalette;
   }
 
-  // ===== Init
+// ===== Init
   function init(){
     // Theme
     const theme = store.get('theme','auto');
@@ -3248,14 +3459,6 @@
           e.preventDefault();
           const idx = searchSuggest.active >=0 ? searchSuggest.active : 0;
           selectSearchSuggestion(idx, false);
-        }
-      }
-      if(e.key === ' '){
-        if(searchSuggest.items.length && searchSuggest.items[searchSuggest.active >=0 ? searchSuggest.active : 0]?.type === 'word'){
-          e.preventDefault();
-          const idx = searchSuggest.active >=0 ? searchSuggest.active : 0;
-          selectSearchSuggestion(idx, false);
-          return;
         }
       }
       if(e.key === 'Enter'){

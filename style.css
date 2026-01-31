@@ -423,9 +423,11 @@
     #palette .sheet { width: min(640px, 96vw); }
     .palette-input { width:100%; background: var(--bg-soft); color: var(--fg); border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:12px 14px; font-size:16px; margin-bottom:10px }
     .palette-list { list-style:none; margin:0; padding:0; max-height: 360px; overflow:auto }
+    .palette-section { padding:6px 8px; font-size:12px; text-transform:uppercase; letter-spacing:.08em; color: var(--muted); }
     .palette-item { padding:10px 12px; border-radius:10px; display:flex; gap:8px; align-items:center; cursor:pointer }
     .palette-item:hover, .palette-item.active { background: var(--bg-soft) }
     .palette-item .k { margin-left:auto; color: var(--muted); font-size:12px }
+    .palette-empty { padding:12px; color: var(--muted); font-size:14px }
 
     /* Onboarding */
     .onboarding-sheet { max-width: 760px; }

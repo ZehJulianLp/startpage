@@ -1,7 +1,7 @@
 # Startpage
 
 ## Ueberblick
-Startpage ist eine personalisierbare Startseite im Dashboard-Stil. Suche, Wetter, Aufgaben, Notizen, News und Systemstatus laufen vollstaendig im Browser (localStorage). Version: **v1.6**. Live: https://julianverse.de/startpage/
+Startpage ist eine personalisierbare Startseite im Dashboard-Stil. Suche, Wetter, Aufgaben, Notizen, News und Systemstatus laufen vollstaendig im Browser (localStorage). Version: **v1.7**. Live: https://julianverse.de/startpage/
 
 ## Kernfunktionen
 - Schnellsuche: Mehrere Engines, !Bangs (!g, !ddg, !bing, !yt, !wiki, !maps), eigene Shortcuts und Autocomplete (Bangs, Shortcuts, Recent, globale Wortliste + Preset-Wortliste).
