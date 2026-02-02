@@ -1,0 +1,490 @@
+{
+  "app": {
+    "title": "Startpage"
+  },
+  "common": {
+    "link": "Ba?lant?",
+    "delete": "Sil",
+    "remove": "Kald?r",
+    "save": "Kaydet",
+    "loading": "Y?kleniyor...",
+    "loadError": "Y?kleme ba?ar?s?z",
+    "noMatches": "E?le?me yok",
+    "emptyDash": "?",
+    "dash": "?"
+  },
+  "header": {
+    "themeToggleTitle": "Koyu/A??k",
+    "settingsTitle": "Ayarlar"
+  },
+  "search": {
+    "placeholder": "Ara... (?rn. !yt lo-fi, !etc Home)",
+    "engine": {
+      "google": "Google",
+      "ddg": "DuckDuckGo",
+      "bing": "Bing",
+      "yt": "YouTube",
+      "wikipedia": "Vikipedi",
+      "maps": "Google Haritalar"
+    },
+    "suggest": {
+      "bang": "{bang} (Bang)",
+      "shortcut": "{shortcut} (K?sayol)",
+      "type": {
+        "bang": "Bang",
+        "shortcut": "K?sayol",
+        "recent": "Son",
+        "word": "Kelime"
+      }
+    },
+    "recentShortcut": "K?sayol {shortcut} ? {query}",
+    "recentSearch": "Arama ({engine}) ? {query}"
+  },
+  "todo": {
+    "title": "Yap?lacaklar",
+    "placeholder": "Yeni g?rev...",
+    "add": "Ekle",
+    "clearDoneTitle": "Tamamlananlar? kald?r",
+    "clearDone": "? temizle",
+    "doneAria": "Tamam",
+    "prompt": "G?rev"
+  },
+  "notes": {
+    "title": "Notlar",
+    "placeholder": "Bir ?ey not et...",
+    "prompt": "Not"
+  },
+  "tiles": {
+    "title": "Favoriler",
+    "add": "+ Kutucuk",
+    "resetTitle": "Varsay?lanlar? geri y?kle",
+    "edit": "D?zenle",
+    "promptTitle": "Ba?l?k",
+    "promptUrl": "URL",
+    "invalidUrl": "Ge?ersiz URL",
+    "promptTitleNew": "Kutucuk ba?l???",
+    "promptUrlNew": "URL (https://?)",
+    "resetConfirm": "Varsay?lan kutucuklar geri y?klensin mi?"
+  },
+  "weather": {
+    "title": "Bug?nk? hava",
+    "cityPlaceholder": "?ehir gir...",
+    "setCity": "Ayarla",
+    "pickLocation": "Konum se?...",
+    "source": "Kaynak: Open-Meteo",
+    "loading": "Hava y?kleniyor...",
+    "prompt": "Havay? y?klemek i?in konum girin.",
+    "tempEmpty": "??C",
+    "tempEmptyShort": "??",
+    "minmaxEmpty": "? / ? ?C",
+    "noForecast": "Tahmin yok",
+    "errors": {
+      "geocodingFailed": "Jeokodlama ba?ar?s?z",
+      "locationNotFound": "Konum bulunamad?",
+      "cityMissing": "?ehir eksik",
+      "fetchFailed": "Hava al?namad?",
+      "loadFailed": "Hava y?klenemedi"
+    },
+    "codes": {
+      "0": "A??k",
+      "1": "?o?unlukla a??k",
+      "2": "Par?al? bulutlu",
+      "3": "Bulutlu",
+      "45": "Sis",
+      "48": "Sis",
+      "51": "?iseleme",
+      "53": "?iseleme",
+      "55": "?iseleme",
+      "61": "Ya?mur",
+      "63": "Ya?mur",
+      "65": "?iddetli ya?mur",
+      "71": "Kar",
+      "80": "Sa?anak",
+      "95": "G?k g?r?lt?l?",
+      "default": "Hava"
+    }
+  },
+  "transport": {
+    "title": "Ula??m",
+    "durationAria": "S?re",
+    "duration30": "30 dk",
+    "duration60": "60 dk",
+    "duration90": "90 dk",
+    "duration120": "120 dk",
+    "refreshTitle": "Yenile",
+    "searchPlaceholder": "?stasyon ara...",
+    "noneSelected": "?stasyon se?ilmedi",
+    "source": "Kaynak: transport.rest",
+    "minQuery": "En az {count} karakter",
+    "noMatches": "E?le?me yok",
+    "proxyTimeout": "Proxy zaman a??m?",
+    "loadError": "Y?kleme ba?ar?s?z",
+    "noDepartures": "Kalk?? yok",
+    "selectStation": "?stasyon se?...",
+    "type": {
+      "station": "?stasyon",
+      "stop": "Durak"
+    },
+    "platform": "Peron {platform}",
+    "cancelled": "?ptal"
+  },
+  "quote": {
+    "title": "Al?nt? / Nerd d?rt?s?",
+    "list": [
+      "H?zl? git, s?k s?k refactor et.",
+      "Eri?ilebilirlik bir ?zellik de?il, varsay?land?r.",
+      "Bitti > M?kemmel. ?terasyon yap.",
+      "?zlenmiyorsa, yoktur.",
+      "?yi UX g?r?nmezdir. K?t? UX unutulmazd?r.",
+      "?nce ?al??t?r, sonra d?zelt, sonra h?zland?r.",
+      "K???k ad?mlar. B?y?k sonu?lar.",
+      "Sadelik ?l?eklenir. Karma??kl?k ??ker.",
+      "S?k?c? i?leri otomatikle?tir.",
+      "?ki kez ?l?, bir kez yay?nla."
+    ]
+  },
+  "recent": {
+    "title": "Son",
+    "note": "Not: yaln?zca bu ba?lang?? sayfas?ndaki i?lemleri g?sterir (t?klanan kutucuklar ve aramalar)."
+  },
+  "system": {
+    "title": "Sistem durumu",
+    "loading": "Y?kleniyor...",
+    "ram": "RAM: {value} GB",
+    "cpu": "CPU ?ekirde?i: {value}",
+    "network": "A?: {downlink} Mbit/s ? {type}{saveData}",
+    "saveData": " ? Veri tasarrufu",
+    "noData": "Veri yok"
+  },
+  "news": {
+    "title": "Haberler",
+    "refreshTitle": "Yenile",
+    "source": "Startpage proxy ?zerinden RSS (CORS proxy)",
+    "noItems": "??e yok"
+  },
+  "footer": {
+    "tagline": "Yerel ?ncelikli panel ? sadece taray?c?da saklar (localStorage)"
+  },
+  "settings": {
+    "title": "Ayarlar",
+    "close": "Kapat",
+    "tabs": {
+      "general": "Genel",
+      "background": "Arka plan ve g?r?n?m",
+      "search": "Arama ve ak??lar",
+      "widgets": "Widget'lar",
+      "data": "Veri",
+      "guide": "K?lavuz"
+    },
+    "theme": {
+      "label": "Tema",
+      "auto": "Auto (sistem)",
+      "dark": "Koyu",
+      "light": "A??k"
+    },
+    "background": {
+      "label": "Arka plan"
+    },
+    "search": {
+      "engines": "Arama motorlar?",
+      "bangsNote": "Desteklenen bang k?sayollar?: <code>!g !ddg !bing !yt !wiki !maps</code> - ?zel k?sayollar a?a??da",
+      "wordlistLabel": "Otomatik tamamlama kelime listesi",
+      "wordlistPlaceholder": "Terimler sat?r sat?r veya virg?lle",
+      "wordlistSave": "Kaydet",
+      "wordlistReset": "Temizle",
+      "wordlistNote": "Global kelime listesi (assets/wordlist.json) ve preset listesi birle?tirilir. Yaln?zca global liste i?in bo? b?rak?n.",
+      "shortcutsLabel": "?zel !k?sayollar",
+      "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
+      "shortcutsNote": "<code>{q}</code> yer tutucu olarak kullan?n. <code>{q}</code> yoksa <code>?q=...</code> eklenir.",
+      "feedsLabel": "?zel RSS ak??lar?",
+      "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
+      "feedsNote": "JSON: ad - ak?? URL'si. Bu liste varsay?lan ak??larla birle?tirilir.",
+      "invalidShortcuts": "Ge?ersiz k?sayol JSON",
+      "invalidFeeds": "Ge?ersiz ak?? JSON"
+    },
+    "widgets": {
+      "visible": "Widget'lar? g?ster",
+      "defaultCityLabel": "Varsay?lan ?ehir (hava)",
+      "defaultCityPlaceholder": "?rn. Hannover",
+      "defaultTransportLabel": "Varsay?lan durak (ula??m)",
+      "defaultTransportPlaceholder": "?stasyon ara...",
+      "cardStyleLabel": "Kart stili",
+      "cardStyleGlass": "Cam (varsay?lan)",
+      "cardStyleSolid": "Dolu",
+      "cardStyleTransparent": "?effaf",
+      "cardStyleMinimal": "Yumu?ak minimal",
+      "cardStyleNote": "T?m widget'lara ve favori kutucuklara uygulan?r.",
+      "clockColorLabel": "Saat ve tarih",
+      "searchColorLabel": "Arama",
+      "reset": "S?f?rla",
+      "clockColorNote": "Ba?l?k arka plan?n? ayarlar (bo? = stil varsay?lan?).",
+      "searchColorNote": "Arama alan? rengi (bo? = stil varsay?lan?).",
+      "widgetColorsLabel": "Widget renkleri"
+    },
+    "data": {
+      "label": "Veri",
+      "export": "D??a aktar (.json)",
+      "import": "??e aktar (.json)",
+      "presetsLabel": "Veri presetleri",
+      "applyPreset": "Preset y?kle",
+      "presetMeta": "Presetler assets/presets/ alt?nda d??a aktar?lm?? JSON'lard?r. assets/user-presets/ alt?ndaki kullan?c? presetleri otomatik birle?tirilir.",
+      "setupLabel": "Kurulum",
+      "restartOnboarding": "Kurulumu yeniden ba?lat",
+      "restartNote": "Kompakt kurulum penceresini yeniden a?ar.",
+      "noteLabel": "Not",
+      "noteText": "D??a aktarma t?m ayarlar? ve verileri JSON olarak yerel kaydeder. ??e aktarma mevcut kay?tlar? ?zerine yazar."
+    },
+    "language": {
+      "label": "Dil",
+      "auto": "Auto (sistem)"
+    },
+    "guideHtml": "<div class=\"row\"><label>Kullan?c? k?lavuzu</label><div><h5>Genel bak??</h5><ul><li>Arama, favoriler, yap?lacaklar, notlar, hava ve haberler i?eren ba?lang?? sayfas?.</li><li>Her ?ey yerel: veriler taray?c?da kal?r (localStorage).</li></ul><h5>K?sayollar</h5><ul><li>Ctrl/Cmd+K: komut paletini a?</li><li>1-9: ilk 9 favoriyi a? (yazm?yorsan?z)</li><li>/ : aramaya odaklan (palet ?zerinden de)</li><li>Enter ile arama: aramay? ba?lat?r</li><li>ESC: modallar? kapat?r</li><li>Palet: widget, tema, arka plan, veri, favoriler i?in h?zl? eylemler</li><li>Palet: C tu?u kart stilini de?i?tirir, \"Ba?l?k renklerini s?f?rla\" arama ve saati s?f?rlar</li></ul><h5>Arama ve otomatik tamamlama</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>?zel k?sayollar: ayarlarda JSON; {q} yer tutucu</li><li>Otomatik tamamlama: bang'ler, k?sayollar, son aramalar, kelime listesi (global + preset)</li><li>Tab ?neriyi kabul eder, Enter aramay? ba?lat?r</li></ul><h5>Kutucuklar</h5><ul><li>S?ralama i?in s?r?kle & b?rak, a?mak i?in t?kla</li><li>+ Kutucuk: yeni favori ekle</li><li>S?f?rla: varsay?lan favorileri geri y?kle</li></ul><h5>Widget'lar ve d?zen</h5><ul><li>Her widget i?in g?r?n?rl?k</li><li>Kart stili global (cam, dolu, ?effaf, yumu?ak minimal)</li><li>Saat/arama i?in ?zel renkler; s?f?rla varsay?lan stili geri getirir</li><li>Widget renkleri ve \"Widget'lar? renklendir\" d??mesi kart ba??na vurgu ayarlar</li></ul><h5>Arka plan</h5><ul><li>Presetler, y?klemeler, koleksiyonlar, rotasyon (zaman/tema/aral?k)</li><li>Vurgu rengi aktif arka plandan ??kar?l?r</li></ul><h5>Veri</h5><ul><li>JSON olarak d??a aktar/i?e aktar</li><li>Veri presetlerini y?kle (assets/presets/*.json repoda)</li></ul></div></div>"
+  },
+  "onboarding": {
+    "title": "Kurulumu ba?lat",
+    "progress": "Ad?m {current} / {total}",
+    "skip": "Atla",
+    "close": "Kapat",
+    "preset": {
+      "title": "Preset se?",
+      "hint": "Bir preset se? veya bu ad?m? atla.",
+      "apply": "Preset uygula",
+      "meta": "Preset uygula veya atla.",
+      "optional": "Preset iste?e ba?l?.",
+      "context": "Kurulum preset"
+    },
+    "appearance": {
+      "title": "G?r?n?m",
+      "theme": "Tema",
+      "cardStyle": "Kart stili",
+      "background": "Arka plan",
+      "rotation": "Rotasyonu etkinle?tir",
+      "keepCurrent": "Mevcut resmi koru"
+    },
+    "search": {
+      "title": "Arama",
+      "engine": "Varsay?lan arama motoru"
+    },
+    "widgets": {
+      "title": "Widget'lar",
+      "defaultTransport": "Varsay?lan durak (ula??m)",
+      "tint": "Widget'lar? vurgu ile renklendir"
+    },
+    "weather": {
+      "title": "Hava",
+      "defaultCity": "Varsay?lan ?ehir",
+      "note": "Her ?eyi daha sonra ayarlardan de?i?tirebilirsiniz."
+    },
+    "prev": "Geri",
+    "next": "?leri",
+    "finish": "Bitti"
+  },
+  "palette": {
+    "placeholder": "Komut veya favori ara... (Ctrl/?+K)",
+    "groups": {
+      "command": "Komutlar",
+      "settings": "Ayarlar",
+      "search": "Arama",
+      "widgets": "Widget'lar",
+      "theme": "Tema ve arka plan",
+      "data": "Veri",
+      "tiles": "Kutucuklar",
+      "tile": "Favoriler",
+      "quick": "H?zl?"
+    },
+    "search": {
+      "focus": "Aramaya odaklan",
+      "start": "Arama ba?lat",
+      "engine": "Motor: {engine}"
+    },
+    "settings": {
+      "open": "Ayarlar? a?",
+      "general": "Ayarlar: Genel",
+      "background": "Ayarlar: Arka plan",
+      "search": "Ayarlar: Arama",
+      "widgets": "Ayarlar: Widget'lar",
+      "data": "Ayarlar: Veri",
+      "guide": "Ayarlar: K?lavuz"
+    },
+    "theme": {
+      "cycle": "Temay? de?i?tir (Auto/Koyu/A??k)",
+      "auto": "Tema: Auto",
+      "dark": "Tema: Koyu",
+      "light": "Tema: A??k",
+      "resetHeader": "Ba?l?k renklerini s?f?rla",
+      "recalcAccent": "Vurgu renklerini yeniden hesapla"
+    },
+    "cardStyle": {
+      "glass": "Kart stili: Cam",
+      "solid": "Kart stili: Dolu",
+      "transparent": "Kart stili: ?effaf",
+      "minimal": "Kart stili: Minimal"
+    },
+    "background": {
+      "toggleRotation": "Arka plan: rotasyonu de?i?tir",
+      "toggleLock": "Arka plan: rotasyonu kilitle/a?",
+      "preset": "Arka plan: {label}"
+    },
+    "widgets": {
+      "showAll": "Widget'lar: hepsini g?ster",
+      "hideAll": "Widget'lar: hepsini gizle",
+      "toggle": "Widget: {widget} de?i?tir",
+      "focus": "Widget: {widget} odakla"
+    },
+    "quick": {
+      "addTodo": "G?rev ekle",
+      "addNote": "Not ekle"
+    },
+    "tiles": {
+      "add": "Kutucuk ekle",
+      "reset": "Kutucuklar? s?f?rla"
+    },
+    "refresh": {
+      "weather": "Havay? yenile",
+      "news": "Haberleri yenile",
+      "transport": "Ula??m? yenile",
+      "system": "Sistemi yenile",
+      "all": "T?m widget'lar? yenile"
+    },
+    "data": {
+      "export": "Veriyi d??a aktar",
+      "import": "Veriyi i?e aktar",
+      "preset": "Veri preseti: {label}"
+    }
+  },
+  "widgets": {
+    "todo": "Yap?lacaklar",
+    "notes": "Notlar",
+    "tiles": "Favoriler",
+    "weather": "Hava",
+    "transport": "Ula??m",
+    "quote": "Al?nt?",
+    "recent": "Son",
+    "system": "Sistem",
+    "news": "Haberler"
+  },
+  "background": {
+    "currentPreview": "Mevcut arka plan g?rseli",
+    "none": "Arka plan yok",
+    "noImageSelected": "G?rsel se?ilmedi",
+    "rotationResume": "Rotasyonu s?rd?r",
+    "rotationLock": "Rotasyonu kilitle",
+    "tone": "Ton: {tone}",
+    "presets": {
+      "empty": "Preset yok."
+    },
+    "favorites": {
+      "empty": "Hen?z favori yok. Preset veya y?kleme i?aretleyin."
+    },
+    "subtitle": {
+      "preset": "Preset"
+    },
+    "upload": "Y?kle",
+    "uploadDrop": "Dosyalar? buraya b?rak",
+    "uploadBrowse": "Dosya se?",
+    "uploadNote": "G?r?nt?leri otomatik olarak k???lt?yoruz (16:9, maks 2560px) ve yerel kaydediyoruz. En fazla {max} dosya.",
+    "uploads": {
+      "empty": "Hen?z y?kleme yok."
+    },
+    "collections": {
+      "count": "{count} kaynak",
+      "random": "Rastgele",
+      "cache": "Offline kaydet",
+      "viewSources": "Kaynaklar? g?r?nt?le",
+      "useRotation": "Rotasyonda kullan",
+      "newLabel": "Yeni koleksiyon",
+      "namePlaceholder": "Koleksiyonum",
+      "urlsPlaceholder": "Her sat?ra bir g?rsel URL",
+      "clear": "Alanlar? temizle",
+      "note": "URL'ler yerel kaydedilir. Uzak kaynaklar CORS gerektirir.",
+      "empty": "Koleksiyon yok.",
+      "minOneUrl": "En az bir URL girin.",
+      "emptyCollection": "Koleksiyon bo?.",
+      "saved": "Koleksiyon yerel olarak kaydedildi.",
+      "defaultName": "Koleksiyon {index}"
+    },
+    "rotation": {
+      "optionPreset": "Preset: {label}",
+      "optionUpload": "Y?kleme: {label}",
+      "optionFavorite": "Favori: {label}",
+      "optionCustom": "?zel: kay?tl? URL",
+      "noFixed": "Sabit g?rsel yok",
+      "enabled": "Otomatik rotasyonu etkinle?tir",
+      "locked": "Rotasyon kilitli.",
+      "active": "Arka planlar plana g?re de?i?ir.",
+      "mode": "Mod",
+      "modeTime": "Zamana g?re",
+      "modeInterval": "Aral?k",
+      "modeTheme": "Tema",
+      "intervalLabel": "Dakika cinsinden aral?k",
+      "intervalNote": "Sadece aral?k modunda ge?erli.",
+      "sourcesLabel": "Rastgele kaynaklar",
+      "scheduleLabel": "Program",
+      "themePlan": "Tema plan?",
+      "themeLight": "A??k tema",
+      "themeDark": "Koyu tema",
+      "themeNote": "Mod Tema oldu?unda tema plan? kullan?l?r.",
+      "slot": {
+        "morning": "Sabah 05-11",
+        "day": "G?nd?z 11-17",
+        "evening": "Ak?am 17-21",
+        "night": "Gece 21-05"
+      }
+    },
+    "custom": {
+      "label": "?zel g?rsel URL",
+      "placeholder": "https://example.com/image.jpg",
+      "note": "URL yerel kaydedilir. Sunucu CORS'a izin vermelidir.",
+      "enterUrl": "L?tfen bir URL girin.",
+      "title": "?zel URL",
+      "subtitle": "?zel"
+    },
+    "actions": {
+      "apply": "Uygula",
+      "favorite": "Favori",
+      "favorited": "Favori",
+      "random": "Rastgele y?kle",
+      "undo": "Son g?rseli geri y?kle",
+      "lock": "Rotasyonu kilitle",
+      "tint": "Widget'lar? renklendir"
+    },
+    "tabs": {
+      "presets": "Presetler",
+      "favorites": "Favoriler",
+      "uploads": "Y?klemeler",
+      "collections": "Koleksiyonlar",
+      "rotation": "Rotasyon",
+      "custom": "?zel"
+    },
+    "loadError": "Y?kleme ba?ar?s?z. CORS ayarlar?n? kontrol edin.",
+    "noneAvailable": "Arka plan yok.",
+    "imageLoadError": "G?rsel y?klenemedi."
+  },
+  "data": {
+    "import": {
+      "confirm": "Veri i?e aktar?ls?n m?? Mevcut girdiler ?zerine yaz?lacak.",
+      "failed": "??e aktarma ba?ar?s?z: {error}"
+    },
+    "presets": {
+      "none": "Preset yok.",
+      "missingFile": "Preset dosyas? eksik.",
+      "fileMissing": "Dosya bulunamad?",
+      "invalid": "Ge?ersiz preset",
+      "confirmApply": "{context} \"{name}\" uygulans?n m?? Mevcut girdiler ?zerine yaz?lacak.",
+      "loadFailed": "Preset y?kleme ba?ar?s?z: {error}",
+      "loading": "Presetler y?kleniyor...",
+      "noneFound": "Preset bulunamad?",
+      "hint": "D??a aktar?lm?? JSON'lar? assets/presets/ alt?na (manifest: assets/data-presets.json) veya yerel olarak assets/user-presets/ alt?na koyun.",
+      "hintShort": "assets/presets/ veya assets/user-presets/ alt?na preset ekleyin.",
+      "userPrefix": "Kullan?c?: ",
+      "userApply": "Yerel preset uygula",
+      "apply": "Preset uygula",
+      "noneSelected": "Preset se?ilmedi.",
+      "label": "Preset",
+      "defaultLabel": "Preset {index}",
+      "userDefault": "Kullan?c? preset {index}",
+      "userDescription": "assets/user-presets/ i?inden yerel preset",
+      "tags": " (Etiketler: {tags})"
+    }
+  }
+}

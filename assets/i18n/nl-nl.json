@@ -1,0 +1,490 @@
+{
+  "app": {
+    "title": "Startpage"
+  },
+  "common": {
+    "link": "Link",
+    "delete": "Verwijderen",
+    "remove": "Weghalen",
+    "save": "Opslaan",
+    "loading": "Laden...",
+    "loadError": "Laden mislukt",
+    "noMatches": "Geen resultaten",
+    "emptyDash": "?",
+    "dash": "?"
+  },
+  "header": {
+    "themeToggleTitle": "Donker/Licht",
+    "settingsTitle": "Instellingen"
+  },
+  "search": {
+    "placeholder": "Zoeken... (bijv. !yt lo-fi, !etc Home)",
+    "engine": {
+      "google": "Google",
+      "ddg": "DuckDuckGo",
+      "bing": "Bing",
+      "yt": "YouTube",
+      "wikipedia": "Wikipedia",
+      "maps": "Google Maps"
+    },
+    "suggest": {
+      "bang": "{bang} (Bang)",
+      "shortcut": "{shortcut} (Snelkoppeling)",
+      "type": {
+        "bang": "Bang",
+        "shortcut": "Snelkoppeling",
+        "recent": "Recent",
+        "word": "Woord"
+      }
+    },
+    "recentShortcut": "Snelkoppeling {shortcut} ? {query}",
+    "recentSearch": "Zoekopdracht ({engine}) ? {query}"
+  },
+  "todo": {
+    "title": "Taken",
+    "placeholder": "Nieuwe taak...",
+    "add": "Toevoegen",
+    "clearDoneTitle": "Voltooide verwijderen",
+    "clearDone": "? wissen",
+    "doneAria": "Klaar",
+    "prompt": "Taak"
+  },
+  "notes": {
+    "title": "Notities",
+    "placeholder": "Noteer iets...",
+    "prompt": "Notitie"
+  },
+  "tiles": {
+    "title": "Favorieten",
+    "add": "+ Tegel",
+    "resetTitle": "Standaard herstellen",
+    "edit": "Bewerken",
+    "promptTitle": "Titel",
+    "promptUrl": "URL",
+    "invalidUrl": "Ongeldige URL",
+    "promptTitleNew": "Tegeltitel",
+    "promptUrlNew": "URL (https://?)",
+    "resetConfirm": "Standaardtegels herstellen?"
+  },
+  "weather": {
+    "title": "Weer vandaag",
+    "cityPlaceholder": "Voer stad in...",
+    "setCity": "Instellen",
+    "pickLocation": "Kies locatie...",
+    "source": "Bron: Open-Meteo",
+    "loading": "Weer laden...",
+    "prompt": "Voer een locatie in om het weer te laden.",
+    "tempEmpty": "??C",
+    "tempEmptyShort": "??",
+    "minmaxEmpty": "? / ? ?C",
+    "noForecast": "Geen verwachting",
+    "errors": {
+      "geocodingFailed": "Geocoding mislukt",
+      "locationNotFound": "Locatie niet gevonden",
+      "cityMissing": "Stad ontbreekt",
+      "fetchFailed": "Weer ophalen mislukt",
+      "loadFailed": "Weer kon niet worden geladen"
+    },
+    "codes": {
+      "0": "Helder",
+      "1": "Meestal helder",
+      "2": "Half bewolkt",
+      "3": "Bewolkt",
+      "45": "Mist",
+      "48": "Mist",
+      "51": "Motregen",
+      "53": "Motregen",
+      "55": "Motregen",
+      "61": "Regen",
+      "63": "Regen",
+      "65": "Zware regen",
+      "71": "Sneeuw",
+      "80": "Buien",
+      "95": "Onweer",
+      "default": "Weer"
+    }
+  },
+  "transport": {
+    "title": "Vervoer",
+    "durationAria": "Duur",
+    "duration30": "30 min",
+    "duration60": "60 min",
+    "duration90": "90 min",
+    "duration120": "120 min",
+    "refreshTitle": "Herladen",
+    "searchPlaceholder": "Station zoeken...",
+    "noneSelected": "Geen station geselecteerd",
+    "source": "Bron: transport.rest",
+    "minQuery": "Minstens {count} tekens",
+    "noMatches": "Geen resultaten",
+    "proxyTimeout": "Proxy-timeout",
+    "loadError": "Laden mislukt",
+    "noDepartures": "Geen vertrekken",
+    "selectStation": "Selecteer een station...",
+    "type": {
+      "station": "Station",
+      "stop": "Halte"
+    },
+    "platform": "Perron {platform}",
+    "cancelled": "Geannuleerd"
+  },
+  "quote": {
+    "title": "Quote / Nerd-prikkel",
+    "list": [
+      "Ga snel, refactor vaak.",
+      "Toegankelijkheid is geen feature, maar de norm.",
+      "Gereed > Perfect. Itereer.",
+      "Als het niet gemonitord wordt, bestaat het niet.",
+      "Goede UX is onzichtbaar. Slechte UX is onvergetelijk.",
+      "Laat het werken, maak het goed, maak het snel.",
+      "Kleine stappen. Grote resultaten.",
+      "Simpliciteit schaalt. Complexiteit faalt.",
+      "Automatiseer het saaie.",
+      "Meet twee keer, deploy ??n keer."
+    ]
+  },
+  "recent": {
+    "title": "Recent",
+    "note": "Let op: toont alleen acties van deze startpagina (geklikte tegels & zoekopdrachten)."
+  },
+  "system": {
+    "title": "Systeemstatus",
+    "loading": "Laden...",
+    "ram": "RAM: {value} GB",
+    "cpu": "CPU-kernen: {value}",
+    "network": "Netwerk: {downlink} Mbit/s ? {type}{saveData}",
+    "saveData": " ? Databesparing",
+    "noData": "Geen gegevens beschikbaar"
+  },
+  "news": {
+    "title": "Nieuws",
+    "refreshTitle": "Herladen",
+    "source": "RSS via Startpage-proxy (CORS-proxy)",
+    "noItems": "Geen items"
+  },
+  "footer": {
+    "tagline": "Local-first dashboard ? slaat alleen in de browser op (localStorage)"
+  },
+  "settings": {
+    "title": "Instellingen",
+    "close": "Sluiten",
+    "tabs": {
+      "general": "Algemeen",
+      "background": "Achtergrond en uiterlijk",
+      "search": "Zoeken en feeds",
+      "widgets": "Widgets",
+      "data": "Data",
+      "guide": "Handleiding"
+    },
+    "theme": {
+      "label": "Thema",
+      "auto": "Auto (systeem)",
+      "dark": "Donker",
+      "light": "Licht"
+    },
+    "background": {
+      "label": "Achtergrond"
+    },
+    "search": {
+      "engines": "Zoekmachines",
+      "bangsNote": "Ondersteunde bang-snelkoppelingen: <code>!g !ddg !bing !yt !wiki !maps</code> - eigen snelkoppelingen hieronder",
+      "wordlistLabel": "Woordenlijst voor autocompleet",
+      "wordlistPlaceholder": "Termen per regel of gescheiden door komma's",
+      "wordlistSave": "Opslaan",
+      "wordlistReset": "Leegmaken",
+      "wordlistNote": "De globale woordenlijst (assets/wordlist.json) en de presetlijst worden samengevoegd. Laat leeg om alleen de globale lijst te gebruiken.",
+      "shortcutsLabel": "Eigen !snelkoppelingen",
+      "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
+      "shortcutsNote": "Gebruik <code>{q}</code> als placeholder. Zonder <code>{q}</code> wordt <code>?q=...</code> toegevoegd.",
+      "feedsLabel": "Aangepaste RSS-feeds",
+      "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
+      "feedsNote": "JSON: naam - feed-URL. Deze lijst wordt samengevoegd met de standaardfeeds.",
+      "invalidShortcuts": "Ongeldige snelkoppelingen-JSON",
+      "invalidFeeds": "Ongeldige feeds-JSON"
+    },
+    "widgets": {
+      "visible": "Widgets tonen",
+      "defaultCityLabel": "Standaardstad (weer)",
+      "defaultCityPlaceholder": "bijv. Hannover",
+      "defaultTransportLabel": "Standaardhalte (vervoer)",
+      "defaultTransportPlaceholder": "Station zoeken...",
+      "cardStyleLabel": "Kaartstijl",
+      "cardStyleGlass": "Glas (standaard)",
+      "cardStyleSolid": "Vol",
+      "cardStyleTransparent": "Transparant",
+      "cardStyleMinimal": "Zacht minimal",
+      "cardStyleNote": "Geldt voor alle widgets en favoriettegels.",
+      "clockColorLabel": "Tijd en datum",
+      "searchColorLabel": "Zoeken",
+      "reset": "Reset",
+      "clockColorNote": "Stelt de headerachtergrond in (leeg = stijlstandaard).",
+      "searchColorNote": "Kleur voor het zoekgebied (leeg = stijlstandaard).",
+      "widgetColorsLabel": "Widgetkleuren"
+    },
+    "data": {
+      "label": "Data",
+      "export": "Exporteren (.json)",
+      "import": "Importeren (.json)",
+      "presetsLabel": "Data-presets",
+      "applyPreset": "Preset laden",
+      "presetMeta": "Presets zijn ge?xporteerde JSON's onder assets/presets/. User-presets uit assets/user-presets/ worden automatisch samengevoegd.",
+      "setupLabel": "Setup",
+      "restartOnboarding": "Setup opnieuw starten",
+      "restartNote": "Opent de compacte setup opnieuw.",
+      "noteLabel": "Opmerking",
+      "noteText": "Export slaat alle instellingen en data lokaal op als JSON. Import overschrijft bestaande items."
+    },
+    "language": {
+      "label": "Taal",
+      "auto": "Auto (systeem)"
+    },
+    "guideHtml": "<div class=\"row\"><label>Gebruikershandleiding</label><div><h5>Overzicht</h5><ul><li>Startpagina met zoeken, favorieten, taken, notities, weer, nieuws.</li><li>Alles lokaal: data blijft in je browser (localStorage).</li></ul><h5>Sneltoetsen</h5><ul><li>Ctrl/Cmd+K: command palette openen</li><li>1-9: eerste 9 favorieten openen (als je niet typt)</li><li>/ : zoeken focussen (ook via palette)</li><li>Enter in zoeken: zoekopdracht starten</li><li>ESC: modals sluiten</li><li>Palette: snelle acties voor widgets, thema, achtergrond, data, favorieten</li><li>Palette: toets C wisselt kaartstijl, \"Headerkleuren resetten\" reset zoek en klok</li></ul><h5>Zoeken & autocompleet</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>Eigen snelkoppelingen: JSON in instellingen; {q} als placeholder</li><li>Autocompleet: bangs, snelkoppelingen, recente zoekopdrachten, woordenlijst (globaal + preset)</li><li>Tab accepteert suggestie, Enter start zoeken</li></ul><h5>Tegels</h5><ul><li>Drag & drop om te sorteren, klik om te openen</li><li>+ Tegel: nieuwe favoriet toevoegen</li><li>Reset: standaardfavorieten herstellen</li></ul><h5>Widgets & layout</h5><ul><li>Per widget zichtbaar</li><li>Kaartstijl is globaal (glas, vol, transparant, zacht minimal)</li><li>Eigen kleuren voor klok/zoeken; reset herstelt standaardstijl</li><li>Widgetkleuren en knop \"Widgets kleuren\" zetten accent per kaart</li></ul><h5>Achtergrond</h5><ul><li>Presets, uploads, collecties, rotatie (tijd/thema/interval)</li><li>Accentkleur wordt uit de actieve achtergrond gehaald</li></ul><h5>Data</h5><ul><li>Export/Import als JSON</li><li>Data-presets laden (assets/presets/*.json in de repo)</li></ul></div></div>"
+  },
+  "onboarding": {
+    "title": "Setup starten",
+    "progress": "Stap {current} van {total}",
+    "skip": "Overslaan",
+    "close": "Sluiten",
+    "preset": {
+      "title": "Preset kiezen",
+      "hint": "Kies een preset of sla deze stap over.",
+      "apply": "Preset toepassen",
+      "meta": "Preset toepassen of overslaan.",
+      "optional": "Preset optioneel.",
+      "context": "Setup-preset"
+    },
+    "appearance": {
+      "title": "Uiterlijk",
+      "theme": "Thema",
+      "cardStyle": "Kaartstijl",
+      "background": "Achtergrond",
+      "rotation": "Rotatie inschakelen",
+      "keepCurrent": "Huidige afbeelding behouden"
+    },
+    "search": {
+      "title": "Zoeken",
+      "engine": "Standaard zoekmachine"
+    },
+    "widgets": {
+      "title": "Widgets",
+      "defaultTransport": "Standaardhalte (vervoer)",
+      "tint": "Widgets met accent kleuren"
+    },
+    "weather": {
+      "title": "Weer",
+      "defaultCity": "Standaardstad",
+      "note": "Je kunt alles later wijzigen in de instellingen."
+    },
+    "prev": "Terug",
+    "next": "Volgende",
+    "finish": "Klaar"
+  },
+  "palette": {
+    "placeholder": "Zoek commando of favoriet... (Ctrl/?+K)",
+    "groups": {
+      "command": "Commando's",
+      "settings": "Instellingen",
+      "search": "Zoeken",
+      "widgets": "Widgets",
+      "theme": "Thema & achtergrond",
+      "data": "Data",
+      "tiles": "Tegels",
+      "tile": "Favorieten",
+      "quick": "Snel"
+    },
+    "search": {
+      "focus": "Zoekveld focussen",
+      "start": "Zoekopdracht starten",
+      "engine": "Engine: {engine}"
+    },
+    "settings": {
+      "open": "Instellingen openen",
+      "general": "Instellingen: Algemeen",
+      "background": "Instellingen: Achtergrond",
+      "search": "Instellingen: Zoeken",
+      "widgets": "Instellingen: Widgets",
+      "data": "Instellingen: Data",
+      "guide": "Instellingen: Handleiding"
+    },
+    "theme": {
+      "cycle": "Thema wisselen (Auto/Donker/Licht)",
+      "auto": "Thema: Auto",
+      "dark": "Thema: Donker",
+      "light": "Thema: Licht",
+      "resetHeader": "Headerkleuren resetten",
+      "recalcAccent": "Accentkleuren herberekenen"
+    },
+    "cardStyle": {
+      "glass": "Kaartstijl: Glas",
+      "solid": "Kaartstijl: Vol",
+      "transparent": "Kaartstijl: Transparant",
+      "minimal": "Kaartstijl: Minimal"
+    },
+    "background": {
+      "toggleRotation": "Achtergrond: rotatie wisselen",
+      "toggleLock": "Achtergrond: rotatie vergrendelen/ontgrendelen",
+      "preset": "Achtergrond: {label}"
+    },
+    "widgets": {
+      "showAll": "Widgets: alles tonen",
+      "hideAll": "Widgets: alles verbergen",
+      "toggle": "Widget: {widget} wisselen",
+      "focus": "Widget: {widget} focussen"
+    },
+    "quick": {
+      "addTodo": "Taak toevoegen",
+      "addNote": "Notitie toevoegen"
+    },
+    "tiles": {
+      "add": "Tegel toevoegen",
+      "reset": "Tegels resetten"
+    },
+    "refresh": {
+      "weather": "Weer verversen",
+      "news": "Nieuws verversen",
+      "transport": "Vervoer verversen",
+      "system": "Systeem verversen",
+      "all": "Alle widgets verversen"
+    },
+    "data": {
+      "export": "Data exporteren",
+      "import": "Data importeren",
+      "preset": "Data-preset: {label}"
+    }
+  },
+  "widgets": {
+    "todo": "Taken",
+    "notes": "Notities",
+    "tiles": "Favorieten",
+    "weather": "Weer",
+    "transport": "Vervoer",
+    "quote": "Quote",
+    "recent": "Recent",
+    "system": "Systeem",
+    "news": "Nieuws"
+  },
+  "background": {
+    "currentPreview": "Huidige achtergrondafbeelding",
+    "none": "Geen achtergrond",
+    "noImageSelected": "Geen afbeelding geselecteerd",
+    "rotationResume": "Rotatie hervatten",
+    "rotationLock": "Rotatie vergrendelen",
+    "tone": "Toon: {tone}",
+    "presets": {
+      "empty": "Geen presets beschikbaar."
+    },
+    "favorites": {
+      "empty": "Nog geen favorieten. Markeer presets of uploads."
+    },
+    "subtitle": {
+      "preset": "Preset"
+    },
+    "upload": "Upload",
+    "uploadDrop": "Sleep bestanden hierheen",
+    "uploadBrowse": "Bestand kiezen",
+    "uploadNote": "We verkleinen afbeeldingen automatisch (16:9, max 2560px) en slaan ze lokaal op. Max {max} bestanden.",
+    "uploads": {
+      "empty": "Nog geen uploads."
+    },
+    "collections": {
+      "count": "{count} bronnen",
+      "random": "Willekeurig",
+      "cache": "Offline opslaan",
+      "viewSources": "Bronnen bekijken",
+      "useRotation": "Voor rotatie gebruiken",
+      "newLabel": "Nieuwe collectie",
+      "namePlaceholder": "Mijn collectie",
+      "urlsPlaceholder": "??n afbeeldings-URL per regel",
+      "clear": "Velden wissen",
+      "note": "URL's worden lokaal opgeslagen. Externe bronnen vereisen CORS voor afbeeldingen.",
+      "empty": "Nog geen collecties.",
+      "minOneUrl": "Voer minimaal ??n URL in.",
+      "emptyCollection": "Collectie is leeg.",
+      "saved": "Collectie lokaal opgeslagen.",
+      "defaultName": "Collectie {index}"
+    },
+    "rotation": {
+      "optionPreset": "Preset: {label}",
+      "optionUpload": "Upload: {label}",
+      "optionFavorite": "Favoriet: {label}",
+      "optionCustom": "Aangepast: opgeslagen URL",
+      "noFixed": "Geen vaste afbeelding",
+      "enabled": "Automatische rotatie inschakelen",
+      "locked": "Rotatie is momenteel vergrendeld.",
+      "active": "Achtergronden wisselen volgens schema.",
+      "mode": "Modus",
+      "modeTime": "Tijdgebonden",
+      "modeInterval": "Interval",
+      "modeTheme": "Thema",
+      "intervalLabel": "Interval in minuten",
+      "intervalNote": "Alleen relevant in intervalmodus.",
+      "sourcesLabel": "Bronnen voor willekeurig",
+      "scheduleLabel": "Schema",
+      "themePlan": "Themavoorbeeld",
+      "themeLight": "Thema licht",
+      "themeDark": "Thema donker",
+      "themeNote": "Themavoorbeeld wordt gebruikt als modus op Thema staat.",
+      "slot": {
+        "morning": "Ochtend 05-11",
+        "day": "Dag 11-17",
+        "evening": "Avond 17-21",
+        "night": "Nacht 21-05"
+      }
+    },
+    "custom": {
+      "label": "Aangepaste afbeeldings-URL",
+      "placeholder": "https://example.com/image.jpg",
+      "note": "URL wordt lokaal opgeslagen. Server moet CORS toestaan voor afbeeldingen.",
+      "enterUrl": "Voer een URL in.",
+      "title": "Aangepaste URL",
+      "subtitle": "Aangepast"
+    },
+    "actions": {
+      "apply": "Toepassen",
+      "favorite": "Favoriet",
+      "favorited": "Favoriet",
+      "random": "Willekeurig laden",
+      "undo": "Laatste afbeelding herstellen",
+      "lock": "Rotatie vergrendelen",
+      "tint": "Widgets kleuren"
+    },
+    "tabs": {
+      "presets": "Presets",
+      "favorites": "Favorieten",
+      "uploads": "Uploads",
+      "collections": "Collecties",
+      "rotation": "Rotatie",
+      "custom": "Aangepast"
+    },
+    "loadError": "Laden mislukt. Controleer CORS-instellingen.",
+    "noneAvailable": "Geen achtergronden beschikbaar.",
+    "imageLoadError": "Afbeelding kon niet worden geladen."
+  },
+  "data": {
+    "import": {
+      "confirm": "Data importeren? Bestaande items worden overschreven.",
+      "failed": "Import mislukt: {error}"
+    },
+    "presets": {
+      "none": "Geen preset beschikbaar.",
+      "missingFile": "Presetbestand ontbreekt.",
+      "fileMissing": "Bestand niet gevonden",
+      "invalid": "Ongeldig preset",
+      "confirmApply": "{context} \"{name}\" toepassen? Bestaande items worden overschreven.",
+      "loadFailed": "Preset laden mislukt: {error}",
+      "loading": "Presets laden...",
+      "noneFound": "Geen presets gevonden",
+      "hint": "Plaats ge?xporteerde JSON's onder assets/presets/ (manifest: assets/data-presets.json) of lokaal onder assets/user-presets/.",
+      "hintShort": "Voeg een preset toe onder assets/presets/ of assets/user-presets/.",
+      "userPrefix": "Gebruiker: ",
+      "userApply": "Lokaal preset toepassen",
+      "apply": "Preset toepassen",
+      "noneSelected": "Geen preset geselecteerd.",
+      "label": "Preset",
+      "defaultLabel": "Preset {index}",
+      "userDefault": "Gebruikerspreset {index}",
+      "userDescription": "Lokale preset uit assets/user-presets/",
+      "tags": " (Tags: {tags})"
+    }
+  }
+}

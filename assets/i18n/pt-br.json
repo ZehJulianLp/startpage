@@ -1,0 +1,490 @@
+{
+  "app": {
+    "title": "Startpage"
+  },
+  "common": {
+    "link": "Link",
+    "delete": "Excluir",
+    "remove": "Remover",
+    "save": "Salvar",
+    "loading": "Carregando...",
+    "loadError": "Falha ao carregar",
+    "noMatches": "Nenhuma correspond?ncia",
+    "emptyDash": "?",
+    "dash": "?"
+  },
+  "header": {
+    "themeToggleTitle": "Escuro/Claro",
+    "settingsTitle": "Configura??es"
+  },
+  "search": {
+    "placeholder": "Buscar... (ex.: !yt lo-fi, !etc Home)",
+    "engine": {
+      "google": "Google",
+      "ddg": "DuckDuckGo",
+      "bing": "Bing",
+      "yt": "YouTube",
+      "wikipedia": "Wikipedia",
+      "maps": "Google Maps"
+    },
+    "suggest": {
+      "bang": "{bang} (Bang)",
+      "shortcut": "{shortcut} (Atalho)",
+      "type": {
+        "bang": "Bang",
+        "shortcut": "Atalho",
+        "recent": "Recentes",
+        "word": "Palavra"
+      }
+    },
+    "recentShortcut": "Atalho {shortcut} ? {query}",
+    "recentSearch": "Busca ({engine}) ? {query}"
+  },
+  "todo": {
+    "title": "Tarefas",
+    "placeholder": "Nova tarefa...",
+    "add": "Adicionar",
+    "clearDoneTitle": "Remover conclu?das",
+    "clearDone": "? limpar",
+    "doneAria": "Feito",
+    "prompt": "Tarefa"
+  },
+  "notes": {
+    "title": "Notas",
+    "placeholder": "Anote algo...",
+    "prompt": "Nota"
+  },
+  "tiles": {
+    "title": "Favoritos",
+    "add": "+ Bloco",
+    "resetTitle": "Restaurar padr?o",
+    "edit": "Editar",
+    "promptTitle": "T?tulo",
+    "promptUrl": "URL",
+    "invalidUrl": "URL inv?lida",
+    "promptTitleNew": "T?tulo do bloco",
+    "promptUrlNew": "URL (https://?)",
+    "resetConfirm": "Restaurar blocos padr?o?"
+  },
+  "weather": {
+    "title": "Clima hoje",
+    "cityPlaceholder": "Digite a cidade...",
+    "setCity": "Definir",
+    "pickLocation": "Escolha um local...",
+    "source": "Fonte: Open-Meteo",
+    "loading": "Carregando clima...",
+    "prompt": "Digite um local para carregar o clima.",
+    "tempEmpty": "??C",
+    "tempEmptyShort": "??",
+    "minmaxEmpty": "? / ? ?C",
+    "noForecast": "Sem previs?o",
+    "errors": {
+      "geocodingFailed": "Falha no geocoding",
+      "locationNotFound": "Local n?o encontrado",
+      "cityMissing": "Cidade ausente",
+      "fetchFailed": "Falha ao buscar clima",
+      "loadFailed": "N?o foi poss?vel carregar o clima"
+    },
+    "codes": {
+      "0": "C?u limpo",
+      "1": "Predominantemente limpo",
+      "2": "Parcialmente nublado",
+      "3": "Nublado",
+      "45": "N?voa",
+      "48": "N?voa",
+      "51": "Garoa",
+      "53": "Garoa",
+      "55": "Garoa",
+      "61": "Chuva",
+      "63": "Chuva",
+      "65": "Chuva forte",
+      "71": "Neve",
+      "80": "Pancadas",
+      "95": "Tempestade",
+      "default": "Clima"
+    }
+  },
+  "transport": {
+    "title": "Transporte",
+    "durationAria": "Dura??o",
+    "duration30": "30 min",
+    "duration60": "60 min",
+    "duration90": "90 min",
+    "duration120": "120 min",
+    "refreshTitle": "Recarregar",
+    "searchPlaceholder": "Buscar esta??o...",
+    "noneSelected": "Nenhuma esta??o selecionada",
+    "source": "Fonte: transport.rest",
+    "minQuery": "Pelo menos {count} caracteres",
+    "noMatches": "Sem correspond?ncias",
+    "proxyTimeout": "Timeout do proxy",
+    "loadError": "Falha ao carregar",
+    "noDepartures": "Sem partidas",
+    "selectStation": "Selecione uma esta??o...",
+    "type": {
+      "station": "Esta??o",
+      "stop": "Parada"
+    },
+    "platform": "Plataforma {platform}",
+    "cancelled": "Cancelado"
+  },
+  "quote": {
+    "title": "Cita??o / Impulso nerd",
+    "list": [
+      "V? r?pido, refatore sempre.",
+      "Acessibilidade n?o ? recurso: ? o padr?o.",
+      "Feito > Perfeito. Itere.",
+      "Se n?o ? monitorado, n?o existe.",
+      "Bom UX ? invis?vel. Ruim ? inesquec?vel.",
+      "Fa?a funcionar, fa?a certo, fa?a r?pido.",
+      "Pequenos passos. Grandes resultados.",
+      "Simplicidade escala. Complexidade falha.",
+      "Automatize o chato.",
+      "Me?a duas vezes, fa?a deploy uma vez."
+    ]
+  },
+  "recent": {
+    "title": "Recentes",
+    "note": "Nota: mostra apenas a??es desta p?gina (cliques em favoritos e buscas)."
+  },
+  "system": {
+    "title": "Status do sistema",
+    "loading": "Carregando...",
+    "ram": "RAM: {value} GB",
+    "cpu": "N?cleos CPU: {value}",
+    "network": "Rede: {downlink} Mbit/s ? {type}{saveData}",
+    "saveData": " ? Economia de dados",
+    "noData": "Nenhum dado dispon?vel"
+  },
+  "news": {
+    "title": "Not?cias",
+    "refreshTitle": "Recarregar",
+    "source": "RSS via proxy Startpage (proxy CORS)",
+    "noItems": "Sem itens"
+  },
+  "footer": {
+    "tagline": "Painel local-first ? salva apenas no navegador (localStorage)"
+  },
+  "settings": {
+    "title": "Configura??es",
+    "close": "Fechar",
+    "tabs": {
+      "general": "Geral",
+      "background": "Fundo e apar?ncia",
+      "search": "Busca e feeds",
+      "widgets": "Widgets",
+      "data": "Dados",
+      "guide": "Guia"
+    },
+    "theme": {
+      "label": "Tema",
+      "auto": "Auto (sistema)",
+      "dark": "Escuro",
+      "light": "Claro"
+    },
+    "background": {
+      "label": "Fundo"
+    },
+    "search": {
+      "engines": "Motores de busca",
+      "bangsNote": "Atalhos bang suportados: <code>!g !ddg !bing !yt !wiki !maps</code> - atalhos personalizados abaixo",
+      "wordlistLabel": "Lista de palavras para autocompletar",
+      "wordlistPlaceholder": "Termos linha a linha ou separados por v?rgulas",
+      "wordlistSave": "Salvar",
+      "wordlistReset": "Limpar",
+      "wordlistNote": "A lista global (assets/wordlist.json) e a do preset s?o mescladas. Deixe vazio para usar s? a lista global.",
+      "shortcutsLabel": "Atalhos ! personalizados",
+      "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
+      "shortcutsNote": "Use <code>{q}</code> como placeholder. Sem <code>{q}</code>, <code>?q=...</code> ? adicionado.",
+      "feedsLabel": "Feeds RSS personalizados",
+      "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
+      "feedsNote": "JSON: nome - URL do feed. Esta lista ? mesclada com os feeds padr?o.",
+      "invalidShortcuts": "JSON de atalhos inv?lido",
+      "invalidFeeds": "JSON de feeds inv?lido"
+    },
+    "widgets": {
+      "visible": "Mostrar widgets",
+      "defaultCityLabel": "Cidade padr?o (clima)",
+      "defaultCityPlaceholder": "ex.: Hannover",
+      "defaultTransportLabel": "Parada padr?o (transporte)",
+      "defaultTransportPlaceholder": "Buscar esta??o...",
+      "cardStyleLabel": "Estilo de cart?o",
+      "cardStyleGlass": "Vidro (padr?o)",
+      "cardStyleSolid": "S?lido",
+      "cardStyleTransparent": "Transparente",
+      "cardStyleMinimal": "Minimal suave",
+      "cardStyleNote": "Aplica-se a todos os widgets e blocos favoritos.",
+      "clockColorLabel": "Hora e data",
+      "searchColorLabel": "Busca",
+      "reset": "Redefinir",
+      "clockColorNote": "Define o fundo do cabe?alho (vazio = estilo padr?o).",
+      "searchColorNote": "Cor da ?rea de busca (vazio = estilo padr?o).",
+      "widgetColorsLabel": "Cores dos widgets"
+    },
+    "data": {
+      "label": "Dados",
+      "export": "Exportar (.json)",
+      "import": "Importar (.json)",
+      "presetsLabel": "Presets de dados",
+      "applyPreset": "Carregar preset",
+      "presetMeta": "Presets s?o JSON exportados em assets/presets/. Presets de usu?rio em assets/user-presets/ s?o mesclados automaticamente.",
+      "setupLabel": "Configura??o",
+      "restartOnboarding": "Reiniciar configura??o",
+      "restartNote": "Reabre o di?logo de configura??o compacto.",
+      "noteLabel": "Nota",
+      "noteText": "Exportar salva todas as configura??es e dados localmente como JSON. Importar sobrescreve entradas existentes."
+    },
+    "language": {
+      "label": "Idioma",
+      "auto": "Auto (sistema)"
+    },
+    "guideHtml": "<div class=\"row\"><label>Guia do usu?rio</label><div><h5>Vis?o geral</h5><ul><li>P?gina inicial com busca, favoritos, tarefas, notas, clima e not?cias.</li><li>Tudo local: dados ficam no navegador (localStorage).</li></ul><h5>Atalhos</h5><ul><li>Ctrl/Cmd+K: abrir a paleta de comandos</li><li>1-9: abrir os 9 primeiros favoritos (se n?o estiver digitando)</li><li>/ : focar busca (tamb?m pela paleta)</li><li>Enter na busca: iniciar busca</li><li>ESC: fechar modais</li><li>Paleta: a??es r?pidas para widgets, tema, fundo, dados e favoritos</li><li>Paleta: tecla C alterna o estilo de cart?o, \"Redefinir cores do cabe?alho\" redefine busca e rel?gio</li></ul><h5>Busca e autocompletar</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>Atalhos personalizados: JSON nas configura??es; {q} como placeholder</li><li>Autocompletar: bangs, atalhos, buscas recentes, lista de palavras (global + preset)</li><li>Tab aceita sugest?o, Enter inicia busca</li></ul><h5>Blocos</h5><ul><li>Arrastar e soltar para ordenar, clique para abrir</li><li>+ Bloco: adicionar um favorito</li><li>Redefinir: restaurar favoritos padr?o</li></ul><h5>Widgets e layout</h5><ul><li>Visibilidade por widget</li><li>Estilo de cart?o global (vidro, s?lido, transparente, minimal suave)</li><li>Cores personalizadas para rel?gio/busca; redefinir volta ao estilo padr?o</li><li>Cores de widgets e bot?o \"Tingir widgets\" definem o acento por cart?o</li></ul><h5>Fundo</h5><ul><li>Presets, uploads, cole??es, rota??o (hora/tema/intervalo)</li><li>A cor de acento ? extra?da do fundo ativo</li></ul><h5>Dados</h5><ul><li>Exportar/Importar como JSON</li><li>Carregar presets de dados (assets/presets/*.json no repo)</li></ul></div></div>"
+  },
+  "onboarding": {
+    "title": "Iniciar configura??o",
+    "progress": "Etapa {current} de {total}",
+    "skip": "Pular",
+    "close": "Fechar",
+    "preset": {
+      "title": "Escolher preset",
+      "hint": "Escolha um preset ou pule esta etapa.",
+      "apply": "Aplicar preset",
+      "meta": "Aplicar um preset ou pular.",
+      "optional": "Preset opcional.",
+      "context": "Preset de configura??o"
+    },
+    "appearance": {
+      "title": "Apar?ncia",
+      "theme": "Tema",
+      "cardStyle": "Estilo de cart?o",
+      "background": "Fundo",
+      "rotation": "Ativar rota??o",
+      "keepCurrent": "Manter imagem atual"
+    },
+    "search": {
+      "title": "Busca",
+      "engine": "Motor de busca padr?o"
+    },
+    "widgets": {
+      "title": "Widgets",
+      "defaultTransport": "Parada padr?o (transporte)",
+      "tint": "Tingir widgets com acento"
+    },
+    "weather": {
+      "title": "Clima",
+      "defaultCity": "Cidade padr?o",
+      "note": "Voc? pode mudar tudo depois nas configura??es."
+    },
+    "prev": "Voltar",
+    "next": "Pr?ximo",
+    "finish": "Concluir"
+  },
+  "palette": {
+    "placeholder": "Buscar comando ou favorito... (Ctrl/?+K)",
+    "groups": {
+      "command": "Comandos",
+      "settings": "Configura??es",
+      "search": "Busca",
+      "widgets": "Widgets",
+      "theme": "Tema e fundo",
+      "data": "Dados",
+      "tiles": "Blocos",
+      "tile": "Favoritos",
+      "quick": "R?pido"
+    },
+    "search": {
+      "focus": "Focar busca",
+      "start": "Iniciar busca",
+      "engine": "Motor: {engine}"
+    },
+    "settings": {
+      "open": "Abrir configura??es",
+      "general": "Configura??es: Geral",
+      "background": "Configura??es: Fundo",
+      "search": "Configura??es: Busca",
+      "widgets": "Configura??es: Widgets",
+      "data": "Configura??es: Dados",
+      "guide": "Configura??es: Guia"
+    },
+    "theme": {
+      "cycle": "Alternar tema (Auto/Escuro/Claro)",
+      "auto": "Tema: Auto",
+      "dark": "Tema: Escuro",
+      "light": "Tema: Claro",
+      "resetHeader": "Redefinir cores do cabe?alho",
+      "recalcAccent": "Recalcular cores de acento"
+    },
+    "cardStyle": {
+      "glass": "Estilo de cart?o: Vidro",
+      "solid": "Estilo de cart?o: S?lido",
+      "transparent": "Estilo de cart?o: Transparente",
+      "minimal": "Estilo de cart?o: Minimal"
+    },
+    "background": {
+      "toggleRotation": "Fundo: alternar rota??o",
+      "toggleLock": "Fundo: bloquear/desbloquear rota??o",
+      "preset": "Fundo: {label}"
+    },
+    "widgets": {
+      "showAll": "Widgets: mostrar todos",
+      "hideAll": "Widgets: ocultar todos",
+      "toggle": "Widget: alternar {widget}",
+      "focus": "Widget: focar {widget}"
+    },
+    "quick": {
+      "addTodo": "Adicionar tarefa",
+      "addNote": "Adicionar nota"
+    },
+    "tiles": {
+      "add": "Adicionar bloco",
+      "reset": "Redefinir blocos"
+    },
+    "refresh": {
+      "weather": "Atualizar clima",
+      "news": "Atualizar not?cias",
+      "transport": "Atualizar transporte",
+      "system": "Atualizar sistema",
+      "all": "Atualizar todos os widgets"
+    },
+    "data": {
+      "export": "Exportar dados",
+      "import": "Importar dados",
+      "preset": "Preset de dados: {label}"
+    }
+  },
+  "widgets": {
+    "todo": "Tarefas",
+    "notes": "Notas",
+    "tiles": "Favoritos",
+    "weather": "Clima",
+    "transport": "Transporte",
+    "quote": "Cita??o",
+    "recent": "Recentes",
+    "system": "Sistema",
+    "news": "Not?cias"
+  },
+  "background": {
+    "currentPreview": "Imagem de fundo atual",
+    "none": "Sem fundo",
+    "noImageSelected": "Nenhuma imagem selecionada",
+    "rotationResume": "Retomar rota??o",
+    "rotationLock": "Bloquear rota??o",
+    "tone": "Tom: {tone}",
+    "presets": {
+      "empty": "Nenhum preset dispon?vel."
+    },
+    "favorites": {
+      "empty": "Ainda sem favoritos. Marque presets ou uploads."
+    },
+    "subtitle": {
+      "preset": "Preset"
+    },
+    "upload": "Upload",
+    "uploadDrop": "Solte arquivos aqui",
+    "uploadBrowse": "Escolher arquivo",
+    "uploadNote": "Redimensionamos imagens automaticamente (16:9, m?x 2560px) e salvamos localmente. M?x {max} arquivos.",
+    "uploads": {
+      "empty": "Sem uploads ainda."
+    },
+    "collections": {
+      "count": "{count} fontes",
+      "random": "Aleat?rio",
+      "cache": "Salvar offline",
+      "viewSources": "Ver fontes",
+      "useRotation": "Usar na rota??o",
+      "newLabel": "Nova cole??o",
+      "namePlaceholder": "Minha cole??o",
+      "urlsPlaceholder": "Uma URL de imagem por linha",
+      "clear": "Limpar campos",
+      "note": "As URLs s?o salvas localmente. Fontes remotas exigem CORS para imagens.",
+      "empty": "Ainda sem cole??es.",
+      "minOneUrl": "Digite ao menos uma URL.",
+      "emptyCollection": "A cole??o est? vazia.",
+      "saved": "Cole??o salva localmente.",
+      "defaultName": "Cole??o {index}"
+    },
+    "rotation": {
+      "optionPreset": "Preset: {label}",
+      "optionUpload": "Upload: {label}",
+      "optionFavorite": "Favorito: {label}",
+      "optionCustom": "Personalizado: URL salva",
+      "noFixed": "Sem imagem fixa",
+      "enabled": "Ativar rota??o autom?tica",
+      "locked": "A rota??o est? bloqueada.",
+      "active": "Os fundos mudam conforme o plano.",
+      "mode": "Modo",
+      "modeTime": "Por hor?rio",
+      "modeInterval": "Intervalo",
+      "modeTheme": "Tema",
+      "intervalLabel": "Intervalo em minutos",
+      "intervalNote": "Relevante apenas no modo intervalo.",
+      "sourcesLabel": "Fontes para aleat?rio",
+      "scheduleLabel": "Agenda",
+      "themePlan": "Plano de tema",
+      "themeLight": "Tema claro",
+      "themeDark": "Tema escuro",
+      "themeNote": "O plano de tema ? usado quando o modo ? Tema.",
+      "slot": {
+        "morning": "Manh? 05-11",
+        "day": "Dia 11-17",
+        "evening": "Tarde 17-21",
+        "night": "Noite 21-05"
+      }
+    },
+    "custom": {
+      "label": "URL de imagem personalizada",
+      "placeholder": "https://example.com/image.jpg",
+      "note": "A URL ? salva localmente. O servidor deve permitir CORS para imagens.",
+      "enterUrl": "Digite uma URL.",
+      "title": "URL personalizada",
+      "subtitle": "Personalizado"
+    },
+    "actions": {
+      "apply": "Aplicar",
+      "favorite": "Favorito",
+      "favorited": "Favorito",
+      "random": "Carregar aleat?rio",
+      "undo": "Restaurar ?ltima imagem",
+      "lock": "Bloquear rota??o",
+      "tint": "Tingir widgets"
+    },
+    "tabs": {
+      "presets": "Presets",
+      "favorites": "Favoritos",
+      "uploads": "Uploads",
+      "collections": "Cole??es",
+      "rotation": "Rota??o",
+      "custom": "Personalizado"
+    },
+    "loadError": "Falha ao carregar. Verifique CORS.",
+    "noneAvailable": "Nenhum fundo dispon?vel.",
+    "imageLoadError": "N?o foi poss?vel carregar a imagem."
+  },
+  "data": {
+    "import": {
+      "confirm": "Importar dados? As entradas existentes ser?o substitu?das.",
+      "failed": "Falha na importa??o: {error}"
+    },
+    "presets": {
+      "none": "Nenhum preset dispon?vel.",
+      "missingFile": "Arquivo do preset ausente.",
+      "fileMissing": "Arquivo n?o encontrado",
+      "invalid": "Preset inv?lido",
+      "confirmApply": "Aplicar {context} \"{name}\"? As entradas existentes ser?o substitu?das.",
+      "loadFailed": "Falha ao carregar preset: {error}",
+      "loading": "Carregando presets...",
+      "noneFound": "Nenhum preset encontrado",
+      "hint": "Coloque JSON exportados em assets/presets/ (manifesto: assets/data-presets.json) ou localmente em assets/user-presets/.",
+      "hintShort": "Adicione um preset em assets/presets/ ou assets/user-presets/.",
+      "userPrefix": "Usu?rio: ",
+      "userApply": "Aplicar preset local",
+      "apply": "Aplicar preset",
+      "noneSelected": "Nenhum preset selecionado.",
+      "label": "Preset",
+      "defaultLabel": "Preset {index}",
+      "userDefault": "Preset do usu?rio {index}",
+      "userDescription": "Preset local de assets/user-presets/",
+      "tags": " (Tags: {tags})"
+    }
+  }
+}

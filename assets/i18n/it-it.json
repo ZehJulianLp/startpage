@@ -1,0 +1,490 @@
+{
+  "app": {
+    "title": "Startpage"
+  },
+  "common": {
+    "link": "Link",
+    "delete": "Elimina",
+    "remove": "Rimuovi",
+    "save": "Salva",
+    "loading": "Caricamento...",
+    "loadError": "Caricamento non riuscito",
+    "noMatches": "Nessun risultato",
+    "emptyDash": "?",
+    "dash": "?"
+  },
+  "header": {
+    "themeToggleTitle": "Scuro/Chiaro",
+    "settingsTitle": "Impostazioni"
+  },
+  "search": {
+    "placeholder": "Cerca... (es. !yt lo-fi, !etc Home)",
+    "engine": {
+      "google": "Google",
+      "ddg": "DuckDuckGo",
+      "bing": "Bing",
+      "yt": "YouTube",
+      "wikipedia": "Wikipedia",
+      "maps": "Google Maps"
+    },
+    "suggest": {
+      "bang": "{bang} (Bang)",
+      "shortcut": "{shortcut} (Scorciatoia)",
+      "type": {
+        "bang": "Bang",
+        "shortcut": "Scorciatoia",
+        "recent": "Recenti",
+        "word": "Parola"
+      }
+    },
+    "recentShortcut": "Scorciatoia {shortcut} ? {query}",
+    "recentSearch": "Ricerca ({engine}) ? {query}"
+  },
+  "todo": {
+    "title": "Attivit?",
+    "placeholder": "Nuova attivit?...",
+    "add": "Aggiungi",
+    "clearDoneTitle": "Rimuovi completate",
+    "clearDone": "? cancella",
+    "doneAria": "Fatto",
+    "prompt": "Attivit?"
+  },
+  "notes": {
+    "title": "Note",
+    "placeholder": "Annota qualcosa...",
+    "prompt": "Nota"
+  },
+  "tiles": {
+    "title": "Preferiti",
+    "add": "+ Tessera",
+    "resetTitle": "Ripristina predefiniti",
+    "edit": "Modifica",
+    "promptTitle": "Titolo",
+    "promptUrl": "URL",
+    "invalidUrl": "URL non valido",
+    "promptTitleNew": "Titolo della tessera",
+    "promptUrlNew": "URL (https://?)",
+    "resetConfirm": "Ripristinare le tessere predefinite?"
+  },
+  "weather": {
+    "title": "Meteo oggi",
+    "cityPlaceholder": "Inserisci citt?...",
+    "setCity": "Imposta",
+    "pickLocation": "Scegli un luogo...",
+    "source": "Fonte: Open-Meteo",
+    "loading": "Caricamento meteo...",
+    "prompt": "Inserisci una localit? per caricare il meteo.",
+    "tempEmpty": "??C",
+    "tempEmptyShort": "??",
+    "minmaxEmpty": "? / ? ?C",
+    "noForecast": "Nessuna previsione",
+    "errors": {
+      "geocodingFailed": "Geocoding fallito",
+      "locationNotFound": "Localit? non trovata",
+      "cityMissing": "Citt? mancante",
+      "fetchFailed": "Recupero meteo fallito",
+      "loadFailed": "Impossibile caricare il meteo"
+    },
+    "codes": {
+      "0": "Sereno",
+      "1": "Prevalentemente sereno",
+      "2": "Parzialmente nuvoloso",
+      "3": "Nuvoloso",
+      "45": "Nebbia",
+      "48": "Nebbia",
+      "51": "Pioviggine",
+      "53": "Pioviggine",
+      "55": "Pioviggine",
+      "61": "Pioggia",
+      "63": "Pioggia",
+      "65": "Pioggia forte",
+      "71": "Neve",
+      "80": "Rovesci",
+      "95": "Temporale",
+      "default": "Meteo"
+    }
+  },
+  "transport": {
+    "title": "Trasporti",
+    "durationAria": "Durata",
+    "duration30": "30 min",
+    "duration60": "60 min",
+    "duration90": "90 min",
+    "duration120": "120 min",
+    "refreshTitle": "Ricarica",
+    "searchPlaceholder": "Cerca stazione...",
+    "noneSelected": "Nessuna stazione selezionata",
+    "source": "Fonte: transport.rest",
+    "minQuery": "Almeno {count} caratteri",
+    "noMatches": "Nessun risultato",
+    "proxyTimeout": "Timeout proxy",
+    "loadError": "Caricamento fallito",
+    "noDepartures": "Nessuna partenza",
+    "selectStation": "Seleziona una stazione...",
+    "type": {
+      "station": "Stazione",
+      "stop": "Fermata"
+    },
+    "platform": "Binario {platform}",
+    "cancelled": "Cancellato"
+  },
+  "quote": {
+    "title": "Citazione / Spinta nerd",
+    "list": [
+      "Muoviti veloce, refactor spesso.",
+      "L'accessibilit? non ? una feature: ? la base.",
+      "Fatto > Perfetto. Itera.",
+      "Se non ? monitorato, non esiste.",
+      "Un buon UX ? invisibile. Uno cattivo ? indimenticabile.",
+      "Fai in modo che funzioni, poi bene, poi veloce.",
+      "Piccoli passi. Risultati enormi.",
+      "La semplicit? scala. La complessit? fallisce.",
+      "Automatizza le cose noiose.",
+      "Misura due volte, fai il deploy una volta."
+    ]
+  },
+  "recent": {
+    "title": "Recenti",
+    "note": "Nota: mostra solo azioni di questa pagina (clic su preferiti e ricerche)."
+  },
+  "system": {
+    "title": "Stato sistema",
+    "loading": "Caricamento...",
+    "ram": "RAM: {value} GB",
+    "cpu": "Core CPU: {value}",
+    "network": "Rete: {downlink} Mbit/s ? {type}{saveData}",
+    "saveData": " ? Risparmio dati",
+    "noData": "Nessun dato disponibile"
+  },
+  "news": {
+    "title": "Notizie",
+    "refreshTitle": "Ricarica",
+    "source": "RSS tramite proxy Startpage (proxy CORS)",
+    "noItems": "Nessun elemento"
+  },
+  "footer": {
+    "tagline": "Dashboard local-first ? salva solo nel browser (localStorage)"
+  },
+  "settings": {
+    "title": "Impostazioni",
+    "close": "Chiudi",
+    "tabs": {
+      "general": "Generale",
+      "background": "Sfondo e aspetto",
+      "search": "Ricerca e feed",
+      "widgets": "Widget",
+      "data": "Dati",
+      "guide": "Guida"
+    },
+    "theme": {
+      "label": "Tema",
+      "auto": "Auto (sistema)",
+      "dark": "Scuro",
+      "light": "Chiaro"
+    },
+    "background": {
+      "label": "Sfondo"
+    },
+    "search": {
+      "engines": "Motori di ricerca",
+      "bangsNote": "Scorciatoie bang supportate: <code>!g !ddg !bing !yt !wiki !maps</code> - scorciatoie personalizzate sotto",
+      "wordlistLabel": "Lista parole per autocompletamento",
+      "wordlistPlaceholder": "Termini riga per riga o separati da virgole",
+      "wordlistSave": "Salva",
+      "wordlistReset": "Svuota",
+      "wordlistNote": "La lista globale (assets/wordlist.json) e quella del preset vengono unite. Lascia vuoto per usare solo la lista globale.",
+      "shortcutsLabel": "Scorciatoie ! personalizzate",
+      "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
+      "shortcutsNote": "Usa <code>{q}</code> come segnaposto per la ricerca. Senza <code>{q}</code> viene aggiunto <code>?q=...</code>.",
+      "feedsLabel": "Feed RSS personalizzati",
+      "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
+      "feedsNote": "JSON: nome - URL feed. Questa lista viene unita ai feed predefiniti.",
+      "invalidShortcuts": "JSON scorciatoie non valido",
+      "invalidFeeds": "JSON feed non valido"
+    },
+    "widgets": {
+      "visible": "Mostra widget",
+      "defaultCityLabel": "Citt? predefinita (meteo)",
+      "defaultCityPlaceholder": "es. Hannover",
+      "defaultTransportLabel": "Fermata predefinita (trasporti)",
+      "defaultTransportPlaceholder": "Cerca stazione...",
+      "cardStyleLabel": "Stile scheda",
+      "cardStyleGlass": "Vetro (predefinito)",
+      "cardStyleSolid": "Pieno",
+      "cardStyleTransparent": "Trasparente",
+      "cardStyleMinimal": "Minimal morbido",
+      "cardStyleNote": "Si applica a tutti i widget e alle tessere preferite.",
+      "clockColorLabel": "Ora e data",
+      "searchColorLabel": "Ricerca",
+      "reset": "Ripristina",
+      "clockColorNote": "Imposta lo sfondo dell'intestazione (vuoto = stile predefinito).",
+      "searchColorNote": "Colore dell'area di ricerca (vuoto = stile predefinito).",
+      "widgetColorsLabel": "Colori widget"
+    },
+    "data": {
+      "label": "Dati",
+      "export": "Esporta (.json)",
+      "import": "Importa (.json)",
+      "presetsLabel": "Preset dati",
+      "applyPreset": "Carica preset",
+      "presetMeta": "I preset sono JSON esportati in assets/presets/. I preset utente in assets/user-presets/ vengono uniti automaticamente.",
+      "setupLabel": "Configurazione",
+      "restartOnboarding": "Riavvia configurazione",
+      "restartNote": "Riapre il dialogo di configurazione compatto.",
+      "noteLabel": "Nota",
+      "noteText": "L'esportazione salva tutte le impostazioni e i dati localmente come JSON. L'importazione sovrascrive le voci esistenti."
+    },
+    "language": {
+      "label": "Lingua",
+      "auto": "Auto (sistema)"
+    },
+    "guideHtml": "<div class=\"row\"><label>Guida utente</label><div><h5>Panoramica</h5><ul><li>Pagina iniziale con ricerca, preferiti, attivit?, note, meteo, notizie.</li><li>Tutto locale: i dati restano nel browser (localStorage).</li></ul><h5>Scorciatoie</h5><ul><li>Ctrl/Cmd+K: apri la palette comandi</li><li>1-9: apri i primi 9 preferiti (se non stai digitando)</li><li>/ : focus sulla ricerca (anche tramite palette)</li><li>Invio nella ricerca: avvia la ricerca</li><li>ESC: chiudi i modali</li><li>Palette: azioni rapide per widget, tema, sfondo, dati, preferiti</li><li>Palette: il tasto C cambia lo stile scheda, \"Ripristina colori intestazione\" ripristina ricerca e orologio</li></ul><h5>Ricerca e autocompletamento</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>Scorciatoie personalizzate: JSON nelle impostazioni; {q} come segnaposto</li><li>Autocompletamento: bangs, scorciatoie, ricerche recenti, lista parole (globale + preset)</li><li>Tab accetta il suggerimento, Invio avvia la ricerca</li></ul><h5>Tessere</h5><ul><li>Drag & drop per ordinare, clic per aprire</li><li>+ Tessera: aggiungi un preferito</li><li>Ripristina: ripristina i preferiti predefiniti</li></ul><h5>Widget e layout</h5><ul><li>Visibilit? per widget</li><li>Stile scheda globale (vetro, pieno, trasparente, minimal morbido)</li><li>Colori personalizzati per orologio/ricerca; ripristina torna allo stile predefinito</li><li>Colori widget e pulsante \"Tinta widget\" impostano l'accento per scheda</li></ul><h5>Sfondo</h5><ul><li>Preset, upload, raccolte, rotazione (ora/tema/intervallo)</li><li>Il colore di accento viene estratto dallo sfondo attivo</li></ul><h5>Dati</h5><ul><li>Esporta/Importa come JSON</li><li>Carica preset dati (assets/presets/*.json nel repo)</li></ul></div></div>"
+  },
+  "onboarding": {
+    "title": "Avvia configurazione",
+    "progress": "Passo {current} di {total}",
+    "skip": "Salta",
+    "close": "Chiudi",
+    "preset": {
+      "title": "Scegli preset",
+      "hint": "Scegli un preset o salta questo passaggio.",
+      "apply": "Applica preset",
+      "meta": "Applica un preset o salta.",
+      "optional": "Preset opzionale.",
+      "context": "Preset di configurazione"
+    },
+    "appearance": {
+      "title": "Aspetto",
+      "theme": "Tema",
+      "cardStyle": "Stile scheda",
+      "background": "Sfondo",
+      "rotation": "Attiva rotazione",
+      "keepCurrent": "Mantieni immagine attuale"
+    },
+    "search": {
+      "title": "Ricerca",
+      "engine": "Motore di ricerca predefinito"
+    },
+    "widgets": {
+      "title": "Widget",
+      "defaultTransport": "Fermata predefinita (trasporti)",
+      "tint": "Colora widget con accento"
+    },
+    "weather": {
+      "title": "Meteo",
+      "defaultCity": "Citt? predefinita",
+      "note": "Puoi cambiare tutto pi? tardi nelle impostazioni."
+    },
+    "prev": "Indietro",
+    "next": "Avanti",
+    "finish": "Fatto"
+  },
+  "palette": {
+    "placeholder": "Cerca comando o preferito... (Ctrl/?+K)",
+    "groups": {
+      "command": "Comandi",
+      "settings": "Impostazioni",
+      "search": "Ricerca",
+      "widgets": "Widget",
+      "theme": "Tema e sfondo",
+      "data": "Dati",
+      "tiles": "Tessere",
+      "tile": "Preferiti",
+      "quick": "Rapido"
+    },
+    "search": {
+      "focus": "Focus ricerca",
+      "start": "Avvia ricerca",
+      "engine": "Motore: {engine}"
+    },
+    "settings": {
+      "open": "Apri impostazioni",
+      "general": "Impostazioni: Generale",
+      "background": "Impostazioni: Sfondo",
+      "search": "Impostazioni: Ricerca",
+      "widgets": "Impostazioni: Widget",
+      "data": "Impostazioni: Dati",
+      "guide": "Impostazioni: Guida"
+    },
+    "theme": {
+      "cycle": "Cambia tema (Auto/Scuro/Chiaro)",
+      "auto": "Tema: Auto",
+      "dark": "Tema: Scuro",
+      "light": "Tema: Chiaro",
+      "resetHeader": "Ripristina colori intestazione",
+      "recalcAccent": "Ricalcola colori accento"
+    },
+    "cardStyle": {
+      "glass": "Stile scheda: Vetro",
+      "solid": "Stile scheda: Pieno",
+      "transparent": "Stile scheda: Trasparente",
+      "minimal": "Stile scheda: Minimal"
+    },
+    "background": {
+      "toggleRotation": "Sfondo: attiva/disattiva rotazione",
+      "toggleLock": "Sfondo: blocca/sblocca rotazione",
+      "preset": "Sfondo: {label}"
+    },
+    "widgets": {
+      "showAll": "Widget: mostra tutti",
+      "hideAll": "Widget: nascondi tutti",
+      "toggle": "Widget: attiva/disattiva {widget}",
+      "focus": "Widget: focus {widget}"
+    },
+    "quick": {
+      "addTodo": "Aggiungi attivit?",
+      "addNote": "Aggiungi nota"
+    },
+    "tiles": {
+      "add": "Aggiungi tessera",
+      "reset": "Ripristina tessere"
+    },
+    "refresh": {
+      "weather": "Aggiorna meteo",
+      "news": "Aggiorna notizie",
+      "transport": "Aggiorna trasporti",
+      "system": "Aggiorna sistema",
+      "all": "Aggiorna tutti i widget"
+    },
+    "data": {
+      "export": "Esporta dati",
+      "import": "Importa dati",
+      "preset": "Preset dati: {label}"
+    }
+  },
+  "widgets": {
+    "todo": "Attivit?",
+    "notes": "Note",
+    "tiles": "Preferiti",
+    "weather": "Meteo",
+    "transport": "Trasporti",
+    "quote": "Citazione",
+    "recent": "Recenti",
+    "system": "Sistema",
+    "news": "Notizie"
+  },
+  "background": {
+    "currentPreview": "Immagine di sfondo attuale",
+    "none": "Nessuno sfondo",
+    "noImageSelected": "Nessuna immagine selezionata",
+    "rotationResume": "Riprendi rotazione",
+    "rotationLock": "Blocca rotazione",
+    "tone": "Tono: {tone}",
+    "presets": {
+      "empty": "Nessun preset disponibile."
+    },
+    "favorites": {
+      "empty": "Nessun preferito. Segna preset o upload."
+    },
+    "subtitle": {
+      "preset": "Preset"
+    },
+    "upload": "Carica",
+    "uploadDrop": "Trascina i file qui",
+    "uploadBrowse": "Scegli file",
+    "uploadNote": "Ridimensioniamo automaticamente le immagini (16:9, max 2560px) e le salviamo localmente. Max {max} file.",
+    "uploads": {
+      "empty": "Nessun upload ancora."
+    },
+    "collections": {
+      "count": "{count} fonti",
+      "random": "Casuale",
+      "cache": "Salva offline",
+      "viewSources": "Visualizza fonti",
+      "useRotation": "Usa per rotazione",
+      "newLabel": "Nuova raccolta",
+      "namePlaceholder": "La mia raccolta",
+      "urlsPlaceholder": "Un URL immagine per riga",
+      "clear": "Svuota campi",
+      "note": "Gli URL sono salvati localmente. Le fonti remote richiedono CORS per le immagini.",
+      "empty": "Nessuna raccolta ancora.",
+      "minOneUrl": "Inserisci almeno un URL.",
+      "emptyCollection": "La raccolta ? vuota.",
+      "saved": "Raccolta salvata localmente.",
+      "defaultName": "Raccolta {index}"
+    },
+    "rotation": {
+      "optionPreset": "Preset: {label}",
+      "optionUpload": "Upload: {label}",
+      "optionFavorite": "Preferito: {label}",
+      "optionCustom": "Personalizzato: URL salvato",
+      "noFixed": "Nessuna immagine fissa",
+      "enabled": "Abilita rotazione automatica",
+      "locked": "La rotazione ? attualmente bloccata.",
+      "active": "Gli sfondi cambiano secondo il piano.",
+      "mode": "Modalit?",
+      "modeTime": "In base all'ora",
+      "modeInterval": "Intervallo",
+      "modeTheme": "Tema",
+      "intervalLabel": "Intervallo in minuti",
+      "intervalNote": "Rilevante solo in modalit? intervallo.",
+      "sourcesLabel": "Fonti per casuale",
+      "scheduleLabel": "Programma",
+      "themePlan": "Piano tema",
+      "themeLight": "Tema chiaro",
+      "themeDark": "Tema scuro",
+      "themeNote": "Il piano tema ? usato quando la modalit? ? Tema.",
+      "slot": {
+        "morning": "Mattina 05-11",
+        "day": "Giorno 11-17",
+        "evening": "Sera 17-21",
+        "night": "Notte 21-05"
+      }
+    },
+    "custom": {
+      "label": "URL immagine personalizzata",
+      "placeholder": "https://example.com/image.jpg",
+      "note": "L'URL ? salvato localmente. Il server deve consentire CORS per le immagini.",
+      "enterUrl": "Inserisci un URL.",
+      "title": "URL personalizzata",
+      "subtitle": "Personalizzato"
+    },
+    "actions": {
+      "apply": "Applica",
+      "favorite": "Preferito",
+      "favorited": "Preferito",
+      "random": "Carica casuale",
+      "undo": "Ripristina ultima immagine",
+      "lock": "Blocca rotazione",
+      "tint": "Colora widget"
+    },
+    "tabs": {
+      "presets": "Preset",
+      "favorites": "Preferiti",
+      "uploads": "Upload",
+      "collections": "Raccolte",
+      "rotation": "Rotazione",
+      "custom": "Personalizzato"
+    },
+    "loadError": "Caricamento fallito. Verifica impostazioni CORS.",
+    "noneAvailable": "Nessuno sfondo disponibile.",
+    "imageLoadError": "Impossibile caricare l'immagine."
+  },
+  "data": {
+    "import": {
+      "confirm": "Importare i dati? Le voci esistenti verranno sovrascritte.",
+      "failed": "Importazione fallita: {error}"
+    },
+    "presets": {
+      "none": "Nessun preset disponibile.",
+      "missingFile": "File preset mancante.",
+      "fileMissing": "File non trovato",
+      "invalid": "Preset non valido",
+      "confirmApply": "Applicare {context} \"{name}\"? Le voci esistenti verranno sovrascritte.",
+      "loadFailed": "Caricamento preset fallito: {error}",
+      "loading": "Caricamento preset...",
+      "noneFound": "Nessun preset trovato",
+      "hint": "Inserisci JSON esportati in assets/presets/ (manifesto: assets/data-presets.json) o localmente in assets/user-presets/.",
+      "hintShort": "Aggiungi un preset in assets/presets/ o assets/user-presets/.",
+      "userPrefix": "Utente: ",
+      "userApply": "Applica preset locale",
+      "apply": "Applica preset",
+      "noneSelected": "Nessun preset selezionato.",
+      "label": "Preset",
+      "defaultLabel": "Preset {index}",
+      "userDefault": "Preset utente {index}",
+      "userDescription": "Preset locale da assets/user-presets/",
+      "tags": " (Tag: {tags})"
+    }
+  }
+}

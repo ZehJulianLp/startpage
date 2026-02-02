@@ -1,0 +1,490 @@
+{
+  "app": {
+    "title": "Startpage"
+  },
+  "common": {
+    "link": "L?nk",
+    "delete": "Ta bort",
+    "remove": "Ta bort",
+    "save": "Spara",
+    "loading": "Laddar...",
+    "loadError": "Laddning misslyckades",
+    "noMatches": "Inga tr?ffar",
+    "emptyDash": "?",
+    "dash": "?"
+  },
+  "header": {
+    "themeToggleTitle": "M?rk/Ljus",
+    "settingsTitle": "Inst?llningar"
+  },
+  "search": {
+    "placeholder": "S?k... (t.ex. !yt lo-fi, !etc Home)",
+    "engine": {
+      "google": "Google",
+      "ddg": "DuckDuckGo",
+      "bing": "Bing",
+      "yt": "YouTube",
+      "wikipedia": "Wikipedia",
+      "maps": "Google Maps"
+    },
+    "suggest": {
+      "bang": "{bang} (Bang)",
+      "shortcut": "{shortcut} (Genv?g)",
+      "type": {
+        "bang": "Bang",
+        "shortcut": "Genv?g",
+        "recent": "Senaste",
+        "word": "Ord"
+      }
+    },
+    "recentShortcut": "Genv?g {shortcut} ? {query}",
+    "recentSearch": "S?kning ({engine}) ? {query}"
+  },
+  "todo": {
+    "title": "Att g?ra",
+    "placeholder": "Ny uppgift...",
+    "add": "L?gg till",
+    "clearDoneTitle": "Ta bort klara",
+    "clearDone": "? rensa",
+    "doneAria": "Klar",
+    "prompt": "Uppgift"
+  },
+  "notes": {
+    "title": "Anteckningar",
+    "placeholder": "Skriv n?got...",
+    "prompt": "Anteckning"
+  },
+  "tiles": {
+    "title": "Favoriter",
+    "add": "+ Ruta",
+    "resetTitle": "?terst?ll standard",
+    "edit": "Redigera",
+    "promptTitle": "Titel",
+    "promptUrl": "URL",
+    "invalidUrl": "Ogiltig URL",
+    "promptTitleNew": "Rutans titel",
+    "promptUrlNew": "URL (https://?)",
+    "resetConfirm": "?terst?lla standardrutor?"
+  },
+  "weather": {
+    "title": "V?der idag",
+    "cityPlaceholder": "Ange stad...",
+    "setCity": "Ange",
+    "pickLocation": "V?lj plats...",
+    "source": "K?lla: Open-Meteo",
+    "loading": "Laddar v?der...",
+    "prompt": "Ange en plats f?r att ladda v?dret.",
+    "tempEmpty": "??C",
+    "tempEmptyShort": "??",
+    "minmaxEmpty": "? / ? ?C",
+    "noForecast": "Ingen prognos",
+    "errors": {
+      "geocodingFailed": "Geokodning misslyckades",
+      "locationNotFound": "Plats hittades inte",
+      "cityMissing": "Stad saknas",
+      "fetchFailed": "V?derh?mtning misslyckades",
+      "loadFailed": "V?dret kunde inte laddas"
+    },
+    "codes": {
+      "0": "Klart",
+      "1": "Mestadels klart",
+      "2": "Delvis molnigt",
+      "3": "Molnigt",
+      "45": "Dimma",
+      "48": "Dimma",
+      "51": "Duggregn",
+      "53": "Duggregn",
+      "55": "Duggregn",
+      "61": "Regn",
+      "63": "Regn",
+      "65": "Kraftigt regn",
+      "71": "Sn?",
+      "80": "Skurar",
+      "95": "?ska",
+      "default": "V?der"
+    }
+  },
+  "transport": {
+    "title": "Transport",
+    "durationAria": "Varaktighet",
+    "duration30": "30 min",
+    "duration60": "60 min",
+    "duration90": "90 min",
+    "duration120": "120 min",
+    "refreshTitle": "Ladda om",
+    "searchPlaceholder": "S?k station...",
+    "noneSelected": "Ingen station vald",
+    "source": "K?lla: transport.rest",
+    "minQuery": "Minst {count} tecken",
+    "noMatches": "Inga tr?ffar",
+    "proxyTimeout": "Proxy-timeout",
+    "loadError": "Laddning misslyckades",
+    "noDepartures": "Inga avg?ngar",
+    "selectStation": "V?lj en station...",
+    "type": {
+      "station": "Station",
+      "stop": "H?llplats"
+    },
+    "platform": "Sp?r {platform}",
+    "cancelled": "Inst?lld"
+  },
+  "quote": {
+    "title": "Citat / N?rdimpuls",
+    "list": [
+      "R?r dig snabbt, refaktorera ofta.",
+      "Tillg?nglighet ?r inte en feature ? det ?r standard.",
+      "Klart > Perfekt. Iterera.",
+      "Om det inte ?vervakas finns det inte.",
+      "Bra UX ?r osynlig. D?lig UX ?r of?rgl?mlig.",
+      "F? det att fungera, g?r det r?tt, g?r det snabbt.",
+      "Sm? steg. Stora resultat.",
+      "Enkelhet skalar. Komplexitet fallerar.",
+      "Automatisera det tr?kiga.",
+      "M?t tv? g?nger, deploya en g?ng."
+    ]
+  },
+  "recent": {
+    "title": "Senaste",
+    "note": "Obs: visar endast ?tg?rder fr?n denna startsida (klickade rutor och s?kningar)."
+  },
+  "system": {
+    "title": "Systemstatus",
+    "loading": "Laddar...",
+    "ram": "RAM: {value} GB",
+    "cpu": "CPU-k?rnor: {value}",
+    "network": "N?tverk: {downlink} Mbit/s ? {type}{saveData}",
+    "saveData": " ? Dataspar",
+    "noData": "Ingen data tillg?nglig"
+  },
+  "news": {
+    "title": "Nyheter",
+    "refreshTitle": "Ladda om",
+    "source": "RSS via Startpage-proxy (CORS-proxy)",
+    "noItems": "Inga poster"
+  },
+  "footer": {
+    "tagline": "Local-first dashboard ? sparar bara i webbl?saren (localStorage)"
+  },
+  "settings": {
+    "title": "Inst?llningar",
+    "close": "St?ng",
+    "tabs": {
+      "general": "Allm?nt",
+      "background": "Bakgrund och utseende",
+      "search": "S?kning och fl?den",
+      "widgets": "Widgets",
+      "data": "Data",
+      "guide": "Guide"
+    },
+    "theme": {
+      "label": "Tema",
+      "auto": "Auto (system)",
+      "dark": "M?rkt",
+      "light": "Ljust"
+    },
+    "background": {
+      "label": "Bakgrund"
+    },
+    "search": {
+      "engines": "S?kmotorer",
+      "bangsNote": "St?dda bang-genv?gar: <code>!g !ddg !bing !yt !wiki !maps</code> - egna genv?gar nedan",
+      "wordlistLabel": "Ordl lista f?r autokomplettering",
+      "wordlistPlaceholder": "Termer rad f?r rad eller separerade med komma",
+      "wordlistSave": "Spara",
+      "wordlistReset": "T?m",
+      "wordlistNote": "Den globala ordlistan (assets/wordlist.json) och preset-listan sl?s ihop. L?mna tomt f?r att bara anv?nda den globala listan.",
+      "shortcutsLabel": "Egna !genv?gar",
+      "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
+      "shortcutsNote": "Anv?nd <code>{q}</code> som platsh?llare. Utan <code>{q}</code> l?ggs <code>?q=...</code> till.",
+      "feedsLabel": "Egna RSS-fl?den",
+      "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
+      "feedsNote": "JSON: namn - fl?des-URL. Denna lista sl?s ihop med standardfl?dena.",
+      "invalidShortcuts": "Ogiltig genv?gs-JSON",
+      "invalidFeeds": "Ogiltig fl?des-JSON"
+    },
+    "widgets": {
+      "visible": "Visa widgets",
+      "defaultCityLabel": "Standardstad (v?der)",
+      "defaultCityPlaceholder": "t.ex. Hannover",
+      "defaultTransportLabel": "Standardh?llplats (transport)",
+      "defaultTransportPlaceholder": "S?k station...",
+      "cardStyleLabel": "Kortstil",
+      "cardStyleGlass": "Glas (standard)",
+      "cardStyleSolid": "Hel",
+      "cardStyleTransparent": "Transparent",
+      "cardStyleMinimal": "Mjuk minimal",
+      "cardStyleNote": "G?ller alla widgets och favoritrutor.",
+      "clockColorLabel": "Tid och datum",
+      "searchColorLabel": "S?kning",
+      "reset": "?terst?ll",
+      "clockColorNote": "St?ller in rubrikens bakgrund (tomt = standardstil).",
+      "searchColorNote": "F?rg f?r s?komr?det (tomt = standardstil).",
+      "widgetColorsLabel": "Widgetf?rger"
+    },
+    "data": {
+      "label": "Data",
+      "export": "Exportera (.json)",
+      "import": "Importera (.json)",
+      "presetsLabel": "Data-presets",
+      "applyPreset": "Ladda preset",
+      "presetMeta": "Presets ?r exporterade JSON under assets/presets/. Anv?ndarpresets fr?n assets/user-presets/ sl?s ihop automatiskt.",
+      "setupLabel": "Setup",
+      "restartOnboarding": "Starta om setup",
+      "restartNote": "?ppnar den kompakta setup-dialogen igen.",
+      "noteLabel": "Notis",
+      "noteText": "Export sparar alla inst?llningar och data lokalt som JSON. Import skriver ?ver befintliga poster."
+    },
+    "language": {
+      "label": "Spr?k",
+      "auto": "Auto (system)"
+    },
+    "guideHtml": "<div class=\"row\"><label>Anv?ndarguide</label><div><h5>?versikt</h5><ul><li>Startsida med s?kning, favoriter, att g?ra, anteckningar, v?der, nyheter.</li><li>Allt lokalt: data stannar i webbl?saren (localStorage).</li></ul><h5>Genv?gar</h5><ul><li>Ctrl/Cmd+K: ?ppna kommandopalet</li><li>1-9: ?ppna de f?rsta 9 favoriterna (om du inte skriver)</li><li>/ : fokusera s?k (?ven via palett)</li><li>Enter i s?k: starta s?kning</li><li>ESC: st?ng modaler</li><li>Palett: snabb?tg?rder f?r widgets, tema, bakgrund, data, favoriter</li><li>Palett: tangenten C byter kortstil, \"?terst?ll rubrikf?rger\" ?terst?ller s?k och klocka</li></ul><h5>S?k och autokomplettering</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>Egna genv?gar: JSON i inst?llningar; {q} som platsh?llare</li><li>Autokomplettering: bangs, genv?gar, senaste s?kningar, ordlista (global + preset)</li><li>Tab accepterar f?rslag, Enter startar s?kning</li></ul><h5>Rutor</h5><ul><li>Drag & drop f?r sortering, klick f?r att ?ppna</li><li>+ Ruta: l?gg till en favorit</li><li>?terst?ll: ?terst?ll standardfavoriter</li></ul><h5>Widgets och layout</h5><ul><li>Synlighet per widget</li><li>Kortstil global (glas, hel, transparent, mjuk minimal)</li><li>Egna f?rger f?r klocka/s?k; ?terst?ll ?terg?r till standardstil</li><li>Widgetf?rger och knappen \"Tona widgets\" s?tter accent per kort</li></ul><h5>Bakgrund</h5><ul><li>Presets, uppladdningar, samlingar, rotation (tid/tema/intervall)</li><li>Accentf?rg h?mtas fr?n aktiv bakgrund</li></ul><h5>Data</h5><ul><li>Export/Import som JSON</li><li>Ladda data-presets (assets/presets/*.json i repo)</li></ul></div></div>"
+  },
+  "onboarding": {
+    "title": "Starta setup",
+    "progress": "Steg {current} av {total}",
+    "skip": "Hoppa ?ver",
+    "close": "St?ng",
+    "preset": {
+      "title": "V?lj preset",
+      "hint": "V?lj ett preset eller hoppa ?ver detta steg.",
+      "apply": "Till?mpa preset",
+      "meta": "Till?mpa preset eller hoppa ?ver.",
+      "optional": "Preset valfritt.",
+      "context": "Setup-preset"
+    },
+    "appearance": {
+      "title": "Utseende",
+      "theme": "Tema",
+      "cardStyle": "Kortstil",
+      "background": "Bakgrund",
+      "rotation": "Aktivera rotation",
+      "keepCurrent": "Beh?ll nuvarande bild"
+    },
+    "search": {
+      "title": "S?kning",
+      "engine": "Standard-s?kmotor"
+    },
+    "widgets": {
+      "title": "Widgets",
+      "defaultTransport": "Standardh?llplats (transport)",
+      "tint": "Tona widgets med accent"
+    },
+    "weather": {
+      "title": "V?der",
+      "defaultCity": "Standardstad",
+      "note": "Du kan ?ndra allt senare i inst?llningarna."
+    },
+    "prev": "Tillbaka",
+    "next": "N?sta",
+    "finish": "Klart"
+  },
+  "palette": {
+    "placeholder": "S?k kommando eller favorit... (Ctrl/?+K)",
+    "groups": {
+      "command": "Kommandon",
+      "settings": "Inst?llningar",
+      "search": "S?kning",
+      "widgets": "Widgets",
+      "theme": "Tema och bakgrund",
+      "data": "Data",
+      "tiles": "Rutor",
+      "tile": "Favoriter",
+      "quick": "Snabb"
+    },
+    "search": {
+      "focus": "Fokusera s?k",
+      "start": "Starta s?kning",
+      "engine": "Motor: {engine}"
+    },
+    "settings": {
+      "open": "?ppna inst?llningar",
+      "general": "Inst?llningar: Allm?nt",
+      "background": "Inst?llningar: Bakgrund",
+      "search": "Inst?llningar: S?kning",
+      "widgets": "Inst?llningar: Widgets",
+      "data": "Inst?llningar: Data",
+      "guide": "Inst?llningar: Guide"
+    },
+    "theme": {
+      "cycle": "V?xla tema (Auto/M?rk/Ljus)",
+      "auto": "Tema: Auto",
+      "dark": "Tema: M?rkt",
+      "light": "Tema: Ljust",
+      "resetHeader": "?terst?ll rubrikf?rger",
+      "recalcAccent": "R?kna om accentf?rger"
+    },
+    "cardStyle": {
+      "glass": "Kortstil: Glas",
+      "solid": "Kortstil: Hel",
+      "transparent": "Kortstil: Transparent",
+      "minimal": "Kortstil: Minimal"
+    },
+    "background": {
+      "toggleRotation": "Bakgrund: v?xla rotation",
+      "toggleLock": "Bakgrund: l?s/l?s upp rotation",
+      "preset": "Bakgrund: {label}"
+    },
+    "widgets": {
+      "showAll": "Widgets: visa alla",
+      "hideAll": "Widgets: d?lj alla",
+      "toggle": "Widget: v?xla {widget}",
+      "focus": "Widget: fokusera {widget}"
+    },
+    "quick": {
+      "addTodo": "L?gg till uppgift",
+      "addNote": "L?gg till anteckning"
+    },
+    "tiles": {
+      "add": "L?gg till ruta",
+      "reset": "?terst?ll rutor"
+    },
+    "refresh": {
+      "weather": "Uppdatera v?der",
+      "news": "Uppdatera nyheter",
+      "transport": "Uppdatera transport",
+      "system": "Uppdatera system",
+      "all": "Uppdatera alla widgets"
+    },
+    "data": {
+      "export": "Exportera data",
+      "import": "Importera data",
+      "preset": "Data-preset: {label}"
+    }
+  },
+  "widgets": {
+    "todo": "Att g?ra",
+    "notes": "Anteckningar",
+    "tiles": "Favoriter",
+    "weather": "V?der",
+    "transport": "Transport",
+    "quote": "Citat",
+    "recent": "Senaste",
+    "system": "System",
+    "news": "Nyheter"
+  },
+  "background": {
+    "currentPreview": "Nuvarande bakgrundsbild",
+    "none": "Ingen bakgrund",
+    "noImageSelected": "Ingen bild vald",
+    "rotationResume": "?teruppta rotation",
+    "rotationLock": "L?s rotation",
+    "tone": "Ton: {tone}",
+    "presets": {
+      "empty": "Inga presets tillg?ngliga."
+    },
+    "favorites": {
+      "empty": "Inga favoriter ?n. Markera presets eller uppladdningar."
+    },
+    "subtitle": {
+      "preset": "Preset"
+    },
+    "upload": "Ladda upp",
+    "uploadDrop": "Sl?pp filer h?r",
+    "uploadBrowse": "V?lj fil",
+    "uploadNote": "Vi ?ndrar storlek p? bilder automatiskt (16:9, max 2560px) och sparar dem lokalt. Max {max} filer.",
+    "uploads": {
+      "empty": "Inga uppladdningar ?n."
+    },
+    "collections": {
+      "count": "{count} k?llor",
+      "random": "Slumpm?ssig",
+      "cache": "Spara offline",
+      "viewSources": "Visa k?llor",
+      "useRotation": "Anv?nd f?r rotation",
+      "newLabel": "Ny samling",
+      "namePlaceholder": "Min samling",
+      "urlsPlaceholder": "En bild-URL per rad",
+      "clear": "Rensa f?lt",
+      "note": "URL:er sparas lokalt. Fj?rrk?llor kr?ver CORS f?r bilder.",
+      "empty": "Inga samlingar ?n.",
+      "minOneUrl": "Ange minst en URL.",
+      "emptyCollection": "Samlingen ?r tom.",
+      "saved": "Samlingen sparad lokalt.",
+      "defaultName": "Samling {index}"
+    },
+    "rotation": {
+      "optionPreset": "Preset: {label}",
+      "optionUpload": "Uppladdning: {label}",
+      "optionFavorite": "Favorit: {label}",
+      "optionCustom": "Anpassad: sparad URL",
+      "noFixed": "Ingen fast bild",
+      "enabled": "Aktivera automatisk rotation",
+      "locked": "Rotationen ?r l?st.",
+      "active": "Bakgrunder byts enligt plan.",
+      "mode": "L?ge",
+      "modeTime": "Tidsbaserat",
+      "modeInterval": "Intervall",
+      "modeTheme": "Tema",
+      "intervalLabel": "Intervall i minuter",
+      "intervalNote": "Endast relevant i intervall?ge.",
+      "sourcesLabel": "K?llor f?r slump",
+      "scheduleLabel": "Schema",
+      "themePlan": "Temaplan",
+      "themeLight": "Tema ljust",
+      "themeDark": "Tema m?rkt",
+      "themeNote": "Temaplan anv?nds n?r l?get ?r Tema.",
+      "slot": {
+        "morning": "Morgon 05-11",
+        "day": "Dag 11-17",
+        "evening": "Kv?ll 17-21",
+        "night": "Natt 21-05"
+      }
+    },
+    "custom": {
+      "label": "Anpassad bild-URL",
+      "placeholder": "https://example.com/image.jpg",
+      "note": "URL sparas lokalt. Servern m?ste till?ta CORS f?r bilder.",
+      "enterUrl": "Ange en URL.",
+      "title": "Anpassad URL",
+      "subtitle": "Anpassad"
+    },
+    "actions": {
+      "apply": "Till?mpa",
+      "favorite": "Favorit",
+      "favorited": "Favorit",
+      "random": "Ladda slumpm?ssigt",
+      "undo": "?terst?ll senaste bild",
+      "lock": "L?s rotation",
+      "tint": "Tona widgets"
+    },
+    "tabs": {
+      "presets": "Presets",
+      "favorites": "Favoriter",
+      "uploads": "Uppladdningar",
+      "collections": "Samlingar",
+      "rotation": "Rotation",
+      "custom": "Anpassad"
+    },
+    "loadError": "Laddning misslyckades. Kontrollera CORS-inst?llningar.",
+    "noneAvailable": "Inga bakgrunder tillg?ngliga.",
+    "imageLoadError": "Bilden kunde inte laddas."
+  },
+  "data": {
+    "import": {
+      "confirm": "Importera data? Befintliga poster skrivs ?ver.",
+      "failed": "Import misslyckades: {error}"
+    },
+    "presets": {
+      "none": "Inget preset tillg?ngligt.",
+      "missingFile": "Presetfil saknas.",
+      "fileMissing": "Filen hittades inte",
+      "invalid": "Ogiltigt preset",
+      "confirmApply": "Till?mpa {context} \"{name}\"? Befintliga poster skrivs ?ver.",
+      "loadFailed": "Presetladdning misslyckades: {error}",
+      "loading": "Laddar presets...",
+      "noneFound": "Inga presets hittades",
+      "hint": "Placera exporterade JSON under assets/presets/ (manifest: assets/data-presets.json) eller lokalt under assets/user-presets/.",
+      "hintShort": "L?gg till ett preset under assets/presets/ eller assets/user-presets/.",
+      "userPrefix": "Anv?ndare: ",
+      "userApply": "Till?mpa lokalt preset",
+      "apply": "Till?mpa preset",
+      "noneSelected": "Inget preset valt.",
+      "label": "Preset",
+      "defaultLabel": "Preset {index}",
+      "userDefault": "Anv?ndarpreset {index}",
+      "userDescription": "Lokalt preset fr?n assets/user-presets/",
+      "tags": " (Taggar: {tags})"
+    }
+  }
+}

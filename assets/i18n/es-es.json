@@ -1,0 +1,490 @@
+{
+  "app": {
+    "title": "Startpage"
+  },
+  "common": {
+    "link": "Enlace",
+    "delete": "Eliminar",
+    "remove": "Quitar",
+    "save": "Guardar",
+    "loading": "Cargando...",
+    "loadError": "Error al cargar",
+    "noMatches": "Sin coincidencias",
+    "emptyDash": "—",
+    "dash": "–"
+  },
+  "header": {
+    "themeToggleTitle": "Oscuro/Claro",
+    "settingsTitle": "Configuración"
+  },
+  "search": {
+    "placeholder": "Buscar... (p. ej. !yt lo-fi, !etc Home)",
+    "engine": {
+      "google": "Google",
+      "ddg": "DuckDuckGo",
+      "bing": "Bing",
+      "yt": "YouTube",
+      "wikipedia": "Wikipedia",
+      "maps": "Google Maps"
+    },
+    "suggest": {
+      "bang": "{bang} (Bang)",
+      "shortcut": "{shortcut} (Atajo)",
+      "type": {
+        "bang": "Bang",
+        "shortcut": "Atajo",
+        "recent": "Recientes",
+        "word": "Palabra"
+      }
+    },
+    "recentShortcut": "Atajo {shortcut} – {query}",
+    "recentSearch": "Búsqueda ({engine}) – {query}"
+  },
+  "todo": {
+    "title": "Tareas",
+    "placeholder": "Nueva tarea...",
+    "add": "Añadir",
+    "clearDoneTitle": "Eliminar completadas",
+    "clearDone": "✓ borrar",
+    "doneAria": "Hecho",
+    "prompt": "Tarea"
+  },
+  "notes": {
+    "title": "Notas",
+    "placeholder": "Anota algo...",
+    "prompt": "Nota"
+  },
+  "tiles": {
+    "title": "Favoritos",
+    "add": "+ Tarjeta",
+    "resetTitle": "Restaurar predeterminados",
+    "edit": "Editar",
+    "promptTitle": "Título",
+    "promptUrl": "URL",
+    "invalidUrl": "URL no válida",
+    "promptTitleNew": "Título de la tarjeta",
+    "promptUrlNew": "URL (https://…)",
+    "resetConfirm": "¿Restaurar las tarjetas predeterminadas?"
+  },
+  "weather": {
+    "title": "Tiempo hoy",
+    "cityPlaceholder": "Introduce ciudad...",
+    "setCity": "Establecer",
+    "pickLocation": "Elige un lugar...",
+    "source": "Fuente: Open-Meteo",
+    "loading": "Cargando tiempo...",
+    "prompt": "Introduce una ubicación para cargar el tiempo.",
+    "tempEmpty": "—°C",
+    "tempEmptyShort": "—°",
+    "minmaxEmpty": "— / — °C",
+    "noForecast": "Sin pronóstico",
+    "errors": {
+      "geocodingFailed": "Falló la geocodificación",
+      "locationNotFound": "Ubicación no encontrada",
+      "cityMissing": "Falta la ciudad",
+      "fetchFailed": "Falló la carga del tiempo",
+      "loadFailed": "No se pudo cargar el tiempo"
+    },
+    "codes": {
+      "0": "Despejado",
+      "1": "Mayormente despejado",
+      "2": "Parcialmente nublado",
+      "3": "Nublado",
+      "45": "Niebla",
+      "48": "Niebla",
+      "51": "Llovizna",
+      "53": "Llovizna",
+      "55": "Llovizna",
+      "61": "Lluvia",
+      "63": "Lluvia",
+      "65": "Lluvia intensa",
+      "71": "Nieve",
+      "80": "Chubascos",
+      "95": "Tormenta",
+      "default": "Tiempo"
+    }
+  },
+  "transport": {
+    "title": "Transporte",
+    "durationAria": "Duración",
+    "duration30": "30 min",
+    "duration60": "60 min",
+    "duration90": "90 min",
+    "duration120": "120 min",
+    "refreshTitle": "Recargar",
+    "searchPlaceholder": "Buscar estación...",
+    "noneSelected": "Ninguna estación seleccionada",
+    "source": "Fuente: transport.rest",
+    "minQuery": "Mínimo {count} caracteres",
+    "noMatches": "Sin coincidencias",
+    "proxyTimeout": "Tiempo de espera del proxy",
+    "loadError": "Error al cargar",
+    "noDepartures": "Sin salidas",
+    "selectStation": "Selecciona una estación...",
+    "type": {
+      "station": "Estación",
+      "stop": "Parada"
+    },
+    "platform": "Andén {platform}",
+    "cancelled": "Cancelado"
+  },
+  "quote": {
+    "title": "Cita / Impulso nerd",
+    "list": [
+      "Muévete rápido, refactoriza a menudo.",
+      "La accesibilidad no es una función: es lo básico.",
+      "Hecho > Perfecto. Itera.",
+      "Si no se monitoriza, no existe.",
+      "Un buen UX es invisible. El malo es inolvidable.",
+      "Haz que funcione, luego bien, luego rápido.",
+      "Pasos pequeños. Resultados enormes.",
+      "La simplicidad escala. La complejidad falla.",
+      "Automatiza lo aburrido.",
+      "Mide dos veces, despliega una."
+    ]
+  },
+  "recent": {
+    "title": "Recientes",
+    "note": "Nota: solo muestra acciones de esta página (clics en favoritos y búsquedas)."
+  },
+  "system": {
+    "title": "Estado del sistema",
+    "loading": "Cargando...",
+    "ram": "RAM: {value} GB",
+    "cpu": "Núcleos CPU: {value}",
+    "network": "Red: {downlink} Mbit/s · {type}{saveData}",
+    "saveData": " · Ahorro de datos",
+    "noData": "Datos no disponibles"
+  },
+  "news": {
+    "title": "Noticias",
+    "refreshTitle": "Recargar",
+    "source": "RSS vía proxy Startpage (proxy CORS)",
+    "noItems": "Sin elementos"
+  },
+  "footer": {
+    "tagline": "Panel local · solo guarda en el navegador (localStorage)"
+  },
+  "settings": {
+    "title": "Configuración",
+    "close": "Cerrar",
+    "tabs": {
+      "general": "General",
+      "background": "Fondo y apariencia",
+      "search": "Búsqueda y feeds",
+      "widgets": "Widgets",
+      "data": "Datos",
+      "guide": "Guía"
+    },
+    "theme": {
+      "label": "Tema",
+      "auto": "Auto (sistema)",
+      "dark": "Oscuro",
+      "light": "Claro"
+    },
+    "background": {
+      "label": "Fondo"
+    },
+    "search": {
+      "engines": "Motores de búsqueda",
+      "bangsNote": "Atajos bang compatibles: <code>!g !ddg !bing !yt !wiki !maps</code> - atajos propios abajo",
+      "wordlistLabel": "Lista de palabras para autocompletar",
+      "wordlistPlaceholder": "Términos línea por línea o separados por comas",
+      "wordlistSave": "Guardar",
+      "wordlistReset": "Vaciar",
+      "wordlistNote": "La lista global (assets/wordlist.json) y la del preset se combinan. Déjalo vacío para usar solo la lista global.",
+      "shortcutsLabel": "Atajos ! personalizados",
+      "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
+      "shortcutsNote": "Usa <code>{q}</code> como marcador para la búsqueda. Sin <code>{q}</code>, se añade <code>?q=...</code>.",
+      "feedsLabel": "Feeds RSS personalizados",
+      "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
+      "feedsNote": "JSON: nombre - URL del feed. Esta lista se combina con los feeds por defecto.",
+      "invalidShortcuts": "JSON de atajos no válido",
+      "invalidFeeds": "JSON de feeds no válido"
+    },
+    "widgets": {
+      "visible": "Mostrar widgets",
+      "defaultCityLabel": "Ciudad por defecto (tiempo)",
+      "defaultCityPlaceholder": "p. ej. Hannover",
+      "defaultTransportLabel": "Parada por defecto (transporte)",
+      "defaultTransportPlaceholder": "Buscar estación...",
+      "cardStyleLabel": "Estilo de tarjeta",
+      "cardStyleGlass": "Cristal (predeterminado)",
+      "cardStyleSolid": "Sólido",
+      "cardStyleTransparent": "Transparente",
+      "cardStyleMinimal": "Minimal suave",
+      "cardStyleNote": "Se aplica a todos los widgets y tarjetas de favoritos.",
+      "clockColorLabel": "Hora y fecha",
+      "searchColorLabel": "Búsqueda",
+      "reset": "Restablecer",
+      "clockColorNote": "Define el fondo del encabezado (vacío = estilo por defecto).",
+      "searchColorNote": "Color del área de búsqueda (vacío = estilo por defecto).",
+      "widgetColorsLabel": "Colores de widgets"
+    },
+    "data": {
+      "label": "Datos",
+      "export": "Exportar (.json)",
+      "import": "Importar (.json)",
+      "presetsLabel": "Presets de datos",
+      "applyPreset": "Cargar preset",
+      "presetMeta": "Los presets son JSON exportados en assets/presets/. Los presets de usuario en assets/user-presets/ se combinan automáticamente.",
+      "setupLabel": "Configuración",
+      "restartOnboarding": "Reiniciar configuración",
+      "restartNote": "Reabre el diálogo de configuración compacto.",
+      "noteLabel": "Nota",
+      "noteText": "Exportar guarda todos los ajustes y datos localmente como JSON. Importar sobrescribe las entradas existentes."
+    },
+    "language": {
+      "label": "Idioma",
+      "auto": "Auto (sistema)"
+    },
+    "guideHtml": "<div class=\"row\"><label>Guía del usuario</label><div><h5>Resumen</h5><ul><li>Página de inicio con búsqueda, favoritos, tareas, notas, tiempo y noticias.</li><li>Todo local: los datos se quedan en el navegador (localStorage).</li></ul><h5>Atajos</h5><ul><li>Ctrl/Cmd+K: abrir la paleta de comandos</li><li>1-9: abrir los primeros 9 favoritos (si no escribes)</li><li>/ : enfocar búsqueda (también desde la paleta)</li><li>Enter en búsqueda: iniciar búsqueda</li><li>ESC: cerrar modales</li><li>Paleta: acciones rápidas para widgets, tema, fondo, datos y favoritos</li><li>Paleta: la tecla C cambia el estilo de tarjeta, \"Restablecer colores del encabezado\" restablece búsqueda y reloj</li></ul><h5>Búsqueda y autocompletar</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>Atajos personalizados: JSON en ajustes; {q} como marcador</li><li>Autocompletar: bangs, atajos, búsquedas recientes, lista de palabras (global + preset)</li><li>Tab acepta sugerencia, Enter inicia búsqueda</li></ul><h5>Tarjetas</h5><ul><li>Arrastrar y soltar para ordenar, clic para abrir</li><li>+ Tarjeta: añadir un favorito</li><li>Restablecer: restaurar favoritos predeterminados</li></ul><h5>Widgets y diseño</h5><ul><li>Visibilidad por widget</li><li>Estilo de tarjeta global (cristal, sólido, transparente, minimal suave)</li><li>Colores propios para reloj/búsqueda; restablecer vuelve al estilo por defecto</li><li>Colores de widget y botón \"Teñir widgets\" fijan el acento por tarjeta</li></ul><h5>Fondo</h5><ul><li>Presets, subidas, colecciones, rotación (hora/tema/intervalo)</li><li>El color de acento se extrae del fondo activo</li></ul><h5>Datos</h5><ul><li>Exportar/Importar como JSON</li><li>Cargar presets de datos (assets/presets/*.json en el repo)</li></ul></div></div>"
+  },
+  "onboarding": {
+    "title": "Iniciar configuración",
+    "progress": "Paso {current} de {total}",
+    "skip": "Omitir",
+    "close": "Cerrar",
+    "preset": {
+      "title": "Elegir preset",
+      "hint": "Elige un preset o salta este paso.",
+      "apply": "Aplicar preset",
+      "meta": "Aplicar un preset o omitir.",
+      "optional": "Preset opcional.",
+      "context": "Preset de configuración"
+    },
+    "appearance": {
+      "title": "Apariencia",
+      "theme": "Tema",
+      "cardStyle": "Estilo de tarjeta",
+      "background": "Fondo",
+      "rotation": "Activar rotación",
+      "keepCurrent": "Mantener imagen actual"
+    },
+    "search": {
+      "title": "Búsqueda",
+      "engine": "Motor de búsqueda por defecto"
+    },
+    "widgets": {
+      "title": "Widgets",
+      "defaultTransport": "Parada por defecto (transporte)",
+      "tint": "Teñir widgets con acento"
+    },
+    "weather": {
+      "title": "Tiempo",
+      "defaultCity": "Ciudad por defecto",
+      "note": "Puedes cambiarlo todo más tarde en ajustes."
+    },
+    "prev": "Atrás",
+    "next": "Siguiente",
+    "finish": "Listo"
+  },
+  "palette": {
+    "placeholder": "Busca comando o favorito... (Ctrl/⌘+K)",
+    "groups": {
+      "command": "Comandos",
+      "settings": "Ajustes",
+      "search": "Búsqueda",
+      "widgets": "Widgets",
+      "theme": "Tema y fondo",
+      "data": "Datos",
+      "tiles": "Tarjetas",
+      "tile": "Favoritos",
+      "quick": "Rápido"
+    },
+    "search": {
+      "focus": "Enfocar búsqueda",
+      "start": "Iniciar búsqueda",
+      "engine": "Motor: {engine}"
+    },
+    "settings": {
+      "open": "Abrir ajustes",
+      "general": "Ajustes: General",
+      "background": "Ajustes: Fondo",
+      "search": "Ajustes: Búsqueda",
+      "widgets": "Ajustes: Widgets",
+      "data": "Ajustes: Datos",
+      "guide": "Ajustes: Guía"
+    },
+    "theme": {
+      "cycle": "Cambiar tema (Auto/Oscuro/Claro)",
+      "auto": "Tema: Auto",
+      "dark": "Tema: Oscuro",
+      "light": "Tema: Claro",
+      "resetHeader": "Restablecer colores del encabezado",
+      "recalcAccent": "Recalcular colores de acento"
+    },
+    "cardStyle": {
+      "glass": "Estilo de tarjeta: Cristal",
+      "solid": "Estilo de tarjeta: Sólido",
+      "transparent": "Estilo de tarjeta: Transparente",
+      "minimal": "Estilo de tarjeta: Minimal"
+    },
+    "background": {
+      "toggleRotation": "Fondo: cambiar rotación",
+      "toggleLock": "Fondo: bloquear/desbloquear rotación",
+      "preset": "Fondo: {label}"
+    },
+    "widgets": {
+      "showAll": "Widgets: mostrar todos",
+      "hideAll": "Widgets: ocultar todos",
+      "toggle": "Widget: alternar {widget}",
+      "focus": "Widget: enfocar {widget}"
+    },
+    "quick": {
+      "addTodo": "Añadir tarea",
+      "addNote": "Añadir nota"
+    },
+    "tiles": {
+      "add": "Añadir tarjeta",
+      "reset": "Restablecer tarjetas"
+    },
+    "refresh": {
+      "weather": "Actualizar tiempo",
+      "news": "Actualizar noticias",
+      "transport": "Actualizar transporte",
+      "system": "Actualizar sistema",
+      "all": "Actualizar todos los widgets"
+    },
+    "data": {
+      "export": "Exportar datos",
+      "import": "Importar datos",
+      "preset": "Preset de datos: {label}"
+    }
+  },
+  "widgets": {
+    "todo": "Tareas",
+    "notes": "Notas",
+    "tiles": "Favoritos",
+    "weather": "Tiempo",
+    "transport": "Transporte",
+    "quote": "Cita",
+    "recent": "Recientes",
+    "system": "Sistema",
+    "news": "Noticias"
+  },
+  "background": {
+    "currentPreview": "Imagen de fondo actual",
+    "none": "Sin fondo",
+    "noImageSelected": "No hay imagen seleccionada",
+    "rotationResume": "Reanudar rotación",
+    "rotationLock": "Bloquear rotación",
+    "tone": "Tono: {tone}",
+    "presets": {
+      "empty": "No hay presets."
+    },
+    "favorites": {
+      "empty": "Aún no hay favoritos. Marca presets o subidas."
+    },
+    "subtitle": {
+      "preset": "Preset"
+    },
+    "upload": "Subir",
+    "uploadDrop": "Suelta archivos aquí",
+    "uploadBrowse": "Elegir archivo",
+    "uploadNote": "Redimensionamos imágenes automáticamente (16:9, máx 2560px) y las guardamos localmente. Máx {max} archivos.",
+    "uploads": {
+      "empty": "Aún no hay subidas."
+    },
+    "collections": {
+      "count": "{count} fuentes",
+      "random": "Aleatorio",
+      "cache": "Guardar sin conexión",
+      "viewSources": "Ver fuentes",
+      "useRotation": "Usar en rotación",
+      "newLabel": "Nueva colección",
+      "namePlaceholder": "Mi colección",
+      "urlsPlaceholder": "Una URL de imagen por línea",
+      "clear": "Limpiar campos",
+      "note": "Las URL se guardan localmente. Las fuentes remotas necesitan CORS.",
+      "empty": "Aún no hay colecciones.",
+      "minOneUrl": "Introduce al menos una URL.",
+      "emptyCollection": "La colección está vacía.",
+      "saved": "Colección guardada localmente.",
+      "defaultName": "Colección {index}"
+    },
+    "rotation": {
+      "optionPreset": "Preset: {label}",
+      "optionUpload": "Subida: {label}",
+      "optionFavorite": "Favorito: {label}",
+      "optionCustom": "Personalizado: URL guardada",
+      "noFixed": "Sin imagen fija",
+      "enabled": "Activar rotación automática",
+      "locked": "La rotación está bloqueada.",
+      "active": "Los fondos cambian según el plan.",
+      "mode": "Modo",
+      "modeTime": "Por hora",
+      "modeInterval": "Intervalo",
+      "modeTheme": "Tema",
+      "intervalLabel": "Intervalo en minutos",
+      "intervalNote": "Solo relevante en modo intervalo.",
+      "sourcesLabel": "Fuentes para aleatorio",
+      "scheduleLabel": "Horario",
+      "themePlan": "Plan de tema",
+      "themeLight": "Tema claro",
+      "themeDark": "Tema oscuro",
+      "themeNote": "El plan de tema se usa cuando el modo es Tema.",
+      "slot": {
+        "morning": "Mañana 05-11",
+        "day": "Día 11-17",
+        "evening": "Tarde 17-21",
+        "night": "Noche 21-05"
+      }
+    },
+    "custom": {
+      "label": "URL de imagen personalizada",
+      "placeholder": "https://example.com/image.jpg",
+      "note": "La URL se guarda localmente. El servidor debe permitir CORS para imágenes.",
+      "enterUrl": "Introduce una URL.",
+      "title": "URL personalizada",
+      "subtitle": "Personalizado"
+    },
+    "actions": {
+      "apply": "Aplicar",
+      "favorite": "Favorito",
+      "favorited": "En favoritos",
+      "random": "Cargar aleatorio",
+      "undo": "Restaurar última imagen",
+      "lock": "Bloquear rotación",
+      "tint": "Teñir widgets"
+    },
+    "tabs": {
+      "presets": "Presets",
+      "favorites": "Favoritos",
+      "uploads": "Subidas",
+      "collections": "Colecciones",
+      "rotation": "Rotación",
+      "custom": "Personalizado"
+    },
+    "loadError": "Error al cargar. Comprueba CORS.",
+    "noneAvailable": "No hay fondos disponibles.",
+    "imageLoadError": "No se pudo cargar la imagen."
+  },
+  "data": {
+    "import": {
+      "confirm": "¿Importar datos? Se sobrescribirán las entradas existentes.",
+      "failed": "Falló la importación: {error}"
+    },
+    "presets": {
+      "none": "No hay preset disponible.",
+      "missingFile": "Falta el archivo del preset.",
+      "fileMissing": "Archivo no encontrado",
+      "invalid": "Preset no válido",
+      "confirmApply": "¿Aplicar {context} \"{name}\"? Se sobrescribirán las entradas existentes.",
+      "loadFailed": "Falló la carga del preset: {error}",
+      "loading": "Cargando presets...",
+      "noneFound": "No se encontraron presets",
+      "hint": "Coloca JSON exportados en assets/presets/ (manifiesto: assets/data-presets.json) o localmente en assets/user-presets/.",
+      "hintShort": "Añade un preset en assets/presets/ o assets/user-presets/.",
+      "userPrefix": "Usuario: ",
+      "userApply": "Aplicar preset local",
+      "apply": "Aplicar preset",
+      "noneSelected": "No hay preset seleccionado.",
+      "label": "Preset",
+      "defaultLabel": "Preset {index}",
+      "userDefault": "Preset de usuario {index}",
+      "userDescription": "Preset local de assets/user-presets/",
+      "tags": " (Etiquetas: {tags})"
+    }
+  }
+}

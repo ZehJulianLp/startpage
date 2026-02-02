@@ -1,0 +1,74 @@
+[
+  {
+    "id": "en-us",
+    "label": "English (US)"
+  },
+  {
+    "id": "de-de",
+    "label": "Deutsch (DE)"
+  },
+  {
+    "id": "es-es",
+    "label": "Español (ES)"
+  },
+  {
+    "id": "fr-fr",
+    "label": "Français (FR)"
+  },
+  {
+    "id": "it-it",
+    "label": "Italiano (IT)"
+  },
+  {
+    "id": "pt-br",
+    "label": "Português (BR)"
+  },
+  {
+    "id": "nl-nl",
+    "label": "Nederlands (NL)"
+  },
+  {
+    "id": "sv-se",
+    "label": "Svenska (SE)"
+  },
+  {
+    "id": "pl-pl",
+    "label": "Polski (PL)"
+  },
+  {
+    "id": "tr-tr",
+    "label": "Türkçe (TR)"
+  },
+  {
+    "id": "ja-jp",
+    "label": "日本語 (JP)"
+  },
+  {
+    "id": "ko-kr",
+    "label": "한국어 (KR)"
+  },
+  {
+    "id": "ru-ru",
+    "label": "Русский (RU)"
+  },
+  {
+    "id": "lolcat",
+    "label": "LOLCAT"
+  },
+  {
+    "id": "pirate",
+    "label": "Pirate Speak"
+  },
+  {
+    "id": "yoda",
+    "label": "Yoda Speak"
+  },
+  {
+    "id": "leet",
+    "label": "Leetspeak"
+  },
+  {
+    "id": "uwu",
+    "label": "UwU"
+  }
+]

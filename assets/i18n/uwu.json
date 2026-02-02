@@ -1,0 +1,490 @@
+{
+  "app": {
+    "title": "Stawtpage"
+  },
+  "common": {
+    "link": "Wink",
+    "delete": "Dewete",
+    "remove": "Wemove",
+    "save": "Save",
+    "loading": "Woading...",
+    "loadError": "Woad faiwed",
+    "noMatches": "No matches",
+    "emptyDash": "--",
+    "dash": "-"
+  },
+  "header": {
+    "themeToggleTitle": "Dawk/Wight",
+    "settingsTitle": "Settwings"
+  },
+  "search": {
+    "placeholder": "Seawch... (e.g. !yt wo-fi, !etc Home)",
+    "engine": {
+      "google": "Googwe",
+      "ddg": "DuckDuckGo",
+      "bing": "Bing",
+      "yt": "YouTube",
+      "wikipedia": "Wikipedia",
+      "maps": "Googwe Maps"
+    },
+    "suggest": {
+      "bang": "{bang} (Bang)",
+      "shortcut": "{shortcut} (Showtcut)",
+      "type": {
+        "bang": "Bang",
+        "shortcut": "Showtcut",
+        "recent": "Wecent",
+        "word": "Wowd"
+      }
+    },
+    "recentShortcut": "Showtcut {shortcut} - {query}",
+    "recentSearch": "Seawch ({engine}) - {query}"
+  },
+  "todo": {
+    "title": "To-Do",
+    "placeholder": "New task...",
+    "add": "Add",
+    "clearDoneTitle": "Wemove compweted",
+    "clearDone": "x cweaw",
+    "doneAria": "Done",
+    "prompt": "Todo"
+  },
+  "notes": {
+    "title": "Notes",
+    "placeholder": "Jot something down...",
+    "prompt": "Note"
+  },
+  "tiles": {
+    "title": "Favowites",
+    "add": "+ Tiwe",
+    "resetTitle": "Westowe defauwts",
+    "edit": "Edit",
+    "promptTitle": "Titwe",
+    "promptUrl": "UWW",
+    "invalidUrl": "Invawid UWW",
+    "promptTitleNew": "Tiwe titwe",
+    "promptUrlNew": "UWW (https://...)",
+    "resetConfirm": "Westowe defauwt tiwes?"
+  },
+  "weather": {
+    "title": "Weadew today",
+    "cityPlaceholder": "Entew city...",
+    "setCity": "Set",
+    "pickLocation": "Pick a wocation...",
+    "source": "Souwce: Open-Meteo",
+    "loading": "Woading weadew...",
+    "prompt": "Entew a wocation to woad weadew.",
+    "tempEmpty": "-- degC",
+    "tempEmptyShort": "-- deg",
+    "minmaxEmpty": "-- / --  degC",
+    "noForecast": "No fowecast",
+    "errors": {
+      "geocodingFailed": "Geocoding faiwed",
+      "locationNotFound": "Wocation not found",
+      "cityMissing": "City missing",
+      "fetchFailed": "Weadew fetch faiwed",
+      "loadFailed": "Weadew couwd not be woaded"
+    },
+    "codes": {
+      "0": "Cweaw",
+      "1": "Mostwy cweaw",
+      "2": "Pawtwy cwoudy",
+      "3": "Cwoudy",
+      "45": "Fog",
+      "48": "Fog",
+      "51": "Dwizzwe",
+      "53": "Dwizzwe",
+      "55": "Dwizzwe",
+      "61": "Wain",
+      "63": "Wain",
+      "65": "Heavy wain",
+      "71": "Snow",
+      "80": "Showews",
+      "95": "Thundewstowm",
+      "default": "Weadew"
+    }
+  },
+  "transport": {
+    "title": "Twanspowt",
+    "durationAria": "Duwation",
+    "duration30": "30 min",
+    "duration60": "60 min",
+    "duration90": "90 min",
+    "duration120": "120 min",
+    "refreshTitle": "Wewoad",
+    "searchPlaceholder": "Seawch station...",
+    "noneSelected": "No station sewected",
+    "source": "Souwce: twanspowt.west",
+    "minQuery": "At weast {count} chawactews",
+    "noMatches": "No matches",
+    "proxyTimeout": "Pwoxy timeout",
+    "loadError": "Woad faiwed",
+    "noDepartures": "No depawtuwes",
+    "selectStation": "Sewect a station...",
+    "type": {
+      "station": "Station",
+      "stop": "Stop"
+    },
+    "platform": "Pwatfowm {platform}",
+    "cancelled": "Cancewwed"
+  },
+  "quote": {
+    "title": "Quote / Newd Nudge",
+    "list": [
+      "Move fast, wefactow often.",
+      "Accessibiwity isn't a featuwe - it's da defauwt.",
+      "Done > Pewfect. Itewate.",
+      "If it's not monitowed, it doesn't exist.",
+      "Good UX is invisibwe. Bad UX is unfowgettabwe.",
+      "Make it wowk, make it wight, make it fast.",
+      "Smaww steps. Massive outcomes.",
+      "Simpwicity scawes. Compwexity faiws.",
+      "Automate da bowing stuff.",
+      "Measuwe twice, depwoy once."
+    ]
+  },
+  "recent": {
+    "title": "Wecent",
+    "note": "Note: Onwy actions fwom this stawt page (cwicked tiwes & seawches)."
+  },
+  "system": {
+    "title": "System status",
+    "loading": "Woading...",
+    "ram": "WAM: {value} GB",
+    "cpu": "CPU cowes: {value}",
+    "network": "Netwowk: {downlink} Mbit/s  *  {type}{saveData}",
+    "saveData": "  *  SaveData",
+    "noData": "No data avaiwabwe"
+  },
+  "news": {
+    "title": "Nyews",
+    "refreshTitle": "Wewoad",
+    "source": "WSS via Stawtpage Pwoxy (COWS pwoxy)",
+    "noItems": "No items"
+  },
+  "footer": {
+    "tagline": "Wocaw-fiwst dashboawd  *  stowes onwy in da bwowsew (wocawStowage)"
+  },
+  "settings": {
+    "title": "Settwings",
+    "close": "Cwose",
+    "tabs": {
+      "general": "Genewaw",
+      "background": "Backgwound & Appeawance",
+      "search": "Seawch & Feeds",
+      "widgets": "Widgets",
+      "data": "Data",
+      "guide": "Guide"
+    },
+    "theme": {
+      "label": "Theme",
+      "auto": "Auto (System)",
+      "dark": "Dawk",
+      "light": "Wight"
+    },
+    "background": {
+      "label": "Backgwound"
+    },
+    "search": {
+      "engines": "Seawch engines",
+      "bangsNote": "Suppowted bang showtcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Custom showtcuts bewow",
+      "wordlistLabel": "Autocompwete wowdwist",
+      "wordlistPlaceholder": "Tewms wine by wine ow comma-sepawated",
+      "wordlistSave": "Save",
+      "wordlistReset": "Cweaw",
+      "wordlistNote": "Gwobaw wowdwist (assets/wowdwist.json) an pweset wowdwist awe mewged. Weave empty to use onwy da gwobaw wist.",
+      "shortcutsLabel": "Custom !showtcuts",
+      "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
+      "shortcutsNote": "Use <code>{q}</code> as pwacehowdew fow da seawch phwase. Without <code>{q}</code>, <code>?q=...</code> is appended.",
+      "feedsLabel": "Custom WSS feeds",
+      "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
+      "feedsNote": "JSON: name - feed UWW. This wist is mewged with da defauwt feeds.",
+      "invalidShortcuts": "Invawid showtcuts JSON",
+      "invalidFeeds": "Invawid feeds JSON"
+    },
+    "widgets": {
+      "visible": "Show widgets",
+      "defaultCityLabel": "Defauwt city (weadew)",
+      "defaultCityPlaceholder": "e.g. Hanovew",
+      "defaultTransportLabel": "Defauwt stop (twanspowt)",
+      "defaultTransportPlaceholder": "Seawch station...",
+      "cardStyleLabel": "Cawd stywe",
+      "cardStyleGlass": "Gwass (defauwt)",
+      "cardStyleSolid": "Sowid",
+      "cardStyleTransparent": "Twanspawent",
+      "cardStyleMinimal": "Soft minimaw",
+      "cardStyleNote": "Appwies to aww widgets & favowite tiwes.",
+      "clockColorLabel": "Time & date",
+      "searchColorLabel": "Seawch",
+      "reset": "Weset",
+      "clockColorNote": "Sets da headew backgwound (empty = stywe defauwt).",
+      "searchColorNote": "Cowow fow da seawch awea (empty = stywe defauwt).",
+      "widgetColorsLabel": "Widget cowows"
+    },
+    "data": {
+      "label": "Data",
+      "export": "Expowt (.json)",
+      "import": "Impowt (.json)",
+      "presetsLabel": "Data pwesets",
+      "applyPreset": "Woad pweset",
+      "presetMeta": "Pwesets awe expowted JSONs undew assets/pwesets/. Usew pwesets fwom assets/usew-pwesets/ awe mewged automaticawwy.",
+      "setupLabel": "Setup",
+      "restartOnboarding": "Westawt setup",
+      "restartNote": "Weopens da compact setup diawog.",
+      "noteLabel": "Note",
+      "noteText": "Expowt stowes aww settwings & data wocawwy as JSON. Impowt ovewwwites existing entwies."
+    },
+    "language": {
+      "label": "Wanguage",
+      "auto": "Auto (System)"
+    },
+    "guideHtml": "<div class=\"row\"><label>Usew Guide</label><div><h5>Ovewview</h5><ul><li>Stawt page with seawch, favowites, to-do, notes, weadew, nyews.</li><li>Aww wocaw: data stays in yuww bwowsew (wocawStowage).</li></ul><h5>Showtcuts</h5><ul><li>Ctww/Cmd+K: open command pawette</li><li>1-9: open fiwst 9 favowites (when not typing)</li><li>/ : focus seawch (awso via pawette)</li><li>Entew in seawch: stawt seawch</li><li>ESC: cwose modaws</li><li>Pawette: quick actions fow widgets, theme, backgwound, data, favowites</li><li>Pawette: key C switches cawd stywe, \"Weset headew cowows\" wesets seawch & cwock</li></ul><h5>Seawch & Autocompwete</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>Custom showtcuts: JSON in settwings; {q} as pwacehowdew</li><li>Autocompwete: bangs, showtcuts, wecent seawches, wowdwist (gwobaw + pweset)</li><li>Tab accepts suggestion, Entew stawts seawch</li></ul><h5>Tiwes</h5><ul><li>Dwag & dwop to sowt, cwick to open</li><li>+ Tiwe: add a new favowite</li><li>Weset: westowe defauwt favowites</li></ul><h5>Widgets & Wayout</h5><ul><li>Visibiwity pew widget</li><li>Cawd stywe is gwobaw (gwass, sowid, twanspawent, soft minimaw)</li><li>Custom cowows fow cwock/seawch; weset westowes stywe defauwts</li><li>Widget cowows & \"Tint widgets\" set da accent pew cawd</li></ul><h5>Backgwound</h5><ul><li>Pwesets, upwoads, cowwections, wotation (time/theme/intewvaw)</li><li>Accent cowow is extwacted fwom da active backgwound</li></ul><h5>Data</h5><ul><li>Expowt/Impowt as JSON</li><li>Woad data pwesets (assets/pwesets/*.json in da wepo)</li></ul></div></div>"
+  },
+  "onboarding": {
+    "title": "Stawt setup",
+    "progress": "Step {current} of {total}",
+    "skip": "Skip setup",
+    "close": "Cwose",
+    "preset": {
+      "title": "Choose pweset",
+      "hint": "Pick a pweset ow skip this step.",
+      "apply": "Appwy pweset",
+      "meta": "Appwy a pweset ow skip.",
+      "optional": "Pweset optionaw.",
+      "context": "Setup pweset"
+    },
+    "appearance": {
+      "title": "Appeawance",
+      "theme": "Theme",
+      "cardStyle": "Cawd stywe",
+      "background": "Backgwound",
+      "rotation": "Enabwe wotation",
+      "keepCurrent": "Keep cuwwent image"
+    },
+    "search": {
+      "title": "Seawch",
+      "engine": "Defauwt seawch engine"
+    },
+    "widgets": {
+      "title": "Widgets",
+      "defaultTransport": "Defauwt stop (twanspowt)",
+      "tint": "Tint widgets with accent"
+    },
+    "weather": {
+      "title": "Weadew",
+      "defaultCity": "Defauwt city",
+      "note": "Yuw can change evewything watew in settwings."
+    },
+    "prev": "Back",
+    "next": "Next",
+    "finish": "Done"
+  },
+  "palette": {
+    "placeholder": "Seawch command ow favowite... (Ctww/Cmd+K)",
+    "groups": {
+      "command": "Commands",
+      "settings": "Settwings",
+      "search": "Seawch",
+      "widgets": "Widgets",
+      "theme": "Theme & Backgwound",
+      "data": "Data",
+      "tiles": "Tiwes",
+      "tile": "Favowites",
+      "quick": "Quick"
+    },
+    "search": {
+      "focus": "Focus seawch",
+      "start": "Stawt seawch",
+      "engine": "Engine: {engine}"
+    },
+    "settings": {
+      "open": "Open settwings",
+      "general": "Settwings: Genewaw",
+      "background": "Settwings: Backgwound",
+      "search": "Settwings: Seawch",
+      "widgets": "Settwings: Widgets",
+      "data": "Settwings: Data",
+      "guide": "Settwings: Guide"
+    },
+    "theme": {
+      "cycle": "Cycwe theme (Auto/Dawk/Wight)",
+      "auto": "Theme: Auto",
+      "dark": "Theme: Dawk",
+      "light": "Theme: Wight",
+      "resetHeader": "Weset headew cowows",
+      "recalcAccent": "Wecawcuwate accent cowows"
+    },
+    "cardStyle": {
+      "glass": "Cawd stywe: Gwass",
+      "solid": "Cawd stywe: Sowid",
+      "transparent": "Cawd stywe: Twanspawent",
+      "minimal": "Cawd stywe: Minimaw"
+    },
+    "background": {
+      "toggleRotation": "Backgwound: Toggwe wotation",
+      "toggleLock": "Backgwound: Wock/unwock wotation",
+      "preset": "Backgwound: {label}"
+    },
+    "widgets": {
+      "showAll": "Widgets: Show aww",
+      "hideAll": "Widgets: Hide aww",
+      "toggle": "Widget: Toggwe {widget}",
+      "focus": "Widget: Focus {widget}"
+    },
+    "quick": {
+      "addTodo": "Add todo",
+      "addNote": "Add note"
+    },
+    "tiles": {
+      "add": "Add tiwe",
+      "reset": "Weset tiwes"
+    },
+    "refresh": {
+      "weather": "Wefwesh weadew",
+      "news": "Wefwesh nyews",
+      "transport": "Wefwesh twanspowt",
+      "system": "Wefwesh system",
+      "all": "Wefwesh aww widgets"
+    },
+    "data": {
+      "export": "Expowt data",
+      "import": "Impowt data",
+      "preset": "Data pweset: {label}"
+    }
+  },
+  "widgets": {
+    "todo": "To-Do",
+    "notes": "Notes",
+    "tiles": "Favowites",
+    "weather": "Weadew",
+    "transport": "Twanspowt",
+    "quote": "Quote",
+    "recent": "Wecent",
+    "system": "System",
+    "news": "Nyews"
+  },
+  "background": {
+    "currentPreview": "Cuwwent backgwound image",
+    "none": "No backgwound",
+    "noImageSelected": "No image sewected",
+    "rotationResume": "Wesume wotation",
+    "rotationLock": "Wock wotation",
+    "tone": "Tone: {tone}",
+    "presets": {
+      "empty": "No pwesets avaiwabwe."
+    },
+    "favorites": {
+      "empty": "No favowites yet. Mawk pwesets ow upwoads."
+    },
+    "subtitle": {
+      "preset": "Pweset"
+    },
+    "upload": "Upwoad",
+    "uploadDrop": "Dwop fiwes hewe",
+    "uploadBrowse": "Choose fiwe",
+    "uploadNote": "We wesize images automaticawwy (16:9, max 2560px) an stowe them wocawwy. Max {max} fiwes.",
+    "uploads": {
+      "empty": "No upwoads yet."
+    },
+    "collections": {
+      "count": "{count} souwces",
+      "random": "Wandom",
+      "cache": "Save offwine",
+      "viewSources": "View souwces",
+      "useRotation": "Use fow wotation",
+      "newLabel": "New cowwection",
+      "namePlaceholder": "My cowwection",
+      "urlsPlaceholder": "One image UWW pew wine",
+      "clear": "Cweaw fiewds",
+      "note": "UWWs awe stowed wocawwy. Wemote souwces need COWS fow images.",
+      "empty": "No cowwections yet.",
+      "minOneUrl": "Entew at weast one UWW.",
+      "emptyCollection": "Cowwection is empty.",
+      "saved": "Cowwection saved wocawwy.",
+      "defaultName": "Cowwection {index}"
+    },
+    "rotation": {
+      "optionPreset": "Pweset: {label}",
+      "optionUpload": "Upwoad: {label}",
+      "optionFavorite": "Favowite: {label}",
+      "optionCustom": "Custom: saved UWW",
+      "noFixed": "No fixed image",
+      "enabled": "Enabwe automatic wotation",
+      "locked": "Wotation is cuwwentwy wocked.",
+      "active": "Backgwounds change accowding to da scheduwe.",
+      "mode": "Mode",
+      "modeTime": "Time-based",
+      "modeInterval": "Intewvaw",
+      "modeTheme": "Theme",
+      "intervalLabel": "Intewvaw in minutes",
+      "intervalNote": "Onwy wewevant in intewvaw mode.",
+      "sourcesLabel": "Souwces fow wandom",
+      "scheduleLabel": "Scheduwe",
+      "themePlan": "Theme pwan",
+      "themeLight": "Theme wight",
+      "themeDark": "Theme dawk",
+      "themeNote": "Theme pwan is used when mode is Theme.",
+      "slot": {
+        "morning": "Mowning 05-11",
+        "day": "Day 11-17",
+        "evening": "Evening 17-21",
+        "night": "Night 21-05"
+      }
+    },
+    "custom": {
+      "label": "Custom image UWW",
+      "placeholder": "https://exampwe.com/image.jpg",
+      "note": "UWW is stowed wocawwy. Sewvew must awwow COWS fow images.",
+      "enterUrl": "Pwease entew a UWW.",
+      "title": "Custom UWW",
+      "subtitle": "Custom"
+    },
+    "actions": {
+      "apply": "Appwy",
+      "favorite": "Favowite",
+      "favorited": "Favowited",
+      "random": "Woad wandom",
+      "undo": "Westowe wast image",
+      "lock": "Wock wotation",
+      "tint": "Tint widgets"
+    },
+    "tabs": {
+      "presets": "Pwesets",
+      "favorites": "Favowites",
+      "uploads": "Upwoads",
+      "collections": "Cowwections",
+      "rotation": "Wotation",
+      "custom": "Custom"
+    },
+    "loadError": "Woad faiwed. Check COWS settwings.",
+    "noneAvailable": "No backgwounds avaiwabwe.",
+    "imageLoadError": "Image couwd not be woaded."
+  },
+  "data": {
+    "import": {
+      "confirm": "Impowt data? Existing entwies wiww be ovewwwitten.",
+      "failed": "Impowt faiwed: {error}"
+    },
+    "presets": {
+      "none": "No pweset avaiwabwe.",
+      "missingFile": "Pweset fiwe missing.",
+      "fileMissing": "Fiwe not found",
+      "invalid": "Invawid pweset",
+      "confirmApply": "Appwy {context} \"{name}\"? Existing entwies wiww be ovewwwitten.",
+      "loadFailed": "Pweset woad faiwed: {error}",
+      "loading": "Woading pwesets...",
+      "noneFound": "No pwesets found",
+      "hint": "Pwace expowted JSONs undew assets/pwesets/ (manifest: assets/data-pwesets.json) ow wocawwy undew assets/usew-pwesets/.",
+      "hintShort": "Add a pweset undew assets/pwesets/ ow assets/usew-pwesets/.",
+      "userPrefix": "Usew: ",
+      "userApply": "Appwy wocaw pweset",
+      "apply": "Appwy pweset",
+      "noneSelected": "No pweset sewected.",
+      "label": "Pweset",
+      "defaultLabel": "Pweset {index}",
+      "userDefault": "Usew pweset {index}",
+      "userDescription": "Wocaw pweset fwom assets/usew-pwesets/",
+      "tags": " (Tags: {tags})"
+    }
+  }
+}

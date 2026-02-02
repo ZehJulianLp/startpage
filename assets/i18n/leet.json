@@ -1,0 +1,490 @@
+{
+  "app": {
+    "title": "574r7p4g3"
+  },
+  "common": {
+    "link": "L1nk",
+    "delete": "D3l373",
+    "remove": "R3m0v3",
+    "save": "54v3",
+    "loading": "L04d1ng...",
+    "loadError": "L04d f41l3d",
+    "noMatches": "N0 m47ch35",
+    "emptyDash": "--",
+    "dash": "-"
+  },
+  "header": {
+    "themeToggleTitle": "D4rk/L1gh7",
+    "settingsTitle": "53771ng5"
+  },
+  "search": {
+    "placeholder": "534rch... (3.g. !y7 l0-f1, !37c H0m3)",
+    "engine": {
+      "google": "G00gl3",
+      "ddg": "DuckDuckG0",
+      "bing": "B1ng",
+      "yt": "Y0u7ub3",
+      "wikipedia": "W1k1p3d14",
+      "maps": "G00gl3 M4p5"
+    },
+    "suggest": {
+      "bang": "{bang} (B4ng)",
+      "shortcut": "{shortcut} (5h0r7cu7)",
+      "type": {
+        "bang": "B4ng",
+        "shortcut": "5h0r7cu7",
+        "recent": "R3c3n7",
+        "word": "W0rd"
+      }
+    },
+    "recentShortcut": "5h0r7cu7 {shortcut} - {query}",
+    "recentSearch": "534rch ({engine}) - {query}"
+  },
+  "todo": {
+    "title": "70-D0",
+    "placeholder": "N3w 745k...",
+    "add": "4dd",
+    "clearDoneTitle": "R3m0v3 c0mpl373d",
+    "clearDone": "x cl34r",
+    "doneAria": "D0n3",
+    "prompt": "70d0"
+  },
+  "notes": {
+    "title": "N0735",
+    "placeholder": "J07 50m37h1ng d0wn...",
+    "prompt": "N073"
+  },
+  "tiles": {
+    "title": "F4v0r1735",
+    "add": "+ 71l3",
+    "resetTitle": "R3570r3 d3f4ul75",
+    "edit": "3d17",
+    "promptTitle": "717l3",
+    "promptUrl": "URL",
+    "invalidUrl": "1nv4l1d URL",
+    "promptTitleNew": "71l3 717l3",
+    "promptUrlNew": "URL (h77p5://...)",
+    "resetConfirm": "R3570r3 d3f4ul7 71l35?"
+  },
+  "weather": {
+    "title": "W347h3r 70d4y",
+    "cityPlaceholder": "3n73r c17y...",
+    "setCity": "537",
+    "pickLocation": "P1ck 4 l0c4710n...",
+    "source": "50urc3: 0p3n-M3730",
+    "loading": "L04d1ng w347h3r...",
+    "prompt": "3n73r 4 l0c4710n 70 l04d w347h3r.",
+    "tempEmpty": "-- d3gC",
+    "tempEmptyShort": "-- d3g",
+    "minmaxEmpty": "-- / --  d3gC",
+    "noForecast": "N0 f0r3c457",
+    "errors": {
+      "geocodingFailed": "G30c0d1ng f41l3d",
+      "locationNotFound": "L0c4710n n07 f0und",
+      "cityMissing": "C17y m1551ng",
+      "fetchFailed": "W347h3r f37ch f41l3d",
+      "loadFailed": "W347h3r c0uld n07 b3 l04d3d"
+    },
+    "codes": {
+      "0": "Cl34r",
+      "1": "M057ly cl34r",
+      "2": "P4r7ly cl0udy",
+      "3": "Cl0udy",
+      "45": "F0g",
+      "48": "F0g",
+      "51": "Dr1zzl3",
+      "53": "Dr1zzl3",
+      "55": "Dr1zzl3",
+      "61": "R41n",
+      "63": "R41n",
+      "65": "H34vy r41n",
+      "71": "5n0w",
+      "80": "5h0w3r5",
+      "95": "7hund3r570rm",
+      "default": "W347h3r"
+    }
+  },
+  "transport": {
+    "title": "7r4n5p0r7",
+    "durationAria": "Dur4710n",
+    "duration30": "30 m1n",
+    "duration60": "60 m1n",
+    "duration90": "90 m1n",
+    "duration120": "120 m1n",
+    "refreshTitle": "R3l04d",
+    "searchPlaceholder": "534rch 574710n...",
+    "noneSelected": "N0 574710n 53l3c73d",
+    "source": "50urc3: 7r4n5p0r7.r357",
+    "minQuery": "47 l3457 {count} ch4r4c73r5",
+    "noMatches": "N0 m47ch35",
+    "proxyTimeout": "Pr0xy 71m30u7",
+    "loadError": "L04d f41l3d",
+    "noDepartures": "N0 d3p4r7ur35",
+    "selectStation": "53l3c7 4 574710n...",
+    "type": {
+      "station": "574710n",
+      "stop": "570p"
+    },
+    "platform": "Pl47f0rm {platform}",
+    "cancelled": "C4nc3ll3d"
+  },
+  "quote": {
+    "title": "Qu073 / N3rd Nudg3",
+    "list": [
+      "M0v3 f457, r3f4c70r 0f73n.",
+      "4cc3551b1l17y 15n'7 4 f347ur3 - 17'5 7h3 d3f4ul7.",
+      "D0n3 > P3rf3c7. 173r473.",
+      "1f 17'5 n07 m0n170r3d, 17 d035n'7 3x157.",
+      "G00d UX 15 1nv151bl3. B4d UX 15 unf0rg3774bl3.",
+      "M4k3 17 w0rk, m4k3 17 r1gh7, m4k3 17 f457.",
+      "5m4ll 573p5. M4551v3 0u7c0m35.",
+      "51mpl1c17y 5c4l35. C0mpl3x17y f41l5.",
+      "4u70m473 7h3 b0r1ng 57uff.",
+      "M345ur3 7w1c3, d3pl0y 0nc3."
+    ]
+  },
+  "recent": {
+    "title": "R3c3n7",
+    "note": "N073: 0nly 4c710n5 fr0m 7h15 574r7 p4g3 (cl1ck3d 71l35 & 534rch35)."
+  },
+  "system": {
+    "title": "5y573m 5747u5",
+    "loading": "L04d1ng...",
+    "ram": "R4M: {value} GB",
+    "cpu": "CPU c0r35: {value}",
+    "network": "N37w0rk: {downlink} Mb17/5  *  {type}{saveData}",
+    "saveData": "  *  54v3D474",
+    "noData": "N0 d474 4v41l4bl3"
+  },
+  "news": {
+    "title": "N3w5",
+    "refreshTitle": "R3l04d",
+    "source": "R55 v14 574r7p4g3 Pr0xy (C0R5 pr0xy)",
+    "noItems": "N0 173m5"
+  },
+  "footer": {
+    "tagline": "L0c4l-f1r57 d45hb04rd  *  570r35 0nly 1n 7h3 br0w53r (l0c4l570r4g3)"
+  },
+  "settings": {
+    "title": "53771ng5",
+    "close": "Cl053",
+    "tabs": {
+      "general": "G3n3r4l",
+      "background": "B4ckgr0und & 4pp34r4nc3",
+      "search": "534rch & F33d5",
+      "widgets": "W1dg375",
+      "data": "D474",
+      "guide": "Gu1d3"
+    },
+    "theme": {
+      "label": "7h3m3",
+      "auto": "4u70 (5y573m)",
+      "dark": "D4rk",
+      "light": "L1gh7"
+    },
+    "background": {
+      "label": "B4ckgr0und"
+    },
+    "search": {
+      "engines": "534rch 3ng1n35",
+      "bangsNote": "5upp0r73d b4ng 5h0r7cu75: <code>!g !ddg !b1ng !y7 !w1k1 !m4p5</code> - Cu570m 5h0r7cu75 b3l0w",
+      "wordlistLabel": "4u70c0mpl373 w0rdl157",
+      "wordlistPlaceholder": "73rm5 l1n3 by l1n3 0r c0mm4-53p4r473d",
+      "wordlistSave": "54v3",
+      "wordlistReset": "Cl34r",
+      "wordlistNote": "Gl0b4l w0rdl157 (455375/w0rdl157.j50n) 4nd pr3537 w0rdl157 4r3 m3rg3d. L34v3 3mp7y 70 u53 0nly 7h3 gl0b4l l157.",
+      "shortcutsLabel": "Cu570m !5h0r7cu75",
+      "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
+      "shortcutsNote": "U53 <code>{q}</code> 45 pl4c3h0ld3r f0r 7h3 534rch phr453. W17h0u7 <code>{q}</code>, <code>?q=...</code> 15 4pp3nd3d.",
+      "feedsLabel": "Cu570m R55 f33d5",
+      "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
+      "feedsNote": "J50N: n4m3 - f33d URL. 7h15 l157 15 m3rg3d w17h 7h3 d3f4ul7 f33d5.",
+      "invalidShortcuts": "1nv4l1d 5h0r7cu75 J50N",
+      "invalidFeeds": "1nv4l1d f33d5 J50N"
+    },
+    "widgets": {
+      "visible": "5h0w w1dg375",
+      "defaultCityLabel": "D3f4ul7 c17y (w347h3r)",
+      "defaultCityPlaceholder": "3.g. H4n0v3r",
+      "defaultTransportLabel": "D3f4ul7 570p (7r4n5p0r7)",
+      "defaultTransportPlaceholder": "534rch 574710n...",
+      "cardStyleLabel": "C4rd 57yl3",
+      "cardStyleGlass": "Gl455 (d3f4ul7)",
+      "cardStyleSolid": "50l1d",
+      "cardStyleTransparent": "7r4n5p4r3n7",
+      "cardStyleMinimal": "50f7 m1n1m4l",
+      "cardStyleNote": "4ppl135 70 4ll w1dg375 & f4v0r173 71l35.",
+      "clockColorLabel": "71m3 & d473",
+      "searchColorLabel": "534rch",
+      "reset": "R3537",
+      "clockColorNote": "5375 7h3 h34d3r b4ckgr0und (3mp7y = 57yl3 d3f4ul7).",
+      "searchColorNote": "C0l0r f0r 7h3 534rch 4r34 (3mp7y = 57yl3 d3f4ul7).",
+      "widgetColorsLabel": "W1dg37 c0l0r5"
+    },
+    "data": {
+      "label": "D474",
+      "export": "3xp0r7 (.j50n)",
+      "import": "1mp0r7 (.j50n)",
+      "presetsLabel": "D474 pr35375",
+      "applyPreset": "L04d pr3537",
+      "presetMeta": "Pr35375 4r3 3xp0r73d J50N5 und3r 455375/pr35375/. U53r pr35375 fr0m 455375/u53r-pr35375/ 4r3 m3rg3d 4u70m471c4lly.",
+      "setupLabel": "537up",
+      "restartOnboarding": "R3574r7 537up",
+      "restartNote": "R30p3n5 7h3 c0mp4c7 537up d14l0g.",
+      "noteLabel": "N073",
+      "noteText": "3xp0r7 570r35 4ll 53771ng5 & d474 l0c4lly 45 J50N. 1mp0r7 0v3rwr1735 3x1571ng 3n7r135."
+    },
+    "language": {
+      "label": "L4ngu4g3",
+      "auto": "4u70 (5y573m)"
+    },
+    "guideHtml": "<div class=\"row\"><label>U53r Gu1d3</label><div><h5>0v3rv13w</h5><ul><li>574r7 p4g3 w17h 534rch, f4v0r1735, 70-d0, n0735, w347h3r, n3w5.</li><li>4ll l0c4l: d474 574y5 1n y0ur br0w53r (l0c4l570r4g3).</li></ul><h5>5h0r7cu75</h5><ul><li>C7rl/Cmd+K: 0p3n c0mm4nd p4l3773</li><li>1-9: 0p3n f1r57 9 f4v0r1735 (wh3n n07 7yp1ng)</li><li>/ : f0cu5 534rch (4l50 v14 p4l3773)</li><li>3n73r 1n 534rch: 574r7 534rch</li><li>35C: cl053 m0d4l5</li><li>P4l3773: qu1ck 4c710n5 f0r w1dg375, 7h3m3, b4ckgr0und, d474, f4v0r1735</li><li>P4l3773: k3y C 5w17ch35 c4rd 57yl3, \"R3537 h34d3r c0l0r5\" r35375 534rch & cl0ck</li></ul><h5>534rch & 4u70c0mpl373</h5><ul><li>B4ng5: !g !ddg !b1ng !y7 !w1k1 !m4p5</li><li>Cu570m 5h0r7cu75: J50N 1n 53771ng5; {q} 45 pl4c3h0ld3r</li><li>4u70c0mpl373: b4ng5, 5h0r7cu75, r3c3n7 534rch35, w0rdl157 (gl0b4l + pr3537)</li><li>74b 4cc3p75 5ugg35710n, 3n73r 574r75 534rch</li></ul><h5>71l35</h5><ul><li>Dr4g & dr0p 70 50r7, cl1ck 70 0p3n</li><li>+ 71l3: 4dd 4 n3w f4v0r173</li><li>R3537: r3570r3 d3f4ul7 f4v0r1735</li></ul><h5>W1dg375 & L4y0u7</h5><ul><li>V151b1l17y p3r w1dg37</li><li>C4rd 57yl3 15 gl0b4l (gl455, 50l1d, 7r4n5p4r3n7, 50f7 m1n1m4l)</li><li>Cu570m c0l0r5 f0r cl0ck/534rch; r3537 r3570r35 57yl3 d3f4ul75</li><li>W1dg37 c0l0r5 & \"71n7 w1dg375\" 537 7h3 4cc3n7 p3r c4rd</li></ul><h5>B4ckgr0und</h5><ul><li>Pr35375, upl04d5, c0ll3c710n5, r074710n (71m3/7h3m3/1n73rv4l)</li><li>4cc3n7 c0l0r 15 3x7r4c73d fr0m 7h3 4c71v3 b4ckgr0und</li></ul><h5>D474</h5><ul><li>3xp0r7/1mp0r7 45 J50N</li><li>L04d d474 pr35375 (455375/pr35375/*.j50n 1n 7h3 r3p0)</li></ul></div></div>"
+  },
+  "onboarding": {
+    "title": "574r7 537up",
+    "progress": "573p {current} 0f {total}",
+    "skip": "5k1p 537up",
+    "close": "Cl053",
+    "preset": {
+      "title": "Ch0053 pr3537",
+      "hint": "P1ck 4 pr3537 0r 5k1p 7h15 573p.",
+      "apply": "4pply pr3537",
+      "meta": "4pply 4 pr3537 0r 5k1p.",
+      "optional": "Pr3537 0p710n4l.",
+      "context": "537up pr3537"
+    },
+    "appearance": {
+      "title": "4pp34r4nc3",
+      "theme": "7h3m3",
+      "cardStyle": "C4rd 57yl3",
+      "background": "B4ckgr0und",
+      "rotation": "3n4bl3 r074710n",
+      "keepCurrent": "K33p curr3n7 1m4g3"
+    },
+    "search": {
+      "title": "534rch",
+      "engine": "D3f4ul7 534rch 3ng1n3"
+    },
+    "widgets": {
+      "title": "W1dg375",
+      "defaultTransport": "D3f4ul7 570p (7r4n5p0r7)",
+      "tint": "71n7 w1dg375 w17h 4cc3n7"
+    },
+    "weather": {
+      "title": "W347h3r",
+      "defaultCity": "D3f4ul7 c17y",
+      "note": "Y0u c4n ch4ng3 3v3ry7h1ng l473r 1n 53771ng5."
+    },
+    "prev": "B4ck",
+    "next": "N3x7",
+    "finish": "D0n3"
+  },
+  "palette": {
+    "placeholder": "534rch c0mm4nd 0r f4v0r173... (C7rl/Cmd+K)",
+    "groups": {
+      "command": "C0mm4nd5",
+      "settings": "53771ng5",
+      "search": "534rch",
+      "widgets": "W1dg375",
+      "theme": "7h3m3 & B4ckgr0und",
+      "data": "D474",
+      "tiles": "71l35",
+      "tile": "F4v0r1735",
+      "quick": "Qu1ck"
+    },
+    "search": {
+      "focus": "F0cu5 534rch",
+      "start": "574r7 534rch",
+      "engine": "3ng1n3: {engine}"
+    },
+    "settings": {
+      "open": "0p3n 53771ng5",
+      "general": "53771ng5: G3n3r4l",
+      "background": "53771ng5: B4ckgr0und",
+      "search": "53771ng5: 534rch",
+      "widgets": "53771ng5: W1dg375",
+      "data": "53771ng5: D474",
+      "guide": "53771ng5: Gu1d3"
+    },
+    "theme": {
+      "cycle": "Cycl3 7h3m3 (4u70/D4rk/L1gh7)",
+      "auto": "7h3m3: 4u70",
+      "dark": "7h3m3: D4rk",
+      "light": "7h3m3: L1gh7",
+      "resetHeader": "R3537 h34d3r c0l0r5",
+      "recalcAccent": "R3c4lcul473 4cc3n7 c0l0r5"
+    },
+    "cardStyle": {
+      "glass": "C4rd 57yl3: Gl455",
+      "solid": "C4rd 57yl3: 50l1d",
+      "transparent": "C4rd 57yl3: 7r4n5p4r3n7",
+      "minimal": "C4rd 57yl3: M1n1m4l"
+    },
+    "background": {
+      "toggleRotation": "B4ckgr0und: 70ggl3 r074710n",
+      "toggleLock": "B4ckgr0und: L0ck/unl0ck r074710n",
+      "preset": "B4ckgr0und: {label}"
+    },
+    "widgets": {
+      "showAll": "W1dg375: 5h0w 4ll",
+      "hideAll": "W1dg375: H1d3 4ll",
+      "toggle": "W1dg37: 70ggl3 {widget}",
+      "focus": "W1dg37: F0cu5 {widget}"
+    },
+    "quick": {
+      "addTodo": "4dd 70d0",
+      "addNote": "4dd n073"
+    },
+    "tiles": {
+      "add": "4dd 71l3",
+      "reset": "R3537 71l35"
+    },
+    "refresh": {
+      "weather": "R3fr35h w347h3r",
+      "news": "R3fr35h n3w5",
+      "transport": "R3fr35h 7r4n5p0r7",
+      "system": "R3fr35h 5y573m",
+      "all": "R3fr35h 4ll w1dg375"
+    },
+    "data": {
+      "export": "3xp0r7 d474",
+      "import": "1mp0r7 d474",
+      "preset": "D474 pr3537: {label}"
+    }
+  },
+  "widgets": {
+    "todo": "70-D0",
+    "notes": "N0735",
+    "tiles": "F4v0r1735",
+    "weather": "W347h3r",
+    "transport": "7r4n5p0r7",
+    "quote": "Qu073",
+    "recent": "R3c3n7",
+    "system": "5y573m",
+    "news": "N3w5"
+  },
+  "background": {
+    "currentPreview": "Curr3n7 b4ckgr0und 1m4g3",
+    "none": "N0 b4ckgr0und",
+    "noImageSelected": "N0 1m4g3 53l3c73d",
+    "rotationResume": "R35um3 r074710n",
+    "rotationLock": "L0ck r074710n",
+    "tone": "70n3: {tone}",
+    "presets": {
+      "empty": "N0 pr35375 4v41l4bl3."
+    },
+    "favorites": {
+      "empty": "N0 f4v0r1735 y37. M4rk pr35375 0r upl04d5."
+    },
+    "subtitle": {
+      "preset": "Pr3537"
+    },
+    "upload": "Upl04d",
+    "uploadDrop": "Dr0p f1l35 h3r3",
+    "uploadBrowse": "Ch0053 f1l3",
+    "uploadNote": "W3 r351z3 1m4g35 4u70m471c4lly (16:9, m4x 2560px) 4nd 570r3 7h3m l0c4lly. M4x {max} f1l35.",
+    "uploads": {
+      "empty": "N0 upl04d5 y37."
+    },
+    "collections": {
+      "count": "{count} 50urc35",
+      "random": "R4nd0m",
+      "cache": "54v3 0ffl1n3",
+      "viewSources": "V13w 50urc35",
+      "useRotation": "U53 f0r r074710n",
+      "newLabel": "N3w c0ll3c710n",
+      "namePlaceholder": "My c0ll3c710n",
+      "urlsPlaceholder": "0n3 1m4g3 URL p3r l1n3",
+      "clear": "Cl34r f13ld5",
+      "note": "URL5 4r3 570r3d l0c4lly. R3m073 50urc35 n33d C0R5 f0r 1m4g35.",
+      "empty": "N0 c0ll3c710n5 y37.",
+      "minOneUrl": "3n73r 47 l3457 0n3 URL.",
+      "emptyCollection": "C0ll3c710n 15 3mp7y.",
+      "saved": "C0ll3c710n 54v3d l0c4lly.",
+      "defaultName": "C0ll3c710n {index}"
+    },
+    "rotation": {
+      "optionPreset": "Pr3537: {label}",
+      "optionUpload": "Upl04d: {label}",
+      "optionFavorite": "F4v0r173: {label}",
+      "optionCustom": "Cu570m: 54v3d URL",
+      "noFixed": "N0 f1x3d 1m4g3",
+      "enabled": "3n4bl3 4u70m471c r074710n",
+      "locked": "R074710n 15 curr3n7ly l0ck3d.",
+      "active": "B4ckgr0und5 ch4ng3 4cc0rd1ng 70 7h3 5ch3dul3.",
+      "mode": "M0d3",
+      "modeTime": "71m3-b453d",
+      "modeInterval": "1n73rv4l",
+      "modeTheme": "7h3m3",
+      "intervalLabel": "1n73rv4l 1n m1nu735",
+      "intervalNote": "0nly r3l3v4n7 1n 1n73rv4l m0d3.",
+      "sourcesLabel": "50urc35 f0r r4nd0m",
+      "scheduleLabel": "5ch3dul3",
+      "themePlan": "7h3m3 pl4n",
+      "themeLight": "7h3m3 l1gh7",
+      "themeDark": "7h3m3 d4rk",
+      "themeNote": "7h3m3 pl4n 15 u53d wh3n m0d3 15 7h3m3.",
+      "slot": {
+        "morning": "M0rn1ng 05-11",
+        "day": "D4y 11-17",
+        "evening": "3v3n1ng 17-21",
+        "night": "N1gh7 21-05"
+      }
+    },
+    "custom": {
+      "label": "Cu570m 1m4g3 URL",
+      "placeholder": "h77p5://3x4mpl3.c0m/1m4g3.jpg",
+      "note": "URL 15 570r3d l0c4lly. 53rv3r mu57 4ll0w C0R5 f0r 1m4g35.",
+      "enterUrl": "Pl3453 3n73r 4 URL.",
+      "title": "Cu570m URL",
+      "subtitle": "Cu570m"
+    },
+    "actions": {
+      "apply": "4pply",
+      "favorite": "F4v0r173",
+      "favorited": "F4v0r173d",
+      "random": "L04d r4nd0m",
+      "undo": "R3570r3 l457 1m4g3",
+      "lock": "L0ck r074710n",
+      "tint": "71n7 w1dg375"
+    },
+    "tabs": {
+      "presets": "Pr35375",
+      "favorites": "F4v0r1735",
+      "uploads": "Upl04d5",
+      "collections": "C0ll3c710n5",
+      "rotation": "R074710n",
+      "custom": "Cu570m"
+    },
+    "loadError": "L04d f41l3d. Ch3ck C0R5 53771ng5.",
+    "noneAvailable": "N0 b4ckgr0und5 4v41l4bl3.",
+    "imageLoadError": "1m4g3 c0uld n07 b3 l04d3d."
+  },
+  "data": {
+    "import": {
+      "confirm": "1mp0r7 d474? 3x1571ng 3n7r135 w1ll b3 0v3rwr1773n.",
+      "failed": "1mp0r7 f41l3d: {error}"
+    },
+    "presets": {
+      "none": "N0 pr3537 4v41l4bl3.",
+      "missingFile": "Pr3537 f1l3 m1551ng.",
+      "fileMissing": "F1l3 n07 f0und",
+      "invalid": "1nv4l1d pr3537",
+      "confirmApply": "4pply {context} \"{name}\"? 3x1571ng 3n7r135 w1ll b3 0v3rwr1773n.",
+      "loadFailed": "Pr3537 l04d f41l3d: {error}",
+      "loading": "L04d1ng pr35375...",
+      "noneFound": "N0 pr35375 f0und",
+      "hint": "Pl4c3 3xp0r73d J50N5 und3r 455375/pr35375/ (m4n1f357: 455375/d474-pr35375.j50n) 0r l0c4lly und3r 455375/u53r-pr35375/.",
+      "hintShort": "4dd 4 pr3537 und3r 455375/pr35375/ 0r 455375/u53r-pr35375/.",
+      "userPrefix": "U53r: ",
+      "userApply": "4pply l0c4l pr3537",
+      "apply": "4pply pr3537",
+      "noneSelected": "N0 pr3537 53l3c73d.",
+      "label": "Pr3537",
+      "defaultLabel": "Pr3537 {index}",
+      "userDefault": "U53r pr3537 {index}",
+      "userDescription": "L0c4l pr3537 fr0m 455375/u53r-pr35375/",
+      "tags": " (74g5: {tags})"
+    }
+  }
+}

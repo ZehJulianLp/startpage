@@ -18,39 +18,39 @@
         <div class="date" id="date">—</div>
       </div>
       <div class="controls">
-        <button class="btn" id="themeToggle" title="Dark/Light">🌓</button>
-        <button class="btn" id="openSettings" title="Einstellungen">⚙</button>
+        <button class="btn" id="themeToggle" title="Dark/Light" data-i18n-title="header.themeToggleTitle">🌓</button>
+        <button class="btn" id="openSettings" title="Einstellungen" data-i18n-title="header.settingsTitle">⚙</button>
       </div>
     </header>
 
     <section class="search" id="searchBox">
       <select id="engine"></select>
-      <input id="query" type="text" placeholder="Suche… (z. B. !yt lo‑fi, !etc Home)" autocomplete="on" />
+      <input id="query" type="text" placeholder="Suche… (z. B. !yt lo‑fi, !etc Home)" data-i18n-placeholder="search.placeholder" autocomplete="on" />
       <button class="btn btn-go" id="go">🔍</button>
     </section>
 
     <main class="grid">
       <section class="card col-6" id="todo">
-        <h3>To‑Do</h3>
+        <h3 data-i18n="todo.title">To‑Do</h3>
         <div class="todo-input">
-          <input id="todoInput" type="text" placeholder="Neue Aufgabe…" />
-          <button class="btn" id="todoAdd">Hinzufügen</button>
-          <button class="btn" id="todoClearDone" title="Erledigte entfernen">✓ löschen</button>
+          <input id="todoInput" type="text" placeholder="Neue Aufgabe…" data-i18n-placeholder="todo.placeholder" />
+          <button class="btn" id="todoAdd" data-i18n="todo.add">Hinzufügen</button>
+          <button class="btn" id="todoClearDone" title="Erledigte entfernen" data-i18n-title="todo.clearDoneTitle" data-i18n="todo.clearDone">✓ löschen</button>
         </div>
         <div class="todo-list" id="todoList"></div>
       </section>
 
       <section class="card col-6" id="notes">
-        <h3>Notizen</h3>
-        <textarea class="notes" id="notesArea" placeholder="Schreib dir schnell was auf…"></textarea>
+        <h3 data-i18n="notes.title">Notizen</h3>
+        <textarea class="notes" id="notesArea" placeholder="Schreib dir schnell was auf…" data-i18n-placeholder="notes.placeholder"></textarea>
       </section>
 
       <section class="card col-8" id="tilesCard">
         <div style="display:flex; align-items:center; justify-content:space-between; gap:8px">
-          <h3>Favoriten</h3>
+          <h3 data-i18n="tiles.title">Favoriten</h3>
           <div style="display:flex; gap:8px">
-            <button class="btn" id="addTile">+ Kachel</button>
-            <button class="btn" id="resetTiles" title="Standard wiederherstellen">↺</button>
+            <button class="btn" id="addTile" data-i18n="tiles.add">+ Kachel</button>
+            <button class="btn" id="resetTiles" title="Standard wiederherstellen" data-i18n-title="tiles.resetTitle">↺</button>
           </div>
         </div>
         <div class="tiles" id="tiles"></div>
@@ -58,77 +58,77 @@
 
       <section class="card col-4" id="weather">
         <div class="weather-top">
-          <h3>Wetter heute</h3>
+          <h3 data-i18n="weather.title">Wetter heute</h3>
           <div style="display:flex; gap:6px">
-            <input type="text" id="cityInput" placeholder="Stadt eingeben…" style="width: 160px" />
-            <button class="btn" id="setCity">Setzen</button>
+            <input type="text" id="cityInput" placeholder="Stadt eingeben…" data-i18n-placeholder="weather.cityPlaceholder" style="width: 160px" />
+            <button class="btn" id="setCity" data-i18n="weather.setCity">Setzen</button>
           </div>
         </div>
         <div class="weather-main">
           <div id="weatherIcon" class="weather-icon" aria-hidden="true"></div>
           <div class="weather-temp" id="tempNow">—°</div>
           <div>
-            <div id="weatherText" class="muted">Ort wählen…</div>
+            <div id="weatherText" class="muted" data-i18n="weather.pickLocation">Ort wählen…</div>
             <div class="weather-minmax" id="minmax">— / — °C</div>
           </div>
         </div>
         <div class="weather-hourly" id="hourly"></div>
-        <div class="muted" id="weatherFoot" style="margin-top:8px; font-size:12px">Quelle: Open‑Meteo</div>
+        <div class="muted" id="weatherFoot" style="margin-top:8px; font-size:12px" data-i18n="weather.source">Quelle: Open‑Meteo</div>
       </section>
 
       <section class="card col-8" id="transportCard">
         <div class="transport-top">
-          <h3>Transport</h3>
+          <h3 data-i18n="transport.title">Transport</h3>
           <div style="display:flex; gap:8px; align-items:center">
-            <select id="transportDuration" aria-label="Zeitraum" style="width: 110px">
-              <option value="30">30 min</option>
-              <option value="60">60 min</option>
-              <option value="90">90 min</option>
-              <option value="120">120 min</option>
+            <select id="transportDuration" aria-label="Zeitraum" data-i18n-aria-label="transport.durationAria" style="width: 110px">
+              <option value="30" data-i18n="transport.duration30">30 min</option>
+              <option value="60" data-i18n="transport.duration60">60 min</option>
+              <option value="90" data-i18n="transport.duration90">90 min</option>
+              <option value="120" data-i18n="transport.duration120">120 min</option>
             </select>
-            <button class="btn" id="refreshTransport" title="Neu laden">↻</button>
+            <button class="btn" id="refreshTransport" title="Neu laden" data-i18n-title="transport.refreshTitle">↻</button>
           </div>
         </div>
         <div class="transport-search">
-          <input type="text" id="transportQuery" placeholder="Station suchen…" autocomplete="off" />
+          <input type="text" id="transportQuery" placeholder="Station suchen…" data-i18n-placeholder="transport.searchPlaceholder" autocomplete="off" />
           <div id="transportSuggest" class="transport-suggest hidden"></div>
         </div>
-        <div class="transport-selected muted" id="transportSelected">Keine Station gewählt</div>
+        <div class="transport-selected muted" id="transportSelected" data-i18n="transport.noneSelected">Keine Station gewählt</div>
         <ul id="transportList" class="transport-list"></ul>
-        <div class="muted" id="transportFoot" style="margin-top:8px; font-size:12px">Quelle: transport.rest</div>
+        <div class="muted" id="transportFoot" style="margin-top:8px; font-size:12px" data-i18n="transport.source">Quelle: transport.rest</div>
       </section>
 
       <section class="card col-4" id="quoteCard">
-        <h3>Quote / Nerd‑Impulse</h3>
+        <h3 data-i18n="quote.title">Quote / Nerd‑Impulse</h3>
         <div class="quote" id="quote">—</div>
       </section>
 
       <section class="card col-8" id="recent">
-        <h3>Zuletzt</h3>
+        <h3 data-i18n="recent.title">Zuletzt</h3>
         <div class="recent-list" id="recentList"></div>
-        <div class="muted" style="margin-top:8px; font-size:12px">Hinweis: Zeigt nur Aktionen von dieser Startseite (geklickte Kacheln & Suchen).</div>
+        <div class="muted" style="margin-top:8px; font-size:12px" data-i18n="recent.note">Hinweis: Zeigt nur Aktionen von dieser Startseite (geklickte Kacheln & Suchen).</div>
       </section>
 
       <section class="card col-4" id="systemCard">
-        <h3>Systemstatus</h3>
-        <div id="systemInfo" class="muted">Lade…</div>
+        <h3 data-i18n="system.title">Systemstatus</h3>
+        <div id="systemInfo" class="muted" data-i18n="system.loading">Lade…</div>
       </section>
 
       <section class="card col-12" id="newsCard">
         <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
-          <h3>News</h3>
+          <h3 data-i18n="news.title">News</h3>
           <div style="display:flex;gap:8px;align-items:center">
             <select id="newsSource"></select>
-            <button class="btn" id="refreshNews" title="Neu laden">↻</button>
+            <button class="btn" id="refreshNews" title="Neu laden" data-i18n-title="news.refreshTitle">↻</button>
           </div>
         </div>
         <ul id="newsList"></ul>
-        <div class="muted" style="margin-top:8px; font-size:12px">RSS via Startpage Proxy (CORS‑Proxy)</div>
+        <div class="muted" style="margin-top:8px; font-size:12px" data-i18n="news.source">RSS via Startpage Proxy (CORS‑Proxy)</div>
       </section>
     </main>
 
     <footer class="muted" style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:6px">
-      <div>Local‑first Dashboard · speichert nur im Browser (localStorage)</div>
+      <div data-i18n="footer.tagline">Local‑first Dashboard · speichert nur im Browser (localStorage)</div>
       <div>v1.7.1</div>
     </footer>
   </div>
@@ -137,51 +137,55 @@
   <div class="modal" id="settingsModal" aria-hidden="true">
     <div class="sheet">
       <div style="display:flex; align-items:center; justify-content:space-between">
-        <h4>Einstellungen</h4>
-        <button class="btn" id="closeSettings">Schließen</button>
+        <h4 data-i18n="settings.title">Einstellungen</h4>
+        <button class="btn" id="closeSettings" data-i18n="settings.close">Schließen</button>
       </div>
       <div class="tabs" role="tablist">
-        <button class="tab-btn" data-tab="general" role="tab" aria-selected="true">Allgemein</button>
-        <button class="tab-btn" data-tab="background" role="tab">Hintergrund &amp; Erscheinung</button>
-        <button class="tab-btn" data-tab="search" role="tab">Suche &amp; Feeds</button>
-        <button class="tab-btn" data-tab="widgets" role="tab">Widgets</button>
-        <button class="tab-btn" data-tab="data" role="tab">Daten</button>
-        <button class="tab-btn" data-tab="guide" role="tab">Guide</button>
+        <button class="tab-btn" data-tab="general" role="tab" aria-selected="true" data-i18n="settings.tabs.general">Allgemein</button>
+        <button class="tab-btn" data-tab="background" role="tab" data-i18n="settings.tabs.background">Hintergrund &amp; Erscheinung</button>
+        <button class="tab-btn" data-tab="search" role="tab" data-i18n="settings.tabs.search">Suche &amp; Feeds</button>
+        <button class="tab-btn" data-tab="widgets" role="tab" data-i18n="settings.tabs.widgets">Widgets</button>
+        <button class="tab-btn" data-tab="data" role="tab" data-i18n="settings.tabs.data">Daten</button>
+        <button class="tab-btn" data-tab="guide" role="tab" data-i18n="settings.tabs.guide">Guide</button>
       </div>
       <div id="tab-general" class="tab-panel active" role="tabpanel">
         <div class="row">
-          <label for="themeSelect">Theme</label>
+          <label for="themeSelect" data-i18n="settings.theme.label">Theme</label>
           <select id="themeSelect">
-            <option value="auto">Auto (System)</option>
-            <option value="dark">Dark</option>
-            <option value="light">Light</option>
+            <option value="auto" data-i18n="settings.theme.auto">Auto (System)</option>
+            <option value="dark" data-i18n="settings.theme.dark">Dark</option>
+            <option value="light" data-i18n="settings.theme.light">Light</option>
           </select>
+        </div>
+        <div class="row">
+          <label for="localeSelect" data-i18n="settings.language.label">Sprache</label>
+          <select id="localeSelect"></select>
         </div>
       </div>
       <div id="tab-background" class="tab-panel" role="tabpanel">
         <div class="row">
-          <label for="bgEngine">Hintergrund</label>
+          <label for="bgEngine" data-i18n="settings.background.label">Hintergrund</label>
           <div id="bgEngine" class="bg-engine">
             <div class="bg-current">
-              <div class="bg-current-preview" id="bgCurrentPreview" role="img" aria-label="Aktuelles Hintergrundbild"></div>
+              <div class="bg-current-preview" id="bgCurrentPreview" role="img" aria-label="Aktuelles Hintergrundbild" data-i18n-aria-label="background.currentPreview"></div>
               <div class="bg-current-info">
-                <div class="bg-current-title" id="bgCurrentTitle">Kein Hintergrund</div>
+                <div class="bg-current-title" id="bgCurrentTitle" data-i18n="background.none">Kein Hintergrund</div>
                 <div class="bg-current-meta" id="bgCurrentMeta"></div>
                 <div class="bg-quick-actions">
-                  <button type="button" id="bgActionRandom" data-action="bg-random">Zufällig neu laden</button>
-                  <button type="button" id="bgActionUndo" data-action="bg-undo" disabled>Letztes Bild wiederherstellen</button>
-                  <button type="button" id="bgActionLock" data-action="bg-lock">Rotation sperren</button>
-                  <button type="button" id="bgActionTintWidgets" data-action="bg-tint-widgets">Widgets einfärben</button>
+                  <button type="button" id="bgActionRandom" data-action="bg-random" data-i18n="background.actions.random">Zufällig neu laden</button>
+                  <button type="button" id="bgActionUndo" data-action="bg-undo" disabled data-i18n="background.actions.undo">Letztes Bild wiederherstellen</button>
+                  <button type="button" id="bgActionLock" data-action="bg-lock" data-i18n="background.actions.lock">Rotation sperren</button>
+                  <button type="button" id="bgActionTintWidgets" data-action="bg-tint-widgets" data-i18n="background.actions.tint">Widgets einfärben</button>
                 </div>
               </div>
             </div>
             <div class="bg-tabs" id="bgTabs">
-              <button type="button" class="bg-tab active" data-panel="presets">Presets</button>
-              <button type="button" class="bg-tab" data-panel="favorites">Favoriten</button>
-              <button type="button" class="bg-tab" data-panel="uploads">Uploads</button>
-              <button type="button" class="bg-tab" data-panel="collections">Sammlungen</button>
-              <button type="button" class="bg-tab" data-panel="rotation">Rotation</button>
-              <button type="button" class="bg-tab" data-panel="custom">Custom</button>
+              <button type="button" class="bg-tab active" data-panel="presets" data-i18n="background.tabs.presets">Presets</button>
+              <button type="button" class="bg-tab" data-panel="favorites" data-i18n="background.tabs.favorites">Favoriten</button>
+              <button type="button" class="bg-tab" data-panel="uploads" data-i18n="background.tabs.uploads">Uploads</button>
+              <button type="button" class="bg-tab" data-panel="collections" data-i18n="background.tabs.collections">Sammlungen</button>
+              <button type="button" class="bg-tab" data-panel="rotation" data-i18n="background.tabs.rotation">Rotation</button>
+              <button type="button" class="bg-tab" data-panel="custom" data-i18n="background.tabs.custom">Custom</button>
             </div>
             <div class="bg-panels">
               <div class="bg-panel active" id="bgPanel-presets"></div>
@@ -196,120 +200,120 @@
       </div>
       <div id="tab-search" class="tab-panel" role="tabpanel">
         <div class="row">
-          <label>Suchmaschinen</label>
+          <label data-i18n="settings.search.engines">Suchmaschinen</label>
           <div>
-            <div class="muted" style="margin-bottom:6px">Unterstützte Bang-Shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Eigene Shortcuts unten</div>
+            <div class="muted" style="margin-bottom:6px" data-i18n-html="settings.search.bangsNote">Unterstützte Bang-Shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Eigene Shortcuts unten</div>
             <div style="display:flex; gap:8px; flex-wrap:wrap" id="enginePills"></div>
           </div>
         </div>
         <div class="row">
-          <label for="wordlistEditor">Wortliste für Autocomplete</label>
+          <label for="wordlistEditor" data-i18n="settings.search.wordlistLabel">Wortliste für Autocomplete</label>
           <div>
-            <textarea id="wordlistEditor" rows="4" placeholder="Begriffe zeilenweise oder mit Komma getrennt"></textarea>
+            <textarea id="wordlistEditor" rows="4" placeholder="Begriffe zeilenweise oder mit Komma getrennt" data-i18n-placeholder="settings.search.wordlistPlaceholder"></textarea>
             <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:6px">
-              <button class="btn" type="button" id="wordlistSave">Speichern</button>
-              <button class="btn" type="button" id="wordlistReset">Leeren</button>
+              <button class="btn" type="button" id="wordlistSave" data-i18n="settings.search.wordlistSave">Speichern</button>
+              <button class="btn" type="button" id="wordlistReset" data-i18n="settings.search.wordlistReset">Leeren</button>
             </div>
-            <div class="muted" style="margin-top:6px">Globale Wortliste (assets/wordlist.json) und die Preset-Wortliste werden gemerged. Leer lassen, um nur die globale Liste zu nutzen.</div>
+            <div class="muted" style="margin-top:6px" data-i18n="settings.search.wordlistNote">Globale Wortliste (assets/wordlist.json) und die Preset-Wortliste werden gemerged. Leer lassen, um nur die globale Liste zu nutzen.</div>
           </div>
         </div>
         <div class="row">
-          <label for="shortcutConfig">Eigene !Shortcuts</label>
+          <label for="shortcutConfig" data-i18n="settings.search.shortcutsLabel">Eigene !Shortcuts</label>
           <div>
-            <textarea id="shortcutConfig" rows="5" placeholder='{"!etc":"https://julianverse.de/etc","!git":"https://github.com/{q}"}'></textarea>
-            <div class="muted" style="margin-top:6px">Verwende <code>{q}</code> als Platzhalter für die Suchphrase. Ohne <code>{q}</code> wird <code>?q=...</code> angehängt.</div>
+            <textarea id="shortcutConfig" rows="5" placeholder='{"!etc":"https://julianverse.de/etc","!git":"https://github.com/{q}"}' data-i18n-placeholder="settings.search.shortcutsPlaceholder"></textarea>
+            <div class="muted" style="margin-top:6px" data-i18n-html="settings.search.shortcutsNote">Verwende <code>{q}</code> als Platzhalter für die Suchphrase. Ohne <code>{q}</code> wird <code>?q=...</code> angehängt.</div>
           </div>
         </div>
         <div class="row">
-          <label for="feedsConfig">Custom RSS-Feeds</label>
+          <label for="feedsConfig" data-i18n="settings.search.feedsLabel">Custom RSS-Feeds</label>
           <div>
-            <textarea id="feedsConfig" rows="4" placeholder='{"Heise":"https://www.heise.de/rss/heise-atom.xml","Tagesschau":"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml","TechCrunch":"https://techcrunch.com/feed/"}'></textarea>
-            <div class="muted" style="margin-top:6px">JSON: Name - Feed-URL. Diese Liste wird mit den Standardfeeds gemerged.</div>
+            <textarea id="feedsConfig" rows="4" placeholder='{"Heise":"https://www.heise.de/rss/heise-atom.xml","Tagesschau":"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml","TechCrunch":"https://techcrunch.com/feed/"}' data-i18n-placeholder="settings.search.feedsPlaceholder"></textarea>
+            <div class="muted" style="margin-top:6px" data-i18n="settings.search.feedsNote">JSON: Name - Feed-URL. Diese Liste wird mit den Standardfeeds gemerged.</div>
           </div>
         </div>
       </div>
       <div id="tab-widgets" class="tab-panel" role="tabpanel">
         <div class="row">
-          <label>Widgets sichtbar</label>
+          <label data-i18n="settings.widgets.visible">Widgets sichtbar</label>
           <div id="widgetToggles" style="display:flex; gap:12px; flex-wrap:wrap"></div>
         </div>
         <div class="row">
-          <label for="defaultCity">Standard-Stadt (Wetter)</label>
-          <input id="defaultCity" type="text" placeholder="z.B. Hannover" />
+          <label for="defaultCity" data-i18n="settings.widgets.defaultCityLabel">Standard-Stadt (Wetter)</label>
+          <input id="defaultCity" type="text" placeholder="z.B. Hannover" data-i18n-placeholder="settings.widgets.defaultCityPlaceholder" />
         </div>
         <div class="row">
-          <label for="transportDefaultInput">Standard-Haltestelle (Transport)</label>
+          <label for="transportDefaultInput" data-i18n="settings.widgets.defaultTransportLabel">Standard-Haltestelle (Transport)</label>
           <div style="position:relative">
-            <input id="transportDefaultInput" type="text" placeholder="Station suchen…" autocomplete="off" />
+            <input id="transportDefaultInput" type="text" placeholder="Station suchen…" data-i18n-placeholder="settings.widgets.defaultTransportPlaceholder" autocomplete="off" />
             <div id="transportDefaultSuggest" class="transport-suggest hidden"></div>
           </div>
         </div>
         <div class="row">
-          <label for="cardStyle">Kachel-Stil</label>
+          <label for="cardStyle" data-i18n="settings.widgets.cardStyleLabel">Kachel-Stil</label>
           <div>
             <select id="cardStyle">
-              <option value="glass">Glas (Standard)</option>
-              <option value="solid">Vollfläche</option>
-              <option value="transparent">Transparent</option>
-              <option value="minimal">Soft Minimal</option>
+              <option value="glass" data-i18n="settings.widgets.cardStyleGlass">Glas (Standard)</option>
+              <option value="solid" data-i18n="settings.widgets.cardStyleSolid">Vollfläche</option>
+              <option value="transparent" data-i18n="settings.widgets.cardStyleTransparent">Transparent</option>
+              <option value="minimal" data-i18n="settings.widgets.cardStyleMinimal">Soft Minimal</option>
             </select>
-            <div class="muted" style="margin-top:6px">Wirkt auf alle Widgets & Favoriten-Kacheln.</div>
+            <div class="muted" style="margin-top:6px" data-i18n="settings.widgets.cardStyleNote">Wirkt auf alle Widgets & Favoriten-Kacheln.</div>
           </div>
         </div>
         <div class="row">
-          <label for="clockColor">Zeit & Datum</label>       
+          <label for="clockColor" data-i18n="settings.widgets.clockColorLabel">Zeit & Datum</label>       
           <div>
             <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
               <input type="color" id="clockColor" />
-              <button class="btn" id="clockColorReset" type="button">Reset</button>
+              <button class="btn" id="clockColorReset" type="button" data-i18n="settings.widgets.reset">Reset</button>
             </div>
-            <div class="muted" style="margin-top:6px">Legt den Hintergrund der Kopfzeile fest (leer = Stil-Vorgabe).</div>
+            <div class="muted" style="margin-top:6px" data-i18n="settings.widgets.clockColorNote">Legt den Hintergrund der Kopfzeile fest (leer = Stil-Vorgabe).</div>
           </div>
         </div>
         <div class="row">
-          <label for="searchColor">Suche</label>
+          <label for="searchColor" data-i18n="settings.widgets.searchColorLabel">Suche</label>
           <div>
             <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
               <input type="color" id="searchColor" />
-              <button class="btn" id="searchColorReset" type="button">Reset</button>
+              <button class="btn" id="searchColorReset" type="button" data-i18n="settings.widgets.reset">Reset</button>
             </div>
-            <div class="muted" style="margin-top:6px">Farbe für den Suchbereich (leer = Stil-Vorgabe).</div>
+            <div class="muted" style="margin-top:6px" data-i18n="settings.widgets.searchColorNote">Farbe für den Suchbereich (leer = Stil-Vorgabe).</div>
           </div>
         </div>
         <div class="row">
-          <label>Widget-Farben</label>
+          <label data-i18n="settings.widgets.widgetColorsLabel">Widget-Farben</label>
           <div id="widgetColorEditor" style="display:flex; gap:12px; flex-wrap:wrap"></div>
         </div>
       </div>
       <div id="tab-data" class="tab-panel" role="tabpanel">
         <div class="row">
-          <label>Daten</label>
+          <label data-i18n="settings.data.label">Daten</label>
           <div style="display:flex; gap:8px; flex-wrap:wrap">
-            <button class="btn" id="exportData">Export (.json)</button>
-            <button class="btn" id="importData">Import (.json)</button>
+            <button class="btn" id="exportData" data-i18n="settings.data.export">Export (.json)</button>
+            <button class="btn" id="importData" data-i18n="settings.data.import">Import (.json)</button>
             <input type="file" id="importFile" accept="application/json" style="display:none" />
           </div>
         </div>
         <div class="row">
-          <label>Data Presets</label>
+          <label data-i18n="settings.data.presetsLabel">Data Presets</label>
           <div style="display:flex; flex-direction:column; gap:8px">
             <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center">
               <select id="dataPresetSelect"></select>
-              <button class="btn" id="applyPreset">Preset laden</button>
+              <button class="btn" id="applyPreset" data-i18n="settings.data.applyPreset">Preset laden</button>
             </div>
-            <div class="muted" id="dataPresetMeta">Presets liegen als exportierte JSONs unter assets/presets/. User-Presets aus assets/user-presets/ werden automatisch gemerged.</div>
+            <div class="muted" id="dataPresetMeta" data-i18n="settings.data.presetMeta">Presets liegen als exportierte JSONs unter assets/presets/. User-Presets aus assets/user-presets/ werden automatisch gemerged.</div>
           </div>
         </div>
         <div class="row">
-          <label>Setup</label>
+          <label data-i18n="settings.data.setupLabel">Setup</label>
           <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center">
-            <button class="btn" id="restartOnboarding" type="button">Setup neu starten</button>
-            <div class="muted">Startet den kompakten Einrichtungs-Dialog erneut.</div>
+            <button class="btn" id="restartOnboarding" type="button" data-i18n="settings.data.restartOnboarding">Setup neu starten</button>
+            <div class="muted" data-i18n="settings.data.restartNote">Startet den kompakten Einrichtungs-Dialog erneut.</div>
           </div>
         </div>
         <div class="row">
-          <label>Hinweis</label>
-          <div class="muted" id="dataNote">Export speichert sämtliche Einstellungen & Daten lokal als JSON. Import überschreibt vorhandene Einträge.</div>
+          <label data-i18n="settings.data.noteLabel">Hinweis</label>
+          <div class="muted" id="dataNote" data-i18n="settings.data.noteText">Export speichert sämtliche Einstellungen & Daten lokal als JSON. Import überschreibt vorhandene Einträge.</div>
         </div>
       </div>    </div>
   </div>
@@ -319,58 +323,58 @@
     <div class="sheet onboarding-sheet">
       <div class="onb-header">
         <div>
-          <h4>Setup starten</h4>
-          <div class="muted" id="onbProgressLabel">Schritt 1 von 5</div>
+          <h4 data-i18n="onboarding.title">Setup starten</h4>
+          <div class="muted" id="onbProgressLabel" data-i18n="onboarding.progress">Schritt 1 von 5</div>
         </div>
         <div style="display:flex; gap:8px">
-          <button class="btn" type="button" id="onbSkip">Setup überspringen</button>
-          <button class="btn" type="button" id="onbClose">Schließen</button>
+          <button class="btn" type="button" id="onbSkip" data-i18n="onboarding.skip">Setup überspringen</button>
+          <button class="btn" type="button" id="onbClose" data-i18n="onboarding.close">Schließen</button>
         </div>
       </div>
       <div class="onb-steps">
         <div class="onb-step active" data-step="preset">
-          <h5>Preset wählen</h5>
-          <div class="muted" id="onbPresetHint">Wähle ein Preset oder überspringe diesen Schritt.</div>
+          <h5 data-i18n="onboarding.preset.title">Preset wählen</h5>
+          <div class="muted" id="onbPresetHint" data-i18n="onboarding.preset.hint">Wähle ein Preset oder überspringe diesen Schritt.</div>
           <select id="onbPresetSelect"></select>
           <div class="muted" id="onbPresetMeta"></div>
           <div style="display:flex; gap:8px; margin-top:8px">
-            <button class="btn" type="button" id="onbApplyPreset">Preset anwenden</button>
+            <button class="btn" type="button" id="onbApplyPreset" data-i18n="onboarding.preset.apply">Preset anwenden</button>
           </div>
         </div>
         <div class="onb-step" data-step="appearance">
-          <h5>Darstellung</h5>
+          <h5 data-i18n="onboarding.appearance.title">Darstellung</h5>
           <div class="onb-field">
-            <label for="onbTheme">Theme</label>
+            <label for="onbTheme" data-i18n="onboarding.appearance.theme">Theme</label>
             <select id="onbTheme">
-              <option value="auto">Auto (System)</option>
-              <option value="dark">Dark</option>
-              <option value="light">Light</option>
+              <option value="auto" data-i18n="settings.theme.auto">Auto (System)</option>
+              <option value="dark" data-i18n="settings.theme.dark">Dark</option>
+              <option value="light" data-i18n="settings.theme.light">Light</option>
             </select>
           </div>
           <div class="onb-field">
-            <label for="onbCardStyle">Karten-Stil</label>
+            <label for="onbCardStyle" data-i18n="onboarding.appearance.cardStyle">Karten-Stil</label>
             <select id="onbCardStyle">
-              <option value="glass">Glas (Standard)</option>
-              <option value="solid">Vollfläche</option>
-              <option value="transparent">Transparent</option>
-              <option value="minimal">Soft Minimal</option>
+              <option value="glass" data-i18n="settings.widgets.cardStyleGlass">Glas (Standard)</option>
+              <option value="solid" data-i18n="settings.widgets.cardStyleSolid">Vollfläche</option>
+              <option value="transparent" data-i18n="settings.widgets.cardStyleTransparent">Transparent</option>
+              <option value="minimal" data-i18n="settings.widgets.cardStyleMinimal">Soft Minimal</option>
             </select>
           </div>
           <div class="onb-field">
-            <label for="onbBgPreset">Hintergrund</label>
+            <label for="onbBgPreset" data-i18n="onboarding.appearance.background">Hintergrund</label>
             <select id="onbBgPreset"></select>
           </div>
           <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap">
             <label style="display:flex; align-items:center; gap:6px; font-size:14px">
               <input type="checkbox" id="onbBgRotate" />
-              Rotation aktivieren
+              <span data-i18n="onboarding.appearance.rotation">Rotation aktivieren</span>
             </label>
           </div>
         </div>
         <div class="onb-step" data-step="search">
-          <h5>Suche</h5>
+          <h5 data-i18n="onboarding.search.title">Suche</h5>
           <div class="onb-field">
-            <label for="onbEngine">Standard-Suchmaschine</label>
+            <label for="onbEngine" data-i18n="onboarding.search.engine">Standard-Suchmaschine</label>
             <select id="onbEngine">
               <option value="google">Google</option>
               <option value="ddg">DuckDuckGo</option>
@@ -382,43 +386,43 @@
           </div>
         </div>
         <div class="onb-step" data-step="widgets">
-          <h5>Widgets</h5>
+          <h5 data-i18n="onboarding.widgets.title">Widgets</h5>
           <div style="display:flex; flex-wrap:wrap; gap:10px">
-            <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="todo" /> To-Do</label>
-            <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="notes" /> Notizen</label>
-            <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="tiles" /> Favoriten</label>
-            <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="weather" /> Wetter</label>
-            <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="transport" /> Transport</label>
-            <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="news" /> News</label>
+            <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="todo" /> <span data-i18n="widgets.todo">To-Do</span></label>
+            <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="notes" /> <span data-i18n="widgets.notes">Notizen</span></label>
+            <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="tiles" /> <span data-i18n="widgets.tiles">Favoriten</span></label>
+            <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="weather" /> <span data-i18n="widgets.weather">Wetter</span></label>
+            <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="transport" /> <span data-i18n="widgets.transport">Transport</span></label>
+            <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="news" /> <span data-i18n="widgets.news">News</span></label>
           </div>
           <div class="onb-field" id="onbTransportField" style="display:none; margin-top:12px">
-            <label for="onbTransportInput">Standard-Haltestelle (Transport)</label>
+            <label for="onbTransportInput" data-i18n="onboarding.widgets.defaultTransport">Standard-Haltestelle (Transport)</label>
             <div style="position:relative">
-              <input id="onbTransportInput" type="text" placeholder="Station suchen…" autocomplete="off" />
+              <input id="onbTransportInput" type="text" placeholder="Station suchen…" data-i18n-placeholder="settings.widgets.defaultTransportPlaceholder" autocomplete="off" />
               <div id="onbTransportSuggest" class="transport-suggest hidden"></div>
             </div>
           </div>
           <div style="display:flex; align-items:center; gap:8px; margin-top:10px">
             <label style="display:flex; align-items:center; gap:6px; font-size:14px">
               <input type="checkbox" id="onbTint" />
-              Widgets an Akzent einfärben
+              <span data-i18n="onboarding.widgets.tint">Widgets an Akzent einfärben</span>
             </label>
           </div>
         </div>
         <div class="onb-step" data-step="weather">
-          <h5>Wetter</h5>
+          <h5 data-i18n="onboarding.weather.title">Wetter</h5>
           <div class="onb-field">
-            <label for="onbCity">Standard-Stadt</label>
-            <input id="onbCity" type="text" placeholder="z.B. Hannover" />
+            <label for="onbCity" data-i18n="onboarding.weather.defaultCity">Standard-Stadt</label>
+            <input id="onbCity" type="text" placeholder="z.B. Hannover" data-i18n-placeholder="settings.widgets.defaultCityPlaceholder" />
           </div>
-          <div class="muted">Du kannst später jederzeit alles in den Einstellungen ändern.</div>
+          <div class="muted" data-i18n="onboarding.weather.note">Du kannst später jederzeit alles in den Einstellungen ändern.</div>
         </div>
       </div>
       <div class="onb-footer">
         <div class="onb-dots" id="onbDots"></div>
         <div style="display:flex; gap:8px; margin-left:auto">
-          <button class="btn" type="button" id="onbPrev">Zurück</button>
-          <button class="btn" type="button" id="onbNext">Weiter</button>
+          <button class="btn" type="button" id="onbPrev" data-i18n="onboarding.prev">Zurück</button>
+          <button class="btn" type="button" id="onbNext" data-i18n="onboarding.next">Weiter</button>
         </div>
       </div>
     </div>
@@ -427,7 +431,7 @@
   <!-- Command Palette -->
   <div class="modal" id="palette" aria-hidden="true">
     <div class="sheet">
-      <input class="palette-input" id="paletteInput" type="text" placeholder="Befehl oder Favorit suchen… (Strg/⌘+K)" autocomplete="off" aria-controls="paletteList" aria-autocomplete="list" aria-activedescendant="" />
+      <input class="palette-input" id="paletteInput" type="text" placeholder="Befehl oder Favorit suchen… (Strg/⌘+K)" data-i18n-placeholder="palette.placeholder" autocomplete="off" aria-controls="paletteList" aria-autocomplete="list" aria-activedescendant="" />
       <ul id="paletteList" class="palette-list" role="listbox"></ul>
     </div>
   </div>

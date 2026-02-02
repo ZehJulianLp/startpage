@@ -1,0 +1,490 @@
+{
+  "app": {
+    "title": "Startpage"
+  },
+  "common": {
+    "link": "Link",
+    "delete": "Scuttle",
+    "remove": "Scuttle",
+    "save": "Stow",
+    "loading": "Hoistin'...",
+    "loadError": "Hoist failed",
+    "noMatches": "Nay mates",
+    "emptyDash": "--",
+    "dash": "-"
+  },
+  "header": {
+    "themeToggleTitle": "Dark/Light",
+    "settingsTitle": "Cap'n log"
+  },
+  "search": {
+    "placeholder": "Spyglass... (e.g. !yt lo-fi, !etc Home)",
+    "engine": {
+      "google": "Google",
+      "ddg": "DuckDuckGo",
+      "bing": "Bing",
+      "yt": "YouTube",
+      "wikipedia": "Wikipedia",
+      "maps": "Google Maps"
+    },
+    "suggest": {
+      "bang": "{bang} (Bang)",
+      "shortcut": "{shortcut} (Shortcut)",
+      "type": {
+        "bang": "Bang",
+        "shortcut": "Shortcut",
+        "recent": "Recent",
+        "word": "Word"
+      }
+    },
+    "recentShortcut": "Shortcut {shortcut} - {query}",
+    "recentSearch": "Spyglass ({engine}) - {query}"
+  },
+  "todo": {
+    "title": "T'-Do",
+    "placeholder": "New task...",
+    "add": "Add",
+    "clearDoneTitle": "Scuttle completed",
+    "clearDone": "x clear",
+    "doneAria": "Done",
+    "prompt": "Todo"
+  },
+  "notes": {
+    "title": "Scraps",
+    "placeholder": "Jot something down...",
+    "prompt": "Scrap"
+  },
+  "tiles": {
+    "title": "Fav'rites",
+    "add": "+ Tile",
+    "resetTitle": "Restore defaults",
+    "edit": "Edit",
+    "promptTitle": "Title",
+    "promptUrl": "URL",
+    "invalidUrl": "Invalid URL",
+    "promptTitleNew": "Tile title",
+    "promptUrlNew": "URL (https://...)",
+    "resetConfirm": "Restore standard tiles?"
+  },
+  "weather": {
+    "title": "Weather today",
+    "cityPlaceholder": "Enter city...",
+    "setCity": "Set",
+    "pickLocation": "Pick a location...",
+    "source": "Source: Open-Meteo",
+    "loading": "Hoistin' weather...",
+    "prompt": "Enter a location t' hoist weather.",
+    "tempEmpty": "-- degC",
+    "tempEmptyShort": "-- deg",
+    "minmaxEmpty": "-- / --  degC",
+    "noForecast": "Nay forecast",
+    "errors": {
+      "geocodingFailed": "Geocoding failed",
+      "locationNotFound": "Location not found",
+      "cityMissing": "City missing",
+      "fetchFailed": "Weather fetch failed",
+      "loadFailed": "Weather could not be loaded"
+    },
+    "codes": {
+      "0": "Clear",
+      "1": "Mostly clear",
+      "2": "Partly cloudy",
+      "3": "Cloudy",
+      "45": "Fog",
+      "48": "Fog",
+      "51": "Drizzle",
+      "53": "Drizzle",
+      "55": "Drizzle",
+      "61": "Rain",
+      "63": "Rain",
+      "65": "Heavy rain",
+      "71": "Snow",
+      "80": "Showers",
+      "95": "Thunderstorm",
+      "default": "Weather"
+    }
+  },
+  "transport": {
+    "title": "Transport",
+    "durationAria": "Duration",
+    "duration30": "30 min",
+    "duration60": "60 min",
+    "duration90": "90 min",
+    "duration120": "120 min",
+    "refreshTitle": "Hoist again",
+    "searchPlaceholder": "Spyglass station...",
+    "noneSelected": "Nay station selected",
+    "source": "Source: transport.rest",
+    "minQuery": "At least {count} characters",
+    "noMatches": "Nay mates",
+    "proxyTimeout": "Proxy timeout",
+    "loadError": "Hoist failed",
+    "noDepartures": "Nay departures",
+    "selectStation": "Select a station...",
+    "type": {
+      "station": "Station",
+      "stop": "Stop"
+    },
+    "platform": "Platform {platform}",
+    "cancelled": "Scrapped"
+  },
+  "quote": {
+    "title": "Quote / Nerd Nudge",
+    "list": [
+      "Sail fast, refactor often.",
+      "Accessibility isn't a feature - it's th' standard.",
+      "Done > Perfect. Iterate.",
+      "If it's not monitored, it doesn't exist.",
+      "Good UX be invisible. Bad UX be unforgettable.",
+      "Make it work, make it right, make it fast.",
+      "Small steps. Massive outcomes.",
+      "Simplicity scales. Complexity fails.",
+      "Automate th' boring stuff.",
+      "Measure twice, deploy once."
+    ]
+  },
+  "recent": {
+    "title": "Recent",
+    "note": "Scrap: Only actions from this start page (clicked tiles & spyglasses)."
+  },
+  "system": {
+    "title": "Rig status",
+    "loading": "Hoistin'...",
+    "ram": "RAM: {value} GB",
+    "cpu": "CPU cores: {value}",
+    "network": "Network: {downlink} Mbit/s  *  {type}{saveData}",
+    "saveData": "  *  SaveData",
+    "noData": "Nay cargo available"
+  },
+  "news": {
+    "title": "Tidings",
+    "refreshTitle": "Hoist again",
+    "source": "RSS via Startpage Proxy (CORS proxy)",
+    "noItems": "Nay items"
+  },
+  "footer": {
+    "tagline": "Local-first dashboard  *  stores only in th' browser (localStorage)"
+  },
+  "settings": {
+    "title": "Cap'n log",
+    "close": "Close",
+    "tabs": {
+      "general": "General",
+      "background": "Horizon & Appearance",
+      "search": "Spyglass & Feeds",
+      "widgets": "Gizmos",
+      "data": "Cargo",
+      "guide": "Guide"
+    },
+    "theme": {
+      "label": "Theme",
+      "auto": "Auto (Rig)",
+      "dark": "Dark",
+      "light": "Light"
+    },
+    "background": {
+      "label": "Horizon"
+    },
+    "search": {
+      "engines": "Spyglass engines",
+      "bangsNote": "Supported bang shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Custom shortcuts below",
+      "wordlistLabel": "Autocomplete wordlist",
+      "wordlistPlaceholder": "Terms line by line or comma-separated",
+      "wordlistSave": "Stow",
+      "wordlistReset": "Clear",
+      "wordlistNote": "Global wordlist (assets/wordlist.json) an' preset wordlist be merged. Leave empty t' use only th' global list.",
+      "shortcutsLabel": "Custom !shortcuts",
+      "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
+      "shortcutsNote": "Use <code>{q}</code> as placeholder fer th' spyglass phrase. Without <code>{q}</code>, <code>?q=...</code> be appended.",
+      "feedsLabel": "Custom RSS feeds",
+      "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
+      "feedsNote": "JSON: name - feed URL. This list be merged wit' th' standard feeds.",
+      "invalidShortcuts": "Invalid shortcuts JSON",
+      "invalidFeeds": "Invalid feeds JSON"
+    },
+    "widgets": {
+      "visible": "Show gizmos",
+      "defaultCityLabel": "Standard city (weather)",
+      "defaultCityPlaceholder": "e.g. Hanover",
+      "defaultTransportLabel": "Standard stop (transport)",
+      "defaultTransportPlaceholder": "Spyglass station...",
+      "cardStyleLabel": "Card style",
+      "cardStyleGlass": "Glass (standard)",
+      "cardStyleSolid": "Solid",
+      "cardStyleTransparent": "Transparent",
+      "cardStyleMinimal": "Soft minimal",
+      "cardStyleNote": "Applies t' all gizmos & fav'rite tiles.",
+      "clockColorLabel": "Time & date",
+      "searchColorLabel": "Spyglass",
+      "reset": "Reset",
+      "clockColorNote": "Sets th' header horizon (empty = style standard).",
+      "searchColorNote": "Color fer th' spyglass area (empty = style standard).",
+      "widgetColorsLabel": "Gizmo colors"
+    },
+    "data": {
+      "label": "Cargo",
+      "export": "Export (.json)",
+      "import": "Import (.json)",
+      "presetsLabel": "Cargo presets",
+      "applyPreset": "Hoist preset",
+      "presetMeta": "Presets be exported JSONs under assets/presets/. User presets from assets/user-presets/ be merged automatically.",
+      "setupLabel": "Setup",
+      "restartOnboarding": "Restart setup",
+      "restartNote": "Reopens th' compact setup dialog.",
+      "noteLabel": "Scrap",
+      "noteText": "Export stores all cap'n log & cargo locally as JSON. Import overwrites existing entries."
+    },
+    "language": {
+      "label": "Language",
+      "auto": "Auto (Rig)"
+    },
+    "guideHtml": "<div class=\"row\"><label>User Guide</label><div><h5>Overview</h5><ul><li>Start page wit' spyglass, fav'rites, t'-do, scraps, weather, tidings.</li><li>All local: cargo stays in yer browser (localStorage).</li></ul><h5>Shortcuts</h5><ul><li>Ctrl/Cmd+K: open command palette</li><li>1-9: open first 9 fav'rites (when not typing)</li><li>/ : focus spyglass (also via palette)</li><li>Enter in spyglass: start spyglass</li><li>ESC: close modals</li><li>Palette: quick actions fer gizmos, theme, horizon, cargo, fav'rites</li><li>Palette: key C switches card style, \"Reset header colors\" resets spyglass & clock</li></ul><h5>Spyglass & Autocomplete</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>Custom shortcuts: JSON in cap'n log; {q} as placeholder</li><li>Autocomplete: bangs, shortcuts, recent spyglasses, wordlist (global + preset)</li><li>Tab accepts suggestion, Enter starts spyglass</li></ul><h5>Tiles</h5><ul><li>Drag & drop t' sort, click t' open</li><li>+ Tile: add a new fav'rite</li><li>Reset: restore standard fav'rites</li></ul><h5>Gizmos & Layout</h5><ul><li>Visibility per gizmo</li><li>Card style be global (glass, solid, transparent, soft minimal)</li><li>Custom colors fer clock/spyglass; reset restores style defaults</li><li>Gizmo colors & \"Tint gizmos\" set th' accent per card</li></ul><h5>Horizon</h5><ul><li>Presets, uploads, collections, rotation (time/theme/interval)</li><li>Accent color be extracted from th' active horizon</li></ul><h5>Cargo</h5><ul><li>Export/Import as JSON</li><li>Hoist cargo presets (assets/presets/*.json in th' repo)</li></ul></div></div>"
+  },
+  "onboarding": {
+    "title": "Start setup",
+    "progress": "Step {current} o' {total}",
+    "skip": "Skip setup",
+    "close": "Close",
+    "preset": {
+      "title": "Choose preset",
+      "hint": "Pick a preset or skip this step.",
+      "apply": "Hoist preset",
+      "meta": "Hoist a preset or skip.",
+      "optional": "Preset optional.",
+      "context": "Setup preset"
+    },
+    "appearance": {
+      "title": "Appearance",
+      "theme": "Theme",
+      "cardStyle": "Card style",
+      "background": "Horizon",
+      "rotation": "Enable rotation",
+      "keepCurrent": "Keep current image"
+    },
+    "search": {
+      "title": "Spyglass",
+      "engine": "Standard spyglass engine"
+    },
+    "widgets": {
+      "title": "Gizmos",
+      "defaultTransport": "Standard stop (transport)",
+      "tint": "Tint gizmos wit' accent"
+    },
+    "weather": {
+      "title": "Weather",
+      "defaultCity": "Standard city",
+      "note": "Ye can change everything later in cap'n log."
+    },
+    "prev": "Back",
+    "next": "Next",
+    "finish": "Done"
+  },
+  "palette": {
+    "placeholder": "Spyglass command or fav'rite... (Ctrl/Cmd+K)",
+    "groups": {
+      "command": "Commands",
+      "settings": "Cap'n log",
+      "search": "Spyglass",
+      "widgets": "Gizmos",
+      "theme": "Theme & Horizon",
+      "data": "Cargo",
+      "tiles": "Tiles",
+      "tile": "Fav'rites",
+      "quick": "Quick"
+    },
+    "search": {
+      "focus": "Focus spyglass",
+      "start": "Start spyglass",
+      "engine": "Engine: {engine}"
+    },
+    "settings": {
+      "open": "Open cap'n log",
+      "general": "Cap'n log: General",
+      "background": "Cap'n log: Horizon",
+      "search": "Cap'n log: Spyglass",
+      "widgets": "Cap'n log: Gizmos",
+      "data": "Cap'n log: Cargo",
+      "guide": "Cap'n log: Guide"
+    },
+    "theme": {
+      "cycle": "Cycle theme (Auto/Dark/Light)",
+      "auto": "Theme: Auto",
+      "dark": "Theme: Dark",
+      "light": "Theme: Light",
+      "resetHeader": "Reset header colors",
+      "recalcAccent": "Recalculate accent colors"
+    },
+    "cardStyle": {
+      "glass": "Card style: Glass",
+      "solid": "Card style: Solid",
+      "transparent": "Card style: Transparent",
+      "minimal": "Card style: Minimal"
+    },
+    "background": {
+      "toggleRotation": "Horizon: Toggle rotation",
+      "toggleLock": "Horizon: Lock/unlock rotation",
+      "preset": "Horizon: {label}"
+    },
+    "widgets": {
+      "showAll": "Gizmos: Show all",
+      "hideAll": "Gizmos: Hide all",
+      "toggle": "Gizmo: Toggle {widget}",
+      "focus": "Gizmo: Focus {widget}"
+    },
+    "quick": {
+      "addTodo": "Add todo",
+      "addNote": "Add scrap"
+    },
+    "tiles": {
+      "add": "Add tile",
+      "reset": "Reset tiles"
+    },
+    "refresh": {
+      "weather": "Hoist weather",
+      "news": "Hoist tidings",
+      "transport": "Hoist transport",
+      "system": "Hoist rig",
+      "all": "Hoist all gizmos"
+    },
+    "data": {
+      "export": "Export cargo",
+      "import": "Import cargo",
+      "preset": "Cargo preset: {label}"
+    }
+  },
+  "widgets": {
+    "todo": "T'-Do",
+    "notes": "Scraps",
+    "tiles": "Fav'rites",
+    "weather": "Weather",
+    "transport": "Transport",
+    "quote": "Quote",
+    "recent": "Recent",
+    "system": "Rig",
+    "news": "Tidings"
+  },
+  "background": {
+    "currentPreview": "Current horizon image",
+    "none": "Nay horizon",
+    "noImageSelected": "Nay image selected",
+    "rotationResume": "Resume rotation",
+    "rotationLock": "Lock rotation",
+    "tone": "Tone: {tone}",
+    "presets": {
+      "empty": "Nay presets available."
+    },
+    "favorites": {
+      "empty": "Nay fav'rites yet. Mark presets or uploads."
+    },
+    "subtitle": {
+      "preset": "Preset"
+    },
+    "upload": "Upload",
+    "uploadDrop": "Drop files here",
+    "uploadBrowse": "Choose file",
+    "uploadNote": "We resize images automatically (16:9, max 2560px) an' store them locally. Max {max} files.",
+    "uploads": {
+      "empty": "Nay uploads yet."
+    },
+    "collections": {
+      "count": "{count} sources",
+      "random": "Random",
+      "cache": "Stow offline",
+      "viewSources": "View sources",
+      "useRotation": "Use fer rotation",
+      "newLabel": "New collection",
+      "namePlaceholder": "Me collection",
+      "urlsPlaceholder": "One image URL per line",
+      "clear": "Clear fields",
+      "note": "URLs be stored locally. Remote sources need CORS fer images.",
+      "empty": "Nay collections yet.",
+      "minOneUrl": "Enter at least one URL.",
+      "emptyCollection": "Collection be empty.",
+      "saved": "Collection saved locally.",
+      "defaultName": "Collection {index}"
+    },
+    "rotation": {
+      "optionPreset": "Preset: {label}",
+      "optionUpload": "Upload: {label}",
+      "optionFavorite": "Fav'rite: {label}",
+      "optionCustom": "Custom: saved URL",
+      "noFixed": "Nay fixed image",
+      "enabled": "Enable automatic rotation",
+      "locked": "Rotation be currently locked.",
+      "active": "Horizons change according t' th' schedule.",
+      "mode": "Mode",
+      "modeTime": "Time-based",
+      "modeInterval": "Interval",
+      "modeTheme": "Theme",
+      "intervalLabel": "Interval in minutes",
+      "intervalNote": "Only relevant in interval mode.",
+      "sourcesLabel": "Sources fer random",
+      "scheduleLabel": "Schedule",
+      "themePlan": "Theme plan",
+      "themeLight": "Theme light",
+      "themeDark": "Theme dark",
+      "themeNote": "Theme plan be used when mode be Theme.",
+      "slot": {
+        "morning": "Morning 05-11",
+        "day": "Day 11-17",
+        "evening": "Evening 17-21",
+        "night": "Night 21-05"
+      }
+    },
+    "custom": {
+      "label": "Custom image URL",
+      "placeholder": "https://example.com/image.jpg",
+      "note": "URL be stored locally. Server must allow CORS fer images.",
+      "enterUrl": "Prithee enter a URL.",
+      "title": "Custom URL",
+      "subtitle": "Custom"
+    },
+    "actions": {
+      "apply": "Hoist",
+      "favorite": "Fav'rite",
+      "favorited": "Favorited",
+      "random": "Hoist random",
+      "undo": "Restore last image",
+      "lock": "Lock rotation",
+      "tint": "Tint gizmos"
+    },
+    "tabs": {
+      "presets": "Presets",
+      "favorites": "Fav'rites",
+      "uploads": "Uploads",
+      "collections": "Collections",
+      "rotation": "Rotation",
+      "custom": "Custom"
+    },
+    "loadError": "Hoist failed. Check CORS cap'n log.",
+    "noneAvailable": "Nay horizons available.",
+    "imageLoadError": "Image could not be loaded."
+  },
+  "data": {
+    "import": {
+      "confirm": "Import cargo? Existing entries will be overwritten.",
+      "failed": "Import failed: {error}"
+    },
+    "presets": {
+      "none": "Nay preset available.",
+      "missingFile": "Preset file missing.",
+      "fileMissing": "File not found",
+      "invalid": "Invalid preset",
+      "confirmApply": "Hoist {context} \"{name}\"? Existing entries will be overwritten.",
+      "loadFailed": "Preset hoist failed: {error}",
+      "loading": "Hoistin' presets...",
+      "noneFound": "Nay presets found",
+      "hint": "Place exported JSONs under assets/presets/ (manifest: assets/cargo-presets.json) or locally under assets/user-presets/.",
+      "hintShort": "Add a preset under assets/presets/ or assets/user-presets/.",
+      "userPrefix": "User: ",
+      "userApply": "Hoist local preset",
+      "apply": "Hoist preset",
+      "noneSelected": "Nay preset selected.",
+      "label": "Preset",
+      "defaultLabel": "Preset {index}",
+      "userDefault": "User preset {index}",
+      "userDescription": "Local preset from assets/user-presets/",
+      "tags": " (Tags: {tags})"
+    }
+  }
+}

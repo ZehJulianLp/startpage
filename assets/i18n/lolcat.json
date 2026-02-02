@@ -1,0 +1,490 @@
+{
+  "app": {
+    "title": "Startpage"
+  },
+  "common": {
+    "link": "Link",
+    "delete": "Del",
+    "remove": "Rm",
+    "save": "Sav",
+    "loading": "Loadin...",
+    "loadError": "Load failed",
+    "noMatches": "No matchiez",
+    "emptyDash": "--",
+    "dash": "-"
+  },
+  "header": {
+    "themeToggleTitle": "Dark/Light",
+    "settingsTitle": "Settnz"
+  },
+  "search": {
+    "placeholder": "Serch... (e.g. !yt lo-fi, !etc Home)",
+    "engine": {
+      "google": "Google",
+      "ddg": "DuckDuckGo",
+      "bing": "Bing",
+      "yt": "YouTube",
+      "wikipedia": "Wikipedia",
+      "maps": "Google Maps"
+    },
+    "suggest": {
+      "bang": "{bang} (Bang)",
+      "shortcut": "{shortcut} (Shortcut)",
+      "type": {
+        "bang": "Bang",
+        "shortcut": "Shortcut",
+        "recent": "Recent",
+        "word": "Word"
+      }
+    },
+    "recentShortcut": "Shortcut {shortcut} - {query}",
+    "recentSearch": "Serch ({engine}) - {query}"
+  },
+  "todo": {
+    "title": "To-Do",
+    "placeholder": "New task...",
+    "add": "Add",
+    "clearDoneTitle": "Rm completed",
+    "clearDone": "x clear",
+    "doneAria": "Done",
+    "prompt": "Todo"
+  },
+  "notes": {
+    "title": "Notz",
+    "placeholder": "Jot something down...",
+    "prompt": "Notez"
+  },
+  "tiles": {
+    "title": "Favrits",
+    "add": "+ Tile",
+    "resetTitle": "Restore defaults",
+    "edit": "Edit",
+    "promptTitle": "Title",
+    "promptUrl": "URL",
+    "invalidUrl": "Invalid URL",
+    "promptTitleNew": "Tile title",
+    "promptUrlNew": "URL (https://...)",
+    "resetConfirm": "Restore defalt tiles?"
+  },
+  "weather": {
+    "title": "Wezur today",
+    "cityPlaceholder": "Enter city...",
+    "setCity": "Set",
+    "pickLocation": "Pick a location...",
+    "source": "Source: Open-Meteo",
+    "loading": "Loadin wezur...",
+    "prompt": "Enter a location to load wezur.",
+    "tempEmpty": "-- degC",
+    "tempEmptyShort": "-- deg",
+    "minmaxEmpty": "-- / --  degC",
+    "noForecast": "No forecast",
+    "errors": {
+      "geocodingFailed": "Geocoding failed",
+      "locationNotFound": "Location not found",
+      "cityMissing": "City missing",
+      "fetchFailed": "Wezur fetch failed",
+      "loadFailed": "Wezur could not be loaded"
+    },
+    "codes": {
+      "0": "Clear",
+      "1": "Mostly clear",
+      "2": "Partly cloudy",
+      "3": "Cloudy",
+      "45": "Fog",
+      "48": "Fog",
+      "51": "Drizzle",
+      "53": "Drizzle",
+      "55": "Drizzle",
+      "61": "Rain",
+      "63": "Rain",
+      "65": "Heavy rain",
+      "71": "Snow",
+      "80": "Showers",
+      "95": "Thunderstorm",
+      "default": "Wezur"
+    }
+  },
+  "transport": {
+    "title": "Transport",
+    "durationAria": "Duration",
+    "duration30": "30 min",
+    "duration60": "60 min",
+    "duration90": "90 min",
+    "duration120": "120 min",
+    "refreshTitle": "Re-load",
+    "searchPlaceholder": "Serch stazhun...",
+    "noneSelected": "No stazhun selected",
+    "source": "Source: transport.rest",
+    "minQuery": "At least {count} characters",
+    "noMatches": "No matchiez",
+    "proxyTimeout": "Proxy timeout",
+    "loadError": "Load failed",
+    "noDepartures": "No departures",
+    "selectStation": "Select a stazhun...",
+    "type": {
+      "station": "Stazhun",
+      "stop": "Stop"
+    },
+    "platform": "Platform {platform}",
+    "cancelled": "Canzeld"
+  },
+  "quote": {
+    "title": "Quote / Nerd Nudge",
+    "list": [
+      "Moov fast, refactor often.",
+      "Accesibilitee isn't a featur - it's teh defalt.",
+      "Done > Purrfect. Iterate.",
+      "If it's not monitored, it doesn't exist.",
+      "Good UX is invisible. Bad UX is unforgettable.",
+      "Make it work, make it right, make it fast.",
+      "Small steps. Massive outcomes.",
+      "Simplicity scales. Complexity fails.",
+      "Automate teh boring stuff.",
+      "Meezhur twice, deplai once."
+    ]
+  },
+  "recent": {
+    "title": "Recent",
+    "note": "Notez: Only actions from dis start page (clicked tiles & serchez)."
+  },
+  "system": {
+    "title": "Sistem status",
+    "loading": "Loadin...",
+    "ram": "RAM: {value} GB",
+    "cpu": "CPU cores: {value}",
+    "network": "Network: {downlink} Mbit/s  *  {type}{saveData}",
+    "saveData": "  *  SaveData",
+    "noData": "No dataz available"
+  },
+  "news": {
+    "title": "Nuuz",
+    "refreshTitle": "Re-load",
+    "source": "RSS via Startpage Proxy (CORS proxy)",
+    "noItems": "No items"
+  },
+  "footer": {
+    "tagline": "Local-first dashboard  *  stores only in teh browser (localStorage)"
+  },
+  "settings": {
+    "title": "Settnz",
+    "close": "Close",
+    "tabs": {
+      "general": "General",
+      "background": "Bakground & Appearance",
+      "search": "Serch & Feeds",
+      "widgets": "Widjits",
+      "data": "Dataz",
+      "guide": "Guide"
+    },
+    "theme": {
+      "label": "Theme",
+      "auto": "Auto (Sistem)",
+      "dark": "Dark",
+      "light": "Light"
+    },
+    "background": {
+      "label": "Bakground"
+    },
+    "search": {
+      "engines": "Serch engines",
+      "bangsNote": "Supported bang shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Custom shortcuts below",
+      "wordlistLabel": "Autocomplete wordlist",
+      "wordlistPlaceholder": "Terms line by line or comma-separated",
+      "wordlistSave": "Sav",
+      "wordlistReset": "Clear",
+      "wordlistNote": "Global wordlist (assets/wordlist.json) and presetz wordlist r merged. Leave empty to use only teh global list.",
+      "shortcutsLabel": "Custom !shortcuts",
+      "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
+      "shortcutsNote": "Use <code>{q}</code> as placeholder for teh serch phrase. Without <code>{q}</code>, <code>?q=...</code> is appended.",
+      "feedsLabel": "Custom RSS feeds",
+      "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
+      "feedsNote": "JSON: name - feed URL. Dis list is merged wif teh defalt feeds.",
+      "invalidShortcuts": "Invalid shortcuts JSON",
+      "invalidFeeds": "Invalid feeds JSON"
+    },
+    "widgets": {
+      "visible": "Show widjits",
+      "defaultCityLabel": "Defalt city (wezur)",
+      "defaultCityPlaceholder": "e.g. Hanover",
+      "defaultTransportLabel": "Defalt stop (transport)",
+      "defaultTransportPlaceholder": "Serch stazhun...",
+      "cardStyleLabel": "Card style",
+      "cardStyleGlass": "Glass (defalt)",
+      "cardStyleSolid": "Solid",
+      "cardStyleTransparent": "Transparent",
+      "cardStyleMinimal": "Soft minimal",
+      "cardStyleNote": "Applies to all widjits & favrit tiles.",
+      "clockColorLabel": "Time & date",
+      "searchColorLabel": "Serch",
+      "reset": "Reset",
+      "clockColorNote": "Sets teh header bakground (empty = style defalt).",
+      "searchColorNote": "Color for teh serch area (empty = style defalt).",
+      "widgetColorsLabel": "Widjit colors"
+    },
+    "data": {
+      "label": "Dataz",
+      "export": "Export (.json)",
+      "import": "Import (.json)",
+      "presetsLabel": "Dataz presetz",
+      "applyPreset": "Load presetz",
+      "presetMeta": "Presetz r exported JSONs under assets/presetz/. User presetz from assets/user-presetz/ r merged automatically.",
+      "setupLabel": "Setup",
+      "restartOnboarding": "Restart setup",
+      "restartNote": "Reopens teh compact setup dialog.",
+      "noteLabel": "Notez",
+      "noteText": "Export stores all settnz & dataz locally as JSON. Import overwrites existing entries."
+    },
+    "language": {
+      "label": "Language",
+      "auto": "Auto (Sistem)"
+    },
+    "guideHtml": "<div class=\"row\"><label>User Guide</label><div><h5>Overview</h5><ul><li>Start page wif serch, favrits, to-do, notz, wezur, nuuz.</li><li>All local: dataz stays in ur browser (localStorage).</li></ul><h5>Shortcuts</h5><ul><li>Ctrl/Cmd+K: open command palette</li><li>1-9: open first 9 favrits (when not typing)</li><li>/ : focus serch (also via palette)</li><li>Enter in serch: start serch</li><li>ESC: close modals</li><li>Palette: quick actions for widjits, theme, bakground, dataz, favrits</li><li>Palette: key C switches card style, \"Reset header colors\" resets serch & clock</li></ul><h5>Serch & Autocomplete</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>Custom shortcuts: JSON in settnz; {q} as placeholder</li><li>Autocomplete: bangs, shortcuts, recent serchez, wordlist (global + presetz)</li><li>Tab accepts suggestion, Enter starts serch</li></ul><h5>Tiles</h5><ul><li>Drag & drop to sort, click to open</li><li>+ Tile: add a new favrit</li><li>Reset: restore defalt favrits</li></ul><h5>Widjits & Layout</h5><ul><li>Visibility per widjit</li><li>Card style is global (glass, solid, transparent, soft minimal)</li><li>Custom colors for clock/serch; reset restores style defaults</li><li>Widjit colors & \"Tint widjits\" set teh accent per card</li></ul><h5>Bakground</h5><ul><li>Presetz, uploads, collections, rotation (time/theme/interval)</li><li>Accent color is extracted from teh active bakground</li></ul><h5>Dataz</h5><ul><li>Export/Import as JSON</li><li>Load dataz presetz (assets/presetz/*.json in teh repo)</li></ul></div></div>"
+  },
+  "onboarding": {
+    "title": "Start setup",
+    "progress": "Step {current} of {total}",
+    "skip": "Skip setup",
+    "close": "Close",
+    "preset": {
+      "title": "Choose presetz",
+      "hint": "Pick a presetz or skip dis step.",
+      "apply": "Applai presetz",
+      "meta": "Applai a presetz or skip.",
+      "optional": "Presetz optional.",
+      "context": "Setup presetz"
+    },
+    "appearance": {
+      "title": "Appearance",
+      "theme": "Theme",
+      "cardStyle": "Card style",
+      "background": "Bakground",
+      "rotation": "Enable rotation",
+      "keepCurrent": "Keep current image"
+    },
+    "search": {
+      "title": "Serch",
+      "engine": "Defalt serch engine"
+    },
+    "widgets": {
+      "title": "Widjits",
+      "defaultTransport": "Defalt stop (transport)",
+      "tint": "Tint widjits wif accent"
+    },
+    "weather": {
+      "title": "Wezur",
+      "defaultCity": "Defalt city",
+      "note": "U can change everything later in settnz."
+    },
+    "prev": "Back",
+    "next": "Next",
+    "finish": "Done"
+  },
+  "palette": {
+    "placeholder": "Serch command or favrit... (Ctrl/Cmd+K)",
+    "groups": {
+      "command": "Commands",
+      "settings": "Settnz",
+      "search": "Serch",
+      "widgets": "Widjits",
+      "theme": "Theme & Bakground",
+      "data": "Dataz",
+      "tiles": "Tiles",
+      "tile": "Favrits",
+      "quick": "Quick"
+    },
+    "search": {
+      "focus": "Focus serch",
+      "start": "Start serch",
+      "engine": "Engine: {engine}"
+    },
+    "settings": {
+      "open": "Open settnz",
+      "general": "Settnz: General",
+      "background": "Settnz: Bakground",
+      "search": "Settnz: Serch",
+      "widgets": "Settnz: Widjits",
+      "data": "Settnz: Dataz",
+      "guide": "Settnz: Guide"
+    },
+    "theme": {
+      "cycle": "Cycle theme (Auto/Dark/Light)",
+      "auto": "Theme: Auto",
+      "dark": "Theme: Dark",
+      "light": "Theme: Light",
+      "resetHeader": "Reset header colors",
+      "recalcAccent": "Recalculate accent colors"
+    },
+    "cardStyle": {
+      "glass": "Card style: Glass",
+      "solid": "Card style: Solid",
+      "transparent": "Card style: Transparent",
+      "minimal": "Card style: Minimal"
+    },
+    "background": {
+      "toggleRotation": "Bakground: Toggle rotation",
+      "toggleLock": "Bakground: Lock/unlock rotation",
+      "preset": "Bakground: {label}"
+    },
+    "widgets": {
+      "showAll": "Widjits: Show all",
+      "hideAll": "Widjits: Hide all",
+      "toggle": "Widjit: Toggle {widget}",
+      "focus": "Widjit: Focus {widget}"
+    },
+    "quick": {
+      "addTodo": "Add todo",
+      "addNote": "Add notez"
+    },
+    "tiles": {
+      "add": "Add tile",
+      "reset": "Reset tiles"
+    },
+    "refresh": {
+      "weather": "Refrezh wezur",
+      "news": "Refrezh nuuz",
+      "transport": "Refrezh transport",
+      "system": "Refrezh sistem",
+      "all": "Refrezh all widjits"
+    },
+    "data": {
+      "export": "Export dataz",
+      "import": "Import dataz",
+      "preset": "Dataz presetz: {label}"
+    }
+  },
+  "widgets": {
+    "todo": "To-Do",
+    "notes": "Notz",
+    "tiles": "Favrits",
+    "weather": "Wezur",
+    "transport": "Transport",
+    "quote": "Quote",
+    "recent": "Recent",
+    "system": "Sistem",
+    "news": "Nuuz"
+  },
+  "background": {
+    "currentPreview": "Current bakground image",
+    "none": "No bakground",
+    "noImageSelected": "No image selected",
+    "rotationResume": "Resume rotation",
+    "rotationLock": "Lock rotation",
+    "tone": "Tone: {tone}",
+    "presets": {
+      "empty": "No presetz available."
+    },
+    "favorites": {
+      "empty": "No favrits yet. Mark presetz or uploads."
+    },
+    "subtitle": {
+      "preset": "Presetz"
+    },
+    "upload": "Upload",
+    "uploadDrop": "Drop files here",
+    "uploadBrowse": "Choose file",
+    "uploadNote": "We resize images automatically (16:9, max 2560px) and store them locally. Max {max} files.",
+    "uploads": {
+      "empty": "No uploads yet."
+    },
+    "collections": {
+      "count": "{count} sources",
+      "random": "Rndm",
+      "cache": "Sav offline",
+      "viewSources": "View sources",
+      "useRotation": "Use for rotation",
+      "newLabel": "New collection",
+      "namePlaceholder": "My collection",
+      "urlsPlaceholder": "One image URL per line",
+      "clear": "Clear fields",
+      "note": "URLs r stored locally. Remote sources need CORS for images.",
+      "empty": "No collections yet.",
+      "minOneUrl": "Enter at least one URL.",
+      "emptyCollection": "Collection is empty.",
+      "saved": "Collection saved locally.",
+      "defaultName": "Collection {index}"
+    },
+    "rotation": {
+      "optionPreset": "Presetz: {label}",
+      "optionUpload": "Upload: {label}",
+      "optionFavorite": "Favrit: {label}",
+      "optionCustom": "Custom: saved URL",
+      "noFixed": "No fixed image",
+      "enabled": "Enable automatic rotation",
+      "locked": "Rotation is currently locked.",
+      "active": "Bakgroundz change according to teh schedule.",
+      "mode": "Mode",
+      "modeTime": "Time-based",
+      "modeInterval": "Interval",
+      "modeTheme": "Theme",
+      "intervalLabel": "Interval in minutes",
+      "intervalNote": "Only relevant in interval mode.",
+      "sourcesLabel": "Sources for rndm",
+      "scheduleLabel": "Schedule",
+      "themePlan": "Theme plan",
+      "themeLight": "Theme light",
+      "themeDark": "Theme dark",
+      "themeNote": "Theme plan is used when mode is Theme.",
+      "slot": {
+        "morning": "Morning 05-11",
+        "day": "Day 11-17",
+        "evening": "Evening 17-21",
+        "night": "Night 21-05"
+      }
+    },
+    "custom": {
+      "label": "Custom image URL",
+      "placeholder": "https://example.com/image.jpg",
+      "note": "URL is stored locally. Server must allow CORS for images.",
+      "enterUrl": "Plz enter a URL.",
+      "title": "Custom URL",
+      "subtitle": "Custom"
+    },
+    "actions": {
+      "apply": "Applai",
+      "favorite": "Favrit",
+      "favorited": "Favorited",
+      "random": "Load rndm",
+      "undo": "Restore last image",
+      "lock": "Lock rotation",
+      "tint": "Tint widjits"
+    },
+    "tabs": {
+      "presets": "Presetz",
+      "favorites": "Favrits",
+      "uploads": "Uploads",
+      "collections": "Collections",
+      "rotation": "Rotation",
+      "custom": "Custom"
+    },
+    "loadError": "Load failed. Check CORS settnz.",
+    "noneAvailable": "No bakgroundz available.",
+    "imageLoadError": "Image could not be loaded."
+  },
+  "data": {
+    "import": {
+      "confirm": "Import dataz? Existing entries will be overwritten.",
+      "failed": "Import failed: {error}"
+    },
+    "presets": {
+      "none": "No presetz available.",
+      "missingFile": "Presetz file missing.",
+      "fileMissing": "File not found",
+      "invalid": "Invalid presetz",
+      "confirmApply": "Applai {context} \"{name}\"? Existing entries will be overwritten.",
+      "loadFailed": "Presetz load failed: {error}",
+      "loading": "Loadin presetz...",
+      "noneFound": "No presetz found",
+      "hint": "Place exported JSONs under assets/presetz/ (manifest: assets/dataz-presetz.json) or locally under assets/user-presetz/.",
+      "hintShort": "Add a presetz under assets/presetz/ or assets/user-presetz/.",
+      "userPrefix": "User: ",
+      "userApply": "Applai local presetz",
+      "apply": "Applai presetz",
+      "noneSelected": "No presetz selected.",
+      "label": "Presetz",
+      "defaultLabel": "Presetz {index}",
+      "userDefault": "User presetz {index}",
+      "userDescription": "Local presetz from assets/user-presetz/",
+      "tags": " (Tags: {tags})"
+    }
+  }
+}

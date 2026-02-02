@@ -6,6 +6,231 @@
     set: (k, v) => localStorage.setItem(k, JSON.stringify(v))
   };
 
+  const I18N_DIR = 'assets/i18n/';
+  const I18N_LOCALES = I18N_DIR + 'locales.json';
+  const I18N_FALLBACK = 'en-us';
+  let i18nCurrent = {};
+  let i18nFallback = {};
+  let i18nLocale = I18N_FALLBACK;
+  let i18nAvailable = null;
+
+  function normalizeLocale(value){
+    if(!value) return '';
+    return String(value).trim().toLowerCase().replace('_','-');
+  }
+
+  const I18N_INTL_ALIASES = {
+    lolcat: 'en-US',
+    pirate: 'en-US',
+    yoda: 'en-US',
+    leet: 'en-US',
+    uwu: 'en-US'
+  };
+
+  function localeToIntl(locale){
+    const norm = normalizeLocale(locale);
+    if(!norm) return undefined;
+    if(I18N_INTL_ALIASES[norm]) return I18N_INTL_ALIASES[norm];
+    const parts = norm.split('-');
+    if(parts.length === 1) return parts[0];
+    return `${parts[0]}-${parts[1].toUpperCase()}`;
+  }
+
+  function getI18nValue(obj, key){
+    if(!obj || !key) return undefined;
+    const parts = String(key).split('.');
+    let cur = obj;
+    for(const part of parts){
+      if(!cur || typeof cur !== 'object') return undefined;
+      cur = cur[part];
+    }
+    return cur;
+  }
+
+  function interpolate(str, vars){
+    if(!vars || typeof str !== 'string') return str;
+    return str.replace(/\{(\w+)\}/g, (m, k)=> (k in vars ? String(vars[k]) : m));
+  }
+
+  function tRaw(key){
+    const primary = getI18nValue(i18nCurrent, key);
+    if(primary !== undefined) return primary;
+    return getI18nValue(i18nFallback, key);
+  }
+
+  function t(key, vars, fallback){
+    const value = tRaw(key);
+    const base = (typeof value === 'string') ? value : (typeof fallback === 'string' ? fallback : '');
+    return interpolate(base, vars);
+  }
+
+  async function loadLocaleList(){
+    if(i18nAvailable) return i18nAvailable;
+    try{
+      const res = await fetch(I18N_LOCALES);
+      if(!res.ok) throw new Error('locales.json missing');
+      const data = await res.json();
+      if(!Array.isArray(data)) throw new Error('locales.json not array');
+      i18nAvailable = data.map(entry => ({
+        id: normalizeLocale(entry.id || entry.locale || ''),
+        label: entry.label || entry.name || entry.id
+      })).filter(entry => entry.id);
+    }catch(err){
+      i18nAvailable = [
+        { id:'en-us', label:'English (US)' },
+        { id:'de-de', label:'Deutsch (DE)' }
+      ];
+    }
+    return i18nAvailable;
+  }
+
+  function detectLocale(available){
+    const list = Array.isArray(available) ? available : [];
+    const ids = list.map(l => normalizeLocale(l.id));
+    const candidates = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language])
+      .map(l => normalizeLocale(l));
+    for(const cand of candidates){
+      if(!cand) continue;
+      if(ids.includes(cand)) return cand;
+      const base = cand.split('-')[0];
+      const match = ids.find(id => id === base || id.startsWith(base + '-'));
+      if(match) return match;
+    }
+    return I18N_FALLBACK;
+  }
+
+  async function loadLocaleFile(locale){
+    const loc = normalizeLocale(locale);
+    if(!loc) return {};
+    const res = await fetch(I18N_DIR + loc + '.json');
+    if(!res.ok) throw new Error('locale file missing');
+    return await res.json();
+  }
+
+  function applyI18n(root=document){
+    $$('[data-i18n]', root).forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const value = t(key);
+      if(value) el.textContent = value;
+    });
+    $$('[data-i18n-html]', root).forEach(el => {
+      const key = el.getAttribute('data-i18n-html');
+      const value = t(key);
+      if(value) el.innerHTML = value;
+    });
+    $$('[data-i18n-placeholder]', root).forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      const value = t(key);
+      if(value) el.setAttribute('placeholder', value);
+    });
+    $$('[data-i18n-title]', root).forEach(el => {
+      const key = el.getAttribute('data-i18n-title');
+      const value = t(key);
+      if(value) el.setAttribute('title', value);
+    });
+    $$('[data-i18n-aria-label]', root).forEach(el => {
+      const key = el.getAttribute('data-i18n-aria-label');
+      const value = t(key);
+      if(value) el.setAttribute('aria-label', value);
+    });
+    $$('[data-i18n-value]', root).forEach(el => {
+      const key = el.getAttribute('data-i18n-value');
+      const value = t(key);
+      if(value) el.setAttribute('value', value);
+    });
+  }
+
+  async function setLocale(nextLocale, opts={ persist:true, refresh:true }){
+    const normalized = normalizeLocale(nextLocale) || I18N_FALLBACK;
+    let data = {};
+    try{
+      data = await loadLocaleFile(normalized);
+    }catch(err){
+      if(normalized !== I18N_FALLBACK){
+        return setLocale(I18N_FALLBACK, opts);
+      }
+    }
+    i18nCurrent = data || {};
+    i18nLocale = normalized;
+    const intl = localeToIntl(normalized);
+    if(intl) document.documentElement.setAttribute('lang', intl);
+    document.title = t('app.title', null, document.title);
+    if(opts && opts.persist === false) store.set('ui.locale', 'auto');
+    else if(opts && opts.persist !== false) store.set('ui.locale', normalized);
+    applyI18n();
+    if(opts && opts.refresh !== false) refreshLocalizedUi();
+  }
+
+  async function initI18n(){
+    i18nFallback = await loadLocaleFile(I18N_FALLBACK).catch(()=> ({}));
+    const locales = await loadLocaleList();
+    const stored = normalizeLocale(store.get('ui.locale', 'auto'));
+    const resolved = stored && stored !== 'auto' ? stored : detectLocale(locales);
+    await setLocale(resolved, { persist: stored !== 'auto', refresh: false });
+    await renderLocaleSelect();
+  }
+
+  function getLocaleLang(){
+    const loc = normalizeLocale(i18nLocale || I18N_FALLBACK);
+    if(!loc) return 'en';
+    return loc.split('-')[0] || 'en';
+  }
+
+  async function renderLocaleSelect(){
+    const select = $('#localeSelect');
+    if(!select) return;
+    const locales = await loadLocaleList();
+    select.innerHTML = '';
+    const autoLabel = t('settings.language.auto', null, 'Auto (System)');
+    const optAuto = document.createElement('option');
+    optAuto.value = 'auto';
+    optAuto.textContent = autoLabel;
+    select.appendChild(optAuto);
+    locales.forEach(loc => {
+      const opt = document.createElement('option');
+      opt.value = loc.id;
+      opt.textContent = loc.label || loc.id;
+      select.appendChild(opt);
+    });
+    const stored = normalizeLocale(store.get('ui.locale', 'auto')) || 'auto';
+    select.value = stored;
+    select.addEventListener('change', async e=>{
+      const val = normalizeLocale(e.target.value);
+      if(!val || val === 'auto'){
+        store.set('ui.locale', 'auto');
+        const resolved = detectLocale(await loadLocaleList());
+        await setLocale(resolved, { persist:false });
+        return;
+      }
+      await setLocale(val, { persist:true });
+    });
+  }
+
+  function refreshLocalizedUi(){
+    document.title = t('app.title', null, document.title);
+    applyI18n();
+    if($('#settingsModal')){
+      rebuildSettingsPanels();
+      fillSettings();
+      selectSettingsTab(store.get('settings.tab','general'));
+    }
+    renderEngines();
+    renderTodos();
+    renderTiles();
+    renderRecent();
+    renderSystem();
+    loadQuote();
+    fillNewsSources();
+    loadNews();
+    loadWeather();
+    loadTransportDepartures();
+    const palette = $('#palette');
+    if(palette && palette.classList.contains('open') && window.__closePalette){
+      window.__closePalette();
+      openPalette();
+    }
+  }
+
   function normalizeInlineWordlist(list){
     if(!Array.isArray(list)) return [];
     const cleaned = list.map(w => String(w || '').trim()).filter(Boolean);
@@ -33,12 +258,12 @@
       try {
         const obj = JSON.parse(reader.result);
         if(!obj || typeof obj !== 'object') throw new Error('Invalid JSON');
-        if(!confirm('Daten importieren? Bestehende Einträge werden überschrieben.')) return;
+        if(!confirm(t('data.import.confirm'))) return;
         if(!('wordlist.inline' in obj)) obj['wordlist.inline'] = [];
         obj['wordlist.inline'] = normalizeInlineWordlist(obj['wordlist.inline']);
         Object.keys(obj).forEach(k=> localStorage.setItem(k, JSON.stringify(obj[k])));
         location.reload();
-      } catch(err){ alert('Import fehlgeschlagen: ' + err.message); }
+      } catch(err){ alert(t('data.import.failed', { error: err.message }, 'Import failed: {error}')); }
     };
     reader.readAsText(file);
     ev.target.value = '';
@@ -98,8 +323,8 @@
         const safeId = base.replace(/[^a-z0-9]+/ig,'-').replace(/^-+|-+$/g,'') || idx;
         return normalizePresetEntry({
           id: `user-${safeId}`,
-          name: human || `User Preset ${idx+1}`,
-          description: 'Lokales Preset aus assets/user-presets/',
+          name: human || t('data.presets.userDefault', { index: idx+1 }),
+          description: t('data.presets.userDescription', null, 'Local preset from assets/user-presets/'),
           file: file,
           tags: ['user']
         }, 'user', idx);
@@ -125,22 +350,23 @@
   }
 
   async function applyPresetFromEntry(current, contextLabel='Preset', opts={ reload:true, markDone:true }){
-    if(!current){ alert('Kein Preset verfügbar.'); return; }
-    if(!current.file){ alert('Preset-Datei fehlt.'); return; }
+    if(!current){ alert(t('data.presets.none')); return; }
+    if(!current.file){ alert(t('data.presets.missingFile')); return; }
     try{
       const res = await fetch(current.file);
-      if(!res.ok) throw new Error('Datei nicht gefunden');
+      if(!res.ok) throw new Error(t('data.presets.fileMissing'));
       const obj = await res.json();
-      if(!obj || typeof obj !== 'object') throw new Error('Preset ungültig');
+      if(!obj || typeof obj !== 'object') throw new Error(t('data.presets.invalid'));
       if(!('wordlist.inline' in obj)) obj['wordlist.inline'] = [];
       obj['wordlist.inline'] = normalizeInlineWordlist(obj['wordlist.inline']);
-      const name = current.name || current.id || 'Preset';
-      if(!confirm(`${contextLabel} "${name}" anwenden? Bestehende Einträge werden überschrieben.`)) return;
+      const name = current.name || current.id || t('data.presets.label');
+      const context = contextLabel || t('data.presets.label');
+      if(!confirm(t('data.presets.confirmApply', { context, name }))) return;
       Object.keys(obj).forEach(k=> localStorage.setItem(k, JSON.stringify(obj[k])));
       if(opts.markDone) store.set('onboarding.done', true);
       if(opts.reload !== false) location.reload();
     }catch(err){
-      alert('Preset laden fehlgeschlagen: ' + err.message);
+      alert(t('data.presets.loadFailed', { error: err.message }, 'Preset load failed: {error}'));
     }
   }
 
@@ -152,19 +378,19 @@
     select.innerHTML = '';
     select.disabled = true;
     if(btn) btn.disabled = true;
-    meta.textContent = 'Lade Presets...';
+    meta.textContent = t('data.presets.loading');
     const presets = await loadDataPresets();
     if(!presets.length){
-      const opt = document.createElement('option'); opt.value=''; opt.textContent='Keine Presets gefunden';
+      const opt = document.createElement('option'); opt.value=''; opt.textContent=t('data.presets.noneFound');
       select.appendChild(opt);
-      meta.textContent = 'Lege exportierte JSONs unter assets/presets/ (Manifest: assets/data-presets.json) oder lokal unter assets/user-presets/ ab.';
+      meta.textContent = t('data.presets.hint');
       return;
     }
     presets.forEach((p,i)=>{
       const opt = document.createElement('option');
       opt.value = p.id || 'preset-' + i;
-      const label = p.name || p.id || ('Preset ' + (i+1));
-      const prefix = p.source === 'user' && !/^user:/i.test(String(label).trim()) ? 'User: ' : '';
+      const label = p.name || p.id || t('data.presets.defaultLabel', { index: i+1 });
+      const prefix = p.source === 'user' && !/^user:/i.test(String(label).trim()) ? t('data.presets.userPrefix') : '';
       opt.textContent = prefix + label;
       select.appendChild(opt);
     });
@@ -182,12 +408,12 @@
     if(current){
       const tags = Array.isArray(current.tags) ? [...current.tags] : [];
       if(current.source === 'user' && !tags.includes('user')) tags.unshift('user');
-      const tagText = tags.length ? ` (Tags: ${tags.join(', ')})` : '';
-      const description = current.description || (current.source === 'user' ? 'Lokales Preset anwenden' : 'Preset anwenden');
+      const tagText = tags.length ? t('data.presets.tags', { tags: tags.join(', ') }) : '';
+      const description = current.description || (current.source === 'user' ? t('data.presets.userApply') : t('data.presets.apply'));
       meta.textContent = description + tagText;
       select.value = current.id || select.value;
     } else {
-      meta.textContent = 'Kein Preset ausgewählt.';
+      meta.textContent = t('data.presets.noneSelected');
     }
   }
 
@@ -196,23 +422,24 @@
     if(!select) return;
     const presets = await loadDataPresets();
     const current = presets.find(p => String(p.id||'') === select.value) || presets[0];
-    await applyPresetFromEntry(current, 'Preset');
+    await applyPresetFromEntry(current, t('data.presets.label'));
   }
 
   function prettyDate(d=new Date()) {
-    const fmt = new Intl.DateTimeFormat(undefined, { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+    const fmt = new Intl.DateTimeFormat(localeToIntl(i18nLocale) || undefined, { weekday:'long', year:'numeric', month:'long', day:'numeric' });
     return fmt.format(d);
   }
 
-  function openUrl(url, title='Link') {
-    addRecent({ title, url });
+  function openUrl(url, title){
+    const label = title || t('common.link', null, 'Link');
+    addRecent({ title: label, url });
     window.location.href = url;
   }
 
   // ===== Clock & Date
   function tickClock(){
     const now = new Date();
-    $('#clock').textContent = now.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+    $('#clock').textContent = now.toLocaleTimeString(localeToIntl(i18nLocale) || undefined, {hour:'2-digit', minute:'2-digit'});
     $('#date').textContent = prettyDate(now);
     requestAnimationFrame(()=> setTimeout(tickClock, 1000 - (now.getTime()%1000)));
   }
@@ -235,7 +462,7 @@
     ddg: q => `https://duckduckgo.com/?q=${encodeURIComponent(q)}`,
     bing: q => `https://www.bing.com/search?q=${encodeURIComponent(q)}`,
     yt: q => `https://www.youtube.com/results?search_query=${encodeURIComponent(q)}`,
-    wikipedia: q => `https://de.wikipedia.org/wiki/Spezial:Suche?search=${encodeURIComponent(q)}`,
+    wikipedia: q => `https://${getLocaleLang()}.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(q)}`,
     maps: q => `https://www.google.com/maps/search/${encodeURIComponent(q)}`
   };
   const BANGS = { '!g':'google', '!ddg':'ddg', '!bing':'bing', '!yt':'yt', '!wiki':'wikipedia', '!maps':'maps' };
@@ -280,10 +507,6 @@
     const out = [];
     list.forEach(entry=>{
       if(entry.type === 'search' && entry.query) out.push(String(entry.query));
-      else if(entry.title && entry.title.startsWith('Suche')){
-        const parts = entry.title.split(' – ');
-        if(parts[1]) out.push(parts[1].trim());
-      }
     });
     return out;
   }
@@ -305,8 +528,8 @@
     };
 
     const shortcuts = getShortcuts();
-    Object.keys(BANGS).forEach(b=>{ if(!q || b.startsWith(q)) push(b, `${b} (Bang)`, 'bang'); });
-    Object.keys(shortcuts).forEach(s=>{ if(!q || s.startsWith(q)) push(s, `${s} (Shortcut)`, 'shortcut'); });
+    Object.keys(BANGS).forEach(b=>{ if(!q || b.startsWith(q)) push(b, t('search.suggest.bang', { bang: b }, `${b} (Bang)`), 'bang'); });
+    Object.keys(shortcuts).forEach(s=>{ if(!q || s.startsWith(q)) push(s, t('search.suggest.shortcut', { shortcut: s }, `${s} (Shortcut)`), 'shortcut'); });
     recentSearchQueries().forEach(r=>{ if(!q || r.toLowerCase().includes(q)) push(r, r, 'recent'); });
 
     if(lastToken.length){
@@ -328,7 +551,7 @@
       const li = document.createElement('div');
       li.className = 'suggest-item' + (i===0 ? ' active' : '');
       li.setAttribute('data-index', String(i));
-      li.innerHTML = `<span class="suggest-type">${s.type}</span><span class="suggest-text">${escapeHtml(s.label)}</span>`;
+      li.innerHTML = `<span class="suggest-type">${escapeHtml(t(`search.suggest.type.${s.type}`, null, s.type))}</span><span class="suggest-text">${escapeHtml(s.label)}</span>`;
       li.addEventListener('mouseenter', ()=> setSearchSuggestActive(i, false));
       li.addEventListener('mousedown', e=>{ e.preventDefault(); selectSearchSuggestion(i, false); });
       box.appendChild(li);
@@ -380,7 +603,7 @@
       let target = String(shortcuts[first]);
       if(target.includes('{q}')) target = target.replaceAll('{q}', encodeURIComponent(rest));
       else if(rest) target += (target.includes('?') ? '&' : '?') + 'q=' + encodeURIComponent(rest);
-      addRecent({ title: `Shortcut ${first} – ${rest||''}`, url: target });
+      addRecent({ title: t('search.recentShortcut', { shortcut: first, query: rest||'' }), url: target });
       window.location.href = target; return;
     }
 
@@ -388,7 +611,7 @@
     let engine = $('#engine').value;
     if(BANGS[first]){ engine = BANGS[first]; q = q.replace(first, '').trim(); }
     const url = ENGINES[engine](q);
-    addRecent({ title: `Suche (${engine}) – ${q}`, url, query:q, type:'search' });
+    addRecent({ title: t('search.recentSearch', { engine, query: q }), url, query:q, type:'search' });
     renderSearchSuggest([]);
     window.location.href = url;
   }
@@ -398,13 +621,13 @@
     const list = store.get('todos', []);
     const wrap = $('#todoList');
     wrap.innerHTML = '';
-    list.forEach((t, i) => {
+    list.forEach((item, i) => {
       const el = document.createElement('div');
-      el.className = 'todo-item' + (t.done ? ' done' : '');
+      el.className = 'todo-item' + (item.done ? ' done' : '');
       el.innerHTML = `
-        <input type="checkbox" ${t.done?'checked':''} aria-label="Fertig">
-        <div class="title">${escapeHtml(t.text)}</div>
-        <button class="btn" title="Löschen">🗑</button>
+        <input type="checkbox" ${item.done?'checked':''} aria-label="${escapeHtml(t('todo.doneAria'))}">
+        <div class="title">${escapeHtml(item.text)}</div>
+        <button class="btn" title="${escapeHtml(t('common.delete'))}">🗑</button>
       `;
       el.querySelector('input').addEventListener('change', e=>{
         list[i].done = e.target.checked; store.set('todos', list); renderTodos();
@@ -450,28 +673,28 @@
   function renderTiles(){
     const data = store.get('tiles', defaultTiles());
     const grid = $('#tiles'); grid.innerHTML = '';
-    data.forEach((t, i)=>{
+    data.forEach((tile, i)=>{
       const el = document.createElement('div');
       el.className='tile';
       el.draggable = true;
-      const host = (new URL(t.url)).hostname;
+      const host = (new URL(tile.url)).hostname;
       const firstLetter = host.split('.')[0][0]?.toUpperCase() || '·';
       el.innerHTML = `
-        <div class="favicon"><img alt="favicon" src="https://www.google.com/s2/favicons?sz=64&domain_url=${encodeURIComponent(t.url)}"></div>
+        <div class="favicon"><img alt="favicon" src="https://www.google.com/s2/favicons?sz=64&domain_url=${encodeURIComponent(tile.url)}"></div>
         <div class="meta">
-          <a href="#" class="title">${escapeHtml(t.title)}</a>
+          <a href="#" class="title">${escapeHtml(tile.title)}</a>
           <div class="url">${escapeHtml(host)}</div>
         </div>
         <div class="actions">
-          <button title="Bearbeiten" aria-label="Bearbeiten">✏️</button>
-          <button title="Löschen" aria-label="Löschen">🗑️</button>
+          <button title="${escapeHtml(t('tiles.edit'))}" aria-label="${escapeHtml(t('tiles.edit'))}">✏️</button>
+          <button title="${escapeHtml(t('common.delete'))}" aria-label="${escapeHtml(t('common.delete'))}">🗑️</button>
         </div>`;
 
       // Fallback, wenn Favicon nicht lädt → Buchstabe zeigen
       const img = el.querySelector('.favicon img');
       img.addEventListener('error', ()=>{ const fv=el.querySelector('.favicon'); fv.textContent=firstLetter; img.remove(); });
 
-      el.querySelector('.title').addEventListener('click', (e)=>{ e.preventDefault(); openUrl(t.url, t.title); });
+      el.querySelector('.title').addEventListener('click', (e)=>{ e.preventDefault(); openUrl(tile.url, tile.title); });
       el.querySelectorAll('button')[1].addEventListener('click', ()=>{ data.splice(i,1); store.set('tiles', data); renderTiles(); });
       el.querySelectorAll('button')[0].addEventListener('click', ()=> editTile(i));
 
@@ -498,19 +721,19 @@
   function editTile(index){
     const data = store.get('tiles', defaultTiles());
     const t = data[index];
-    const title = prompt('Titel', t.title);
+    const title = prompt(t('tiles.promptTitle'), t.title);
     if(title===null) return;
-    const url = prompt('URL', t.url);
+    const url = prompt(t('tiles.promptUrl'), t.url);
     if(url===null) return;
-    try { new URL(url) } catch { alert('Ungültige URL'); return }
+    try { new URL(url) } catch { alert(t('tiles.invalidUrl')); return }
     data[index] = { ...t, title, url };
     store.set('tiles', data); renderTiles();
   }
 
   function addTile(){
-    const title = prompt('Titel der Kachel'); if(!title) return;
-    const url = prompt('URL (https://…)'); if(!url) return;
-    try { new URL(url) } catch { alert('Ungültige URL'); return }
+    const title = prompt(t('tiles.promptTitleNew')); if(!title) return;
+    const url = prompt(t('tiles.promptUrlNew')); if(!url) return;
+    try { new URL(url) } catch { alert(t('tiles.invalidUrl')); return }
     const data = store.get('tiles', defaultTiles());
     data.unshift({ title, url });
     store.set('tiles', data); renderTiles();
@@ -535,17 +758,18 @@
 
   // ===== Weather (Open‑Meteo)
   async function lookupCity(name){
-    const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(name)}&count=1&language=de&format=json`);
-    if(!res.ok) throw new Error('Geocoding fehlgeschlagen');
+    const lang = getLocaleLang();
+    const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(name)}&count=1&language=${encodeURIComponent(lang)}&format=json`);
+    if(!res.ok) throw new Error(t('weather.errors.geocodingFailed'));
     const data = await res.json();
-    if(!data || !data.results || !data.results.length) throw new Error('Ort nicht gefunden');
+    if(!data || !data.results || !data.results.length) throw new Error(t('weather.errors.locationNotFound'));
     const c = data.results[0];
     return { name: `${c.name}${c.admin1 ? ', '+c.admin1 : ''}`, lat: c.latitude, lon: c.longitude };
   }
 
   async function resolveCity(city){
     const name = (city || '').trim();
-    if(!name) throw new Error('Stadt fehlt');
+    if(!name) throw new Error(t('weather.errors.cityMissing'));
     const cached = store.get('weather.coords', null);
     const fresh = 1000*60*60*12; // 12h cache
     if(cached && cached.city === name && (Date.now() - cached.ts) < fresh) return cached;
@@ -556,8 +780,10 @@
   }
 
   function wmoText(code){
-    const map = { 0:'Klar', 1:'Überwiegend klar', 2:'Wechselhaft', 3:'Bewölkt', 45:'Nebel', 48:'Nebel', 51:'Sprühregen', 53:'Sprühregen', 55:'Sprühregen', 61:'Regen', 63:'Regen', 65:'Starker Regen', 71:'Schnee', 80:'Schauer', 95:'Gewitter' };
-    return map[code] || 'Wetter';
+    const key = `weather.codes.${code}`;
+    const label = tRaw(key);
+    if(typeof label === 'string') return label;
+    return t('weather.codes.default');
   }
 
   function weatherIconSVG(code){
@@ -607,9 +833,9 @@
     const textEl = $('#weatherText');
     const minmaxEl = $('#minmax');
     const hourlyEl = $('#hourly');
-    textEl.textContent = city ? 'Lade Wetter...' : 'Ort eingeben, um Wetter zu laden.';
-    tempEl.textContent = '—°C';
-    minmaxEl.textContent = '— / — °C';
+    textEl.textContent = city ? t('weather.loading') : t('weather.prompt');
+    tempEl.textContent = t('weather.tempEmpty', null, '—°C');
+    minmaxEl.textContent = t('weather.minmaxEmpty', null, '— / — °C');
     hourlyEl.innerHTML = '';
     updateWeatherIcon(null);
     if(!city) return;
@@ -618,17 +844,17 @@
       const loc = await resolveCity(city);
       const url = `https://api.open-meteo.com/v1/forecast?latitude=${loc.lat}&longitude=${loc.lon}&hourly=temperature_2m,weathercode&current_weather=true&timezone=auto&daily=temperature_2m_max,temperature_2m_min&forecast_days=1`;
       const res = await fetch(url);
-      if(!res.ok) throw new Error('Wetter abrufen fehlgeschlagen');
+      if(!res.ok) throw new Error(t('weather.errors.fetchFailed'));
       const data = await res.json();
       const offset = Number(data.utc_offset_seconds) || 0;
       const curr = data.current_weather || {};
       updateWeatherIcon(curr.weathercode);
       const t = Math.round(curr.temperature ?? NaN);
-      tempEl.textContent = isFinite(t) ? `${t}°C` : '—°C';
+      tempEl.textContent = isFinite(t) ? `${t}°C` : t('weather.tempEmpty', null, '—°C');
       textEl.textContent = `${loc.name} · ${wmoText(curr.weathercode)}`;
       const dmax = Math.round((data.daily?.temperature_2m_max?.[0]) ?? NaN);
       const dmin = Math.round((data.daily?.temperature_2m_min?.[0]) ?? NaN);
-      minmaxEl.textContent = isFinite(dmin)&&isFinite(dmax) ? `${dmin} / ${dmax} °C` : '— / — °C';
+      minmaxEl.textContent = isFinite(dmin)&&isFinite(dmax) ? `${dmin} / ${dmax} °C` : t('weather.minmaxEmpty', null, '— / — °C');
 
       const hours = data.hourly?.time || [];
       const temps = data.hourly?.temperature_2m || [];
@@ -644,12 +870,12 @@
         chip.className='chip';
         const timeLabel = tDate.toLocaleTimeString([], {hour:'2-digit'});
         const tempVal = Math.round(temps[i]);
-        chip.innerHTML = `<div class="chip-top"><span>${timeLabel}</span><span class="chip-temp">${isFinite(tempVal)? tempVal+'°' : '—°'}</span></div><div class="chip-text">${wmoText(codes[i])}</div>`;
+        chip.innerHTML = `<div class="chip-top"><span>${timeLabel}</span><span class="chip-temp">${isFinite(tempVal)? tempVal+'°' : t('weather.tempEmptyShort', null, '—°')}</span></div><div class="chip-text">${wmoText(codes[i])}</div>`;
         container.appendChild(chip);
         added++;
         if(added>=8) break;
       }
-      if(!added) container.innerHTML = '<div class="muted">Keine Prognose</div>';
+      if(!added) container.innerHTML = `<div class="muted">${escapeHtml(t('weather.noForecast'))}</div>`;
       // Normalize degree symbols / overwrite any garbled text
       try {
         const t2 = Math.round((data.current_weather||{}).temperature ?? NaN);
@@ -660,9 +886,9 @@
       } catch {}
     } catch(err){
       console.warn(err);
-      textEl.textContent = err.message === 'Stadt fehlt' ? 'Ort eingeben, um Wetter zu laden.' : 'Wetter konnte nicht geladen werden.';
-      tempEl.textContent = '—°C';
-      minmaxEl.textContent = '— / — °C';
+      textEl.textContent = err.message === t('weather.errors.cityMissing') ? t('weather.prompt') : t('weather.errors.loadFailed');
+      tempEl.textContent = t('weather.tempEmpty', null, '—°C');
+      minmaxEl.textContent = t('weather.minmaxEmpty', null, '— / — °C');
       hourlyEl.innerHTML='';
       updateWeatherIcon(null);
     }
@@ -704,7 +930,7 @@
     if(!raw) return '-';
     const d = new Date(raw);
     if(Number.isNaN(d.getTime())) return '-';
-    return d.toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
+    return d.toLocaleTimeString(localeToIntl(i18nLocale) || undefined, { hour:'2-digit', minute:'2-digit' });
   }
   function formatTransportDelay(raw){
     const n = Number(raw);
@@ -712,8 +938,8 @@
     return n > 0 ? `+${n}` : `${n}`;
   }
   function transportTypeLabel(type){
-    if(type === 'station') return 'Station';
-    if(type === 'stop') return 'Stop';
+    if(type === 'station') return t('transport.type.station');
+    if(type === 'stop') return t('transport.type.stop');
     return '';
   }
   function normalizeTransportLocation(loc){
@@ -774,7 +1000,7 @@
   async function transportSearchCore(query, attempt, seqKey, renderFn){
     const q = String(query || '').trim();
     if(!q || q.length < TRANSPORT_MIN_QUERY){
-      renderFn([], `Mindestens ${TRANSPORT_MIN_QUERY} Zeichen`);
+      renderFn([], t('transport.minQuery', { count: TRANSPORT_MIN_QUERY }));
       return;
     }
     const seq = ++transportSearchSeqs[seqKey];
@@ -792,11 +1018,11 @@
       if(seq !== transportSearchSeqs[seqKey]) return;
       const list = Array.isArray(data) ? data : (data.locations || data.data || data.results || []);
       const items = (Array.isArray(list) ? list : []).map(normalizeTransportLocation).filter(Boolean);
-      if(!items.length) renderFn([], 'Keine Treffer');
+      if(!items.length) renderFn([], t('transport.noMatches'));
       else renderFn(items);
     }catch(e){
       if(seq !== transportSearchSeqs[seqKey]) return;
-      const msg = e && /504/.test(String(e.message)) ? 'Proxy Timeout' : 'Fehler beim Laden';
+      const msg = e && /504/.test(String(e.message)) ? t('transport.proxyTimeout') : t('transport.loadError');
       renderFn([], msg);
     }
   }
@@ -828,7 +1054,7 @@
       return true;
     });
     if(!filtered.length){
-      ul.innerHTML = '<li class="muted">Keine Abfahrten</li>';
+      ul.innerHTML = `<li class="muted">${escapeHtml(t('transport.noDepartures'))}</li>`;
       return;
     }
     const duration = getTransportDuration();
@@ -866,7 +1092,7 @@
       if(platformRaw){
         const platform = document.createElement('div');
         platform.className = 'transport-platform';
-        platform.textContent = `Gl. ${platformRaw}`;
+        platform.textContent = t('transport.platform', { platform: platformRaw });
         meta.appendChild(platform);
       }
 
@@ -882,7 +1108,7 @@
       if(dep.cancelled){
         const cancelled = document.createElement('div');
         cancelled.className = 'transport-cancelled';
-        cancelled.textContent = 'Fällt aus';
+        cancelled.textContent = t('transport.cancelled');
         meta.appendChild(cancelled);
       }
 
@@ -895,13 +1121,13 @@
     const ul = $('#transportList'); if(!ul) return;
     const station = store.get('transport.station', null);
     if(!station || !station.id){
-      ul.innerHTML = '<li class="muted">Station auswählen...</li>';
-      setTransportSelectedText('Keine Station gewählt');
+      ul.innerHTML = `<li class="muted">${escapeHtml(t('transport.selectStation'))}</li>`;
+      setTransportSelectedText(t('transport.noneSelected'));
       return;
     }
     const duration = getTransportDuration();
     setTransportSelectedText(station.place ? `${station.name} - ${station.place}` : station.name);
-    ul.innerHTML = '<li class="muted">Lade...</li>';
+    ul.innerHTML = `<li class="muted">${escapeHtml(t('common.loading'))}</li>`;
     try{
       const preferStation = (station.type === 'station' || station.isStation);
       const first = preferStation ? 'stations' : 'stops';
@@ -921,7 +1147,7 @@
       const list = Array.isArray(data) ? data : (data.departures || data.results || []);
       renderTransportList(Array.isArray(list) ? list : []);
     }catch(err){
-      ul.innerHTML = '<li class="muted">Fehler beim Laden</li>';
+      ul.innerHTML = `<li class="muted">${escapeHtml(t('common.loadError'))}</li>`;
     }
   }
   function initTransport(){
@@ -955,17 +1181,17 @@
         if(!q){
           renderTransportSuggest([]);
           store.set('transport.station', null);
-          setTransportSelectedText('Keine Station gewählt');
+          setTransportSelectedText(t('transport.noneSelected'));
           return;
         }
         if(q.length < TRANSPORT_MIN_QUERY){
-          renderTransportSuggest([], `Mindestens ${TRANSPORT_MIN_QUERY} Zeichen`);
+          renderTransportSuggest([], t('transport.minQuery', { count: TRANSPORT_MIN_QUERY }));
           return;
         }
         const current = store.get('transport.station', null);
         if(current && q !== current.name){
           store.set('transport.station', null);
-          setTransportSelectedText('Keine Station gewählt');
+          setTransportSelectedText(t('transport.noneSelected'));
         }
         transportSearchTimer = setTimeout(()=> transportSearch(q), 320);
       });
@@ -973,7 +1199,7 @@
         const q=input.value.trim();
         if(!q) return;
         if(q.length < TRANSPORT_MIN_QUERY){
-          renderTransportSuggest([], `Mindestens ${TRANSPORT_MIN_QUERY} Zeichen`);
+          renderTransportSuggest([], t('transport.minQuery', { count: TRANSPORT_MIN_QUERY }));
           return;
         }
         transportSearch(q);
@@ -1027,7 +1253,9 @@
   ];
   function loadQuote(){
     const day = Math.floor(Date.now() / (1000*60*60*24));
-    $('#quote').textContent = QUOTES[day % QUOTES.length];
+    const list = tRaw('quote.list');
+    const quotes = Array.isArray(list) && list.length ? list : QUOTES;
+    $('#quote').textContent = quotes[day % quotes.length];
   }
 
   // ===== News (RSS)
@@ -1055,7 +1283,7 @@
     const sources = getFeeds();
     const sourceName = store.get('news.source', Object.keys(sources)[0]);
     const feedUrl = sources[sourceName];
-    $('#newsList').innerHTML = '<li class="muted">Lade…</li>';
+    $('#newsList').innerHTML = `<li class="muted">${escapeHtml(t('common.loading'))}</li>`;
     try{
       const res = await fetch(`https://api-startpage.julianverse.de/api/rss?url=${encodeURIComponent(feedUrl)}`);
       if(!res.ok) throw new Error(`RSS proxy error: ${res.status}`);
@@ -1072,8 +1300,8 @@
         li.innerHTML = `<a href="${link}" target="_blank" rel="noopener">${title}</a>`;
         ul.appendChild(li);
       }});
-      if(!ul.children.length){ ul.innerHTML = '<li class="muted">Keine Items</li>'; }
-    }catch(e){ $('#newsList').innerHTML = '<li class="muted">Fehler beim Laden</li>'; }
+      if(!ul.children.length){ ul.innerHTML = `<li class="muted">${escapeHtml(t('news.noItems'))}</li>`; }
+    }catch(e){ $('#newsList').innerHTML = `<li class="muted">${escapeHtml(t('common.loadError'))}</li>`; }
   }
 
   // ===== Settings UI
@@ -1107,15 +1335,16 @@
 
     // Engines
     const pills = $('#enginePills'); pills.innerHTML='';
-    Object.keys(ENGINES).forEach(key=>{
-      const on = (store.get('engines.enabled', Object.keys(ENGINES))).includes(key);
-      const pill = document.createElement('button');
-      pill.className='btn'; pill.textContent = key + (on?' ✓':' ✕');
-      pill.addEventListener('click', ()=>{
-        let enabled = store.get('engines.enabled', Object.keys(ENGINES));
-        if(on) enabled = enabled.filter(e=>e!==key); else enabled = Array.from(new Set([...enabled, key]));
-        store.set('engines.enabled', enabled);
-        fillSettings(); renderEngines();
+      Object.keys(ENGINES).forEach(key=>{
+        const on = (store.get('engines.enabled', Object.keys(ENGINES))).includes(key);
+        const pill = document.createElement('button');
+        const label = t(`search.engine.${key}`, null, key);
+        pill.className='btn'; pill.textContent = label + (on ? ' ✓' : ' ✕');
+        pill.addEventListener('click', ()=>{
+          let enabled = store.get('engines.enabled', Object.keys(ENGINES));
+          if(on) enabled = enabled.filter(e=>e!==key); else enabled = Array.from(new Set([...enabled, key]));
+          store.set('engines.enabled', enabled);
+          fillSettings(); renderEngines();
       });
       pills.appendChild(pill);
     });
@@ -1134,29 +1363,29 @@
     const defaults = widgetDefaults();
     const conf = store.get('widgets', defaults);
     const wrap = $('#widgetToggles'); wrap.innerHTML='';
-    Object.keys(defaults).forEach(k=>{
-      const id = `w_${k}`;
-      const label = document.createElement('label'); label.style.display='inline-flex'; label.style.alignItems='center'; label.style.gap='6px';
-      const cb = document.createElement('input'); cb.type='checkbox'; cb.id=id; cb.checked = conf[k];
-      cb.addEventListener('change', ()=>{ const cur=store.get('widgets', defaults); cur[k]=cb.checked; store.set('widgets', cur); applyWidgets(); });
-      label.appendChild(cb); label.appendChild(document.createTextNode(k));
-      wrap.appendChild(label);
-    });
+      Object.keys(defaults).forEach(k=>{
+        const id = `w_${k}`;
+        const label = document.createElement('label'); label.style.display='inline-flex'; label.style.alignItems='center'; label.style.gap='6px';
+        const cb = document.createElement('input'); cb.type='checkbox'; cb.id=id; cb.checked = conf[k];
+        cb.addEventListener('change', ()=>{ const cur=store.get('widgets', defaults); cur[k]=cb.checked; store.set('widgets', cur); applyWidgets(); });
+        label.appendChild(cb); label.appendChild(document.createTextNode(t(`widgets.${k}`, null, k)));
+        wrap.appendChild(label);
+      });
 
     // Widget colors editor
     const editor = $('#widgetColorEditor'); editor.innerHTML='';
-    const names = { todo:'To‑Do', notes:'Notizen', tiles:'Favoriten', weather:'Wetter', transport:'Transport', quote:'Quote', recent:'Zuletzt', system:'System', news:'News' };
-    const colors = store.get('widget.colors', widgetColorDefaults());
-    Object.keys(names).forEach(k=>{
-      const box = document.createElement('div'); box.style.display='inline-flex'; box.style.alignItems='center'; box.style.gap='6px'; box.style.padding='6px 8px'; box.style.background='var(--glass)'; box.style.border='1px solid rgba(255,255,255,.08)'; box.style.borderRadius='10px';
-      const label = document.createElement('span'); label.textContent = names[k];
-      const input = document.createElement('input'); input.type='color'; input.value = (colors[k] && /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(colors[k])) ? colors[k] : '#7c5cff';
-      input.addEventListener('input', ()=>{ const cur = store.get('widget.colors', widgetColorDefaults()); cur[k]=input.value; store.set('widget.colors', cur); applyWidgetColors(); });
-      const clear = document.createElement('button'); clear.className='btn'; clear.textContent='Reset';
-      clear.addEventListener('click', ()=>{ const cur = store.get('widget.colors', widgetColorDefaults()); cur[k]=''; store.set('widget.colors', cur); applyWidgetColors(); fillSettings(); });
-      box.appendChild(label); box.appendChild(input); box.appendChild(clear);
-      editor.appendChild(box);
-    });
+      const names = { todo:t('widgets.todo'), notes:t('widgets.notes'), tiles:t('widgets.tiles'), weather:t('widgets.weather'), transport:t('widgets.transport'), quote:t('widgets.quote'), recent:t('widgets.recent'), system:t('widgets.system'), news:t('widgets.news') };
+      const colors = store.get('widget.colors', widgetColorDefaults());
+      Object.keys(names).forEach(k=>{
+        const box = document.createElement('div'); box.style.display='inline-flex'; box.style.alignItems='center'; box.style.gap='6px'; box.style.padding='6px 8px'; box.style.background='var(--glass)'; box.style.border='1px solid rgba(255,255,255,.08)'; box.style.borderRadius='10px';
+        const label = document.createElement('span'); label.textContent = names[k];
+        const input = document.createElement('input'); input.type='color'; input.value = (colors[k] && /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(colors[k])) ? colors[k] : '#7c5cff';
+        input.addEventListener('input', ()=>{ const cur = store.get('widget.colors', widgetColorDefaults()); cur[k]=input.value; store.set('widget.colors', cur); applyWidgetColors(); });
+        const clear = document.createElement('button'); clear.className='btn'; clear.textContent = t('settings.widgets.reset');
+        clear.addEventListener('click', ()=>{ const cur = store.get('widget.colors', widgetColorDefaults()); cur[k]=''; store.set('widget.colors', cur); applyWidgetColors(); fillSettings(); });
+        box.appendChild(label); box.appendChild(input); box.appendChild(clear);
+        editor.appendChild(box);
+      });
 
     const cardStyle = store.get('ui.cardStyle', 'glass');
     const styleSelect = $('#cardStyle'); if(styleSelect) styleSelect.value = ['glass','solid','transparent','minimal'].includes(cardStyle) ? cardStyle : 'glass';
@@ -1224,56 +1453,7 @@
     });
 
     // Build static guide content
-    panelGuide.innerHTML = `
-      <div class="row"><label>User Guide</label>
-        <div>
-          <h5>Overview</h5>
-          <ul>
-            <li>Startseite mit Suche, Favoriten, To-Do, Notizen, Wetter, News.</li>
-            <li>Alles lokal: Daten bleiben im Browser (localStorage).</li>
-          </ul>
-          <h5>Shortcuts</h5>
-          <ul>
-            <li>Ctrl/Cmd+K: Command Palette öffnen</li>
-            <li>1-9: Erste 9 Favoriten öffnen (wenn nicht tippen)</li>
-            <li>/ : Suche fokussieren (auch über Palette)</li>
-            <li>Enter in Suche: Startet die Suche</li>
-            <li>ESC: Modals schliessen</li>
-            <li>Palette: Schnellaktionen für Widgets, Theme, Hintergrund, Daten, Favoriten</li>
-            <li>Palette: Taste C wechselt den Kachel-Stil, "Header-Farben zurücksetzen" stellt Suche & Uhr zurück</li>
-          </ul>
-          <h5>Suche & Autocomplete</h5>
-          <ul>
-            <li>Bangs: !g !ddg !bing !yt !wiki !maps</li>
-            <li>Eigene Shortcuts: JSON in den Einstellungen; {q} als Platzhalter</li>
-            <li>Autocomplete: Bangs, Shortcuts, Recent-Suchen, Wortliste (global + Preset)</li>
-            <li>Tab übernimmt Vorschlag, Enter startet Suche</li>
-          </ul>
-          <h5>Tiles</h5>
-          <ul>
-            <li>Drag&Drop zum Sortieren, Klick zum öffnen</li>
-            <li>+ Kachel: Neue Favoriten hinzufügen</li>
-            <li>Reset: Standardfavoriten wiederherstellen</li>
-          </ul>
-          <h5>Widgets & Layout</h5>
-          <ul>
-            <li>Sichtbarkeit je Widget umschaltbar</li>
-            <li>Kachel-Stil global anpassbar (Glas, Vollfläche, Transparent, Soft Minimal)</li>
-            <li>Eigene Farben für Uhr/Suche; Reset bringt Stilvorgabe zurück</li>
-            <li>Widget-Farben & Button "Widgets einfürben" setzen Akzent pro Karte</li>
-          </ul>
-          <h5>Hintergrund</h5>
-          <ul>
-            <li>Presets, Uploads, Sammlungen, Rotation (Zeit/Thema/Intervall)</li>
-            <li>Akzentfarbe wird aus dem aktiven Hintergrund extrahiert</li>
-          </ul>
-          <h5>Daten</h5>
-          <ul>
-            <li>Export/Import als JSON</li>
-            <li>Data Presets laden (assets/presets/*.json aus dem Repo)</li>
-          </ul>
-        </div>
-      </div>`;
+    panelGuide.innerHTML = t('settings.guideHtml');
 
     tabs.insertAdjacentElement('afterend', panelGeneral);
     panelGeneral.insertAdjacentElement('afterend', panelBackground);
@@ -1293,7 +1473,7 @@
     select.innerHTML = '';
     enabled.forEach(k=>{
       const opt = document.createElement('option');
-      opt.value = k; opt.textContent = ({google:'Google',ddg:'DuckDuckGo',bing:'Bing',yt:'YouTube',wikipedia:'Wikipedia',maps:'Google Maps'})[k]||k;
+      opt.value = k; opt.textContent = t(`search.engine.${k}`, null, ({google:'Google',ddg:'DuckDuckGo',bing:'Bing',yt:'YouTube',wikipedia:'Wikipedia',maps:'Google Maps'})[k]||k);
       select.appendChild(opt);
     });
     if(enabled.includes(current)) select.value = current; else select.value = enabled[0];
@@ -1305,20 +1485,20 @@
     const meta = $('#onbPresetMeta');
     if(!select || !meta) return;
     select.innerHTML = '';
-    meta.textContent = 'Lade Presets...';
+    meta.textContent = t('data.presets.loading');
     const presets = await loadDataPresets();
     if(!presets.length){
       const opt = document.createElement('option');
       opt.value = '';
-      opt.textContent = 'Keine Presets gefunden';
+      opt.textContent = t('data.presets.noneFound');
       select.appendChild(opt);
-      meta.textContent = 'Leg ein Preset unter assets/presets/ oder assets/user-presets/ ab.';
+      meta.textContent = t('data.presets.hintShort');
       return;
     }
     presets.forEach((p,i)=>{
       const opt = document.createElement('option');
       opt.value = p.id || 'preset-' + i;
-      const label = p.name || p.id || ('Preset ' + (i+1));
+      const label = p.name || p.id || t('data.presets.defaultLabel', { index: i+1 });
       const prefix = p.source === 'user' && !/^user:/i.test(String(label).trim()) ? 'User: ' : '';
       opt.textContent = prefix + label;
       select.appendChild(opt);
@@ -1332,7 +1512,7 @@
     const select = $('#onbBgPreset');
     if(!select) return;
     select.innerHTML = '';
-    const optNone = document.createElement('option'); optNone.value=''; optNone.textContent='Aktives Bild behalten';
+    const optNone = document.createElement('option'); optNone.value=''; optNone.textContent = t('onboarding.appearance.keepCurrent');
     select.appendChild(optNone);
     BG_PRESETS.forEach(p=>{
       const opt = document.createElement('option');
@@ -1353,9 +1533,9 @@
     const presets = await loadDataPresets();
     const current = presets.find(p => String(p.id||'') === select.value) || presets[0];
     if(current){
-      meta.textContent = current.description || 'Preset anwenden oder überspringen.';
+      meta.textContent = current.description || t('onboarding.preset.meta');
     } else {
-      meta.textContent = 'Preset optional.';
+      meta.textContent = t('onboarding.preset.optional');
     }
   }
 
@@ -1364,7 +1544,7 @@
     if(!select) return;
     const presets = await loadDataPresets();
     const current = presets.find(p => String(p.id||'') === select.value) || presets[0];
-    await applyPresetFromEntry(current, 'Setup-Preset', { reload:false, markDone:false });
+    await applyPresetFromEntry(current, t('onboarding.preset.context'), { reload:false, markDone:false });
     store.set('onboarding.done', false);
     store.set('onboarding.resume', true);
     store.set('onboarding.step', onboardingState.step);
@@ -1380,8 +1560,8 @@
     const total = steps.length || 1;
     steps.forEach((stepEl, idx)=> stepEl.classList.toggle('active', idx === onboardingState.step));
     const prev = $('#onbPrev'); if(prev) prev.disabled = onboardingState.step === 0;
-    const next = $('#onbNext'); if(next) next.textContent = onboardingState.step >= total-1 ? 'Fertig' : 'Weiter';
-    const label = $('#onbProgressLabel'); if(label) label.textContent = `Schritt ${Math.min(onboardingState.step+1,total)} von ${total}`;
+    const next = $('#onbNext'); if(next) next.textContent = onboardingState.step >= total-1 ? t('onboarding.finish') : t('onboarding.next');
+    const label = $('#onbProgressLabel'); if(label) label.textContent = t('onboarding.progress', { current: Math.min(onboardingState.step+1,total), total });
     const dots = $('#onbDots');
     if(dots){
       dots.innerHTML = '';
@@ -1912,7 +2092,7 @@
         ref: { type: 'preset', id: preset.id },
         url: preset.url,
         title: preset.label,
-        subtitle: 'Preset',
+        subtitle: t('background.subtitle.preset'),
         meta: preset.tags && preset.tags.length ? preset.tags.join(', ') : '',
         credit: preset.credit || ''
       };
@@ -1948,8 +2128,8 @@
       return {
         ref: { type: 'custom', url },
         url,
-        title: 'Custom URL',
-        subtitle: 'Custom',
+        title: t('background.custom.title'),
+        subtitle: t('background.custom.subtitle'),
         meta: url
       };
     }
@@ -1977,7 +2157,7 @@
       preview.style.backgroundImage = resolved && resolved.url ? 'url("' + resolved.url.replace(/"/g, '\\"') + '")' : '';
     }
     const title = document.getElementById('bgCurrentTitle');
-    if(title) title.textContent = resolved ? resolved.title : 'Kein Hintergrund';
+    if(title) title.textContent = resolved ? resolved.title : t('background.none');
     const meta = document.getElementById('bgCurrentMeta');
     if(meta){
       const parts = [];
@@ -1986,13 +2166,13 @@
         if(resolved.meta) parts.push(resolved.meta);
         if(resolved.credit) parts.push(resolved.credit);
       }
-      meta.textContent = parts.length ? parts.join(' | ') : 'Kein Bild ausgewählt';
+      meta.textContent = parts.length ? parts.join(' | ') : t('background.noImageSelected');
     }
     const undoBtn = document.getElementById('bgActionUndo');
     if(undoBtn) undoBtn.disabled = !(state.history && state.history.length);
     const lockBtn = document.getElementById('bgActionLock');
     if(lockBtn){
-      lockBtn.textContent = state.rotation && state.rotation.locked ? 'Rotation fortsetzen' : 'Rotation sperren';
+      lockBtn.textContent = state.rotation && state.rotation.locked ? t('background.rotationResume') : t('background.rotationLock');
       lockBtn.dataset.locked = state.rotation && state.rotation.locked ? 'true' : 'false';
     }
   }
@@ -2000,10 +2180,10 @@
   function bgRenderPresets(state){
     const panel = document.getElementById('bgPanel-presets');
     if(!panel) return;
-    if(!BG_PRESETS.length){
-      panel.innerHTML = '<div class="bg-empty">Keine Presets vorhanden.</div>';
-      return;
-    }
+      if(!BG_PRESETS.length){
+        panel.innerHTML = `<div class="bg-empty">${escapeHtml(t('background.presets.empty'))}</div>`;
+        return;
+      }
     const favKeys = new Set((state.favorites || []).map(bgRefKey));
     const activeKey = bgRefKey(state.active);
     const cards = BG_PRESETS.map(p => {
@@ -2013,28 +2193,28 @@
       const isFav = favKeys.has(key);
       const metaParts = [];
       if(p.tags && p.tags.length) metaParts.push(p.tags.join(', '));
-      if(p.tone) metaParts.push('Tone: ' + p.tone);
-      const meta = metaParts.join(' | ');
-      return '<div class="bg-card' + (isActive ? ' highlight' : '') + '" data-ref="' + key + '">' +
-        '<div class="bg-thumb" style="' + bgCssBg(p.url) + '"></div>' +
-        '<div class="bg-card-title">' + escapeHtml(p.label) + '</div>' +
-        '<div class="bg-card-meta">' + (meta ? escapeHtml(meta) : '') + '</div>' +
-        '<div class="bg-card-actions">' +
-          '<button type="button" data-action="bg-apply" data-ref="' + key + '"' + (isActive ? ' data-active="true"' : '') + '>Setzen</button>' +
-          '<button type="button" data-action="bg-favorite" data-ref="' + key + '">' + (isFav ? 'Favorit' : 'Favorisieren') + '</button>' +
-        '</div>' +
-      '</div>';
-    }).join('');
+        if(p.tone) metaParts.push(t('background.tone', { tone: p.tone }));
+        const meta = metaParts.join(' | ');
+        return '<div class="bg-card' + (isActive ? ' highlight' : '') + '" data-ref="' + key + '">' +
+          '<div class="bg-thumb" style="' + bgCssBg(p.url) + '"></div>' +
+          '<div class="bg-card-title">' + escapeHtml(p.label) + '</div>' +
+          '<div class="bg-card-meta">' + (meta ? escapeHtml(meta) : '') + '</div>' +
+          '<div class="bg-card-actions">' +
+            '<button type="button" data-action="bg-apply" data-ref="' + key + '"' + (isActive ? ' data-active="true"' : '') + '>' + escapeHtml(t('background.actions.apply')) + '</button>' +
+            '<button type="button" data-action="bg-favorite" data-ref="' + key + '">' + escapeHtml(isFav ? t('background.actions.favorited') : t('background.actions.favorite')) + '</button>' +
+          '</div>' +
+        '</div>';
+      }).join('');
     panel.innerHTML = '<div class="bg-grid">' + cards + '</div>';
   }
 
   function bgRenderFavorites(state){
     const panel = document.getElementById('bgPanel-favorites');
     if(!panel) return;
-    if(!state.favorites.length){
-      panel.innerHTML = '<div class="bg-empty">Noch keine Favoriten. Markiere Presets oder Uploads.</div>';
-      return;
-    }
+      if(!state.favorites.length){
+        panel.innerHTML = `<div class="bg-empty">${escapeHtml(t('background.favorites.empty'))}</div>`;
+        return;
+      }
     const activeKey = bgRefKey(state.active);
     const cards = state.favorites.map(ref => {
       const resolved = bgResolveRef(state, ref);
@@ -2045,10 +2225,10 @@
         '<div class="bg-thumb" style="' + bgCssBg(resolved.url) + '"></div>' +
         '<div class="bg-card-title">' + escapeHtml(resolved.title) + '</div>' +
         '<div class="bg-card-meta">' + (resolved.meta ? escapeHtml(resolved.meta) : '') + '</div>' +
-        '<div class="bg-card-actions">' +
-          '<button type="button" data-action="bg-apply" data-ref="' + key + '"' + (isActive ? ' data-active="true"' : '') + '>Setzen</button>' +
-          '<button type="button" data-action="bg-favorite-remove" data-ref="' + key + '">Entfernen</button>' +
-        '</div>' +
+          '<div class="bg-card-actions">' +
+            '<button type="button" data-action="bg-apply" data-ref="' + key + '"' + (isActive ? ' data-active="true"' : '') + '>' + escapeHtml(t('background.actions.apply')) + '</button>' +
+            '<button type="button" data-action="bg-favorite-remove" data-ref="' + key + '">' + escapeHtml(t('common.remove')) + '</button>' +
+          '</div>' +
       '</div>';
     }).filter(Boolean).join('');
     panel.innerHTML = '<div class="bg-grid">' + cards + '</div>';
@@ -2065,23 +2245,23 @@
       const size = upload.width && upload.height ? Math.round(upload.width) + 'x' + Math.round(upload.height) : '';
       return '<div class="bg-card' + (isActive ? ' highlight' : '') + '">' +
         '<div class="bg-thumb" style="' + bgCssBg(upload.dataUrl) + '"></div>' +
-        '<div class="bg-card-title">' + escapeHtml(upload.name || 'Upload') + '</div>' +
-        '<div class="bg-card-meta">' + escapeHtml(size) + '</div>' +
-        '<div class="bg-card-actions">' +
-          '<button type="button" data-action="bg-apply" data-ref="' + key + '"' + (isActive ? ' data-active="true"' : '') + '>Setzen</button>' +
-          '<button type="button" data-action="bg-favorite" data-ref="' + key + '">Favorisieren</button>' +
-          '<button type="button" data-action="bg-delete-upload" data-upload="' + upload.id + '">Entfernen</button>' +
+          '<div class="bg-card-title">' + escapeHtml(upload.name || t('background.upload')) + '</div>' +
+          '<div class="bg-card-meta">' + escapeHtml(size) + '</div>' +
+          '<div class="bg-card-actions">' +
+            '<button type="button" data-action="bg-apply" data-ref="' + key + '"' + (isActive ? ' data-active="true"' : '') + '>' + escapeHtml(t('background.actions.apply')) + '</button>' +
+            '<button type="button" data-action="bg-favorite" data-ref="' + key + '">' + escapeHtml(t('background.actions.favorite')) + '</button>' +
+            '<button type="button" data-action="bg-delete-upload" data-upload="' + upload.id + '">' + escapeHtml(t('common.remove')) + '</button>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+      panel.innerHTML =
+        '<div class="bg-upload-drop" id="bgUploadDrop">' +
+          '<div>' + escapeHtml(t('background.uploadDrop')) + '</div>' +
+          '<button type="button" data-action="bg-upload-browse">' + escapeHtml(t('background.uploadBrowse')) + '</button>' +
+          '<input type="file" id="bgUploadInput" multiple accept="image/*" hidden>' +
+          '<div class="bg-upload-note">' + escapeHtml(t('background.uploadNote', { max: BG_MAX_UPLOADS })) + '</div>' +
         '</div>' +
-      '</div>';
-    }).join('');
-    panel.innerHTML =
-      '<div class="bg-upload-drop" id="bgUploadDrop">' +
-        '<div>Dateien hier ablegen</div>' +
-        '<button type="button" data-action="bg-upload-browse">Datei auswählen</button>' +
-        '<input type="file" id="bgUploadInput" multiple accept="image/*" hidden>' +
-        '<div class="bg-upload-note">Wir verkleinern Bilder automatisch (16:9, max 2560px) und speichern sie lokal. Max ' + BG_MAX_UPLOADS + ' Dateien.</div>' +
-      '</div>' +
-      (state.uploads && state.uploads.length ? '<div class="bg-grid">' + list + '</div>' : '<div class="bg-empty">Noch keine Uploads vorhanden.</div>');
+        (state.uploads && state.uploads.length ? '<div class="bg-grid">' + list + '</div>' : '<div class="bg-empty">' + escapeHtml(t('background.uploads.empty')) + '</div>');
   }
 
   function bgRenderCollections(state){
@@ -2094,36 +2274,36 @@
         '<div class="bg-collection-header">' +
           '<div>' +
             '<div class="bg-collection-title">' + escapeHtml(col.name) + '</div>' +
-            '<div class="bg-collection-count">' + count + ' Quellen</div>' +
+              '<div class="bg-collection-count">' + escapeHtml(t('background.collections.count', { count })) + '</div>' +
+            '</div>' +
+            '<div class="bg-collection-actions">' +
+              '<button type="button" data-action="bg-collection-apply" data-collection="' + col.id + '">' + escapeHtml(t('background.collections.random')) + '</button>' +
+              '<button type="button" data-action="bg-collection-cache" data-collection="' + col.id + '">' + escapeHtml(t('background.collections.cache')) + '</button>' +
+              '<button type="button" data-action="bg-collection-remove" data-collection="' + col.id + '">' + escapeHtml(t('common.remove')) + '</button>' +
+            '</div>' +
           '</div>' +
-          '<div class="bg-collection-actions">' +
-            '<button type="button" data-action="bg-collection-apply" data-collection="' + col.id + '">Zufällig</button>' +
-            '<button type="button" data-action="bg-collection-cache" data-collection="' + col.id + '">Offline speichern</button>' +
-            '<button type="button" data-action="bg-collection-remove" data-collection="' + col.id + '">Entfernen</button>' +
-          '</div>' +
-        '</div>' +
-        (previewUrl ? '<div class="bg-thumb" style="' + bgCssBg(previewUrl) + '"></div>' : '') +
-        '<details>' +
-          '<summary>Quellen ansehen</summary>' +
-          '<ul>' + col.urls.map(u => '<li><code>' + escapeHtml(u) + '</code></li>').join('') + '</ul>' +
-          '<label style="display:inline-flex;align-items:center;gap:6px;margin-top:8px;">' +
-            '<input type="checkbox" data-action="bg-collection-rotation" data-collection="' + col.id + '"' + (col.allowRotation !== false ? ' checked' : '') + '> Rotation verwenden' +
-          '</label>' +
-        '</details>' +
-      '</div>';
+          (previewUrl ? '<div class="bg-thumb" style="' + bgCssBg(previewUrl) + '"></div>' : '') +
+          '<details>' +
+            '<summary>' + escapeHtml(t('background.collections.viewSources')) + '</summary>' +
+            '<ul>' + col.urls.map(u => '<li><code>' + escapeHtml(u) + '</code></li>').join('') + '</ul>' +
+            '<label style="display:inline-flex;align-items:center;gap:6px;margin-top:8px;">' +
+              '<input type="checkbox" data-action="bg-collection-rotation" data-collection="' + col.id + '"' + (col.allowRotation !== false ? ' checked' : '') + '> ' + escapeHtml(t('background.collections.useRotation')) +
+            '</label>' +
+          '</details>' +
+        '</div>';
     }).join('');
     panel.innerHTML =
       '<div class="bg-selector">' +
-        '<label for="bgCollectionName">Neue Sammlung</label>' +
-        '<input id="bgCollectionName" type="text" placeholder="Meine Sammlung">' +
-        '<textarea id="bgCollectionUrls" rows="4" placeholder="Eine Bild-URL pro Zeile"></textarea>' +
+        '<label for="bgCollectionName">' + escapeHtml(t('background.collections.newLabel')) + '</label>' +
+        '<input id="bgCollectionName" type="text" placeholder="' + escapeHtml(t('background.collections.namePlaceholder')) + '">' +
+        '<textarea id="bgCollectionUrls" rows="4" placeholder="' + escapeHtml(t('background.collections.urlsPlaceholder')) + '"></textarea>' +
         '<div class="bg-inline-actions">' +
-          '<button type="button" data-action="bg-collection-save">Speichern</button>' +
-          '<button type="button" data-action="bg-collection-clear">Felder leeren</button>' +
+          '<button type="button" data-action="bg-collection-save">' + escapeHtml(t('common.save')) + '</button>' +
+          '<button type="button" data-action="bg-collection-clear">' + escapeHtml(t('background.collections.clear')) + '</button>' +
         '</div>' +
-        '<p class="bg-mini-text">URLs werden lokal gespeichert. Remote Quellen benötigen CORS für Bilder.</p>' +
+        '<p class="bg-mini-text">' + escapeHtml(t('background.collections.note')) + '</p>' +
       '</div>' +
-      (cards ? '<div class="bg-collection-list">' + cards + '</div>' : '<div class="bg-empty">Noch keine Sammlungen angelegt.</div>');
+      (cards ? '<div class="bg-collection-list">' + cards + '</div>' : '<div class="bg-empty">' + escapeHtml(t('background.collections.empty')) + '</div>');
   }
 
   function bgBuildRotationOptions(state){
@@ -2135,85 +2315,85 @@
       seen.add(key);
       options.push({ value: key, label });
     };
-    BG_PRESETS.forEach(p => add('Preset: ' + p.label, { type: 'preset', id: p.id }));
-    (state.uploads || []).forEach(u => add('Upload: ' + (u.name || u.id), { type: 'upload', id: u.id }));
+    BG_PRESETS.forEach(p => add(t('background.rotation.optionPreset', { label: p.label }), { type: 'preset', id: p.id }));
+    (state.uploads || []).forEach(u => add(t('background.rotation.optionUpload', { label: (u.name || u.id) }), { type: 'upload', id: u.id }));
     (state.favorites || []).forEach(f => {
       const resolved = bgResolveRef(state, f);
-      add('Favorit: ' + (resolved ? resolved.title : bgRefKey(f)), f);
+      add(t('background.rotation.optionFavorite', { label: (resolved ? resolved.title : bgRefKey(f)) }), f);
     });
-    if(state.customUrl) add('Custom: gespeicherte URL', { type: 'custom', url: state.customUrl });
+    if(state.customUrl) add(t('background.rotation.optionCustom'), { type: 'custom', url: state.customUrl });
     return options;
   }
 
   function bgRenderRotation(state){
-    const panel = document.getElementById('bgPanel-rotation');
-    if(!panel) return;
-    const options = bgBuildRotationOptions(state);
-    const schedule = state.rotation.schedule || {};
-    const buildSelect = slot => {
-      const selected = schedule[slot] ? bgRefKey(schedule[slot]) : '';
-      const opts = ['<option value="">Kein festes Bild</option>']
-        .concat(options.map(opt => '<option value="' + opt.value + '"' + (opt.value === selected ? ' selected' : '') + '>' + escapeHtml(opt.label) + '</option>'))
-        .join('');
-      return '<select data-action="bg-rotation-slot" data-slot="' + slot + '">' + opts + '</select>';
-    };
-    const sources = state.rotation.sources || {};
-    const sourceControls = [
-      { key: 'presets', label: 'Presets' },
-      { key: 'favorites', label: 'Favoriten' },
-      { key: 'uploads', label: 'Uploads' },
-      { key: 'collections', label: 'Sammlungen' },
-      { key: 'custom', label: 'Custom URL' }
-    ].map(item => '<label style="display:flex;align-items:center;gap:6px;"><input type="checkbox" data-action="bg-rotation-source" data-source="' + item.key + '"' + (sources[item.key] ? ' checked' : '') + '> ' + item.label + '</label>').join('');
-    panel.innerHTML =
-      '<div class="bg-rotation-grid">' +
-        '<div class="bg-rotation-card">' +
-          '<label><input type="checkbox" id="bgRotationEnabled"' + (state.rotation.enabled ? ' checked' : '') + '> Automatische Rotation aktiv</label>' +
-          '<div class="bg-mini-text">' + (state.rotation.locked ? 'Rotation ist aktuell gesperrt.' : 'Hintergründe wechseln nach dem Plan.') + '</div>' +
-          '<div class="bg-selector">' +
-            '<label for="bgRotationStrategy">Modus</label>' +
-            '<select id="bgRotationStrategy">' +
-              '<option value="time"' + (state.rotation.strategy === 'time' ? ' selected' : '') + '>Zeitabhängig</option>' +
-              '<option value="interval"' + (state.rotation.strategy === 'interval' ? ' selected' : '') + '>Intervall</option>' +
-              '<option value="theme"' + (state.rotation.strategy === 'theme' ? ' selected' : '') + '>Theme</option>' +
-            '</select>' +
+      const panel = document.getElementById('bgPanel-rotation');
+      if(!panel) return;
+      const options = bgBuildRotationOptions(state);
+      const schedule = state.rotation.schedule || {};
+      const buildSelect = slot => {
+        const selected = schedule[slot] ? bgRefKey(schedule[slot]) : '';
+        const opts = ['<option value="">' + escapeHtml(t('background.rotation.noFixed')) + '</option>']
+          .concat(options.map(opt => '<option value="' + opt.value + '"' + (opt.value === selected ? ' selected' : '') + '>' + escapeHtml(opt.label) + '</option>'))
+          .join('');
+        return '<select data-action="bg-rotation-slot" data-slot="' + slot + '">' + opts + '</select>';
+      };
+      const sources = state.rotation.sources || {};
+      const sourceControls = [
+        { key: 'presets', label: t('background.tabs.presets') },
+        { key: 'favorites', label: t('background.tabs.favorites') },
+        { key: 'uploads', label: t('background.tabs.uploads') },
+        { key: 'collections', label: t('background.tabs.collections') },
+        { key: 'custom', label: t('background.tabs.custom') }
+      ].map(item => '<label style="display:flex;align-items:center;gap:6px;"><input type="checkbox" data-action="bg-rotation-source" data-source="' + item.key + '"' + (sources[item.key] ? ' checked' : '') + '> ' + escapeHtml(item.label) + '</label>').join('');
+      panel.innerHTML =
+        '<div class="bg-rotation-grid">' +
+          '<div class="bg-rotation-card">' +
+            '<label><input type="checkbox" id="bgRotationEnabled"' + (state.rotation.enabled ? ' checked' : '') + '> ' + escapeHtml(t('background.rotation.enabled')) + '</label>' +
+            '<div class="bg-mini-text">' + escapeHtml(state.rotation.locked ? t('background.rotation.locked') : t('background.rotation.active')) + '</div>' +
+            '<div class="bg-selector">' +
+              '<label for="bgRotationStrategy">' + escapeHtml(t('background.rotation.mode')) + '</label>' +
+              '<select id="bgRotationStrategy">' +
+                '<option value="time"' + (state.rotation.strategy === 'time' ? ' selected' : '') + '>' + escapeHtml(t('background.rotation.modeTime')) + '</option>' +
+                '<option value="interval"' + (state.rotation.strategy === 'interval' ? ' selected' : '') + '>' + escapeHtml(t('background.rotation.modeInterval')) + '</option>' +
+                '<option value="theme"' + (state.rotation.strategy === 'theme' ? ' selected' : '') + '>' + escapeHtml(t('background.rotation.modeTheme')) + '</option>' +
+              '</select>' +
+            '</div>' +
+            '<div class="bg-selector">' +
+              '<label for="bgRotationInterval">' + escapeHtml(t('background.rotation.intervalLabel')) + '</label>' +
+              '<input id="bgRotationInterval" type="number" min="5" step="5" value="' + (Number(state.rotation.intervalMinutes) || 60) + '">' +
+              '<div class="bg-mini-text">' + escapeHtml(t('background.rotation.intervalNote')) + '</div>' +
+            '</div>' +
           '</div>' +
-          '<div class="bg-selector">' +
-            '<label for="bgRotationInterval">Intervall in Minuten</label>' +
-            '<input id="bgRotationInterval" type="number" min="5" step="5" value="' + (Number(state.rotation.intervalMinutes) || 60) + '">' +
-            '<div class="bg-mini-text">Relevanz nur im Intervall Modus.</div>' +
+          '<div class="bg-rotation-card">' +
+            '<label>' + escapeHtml(t('background.rotation.sourcesLabel')) + '</label>' +
+            '<div class="bg-selector">' + sourceControls + '</div>' +
           '</div>' +
-        '</div>' +
-        '<div class="bg-rotation-card">' +
-          '<label>Quellen für Zufall</label>' +
-          '<div class="bg-selector">' + sourceControls + '</div>' +
-        '</div>' +
-        '<div class="bg-rotation-card">' +
-          '<label>Zeitplan</label>' +
-          BG_TIME_SLOTS.map(slot => '<div class="bg-selector"><span>' + slot.label + '</span>' + buildSelect(slot.id) + '</div>').join('') +
-        '</div>' +
-        '<div class="bg-rotation-card">' +
-          '<label>Theme Plan</label>' +
-          '<div class="bg-selector"><span>Theme Light</span>' + buildSelect('light') + '</div>' +
-          '<div class="bg-selector"><span>Theme Dark</span>' + buildSelect('dark') + '</div>' +
-          '<div class="bg-mini-text">Theme Plan wird genutzt, wenn der Modus auf Theme steht.</div>' +
-        '</div>' +
-      '</div>';
-  }
+          '<div class="bg-rotation-card">' +
+            '<label>' + escapeHtml(t('background.rotation.scheduleLabel')) + '</label>' +
+            BG_TIME_SLOTS.map(slot => '<div class="bg-selector"><span>' + escapeHtml(t('background.rotation.slot.' + slot.id, null, slot.label)) + '</span>' + buildSelect(slot.id) + '</div>').join('') +
+          '</div>' +
+          '<div class="bg-rotation-card">' +
+            '<label>' + escapeHtml(t('background.rotation.themePlan')) + '</label>' +
+            '<div class="bg-selector"><span>' + escapeHtml(t('background.rotation.themeLight')) + '</span>' + buildSelect('light') + '</div>' +
+            '<div class="bg-selector"><span>' + escapeHtml(t('background.rotation.themeDark')) + '</span>' + buildSelect('dark') + '</div>' +
+            '<div class="bg-mini-text">' + escapeHtml(t('background.rotation.themeNote')) + '</div>' +
+          '</div>' +
+        '</div>';
+    }
 
   function bgRenderCustom(state){
     const panel = document.getElementById('bgPanel-custom');
     if(!panel) return;
     panel.innerHTML =
       '<div class="bg-selector">' +
-        '<label for="bgCustomUrl">Eigene Bild URL</label>' +
-        '<input id="bgCustomUrl" type="url" placeholder="https://example.com/image.jpg" value="' + escapeHtml(state.customUrl || '') + '">' +
+        '<label for="bgCustomUrl">' + escapeHtml(t('background.custom.label')) + '</label>' +
+        '<input id="bgCustomUrl" type="url" placeholder="' + escapeHtml(t('background.custom.placeholder')) + '" value="' + escapeHtml(state.customUrl || '') + '">' +
         '<div class="bg-inline-actions">' +
-          '<button type="button" data-action="bg-custom-apply">Setzen</button>' +
-          '<button type="button" data-action="bg-custom-save">Speichern</button>' +
-          (state.customUrl ? '<button type="button" data-action="bg-custom-clear">Löschen</button>' : '') +
+          '<button type="button" data-action="bg-custom-apply">' + escapeHtml(t('background.actions.apply')) + '</button>' +
+          '<button type="button" data-action="bg-custom-save">' + escapeHtml(t('common.save')) + '</button>' +
+          (state.customUrl ? '<button type="button" data-action="bg-custom-clear">' + escapeHtml(t('common.delete')) + '</button>' : '') +
         '</div>' +
-        '<p class="bg-mini-text">URL wird lokal gespeichert. Server muss CORS für Bilder erlauben.</p>' +
+        '<p class="bg-mini-text">' + escapeHtml(t('background.custom.note')) + '</p>' +
       '</div>';
   }
 
@@ -2338,13 +2518,13 @@
     const name = nameInput ? nameInput.value.trim() : '';
     const urls = urlsInput.value.split(/\r?\n/).map(v => v.trim()).filter(Boolean);
     if(!urls.length){
-      alert('Mindestens eine URL eintragen.');
+      alert(t('background.collections.minOneUrl'));
       return;
     }
     bgUpdateState(state => {
       const collection = {
         id: 'col-' + Date.now().toString(36),
-        name: name || 'Sammlung ' + (state.collections.length + 1),
+        name: name || t('background.collections.defaultName', { index: state.collections.length + 1 }),
         urls,
         cache: {},
         allowRotation: true,
@@ -2371,7 +2551,7 @@
     const state = bgLoadState();
     const collection = state.collections.find(c => c.id === id);
     if(!collection || !collection.urls.length){
-      alert('Sammlung ist leer.');
+      alert(t('background.collections.emptyCollection'));
       return;
     }
     const options = collection.urls.map(url => ({ type: 'collection', collectionId: collection.id, url }));
@@ -2383,7 +2563,7 @@
     const state = bgLoadState();
     const collection = state.collections.find(c => c.id === id);
     if(!collection || !collection.urls.length){
-      alert('Sammlung ist leer.');
+      alert(t('background.collections.emptyCollection'));
       return;
     }
     const button = document.querySelector('[data-action="bg-collection-cache"][data-collection="' + id + '"]');
@@ -2402,10 +2582,10 @@
         }
         return stateUpdate;
       });
-      alert('Sammlung lokal gespeichert.');
+      alert(t('background.collections.saved'));
     } catch (err) {
       console.error(err);
-      alert('Fehler beim Laden. Prüfe CORS Vorgaben.');
+      alert(t('background.loadError'));
     } finally {
       if(button) button.disabled = false;
     }
@@ -2423,7 +2603,7 @@
     }
     if(action === 'apply'){
       if(!value){
-        alert('Bitte eine URL eintragen.');
+        alert(t('background.custom.enterUrl'));
         return;
       }
       bgUpdateState(state => { state.customUrl = value; return state; });
@@ -2662,7 +2842,7 @@
     return new Promise((resolve, reject) => {
       const img = new Image();
       img.onload = () => resolve(img);
-      img.onerror = () => reject(new Error('Bild konnte nicht geladen werden'));
+      img.onerror = () => reject(new Error(t('background.imageLoadError')));
       img.src = dataUrl;
     });
   }
@@ -2753,7 +2933,7 @@
     const state = bgLoadState();
     const candidates = bgCollectCandidates(state, false);
     if(!candidates.length){
-      alert('Keine Hintergründe verfügbar.');
+      alert(t('background.noneAvailable'));
       return;
     }
     const pick = bgCloneRef(candidates[Math.floor(Math.random() * candidates.length)]);
@@ -2907,13 +3087,13 @@
   // ===== System Status
   function renderSystem(){
     const info = [];
-    if('deviceMemory' in navigator) info.push(`RAM: ${navigator.deviceMemory} GB`);
-    if('hardwareConcurrency' in navigator) info.push(`CPU‑Kerne: ${navigator.hardwareConcurrency}`);
+    if('deviceMemory' in navigator) info.push(t('system.ram', { value: navigator.deviceMemory }));
+    if('hardwareConcurrency' in navigator) info.push(t('system.cpu', { value: navigator.hardwareConcurrency }));
     if('connection' in navigator && navigator.connection){
       const c = navigator.connection;
-      info.push(`Netz: ${c.downlink ?? '–'} Mbit/s · ${c.effectiveType ?? '–'}${c.saveData? ' · SaveData':''}`);
+      info.push(t('system.network', { downlink: c.downlink ?? t('common.dash', null, '–'), type: c.effectiveType ?? t('common.dash', null, '–'), saveData: c.saveData ? t('system.saveData') : '' }));
     }
-    $('#systemInfo').innerHTML = info.length? info.join('<br>') : 'Keine Daten verfügbar';
+    $('#systemInfo').innerHTML = info.length? info.join('<br>') : t('system.noData');
   }
 
   // ===== Widgets visibility
@@ -3147,83 +3327,84 @@
     if(select) select.value = key;
   }
   async function buildPaletteItems(){
-    const items = [];
-    const add = (t, opts)=> items.push({ t, ...opts });
-    const widgetNames = { todo:'Todo', notes:'Notizen', tiles:'Favoriten', weather:'Wetter', transport:'Transport', quote:'Quote', recent:'Zuletzt', system:'System', news:'News' };
-    const engineLabels = { google:'Google', ddg:'DuckDuckGo', bing:'Bing', yt:'YouTube', wikipedia:'Wikipedia', maps:'Google Maps' };
+      const items = [];
+      const add = (t, opts)=> items.push({ t, ...opts });
+      const widgetNames = { todo:t('widgets.todo'), notes:t('widgets.notes'), tiles:t('widgets.tiles'), weather:t('widgets.weather'), transport:t('widgets.transport'), quote:t('widgets.quote'), recent:t('widgets.recent'), system:t('widgets.system'), news:t('widgets.news') };
+      const engineLabels = { google:t('search.engine.google', null, 'Google'), ddg:t('search.engine.ddg', null, 'DuckDuckGo'), bing:t('search.engine.bing', null, 'Bing'), yt:t('search.engine.yt', null, 'YouTube'), wikipedia:t('search.engine.wikipedia', null, 'Wikipedia'), maps:t('search.engine.maps', null, 'Google Maps') };
 
-    // Commands
-    add('Suche fokussieren', { k:'/', g:'command', a: ()=> $('#query').focus() });
-    add('Suche starten', { g:'search', a: ()=>{ renderSearchSuggest([]); doSearch(); } });
-    add('Einstellungen öffnen', { k:'S', g:'settings', a: openSettings });
-    add('Einstellungen: Allgemein', { g:'settings', a: ()=> openSettingsTab('general') });
-    add('Einstellungen: Hintergrund', { g:'settings', a: ()=> openSettingsTab('background') });
-    add('Einstellungen: Suche', { g:'settings', a: ()=> openSettingsTab('search') });
-    add('Einstellungen: Widgets', { g:'settings', a: ()=> openSettingsTab('widgets') });
-    add('Einstellungen: Daten', { g:'settings', a: ()=> openSettingsTab('data') });
-    add('Einstellungen: Guide', { g:'settings', a: ()=> openSettingsTab('guide') });
-    add('Theme wechseln (Auto/Dark/Light)', { k:'T', g:'theme', a: ()=>{ const cur=store.get('theme','auto'); const next = cur==='dark' ? 'light' : cur==='light' ? 'auto' : 'dark'; store.set('theme', next); applyTheme(next); }});
-    add('Theme: Auto', { g:'theme', a: ()=>{ store.set('theme','auto'); applyTheme('auto'); }});
-    add('Theme: Dark', { g:'theme', a: ()=>{ store.set('theme','dark'); applyTheme('dark'); }});
-    add('Theme: Light', { g:'theme', a: ()=>{ store.set('theme','light'); applyTheme('light'); }});
-    add('Kachel-Stil: Glass', { g:'theme', a: ()=>{ store.set('ui.cardStyle','glass'); applyCardStyle(); }});
-    add('Kachel-Stil: Solid', { g:'theme', a: ()=>{ store.set('ui.cardStyle','solid'); applyCardStyle(); }});
-    add('Kachel-Stil: Transparent', { g:'theme', a: ()=>{ store.set('ui.cardStyle','transparent'); applyCardStyle(); }});
-    add('Kachel-Stil: Minimal', { g:'theme', a: ()=>{ store.set('ui.cardStyle','minimal'); applyCardStyle(); }});
-    add('Header-Farben zurücksetzen', { g:'theme', a: resetSurfaceColors });
-    add('Akzentfarben neu berechnen', { g:'theme', a: applyAccentTint });
-    add('Hintergrund: Rotation umschalten', { g:'theme', a: ()=>{ bgUpdateState(state=>{ state.rotation.enabled = !state.rotation.enabled; return state; }); bgRenderSettings(); }});
-    add('Hintergrund: Rotation sperren/fortsetzen', { g:'theme', a: ()=>{ bgUpdateState(state=>{ state.rotation.locked = !state.rotation.locked; return state; }); bgRenderSettings(); }});
+      // Commands
+      add(t('palette.search.focus'), { k:'/', g:'command', a: ()=> $('#query').focus() });
+      add(t('palette.search.start'), { g:'search', a: ()=>{ renderSearchSuggest([]); doSearch(); } });
+      add(t('palette.settings.open'), { k:'S', g:'settings', a: openSettings });
+      add(t('palette.settings.general'), { g:'settings', a: ()=> openSettingsTab('general') });
+      add(t('palette.settings.background'), { g:'settings', a: ()=> openSettingsTab('background') });
+      add(t('palette.settings.search'), { g:'settings', a: ()=> openSettingsTab('search') });
+      add(t('palette.settings.widgets'), { g:'settings', a: ()=> openSettingsTab('widgets') });
+      add(t('palette.settings.data'), { g:'settings', a: ()=> openSettingsTab('data') });
+      add(t('palette.settings.guide'), { g:'settings', a: ()=> openSettingsTab('guide') });
+      add(t('palette.theme.cycle'), { k:'T', g:'theme', a: ()=>{ const cur=store.get('theme','auto'); const next = cur==='dark' ? 'light' : cur==='light' ? 'auto' : 'dark'; store.set('theme', next); applyTheme(next); }});
+      add(t('palette.theme.auto'), { g:'theme', a: ()=>{ store.set('theme','auto'); applyTheme('auto'); }});
+      add(t('palette.theme.dark'), { g:'theme', a: ()=>{ store.set('theme','dark'); applyTheme('dark'); }});
+      add(t('palette.theme.light'), { g:'theme', a: ()=>{ store.set('theme','light'); applyTheme('light'); }});
+      add(t('palette.cardStyle.glass'), { g:'theme', a: ()=>{ store.set('ui.cardStyle','glass'); applyCardStyle(); }});
+      add(t('palette.cardStyle.solid'), { g:'theme', a: ()=>{ store.set('ui.cardStyle','solid'); applyCardStyle(); }});
+      add(t('palette.cardStyle.transparent'), { g:'theme', a: ()=>{ store.set('ui.cardStyle','transparent'); applyCardStyle(); }});
+      add(t('palette.cardStyle.minimal'), { g:'theme', a: ()=>{ store.set('ui.cardStyle','minimal'); applyCardStyle(); }});
+      add(t('palette.theme.resetHeader'), { g:'theme', a: resetSurfaceColors });
+      add(t('palette.theme.recalcAccent'), { g:'theme', a: applyAccentTint });
+      add(t('palette.background.toggleRotation'), { g:'theme', a: ()=>{ bgUpdateState(state=>{ state.rotation.enabled = !state.rotation.enabled; return state; }); bgRenderSettings(); }});
+      add(t('palette.background.toggleLock'), { g:'theme', a: ()=>{ bgUpdateState(state=>{ state.rotation.locked = !state.rotation.locked; return state; }); bgRenderSettings(); }});
 
-    // Widget actions
-    add('Widgets: Alle anzeigen', { g:'widgets', a: ()=>{ const next = {}; Object.keys(widgetNames).forEach(k=> next[k]=true); store.set('widgets', next); applyWidgets(); if($('#settingsModal') && $('#settingsModal').classList.contains('open')) fillSettings(); }});
-    add('Widgets: Alle ausblenden', { g:'widgets', a: ()=>{ const next = {}; Object.keys(widgetNames).forEach(k=> next[k]=false); store.set('widgets', next); applyWidgets(); if($('#settingsModal') && $('#settingsModal').classList.contains('open')) fillSettings(); }});
-    Object.keys(widgetNames).forEach(key=>{
-      add(`Widget: ${widgetNames[key]} umschalten`, { g:'widgets', a: ()=> toggleWidget(key) });
-      add(`Widget: ${widgetNames[key]} fokussieren`, { g:'widgets', a: ()=> focusWidget(key) });
-    });
-
-    // Quick add
-    add('Todo hinzufügen', { g:'quick', a: ()=>{ const v = prompt('Todo'); if(v && v.trim()) addTodo(v.trim()); }});
-    add('Notiz hinzufügen', { g:'quick', a: ()=>{ const v = prompt('Notiz'); if(v && v.trim()) appendNote(v.trim()); }});
-
-    // Tiles and widgets refresh
-    add('Tile hinzufügen', { k:'+', g:'tiles', a: addTile });
-    add('Tiles zurücksetzen', { g:'tiles', a: ()=>{ if(confirm('Standard-Kacheln wiederherstellen?')){ store.set('tiles', defaultTiles()); renderTiles(); }} });
-    add('Wetter aktualisieren', { g:'command', a: loadWeather });
-    add('News aktualisieren', { g:'command', a: loadNews });
-    add('Transport aktualisieren', { g:'command', a: loadTransportDepartures });
-    add('System aktualisieren', { g:'command', a: renderSystem });
-    add('Alle Widgets aktualisieren', { g:'command', a: ()=>{ loadWeather(); loadNews(); loadTransportDepartures(); renderSystem(); }});
-
-    // Search engines
-    Object.keys(ENGINES).forEach(key=>{
-      const label = engineLabels[key] || key;
-      add(`Engine: ${label}`, { g:'search', a: ()=>{ setSearchEngine(key); $('#query').focus(); } });
-    });
-
-    // Background presets
-    BG_PRESETS.forEach(p=>{
-      add(`Hintergrund: ${p.label}`, { g:'theme', a: ()=> bgApply({ type:'preset', id: p.id }) });
-    });
-
-    // Data actions + presets
-    add('Daten exportieren', { g:'data', a: exportData });
-    add('Daten importieren', { g:'data', a: ()=>{ const file = $('#importFile'); if(file) file.click(); }});
-    try{
-      const presets = await loadDataPresets();
-      presets.forEach(p=>{
-        const label = p.label || p.id || 'Preset';
-        add(`Data Preset: ${label}`, { g:'data', a: ()=> applyPresetFromEntry(p, `Preset: ${label}`) });
+      // Widget actions
+      add(t('palette.widgets.showAll'), { g:'widgets', a: ()=>{ const next = {}; Object.keys(widgetNames).forEach(k=> next[k]=true); store.set('widgets', next); applyWidgets(); if($('#settingsModal') && $('#settingsModal').classList.contains('open')) fillSettings(); }});
+      add(t('palette.widgets.hideAll'), { g:'widgets', a: ()=>{ const next = {}; Object.keys(widgetNames).forEach(k=> next[k]=false); store.set('widgets', next); applyWidgets(); if($('#settingsModal') && $('#settingsModal').classList.contains('open')) fillSettings(); }});
+      Object.keys(widgetNames).forEach(key=>{
+        add(t('palette.widgets.toggle', { widget: widgetNames[key] }), { g:'widgets', a: ()=> toggleWidget(key) });
+        add(t('palette.widgets.focus', { widget: widgetNames[key] }), { g:'widgets', a: ()=> focusWidget(key) });
       });
-    }catch{}
 
-    // Tiles
-    const tiles = store.get('tiles', defaultTiles());
-    tiles.forEach(t=> items.push({ t:`${t.title}`, s:t.url, g:'tile', a: ()=> openUrl(t.url, t.title) }));
-    return items;
-  }
-  function fuzzyIncludes(text, q){
+      // Quick add
+      add(t('palette.quick.addTodo'), { g:'quick', a: ()=>{ const v = prompt(t('todo.prompt')); if(v && v.trim()) addTodo(v.trim()); }});
+      add(t('palette.quick.addNote'), { g:'quick', a: ()=>{ const v = prompt(t('notes.prompt')); if(v && v.trim()) appendNote(v.trim()); }});
+
+      // Tiles and widgets refresh
+      add(t('palette.tiles.add'), { k:'+', g:'tiles', a: addTile });
+      add(t('palette.tiles.reset'), { g:'tiles', a: ()=>{ if(confirm(t('tiles.resetConfirm'))){ store.set('tiles', defaultTiles()); renderTiles(); }} });
+      add(t('palette.refresh.weather'), { g:'command', a: loadWeather });
+      add(t('palette.refresh.news'), { g:'command', a: loadNews });
+      add(t('palette.refresh.transport'), { g:'command', a: loadTransportDepartures });
+      add(t('palette.refresh.system'), { g:'command', a: renderSystem });
+      add(t('palette.refresh.all'), { g:'command', a: ()=>{ loadWeather(); loadNews(); loadTransportDepartures(); renderSystem(); }});
+
+      // Search engines
+      Object.keys(ENGINES).forEach(key=>{
+        const label = engineLabels[key] || key;
+        add(t('palette.search.engine', { engine: label }), { g:'search', a: ()=>{ setSearchEngine(key); $('#query').focus(); } });
+      });
+
+      // Background presets
+      BG_PRESETS.forEach(p=>{
+        add(t('palette.background.preset', { label: p.label }), { g:'theme', a: ()=> bgApply({ type:'preset', id: p.id }) });
+      });
+
+      // Data actions + presets
+      add(t('palette.data.export'), { g:'data', a: exportData });
+      add(t('palette.data.import'), { g:'data', a: ()=>{ const file = $('#importFile'); if(file) file.click(); }});
+      try{
+        const presets = await loadDataPresets();
+        presets.forEach(p=>{
+          const label = p.label || p.id || t('data.presets.label');
+          add(t('palette.data.preset', { label }), { g:'data', a: ()=> applyPresetFromEntry(p, t('data.presets.label')) });
+        });
+      }catch{}
+
+      // Tiles
+      const tiles = store.get('tiles', defaultTiles());
+      tiles.forEach(t=> items.push({ t:`${t.title}`, s:t.url, g:'tile', a: ()=> openUrl(t.url, t.title) }));
+      return items;
+    }
+
+    function fuzzyIncludes(text, q){
     text = (text||'').toLowerCase(); q = (q||'').toLowerCase();
     if(!q) return true;
     let i=0; for(const ch of text){ if(ch===q[i]) i++; if(i===q.length) return true; }
@@ -3246,17 +3427,17 @@
       return;
     }
     const groupOrder = ['command','settings','search','widgets','theme','data','tiles','tile','quick'];
-    const groupLabels = {
-      command: 'Befehle',
-      settings: 'Einstellungen',
-      search: 'Suche',
-      widgets: 'Widgets',
-      theme: 'Theme & Hintergrund',
-      data: 'Daten',
-      tiles: 'Tiles',
-      tile: 'Favoriten',
-      quick: 'Schnell'
-    };
+      const groupLabels = {
+        command: t('palette.groups.command'),
+        settings: t('palette.groups.settings'),
+        search: t('palette.groups.search'),
+        widgets: t('palette.groups.widgets'),
+        theme: t('palette.groups.theme'),
+        data: t('palette.groups.data'),
+        tiles: t('palette.groups.tiles'),
+        tile: t('palette.groups.tile'),
+        quick: t('palette.groups.quick')
+      };
     let isLoading = true;
     let all = [];
     let filtered = [];
@@ -3277,7 +3458,7 @@
       if(isLoading){
         const loading = document.createElement('li');
         loading.className = 'palette-empty';
-        loading.textContent = 'Lade...';
+          loading.textContent = t('common.loading');
         list.appendChild(loading);
         input.setAttribute('aria-activedescendant','');
         return;
@@ -3285,7 +3466,7 @@
       if(!flat.length){
         const empty = document.createElement('li');
         empty.className = 'palette-empty';
-        empty.textContent = 'Keine Treffer';
+          empty.textContent = t('common.noMatches');
         list.appendChild(empty);
         input.setAttribute('aria-activedescendant','');
         return;
@@ -3362,7 +3543,8 @@
   }
 
 // ===== Init
-  function init(){
+  async function init(){
+    await initI18n();
     // Theme
     const theme = store.get('theme','auto');
     applyTheme(theme);
@@ -3396,7 +3578,7 @@
           return;
         }
         if(q.length < TRANSPORT_MIN_QUERY){
-          renderTransportSuggestTo(transportDefaultSuggest, [], `Mindestens ${TRANSPORT_MIN_QUERY} Zeichen`, null);
+          renderTransportSuggestTo(transportDefaultSuggest, [], t('transport.minQuery', { count: TRANSPORT_MIN_QUERY }), null);
           return;
         }
         timer = setTimeout(()=> transportSearchCore(q, 0, 'settings', (items, message)=>{
@@ -3412,7 +3594,7 @@
         const q = transportDefaultInput.value.trim();
         if(!q) return;
         if(q.length < TRANSPORT_MIN_QUERY){
-          renderTransportSuggestTo(transportDefaultSuggest, [], `Mindestens ${TRANSPORT_MIN_QUERY} Zeichen`, null);
+          renderTransportSuggestTo(transportDefaultSuggest, [], t('transport.minQuery', { count: TRANSPORT_MIN_QUERY }), null);
           return;
         }
         transportSearchCore(q, 0, 'settings', (items, message)=>{
@@ -3479,7 +3661,7 @@
     const exp = $('#exportData'); if(exp) exp.addEventListener('click', exportData);
     const imp = $('#importData'); if(imp) imp.addEventListener('click', ()=> $('#importFile').click());
     const file = $('#importFile'); if(file) file.addEventListener('change', importDataFromFile);
-    const dataNote = $('#dataNote'); if(dataNote) dataNote.textContent = 'Export speichert sämtliche Einstellungen und Daten lokal als JSON. Import überschreibt vorhandene Einträge.';
+    const dataNote = $('#dataNote'); if(dataNote) dataNote.textContent = t('settings.data.noteText');
     renderDataPresets();
     const presetSelect = $('#dataPresetSelect'); if(presetSelect) presetSelect.addEventListener('change', updateDataPresetMeta);
     const presetApply = $('#applyPreset'); if(presetApply) presetApply.addEventListener('click', applyDataPreset);
@@ -3525,7 +3707,7 @@
           return;
         }
         if(q.length < TRANSPORT_MIN_QUERY){
-          renderTransportSuggestTo(onbTransportSuggest, [], `Mindestens ${TRANSPORT_MIN_QUERY} Zeichen`, null);
+          renderTransportSuggestTo(onbTransportSuggest, [], t('transport.minQuery', { count: TRANSPORT_MIN_QUERY }), null);
           return;
         }
         timer = setTimeout(()=> transportSearchCore(q, 0, 'onboarding', (items, message)=>{
@@ -3536,7 +3718,7 @@
         const q = onbTransportInput.value.trim();
         if(!q) return;
         if(q.length < TRANSPORT_MIN_QUERY){
-          renderTransportSuggestTo(onbTransportSuggest, [], `Mindestens ${TRANSPORT_MIN_QUERY} Zeichen`, null);
+          renderTransportSuggestTo(onbTransportSuggest, [], t('transport.minQuery', { count: TRANSPORT_MIN_QUERY }), null);
           return;
         }
         transportSearchCore(q, 0, 'onboarding', (items, message)=>{
@@ -3551,8 +3733,8 @@
     }
 
     // Persist settings fields (shortcuts, feeds, wordlist)
-    $('#shortcutConfig').addEventListener('change', ()=>{ try{ const j=JSON.parse($('#shortcutConfig').value); store.set('shortcuts', j);}catch{ alert('Ungültiges Shortcuts-JSON'); } });
-    $('#feedsConfig').addEventListener('change', ()=>{ try{ const j=JSON.parse($('#feedsConfig').value); store.set('news.custom', j); fillNewsSources(); loadNews(); }catch{ alert('Ungültiges Feeds-JSON'); } });
+    $('#shortcutConfig').addEventListener('change', ()=>{ try{ const j=JSON.parse($('#shortcutConfig').value); store.set('shortcuts', j);}catch{ alert(t('settings.search.invalidShortcuts')); } });
+    $('#feedsConfig').addEventListener('change', ()=>{ try{ const j=JSON.parse($('#feedsConfig').value); store.set('news.custom', j); fillNewsSources(); loadNews(); }catch{ alert(t('settings.search.invalidFeeds')); } });
     const wordlistEditor = $('#wordlistEditor');
     const wordlistSave = $('#wordlistSave');
     const wordlistReset = $('#wordlistReset');
@@ -3577,7 +3759,7 @@
     if(!localStorage.getItem('tiles')) store.set('tiles', defaultTiles());
     renderTiles();
     $('#addTile').addEventListener('click', addTile);
-    $('#resetTiles').addEventListener('click', ()=>{ if(confirm('Standard‑Kacheln wiederherstellen?')){ store.set('tiles', defaultTiles()); renderTiles(); }});
+    $('#resetTiles').addEventListener('click', ()=>{ if(confirm(t('tiles.resetConfirm'))){ store.set('tiles', defaultTiles()); renderTiles(); }});
 
     // Weather
     $('#setCity').addEventListener('click', ()=>{ const v=$('#cityInput').value.trim(); if(v){ store.set('weather.city', v); loadWeather(); }});

@@ -1,0 +1,490 @@
+{
+  "app": {
+    "title": "Startpage"
+  },
+  "common": {
+    "link": "Link",
+    "delete": "Delete",
+    "remove": "Remove",
+    "save": "Save",
+    "loading": "Loading...",
+    "loadError": "Load failed",
+    "noMatches": "No matches",
+    "emptyDash": "—",
+    "dash": "–"
+  },
+  "header": {
+    "themeToggleTitle": "Dark/Light",
+    "settingsTitle": "Settings"
+  },
+  "search": {
+    "placeholder": "Search… (e.g. !yt lo-fi, !etc Home)",
+    "engine": {
+      "google": "Google",
+      "ddg": "DuckDuckGo",
+      "bing": "Bing",
+      "yt": "YouTube",
+      "wikipedia": "Wikipedia",
+      "maps": "Google Maps"
+    },
+    "suggest": {
+      "bang": "{bang} (Bang)",
+      "shortcut": "{shortcut} (Shortcut)",
+      "type": {
+        "bang": "Bang",
+        "shortcut": "Shortcut",
+        "recent": "Recent",
+        "word": "Word"
+      }
+    },
+    "recentShortcut": "Shortcut {shortcut} – {query}",
+    "recentSearch": "Search ({engine}) – {query}"
+  },
+  "todo": {
+    "title": "To-Do",
+    "placeholder": "New task…",
+    "add": "Add",
+    "clearDoneTitle": "Remove completed",
+    "clearDone": "✓ clear",
+    "doneAria": "Done",
+    "prompt": "Todo"
+  },
+  "notes": {
+    "title": "Notes",
+    "placeholder": "Jot something down…",
+    "prompt": "Note"
+  },
+  "tiles": {
+    "title": "Favorites",
+    "add": "+ Tile",
+    "resetTitle": "Restore defaults",
+    "edit": "Edit",
+    "promptTitle": "Title",
+    "promptUrl": "URL",
+    "invalidUrl": "Invalid URL",
+    "promptTitleNew": "Tile title",
+    "promptUrlNew": "URL (https://…)",
+    "resetConfirm": "Restore default tiles?"
+  },
+  "weather": {
+    "title": "Weather today",
+    "cityPlaceholder": "Enter city…",
+    "setCity": "Set",
+    "pickLocation": "Pick a location…",
+    "source": "Source: Open-Meteo",
+    "loading": "Loading weather…",
+    "prompt": "Enter a location to load weather.",
+    "tempEmpty": "—°C",
+    "tempEmptyShort": "—°",
+    "minmaxEmpty": "— / — °C",
+    "noForecast": "No forecast",
+    "errors": {
+      "geocodingFailed": "Geocoding failed",
+      "locationNotFound": "Location not found",
+      "cityMissing": "City missing",
+      "fetchFailed": "Weather fetch failed",
+      "loadFailed": "Weather could not be loaded"
+    },
+    "codes": {
+      "0": "Clear",
+      "1": "Mostly clear",
+      "2": "Partly cloudy",
+      "3": "Cloudy",
+      "45": "Fog",
+      "48": "Fog",
+      "51": "Drizzle",
+      "53": "Drizzle",
+      "55": "Drizzle",
+      "61": "Rain",
+      "63": "Rain",
+      "65": "Heavy rain",
+      "71": "Snow",
+      "80": "Showers",
+      "95": "Thunderstorm",
+      "default": "Weather"
+    }
+  },
+  "transport": {
+    "title": "Transport",
+    "durationAria": "Duration",
+    "duration30": "30 min",
+    "duration60": "60 min",
+    "duration90": "90 min",
+    "duration120": "120 min",
+    "refreshTitle": "Reload",
+    "searchPlaceholder": "Search station…",
+    "noneSelected": "No station selected",
+    "source": "Source: transport.rest",
+    "minQuery": "At least {count} characters",
+    "noMatches": "No matches",
+    "proxyTimeout": "Proxy timeout",
+    "loadError": "Load failed",
+    "noDepartures": "No departures",
+    "selectStation": "Select a station…",
+    "type": {
+      "station": "Station",
+      "stop": "Stop"
+    },
+    "platform": "Platform {platform}",
+    "cancelled": "Cancelled"
+  },
+  "quote": {
+    "title": "Quote / Nerd Nudge",
+    "list": [
+      "Move fast, refactor often.",
+      "Accessibility isn't a feature – it's the default.",
+      "Done > Perfect. Iterate.",
+      "If it's not monitored, it doesn't exist.",
+      "Good UX is invisible. Bad UX is unforgettable.",
+      "Make it work, make it right, make it fast.",
+      "Small steps. Massive outcomes.",
+      "Simplicity scales. Complexity fails.",
+      "Automate the boring stuff.",
+      "Measure twice, deploy once."
+    ]
+  },
+  "recent": {
+    "title": "Recent",
+    "note": "Note: Only actions from this start page (clicked tiles & searches)."
+  },
+  "system": {
+    "title": "System status",
+    "loading": "Loading…",
+    "ram": "RAM: {value} GB",
+    "cpu": "CPU cores: {value}",
+    "network": "Network: {downlink} Mbit/s · {type}{saveData}",
+    "saveData": " · SaveData",
+    "noData": "No data available"
+  },
+  "news": {
+    "title": "News",
+    "refreshTitle": "Reload",
+    "source": "RSS via Startpage Proxy (CORS proxy)",
+    "noItems": "No items"
+  },
+  "footer": {
+    "tagline": "Local-first dashboard · stores only in the browser (localStorage)"
+  },
+  "settings": {
+    "title": "Settings",
+    "close": "Close",
+    "tabs": {
+      "general": "General",
+      "background": "Background & Appearance",
+      "search": "Search & Feeds",
+      "widgets": "Widgets",
+      "data": "Data",
+      "guide": "Guide"
+    },
+    "theme": {
+      "label": "Theme",
+      "auto": "Auto (System)",
+      "dark": "Dark",
+      "light": "Light"
+    },
+    "background": {
+      "label": "Background"
+    },
+    "search": {
+      "engines": "Search engines",
+      "bangsNote": "Supported bang shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Custom shortcuts below",
+      "wordlistLabel": "Autocomplete wordlist",
+      "wordlistPlaceholder": "Terms line by line or comma-separated",
+      "wordlistSave": "Save",
+      "wordlistReset": "Clear",
+      "wordlistNote": "Global wordlist (assets/wordlist.json) and preset wordlist are merged. Leave empty to use only the global list.",
+      "shortcutsLabel": "Custom !shortcuts",
+      "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
+      "shortcutsNote": "Use <code>{q}</code> as placeholder for the search phrase. Without <code>{q}</code>, <code>?q=...</code> is appended.",
+      "feedsLabel": "Custom RSS feeds",
+      "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
+      "feedsNote": "JSON: name - feed URL. This list is merged with the default feeds.",
+      "invalidShortcuts": "Invalid shortcuts JSON",
+      "invalidFeeds": "Invalid feeds JSON"
+    },
+    "widgets": {
+      "visible": "Show widgets",
+      "defaultCityLabel": "Default city (weather)",
+      "defaultCityPlaceholder": "e.g. Hanover",
+      "defaultTransportLabel": "Default stop (transport)",
+      "defaultTransportPlaceholder": "Search station…",
+      "cardStyleLabel": "Card style",
+      "cardStyleGlass": "Glass (default)",
+      "cardStyleSolid": "Solid",
+      "cardStyleTransparent": "Transparent",
+      "cardStyleMinimal": "Soft minimal",
+      "cardStyleNote": "Applies to all widgets & favorite tiles.",
+      "clockColorLabel": "Time & date",
+      "searchColorLabel": "Search",
+      "reset": "Reset",
+      "clockColorNote": "Sets the header background (empty = style default).",
+      "searchColorNote": "Color for the search area (empty = style default).",
+      "widgetColorsLabel": "Widget colors"
+    },
+    "data": {
+      "label": "Data",
+      "export": "Export (.json)",
+      "import": "Import (.json)",
+      "presetsLabel": "Data presets",
+      "applyPreset": "Load preset",
+      "presetMeta": "Presets are exported JSONs under assets/presets/. User presets from assets/user-presets/ are merged automatically.",
+      "setupLabel": "Setup",
+      "restartOnboarding": "Restart setup",
+      "restartNote": "Reopens the compact setup dialog.",
+      "noteLabel": "Note",
+      "noteText": "Export stores all settings & data locally as JSON. Import overwrites existing entries."
+    },
+    "language": {
+      "label": "Language",
+      "auto": "Auto (System)"
+    },
+    "guideHtml": "<div class=\"row\"><label>User Guide</label><div><h5>Overview</h5><ul><li>Start page with search, favorites, to-do, notes, weather, news.</li><li>All local: data stays in your browser (localStorage).</li></ul><h5>Shortcuts</h5><ul><li>Ctrl/Cmd+K: open command palette</li><li>1-9: open first 9 favorites (when not typing)</li><li>/ : focus search (also via palette)</li><li>Enter in search: start search</li><li>ESC: close modals</li><li>Palette: quick actions for widgets, theme, background, data, favorites</li><li>Palette: key C switches card style, \"Reset header colors\" resets search & clock</li></ul><h5>Search & Autocomplete</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>Custom shortcuts: JSON in settings; {q} as placeholder</li><li>Autocomplete: bangs, shortcuts, recent searches, wordlist (global + preset)</li><li>Tab accepts suggestion, Enter starts search</li></ul><h5>Tiles</h5><ul><li>Drag & drop to sort, click to open</li><li>+ Tile: add a new favorite</li><li>Reset: restore default favorites</li></ul><h5>Widgets & Layout</h5><ul><li>Visibility per widget</li><li>Card style is global (glass, solid, transparent, soft minimal)</li><li>Custom colors for clock/search; reset restores style defaults</li><li>Widget colors & \"Tint widgets\" set the accent per card</li></ul><h5>Background</h5><ul><li>Presets, uploads, collections, rotation (time/theme/interval)</li><li>Accent color is extracted from the active background</li></ul><h5>Data</h5><ul><li>Export/Import as JSON</li><li>Load data presets (assets/presets/*.json in the repo)</li></ul></div></div>"
+  },
+  "onboarding": {
+    "title": "Start setup",
+    "progress": "Step {current} of {total}",
+    "skip": "Skip setup",
+    "close": "Close",
+    "preset": {
+      "title": "Choose preset",
+      "hint": "Pick a preset or skip this step.",
+      "apply": "Apply preset",
+      "meta": "Apply a preset or skip.",
+      "optional": "Preset optional.",
+      "context": "Setup preset"
+    },
+    "appearance": {
+      "title": "Appearance",
+      "theme": "Theme",
+      "cardStyle": "Card style",
+      "background": "Background",
+      "rotation": "Enable rotation",
+      "keepCurrent": "Keep current image"
+    },
+    "search": {
+      "title": "Search",
+      "engine": "Default search engine"
+    },
+    "widgets": {
+      "title": "Widgets",
+      "defaultTransport": "Default stop (transport)",
+      "tint": "Tint widgets with accent"
+    },
+    "weather": {
+      "title": "Weather",
+      "defaultCity": "Default city",
+      "note": "You can change everything later in settings."
+    },
+    "prev": "Back",
+    "next": "Next",
+    "finish": "Done"
+  },
+  "palette": {
+    "placeholder": "Search command or favorite… (Ctrl/⌘+K)",
+    "groups": {
+      "command": "Commands",
+      "settings": "Settings",
+      "search": "Search",
+      "widgets": "Widgets",
+      "theme": "Theme & Background",
+      "data": "Data",
+      "tiles": "Tiles",
+      "tile": "Favorites",
+      "quick": "Quick"
+    },
+    "search": {
+      "focus": "Focus search",
+      "start": "Start search",
+      "engine": "Engine: {engine}"
+    },
+    "settings": {
+      "open": "Open settings",
+      "general": "Settings: General",
+      "background": "Settings: Background",
+      "search": "Settings: Search",
+      "widgets": "Settings: Widgets",
+      "data": "Settings: Data",
+      "guide": "Settings: Guide"
+    },
+    "theme": {
+      "cycle": "Cycle theme (Auto/Dark/Light)",
+      "auto": "Theme: Auto",
+      "dark": "Theme: Dark",
+      "light": "Theme: Light",
+      "resetHeader": "Reset header colors",
+      "recalcAccent": "Recalculate accent colors"
+    },
+    "cardStyle": {
+      "glass": "Card style: Glass",
+      "solid": "Card style: Solid",
+      "transparent": "Card style: Transparent",
+      "minimal": "Card style: Minimal"
+    },
+    "background": {
+      "toggleRotation": "Background: Toggle rotation",
+      "toggleLock": "Background: Lock/unlock rotation",
+      "preset": "Background: {label}"
+    },
+    "widgets": {
+      "showAll": "Widgets: Show all",
+      "hideAll": "Widgets: Hide all",
+      "toggle": "Widget: Toggle {widget}",
+      "focus": "Widget: Focus {widget}"
+    },
+    "quick": {
+      "addTodo": "Add todo",
+      "addNote": "Add note"
+    },
+    "tiles": {
+      "add": "Add tile",
+      "reset": "Reset tiles"
+    },
+    "refresh": {
+      "weather": "Refresh weather",
+      "news": "Refresh news",
+      "transport": "Refresh transport",
+      "system": "Refresh system",
+      "all": "Refresh all widgets"
+    },
+    "data": {
+      "export": "Export data",
+      "import": "Import data",
+      "preset": "Data preset: {label}"
+    }
+  },
+  "widgets": {
+    "todo": "To-Do",
+    "notes": "Notes",
+    "tiles": "Favorites",
+    "weather": "Weather",
+    "transport": "Transport",
+    "quote": "Quote",
+    "recent": "Recent",
+    "system": "System",
+    "news": "News"
+  },
+  "background": {
+    "currentPreview": "Current background image",
+    "none": "No background",
+    "noImageSelected": "No image selected",
+    "rotationResume": "Resume rotation",
+    "rotationLock": "Lock rotation",
+    "tone": "Tone: {tone}",
+    "presets": {
+      "empty": "No presets available."
+    },
+    "favorites": {
+      "empty": "No favorites yet. Mark presets or uploads."
+    },
+    "subtitle": {
+      "preset": "Preset"
+    },
+    "upload": "Upload",
+    "uploadDrop": "Drop files here",
+    "uploadBrowse": "Choose file",
+    "uploadNote": "We resize images automatically (16:9, max 2560px) and store them locally. Max {max} files.",
+    "uploads": {
+      "empty": "No uploads yet."
+    },
+    "collections": {
+      "count": "{count} sources",
+      "random": "Random",
+      "cache": "Save offline",
+      "viewSources": "View sources",
+      "useRotation": "Use for rotation",
+      "newLabel": "New collection",
+      "namePlaceholder": "My collection",
+      "urlsPlaceholder": "One image URL per line",
+      "clear": "Clear fields",
+      "note": "URLs are stored locally. Remote sources need CORS for images.",
+      "empty": "No collections yet.",
+      "minOneUrl": "Enter at least one URL.",
+      "emptyCollection": "Collection is empty.",
+      "saved": "Collection saved locally.",
+      "defaultName": "Collection {index}"
+    },
+    "rotation": {
+      "optionPreset": "Preset: {label}",
+      "optionUpload": "Upload: {label}",
+      "optionFavorite": "Favorite: {label}",
+      "optionCustom": "Custom: saved URL",
+      "noFixed": "No fixed image",
+      "enabled": "Enable automatic rotation",
+      "locked": "Rotation is currently locked.",
+      "active": "Backgrounds change according to the schedule.",
+      "mode": "Mode",
+      "modeTime": "Time-based",
+      "modeInterval": "Interval",
+      "modeTheme": "Theme",
+      "intervalLabel": "Interval in minutes",
+      "intervalNote": "Only relevant in interval mode.",
+      "sourcesLabel": "Sources for random",
+      "scheduleLabel": "Schedule",
+      "themePlan": "Theme plan",
+      "themeLight": "Theme light",
+      "themeDark": "Theme dark",
+      "themeNote": "Theme plan is used when mode is Theme.",
+      "slot": {
+        "morning": "Morning 05-11",
+        "day": "Day 11-17",
+        "evening": "Evening 17-21",
+        "night": "Night 21-05"
+      }
+    },
+    "custom": {
+      "label": "Custom image URL",
+      "placeholder": "https://example.com/image.jpg",
+      "note": "URL is stored locally. Server must allow CORS for images.",
+      "enterUrl": "Please enter a URL.",
+      "title": "Custom URL",
+      "subtitle": "Custom"
+    },
+    "actions": {
+      "apply": "Apply",
+      "favorite": "Favorite",
+      "favorited": "Favorited",
+      "random": "Load random",
+      "undo": "Restore last image",
+      "lock": "Lock rotation",
+      "tint": "Tint widgets"
+    },
+    "tabs": {
+      "presets": "Presets",
+      "favorites": "Favorites",
+      "uploads": "Uploads",
+      "collections": "Collections",
+      "rotation": "Rotation",
+      "custom": "Custom"
+    },
+    "loadError": "Load failed. Check CORS settings.",
+    "noneAvailable": "No backgrounds available.",
+    "imageLoadError": "Image could not be loaded."
+  },
+  "data": {
+    "import": {
+      "confirm": "Import data? Existing entries will be overwritten.",
+      "failed": "Import failed: {error}"
+    },
+    "presets": {
+      "none": "No preset available.",
+      "missingFile": "Preset file missing.",
+      "fileMissing": "File not found",
+      "invalid": "Invalid preset",
+      "confirmApply": "Apply {context} \"{name}\"? Existing entries will be overwritten.",
+      "loadFailed": "Preset load failed: {error}",
+      "loading": "Loading presets...",
+      "noneFound": "No presets found",
+      "hint": "Place exported JSONs under assets/presets/ (manifest: assets/data-presets.json) or locally under assets/user-presets/.",
+      "hintShort": "Add a preset under assets/presets/ or assets/user-presets/.",
+      "userPrefix": "User: ",
+      "userApply": "Apply local preset",
+      "apply": "Apply preset",
+      "noneSelected": "No preset selected.",
+      "label": "Preset",
+      "defaultLabel": "Preset {index}",
+      "userDefault": "User preset {index}",
+      "userDescription": "Local preset from assets/user-presets/",
+      "tags": " (Tags: {tags})"
+    }
+  }
+}
