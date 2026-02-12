@@ -3,488 +3,488 @@
     "title": "Startpage"
   },
   "common": {
-    "link": "??",
-    "delete": "??",
-    "remove": "??",
-    "save": "??",
-    "loading": "?? ?...",
-    "loadError": "?? ??",
-    "noMatches": "?? ??",
-    "emptyDash": "?",
-    "dash": "?"
+    "link": "링크",
+    "delete": "삭제",
+    "remove": "제거하다",
+    "save": "구하다",
+    "loading": "로드 중...",
+    "loadError": "로드 실패",
+    "noMatches": "일치하는 항목 없음",
+    "emptyDash": "—",
+    "dash": "–"
   },
   "header": {
-    "themeToggleTitle": "??/???",
-    "settingsTitle": "??"
+    "themeToggleTitle": "어두움/밝음",
+    "settingsTitle": "설정"
   },
   "search": {
-    "placeholder": "??... (?: !yt lo-fi, !etc Home)",
+    "placeholder": "검색… (예:!yt lo-fi,!etc Home)",
     "engine": {
       "google": "Google",
       "ddg": "DuckDuckGo",
       "bing": "Bing",
       "yt": "YouTube",
       "wikipedia": "Wikipedia",
-      "maps": "Google ??"
+      "maps": "구글 지도"
     },
     "suggest": {
-      "bang": "{bang} (Bang)",
-      "shortcut": "{shortcut} (???)",
+      "bang": "{bang} (쾅)",
+      "shortcut": "{shortcut}(바로가기)",
       "type": {
-        "bang": "Bang",
-        "shortcut": "???",
-        "recent": "??",
-        "word": "??"
+        "bang": "쾅",
+        "shortcut": "지름길",
+        "recent": "최근의",
+        "word": "단어"
       }
     },
-    "recentShortcut": "??? {shortcut} ? {query}",
-    "recentSearch": "?? ({engine}) ? {query}"
+    "recentShortcut": "바로가기 {shortcut} – {query}",
+    "recentSearch": "검색({engine}) – {query}"
   },
   "todo": {
-    "title": "? ?",
-    "placeholder": "? ??...",
-    "add": "??",
-    "clearDoneTitle": "?? ?? ??",
-    "clearDone": "? ???",
-    "doneAria": "??",
-    "prompt": "??"
+    "title": "할 일",
+    "placeholder": "새로운 임무…",
+    "add": "추가하다",
+    "clearDoneTitle": "제거 완료",
+    "clearDone": "✓ 클리어",
+    "doneAria": "완료",
+    "prompt": "토도"
   },
   "notes": {
-    "title": "??",
-    "placeholder": "??? ??...",
-    "prompt": "??"
+    "title": "메모",
+    "placeholder": "뭔가를 적어보세요…",
+    "prompt": "메모"
   },
   "tiles": {
-    "title": "????",
-    "add": "+ ??",
-    "resetTitle": "??? ??",
-    "edit": "??",
-    "promptTitle": "??",
+    "title": "즐겨찾기",
+    "add": "+ 타일",
+    "resetTitle": "기본값 복원",
+    "edit": "편집하다",
+    "promptTitle": "제목",
     "promptUrl": "URL",
-    "invalidUrl": "??? URL",
-    "promptTitleNew": "?? ??",
-    "promptUrlNew": "URL (https://?)",
-    "resetConfirm": "?? ??? ??????"
+    "invalidUrl": "잘못된 URL",
+    "promptTitleNew": "타일 ​​제목",
+    "promptUrlNew": "URL(https://…)",
+    "resetConfirm": "기본 타일을 복원하시겠습니까?"
   },
   "weather": {
-    "title": "??? ??",
-    "cityPlaceholder": "?? ??...",
-    "setCity": "??",
-    "pickLocation": "?? ??...",
-    "source": "??: Open-Meteo",
-    "loading": "?? ???? ?...",
-    "prompt": "??? ??? ??? ?????.",
-    "tempEmpty": "??C",
-    "tempEmptyShort": "??",
-    "minmaxEmpty": "? / ? ?C",
-    "noForecast": "?? ??",
+    "title": "오늘 날씨",
+    "cityPlaceholder": "도시를 입력하세요…",
+    "setCity": "세트",
+    "pickLocation": "위치를 선택하세요…",
+    "source": "출처: Open-Meteo",
+    "loading": "날씨 로드 중…",
+    "prompt": "날씨를 로드할 위치를 입력하세요.",
+    "tempEmpty": "—°C",
+    "tempEmptyShort": "—°",
+    "minmaxEmpty": "— / — °C",
+    "noForecast": "예측 없음",
     "errors": {
-      "geocodingFailed": "???? ??",
-      "locationNotFound": "??? ?? ? ??",
-      "cityMissing": "?? ??",
-      "fetchFailed": "?? ???? ??",
-      "loadFailed": "??? ??? ? ??"
+      "geocodingFailed": "지오코딩 실패",
+      "locationNotFound": "위치를 찾을 수 없습니다",
+      "cityMissing": "도시 누락",
+      "fetchFailed": "날씨를 가져오지 못했습니다.",
+      "loadFailed": "날씨를 로드할 수 없습니다."
     },
     "codes": {
-      "0": "??",
-      "1": "??? ??",
-      "2": "????? ??",
-      "3": "??",
-      "45": "??",
-      "48": "??",
-      "51": "???",
-      "53": "???",
-      "55": "???",
-      "61": "?",
-      "63": "?",
-      "65": "?? ?",
-      "71": "?",
-      "80": "???",
-      "95": "??",
-      "default": "??"
+      "0": "분명한",
+      "1": "대체로 맑음",
+      "2": "약간 흐림",
+      "3": "흐린",
+      "45": "안개",
+      "48": "안개",
+      "51": "이슬비",
+      "53": "이슬비",
+      "55": "이슬비",
+      "61": "비",
+      "63": "비",
+      "65": "폭우",
+      "71": "눈",
+      "80": "샤워",
+      "95": "뇌우",
+      "default": "날씨"
     }
   },
   "transport": {
-    "title": "??",
-    "durationAria": "??",
-    "duration30": "30?",
-    "duration60": "60?",
-    "duration90": "90?",
-    "duration120": "120?",
-    "refreshTitle": "????",
-    "searchPlaceholder": "? ??...",
-    "noneSelected": "??? ? ??",
-    "source": "??: transport.rest",
-    "minQuery": "?? {count}?",
-    "noMatches": "?? ??",
-    "proxyTimeout": "??? ?? ??",
-    "loadError": "?? ??",
-    "noDepartures": "?? ??",
-    "selectStation": "? ??...",
+    "title": "수송",
+    "durationAria": "지속",
+    "duration30": "30분",
+    "duration60": "60분",
+    "duration90": "90분",
+    "duration120": "120분",
+    "refreshTitle": "새로고침",
+    "searchPlaceholder": "검색 스테이션…",
+    "noneSelected": "선택한 방송국이 없습니다.",
+    "source": "출처: Transport.rest",
+    "minQuery": "최소 {count}자",
+    "noMatches": "일치하는 항목 없음",
+    "proxyTimeout": "프록시 시간 초과",
+    "loadError": "로드 실패",
+    "noDepartures": "출발 없음",
+    "selectStation": "역을 선택하세요…",
     "type": {
-      "station": "?",
-      "stop": "???"
+      "station": "역",
+      "stop": "멈추다"
     },
-    "platform": "??? {platform}",
-    "cancelled": "???"
+    "platform": "플랫폼 {platform}",
+    "cancelled": "취소"
   },
   "quote": {
-    "title": "?? / ?? ???",
+    "title": "인용문 / 너드 넛지",
     "list": [
-      "??? ????, ?? ??????.",
-      "???? ??? ??? ?????.",
-      "?? > ??. ????.",
-      "?????? ??? ???? ???.",
-      "?? UX? ??? ???. ?? UX? ??? ???.",
-      "???? ??, ??? ??, ??? ??.",
-      "?? ??. ? ??.",
-      "???? ????. ???? ????.",
-      "??? ?? ?????.",
-      "? ? ?? ? ? ????."
+      "빠르게 움직이고 자주 리팩토링하세요.",
+      "접근성은 기능이 아니라 기본값입니다.",
+      "완료 > 완벽해요. 반복합니다.",
+      "모니터링되지 않으면 존재하지 않는 것입니다.",
+      "좋은 UX는 눈에 보이지 않습니다. 나쁜 UX는 잊혀지지 않습니다.",
+      "제대로 작동하게 하고, 올바르게 만들고, 빠르게 만드세요.",
+      "작은 단계. 엄청난 결과.",
+      "단순성은 확장됩니다. 복잡성이 실패합니다.",
+      "지루한 작업을 자동화하세요.",
+      "두 번 측정하고 한 번 배포하세요."
     ]
   },
   "recent": {
-    "title": "??",
-    "note": "??: ? ?? ?????? ??? ?????(?? ?? ? ??)."
+    "title": "최근의",
+    "note": "참고: 이 시작 페이지의 작업만 가능합니다(타일 및 검색 클릭)."
   },
   "system": {
-    "title": "??? ??",
-    "loading": "?? ?...",
-    "ram": "RAM: {value} GB",
-    "cpu": "CPU ??: {value}",
-    "network": "????: {downlink} Mbit/s ? {type}{saveData}",
-    "saveData": " ? ??? ??",
-    "noData": "??? ??"
+    "title": "시스템 상태",
+    "loading": "로드 중…",
+    "ram": "RAM: {value}GB",
+    "cpu": "CPU 코어: {value}",
+    "network": "네트워크: {downlink} Mbit/s · {type}{saveData}",
+    "saveData": "· 데이터 저장",
+    "noData": "데이터가 없습니다"
   },
   "news": {
-    "title": "??",
-    "refreshTitle": "????",
-    "source": "Startpage ??? RSS (CORS ???)",
-    "noItems": "?? ??"
+    "title": "소식",
+    "refreshTitle": "새로고침",
+    "source": "시작 페이지 프록시(CORS 프록시)를 통한 RSS",
+    "noItems": "항목 없음"
   },
   "footer": {
-    "tagline": "?? ?? ???? ? ?????? ?? (localStorage)"
+    "tagline": "로컬 우선 대시보드 · 브라우저(localStorage)에만 저장"
   },
   "settings": {
-    "title": "??",
-    "close": "??",
+    "title": "설정",
+    "close": "닫다",
     "tabs": {
-      "general": "??",
-      "background": "?? ? ??",
-      "search": "?? ? ??",
-      "widgets": "??",
-      "data": "???",
-      "guide": "???"
+      "general": "일반적인",
+      "background": "배경 및 외관",
+      "search": "검색 및 피드",
+      "widgets": "위젯",
+      "data": "데이터",
+      "guide": "가이드"
     },
     "theme": {
-      "label": "??",
-      "auto": "?? (???)",
-      "dark": "??",
-      "light": "???"
+      "label": "주제",
+      "auto": "자동(시스템)",
+      "dark": "어두운",
+      "light": "빛"
     },
     "background": {
-      "label": "??"
+      "label": "배경"
     },
     "search": {
-      "engines": "?? ??",
-      "bangsNote": "???? bang ???: <code>!g !ddg !bing !yt !wiki !maps</code> - ??? ??? ??",
-      "wordlistLabel": "???? ?? ??",
-      "wordlistPlaceholder": "? ?? ?? ??? ??",
-      "wordlistSave": "??",
-      "wordlistReset": "???",
-      "wordlistNote": "??? ?? ??(assets/wordlist.json)? ??? ??? ?????. ?? ?? ???? ?????.",
-      "shortcutsLabel": "??? !???",
+      "engines": "검색 엔진",
+      "bangsNote": "지원되는 뱅 단축키:<code>!g!ddg!bing!yt!wiki!maps</code>- 아래의 맞춤 단축키",
+      "wordlistLabel": "자동 완성 단어 목록",
+      "wordlistPlaceholder": "용어는 한 줄씩 또는 쉼표로 구분됩니다.",
+      "wordlistSave": "구하다",
+      "wordlistReset": "분명한",
+      "wordlistNote": "전역 단어 목록(assets/wordlist.json)과 사전 설정된 단어 목록이 병합됩니다. 전역 목록만 사용하려면 비워 두세요.",
+      "shortcutsLabel": "사용자 정의! 바로가기",
       "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
-      "shortcutsNote": "??? ?????? <code>{q}</code>? ?????. <code>{q}</code>? ??? <code>?q=...</code>? ?????.",
-      "feedsLabel": "??? RSS ??",
+      "shortcutsNote": "사용<code>{q}</code>검색 문구의 자리 표시자로 사용됩니다. 없이<code>{q}</code>,<code>?q=...</code>첨부되어 있습니다.",
+      "feedsLabel": "사용자 정의 RSS 피드",
       "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
-      "feedsNote": "JSON: ?? - ?? URL. ?? ??? ?????.",
-      "invalidShortcuts": "??? ??? JSON",
-      "invalidFeeds": "??? ?? JSON"
+      "feedsNote": "JSON: 이름 - 피드 URL. 이 목록은 기본 피드와 병합됩니다.",
+      "invalidShortcuts": "잘못된 바로가기 JSON",
+      "invalidFeeds": "잘못된 피드 JSON"
     },
     "widgets": {
-      "visible": "?? ??",
-      "defaultCityLabel": "?? ??(??)",
-      "defaultCityPlaceholder": "?: ???",
-      "defaultTransportLabel": "?? ???(??)",
-      "defaultTransportPlaceholder": "? ??...",
-      "cardStyleLabel": "?? ???",
-      "cardStyleGlass": "???(??)",
-      "cardStyleSolid": "???",
-      "cardStyleTransparent": "??",
-      "cardStyleMinimal": "??? ???",
-      "cardStyleNote": "?? ??? ???? ??? ?????.",
-      "clockColorLabel": "?? ? ??",
-      "searchColorLabel": "??",
-      "reset": "???",
-      "clockColorNote": "?? ?? ??(??? ??? ???).",
-      "searchColorNote": "?? ?? ??(??? ??? ???).",
-      "widgetColorsLabel": "?? ??"
+      "visible": "위젯 표시",
+      "defaultCityLabel": "기본 도시(날씨)",
+      "defaultCityPlaceholder": "예를 들어 하노버",
+      "defaultTransportLabel": "기본 정류장(운송)",
+      "defaultTransportPlaceholder": "검색 스테이션…",
+      "cardStyleLabel": "카드 스타일",
+      "cardStyleGlass": "유리(기본값)",
+      "cardStyleSolid": "단단한",
+      "cardStyleTransparent": "투명한",
+      "cardStyleMinimal": "소프트 미니멀",
+      "cardStyleNote": "모든 위젯 및 즐겨찾는 타일에 적용됩니다.",
+      "clockColorLabel": "시간 및 날짜",
+      "searchColorLabel": "찾다",
+      "reset": "다시 놓기",
+      "clockColorNote": "헤더 배경을 설정합니다(비어 있음 = 스타일 기본값).",
+      "searchColorNote": "검색 영역의 색상입니다(비어 있음 = 스타일 기본값).",
+      "widgetColorsLabel": "위젯 색상"
     },
     "data": {
-      "label": "???",
-      "export": "???? (.json)",
-      "import": "???? (.json)",
-      "presetsLabel": "??? ???",
-      "applyPreset": "??? ????",
-      "presetMeta": "???? assets/presets/? ??? JSON???. assets/user-presets/? ??? ???? ?? ?????.",
-      "setupLabel": "??",
-      "restartOnboarding": "?? ?? ??",
-      "restartNote": "?? ?? ????? ?? ???.",
-      "noteLabel": "??",
-      "noteText": "????? ?? ??? ???? ?? JSON?? ?????. ????? ?? ??? ?????."
+      "label": "데이터",
+      "export": "내보내기(.json)",
+      "import": "가져오기(.json)",
+      "presetsLabel": "데이터 사전 설정",
+      "applyPreset": "사전 설정 로드",
+      "presetMeta": "사전 설정은 자산/사전 설정/ 아래에 내보낸 JSON입니다. 자산/사용자 사전 설정/의 사용자 사전 설정은 자동으로 병합됩니다.",
+      "setupLabel": "설정",
+      "restartOnboarding": "설정 다시 시작",
+      "restartNote": "컴팩트 설정 대화상자를 다시 엽니다.",
+      "noteLabel": "메모",
+      "noteText": "내보내기는 모든 설정 및 데이터를 JSON으로 로컬에 저장합니다. 가져오기는 기존 항목을 덮어씁니다."
     },
     "language": {
-      "label": "??",
-      "auto": "?? (???)"
+      "label": "언어",
+      "auto": "자동(시스템)"
     },
-    "guideHtml": "<div class=\"row\"><label>??? ???</label><div><h5>??</h5><ul><li>??, ????, ? ?, ??, ??, ??? ?? ?? ???.</li><li>?? ??: ???? ?????? ????? (localStorage).</li></ul><h5>???</h5><ul><li>Ctrl/Cmd+K: ?? ??? ??</li><li>1-9: ? 9? ???? ??(?? ?? ?? ?)</li><li>/ : ?? ???(?????? ??)</li><li>???? Enter: ?? ??</li><li>ESC: ?? ??</li><li>???: ??, ??, ??, ???, ????? ?? ??</li><li>???: C ?? ?? ??? ??, \"?? ?? ???\"? ??/??? ???</li></ul><h5>?? ? ????</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>??? ???: ??? JSON; {q}? ?????</li><li>????: bangs, ???, ?? ??, ?? ??(??? + ???)</li><li>Tab?? ?? ??, Enter? ?? ??</li></ul><h5>??</h5><ul><li>???&???? ??, ???? ??</li><li>+ ??: ? ???? ??</li><li>???: ?? ???? ??</li></ul><h5>?? ? ????</h5><ul><li>??? ?? ??</li><li>?? ???? ??(???/???/??/??? ???)</li><li>??/?? ?? ???, ??? ? ??? ??</li><li>?? ??? \"?? ? ???\" ???? ??? ??? ??</li></ul><h5>??</h5><ul><li>???, ???, ???, ????(??/??/??)</li><li>??? ??? ?? ???? ??</li></ul><h5>???</h5><ul><li>JSON ????/????</li><li>??? ??? ???? (assets/presets/*.json)</li></ul></div></div>"
+    "guideHtml": "<div class=\"row\"><label>사용자 가이드</label><div><h5>개요</h5><ul><li>검색, 즐겨찾기, 할 일, 메모, 날씨, 뉴스를 포함한 시작 페이지입니다.</li><li>모든 데이터는 로컬(localStorage)에 저장됩니다.</li></ul><h5>단축키</h5><ul><li>Ctrl/Cmd+K: 명령 팔레트 열기</li><li>1-9: 앞의 9개 즐겨찾기 열기(입력 중 제외)</li><li>/ : 검색 포커스(팔레트에서도 가능)</li><li>검색창 Enter: 검색 실행</li><li>ESC: 모달 닫기</li></ul><h5>검색 및 자동완성</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>사용자 지정 바로가기: 설정에 JSON으로 입력, {q}를 자리표시자로 사용</li><li>추천: Bang, 바로가기, 최근 검색, 단어 목록(전역 + 프리셋)</li><li>Tab으로 제안 적용, Enter로 검색 시작</li></ul><h5>타일</h5><ul><li>드래그 앤 드롭으로 정렬, 클릭으로 열기</li><li>+ 타일: 즐겨찾기 추가</li><li>초기화: 기본 즐겨찾기 복원</li></ul><h5>배경</h5><ul><li>프리셋, 업로드, 컬렉션, 회전(시간/테마/간격)</li><li>강조색은 현재 배경에서 추출됩니다</li></ul><h5>데이터</h5><ul><li>JSON으로 내보내기/가져오기</li><li>데이터 프리셋 불러오기(assets/presets/*.json)</li></ul></div></div>"
   },
   "onboarding": {
-    "title": "?? ??",
-    "progress": "?? {current} / {total}",
-    "skip": "????",
-    "close": "??",
+    "title": "설정 시작",
+    "progress": "{total} 중 {current} 단계",
+    "skip": "설정 건너뛰기",
+    "close": "닫다",
     "preset": {
-      "title": "??? ??",
-      "hint": "???? ????? ? ??? ?????.",
-      "apply": "??? ??",
-      "meta": "???? ????? ?????.",
-      "optional": "?? ??",
-      "context": "?? ???"
+      "title": "사전 설정 선택",
+      "hint": "사전 설정을 선택하거나 이 단계를 건너뜁니다.",
+      "apply": "사전 설정 적용",
+      "meta": "사전 설정을 적용하거나 건너뜁니다.",
+      "optional": "사전 설정은 선택 사항입니다.",
+      "context": "사전 설정 설정"
     },
     "appearance": {
-      "title": "??",
-      "theme": "??",
-      "cardStyle": "?? ???",
-      "background": "??",
-      "rotation": "???? ???",
-      "keepCurrent": "?? ??? ??"
+      "title": "모습",
+      "theme": "주제",
+      "cardStyle": "카드 스타일",
+      "background": "배경",
+      "rotation": "회전 활성화",
+      "keepCurrent": "현재 이미지 유지"
     },
     "search": {
-      "title": "??",
-      "engine": "?? ?? ??"
+      "title": "찾다",
+      "engine": "기본 검색 엔진"
     },
     "widgets": {
-      "title": "??",
-      "defaultTransport": "?? ???(??)",
-      "tint": "??? ??? ? ??"
+      "title": "위젯",
+      "defaultTransport": "기본 정류장(운송)",
+      "tint": "악센트가 있는 색조 위젯"
     },
     "weather": {
-      "title": "??",
-      "defaultCity": "?? ??",
-      "note": "???? ??? ??? ? ????."
+      "title": "날씨",
+      "defaultCity": "기본 도시",
+      "note": "나중에 설정에서 모든 것을 변경할 수 있습니다."
     },
-    "prev": "??",
-    "next": "??",
-    "finish": "??"
+    "prev": "뒤쪽에",
+    "next": "다음",
+    "finish": "완료"
   },
   "palette": {
-    "placeholder": "?? ?? ???? ??... (Ctrl/?+K)",
+    "placeholder": "검색 명령 또는 즐겨찾기… (Ctrl/⌘+K)",
     "groups": {
-      "command": "??",
-      "settings": "??",
-      "search": "??",
-      "widgets": "??",
-      "theme": "?? ? ??",
-      "data": "???",
-      "tiles": "??",
-      "tile": "????",
-      "quick": "??"
+      "command": "명령",
+      "settings": "설정",
+      "search": "찾다",
+      "widgets": "위젯",
+      "theme": "테마 및 배경",
+      "data": "데이터",
+      "tiles": "타일",
+      "tile": "즐겨찾기",
+      "quick": "빠른"
     },
     "search": {
-      "focus": "?? ???",
-      "start": "?? ??",
-      "engine": "??: {engine}"
+      "focus": "집중검색",
+      "start": "검색 시작",
+      "engine": "엔진: {engine}"
     },
     "settings": {
-      "open": "?? ??",
-      "general": "??: ??",
-      "background": "??: ??",
-      "search": "??: ??",
-      "widgets": "??: ??",
-      "data": "??: ???",
-      "guide": "??: ???"
+      "open": "설정 열기",
+      "general": "설정: 일반",
+      "background": "설정: 배경",
+      "search": "설정: 검색",
+      "widgets": "설정: 위젯",
+      "data": "설정: 데이터",
+      "guide": "설정: 가이드"
     },
     "theme": {
-      "cycle": "?? ?? (??/??/???)",
-      "auto": "??: ??",
-      "dark": "??: ??",
-      "light": "??: ???",
-      "resetHeader": "?? ?? ???",
-      "recalcAccent": "??? ?? ???"
+      "cycle": "순환 테마(자동/어두움/밝음)",
+      "auto": "테마: 자동",
+      "dark": "테마: 어두운",
+      "light": "테마: 빛",
+      "resetHeader": "헤더 색상 재설정",
+      "recalcAccent": "강조 색상 다시 계산"
     },
     "cardStyle": {
-      "glass": "?? ???: ???",
-      "solid": "?? ???: ???",
-      "transparent": "?? ???: ??",
-      "minimal": "?? ???: ???"
+      "glass": "카드 스타일: 유리",
+      "solid": "카드 스타일: 솔리드",
+      "transparent": "카드 스타일: 투명",
+      "minimal": "카드 스타일: 최소"
     },
     "background": {
-      "toggleRotation": "??: ???? ??",
-      "toggleLock": "??: ???? ??/??",
-      "preset": "??: {label}"
+      "toggleRotation": "배경: 회전 전환",
+      "toggleLock": "배경: 회전 잠금/잠금 해제",
+      "preset": "배경: {label}"
     },
     "widgets": {
-      "showAll": "??: ?? ??",
-      "hideAll": "??: ?? ??",
-      "toggle": "??: {widget} ??",
-      "focus": "??: {widget} ???"
+      "showAll": "위젯: 모두 표시",
+      "hideAll": "위젯: 모두 숨기기",
+      "toggle": "위젯: {widget} 전환",
+      "focus": "위젯: 포커스 {widget}"
     },
     "quick": {
-      "addTodo": "? ? ??",
-      "addNote": "?? ??"
+      "addTodo": "할 일 추가",
+      "addNote": "메모 추가"
     },
     "tiles": {
-      "add": "?? ??",
-      "reset": "?? ???"
+      "add": "타일 ​​추가",
+      "reset": "타일 ​​재설정"
     },
     "refresh": {
-      "weather": "?? ????",
-      "news": "?? ????",
-      "transport": "?? ????",
-      "system": "??? ????",
-      "all": "?? ?? ????"
+      "weather": "날씨 새로 고침",
+      "news": "뉴스 새로 고침",
+      "transport": "새로고침 운송",
+      "system": "시스템 새로 고침",
+      "all": "모든 위젯 새로 고침"
     },
     "data": {
-      "export": "??? ????",
-      "import": "??? ????",
-      "preset": "??? ???: {label}"
+      "export": "데이터 내보내기",
+      "import": "데이터 가져오기",
+      "preset": "데이터 사전 설정: {label}"
     }
   },
   "widgets": {
-    "todo": "? ?",
-    "notes": "??",
-    "tiles": "????",
-    "weather": "??",
-    "transport": "??",
-    "quote": "??",
-    "recent": "??",
-    "system": "???",
-    "news": "??"
+    "todo": "할 일",
+    "notes": "메모",
+    "tiles": "즐겨찾기",
+    "weather": "날씨",
+    "transport": "수송",
+    "quote": "인용하다",
+    "recent": "최근의",
+    "system": "체계",
+    "news": "소식"
   },
   "background": {
-    "currentPreview": "?? ?? ???",
-    "none": "?? ??",
-    "noImageSelected": "??? ???",
-    "rotationResume": "???? ??",
-    "rotationLock": "???? ??",
-    "tone": "?: {tone}",
+    "currentPreview": "현재 배경 이미지",
+    "none": "배경 없음",
+    "noImageSelected": "선택한 이미지가 없습니다.",
+    "rotationResume": "순환 재개",
+    "rotationLock": "잠금 회전",
+    "tone": "톤: {tone}",
     "presets": {
-      "empty": "???? ????."
+      "empty": "사용 가능한 사전 설정이 없습니다."
     },
     "favorites": {
-      "empty": "????? ????. ??? ?? ???? ?????."
+      "empty": "아직 즐겨찾기가 없습니다. 사전 설정 또는 업로드를 표시합니다."
     },
     "subtitle": {
-      "preset": "???"
+      "preset": "프리셋"
     },
-    "upload": "???",
-    "uploadDrop": "??? ??? ????",
-    "uploadBrowse": "?? ??",
-    "uploadNote": "???? ???? ??(16:9, ?? 2560px)?? ??? ?????. ?? {max}?.",
+    "upload": "업로드",
+    "uploadDrop": "여기에 파일을 드롭하세요.",
+    "uploadBrowse": "파일 선택",
+    "uploadNote": "이미지 크기를 자동으로 조정하고(16:9, 최대 2560px) 로컬에 저장합니다. 최대 {max} 파일.",
     "uploads": {
-      "empty": "???? ????."
+      "empty": "아직 업로드가 없습니다."
     },
     "collections": {
-      "count": "{count} ??",
-      "random": "???",
-      "cache": "???? ??",
-      "viewSources": "?? ??",
-      "useRotation": "????? ??",
-      "newLabel": "? ???",
-      "namePlaceholder": "? ???",
-      "urlsPlaceholder": "? ?? ??? URL ??",
-      "clear": "?? ???",
-      "note": "URL? ??? ?????. ?? ??? ???? CORS? ?????.",
-      "empty": "???? ????.",
-      "minOneUrl": "?? ? ?? URL? ?????.",
-      "emptyCollection": "???? ?? ????.",
-      "saved": "???? ??? ???????.",
-      "defaultName": "??? {index}"
+      "count": "{count} 소스",
+      "random": "무작위의",
+      "cache": "오프라인으로 저장",
+      "viewSources": "소스 보기",
+      "useRotation": "회전에 사용",
+      "newLabel": "새로운 컬렉션",
+      "namePlaceholder": "내 컬렉션",
+      "urlsPlaceholder": "한 줄에 하나의 이미지 URL",
+      "clear": "필드 지우기",
+      "note": "URL은 로컬에 저장됩니다. 원격 소스에는 이미지용 CORS가 필요합니다.",
+      "empty": "아직 컬렉션이 없습니다.",
+      "minOneUrl": "URL을 하나 이상 입력하세요.",
+      "emptyCollection": "컬렉션이 비어 있습니다.",
+      "saved": "컬렉션이 로컬에 저장되었습니다.",
+      "defaultName": "컬렉션 {index}"
     },
     "rotation": {
-      "optionPreset": "???: {label}",
-      "optionUpload": "???: {label}",
-      "optionFavorite": "????: {label}",
-      "optionCustom": "??? ??: ??? URL",
-      "noFixed": "?? ??? ??",
-      "enabled": "?? ???? ??",
-      "locked": "????? ?? ????.",
-      "active": "??? ??? ?? ?????.",
-      "mode": "??",
-      "modeTime": "?? ??",
-      "modeInterval": "??",
-      "modeTheme": "??",
-      "intervalLabel": "? ?? ??",
-      "intervalNote": "?? ????? ?????.",
-      "sourcesLabel": "??? ??",
-      "scheduleLabel": "??",
-      "themePlan": "?? ??",
-      "themeLight": "??? ??",
-      "themeDark": "?? ??",
-      "themeNote": "??? ??? ? ?? ??? ?????.",
+      "optionPreset": "사전 설정: {label}",
+      "optionUpload": "업로드: {label}",
+      "optionFavorite": "즐겨찾기: {label}",
+      "optionCustom": "맞춤: 저장된 URL",
+      "noFixed": "고정된 이미지 없음",
+      "enabled": "자동 회전 활성화",
+      "locked": "현재 순환이 잠겨 있습니다.",
+      "active": "일정에 따라 배경이 변경됩니다.",
+      "mode": "방법",
+      "modeTime": "시간 기반",
+      "modeInterval": "간격",
+      "modeTheme": "주제",
+      "intervalLabel": "간격(분)",
+      "intervalNote": "간격 모드에만 해당됩니다.",
+      "sourcesLabel": "무작위 소스",
+      "scheduleLabel": "일정",
+      "themePlan": "테마 기획",
+      "themeLight": "테마 조명",
+      "themeDark": "어두운 테마",
+      "themeNote": "테마 계획은 모드가 테마일 때 사용됩니다.",
       "slot": {
-        "morning": "?? 05-11",
-        "day": "? 11-17",
-        "evening": "?? 17-21",
-        "night": "? 21-05"
+        "morning": "아침 05-11",
+        "day": "11~17일",
+        "evening": "저녁 17-21",
+        "night": "밤 21-05"
       }
     },
     "custom": {
-      "label": "??? ?? ??? URL",
+      "label": "맞춤 이미지 URL",
       "placeholder": "https://example.com/image.jpg",
-      "note": "URL? ??? ?????. ??? ???? ?? CORS? ???? ???.",
-      "enterUrl": "URL? ?????.",
-      "title": "??? ?? URL",
-      "subtitle": "??? ??"
+      "note": "URL은 로컬에 저장됩니다. 서버는 이미지에 대해 CORS를 허용해야 합니다.",
+      "enterUrl": "URL을 입력하세요.",
+      "title": "맞춤 URL",
+      "subtitle": "관습"
     },
     "actions": {
-      "apply": "??",
-      "favorite": "????",
-      "favorited": "????",
-      "random": "??? ??",
-      "undo": "?? ??? ??",
-      "lock": "???? ??",
-      "tint": "?? ? ???"
+      "apply": "적용하다",
+      "favorite": "가장 좋아하는",
+      "favorited": "즐겨찾기",
+      "random": "무작위로 로드",
+      "undo": "마지막 이미지 복원",
+      "lock": "잠금 회전",
+      "tint": "색조 위젯"
     },
     "tabs": {
-      "presets": "???",
-      "favorites": "????",
-      "uploads": "???",
-      "collections": "???",
-      "rotation": "????",
-      "custom": "??? ??"
+      "presets": "사전 설정",
+      "favorites": "즐겨찾기",
+      "uploads": "업로드",
+      "collections": "컬렉션",
+      "rotation": "회전",
+      "custom": "관습"
     },
-    "loadError": "?? ??. CORS ??? ?????.",
-    "noneAvailable": "?? ??? ??? ????.",
-    "imageLoadError": "???? ??? ? ????."
+    "loadError": "로드에 실패했습니다. CORS 설정을 확인하세요.",
+    "noneAvailable": "사용할 수 있는 배경이 없습니다.",
+    "imageLoadError": "이미지를 로드할 수 없습니다."
   },
   "data": {
     "import": {
-      "confirm": "???? ?????? ?? ??? ???????.",
-      "failed": "???? ??: {error}"
+      "confirm": "데이터를 가져오시겠습니까? 기존 항목을 덮어씁니다.",
+      "failed": "가져오기 실패: {error}"
     },
     "presets": {
-      "none": "?? ??? ???? ????.",
-      "missingFile": "??? ??? ????.",
-      "fileMissing": "??? ?? ? ??",
-      "invalid": "??? ???",
-      "confirmApply": "{context} \"{name}\"? ?????? ?? ??? ???????.",
-      "loadFailed": "??? ?? ??: {error}",
-      "loading": "??? ?? ?...",
-      "noneFound": "???? ?? ? ??",
-      "hint": "??? JSON? assets/presets/ (manifest: assets/data-presets.json) ?? assets/user-presets/? ????.",
-      "hintShort": "assets/presets/ ?? assets/user-presets/? ???? ?????.",
-      "userPrefix": "???: ",
-      "userApply": "?? ??? ??",
-      "apply": "??? ??",
-      "noneSelected": "???? ???? ??.",
-      "label": "???",
-      "defaultLabel": "??? {index}",
-      "userDefault": "??? ??? {index}",
-      "userDescription": "assets/user-presets/? ?? ???",
-      "tags": " (??: {tags})"
+      "none": "사용 가능한 사전 설정이 없습니다.",
+      "missingFile": "사전 설정 파일이 없습니다.",
+      "fileMissing": "파일을 찾을 수 없습니다",
+      "invalid": "잘못된 사전 설정",
+      "confirmApply": "{context} \"{name}\"을(를) 적용하시겠습니까? 기존 항목을 덮어씁니다.",
+      "loadFailed": "사전 설정 로드 실패: {error}",
+      "loading": "사전 설정 로드 중...",
+      "noneFound": "사전 설정을 찾을 수 없습니다.",
+      "hint": "내보낸 JSON을 자산/presets/(매니페스트: 자산/data-presets.json) 아래에 배치하거나 자산/user-presets/ 아래에 로컬로 배치합니다.",
+      "hintShort": "자산/사전 설정/ 또는 자산/사용자 사전 설정/아래에 사전 설정을 추가합니다.",
+      "userPrefix": "사용자:",
+      "userApply": "로컬 사전 설정 적용",
+      "apply": "사전 설정 적용",
+      "noneSelected": "선택한 사전 설정이 없습니다.",
+      "label": "프리셋",
+      "defaultLabel": "사전 설정 {index}",
+      "userDefault": "사용자 사전 설정 {index}",
+      "userDescription": "자산/사용자 사전 설정/의 로컬 사전 설정",
+      "tags": "(태그: {tags})"
     }
   }
 }

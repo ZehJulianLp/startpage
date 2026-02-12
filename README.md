@@ -1,63 +1,67 @@
 # Startpage
 
-## Überblick
-Startpage ist eine personalisierbare Startseite im Dashboard-Stil. Suche, Wetter, Aufgaben, Notizen, News und Systemstatus laufen vollständig im Browser (localStorage). Version: **v1.7.1**. Live: https://julianverse.de/startpage/
+## Overview
+Startpage is a customizable dashboard-style browser start page. Search, weather, tasks, notes, news, and system status run fully in the browser (localStorage). Version: **v1.8.1**. Live: https://julianverse.de/startpage/
 
-## Kernfunktionen
-- Schnellsuche: Mehrere Engines, !Bangs (!g, !ddg, !bing, !yt, !wiki, !maps), eigene Shortcuts und Autocomplete (Bangs, Shortcuts, Recent, globale Wortliste + Preset-Wortliste).
-- Hintergrund-Engine: Presets, Uploads, Sammlungen, Rotation (Zeit/Thema/Intervall), Quick Actions (Random, Undo, Lock) und automatische Akzentfarbe aus dem Hintergrund.
-- Favoriten-Kacheln: Drag & Drop, Schnellzugriff 1-9, Reset auf Defaults.
-- To-Do & Notizen: Persistente Liste und Notizfeld.
-- Wetter: Aktuell + Tages-Min/Max + 3h-Prognose via Open-Meteo; Standardstadt setzbar.
-- Transport: Haltestellen-Suche + Abfahrten (via Startpage-Proxy für transport.rest); Standard-Haltestelle setzbar.
-- News: RSS-Reader mit Standardquellen, erweiterbar um eigene Feeds (Startpage RSS Proxy).
-- Zuletzt & Systemstatus: Verlaufs-Chips sowie Browser-Infos (RAM, CPU-Kerne, Netztyp).
-- Setup-Assistent: Kompakter Dialog mit Preset-Wahl, Theme/Stil + Hintergrund, Suchmaschine, Widgets + Transport-Default sowie Wetter (überspringbar, später erneut startbar).
-- Layout & Styling: Dark/Light/Auto, Karten-Stile (Glas, Vollfläche, Transparent, Soft Minimal), Widget-Farben, separate Farben für Uhr/Suche, Button "Widgets einfürben".
-- Kommandopalette: Strg/Cmd+K für Aktionen (Theme, Tiles, Widget-Updates etc.).
-- Daten: Export/Import als JSON plus Data Presets direkt aus assets/presets/ (starter, coding, gaming, minimal, productivity, reading, art, privacy, student, finance); lokale User-Presets unter assets/user-presets/ werden automatisch erkannt.
+## Core Features
+- Quick search: Multiple engines, bang shortcuts (`!g`, `!ddg`, `!bing`, `!yt`, `!wiki`, `!maps`), custom shortcuts, and autocomplete (bangs, shortcuts, recent searches, global wordlist + preset wordlist).
+- Background engine: Presets, uploads, collections, rotation (time/theme/interval), quick actions (random, undo, lock), and automatic accent color extraction from the active background.
+- Favorite tiles: Drag and drop, quick access keys `1-9`, and reset to defaults.
+- To-do and notes: Persistent to-do list and notes field.
+- Weather: Current weather + day min/max + 3-hour forecast via Open-Meteo; configurable default city.
+- Transport: Station search + departures (via Startpage proxy for transport.rest); configurable default station.
+- News: RSS reader with default sources, extendable with custom feeds (Startpage RSS proxy).
+- Recent actions and system status: History chips plus browser info (RAM, CPU cores, network type).
+- Setup assistant: Compact onboarding with preset selection, theme/style + background, search engine, widgets + transport default, and weather (skippable and restartable).
+- Layout and styling: Dark/Light/Auto theme, card styles (glass, solid, transparent, soft minimal), widget colors, dedicated header/search colors, and a "Tint widgets" action.
+- Command palette: `Ctrl/Cmd+K` for quick actions (theme, tiles, widget refresh, and more).
+- Data: JSON export/import plus data presets from `assets/presets/` (starter, coding, gaming, minimal, productivity, reading, art, privacy, student, finance); local user presets in `assets/user-presets/` are auto-detected.
 
-## Projektstruktur
-- index.html – Markup, Styles, JS; neue Logik unten im <script> und aus init() starten.
-- script.js / style.css – zentrale Logik/Styles; Wortliste global unter assets/wordlist.json, Preset-Wordlists inline in assets/presets/*.json.
-- assets/ – optionale Dateien (Wortliste, Bilder).
-- LICENSE – MIT-Lizenz.
+## Project Structure
+- `index.html` - Markup + inline styles + inline app bootstrap; keep init wiring in `init()`.
+- `script.js` / `style.css` - Main logic and styles.
+- `assets/` - Optional assets (wordlists, images, presets, i18n files).
+- `LICENSE` - MIT license.
 
-## Lokale Nutzung
-Kein Build notwendig. Starte z.B.:
+## Local Development
+No build step is required. Start a local static server, for example:
+
 ```bash
 python -m http.server 4173
 ```
-oder
+
+or
+
 ```bash
 npx serve .
 ```
-Danach: http://localhost:4173.
 
-## Anpassung & Erweiterung
-- Hintergrund & Erscheinung: Presets/Uploads/Sammlungen/Rotation im Tab; Akzentfarbe wird aus dem aktiven Bild gesetzt.
-- Suche & Feeds: Engines ein-/ausschalten, !Shortcuts + {q} im Tab "Suche & Feeds" pflegen; Autocomplete nutzt Bangs/Shortcuts/Recent + globale & Preset-Wortliste.
-- Widgets & Layout: Sichtbarkeit, Karten-Stil, Standard-Stadt (Wetter) + Standard-Haltestelle (Transport), Widget-Farben, Uhr/Suche-Farben; Reset stellt Stilvorgaben her.
-- Daten: Export/Import aller localStorage-Einträge als JSON oder fertige Data Presets laden (assets/data-presets.json + assets/presets/*); User-Presets kannst du unter assets/user-presets/ ablegen (optional eigenes data-presets.json Manifest).
-- Setup: Der Assistent erscheint beim ersten Start, ist überspringbar und lässt sich im Tab "Daten" via "Setup neu starten" erneut öffnen.
-- Palette: Strg/Cmd+K für Befehle (Tiles öffnen, Theme wechseln, Widgets einfügen, etc.).
+Then open: `http://localhost:4173`.
 
-Neue Komponenten bitte mit 2-Spaces-Indent, camelCase (JS), hyphen-case (CSS). Wiederverwendbare Logik unter den Utilities platzieren und in init() aufrufen.
+## Configuration and Extension
+- Background and appearance: Manage presets/uploads/collections/rotation in Settings; accent color is derived from the active background.
+- Search and feeds: Enable/disable engines, configure custom `!shortcuts` with `{q}`, manage feed sources.
+- Widgets and layout: Visibility, card style, default weather city, default transport station, widget colors, dedicated clock/search colors.
+- Data: Export/import all localStorage entries as JSON, or load ready-made data presets (`assets/data-presets.json` + `assets/presets/*`).
+- Setup assistant: Opens on first run, can be skipped, and can be restarted in the Data tab.
+- Command palette: `Ctrl/Cmd+K` for fast actions and navigation.
 
-## Daten & Integrationen
-- Speicherung: localStorage only.
-- APIs: Open-Meteo (Wetter/Geocoding), Startpage-Proxy (transport.rest + RSS), Google Fonts (Inter).
+Follow existing conventions: 2-space indentation, camelCase in JavaScript, hyphen-case in CSS.
 
-## Tests
-Manuelle Smoke-Tests:
-- Suche/Bangs/Shortcuts + Autocomplete prüfen.
-- Wetterstadt setzen, Reload.
-- Todos/Notizen anlegen, Reload.
-- Theme/Card-Style wechseln, Hintergrundrotation + Akzent kontrollieren.
-- Feeds wechseln/Custom Feeds laden.
-- localStorage ggf. leeren für Migrations-Check.
+## Data and Integrations
+- Storage: localStorage only.
+- APIs and services: Open-Meteo (weather/geocoding), Startpage proxy (transport.rest + RSS), Google Fonts.
 
-Automatisierte E2E-Tests optional (Playwright/Cypress) unter tests/*.e2e.spec.js.
+## Testing
+Manual smoke tests:
+- Verify search/bangs/shortcuts + autocomplete.
+- Set a weather city and reload.
+- Create todos/notes and reload.
+- Switch theme/card style, verify background rotation + accent updates.
+- Switch feeds and test custom feed loading.
+- Clear localStorage when re-testing migration-sensitive flows.
 
-## Lizenz
-MIT-Lizenz (siehe LICENSE)
+Optional automated E2E tests (Playwright/Cypress) can be placed under `tests/*.e2e.spec.js`.
+
+## License
+MIT License (see `LICENSE`).
