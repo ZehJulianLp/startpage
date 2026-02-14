@@ -1,6 +1,7 @@
 {
   "theme": "auto",
   "ui.cardStyle": "solid",
+  "ui.font.family": "Calibri",
   "ui.clock.color": "#0b1224",
   "ui.search.color": "#0f172a",
   "widgets": {

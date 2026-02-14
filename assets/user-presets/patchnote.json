@@ -11,6 +11,7 @@
   "weather.city": "Linz",
   "recent": [],
   "theme": "dark",
+  "ui.font.family": "Comic Sans MS",
   "ui.search.color": "#f3a646",
   "shortcuts": {
     "!meme": "https://meme.ausmistung.de/?search={q}",

@@ -1,6 +1,7 @@
 {
   "theme": "light",
   "ui.cardStyle": "minimal",
+  "ui.font.family": "Georgia",
   "ui.clock.color": "#f3f4f6",
   "ui.search.color": "#f3f4f6",
   "widgets": {

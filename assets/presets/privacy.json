@@ -1,6 +1,7 @@
 {
   "theme": "dark",
   "ui.cardStyle": "transparent",
+  "ui.font.family": "Tahoma",
   "ui.clock.color": "#0b1224",
   "ui.search.color": "#0b1224",
   "widgets": {

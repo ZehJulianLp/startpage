@@ -252,6 +252,18 @@
       "label": "Lingua",
       "auto": "Auto (sistema)"
     },
+    "font": {
+      "label": "Carattere",
+      "searchPlaceholder": "Cerca caratteri...",
+      "loadLocal": "Carica font di sistema",
+      "systemDefault": "Predefinito di sistema",
+      "noResults": "Nessun font corrispondente",
+      "note": "Mostra i font locali di sistema (se disponibili), altrimenti una lista di fallback rilevata.",
+      "unsupported": "Il tuo browser non supporta Local Font Access (queryLocalFonts).",
+      "permissionDenied": "L accesso ai font locali e stato negato o bloccato.",
+      "empty": "Nessun font locale restituito.",
+      "loadFailed": "Impossibile caricare i font locali: {error}"
+    },
     "guideHtml": "<div class=\"row\"><label>Guida utente</label><div><h5>Panoramica</h5><ul><li>Pagina iniziale con ricerca, preferiti, attivit?, note, meteo, notizie.</li><li>Tutto locale: i dati restano nel browser (localStorage).</li></ul><h5>Scorciatoie</h5><ul><li>Ctrl/Cmd+K: apri la palette comandi</li><li>1-9: apri i primi 9 preferiti (se non stai digitando)</li><li>/ : focus sulla ricerca (anche tramite palette)</li><li>Invio nella ricerca: avvia la ricerca</li><li>ESC: chiudi i modali</li><li>Palette: azioni rapide per widget, tema, sfondo, dati, preferiti</li><li>Palette: il tasto C cambia lo stile scheda, \"Ripristina colori intestazione\" ripristina ricerca e orologio</li></ul><h5>Ricerca e autocompletamento</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>Scorciatoie personalizzate: JSON nelle impostazioni; {q} come segnaposto</li><li>Autocompletamento: bangs, scorciatoie, ricerche recenti, lista parole (globale + preset)</li><li>Tab accetta il suggerimento, Invio avvia la ricerca</li></ul><h5>Tessere</h5><ul><li>Drag & drop per ordinare, clic per aprire</li><li>+ Tessera: aggiungi un preferito</li><li>Ripristina: ripristina i preferiti predefiniti</li></ul><h5>Widget e layout</h5><ul><li>Visibilit? per widget</li><li>Stile scheda globale (vetro, pieno, trasparente, minimal morbido)</li><li>Colori personalizzati per orologio/ricerca; ripristina torna allo stile predefinito</li><li>Colori widget e pulsante \"Tinta widget\" impostano l'accento per scheda</li></ul><h5>Sfondo</h5><ul><li>Preset, upload, raccolte, rotazione (ora/tema/intervallo)</li><li>Il colore di accento viene estratto dallo sfondo attivo</li></ul><h5>Dati</h5><ul><li>Esporta/Importa come JSON</li><li>Carica preset dati (assets/presets/*.json nel repo)</li></ul></div></div>"
   },
   "onboarding": {

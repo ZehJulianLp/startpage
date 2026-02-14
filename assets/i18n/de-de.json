@@ -252,6 +252,18 @@
       "label": "Sprache",
       "auto": "Auto (System)"
     },
+    "font": {
+      "label": "Schriftart",
+      "searchPlaceholder": "Schriftarten suchen...",
+      "loadLocal": "Systemfonts laden",
+      "systemDefault": "Systemstandard",
+      "noResults": "Keine passenden Schriftarten",
+      "note": "Zeigt lokale System-Schriftarten (falls verfuegbar), sonst eine erkannte Standardliste.",
+      "unsupported": "Dein Browser unterstuetzt Local Font Access (queryLocalFonts) nicht.",
+      "permissionDenied": "Zugriff auf lokale Schriftarten wurde verweigert oder blockiert.",
+      "empty": "Es wurden keine lokalen Schriftarten zurueckgegeben.",
+      "loadFailed": "Lokale Schriftarten konnten nicht geladen werden: {error}"
+    },
     "guideHtml": "<div class=\"row\"><label>User Guide</label><div><h5>Überblick</h5><ul><li>Startseite mit Suche, Favoriten, To-Do, Notizen, Wetter, News.</li><li>Alles lokal: Daten bleiben im Browser (localStorage).</li></ul><h5>Shortcuts</h5><ul><li>Ctrl/Cmd+K: Command Palette öffnen</li><li>1-9: Erste 9 Favoriten öffnen (wenn nicht tippen)</li><li>/ : Suche fokussieren (auch über Palette)</li><li>Enter in Suche: Startet die Suche</li><li>ESC: Modals schließen</li><li>Palette: Schnellaktionen für Widgets, Theme, Hintergrund, Daten, Favoriten</li><li>Palette: Taste C wechselt den Kachel-Stil, \"Header-Farben zurücksetzen\" stellt Suche & Uhr zurück</li></ul><h5>Suche & Autocomplete</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>Eigene Shortcuts: JSON in den Einstellungen; {q} als Platzhalter</li><li>Autocomplete: Bangs, Shortcuts, Recent-Suchen, Wortliste (global + Preset)</li><li>Tab übernimmt Vorschlag, Enter startet Suche</li></ul><h5>Tiles</h5><ul><li>Drag & Drop zum Sortieren, Klick zum Öffnen</li><li>+ Kachel: Neue Favoriten hinzufügen</li><li>Reset: Standardfavoriten wiederherstellen</li></ul><h5>Widgets & Layout</h5><ul><li>Sichtbarkeit je Widget umschaltbar</li><li>Kachel-Stil global anpassbar (Glas, Vollfläche, Transparent, Soft Minimal)</li><li>Eigene Farben für Uhr/Suche; Reset bringt Stil-Vorgabe zurück</li><li>Widget-Farben & Button \"Widgets einfärben\" setzen Akzent pro Karte</li></ul><h5>Hintergrund</h5><ul><li>Presets, Uploads, Sammlungen, Rotation (Zeit/Thema/Intervall)</li><li>Akzentfarbe wird aus dem aktiven Hintergrund extrahiert</li></ul><h5>Daten</h5><ul><li>Export/Import als JSON</li><li>Data Presets laden (assets/presets/*.json aus dem Repo)</li></ul></div></div>"
   },
   "onboarding": {

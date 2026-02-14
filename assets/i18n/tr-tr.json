@@ -252,6 +252,18 @@
       "label": "Dil",
       "auto": "Auto (sistem)"
     },
+    "font": {
+      "label": "Yazi tipi",
+      "searchPlaceholder": "Yazi tiplerini ara...",
+      "loadLocal": "Sistem yazi tiplerini yukle",
+      "systemDefault": "Sistem varsayilani",
+      "noResults": "Eslesen yazi tipi yok",
+      "note": "Yerel sistem yazi tiplerini (varsa) gosterir, yoksa algilanan yedek listeyi kullanir.",
+      "unsupported": "Tarayiciniz Local Font Access (queryLocalFonts) destegine sahip degil.",
+      "permissionDenied": "Yerel yazi tiplerine erisim reddedildi veya engellendi.",
+      "empty": "Yerel yazi tipleri dondurulmedi.",
+      "loadFailed": "Yerel yazi tipleri yuklenemedi: {error}"
+    },
     "guideHtml": "<div class=\"row\"><label>Kullan?c? k?lavuzu</label><div><h5>Genel bak??</h5><ul><li>Arama, favoriler, yap?lacaklar, notlar, hava ve haberler i?eren ba?lang?? sayfas?.</li><li>Her ?ey yerel: veriler taray?c?da kal?r (localStorage).</li></ul><h5>K?sayollar</h5><ul><li>Ctrl/Cmd+K: komut paletini a?</li><li>1-9: ilk 9 favoriyi a? (yazm?yorsan?z)</li><li>/ : aramaya odaklan (palet ?zerinden de)</li><li>Enter ile arama: aramay? ba?lat?r</li><li>ESC: modallar? kapat?r</li><li>Palet: widget, tema, arka plan, veri, favoriler i?in h?zl? eylemler</li><li>Palet: C tu?u kart stilini de?i?tirir, \"Ba?l?k renklerini s?f?rla\" arama ve saati s?f?rlar</li></ul><h5>Arama ve otomatik tamamlama</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>?zel k?sayollar: ayarlarda JSON; {q} yer tutucu</li><li>Otomatik tamamlama: bang'ler, k?sayollar, son aramalar, kelime listesi (global + preset)</li><li>Tab ?neriyi kabul eder, Enter aramay? ba?lat?r</li></ul><h5>Kutucuklar</h5><ul><li>S?ralama i?in s?r?kle & b?rak, a?mak i?in t?kla</li><li>+ Kutucuk: yeni favori ekle</li><li>S?f?rla: varsay?lan favorileri geri y?kle</li></ul><h5>Widget'lar ve d?zen</h5><ul><li>Her widget i?in g?r?n?rl?k</li><li>Kart stili global (cam, dolu, ?effaf, yumu?ak minimal)</li><li>Saat/arama i?in ?zel renkler; s?f?rla varsay?lan stili geri getirir</li><li>Widget renkleri ve \"Widget'lar? renklendir\" d??mesi kart ba??na vurgu ayarlar</li></ul><h5>Arka plan</h5><ul><li>Presetler, y?klemeler, koleksiyonlar, rotasyon (zaman/tema/aral?k)</li><li>Vurgu rengi aktif arka plandan ??kar?l?r</li></ul><h5>Veri</h5><ul><li>JSON olarak d??a aktar/i?e aktar</li><li>Veri presetlerini y?kle (assets/presets/*.json repoda)</li></ul></div></div>"
   },
   "onboarding": {

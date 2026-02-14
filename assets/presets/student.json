@@ -1,6 +1,7 @@
 {
   "theme": "light",
   "ui.cardStyle": "glass",
+  "ui.font.family": "Calibri",
   "ui.clock.color": "#e2e8f0",
   "ui.search.color": "#e2e8f0",
   "widgets": {

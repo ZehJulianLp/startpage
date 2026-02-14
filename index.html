@@ -173,6 +173,16 @@
           <label for="localeSelect" data-i18n="settings.language.label">Sprache</label>
           <select id="localeSelect"></select>
         </div>
+        <div class="row">
+          <label for="fontSelect" data-i18n="settings.font.label">Schriftart</label>
+          <div>
+            <div style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap">
+              <button class="btn" type="button" id="fontLoadLocal" data-i18n="settings.font.loadLocal">Systemfonts laden</button>
+            </div>
+            <select id="fontSelect" style="margin-top:8px" data-ui-searchable="1"></select>
+            <div class="muted" style="margin-top:6px" data-i18n="settings.font.note">Zeigt lokale System-Schriftarten (falls verfügbar), sonst eine erkannte Standardliste.</div>
+          </div>
+        </div>
       </div>
       <div id="tab-background" class="tab-panel" role="tabpanel">
         <div class="row">

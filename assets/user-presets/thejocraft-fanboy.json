@@ -1,6 +1,7 @@
 {
   "theme": "auto",
   "ui.cardStyle": "minimal",
+  "ui.font.family": "Verdana",
   "ui.clock.color": "#ff0000",
   "ui.search.color": "#ff3333",
 

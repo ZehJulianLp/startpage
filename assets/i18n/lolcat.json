@@ -252,6 +252,18 @@
       "label": "Language",
       "auto": "Auto (Sistem)"
     },
+    "font": {
+      "label": "FONTS",
+      "searchPlaceholder": "Findz fontz...",
+      "loadLocal": "Load system fontz",
+      "systemDefault": "System defaultz",
+      "noResults": "No matchy fontz",
+      "note": "Showz local system fontz (if availabl), othurwise detected backup list.",
+      "unsupported": "Ur browser no support Local Font Access (queryLocalFonts).",
+      "permissionDenied": "Access to local fontz waz denied or blocked.",
+      "empty": "No local fontz returned.",
+      "loadFailed": "Could not load local fontz: {error}"
+    },
     "guideHtml": "<div class=\"row\"><label>User Guide</label><div><h5>Overview</h5><ul><li>Start page wif serch, favrits, to-do, notz, wezur, nuuz.</li><li>All local: dataz stays in ur browser (localStorage).</li></ul><h5>Shortcuts</h5><ul><li>Ctrl/Cmd+K: open command palette</li><li>1-9: open first 9 favrits (when not typing)</li><li>/ : focus serch (also via palette)</li><li>Enter in serch: start serch</li><li>ESC: close modals</li><li>Palette: quick actions for widjits, theme, bakground, dataz, favrits</li><li>Palette: key C switches card style, \"Reset header colors\" resets serch & clock</li></ul><h5>Serch & Autocomplete</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>Custom shortcuts: JSON in settnz; {q} as placeholder</li><li>Autocomplete: bangs, shortcuts, recent serchez, wordlist (global + presetz)</li><li>Tab accepts suggestion, Enter starts serch</li></ul><h5>Tiles</h5><ul><li>Drag & drop to sort, click to open</li><li>+ Tile: add a new favrit</li><li>Reset: restore defalt favrits</li></ul><h5>Widjits & Layout</h5><ul><li>Visibility per widjit</li><li>Card style is global (glass, solid, transparent, soft minimal)</li><li>Custom colors for clock/serch; reset restores style defaults</li><li>Widjit colors & \"Tint widjits\" set teh accent per card</li></ul><h5>Bakground</h5><ul><li>Presetz, uploads, collections, rotation (time/theme/interval)</li><li>Accent color is extracted from teh active bakground</li></ul><h5>Dataz</h5><ul><li>Export/Import as JSON</li><li>Load dataz presetz (assets/presetz/*.json in teh repo)</li></ul></div></div>"
   },
   "onboarding": {

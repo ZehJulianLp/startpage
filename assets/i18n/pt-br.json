@@ -252,6 +252,18 @@
       "label": "Idioma",
       "auto": "Auto (sistema)"
     },
+    "font": {
+      "label": "Fonte",
+      "searchPlaceholder": "Pesquisar fontes...",
+      "loadLocal": "Carregar fontes do sistema",
+      "systemDefault": "Padrao do sistema",
+      "noResults": "Nenhuma fonte correspondente",
+      "note": "Mostra fontes locais do sistema (se disponiveis), caso contrario uma lista de fallback detectada.",
+      "unsupported": "Seu navegador nao suporta Local Font Access (queryLocalFonts).",
+      "permissionDenied": "O acesso as fontes locais foi negado ou bloqueado.",
+      "empty": "Nenhuma fonte local foi retornada.",
+      "loadFailed": "Nao foi possivel carregar as fontes locais: {error}"
+    },
     "guideHtml": "<div class=\"row\"><label>Guia do usu?rio</label><div><h5>Vis?o geral</h5><ul><li>P?gina inicial com busca, favoritos, tarefas, notas, clima e not?cias.</li><li>Tudo local: dados ficam no navegador (localStorage).</li></ul><h5>Atalhos</h5><ul><li>Ctrl/Cmd+K: abrir a paleta de comandos</li><li>1-9: abrir os 9 primeiros favoritos (se n?o estiver digitando)</li><li>/ : focar busca (tamb?m pela paleta)</li><li>Enter na busca: iniciar busca</li><li>ESC: fechar modais</li><li>Paleta: a??es r?pidas para widgets, tema, fundo, dados e favoritos</li><li>Paleta: tecla C alterna o estilo de cart?o, \"Redefinir cores do cabe?alho\" redefine busca e rel?gio</li></ul><h5>Busca e autocompletar</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>Atalhos personalizados: JSON nas configura??es; {q} como placeholder</li><li>Autocompletar: bangs, atalhos, buscas recentes, lista de palavras (global + preset)</li><li>Tab aceita sugest?o, Enter inicia busca</li></ul><h5>Blocos</h5><ul><li>Arrastar e soltar para ordenar, clique para abrir</li><li>+ Bloco: adicionar um favorito</li><li>Redefinir: restaurar favoritos padr?o</li></ul><h5>Widgets e layout</h5><ul><li>Visibilidade por widget</li><li>Estilo de cart?o global (vidro, s?lido, transparente, minimal suave)</li><li>Cores personalizadas para rel?gio/busca; redefinir volta ao estilo padr?o</li><li>Cores de widgets e bot?o \"Tingir widgets\" definem o acento por cart?o</li></ul><h5>Fundo</h5><ul><li>Presets, uploads, cole??es, rota??o (hora/tema/intervalo)</li><li>A cor de acento ? extra?da do fundo ativo</li></ul><h5>Dados</h5><ul><li>Exportar/Importar como JSON</li><li>Carregar presets de dados (assets/presets/*.json no repo)</li></ul></div></div>"
   },
   "onboarding": {

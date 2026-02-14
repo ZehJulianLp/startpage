@@ -252,6 +252,18 @@
       "label": "Language",
       "auto": "Auto (Rig)"
     },
+    "font": {
+      "label": "Font",
+      "searchPlaceholder": "Search fer fonts...",
+      "loadLocal": "Load system fonts",
+      "systemDefault": "System default",
+      "noResults": "No matchin fonts",
+      "note": "Shows local system fonts (if available), else a detected fallback list, matey.",
+      "unsupported": "Yer browser does not support Local Font Access (queryLocalFonts).",
+      "permissionDenied": "Access to local fonts be denied or blocked.",
+      "empty": "No local fonts were returned.",
+      "loadFailed": "Could not load local fonts: {error}"
+    },
     "guideHtml": "<div class=\"row\"><label>User Guide</label><div><h5>Overview</h5><ul><li>Start page wit' spyglass, fav'rites, t'-do, scraps, weather, tidings.</li><li>All local: cargo stays in yer browser (localStorage).</li></ul><h5>Shortcuts</h5><ul><li>Ctrl/Cmd+K: open command palette</li><li>1-9: open first 9 fav'rites (when not typing)</li><li>/ : focus spyglass (also via palette)</li><li>Enter in spyglass: start spyglass</li><li>ESC: close modals</li><li>Palette: quick actions fer gizmos, theme, horizon, cargo, fav'rites</li><li>Palette: key C switches card style, \"Reset header colors\" resets spyglass & clock</li></ul><h5>Spyglass & Autocomplete</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>Custom shortcuts: JSON in cap'n log; {q} as placeholder</li><li>Autocomplete: bangs, shortcuts, recent spyglasses, wordlist (global + preset)</li><li>Tab accepts suggestion, Enter starts spyglass</li></ul><h5>Tiles</h5><ul><li>Drag & drop t' sort, click t' open</li><li>+ Tile: add a new fav'rite</li><li>Reset: restore standard fav'rites</li></ul><h5>Gizmos & Layout</h5><ul><li>Visibility per gizmo</li><li>Card style be global (glass, solid, transparent, soft minimal)</li><li>Custom colors fer clock/spyglass; reset restores style defaults</li><li>Gizmo colors & \"Tint gizmos\" set th' accent per card</li></ul><h5>Horizon</h5><ul><li>Presets, uploads, collections, rotation (time/theme/interval)</li><li>Accent color be extracted from th' active horizon</li></ul><h5>Cargo</h5><ul><li>Export/Import as JSON</li><li>Hoist cargo presets (assets/presets/*.json in th' repo)</li></ul></div></div>"
   },
   "onboarding": {

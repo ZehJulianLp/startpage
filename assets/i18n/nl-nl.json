@@ -252,6 +252,18 @@
       "label": "Taal",
       "auto": "Auto (systeem)"
     },
+    "font": {
+      "label": "Lettertype",
+      "searchPlaceholder": "Lettertypen zoeken...",
+      "loadLocal": "Systeemlettertypen laden",
+      "systemDefault": "Systeemstandaard",
+      "noResults": "Geen overeenkomende lettertypen",
+      "note": "Toont lokale systeemlettertypen (indien beschikbaar), anders een gedetecteerde fallbacklijst.",
+      "unsupported": "Je browser ondersteunt Local Font Access (queryLocalFonts) niet.",
+      "permissionDenied": "Toegang tot lokale lettertypen is geweigerd of geblokkeerd.",
+      "empty": "Er zijn geen lokale lettertypen teruggegeven.",
+      "loadFailed": "Lokale lettertypen konden niet worden geladen: {error}"
+    },
     "guideHtml": "<div class=\"row\"><label>Gebruikershandleiding</label><div><h5>Overzicht</h5><ul><li>Startpagina met zoeken, favorieten, taken, notities, weer, nieuws.</li><li>Alles lokaal: data blijft in je browser (localStorage).</li></ul><h5>Sneltoetsen</h5><ul><li>Ctrl/Cmd+K: command palette openen</li><li>1-9: eerste 9 favorieten openen (als je niet typt)</li><li>/ : zoeken focussen (ook via palette)</li><li>Enter in zoeken: zoekopdracht starten</li><li>ESC: modals sluiten</li><li>Palette: snelle acties voor widgets, thema, achtergrond, data, favorieten</li><li>Palette: toets C wisselt kaartstijl, \"Headerkleuren resetten\" reset zoek en klok</li></ul><h5>Zoeken & autocompleet</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>Eigen snelkoppelingen: JSON in instellingen; {q} als placeholder</li><li>Autocompleet: bangs, snelkoppelingen, recente zoekopdrachten, woordenlijst (globaal + preset)</li><li>Tab accepteert suggestie, Enter start zoeken</li></ul><h5>Tegels</h5><ul><li>Drag & drop om te sorteren, klik om te openen</li><li>+ Tegel: nieuwe favoriet toevoegen</li><li>Reset: standaardfavorieten herstellen</li></ul><h5>Widgets & layout</h5><ul><li>Per widget zichtbaar</li><li>Kaartstijl is globaal (glas, vol, transparant, zacht minimal)</li><li>Eigen kleuren voor klok/zoeken; reset herstelt standaardstijl</li><li>Widgetkleuren en knop \"Widgets kleuren\" zetten accent per kaart</li></ul><h5>Achtergrond</h5><ul><li>Presets, uploads, collecties, rotatie (tijd/thema/interval)</li><li>Accentkleur wordt uit de actieve achtergrond gehaald</li></ul><h5>Data</h5><ul><li>Export/Import als JSON</li><li>Data-presets laden (assets/presets/*.json in de repo)</li></ul></div></div>"
   },
   "onboarding": {

@@ -1,6 +1,7 @@
 {
   "theme": "dark",
   "ui.cardStyle": "solid",
+  "ui.font.family": "Segoe UI",
   "ui.clock.color": "#0f172a",
   "ui.search.color": "#0f172a",
   "widgets": {

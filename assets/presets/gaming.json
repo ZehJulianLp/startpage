@@ -1,6 +1,7 @@
 {
   "theme": "dark",
   "ui.cardStyle": "solid",
+  "ui.font.family": "Trebuchet MS",
   "ui.clock.color": "#0f172a",
   "ui.search.color": "#0b1224",
   "widgets": {

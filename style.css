@@ -1,4 +1,5 @@
     :root {
+      --font-ui: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
       --bg: #0f1220;
       --bg-soft: #13172a;
       --fg: #e6e8f0;
@@ -57,7 +58,7 @@
     html, body { height: 100% }
     body {
       margin: 0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      font-family: var(--font-ui);
       color: var(--fg);
       background: radial-gradient(1200px 800px at 10% 0%, rgba(124,92,255,.12), transparent 60%),
                   radial-gradient(1200px 800px at 90% 10%, rgba(84,214,255,.10), transparent 60%),
@@ -302,6 +303,29 @@
     }
     .ui-select.open .ui-select-menu { display: block; }
     .ui-select.closing .ui-select-menu { display: block; pointer-events: none; animation: menu-out var(--anim-fast) var(--anim-ease) both; }
+    .ui-select-search-wrap {
+      position: sticky;
+      top: -6px;
+      padding: 0 0 6px;
+      margin: -6px -6px 6px;
+      background: var(--card);
+      border-bottom: 1px solid var(--card-border-current);
+      z-index: 2;
+    }
+    .ui-select-search {
+      width: 100%;
+      border-radius: 9px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: var(--bg-soft);
+      color: var(--fg);
+      font-size: 14px;
+      padding: 8px 10px;
+    }
+    .ui-select-empty {
+      padding: 8px 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
     .ui-select-option {
       width: 100%;
       text-align: left;

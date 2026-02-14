@@ -1,6 +1,7 @@
 {
   "ui.clock.color": "#008516",
   "theme": "dark",
+  "ui.font.family": "Courier New",
   "julianverse-theme": "light",
   "tiles": [
     {

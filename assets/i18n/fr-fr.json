@@ -252,6 +252,18 @@
       "label": "Langue",
       "auto": "Auto (syst?me)"
     },
+    "font": {
+      "label": "Police",
+      "searchPlaceholder": "Rechercher des polices...",
+      "loadLocal": "Charger les polices systeme",
+      "systemDefault": "Systeme par defaut",
+      "noResults": "Aucune police correspondante",
+      "note": "Affiche les polices systeme locales (si disponibles), sinon une liste de secours detectee.",
+      "unsupported": "Votre navigateur ne prend pas en charge Local Font Access (queryLocalFonts).",
+      "permissionDenied": "L acces aux polices locales a ete refuse ou bloque.",
+      "empty": "Aucune police locale n a ete retournee.",
+      "loadFailed": "Impossible de charger les polices locales : {error}"
+    },
     "guideHtml": "<div class=\"row\"><label>Guide utilisateur</label><div><h5>Vue d'ensemble</h5><ul><li>Page de d?marrage avec recherche, favoris, t?ches, notes, m?t?o, actualit?s.</li><li>Tout en local : les donn?es restent dans le navigateur (localStorage).</li></ul><h5>Raccourcis</h5><ul><li>Ctrl/Cmd+K : ouvrir la palette de commandes</li><li>1-9 : ouvrir les 9 premiers favoris (si vous ne tapez pas)</li><li>/ : focus sur la recherche (aussi via la palette)</li><li>Entr?e dans la recherche : lance la recherche</li><li>ESC : ferme les modales</li><li>Palette : actions rapides pour widgets, th?me, fond, donn?es, favoris</li><li>Palette : la touche C change le style de carte, \"R?initialiser les couleurs de l'en?t?te\" r?initialise recherche et horloge</li></ul><h5>Recherche et autocompl?tion</h5><ul><li>Bangs : !g !ddg !bing !yt !wiki !maps</li><li>Raccourcis personnalis?s : JSON dans les param?tres ; {q} comme placeholder</li><li>Autocompl?tion : bangs, raccourcis, recherches r?centes, liste de mots (globale + preset)</li><li>Tab accepte la suggestion, Entr?e lance la recherche</li></ul><h5>Tuiles</h5><ul><li>Glisser?d?poser pour trier, clic pour ouvrir</li><li>+ Tuile : ajouter un favori</li><li>R?initialiser : restaurer les favoris par d?faut</li></ul><h5>Widgets et mise en page</h5><ul><li>Visibilit? par widget</li><li>Style de carte global (verre, plein, transparent, minimal doux)</li><li>Couleurs personnalis?es pour horloge/recherche ; r?initialiser revient au style par d?faut</li><li>Couleurs des widgets et bouton \"Teinter les widgets\" d?finissent l'accent par carte</li></ul><h5>Fond</h5><ul><li>Presets, imports, collections, rotation (heure/th?me/intervalle)</li><li>La couleur d'accent est extraite du fond actif</li></ul><h5>Donn?es</h5><ul><li>Exporter/Importer en JSON</li><li>Charger des presets (assets/presets/*.json dans le repo)</li></ul></div></div>"
   },
   "onboarding": {

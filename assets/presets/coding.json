@@ -1,6 +1,7 @@
 {
   "theme": "dark",
   "ui.cardStyle": "solid",
+  "ui.font.family": "Consolas",
   "ui.clock.color": "#0b1224",
   "ui.search.color": "#0f172a",
   "widgets": {

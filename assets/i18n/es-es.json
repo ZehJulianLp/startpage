@@ -252,6 +252,18 @@
       "label": "Idioma",
       "auto": "Auto (sistema)"
     },
+    "font": {
+      "label": "Fuente",
+      "searchPlaceholder": "Buscar fuentes...",
+      "loadLocal": "Cargar fuentes del sistema",
+      "systemDefault": "Predeterminada del sistema",
+      "noResults": "No hay fuentes coincidentes",
+      "note": "Muestra fuentes locales del sistema (si estan disponibles) o una lista detectada de respaldo.",
+      "unsupported": "Tu navegador no admite Local Font Access (queryLocalFonts).",
+      "permissionDenied": "El acceso a las fuentes locales fue denegado o bloqueado.",
+      "empty": "No se devolvieron fuentes locales.",
+      "loadFailed": "No se pudieron cargar las fuentes locales: {error}"
+    },
     "guideHtml": "<div class=\"row\"><label>Guía del usuario</label><div><h5>Resumen</h5><ul><li>Página de inicio con búsqueda, favoritos, tareas, notas, tiempo y noticias.</li><li>Todo local: los datos se quedan en el navegador (localStorage).</li></ul><h5>Atajos</h5><ul><li>Ctrl/Cmd+K: abrir la paleta de comandos</li><li>1-9: abrir los primeros 9 favoritos (si no escribes)</li><li>/ : enfocar búsqueda (también desde la paleta)</li><li>Enter en búsqueda: iniciar búsqueda</li><li>ESC: cerrar modales</li><li>Paleta: acciones rápidas para widgets, tema, fondo, datos y favoritos</li><li>Paleta: la tecla C cambia el estilo de tarjeta, \"Restablecer colores del encabezado\" restablece búsqueda y reloj</li></ul><h5>Búsqueda y autocompletar</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>Atajos personalizados: JSON en ajustes; {q} como marcador</li><li>Autocompletar: bangs, atajos, búsquedas recientes, lista de palabras (global + preset)</li><li>Tab acepta sugerencia, Enter inicia búsqueda</li></ul><h5>Tarjetas</h5><ul><li>Arrastrar y soltar para ordenar, clic para abrir</li><li>+ Tarjeta: añadir un favorito</li><li>Restablecer: restaurar favoritos predeterminados</li></ul><h5>Widgets y diseño</h5><ul><li>Visibilidad por widget</li><li>Estilo de tarjeta global (cristal, sólido, transparente, minimal suave)</li><li>Colores propios para reloj/búsqueda; restablecer vuelve al estilo por defecto</li><li>Colores de widget y botón \"Teñir widgets\" fijan el acento por tarjeta</li></ul><h5>Fondo</h5><ul><li>Presets, subidas, colecciones, rotación (hora/tema/intervalo)</li><li>El color de acento se extrae del fondo activo</li></ul><h5>Datos</h5><ul><li>Exportar/Importar como JSON</li><li>Cargar presets de datos (assets/presets/*.json en el repo)</li></ul></div></div>"
   },
   "onboarding": {

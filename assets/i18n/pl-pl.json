@@ -252,6 +252,18 @@
       "label": "J?zyk",
       "auto": "Auto (system)"
     },
+    "font": {
+      "label": "Czcionka",
+      "searchPlaceholder": "Szukaj czcionek...",
+      "loadLocal": "Wczytaj czcionki systemowe",
+      "systemDefault": "Domyslna systemowa",
+      "noResults": "Brak pasujacych czcionek",
+      "note": "Pokazuje lokalne czcionki systemowe (jesli dostepne), w przeciwnym razie wykryta liste zastepcza.",
+      "unsupported": "Twoja przegladarka nie obsluguje Local Font Access (queryLocalFonts).",
+      "permissionDenied": "Dostep do lokalnych czcionek zostal odrzucony lub zablokowany.",
+      "empty": "Nie zwrocono lokalnych czcionek.",
+      "loadFailed": "Nie udalo sie wczytac lokalnych czcionek: {error}"
+    },
     "guideHtml": "<div class=\"row\"><label>Przewodnik u?ytkownika</label><div><h5>Przegl?d</h5><ul><li>Strona startowa z wyszukiwaniem, ulubionymi, zadaniami, notatkami, pogod? i wiadomo?ciami.</li><li>Wszystko lokalnie: dane pozostaj? w przegl?darce (localStorage).</li></ul><h5>Skr?ty</h5><ul><li>Ctrl/Cmd+K: otw?rz palet? polece?</li><li>1-9: otw?rz pierwsze 9 ulubionych (je?li nie piszesz)</li><li>/ : focus na wyszukiwanie (tak?e przez palet?)</li><li>Enter w wyszukiwaniu: uruchamia wyszukiwanie</li><li>ESC: zamyka okna modalne</li><li>Paleta: szybkie akcje dla widget?w, motywu, t?a, danych i ulubionych</li><li>Paleta: klawisz C prze??cza styl kart, \"Resetuj kolory nag??wka\" resetuje wyszukiwanie i zegar</li></ul><h5>Wyszukiwanie i autouzupe?nianie</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>W?asne skr?ty: JSON w ustawieniach; {q} jako placeholder</li><li>Autouzupe?nianie: bangs, skr?ty, ostatnie wyszukiwania, lista s??w (globalna + preset)</li><li>Tab akceptuje sugesti?, Enter uruchamia wyszukiwanie</li></ul><h5>Kafelki</h5><ul><li>Drag & drop do sortowania, klikni?cie aby otworzy?</li><li>+ Kafelek: dodaj nowego ulubionego</li><li>Reset: przywr?? domy?lne ulubione</li></ul><h5>Widgety i uk?ad</h5><ul><li>Widoczno?? per widget</li><li>Styl kart globalny (szk?o, pe?ny, przezroczysty, mi?kki minimal)</li><li>W?asne kolory dla zegara/wyszukiwania; reset przywraca styl domy?lny</li><li>Kolory widget?w i przycisk \"Tintuj widgety\" ustawiaj? akcent dla kart</li></ul><h5>T?o</h5><ul><li>Presety, uploady, kolekcje, rotacja (czas/temat/interwa?)</li><li>Kolor akcentu jest wyci?gany z aktywnego t?a</li></ul><h5>Dane</h5><ul><li>Eksport/Import jako JSON</li><li>Wczytanie preset?w danych (assets/presets/*.json w repo)</li></ul></div></div>"
   },
   "onboarding": {

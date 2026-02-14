@@ -1,6 +1,7 @@
 {
   "theme": "auto",
   "ui.cardStyle": "glass",
+  "ui.font.family": "Inter",
   "ui.clock.color": "",
   "ui.search.color": "",
   "widgets": {

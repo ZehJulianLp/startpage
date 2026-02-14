@@ -27,6 +27,12 @@
     uwu: 'en-US'
   };
 
+  const UI_FONT_KEY = 'ui.font.family';
+  const UI_FONT_STACK = 'Inter, system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"';
+  let uiFontListCache = null;
+  let uiFontListLoading = null;
+  let uiFontListSource = 'none';
+
   function localeToIntl(locale){
     const norm = normalizeLocale(locale);
     if(!norm) return undefined;
@@ -62,6 +68,180 @@
     const value = tRaw(key);
     const base = (typeof value === 'string') ? value : (typeof fallback === 'string' ? fallback : '');
     return interpolate(base, vars);
+  }
+
+  function normalizeUiFontFamily(value){
+    const raw = String(value || '').trim();
+    if(!raw) return '';
+    return raw.replace(/[\\"]/g, '').trim();
+  }
+
+  function fontCssLiteral(name){
+    const safe = normalizeUiFontFamily(name);
+    if(!safe) return UI_FONT_STACK;
+    return `"${safe.replace(/"/g, '\\"')}", ${UI_FONT_STACK}`;
+  }
+
+  function applyUiFont(name){
+    const safe = normalizeUiFontFamily(name);
+    if(!safe){
+      document.documentElement.style.setProperty('--font-ui', UI_FONT_STACK);
+      return;
+    }
+    document.documentElement.style.setProperty('--font-ui', fontCssLiteral(safe));
+  }
+
+  function detectInstalledFonts(candidates){
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    if(!ctx) return [];
+    const probeText = 'mmmmmmmmmmlliWWWW';
+    const size = '72px';
+    const bases = ['monospace', 'sans-serif', 'serif'];
+    const baseWidths = {};
+    bases.forEach(base=>{
+      ctx.font = `${size} ${base}`;
+      baseWidths[base] = ctx.measureText(probeText).width;
+    });
+    const installed = [];
+    candidates.forEach(name=>{
+      const test = normalizeUiFontFamily(name);
+      if(!test) return;
+      const hasFont = bases.some(base=>{
+        ctx.font = `${size} "${test}", ${base}`;
+        return ctx.measureText(probeText).width !== baseWidths[base];
+      });
+      if(hasFont) installed.push(test);
+    });
+    return Array.from(new Set(installed));
+  }
+
+  function getFallbackFontFamilies(){
+    const fallbackCandidates = [
+      'Arial', 'Arial Nova', 'Verdana', 'Tahoma', 'Trebuchet MS', 'Helvetica', 'Helvetica Neue',
+      'Segoe UI', 'Segoe UI Variable', 'Calibri', 'Cambria', 'Candara', 'Corbel', 'Constantia',
+      'Georgia', 'Times New Roman', 'Palatino', 'Garamond', 'Baskerville', 'Book Antiqua',
+      'Aptos', 'Aptos Display', 'Aptos Narrow', 'Aptos Serif', 'Aptos Mono',
+      'San Francisco', 'SF Pro Text', 'SF Pro Display', 'New York', 'Menlo', 'Monaco', 'Geneva',
+      'Roboto', 'Noto Sans', 'Noto Serif', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Fira Code',
+      'JetBrains Mono', 'Source Sans Pro', 'Source Serif Pro', 'Source Code Pro',
+      'Comic Sans MS', 'Impact', 'Lucida Sans Unicode', 'Lucida Console', 'Courier New'
+    ];
+    return detectInstalledFonts(fallbackCandidates)
+      .sort((a,b)=> a.localeCompare(b, undefined, { sensitivity: 'base' }));
+  }
+
+  async function loadLocalFontsInteractive(){
+    if(!window.queryLocalFonts){
+      await uiAlert(t('settings.font.unsupported'));
+      return false;
+    }
+    try{
+      const fonts = await window.queryLocalFonts();
+      const families = Array.from(new Set((fonts || [])
+        .map(font=> normalizeUiFontFamily(font && font.family))
+        .filter(Boolean)))
+        .sort((a,b)=> a.localeCompare(b, undefined, { sensitivity: 'base' }));
+      if(!families.length){
+        await uiAlert(t('settings.font.empty'));
+        return false;
+      }
+      uiFontListCache = families;
+      uiFontListSource = 'queryLocalFonts';
+      renderFontSelectOptions(families);
+      return true;
+    }catch(err){
+      const name = String(err && err.name || '');
+      if(name === 'NotAllowedError' || name === 'SecurityError'){
+        await uiAlert(t('settings.font.permissionDenied'));
+      } else {
+        await uiAlert(t('settings.font.loadFailed', { error: err && err.message ? err.message : 'unknown error' }, 'Could not load local fonts: {error}'));
+      }
+      return false;
+    }
+  }
+
+  async function getSystemFontFamilies(options={}){
+    const preferLocal = options.preferLocal !== false;
+    const forceRefresh = !!options.forceRefresh;
+    if(forceRefresh){
+      uiFontListCache = null;
+      uiFontListLoading = null;
+      uiFontListSource = 'none';
+    }
+    if(uiFontListLoading) return uiFontListLoading;
+    if(uiFontListCache && (!preferLocal || uiFontListSource === 'queryLocalFonts')) return uiFontListCache;
+    uiFontListLoading = (async ()=>{
+      const families = new Set();
+      let loadedFromLocalApi = false;
+      if(preferLocal && window.queryLocalFonts){
+        try{
+          const fonts = await window.queryLocalFonts();
+          fonts.forEach(font=>{
+            const name = normalizeUiFontFamily(font && font.family);
+            if(name) families.add(name);
+          });
+          loadedFromLocalApi = families.size > 0;
+        }catch(err){
+          console.info('queryLocalFonts unavailable, fallback detection active', err);
+        }
+      }
+      if(!families.size){
+        getFallbackFontFamilies().forEach(name=> families.add(name));
+      }
+      const sorted = Array.from(families).sort((a,b)=> a.localeCompare(b, undefined, { sensitivity: 'base' }));
+      uiFontListCache = sorted;
+      uiFontListSource = loadedFromLocalApi ? 'queryLocalFonts' : 'fallback';
+      uiFontListLoading = null;
+      return sorted;
+    })();
+    return uiFontListLoading;
+  }
+
+  function renderFontSelectOptions(fonts){
+    const select = $('#fontSelect');
+    if(!select) return;
+    const selected = normalizeUiFontFamily(store.get(UI_FONT_KEY, ''));
+    select.innerHTML = '';
+    const defaultOption = document.createElement('option');
+    defaultOption.value = '';
+    defaultOption.textContent = t('settings.font.systemDefault');
+    select.appendChild(defaultOption);
+    if(!fonts.length){
+      const emptyOption = document.createElement('option');
+      emptyOption.value = '__none__';
+      emptyOption.disabled = true;
+      emptyOption.textContent = t('settings.font.noResults');
+      select.appendChild(emptyOption);
+    } else {
+      fonts.forEach(font=>{
+        const option = document.createElement('option');
+        option.value = font;
+        option.textContent = font;
+        option.style.fontFamily = fontCssLiteral(font);
+        select.appendChild(option);
+      });
+    }
+    const canSelect = selected && Array.from(select.options).some(opt=> opt.value === selected);
+    select.value = canSelect ? selected : '';
+    refreshUiSelects(select.parentElement || document);
+  }
+
+  async function initFontSettings(options={}){
+    const select = $('#fontSelect');
+    if(!select) return;
+    select.dataset.uiSearchable = '1';
+    select.dataset.uiSearchPlaceholder = t('settings.font.searchPlaceholder', null, 'Search fonts...');
+    if(!select.dataset.fontSelectBound){
+      select.dataset.fontSelectBound = '1';
+      select.addEventListener('change', ()=>{
+        const family = normalizeUiFontFamily(select.value);
+        store.set(UI_FONT_KEY, family);
+        applyUiFont(family);
+      });
+    }
+    const families = await getSystemFontFamilies(options);
+    renderFontSelectOptions(families);
   }
 
   let uiActiveSelect = null;
@@ -125,10 +305,12 @@
   function closeUiSelect(force=false){
     if(!uiActiveSelect) return;
     const host = uiActiveSelect;
+    const select = host.__uiSelectSelect || null;
     const trigger = $('.ui-select-trigger', host);
     host.classList.remove('open');
     host.classList.add('closing');
     if(trigger) trigger.setAttribute('aria-expanded', 'false');
+    if(select && select.__uiSelect) select.__uiSelect.searchQuery = '';
     setTimeout(()=> host.classList.remove('closing'), UI_MENU_CLOSE_MS);
     if(force && trigger) setTimeout(()=> trigger.focus({ preventScroll: true }), UI_MENU_CLOSE_MS);
     uiActiveSelect = null;
@@ -141,6 +323,8 @@
     const trigger = $('.ui-select-trigger', host);
     if(trigger) trigger.setAttribute('aria-expanded', 'true');
     uiActiveSelect = host;
+    const search = $('.ui-select-search', host);
+    if(search) setTimeout(()=> search.focus({ preventScroll: true }), 0);
   }
 
   function updateUiSelect(select){
@@ -148,11 +332,74 @@
     const { host, trigger, valueEl, menu } = select.__uiSelect;
     if(!host || !trigger || !valueEl || !menu) return;
     const options = Array.from(select.options);
+    const searchable = select.dataset.uiSearchable === '1';
+    const rawQuery = String(select.__uiSelect.searchQuery || '');
+    const needle = rawQuery.trim().toLowerCase();
+    if(typeof select.__uiSelect.activeIndex !== 'number') select.__uiSelect.activeIndex = -1;
     const selected = options.find(o => o.value === select.value) || options[0] || null;
     valueEl.textContent = selected ? selected.textContent : '';
     trigger.disabled = !!select.disabled;
     menu.innerHTML = '';
-    options.forEach((opt, idx)=>{
+    if(searchable){
+      const wrap = document.createElement('div');
+      wrap.className = 'ui-select-search-wrap';
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.className = 'ui-select-search';
+      input.placeholder = select.dataset.uiSearchPlaceholder || t('settings.font.searchPlaceholder', null, 'Search...');
+      input.value = rawQuery;
+      input.addEventListener('input', ()=>{
+        select.__uiSelect.searchQuery = input.value;
+        select.__uiSelect.activeIndex = -1;
+        updateUiSelect(select);
+      });
+      input.addEventListener('keydown', e=>{
+        if(e.key === 'Escape'){ e.preventDefault(); closeUiSelect(true); return; }
+        const navButtons = $$('.ui-select-option', menu).filter(btn=> !btn.disabled);
+        if(e.key === 'ArrowDown'){
+          e.preventDefault();
+          if(!navButtons.length) return;
+          const current = Math.max(-1, Number(select.__uiSelect.activeIndex) || -1);
+          select.__uiSelect.activeIndex = Math.min(navButtons.length - 1, current + 1);
+          navButtons.forEach((btn, i)=> btn.classList.toggle('active', i === select.__uiSelect.activeIndex));
+          const active = navButtons[select.__uiSelect.activeIndex];
+          if(active) active.scrollIntoView({ block: 'nearest' });
+          return;
+        }
+        if(e.key === 'ArrowUp'){
+          e.preventDefault();
+          if(!navButtons.length) return;
+          const current = Math.max(0, Number(select.__uiSelect.activeIndex) || 0);
+          select.__uiSelect.activeIndex = Math.max(0, current - 1);
+          navButtons.forEach((btn, i)=> btn.classList.toggle('active', i === select.__uiSelect.activeIndex));
+          const active = navButtons[select.__uiSelect.activeIndex];
+          if(active) active.scrollIntoView({ block: 'nearest' });
+          return;
+        }
+        if(e.key === 'Enter'){
+          if(!navButtons.length) return;
+          e.preventDefault();
+          const current = Number(select.__uiSelect.activeIndex);
+          const idx = Number.isInteger(current) && current >= 0 ? current : 0;
+          const active = navButtons[Math.min(idx, navButtons.length - 1)];
+          if(active) active.click();
+          return;
+        }
+        e.stopPropagation();
+      });
+      wrap.appendChild(input);
+      menu.appendChild(wrap);
+    }
+    const list = searchable && needle
+      ? options.filter(opt => String(opt.textContent || '').toLowerCase().includes(needle))
+      : options;
+    if(!list.length){
+      const empty = document.createElement('div');
+      empty.className = 'ui-select-empty';
+      empty.textContent = t('common.noMatches');
+      menu.appendChild(empty);
+    }
+    list.forEach((opt, idx)=>{
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'ui-select-option';
@@ -175,10 +422,30 @@
       btn.addEventListener('mouseenter', ()=>{
         $$('.ui-select-option', menu).forEach(el=> el.classList.remove('active'));
         btn.classList.add('active');
+        select.__uiSelect.activeIndex = Number(btn.dataset.index);
       });
       btn.dataset.index = String(idx);
       menu.appendChild(btn);
     });
+    const enabledButtons = $$('.ui-select-option', menu).filter(btn=> !btn.disabled);
+    if(enabledButtons.length){
+      const current = Number(select.__uiSelect.activeIndex);
+      const idx = Number.isInteger(current) ? Math.max(0, Math.min(enabledButtons.length - 1, current)) : -1;
+      select.__uiSelect.activeIndex = idx;
+      if(idx >= 0) enabledButtons.forEach((btn, i)=> btn.classList.toggle('active', i === idx));
+    } else {
+      select.__uiSelect.activeIndex = -1;
+    }
+    if(searchable && host.classList.contains('open')){
+      const search = $('.ui-select-search', menu);
+      if(search){
+        const cursor = search.value.length;
+        setTimeout(()=>{
+          search.focus({ preventScroll: true });
+          try{ search.setSelectionRange(cursor, cursor); }catch{}
+        }, 0);
+      }
+    }
   }
 
   function enhanceUiSelect(select){
@@ -208,8 +475,9 @@
     select.style.width = '';
     host.appendChild(trigger);
     host.appendChild(menu);
+    host.__uiSelectSelect = select;
 
-    select.__uiSelect = { host, trigger, valueEl, menu };
+    select.__uiSelect = { host, trigger, valueEl, menu, searchQuery: '' };
     updateUiSelect(select);
 
     const nav = (dir)=>{
@@ -1956,6 +2224,7 @@
   function fillSettings(){
     const theme = store.get('theme','auto');
     $('#themeSelect').value = theme;
+    void initFontSettings({ preferLocal: false });
     $('#defaultCity').value = store.get('weather.city','Hannover');
     const defaultTransport = store.get('transport.default', null);
     const transportDefaultInput = $('#transportDefaultInput');
@@ -4189,6 +4458,7 @@
     await initI18n();
     initAnimations();
     initButtonMicroAnimations();
+    applyUiFont(store.get(UI_FONT_KEY, ''));
     enhanceUiSelects();
     enhanceUiColorInputs();
     refreshUiSelects();
@@ -4208,6 +4478,11 @@
     $('#openSettings').addEventListener('click', openSettings);
     $('#closeSettings').addEventListener('click', closeSettings);
     $('#themeSelect').addEventListener('change', e=>{ store.set('theme', e.target.value); applyTheme(e.target.value); });
+    const fontLoadLocal = $('#fontLoadLocal');
+    if(fontLoadLocal){
+      fontLoadLocal.addEventListener('click', ()=>{ void loadLocalFontsInteractive(); });
+    }
+    void initFontSettings({ preferLocal: false });
     if(window.matchMedia){
       const media = matchMedia('(prefers-color-scheme: dark)');
       if(media && media.addEventListener){

@@ -252,6 +252,18 @@
       "label": "L4ngu4g3",
       "auto": "4u70 (5y573m)"
     },
+    "font": {
+      "label": "F0n7",
+      "searchPlaceholder": "S34rch f0n7s...",
+      "loadLocal": "L04d 5y573m f0n75",
+      "systemDefault": "5y573m d3f4ul7",
+      "noResults": "N0 m47ch1n6 f0n75",
+      "note": "5h0w5 l0c4l 5y573m f0n75 (1f 4v41l4bl3), 07h3rw153 4 d373c73d f4llb4ck l157.",
+      "unsupported": "Y0ur br0w53r d035 n07 5upp0r7 L0c4l F0n7 4cc355 (qu3ryL0c4lF0n75).",
+      "permissionDenied": "4cc355 70 l0c4l f0n75 w45 d3n13d 0r bl0ck3d.",
+      "empty": "N0 l0c4l f0n75 w3r3 r37urn3d.",
+      "loadFailed": "C0uld n07 l04d l0c4l f0n75: {error}"
+    },
     "guideHtml": "<div class=\"row\"><label>U53r Gu1d3</label><div><h5>0v3rv13w</h5><ul><li>574r7 p4g3 w17h 534rch, f4v0r1735, 70-d0, n0735, w347h3r, n3w5.</li><li>4ll l0c4l: d474 574y5 1n y0ur br0w53r (l0c4l570r4g3).</li></ul><h5>5h0r7cu75</h5><ul><li>C7rl/Cmd+K: 0p3n c0mm4nd p4l3773</li><li>1-9: 0p3n f1r57 9 f4v0r1735 (wh3n n07 7yp1ng)</li><li>/ : f0cu5 534rch (4l50 v14 p4l3773)</li><li>3n73r 1n 534rch: 574r7 534rch</li><li>35C: cl053 m0d4l5</li><li>P4l3773: qu1ck 4c710n5 f0r w1dg375, 7h3m3, b4ckgr0und, d474, f4v0r1735</li><li>P4l3773: k3y C 5w17ch35 c4rd 57yl3, \"R3537 h34d3r c0l0r5\" r35375 534rch & cl0ck</li></ul><h5>534rch & 4u70c0mpl373</h5><ul><li>B4ng5: !g !ddg !b1ng !y7 !w1k1 !m4p5</li><li>Cu570m 5h0r7cu75: J50N 1n 53771ng5; {q} 45 pl4c3h0ld3r</li><li>4u70c0mpl373: b4ng5, 5h0r7cu75, r3c3n7 534rch35, w0rdl157 (gl0b4l + pr3537)</li><li>74b 4cc3p75 5ugg35710n, 3n73r 574r75 534rch</li></ul><h5>71l35</h5><ul><li>Dr4g & dr0p 70 50r7, cl1ck 70 0p3n</li><li>+ 71l3: 4dd 4 n3w f4v0r173</li><li>R3537: r3570r3 d3f4ul7 f4v0r1735</li></ul><h5>W1dg375 & L4y0u7</h5><ul><li>V151b1l17y p3r w1dg37</li><li>C4rd 57yl3 15 gl0b4l (gl455, 50l1d, 7r4n5p4r3n7, 50f7 m1n1m4l)</li><li>Cu570m c0l0r5 f0r cl0ck/534rch; r3537 r3570r35 57yl3 d3f4ul75</li><li>W1dg37 c0l0r5 & \"71n7 w1dg375\" 537 7h3 4cc3n7 p3r c4rd</li></ul><h5>B4ckgr0und</h5><ul><li>Pr35375, upl04d5, c0ll3c710n5, r074710n (71m3/7h3m3/1n73rv4l)</li><li>4cc3n7 c0l0r 15 3x7r4c73d fr0m 7h3 4c71v3 b4ckgr0und</li></ul><h5>D474</h5><ul><li>3xp0r7/1mp0r7 45 J50N</li><li>L04d d474 pr35375 (455375/pr35375/*.j50n 1n 7h3 r3p0)</li></ul></div></div>"
   },
   "onboarding": {

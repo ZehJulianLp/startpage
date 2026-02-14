@@ -252,6 +252,18 @@
       "label": "Language",
       "auto": "Auto (System)"
     },
+    "font": {
+      "label": "Font",
+      "searchPlaceholder": "Fonts, search you must...",
+      "loadLocal": "System fonts, load",
+      "systemDefault": "System default",
+      "noResults": "Matching fonts, none there are",
+      "note": "Local system fonts it shows (if available); otherwise, a detected fallback list it uses.",
+      "unsupported": "Local Font Access (queryLocalFonts), support your browser does not.",
+      "permissionDenied": "To local fonts, access denied or blocked was.",
+      "empty": "Local fonts, returned none were.",
+      "loadFailed": "Local fonts load, could not: {error}"
+    },
     "guideHtml": "<div class=\"row\"><label>User Guide</label><div><h5>Overview</h5><ul><li>Start page with Search, you will, Favorites, you keep, to-do, notes, Weather, there is, news.</li><li>All local: data stays in your browser (localStorage).</li></ul><h5>Shortcuts</h5><ul><li>Ctrl/Cmd+K: open command palette</li><li>1-9: open first 9 Favorites, you keep (when not typing)</li><li>/ : focus Search, you will (also via palette)</li><li>Enter in Search, you will: start Search, you will</li><li>ESC: close modals</li><li>Palette: quick actions for widgets, theme, Background, it is, data, Favorites, you keep</li><li>Palette: key C switches card style, \"Reset header colors\" resets Search, you will & clock</li></ul><h5>Search, you will & Autocomplete</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>Custom shortcuts: JSON in Settings, these are; {q} as placeholder</li><li>Autocomplete: bangs, shortcuts, recent searches, wordlist (global + preset)</li><li>Tab accepts suggestion, Enter starts Search, you will</li></ul><h5>Tiles</h5><ul><li>Drag & drop to sort, click to open</li><li>+ Tile: add a new favorite</li><li>Reset: restore default Favorites, you keep</li></ul><h5>Widgets & Layout</h5><ul><li>Visibility per widget</li><li>Card style is global (glass, solid, transparent, soft minimal)</li><li>Custom colors for clock/Search, you will; reset restores style defaults</li><li>Widget colors & \"Tint widgets\" set the accent per card</li></ul><h5>Background, it is</h5><ul><li>Presets, uploads, collections, rotation (time/theme/interval)</li><li>Accent color is extracted from the active Background, it is</li></ul><h5>Data</h5><ul><li>Export/Import as JSON</li><li>Load data presets (assets/presets/*.json in the repo)</li></ul></div></div>"
   },
   "onboarding": {

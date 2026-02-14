@@ -252,6 +252,18 @@
       "label": "Spr?k",
       "auto": "Auto (system)"
     },
+    "font": {
+      "label": "Typsnitt",
+      "searchPlaceholder": "Sok typsnitt...",
+      "loadLocal": "Ladda systemtypsnitt",
+      "systemDefault": "Systemstandard",
+      "noResults": "Inga matchande typsnitt",
+      "note": "Visar lokala systemtypsnitt (om tillgangliga), annars en upptackt reservlista.",
+      "unsupported": "Din webblasare har inte stod for Local Font Access (queryLocalFonts).",
+      "permissionDenied": "Atkomst till lokala typsnitt nekades eller blockerades.",
+      "empty": "Inga lokala typsnitt returnerades.",
+      "loadFailed": "Kunde inte ladda lokala typsnitt: {error}"
+    },
     "guideHtml": "<div class=\"row\"><label>Anv?ndarguide</label><div><h5>?versikt</h5><ul><li>Startsida med s?kning, favoriter, att g?ra, anteckningar, v?der, nyheter.</li><li>Allt lokalt: data stannar i webbl?saren (localStorage).</li></ul><h5>Genv?gar</h5><ul><li>Ctrl/Cmd+K: ?ppna kommandopalet</li><li>1-9: ?ppna de f?rsta 9 favoriterna (om du inte skriver)</li><li>/ : fokusera s?k (?ven via palett)</li><li>Enter i s?k: starta s?kning</li><li>ESC: st?ng modaler</li><li>Palett: snabb?tg?rder f?r widgets, tema, bakgrund, data, favoriter</li><li>Palett: tangenten C byter kortstil, \"?terst?ll rubrikf?rger\" ?terst?ller s?k och klocka</li></ul><h5>S?k och autokomplettering</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>Egna genv?gar: JSON i inst?llningar; {q} som platsh?llare</li><li>Autokomplettering: bangs, genv?gar, senaste s?kningar, ordlista (global + preset)</li><li>Tab accepterar f?rslag, Enter startar s?kning</li></ul><h5>Rutor</h5><ul><li>Drag & drop f?r sortering, klick f?r att ?ppna</li><li>+ Ruta: l?gg till en favorit</li><li>?terst?ll: ?terst?ll standardfavoriter</li></ul><h5>Widgets och layout</h5><ul><li>Synlighet per widget</li><li>Kortstil global (glas, hel, transparent, mjuk minimal)</li><li>Egna f?rger f?r klocka/s?k; ?terst?ll ?terg?r till standardstil</li><li>Widgetf?rger och knappen \"Tona widgets\" s?tter accent per kort</li></ul><h5>Bakgrund</h5><ul><li>Presets, uppladdningar, samlingar, rotation (tid/tema/intervall)</li><li>Accentf?rg h?mtas fr?n aktiv bakgrund</li></ul><h5>Data</h5><ul><li>Export/Import som JSON</li><li>Ladda data-presets (assets/presets/*.json i repo)</li></ul></div></div>"
   },
   "onboarding": {

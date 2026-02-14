@@ -6,14 +6,14 @@
     "link": "링크",
     "delete": "삭제",
     "remove": "제거하다",
-    "save": "구하다",
+    "save": "??",
     "loading": "로드 중...",
     "loadError": "로드 실패",
     "noMatches": "일치하는 항목 없음",
     "emptyDash": "—",
     "dash": "–",
     "cancel": "??",
-    "ok": "??",
+    "ok": "OK",
     "default": "???"
   },
   "header": {
@@ -139,7 +139,7 @@
     },
     "platform": "플랫폼 {platform}",
     "cancelled": "취소",
-    "refreshAria": "?? ????"
+    "refreshAria": "?? ?? ????"
   },
   "quote": {
     "title": "인용문 / 너드 넛지",
@@ -251,6 +251,18 @@
     "language": {
       "label": "언어",
       "auto": "자동(시스템)"
+    },
+    "font": {
+      "label": "??",
+      "searchPlaceholder": "?? ??...",
+      "loadLocal": "??? ?? ????",
+      "systemDefault": "??? ???",
+      "noResults": "???? ??? ????",
+      "note": "???? ?? ??? ??? ????, ????? ??? ?? ??? ?????.",
+      "unsupported": "????? Local Font Access (queryLocalFonts)? ???? ????.",
+      "permissionDenied": "?? ?? ??? ?????? ???????.",
+      "empty": "?? ??? ???? ?????.",
+      "loadFailed": "?? ??? ???? ?????: {error}"
     },
     "guideHtml": "<div class=\"row\"><label>사용자 가이드</label><div><h5>개요</h5><ul><li>검색, 즐겨찾기, 할 일, 메모, 날씨, 뉴스를 포함한 시작 페이지입니다.</li><li>모든 데이터는 로컬(localStorage)에 저장됩니다.</li></ul><h5>단축키</h5><ul><li>Ctrl/Cmd+K: 명령 팔레트 열기</li><li>1-9: 앞의 9개 즐겨찾기 열기(입력 중 제외)</li><li>/ : 검색 포커스(팔레트에서도 가능)</li><li>검색창 Enter: 검색 실행</li><li>ESC: 모달 닫기</li></ul><h5>검색 및 자동완성</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>사용자 지정 바로가기: 설정에 JSON으로 입력, {q}를 자리표시자로 사용</li><li>추천: Bang, 바로가기, 최근 검색, 단어 목록(전역 + 프리셋)</li><li>Tab으로 제안 적용, Enter로 검색 시작</li></ul><h5>타일</h5><ul><li>드래그 앤 드롭으로 정렬, 클릭으로 열기</li><li>+ 타일: 즐겨찾기 추가</li><li>초기화: 기본 즐겨찾기 복원</li></ul><h5>배경</h5><ul><li>프리셋, 업로드, 컬렉션, 회전(시간/테마/간격)</li><li>강조색은 현재 배경에서 추출됩니다</li></ul><h5>데이터</h5><ul><li>JSON으로 내보내기/가져오기</li><li>데이터 프리셋 불러오기(assets/presets/*.json)</li></ul></div></div>"
   },

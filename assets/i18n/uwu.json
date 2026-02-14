@@ -252,6 +252,18 @@
       "label": "Wanguage",
       "auto": "Auto (System)"
     },
+    "font": {
+      "label": "F-fonwt",
+      "searchPlaceholder": "S-search fonwts...",
+      "loadLocal": "Load system fonwts",
+      "systemDefault": "System defauwt",
+      "noResults": "No matching fonwts",
+      "note": "Shows local system fonwts (if avaiwable), otherwise a detected fallback wist.",
+      "unsupported": "Youw bwowser does not suppowt Local Font Access (queryLocalFonts).",
+      "permissionDenied": "Access to local fonwts was denied ow bwocked.",
+      "empty": "No local fonwts were wetuwned.",
+      "loadFailed": "Could not load local fonwts: {error}"
+    },
     "guideHtml": "<div class=\"row\"><label>Usew Guide</label><div><h5>Ovewview</h5><ul><li>Stawt page with seawch, favowites, to-do, notes, weadew, nyews.</li><li>Aww wocaw: data stays in yuww bwowsew (wocawStowage).</li></ul><h5>Showtcuts</h5><ul><li>Ctww/Cmd+K: open command pawette</li><li>1-9: open fiwst 9 favowites (when not typing)</li><li>/ : focus seawch (awso via pawette)</li><li>Entew in seawch: stawt seawch</li><li>ESC: cwose modaws</li><li>Pawette: quick actions fow widgets, theme, backgwound, data, favowites</li><li>Pawette: key C switches cawd stywe, \"Weset headew cowows\" wesets seawch & cwock</li></ul><h5>Seawch & Autocompwete</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>Custom showtcuts: JSON in settwings; {q} as pwacehowdew</li><li>Autocompwete: bangs, showtcuts, wecent seawches, wowdwist (gwobaw + pweset)</li><li>Tab accepts suggestion, Entew stawts seawch</li></ul><h5>Tiwes</h5><ul><li>Dwag & dwop to sowt, cwick to open</li><li>+ Tiwe: add a new favowite</li><li>Weset: westowe defauwt favowites</li></ul><h5>Widgets & Wayout</h5><ul><li>Visibiwity pew widget</li><li>Cawd stywe is gwobaw (gwass, sowid, twanspawent, soft minimaw)</li><li>Custom cowows fow cwock/seawch; weset westowes stywe defauwts</li><li>Widget cowows & \"Tint widgets\" set da accent pew cawd</li></ul><h5>Backgwound</h5><ul><li>Pwesets, upwoads, cowwections, wotation (time/theme/intewvaw)</li><li>Accent cowow is extwacted fwom da active backgwound</li></ul><h5>Data</h5><ul><li>Expowt/Impowt as JSON</li><li>Woad data pwesets (assets/pwesets/*.json in da wepo)</li></ul></div></div>"
   },
   "onboarding": {
