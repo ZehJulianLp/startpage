@@ -11,11 +11,16 @@
     "loadError": "Fehler beim Laden",
     "noMatches": "Keine Treffer",
     "emptyDash": "—",
-    "dash": "–"
+    "dash": "–",
+    "cancel": "Abbrechen",
+    "ok": "OK",
+    "default": "Standard"
   },
   "header": {
     "themeToggleTitle": "Dark/Light",
-    "settingsTitle": "Einstellungen"
+    "settingsTitle": "Einstellungen",
+    "themeAria": "Theme umschalten",
+    "settingsAria": "Einstellungen oeffnen"
   },
   "search": {
     "placeholder": "Suche… (z. B. !yt lo-fi, !etc Home)",
@@ -38,7 +43,8 @@
       }
     },
     "recentShortcut": "Shortcut {shortcut} – {query}",
-    "recentSearch": "Suche ({engine}) – {query}"
+    "recentSearch": "Suche ({engine}) – {query}",
+    "submitAria": "Suche starten"
   },
   "todo": {
     "title": "To-Do",
@@ -64,7 +70,13 @@
     "invalidUrl": "Ungültige URL",
     "promptTitleNew": "Titel der Kachel",
     "promptUrlNew": "URL (https://…)",
-    "resetConfirm": "Standard-Kacheln wiederherstellen?"
+    "resetConfirm": "Standard-Kacheln wiederherstellen?",
+    "dialog": {
+      "titleLabel": "Titel",
+      "urlLabel": "URL",
+      "save": "Speichern"
+    },
+    "resetAria": "Kacheln zuruecksetzen"
   },
   "weather": {
     "title": "Wetter heute",
@@ -126,7 +138,8 @@
       "stop": "Stop"
     },
     "platform": "Gl. {platform}",
-    "cancelled": "Fällt aus"
+    "cancelled": "Fällt aus",
+    "refreshAria": "Transport neu laden"
   },
   "quote": {
     "title": "Quote / Nerd-Impulse",
@@ -160,7 +173,8 @@
     "title": "News",
     "refreshTitle": "Neu laden",
     "source": "RSS via Startpage Proxy (CORS-Proxy)",
-    "noItems": "Keine Items"
+    "noItems": "Keine Items",
+    "refreshAria": "News neu laden"
   },
   "footer": {
     "tagline": "Local-first Dashboard · speichert nur im Browser (localStorage)"
@@ -486,5 +500,10 @@
       "userDescription": "Lokales Preset aus assets/user-presets/",
       "tags": " (Tags: {tags})"
     }
+  },
+  "dialogs": {
+    "alertTitle": "Hinweis",
+    "confirmTitle": "Bestaetigen",
+    "promptTitle": "Eingabe"
   }
 }

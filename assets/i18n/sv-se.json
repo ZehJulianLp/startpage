@@ -11,11 +11,16 @@
     "loadError": "Laddning misslyckades",
     "noMatches": "Inga tr?ffar",
     "emptyDash": "?",
-    "dash": "?"
+    "dash": "?",
+    "cancel": "Avbryt",
+    "ok": "OK",
+    "default": "Standard"
   },
   "header": {
     "themeToggleTitle": "M?rk/Ljus",
-    "settingsTitle": "Inst?llningar"
+    "settingsTitle": "Inst?llningar",
+    "themeAria": "Vaxla tema",
+    "settingsAria": "Oppna installningar"
   },
   "search": {
     "placeholder": "S?k... (t.ex. !yt lo-fi, !etc Home)",
@@ -38,7 +43,8 @@
       }
     },
     "recentShortcut": "Genv?g {shortcut} ? {query}",
-    "recentSearch": "S?kning ({engine}) ? {query}"
+    "recentSearch": "S?kning ({engine}) ? {query}",
+    "submitAria": "Starta sokning"
   },
   "todo": {
     "title": "Att g?ra",
@@ -64,7 +70,13 @@
     "invalidUrl": "Ogiltig URL",
     "promptTitleNew": "Rutans titel",
     "promptUrlNew": "URL (https://?)",
-    "resetConfirm": "?terst?lla standardrutor?"
+    "resetConfirm": "?terst?lla standardrutor?",
+    "dialog": {
+      "titleLabel": "Titel",
+      "urlLabel": "URL",
+      "save": "Spara"
+    },
+    "resetAria": "Aterstall rutor"
   },
   "weather": {
     "title": "V?der idag",
@@ -126,7 +138,8 @@
       "stop": "H?llplats"
     },
     "platform": "Sp?r {platform}",
-    "cancelled": "Inst?lld"
+    "cancelled": "Inst?lld",
+    "refreshAria": "Uppdatera transport"
   },
   "quote": {
     "title": "Citat / N?rdimpuls",
@@ -160,7 +173,8 @@
     "title": "Nyheter",
     "refreshTitle": "Ladda om",
     "source": "RSS via Startpage-proxy (CORS-proxy)",
-    "noItems": "Inga poster"
+    "noItems": "Inga poster",
+    "refreshAria": "Uppdatera nyheter"
   },
   "footer": {
     "tagline": "Local-first dashboard ? sparar bara i webbl?saren (localStorage)"
@@ -486,5 +500,10 @@
       "userDescription": "Lokalt preset fr?n assets/user-presets/",
       "tags": " (Taggar: {tags})"
     }
+  },
+  "dialogs": {
+    "alertTitle": "Info",
+    "confirmTitle": "Bekrafta",
+    "promptTitle": "Inmatning"
   }
 }

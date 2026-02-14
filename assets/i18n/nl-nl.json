@@ -11,11 +11,16 @@
     "loadError": "Laden mislukt",
     "noMatches": "Geen resultaten",
     "emptyDash": "?",
-    "dash": "?"
+    "dash": "?",
+    "cancel": "Annuleren",
+    "ok": "OK",
+    "default": "Standaard"
   },
   "header": {
     "themeToggleTitle": "Donker/Licht",
-    "settingsTitle": "Instellingen"
+    "settingsTitle": "Instellingen",
+    "themeAria": "Thema wisselen",
+    "settingsAria": "Instellingen openen"
   },
   "search": {
     "placeholder": "Zoeken... (bijv. !yt lo-fi, !etc Home)",
@@ -38,7 +43,8 @@
       }
     },
     "recentShortcut": "Snelkoppeling {shortcut} ? {query}",
-    "recentSearch": "Zoekopdracht ({engine}) ? {query}"
+    "recentSearch": "Zoekopdracht ({engine}) ? {query}",
+    "submitAria": "Zoeken starten"
   },
   "todo": {
     "title": "Taken",
@@ -64,7 +70,13 @@
     "invalidUrl": "Ongeldige URL",
     "promptTitleNew": "Tegeltitel",
     "promptUrlNew": "URL (https://?)",
-    "resetConfirm": "Standaardtegels herstellen?"
+    "resetConfirm": "Standaardtegels herstellen?",
+    "dialog": {
+      "titleLabel": "Titel",
+      "urlLabel": "URL",
+      "save": "Opslaan"
+    },
+    "resetAria": "Tegels resetten"
   },
   "weather": {
     "title": "Weer vandaag",
@@ -126,7 +138,8 @@
       "stop": "Halte"
     },
     "platform": "Perron {platform}",
-    "cancelled": "Geannuleerd"
+    "cancelled": "Geannuleerd",
+    "refreshAria": "Vervoer vernieuwen"
   },
   "quote": {
     "title": "Quote / Nerd-prikkel",
@@ -160,7 +173,8 @@
     "title": "Nieuws",
     "refreshTitle": "Herladen",
     "source": "RSS via Startpage-proxy (CORS-proxy)",
-    "noItems": "Geen items"
+    "noItems": "Geen items",
+    "refreshAria": "Nieuws vernieuwen"
   },
   "footer": {
     "tagline": "Local-first dashboard ? slaat alleen in de browser op (localStorage)"
@@ -486,5 +500,10 @@
       "userDescription": "Lokale preset uit assets/user-presets/",
       "tags": " (Tags: {tags})"
     }
+  },
+  "dialogs": {
+    "alertTitle": "Melding",
+    "confirmTitle": "Bevestigen",
+    "promptTitle": "Invoer"
   }
 }

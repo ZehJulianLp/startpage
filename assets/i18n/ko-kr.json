@@ -11,11 +11,16 @@
     "loadError": "로드 실패",
     "noMatches": "일치하는 항목 없음",
     "emptyDash": "—",
-    "dash": "–"
+    "dash": "–",
+    "cancel": "??",
+    "ok": "??",
+    "default": "???"
   },
   "header": {
     "themeToggleTitle": "어두움/밝음",
-    "settingsTitle": "설정"
+    "settingsTitle": "설정",
+    "themeAria": "?? ??",
+    "settingsAria": "?? ??"
   },
   "search": {
     "placeholder": "검색… (예:!yt lo-fi,!etc Home)",
@@ -38,7 +43,8 @@
       }
     },
     "recentShortcut": "바로가기 {shortcut} – {query}",
-    "recentSearch": "검색({engine}) – {query}"
+    "recentSearch": "검색({engine}) – {query}",
+    "submitAria": "?? ??"
   },
   "todo": {
     "title": "할 일",
@@ -64,7 +70,13 @@
     "invalidUrl": "잘못된 URL",
     "promptTitleNew": "타일 ​​제목",
     "promptUrlNew": "URL(https://…)",
-    "resetConfirm": "기본 타일을 복원하시겠습니까?"
+    "resetConfirm": "기본 타일을 복원하시겠습니까?",
+    "dialog": {
+      "titleLabel": "??",
+      "urlLabel": "URL",
+      "save": "??"
+    },
+    "resetAria": "?? ???"
   },
   "weather": {
     "title": "오늘 날씨",
@@ -126,7 +138,8 @@
       "stop": "멈추다"
     },
     "platform": "플랫폼 {platform}",
-    "cancelled": "취소"
+    "cancelled": "취소",
+    "refreshAria": "?? ????"
   },
   "quote": {
     "title": "인용문 / 너드 넛지",
@@ -160,7 +173,8 @@
     "title": "소식",
     "refreshTitle": "새로고침",
     "source": "시작 페이지 프록시(CORS 프록시)를 통한 RSS",
-    "noItems": "항목 없음"
+    "noItems": "항목 없음",
+    "refreshAria": "?? ????"
   },
   "footer": {
     "tagline": "로컬 우선 대시보드 · 브라우저(localStorage)에만 저장"
@@ -486,5 +500,10 @@
       "userDescription": "자산/사용자 사전 설정/의 로컬 사전 설정",
       "tags": "(태그: {tags})"
     }
+  },
+  "dialogs": {
+    "alertTitle": "??",
+    "confirmTitle": "??",
+    "promptTitle": "??"
   }
 }

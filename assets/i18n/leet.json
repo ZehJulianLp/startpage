@@ -11,11 +11,16 @@
     "loadError": "L04d f41l3d",
     "noMatches": "N0 m47ch35",
     "emptyDash": "--",
-    "dash": "-"
+    "dash": "-",
+    "cancel": "C4NC3L",
+    "ok": "0K",
+    "default": "D3F4UL7"
   },
   "header": {
     "themeToggleTitle": "D4rk/L1gh7",
-    "settingsTitle": "53771ng5"
+    "settingsTitle": "53771ng5",
+    "themeAria": "70GGL3 7H3M3",
+    "settingsAria": "0P3N 53771NG5"
   },
   "search": {
     "placeholder": "534rch... (3.g. !y7 l0-f1, !37c H0m3)",
@@ -38,7 +43,8 @@
       }
     },
     "recentShortcut": "5h0r7cu7 {shortcut} - {query}",
-    "recentSearch": "534rch ({engine}) - {query}"
+    "recentSearch": "534rch ({engine}) - {query}",
+    "submitAria": "574R7 534RCH"
   },
   "todo": {
     "title": "70-D0",
@@ -64,7 +70,13 @@
     "invalidUrl": "1nv4l1d URL",
     "promptTitleNew": "71l3 717l3",
     "promptUrlNew": "URL (h77p5://...)",
-    "resetConfirm": "R3570r3 d3f4ul7 71l35?"
+    "resetConfirm": "R3570r3 d3f4ul7 71l35?",
+    "dialog": {
+      "titleLabel": "71TL3",
+      "urlLabel": "URL",
+      "save": "S4V3"
+    },
+    "resetAria": "R3537 71L35"
   },
   "weather": {
     "title": "W347h3r 70d4y",
@@ -126,7 +138,8 @@
       "stop": "570p"
     },
     "platform": "Pl47f0rm {platform}",
-    "cancelled": "C4nc3ll3d"
+    "cancelled": "C4nc3ll3d",
+    "refreshAria": "R3FR35H 7R4N5P0R7"
   },
   "quote": {
     "title": "Qu073 / N3rd Nudg3",
@@ -160,7 +173,8 @@
     "title": "N3w5",
     "refreshTitle": "R3l04d",
     "source": "R55 v14 574r7p4g3 Pr0xy (C0R5 pr0xy)",
-    "noItems": "N0 173m5"
+    "noItems": "N0 173m5",
+    "refreshAria": "R3FR35H N3W5"
   },
   "footer": {
     "tagline": "L0c4l-f1r57 d45hb04rd  *  570r35 0nly 1n 7h3 br0w53r (l0c4l570r4g3)"
@@ -486,5 +500,10 @@
       "userDescription": "L0c4l pr3537 fr0m 455375/u53r-pr35375/",
       "tags": " (74g5: {tags})"
     }
+  },
+  "dialogs": {
+    "alertTitle": "N07IC3",
+    "confirmTitle": "C0NF1RM",
+    "promptTitle": "1NPU7"
   }
 }

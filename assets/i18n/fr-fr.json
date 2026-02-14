@@ -11,11 +11,16 @@
     "loadError": "?chec du chargement",
     "noMatches": "Aucun r?sultat",
     "emptyDash": "?",
-    "dash": "?"
+    "dash": "?",
+    "cancel": "Annuler",
+    "ok": "OK",
+    "default": "Par defaut"
   },
   "header": {
     "themeToggleTitle": "Sombre/Clair",
-    "settingsTitle": "Param?tres"
+    "settingsTitle": "Param?tres",
+    "themeAria": "Changer le theme",
+    "settingsAria": "Ouvrir les parametres"
   },
   "search": {
     "placeholder": "Rechercher... (ex. !yt lo-fi, !etc Home)",
@@ -38,7 +43,8 @@
       }
     },
     "recentShortcut": "Raccourci {shortcut} ? {query}",
-    "recentSearch": "Recherche ({engine}) ? {query}"
+    "recentSearch": "Recherche ({engine}) ? {query}",
+    "submitAria": "Lancer la recherche"
   },
   "todo": {
     "title": "T?ches",
@@ -64,7 +70,13 @@
     "invalidUrl": "URL invalide",
     "promptTitleNew": "Titre de la tuile",
     "promptUrlNew": "URL (https://?)",
-    "resetConfirm": "Restaurer les tuiles par d?faut ?"
+    "resetConfirm": "Restaurer les tuiles par d?faut ?",
+    "dialog": {
+      "titleLabel": "Titre",
+      "urlLabel": "URL",
+      "save": "Enregistrer"
+    },
+    "resetAria": "Reinitialiser les tuiles"
   },
   "weather": {
     "title": "M?t?o aujourd'hui",
@@ -126,7 +138,8 @@
       "stop": "Arr?t"
     },
     "platform": "Quai {platform}",
-    "cancelled": "Annul?"
+    "cancelled": "Annul?",
+    "refreshAria": "Actualiser les transports"
   },
   "quote": {
     "title": "Citation / Impulsion nerd",
@@ -160,7 +173,8 @@
     "title": "Actualit?s",
     "refreshTitle": "Recharger",
     "source": "RSS via proxy Startpage (proxy CORS)",
-    "noItems": "Aucun ?l?ment"
+    "noItems": "Aucun ?l?ment",
+    "refreshAria": "Actualiser les actualites"
   },
   "footer": {
     "tagline": "Tableau de bord local ? stocke uniquement dans le navigateur (localStorage)"
@@ -486,5 +500,10 @@
       "userDescription": "Preset local depuis assets/user-presets/",
       "tags": " (Tags : {tags})"
     }
+  },
+  "dialogs": {
+    "alertTitle": "Information",
+    "confirmTitle": "Confirmer",
+    "promptTitle": "Saisie"
   }
 }

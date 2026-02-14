@@ -11,11 +11,16 @@
     "loadError": "Caricamento non riuscito",
     "noMatches": "Nessun risultato",
     "emptyDash": "?",
-    "dash": "?"
+    "dash": "?",
+    "cancel": "Annulla",
+    "ok": "OK",
+    "default": "Predefinito"
   },
   "header": {
     "themeToggleTitle": "Scuro/Chiaro",
-    "settingsTitle": "Impostazioni"
+    "settingsTitle": "Impostazioni",
+    "themeAria": "Cambia tema",
+    "settingsAria": "Apri impostazioni"
   },
   "search": {
     "placeholder": "Cerca... (es. !yt lo-fi, !etc Home)",
@@ -38,7 +43,8 @@
       }
     },
     "recentShortcut": "Scorciatoia {shortcut} ? {query}",
-    "recentSearch": "Ricerca ({engine}) ? {query}"
+    "recentSearch": "Ricerca ({engine}) ? {query}",
+    "submitAria": "Avvia ricerca"
   },
   "todo": {
     "title": "Attivit?",
@@ -64,7 +70,13 @@
     "invalidUrl": "URL non valido",
     "promptTitleNew": "Titolo della tessera",
     "promptUrlNew": "URL (https://?)",
-    "resetConfirm": "Ripristinare le tessere predefinite?"
+    "resetConfirm": "Ripristinare le tessere predefinite?",
+    "dialog": {
+      "titleLabel": "Titolo",
+      "urlLabel": "URL",
+      "save": "Salva"
+    },
+    "resetAria": "Reimposta riquadri"
   },
   "weather": {
     "title": "Meteo oggi",
@@ -126,7 +138,8 @@
       "stop": "Fermata"
     },
     "platform": "Binario {platform}",
-    "cancelled": "Cancellato"
+    "cancelled": "Cancellato",
+    "refreshAria": "Aggiorna trasporti"
   },
   "quote": {
     "title": "Citazione / Spinta nerd",
@@ -160,7 +173,8 @@
     "title": "Notizie",
     "refreshTitle": "Ricarica",
     "source": "RSS tramite proxy Startpage (proxy CORS)",
-    "noItems": "Nessun elemento"
+    "noItems": "Nessun elemento",
+    "refreshAria": "Aggiorna notizie"
   },
   "footer": {
     "tagline": "Dashboard local-first ? salva solo nel browser (localStorage)"
@@ -486,5 +500,10 @@
       "userDescription": "Preset locale da assets/user-presets/",
       "tags": " (Tag: {tags})"
     }
+  },
+  "dialogs": {
+    "alertTitle": "Avviso",
+    "confirmTitle": "Conferma",
+    "promptTitle": "Input"
   }
 }

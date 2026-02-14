@@ -11,11 +11,16 @@
     "loadError": "B??d ?adowania",
     "noMatches": "Brak wynik?w",
     "emptyDash": "?",
-    "dash": "?"
+    "dash": "?",
+    "cancel": "Anuluj",
+    "ok": "OK",
+    "default": "Domyslne"
   },
   "header": {
     "themeToggleTitle": "Ciemny/Jasny",
-    "settingsTitle": "Ustawienia"
+    "settingsTitle": "Ustawienia",
+    "themeAria": "Przelacz motyw",
+    "settingsAria": "Otworz ustawienia"
   },
   "search": {
     "placeholder": "Szukaj... (np. !yt lo-fi, !etc Home)",
@@ -38,7 +43,8 @@
       }
     },
     "recentShortcut": "Skr?t {shortcut} ? {query}",
-    "recentSearch": "Wyszukiwanie ({engine}) ? {query}"
+    "recentSearch": "Wyszukiwanie ({engine}) ? {query}",
+    "submitAria": "Uruchom wyszukiwanie"
   },
   "todo": {
     "title": "Zadania",
@@ -64,7 +70,13 @@
     "invalidUrl": "Nieprawid?owy URL",
     "promptTitleNew": "Tytu? kafelka",
     "promptUrlNew": "URL (https://?)",
-    "resetConfirm": "Przywr?ci? domy?lne kafelki?"
+    "resetConfirm": "Przywr?ci? domy?lne kafelki?",
+    "dialog": {
+      "titleLabel": "Tytul",
+      "urlLabel": "URL",
+      "save": "Zapisz"
+    },
+    "resetAria": "Resetuj kafelki"
   },
   "weather": {
     "title": "Pogoda dzi?",
@@ -126,7 +138,8 @@
       "stop": "Przystanek"
     },
     "platform": "Peron {platform}",
-    "cancelled": "Odwo?ano"
+    "cancelled": "Odwo?ano",
+    "refreshAria": "Odswiez transport"
   },
   "quote": {
     "title": "Cytat / Impuls nerdowski",
@@ -160,7 +173,8 @@
     "title": "Wiadomo?ci",
     "refreshTitle": "Od?wie?",
     "source": "RSS przez proxy Startpage (proxy CORS)",
-    "noItems": "Brak element?w"
+    "noItems": "Brak element?w",
+    "refreshAria": "Odswiez wiadomosci"
   },
   "footer": {
     "tagline": "Lokalny dashboard ? zapisuje tylko w przegl?darce (localStorage)"
@@ -486,5 +500,10 @@
       "userDescription": "Lokalny preset z assets/user-presets/",
       "tags": " (Tagi: {tags})"
     }
+  },
+  "dialogs": {
+    "alertTitle": "Informacja",
+    "confirmTitle": "Potwierdz",
+    "promptTitle": "Wpisz"
   }
 }

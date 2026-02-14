@@ -18,15 +18,21 @@
         <div class="date" id="date">—</div>
       </div>
       <div class="controls">
-        <button class="btn" id="themeToggle" title="Dark/Light" data-i18n-title="header.themeToggleTitle">🌓</button>
-        <button class="btn" id="openSettings" title="Einstellungen" data-i18n-title="header.settingsTitle">⚙</button>
+        <button class="btn icon-only" id="themeToggle" title="Dark/Light" data-i18n-title="header.themeToggleTitle" data-i18n-aria-label="header.themeAria">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.36 6.36-1.41-1.41M7.05 7.05 5.64 5.64m12.72 0-1.41 1.41M7.05 16.95l-1.41 1.41"/><circle cx="12" cy="12" r="4"/></svg>
+        </button>
+        <button class="btn icon-only" id="openSettings" title="Einstellungen" data-i18n-title="header.settingsTitle" data-i18n-aria-label="header.settingsAria">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1 1 0 0 0 .2 1.1l.1.1a2 2 0 0 1-2.8 2.8l-.1-.1a1 1 0 0 0-1.1-.2 1 1 0 0 0-.6.9V20a2 2 0 0 1-4 0v-.2a1 1 0 0 0-.6-.9 1 1 0 0 0-1.1.2l-.1.1a2 2 0 0 1-2.8-2.8l.1-.1a1 1 0 0 0 .2-1.1 1 1 0 0 0-.9-.6H4a2 2 0 0 1 0-4h.2a1 1 0 0 0 .9-.6 1 1 0 0 0-.2-1.1l-.1-.1a2 2 0 0 1 2.8-2.8l.1.1a1 1 0 0 0 1.1.2 1 1 0 0 0 .6-.9V4a2 2 0 0 1 4 0v.2a1 1 0 0 0 .6.9 1 1 0 0 0 1.1-.2l.1-.1a2 2 0 0 1 2.8 2.8l-.1.1a1 1 0 0 0-.2 1.1 1 1 0 0 0 .9.6H20a2 2 0 0 1 0 4h-.2a1 1 0 0 0-.9.6z"/></svg>
+        </button>
       </div>
     </header>
 
     <section class="search" id="searchBox">
       <select id="engine"></select>
       <input id="query" type="text" placeholder="Suche… (z. B. !yt lo‑fi, !etc Home)" data-i18n-placeholder="search.placeholder" autocomplete="on" />
-      <button class="btn btn-go" id="go">🔍</button>
+      <button class="btn btn-go icon-only" id="go" data-i18n-aria-label="search.submitAria">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      </button>
     </section>
 
     <main class="grid">
@@ -50,7 +56,9 @@
           <h3 data-i18n="tiles.title">Favoriten</h3>
           <div style="display:flex; gap:8px">
             <button class="btn" id="addTile" data-i18n="tiles.add">+ Kachel</button>
-            <button class="btn" id="resetTiles" title="Standard wiederherstellen" data-i18n-title="tiles.resetTitle">↺</button>
+            <button class="btn icon-only" id="resetTiles" title="Standard wiederherstellen" data-i18n-title="tiles.resetTitle" data-i18n-aria-label="tiles.resetAria">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+            </button>
           </div>
         </div>
         <div class="tiles" id="tiles"></div>
@@ -86,7 +94,9 @@
               <option value="90" data-i18n="transport.duration90">90 min</option>
               <option value="120" data-i18n="transport.duration120">120 min</option>
             </select>
-            <button class="btn" id="refreshTransport" title="Neu laden" data-i18n-title="transport.refreshTitle">↻</button>
+            <button class="btn icon-only" id="refreshTransport" title="Neu laden" data-i18n-title="transport.refreshTitle" data-i18n-aria-label="transport.refreshAria">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.3-6.3"/><path d="M21 12a9 9 0 0 1-15.3 6.3"/><path d="M18.3 5.7H21V3"/><path d="M5.7 18.3H3V21"/></svg>
+            </button>
           </div>
         </div>
         <div class="transport-search">
@@ -119,7 +129,9 @@
           <h3 data-i18n="news.title">News</h3>
           <div style="display:flex;gap:8px;align-items:center">
             <select id="newsSource"></select>
-            <button class="btn" id="refreshNews" title="Neu laden" data-i18n-title="news.refreshTitle">↻</button>
+            <button class="btn icon-only" id="refreshNews" title="Neu laden" data-i18n-title="news.refreshTitle" data-i18n-aria-label="news.refreshAria">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.3-6.3"/><path d="M21 12a9 9 0 0 1-15.3 6.3"/><path d="M18.3 5.7H21V3"/><path d="M5.7 18.3H3V21"/></svg>
+            </button>
           </div>
         </div>
         <ul id="newsList"></ul>
@@ -129,7 +141,7 @@
 
     <footer class="muted" style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:6px">
       <div data-i18n="footer.tagline">Local‑first Dashboard · speichert nur im Browser (localStorage)</div>
-      <div>v1.8.1</div>
+      <div>v1.8.2</div>
     </footer>
   </div>
 
@@ -264,7 +276,7 @@
           <label for="clockColor" data-i18n="settings.widgets.clockColorLabel">Zeit & Datum</label>       
           <div>
             <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
-              <input type="color" id="clockColor" />
+              <input type="text" id="clockColor" data-ui-color data-color-default="#7c5cff" autocomplete="off" />
               <button class="btn" id="clockColorReset" type="button" data-i18n="settings.widgets.reset">Reset</button>
             </div>
             <div class="muted" style="margin-top:6px" data-i18n="settings.widgets.clockColorNote">Legt den Hintergrund der Kopfzeile fest (leer = Stil-Vorgabe).</div>
@@ -274,7 +286,7 @@
           <label for="searchColor" data-i18n="settings.widgets.searchColorLabel">Suche</label>
           <div>
             <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
-              <input type="color" id="searchColor" />
+              <input type="text" id="searchColor" data-ui-color data-color-default="#54d6ff" autocomplete="off" />
               <button class="btn" id="searchColorReset" type="button" data-i18n="settings.widgets.reset">Reset</button>
             </div>
             <div class="muted" style="margin-top:6px" data-i18n="settings.widgets.searchColorNote">Farbe für den Suchbereich (leer = Stil-Vorgabe).</div>
@@ -433,6 +445,38 @@
     <div class="sheet">
       <input class="palette-input" id="paletteInput" type="text" placeholder="Befehl oder Favorit suchen… (Strg/⌘+K)" data-i18n-placeholder="palette.placeholder" autocomplete="off" aria-controls="paletteList" aria-autocomplete="list" aria-activedescendant="" />
       <ul id="paletteList" class="palette-list" role="listbox"></ul>
+    </div>
+  </div>
+
+  <!-- UI Dialog -->
+  <div class="modal ui-dialog" id="uiDialog" aria-hidden="true">
+    <div class="sheet ui-dialog-sheet" role="dialog" aria-modal="true" aria-labelledby="uiDialogTitle">
+      <h4 id="uiDialogTitle">Hinweis</h4>
+      <div class="muted" id="uiDialogMessage"></div>
+      <input type="text" id="uiDialogInput" autocomplete="off" />
+      <div class="ui-dialog-actions">
+        <button class="btn" type="button" id="uiDialogCancel">Abbrechen</button>
+        <button class="btn" type="button" id="uiDialogOk">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tile Editor Dialog -->
+  <div class="modal ui-dialog" id="tileDialog" aria-hidden="true">
+    <div class="sheet ui-dialog-sheet" role="dialog" aria-modal="true" aria-labelledby="tileDialogTitle">
+      <h4 id="tileDialogTitle" data-i18n="tiles.title">Kachel</h4>
+      <div class="row" style="grid-template-columns:1fr; margin:0">
+        <label for="tileDialogName" data-i18n="tiles.dialog.titleLabel">Titel</label>
+        <input type="text" id="tileDialogName" autocomplete="off" />
+      </div>
+      <div class="row" style="grid-template-columns:1fr; margin:0">
+        <label for="tileDialogUrl" data-i18n="tiles.dialog.urlLabel">URL</label>
+        <input type="text" id="tileDialogUrl" autocomplete="off" />
+      </div>
+      <div class="ui-dialog-actions">
+        <button class="btn" type="button" id="tileDialogCancel" data-i18n="common.cancel">Abbrechen</button>
+        <button class="btn" type="button" id="tileDialogSave" data-i18n="tiles.dialog.save">Speichern</button>
+      </div>
     </div>
   </div>
   <script src="script.js"></script>

@@ -64,6 +64,618 @@
     return interpolate(base, vars);
   }
 
+  let uiActiveSelect = null;
+  let uiActiveColor = null;
+  let uiDialogResolve = null;
+  let uiColorWheelCache = null;
+  const UI_MENU_CLOSE_MS = 160;
+  const UI_MODAL_CLOSE_MS = 110;
+
+  function syncModalOpenState(){
+    const anyOpen = $$('.modal.open, .modal.closing').length > 0;
+    document.body.classList.toggle('modal-open', anyOpen);
+  }
+
+  function closeModalAnimated(modal, done){
+    if(!modal){ if(done) done(); return; }
+    if(modal.classList.contains('closing')) return;
+    if(!modal.classList.contains('open')){
+      modal.setAttribute('aria-hidden', 'true');
+      syncModalOpenState();
+      if(done) done();
+      return;
+    }
+    modal.classList.remove('open');
+    modal.classList.add('closing');
+    syncModalOpenState();
+    setTimeout(()=>{
+      modal.classList.remove('closing');
+      modal.setAttribute('aria-hidden', 'true');
+      syncModalOpenState();
+      if(done) done();
+    }, UI_MODAL_CLOSE_MS);
+  }
+
+  function initAnimations(){
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.body.classList.toggle('reduce-motion', !!reduce);
+    if(reduce) return;
+    const blocks = [
+      ...$$('.time'),
+      ...$$('.search'),
+      ...$$('main.grid .card'),
+      ...$$('footer')
+    ];
+    blocks.forEach((el, idx)=> el.style.setProperty('--anim-index', String(idx)));
+    requestAnimationFrame(()=> document.body.classList.add('ui-animate'));
+  }
+
+  function initButtonMicroAnimations(){
+    document.addEventListener('click', e=>{
+      const btn = e.target && e.target.closest ? e.target.closest('.btn, .tile .actions button') : null;
+      if(!btn) return;
+      btn.classList.remove('btn-pop');
+      // Restart animation each click.
+      void btn.offsetWidth;
+      btn.classList.add('btn-pop');
+      setTimeout(()=> btn.classList.remove('btn-pop'), 260);
+    });
+  }
+
+  function closeUiSelect(force=false){
+    if(!uiActiveSelect) return;
+    const host = uiActiveSelect;
+    const trigger = $('.ui-select-trigger', host);
+    host.classList.remove('open');
+    host.classList.add('closing');
+    if(trigger) trigger.setAttribute('aria-expanded', 'false');
+    setTimeout(()=> host.classList.remove('closing'), UI_MENU_CLOSE_MS);
+    if(force && trigger) setTimeout(()=> trigger.focus({ preventScroll: true }), UI_MENU_CLOSE_MS);
+    uiActiveSelect = null;
+  }
+
+  function openUiSelect(host){
+    if(!host) return;
+    if(uiActiveSelect && uiActiveSelect !== host) closeUiSelect();
+    host.classList.add('open');
+    const trigger = $('.ui-select-trigger', host);
+    if(trigger) trigger.setAttribute('aria-expanded', 'true');
+    uiActiveSelect = host;
+  }
+
+  function updateUiSelect(select){
+    if(!select || !select.__uiSelect) return;
+    const { host, trigger, valueEl, menu } = select.__uiSelect;
+    if(!host || !trigger || !valueEl || !menu) return;
+    const options = Array.from(select.options);
+    const selected = options.find(o => o.value === select.value) || options[0] || null;
+    valueEl.textContent = selected ? selected.textContent : '';
+    trigger.disabled = !!select.disabled;
+    menu.innerHTML = '';
+    options.forEach((opt, idx)=>{
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'ui-select-option';
+      btn.textContent = opt.textContent;
+      btn.dataset.value = opt.value;
+      btn.setAttribute('role', 'option');
+      btn.setAttribute('aria-selected', opt.value === select.value ? 'true' : 'false');
+      if(opt.value === select.value) btn.classList.add('active');
+      btn.disabled = !!opt.disabled;
+      btn.addEventListener('click', ()=>{
+        if(opt.disabled) return;
+        if(select.value !== opt.value){
+          select.value = opt.value;
+          select.dispatchEvent(new Event('change', { bubbles: true }));
+        } else {
+          updateUiSelect(select);
+        }
+        closeUiSelect(true);
+      });
+      btn.addEventListener('mouseenter', ()=>{
+        $$('.ui-select-option', menu).forEach(el=> el.classList.remove('active'));
+        btn.classList.add('active');
+      });
+      btn.dataset.index = String(idx);
+      menu.appendChild(btn);
+    });
+  }
+
+  function enhanceUiSelect(select){
+    if(!select || select.dataset.uiEnhanced === '1') return;
+    select.dataset.uiEnhanced = '1';
+    const host = document.createElement('div');
+    host.className = 'ui-select';
+    if(select.style.width) host.style.width = select.style.width;
+    const trigger = document.createElement('button');
+    trigger.type = 'button';
+    trigger.className = 'ui-select-trigger';
+    trigger.setAttribute('aria-haspopup', 'listbox');
+    trigger.setAttribute('aria-expanded', 'false');
+    const valueEl = document.createElement('span');
+    valueEl.className = 'ui-select-value';
+    const caret = document.createElement('span');
+    caret.className = 'ui-select-caret';
+    trigger.appendChild(valueEl);
+    trigger.appendChild(caret);
+    const menu = document.createElement('div');
+    menu.className = 'ui-select-menu';
+    menu.setAttribute('role', 'listbox');
+
+    select.parentNode.insertBefore(host, select);
+    host.appendChild(select);
+    select.classList.add('native-select');
+    select.style.width = '';
+    host.appendChild(trigger);
+    host.appendChild(menu);
+
+    select.__uiSelect = { host, trigger, valueEl, menu };
+    updateUiSelect(select);
+
+    const nav = (dir)=>{
+      const options = Array.from(select.options).filter(o=> !o.disabled);
+      if(!options.length) return;
+      const current = options.findIndex(o => o.value === select.value);
+      const nextIndex = Math.max(0, Math.min(options.length - 1, current + dir));
+      const next = options[nextIndex];
+      if(!next) return;
+      if(select.value !== next.value){
+        select.value = next.value;
+        select.dispatchEvent(new Event('change', { bubbles: true }));
+      } else {
+        updateUiSelect(select);
+      }
+    };
+
+    trigger.addEventListener('click', ()=>{
+      if(host.classList.contains('open')) closeUiSelect();
+      else openUiSelect(host);
+    });
+    trigger.addEventListener('keydown', e=>{
+      if(e.key === 'ArrowDown'){ e.preventDefault(); if(!host.classList.contains('open')) openUiSelect(host); else nav(1); }
+      else if(e.key === 'ArrowUp'){ e.preventDefault(); if(!host.classList.contains('open')) openUiSelect(host); else nav(-1); }
+      else if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); if(host.classList.contains('open')) closeUiSelect(); else openUiSelect(host); }
+      else if(e.key === 'Escape'){ e.preventDefault(); closeUiSelect(true); }
+    });
+    select.addEventListener('change', ()=> updateUiSelect(select));
+    select.addEventListener('input', ()=> updateUiSelect(select));
+    const observer = new MutationObserver(()=> updateUiSelect(select));
+    observer.observe(select, { childList:true, subtree:true, characterData:true, attributes:true, attributeFilter:['disabled','label','selected','value'] });
+    select.__uiSelectObserver = observer;
+  }
+
+  function enhanceUiSelects(root=document){
+    $$('select', root).forEach(select => enhanceUiSelect(select));
+  }
+
+  function refreshUiSelects(root=document){
+    $$('select', root).forEach(select => updateUiSelect(select));
+  }
+
+  function closeUiColor(force=false){
+    if(!uiActiveColor) return;
+    const host = uiActiveColor;
+    const trigger = $('.ui-color-trigger', host);
+    host.classList.remove('open');
+    host.classList.add('closing');
+    setTimeout(()=> host.classList.remove('closing'), UI_MENU_CLOSE_MS);
+    if(force && trigger) setTimeout(()=> trigger.focus({ preventScroll: true }), UI_MENU_CLOSE_MS);
+    uiActiveColor = null;
+  }
+
+  function openUiColor(host){
+    if(!host) return;
+    if(uiActiveColor && uiActiveColor !== host) closeUiColor();
+    host.classList.add('open');
+    uiActiveColor = host;
+    const input = $('.ui-color-hex', host);
+    if(input){
+      input.focus({ preventScroll: true });
+      input.select();
+    }
+  }
+
+  function rgbToHsv(r, g, b){
+    const rn = Math.max(0, Math.min(255, Number(r || 0))) / 255;
+    const gn = Math.max(0, Math.min(255, Number(g || 0))) / 255;
+    const bn = Math.max(0, Math.min(255, Number(b || 0))) / 255;
+    const max = Math.max(rn, gn, bn);
+    const min = Math.min(rn, gn, bn);
+    const d = max - min;
+    let h = 0;
+    if(d){
+      if(max === rn) h = ((gn - bn) / d) % 6;
+      else if(max === gn) h = (bn - rn) / d + 2;
+      else h = (rn - gn) / d + 4;
+      h *= 60;
+      if(h < 0) h += 360;
+    }
+    const s = max === 0 ? 0 : d / max;
+    return { h, s, v: max };
+  }
+
+  function hsvToRgb(h, s, v){
+    const hue = ((Number(h || 0) % 360) + 360) % 360;
+    const sat = Math.max(0, Math.min(1, Number(s || 0)));
+    const val = Math.max(0, Math.min(1, Number(v || 0)));
+    const c = val * sat;
+    const x = c * (1 - Math.abs(((hue / 60) % 2) - 1));
+    const m = val - c;
+    let rp = 0, gp = 0, bp = 0;
+    if(hue < 60){ rp = c; gp = x; bp = 0; }
+    else if(hue < 120){ rp = x; gp = c; bp = 0; }
+    else if(hue < 180){ rp = 0; gp = c; bp = x; }
+    else if(hue < 240){ rp = 0; gp = x; bp = c; }
+    else if(hue < 300){ rp = x; gp = 0; bp = c; }
+    else { rp = c; gp = 0; bp = x; }
+    return {
+      r: Math.round((rp + m) * 255),
+      g: Math.round((gp + m) * 255),
+      b: Math.round((bp + m) * 255)
+    };
+  }
+
+  function hsvToHex(h, s, v){
+    const rgb = hsvToRgb(h, s, v);
+    const toHex = n => n.toString(16).padStart(2, '0');
+    return `#${toHex(rgb.r)}${toHex(rgb.g)}${toHex(rgb.b)}`;
+  }
+
+  function hexToHsv(hex){
+    const normalized = normalizeHex(hex);
+    if(!normalized) return null;
+    const value = normalized.slice(1);
+    const r = parseInt(value.slice(0,2), 16);
+    const g = parseInt(value.slice(2,4), 16);
+    const b = parseInt(value.slice(4,6), 16);
+    return rgbToHsv(r, g, b);
+  }
+
+  function getColorWheelCanvas(size=190){
+    const pxSize = Math.max(80, Number(size) || 190);
+    if(uiColorWheelCache && uiColorWheelCache.size === pxSize) return uiColorWheelCache.canvas;
+    const canvas = document.createElement('canvas');
+    canvas.width = pxSize;
+    canvas.height = pxSize;
+    const ctx = canvas.getContext('2d');
+    const image = ctx.createImageData(pxSize, pxSize);
+    const data = image.data;
+    const center = pxSize / 2;
+    const radius = center - 1;
+    for(let y=0; y<pxSize; y++){
+      for(let x=0; x<pxSize; x++){
+        const dx = x - center;
+        const dy = y - center;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        const index = (y * pxSize + x) * 4;
+        if(dist > radius){
+          data[index+3] = 0;
+          continue;
+        }
+        const sat = dist / radius;
+        let hue = Math.atan2(dy, dx) * 180 / Math.PI;
+        if(hue < 0) hue += 360;
+        const rgb = hsvToRgb(hue, sat, 1);
+        data[index] = rgb.r;
+        data[index+1] = rgb.g;
+        data[index+2] = rgb.b;
+        data[index+3] = 255;
+      }
+    }
+    ctx.putImageData(image, 0, 0);
+    uiColorWheelCache = { size: pxSize, canvas };
+    return canvas;
+  }
+
+  function enhanceUiColorInput(input){
+    if(!input || input.dataset.uiColorEnhanced === '1') return;
+    input.dataset.uiColorEnhanced = '1';
+    const fallback = normalizeHex(input.dataset.colorDefault || '') || '#7c5cff';
+    const host = document.createElement('div');
+    host.className = 'ui-color';
+    const trigger = document.createElement('button');
+    trigger.type = 'button';
+    trigger.className = 'ui-color-trigger';
+    const swatch = document.createElement('span');
+    swatch.className = 'swatch';
+    const label = document.createElement('span');
+    label.className = 'ui-color-label';
+    trigger.appendChild(swatch);
+    trigger.appendChild(label);
+
+    const menu = document.createElement('div');
+    menu.className = 'ui-color-menu';
+    const wheelWrap = document.createElement('div');
+    wheelWrap.className = 'ui-color-wheel-wrap';
+    const wheel = document.createElement('canvas');
+    wheel.className = 'ui-color-wheel';
+    wheel.width = 190;
+    wheel.height = 190;
+    wheelWrap.appendChild(wheel);
+    const valueSlider = document.createElement('input');
+    valueSlider.type = 'range';
+    valueSlider.min = '0';
+    valueSlider.max = '100';
+    valueSlider.step = '1';
+    valueSlider.className = 'ui-color-slider';
+    const hexInput = document.createElement('input');
+    hexInput.type = 'text';
+    hexInput.className = 'ui-color-hex';
+    hexInput.placeholder = '#7c5cff';
+    const actions = document.createElement('div');
+    actions.className = 'ui-color-actions';
+    const clear = document.createElement('button');
+    clear.type = 'button';
+    clear.textContent = t('settings.widgets.reset', null, 'Reset');
+    const done = document.createElement('button');
+    done.type = 'button';
+    done.textContent = t('common.ok', null, 'OK');
+    actions.appendChild(clear);
+    actions.appendChild(done);
+    menu.appendChild(wheelWrap);
+    menu.appendChild(valueSlider);
+    menu.appendChild(hexInput);
+    menu.appendChild(actions);
+
+    input.parentNode.insertBefore(host, input);
+    host.appendChild(input);
+    input.classList.add('native-color-input');
+    host.appendChild(trigger);
+    host.appendChild(menu);
+
+    const state = { h: 0, s: 0, v: 1 };
+
+    const drawWheel = ()=>{
+      const ctx = wheel.getContext('2d');
+      const cache = getColorWheelCanvas(wheel.width);
+      ctx.clearRect(0, 0, wheel.width, wheel.height);
+      ctx.drawImage(cache, 0, 0, wheel.width, wheel.height);
+      if(state.v < 1){
+        ctx.fillStyle = `rgba(0,0,0,${1 - state.v})`;
+        ctx.beginPath();
+        ctx.arc(wheel.width/2, wheel.height/2, wheel.width/2, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      const rad = (wheel.width / 2) - 1;
+      const ang = state.h * Math.PI / 180;
+      const px = (wheel.width / 2) + Math.cos(ang) * state.s * rad;
+      const py = (wheel.height / 2) + Math.sin(ang) * state.s * rad;
+      ctx.beginPath();
+      ctx.arc(px, py, 6, 0, Math.PI * 2);
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(px, py, 8, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(0,0,0,.5)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    };
+
+    const render = ()=>{
+      const activeHex = hsvToHex(state.h, state.s, state.v);
+      const value = normalizeHex(input.value);
+      swatch.style.background = value || fallback;
+      label.textContent = value || t('common.default', null, 'Default');
+      hexInput.value = value || '';
+      valueSlider.value = String(Math.round(state.v * 100));
+      drawWheel();
+      if(!value){
+        swatch.style.background = fallback;
+      } else {
+        swatch.style.background = activeHex;
+      }
+    };
+
+    const setValue = (next, emit=false)=>{
+      const normalized = normalizeHex(next);
+      input.value = normalized;
+      const hsv = hexToHsv(normalized || fallback);
+      if(hsv){
+        state.h = hsv.h;
+        state.s = hsv.s;
+        state.v = hsv.v;
+      }
+      render();
+      if(emit) input.dispatchEvent(new Event('input', { bubbles: true }));
+    };
+
+    trigger.addEventListener('click', ()=>{
+      if(host.classList.contains('open')) closeUiColor();
+      else openUiColor(host);
+    });
+    clear.addEventListener('click', ()=>{
+      setValue('', true);
+      closeUiColor(true);
+    });
+    done.addEventListener('click', ()=> closeUiColor(true));
+    const pickFromWheel = (event)=>{
+      const rect = wheel.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      const cx = wheel.width / 2;
+      const cy = wheel.height / 2;
+      const dx = x * (wheel.width / rect.width) - cx;
+      const dy = y * (wheel.height / rect.height) - cy;
+      const radius = (wheel.width / 2) - 1;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      const sat = Math.max(0, Math.min(1, dist / radius));
+      let hue = Math.atan2(dy, dx) * 180 / Math.PI;
+      if(hue < 0) hue += 360;
+      state.h = hue;
+      state.s = sat;
+      const hex = hsvToHex(state.h, state.s, state.v);
+      input.value = normalizeHex(hex);
+      render();
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    };
+    wheel.addEventListener('pointerdown', event=>{
+      pickFromWheel(event);
+      const onMove = e=> pickFromWheel(e);
+      const onUp = ()=>{
+        window.removeEventListener('pointermove', onMove);
+        window.removeEventListener('pointerup', onUp);
+      };
+      window.addEventListener('pointermove', onMove);
+      window.addEventListener('pointerup', onUp);
+    });
+    valueSlider.addEventListener('input', ()=>{
+      state.v = Math.max(0, Math.min(1, Number(valueSlider.value) / 100));
+      const hex = hsvToHex(state.h, state.s, state.v);
+      input.value = normalizeHex(hex);
+      render();
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+    hexInput.addEventListener('keydown', e=>{
+      if(e.key === 'Enter'){ e.preventDefault(); setValue(hexInput.value, true); closeUiColor(true); }
+      if(e.key === 'Escape'){ e.preventDefault(); closeUiColor(true); }
+    });
+    hexInput.addEventListener('change', ()=> setValue(hexInput.value, true));
+    input.addEventListener('input', render);
+    input.__uiColorSync = render;
+    const initial = hexToHsv(normalizeHex(input.value) || fallback) || { h: 0, s: 0, v: 1 };
+    state.h = initial.h; state.s = initial.s; state.v = initial.v;
+    render();
+  }
+
+  function enhanceUiColorInputs(root=document){
+    $$('input[data-ui-color]', root).forEach(input => enhanceUiColorInput(input));
+  }
+
+  function closeUiDialog(result){
+    const modal = $('#uiDialog');
+    if(!modal || !modal.classList.contains('open')) return;
+    const resolve = uiDialogResolve;
+    uiDialogResolve = null;
+    closeModalAnimated(modal, ()=>{ if(resolve) resolve(result); });
+  }
+
+  function openUiDialog(opts){
+    const options = opts || {};
+    const modal = $('#uiDialog');
+    const title = $('#uiDialogTitle');
+    const msg = $('#uiDialogMessage');
+    const input = $('#uiDialogInput');
+    const btnCancel = $('#uiDialogCancel');
+    const btnOk = $('#uiDialogOk');
+    if(!modal || !title || !msg || !input || !btnCancel || !btnOk){
+      return Promise.resolve(options.kind === 'confirm' ? false : (options.kind === 'prompt' ? null : undefined));
+    }
+    if(uiDialogResolve) closeUiDialog(null);
+    const kind = options.kind || 'alert';
+    modal.dataset.kind = kind;
+    title.textContent = options.title || t('dialogs.alertTitle', null, 'Hint');
+    msg.textContent = String(options.message || '');
+    input.value = typeof options.value === 'string' ? options.value : '';
+    input.placeholder = options.placeholder || '';
+    btnCancel.textContent = options.cancelText || t('common.cancel', null, 'Cancel');
+    btnOk.textContent = options.okText || t('common.ok', null, 'OK');
+    btnCancel.style.display = (kind === 'alert') ? 'none' : '';
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    syncModalOpenState();
+    setTimeout(()=>{
+      if(kind === 'prompt') input.focus();
+      else btnOk.focus();
+    }, 0);
+    const onKey = (e)=>{
+      if(!modal.classList.contains('open')) return;
+      if(e.key === 'Escape'){
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        closeUiDialog(kind === 'alert' ? undefined : (kind === 'confirm' ? false : null));
+      }
+      if(e.key === 'Enter' && kind !== 'alert' && document.activeElement === input){
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        closeUiDialog(input.value);
+      }
+    };
+    const onOverlay = (e)=>{
+      if(e.target === modal){
+        closeUiDialog(kind === 'alert' ? undefined : (kind === 'confirm' ? false : null));
+      }
+    };
+    const cleanup = ()=>{
+      modal.removeEventListener('click', onOverlay);
+      document.removeEventListener('keydown', onKey);
+      btnOk.onclick = null;
+      btnCancel.onclick = null;
+    };
+    return new Promise(resolve=>{
+      uiDialogResolve = (value)=>{
+        cleanup();
+        resolve(value);
+      };
+      btnOk.onclick = ()=>{
+        if(kind === 'confirm') closeUiDialog(true);
+        else if(kind === 'prompt') closeUiDialog(input.value);
+        else closeUiDialog(undefined);
+      };
+      btnCancel.onclick = ()=> closeUiDialog(kind === 'confirm' ? false : null);
+      modal.addEventListener('click', onOverlay);
+      document.addEventListener('keydown', onKey);
+    });
+  }
+
+  function uiAlert(message, title){
+    return openUiDialog({ kind:'alert', title: title || t('dialogs.alertTitle', null, 'Hint'), message });
+  }
+
+  function uiConfirm(message, title){
+    return openUiDialog({ kind:'confirm', title: title || t('dialogs.confirmTitle', null, 'Confirm'), message });
+  }
+
+  function uiPrompt(message, value, title){
+    return openUiDialog({ kind:'prompt', title: title || t('dialogs.promptTitle', null, 'Input'), message, value: value || '' });
+  }
+
+  function openTileDialog(initial){
+    const modal = $('#tileDialog');
+    const title = $('#tileDialogTitle');
+    const nameInput = $('#tileDialogName');
+    const urlInput = $('#tileDialogUrl');
+    const btnCancel = $('#tileDialogCancel');
+    const btnSave = $('#tileDialogSave');
+    if(!modal || !title || !nameInput || !urlInput || !btnCancel || !btnSave){
+      return Promise.resolve(null);
+    }
+    const data = initial || { title:'', url:'' };
+    title.textContent = data.mode === 'edit' ? t('tiles.edit') : t('tiles.add');
+    nameInput.value = data.title || '';
+    urlInput.value = data.url || '';
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    syncModalOpenState();
+    setTimeout(()=> nameInput.focus(), 0);
+    return new Promise(resolve=>{
+      const close = (value)=>{
+        cleanup();
+        closeModalAnimated(modal, ()=> resolve(value));
+      };
+      const onOverlay = e=>{ if(e.target === modal) close(null); };
+      const onKey = e=>{
+        if(!modal.classList.contains('open')) return;
+        if(e.key === 'Escape'){ e.preventDefault(); e.stopImmediatePropagation(); close(null); }
+        if(e.key === 'Enter' && (document.activeElement === nameInput || document.activeElement === urlInput)){
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          close({ title: nameInput.value.trim(), url: urlInput.value.trim() });
+        }
+      };
+      const cleanup = ()=>{
+        modal.removeEventListener('click', onOverlay);
+        document.removeEventListener('keydown', onKey);
+        btnCancel.onclick = null;
+        btnSave.onclick = null;
+      };
+      btnCancel.onclick = ()=> close(null);
+      btnSave.onclick = ()=> close({ title: nameInput.value.trim(), url: urlInput.value.trim() });
+      modal.addEventListener('click', onOverlay);
+      document.addEventListener('keydown', onKey);
+    });
+  }
+
   async function loadLocaleList(){
     if(i18nAvailable) return i18nAvailable;
     try{
@@ -194,6 +806,8 @@
     });
     const stored = normalizeLocale(store.get('ui.locale', 'auto')) || 'auto';
     select.value = stored;
+    enhanceUiSelect(select);
+    refreshUiSelects(select.parentElement || document);
     select.addEventListener('change', async e=>{
       const val = normalizeLocale(e.target.value);
       if(!val || val === 'auto'){
@@ -224,6 +838,7 @@
     loadNews();
     loadWeather();
     loadTransportDepartures();
+    refreshUiSelects();
     const palette = $('#palette');
     if(palette && palette.classList.contains('open') && window.__closePalette){
       window.__closePalette();
@@ -254,16 +869,16 @@
   function importDataFromFile(ev){
     const file = ev.target.files && ev.target.files[0]; if(!file) return;
     const reader = new FileReader();
-    reader.onload = () => {
+    reader.onload = async () => {
       try {
         const obj = JSON.parse(reader.result);
         if(!obj || typeof obj !== 'object') throw new Error('Invalid JSON');
-        if(!confirm(t('data.import.confirm'))) return;
+        if(!(await uiConfirm(t('data.import.confirm')))) return;
         if(!('wordlist.inline' in obj)) obj['wordlist.inline'] = [];
         obj['wordlist.inline'] = normalizeInlineWordlist(obj['wordlist.inline']);
         Object.keys(obj).forEach(k=> localStorage.setItem(k, JSON.stringify(obj[k])));
         location.reload();
-      } catch(err){ alert(t('data.import.failed', { error: err.message }, 'Import failed: {error}')); }
+      } catch(err){ await uiAlert(t('data.import.failed', { error: err.message }, 'Import failed: {error}')); }
     };
     reader.readAsText(file);
     ev.target.value = '';
@@ -350,8 +965,8 @@
   }
 
   async function applyPresetFromEntry(current, contextLabel='Preset', opts={ reload:true, markDone:true }){
-    if(!current){ alert(t('data.presets.none')); return; }
-    if(!current.file){ alert(t('data.presets.missingFile')); return; }
+    if(!current){ await uiAlert(t('data.presets.none')); return; }
+    if(!current.file){ await uiAlert(t('data.presets.missingFile')); return; }
     try{
       const res = await fetch(current.file);
       if(!res.ok) throw new Error(t('data.presets.fileMissing'));
@@ -361,12 +976,12 @@
       obj['wordlist.inline'] = normalizeInlineWordlist(obj['wordlist.inline']);
       const name = current.name || current.id || t('data.presets.label');
       const context = contextLabel || t('data.presets.label');
-      if(!confirm(t('data.presets.confirmApply', { context, name }))) return;
+      if(!(await uiConfirm(t('data.presets.confirmApply', { context, name })))) return;
       Object.keys(obj).forEach(k=> localStorage.setItem(k, JSON.stringify(obj[k])));
       if(opts.markDone) store.set('onboarding.done', true);
       if(opts.reload !== false) location.reload();
     }catch(err){
-      alert(t('data.presets.loadFailed', { error: err.message }, 'Preset load failed: {error}'));
+      await uiAlert(t('data.presets.loadFailed', { error: err.message }, 'Preset load failed: {error}'));
     }
   }
 
@@ -384,6 +999,7 @@
       const opt = document.createElement('option'); opt.value=''; opt.textContent=t('data.presets.noneFound');
       select.appendChild(opt);
       meta.textContent = t('data.presets.hint');
+      refreshUiSelects(select.parentElement || document);
       return;
     }
     presets.forEach((p,i)=>{
@@ -396,6 +1012,7 @@
     });
     select.disabled = false;
     if(btn) btn.disabled = false;
+    refreshUiSelects(select.parentElement || document);
     updateDataPresetMeta();
   }
 
@@ -627,7 +1244,7 @@
       el.innerHTML = `
         <input type="checkbox" ${item.done?'checked':''} aria-label="${escapeHtml(t('todo.doneAria'))}">
         <div class="title">${escapeHtml(item.text)}</div>
-        <button class="btn" title="${escapeHtml(t('common.delete'))}">🗑</button>
+        <button class="btn icon-only" title="${escapeHtml(t('common.delete'))}" aria-label="${escapeHtml(t('common.delete'))}">${iconSvg('trash')}</button>
       `;
       el.querySelector('input').addEventListener('change', e=>{
         list[i].done = e.target.checked; store.set('todos', list); renderTodos();
@@ -670,6 +1287,16 @@
     return s.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[m]));
   }
 
+  function iconSvg(name){
+    const icons = {
+      trash: '<path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M6 6l1 14h10l1-14"/><path d="M10 11v6M14 11v6"/>',
+      edit: '<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4 11.5-11.5z"/>',
+      check: '<path d="m5 12 4 4 10-10"/>',
+      x: '<path d="M18 6 6 18M6 6l12 12"/>'
+    };
+    return `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">${icons[name] || ''}</svg>`;
+  }
+
   function renderTiles(){
     const data = store.get('tiles', defaultTiles());
     const grid = $('#tiles'); grid.innerHTML = '';
@@ -686,8 +1313,8 @@
           <div class="url">${escapeHtml(host)}</div>
         </div>
         <div class="actions">
-          <button title="${escapeHtml(t('tiles.edit'))}" aria-label="${escapeHtml(t('tiles.edit'))}">✏️</button>
-          <button title="${escapeHtml(t('common.delete'))}" aria-label="${escapeHtml(t('common.delete'))}">🗑️</button>
+          <button class="icon-only" title="${escapeHtml(t('tiles.edit'))}" aria-label="${escapeHtml(t('tiles.edit'))}">${iconSvg('edit')}</button>
+          <button class="icon-only" title="${escapeHtml(t('common.delete'))}" aria-label="${escapeHtml(t('common.delete'))}">${iconSvg('trash')}</button>
         </div>`;
 
       // Fallback, wenn Favicon nicht lädt → Buchstabe zeigen
@@ -718,24 +1345,25 @@
     });
   }
 
-  function editTile(index){
+  async function editTile(index){
     const data = store.get('tiles', defaultTiles());
-    const t = data[index];
-    const title = prompt(t('tiles.promptTitle'), t.title);
-    if(title===null) return;
-    const url = prompt(t('tiles.promptUrl'), t.url);
-    if(url===null) return;
-    try { new URL(url) } catch { alert(t('tiles.invalidUrl')); return }
-    data[index] = { ...t, title, url };
+    const tile = data[index];
+    if(!tile) return;
+    const next = await openTileDialog({ mode:'edit', title: tile.title, url: tile.url });
+    if(!next) return;
+    if(!next.title || !next.url) return;
+    try { new URL(next.url) } catch { await uiAlert(t('tiles.invalidUrl')); return; }
+    data[index] = { ...tile, title: next.title, url: next.url };
     store.set('tiles', data); renderTiles();
   }
 
-  function addTile(){
-    const title = prompt(t('tiles.promptTitleNew')); if(!title) return;
-    const url = prompt(t('tiles.promptUrlNew')); if(!url) return;
-    try { new URL(url) } catch { alert(t('tiles.invalidUrl')); return }
+  async function addTile(){
+    const next = await openTileDialog({ mode:'add', title:'', url:'' });
+    if(!next) return;
+    if(!next.title || !next.url) return;
+    try { new URL(next.url) } catch { await uiAlert(t('tiles.invalidUrl')); return; }
     const data = store.get('tiles', defaultTiles());
-    data.unshift({ title, url });
+    data.unshift({ title: next.title, url: next.url });
     store.set('tiles', data); renderTiles();
   }
 
@@ -1278,6 +1906,7 @@
     Object.keys(sources).forEach(name=>{
       const opt = document.createElement('option'); opt.value=name; opt.textContent=name; if(name===current) opt.selected=true; select.appendChild(opt);
     });
+    refreshUiSelects(select.parentElement || document);
   }
   async function loadNews(){
     const sources = getFeeds();
@@ -1309,19 +1938,20 @@
     const modal = $('#settingsModal');
     modal.classList.add('open');
     modal.setAttribute('aria-hidden','false');
-    document.body.classList.add('modal-open');
+    syncModalOpenState();
     rebuildSettingsPanels();
     fillSettings();
     bgRenderSettings();
     initSettingsTabs();
     const last = store.get('settings.tab','general');
     selectSettingsTab(last);
+    enhanceUiSelects(modal);
+    enhanceUiColorInputs(modal);
+    refreshUiSelects(modal);
   }
   function closeSettings(){
     const modal = $('#settingsModal');
-    modal.classList.remove('open');
-    modal.setAttribute('aria-hidden','true');
-    document.body.classList.remove('modal-open');
+    closeModalAnimated(modal);
   }
   function fillSettings(){
     const theme = store.get('theme','auto');
@@ -1339,7 +1969,8 @@
         const on = (store.get('engines.enabled', Object.keys(ENGINES))).includes(key);
         const pill = document.createElement('button');
         const label = t(`search.engine.${key}`, null, key);
-        pill.className='btn'; pill.textContent = label + (on ? ' ✓' : ' ✕');
+        pill.className='btn';
+        pill.innerHTML = `${escapeHtml(label)} <span aria-hidden="true">${on ? iconSvg('check') : iconSvg('x')}</span>`;
         pill.addEventListener('click', ()=>{
           let enabled = store.get('engines.enabled', Object.keys(ENGINES));
           if(on) enabled = enabled.filter(e=>e!==key); else enabled = Array.from(new Set([...enabled, key]));
@@ -1379,8 +2010,12 @@
       Object.keys(names).forEach(k=>{
         const box = document.createElement('div'); box.style.display='inline-flex'; box.style.alignItems='center'; box.style.gap='6px'; box.style.padding='6px 8px'; box.style.background='var(--glass)'; box.style.border='1px solid rgba(255,255,255,.08)'; box.style.borderRadius='10px';
         const label = document.createElement('span'); label.textContent = names[k];
-        const input = document.createElement('input'); input.type='color'; input.value = (colors[k] && /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(colors[k])) ? colors[k] : '#7c5cff';
-        input.addEventListener('input', ()=>{ const cur = store.get('widget.colors', widgetColorDefaults()); cur[k]=input.value; store.set('widget.colors', cur); applyWidgetColors(); });
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.value = (colors[k] && /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(colors[k])) ? colors[k] : '';
+        input.setAttribute('data-ui-color', '');
+        input.setAttribute('data-color-default', '#7c5cff');
+        input.addEventListener('input', ()=>{ const cur = store.get('widget.colors', widgetColorDefaults()); cur[k]=normalizeHex(input.value); store.set('widget.colors', cur); applyWidgetColors(); });
         const clear = document.createElement('button'); clear.className='btn'; clear.textContent = t('settings.widgets.reset');
         clear.addEventListener('click', ()=>{ const cur = store.get('widget.colors', widgetColorDefaults()); cur[k]=''; store.set('widget.colors', cur); applyWidgetColors(); fillSettings(); });
         box.appendChild(label); box.appendChild(input); box.appendChild(clear);
@@ -1392,12 +2027,17 @@
 
     const clockInput = $('#clockColor'); if(clockInput){
       const value = store.get('ui.clock.color','');
-      clockInput.value = value && /^#([0-9a-f]{6})$/i.test(value) ? value : '#7c5cff';
+      clockInput.value = value && /^#([0-9a-f]{6})$/i.test(value) ? value : '';
+      if(clockInput.__uiColorSync) clockInput.__uiColorSync();
     }
     const searchInput = $('#searchColor'); if(searchInput){
       const value = store.get('ui.search.color','');
-      searchInput.value = value && /^#([0-9a-f]{6})$/i.test(value) ? value : '#54d6ff';
+      searchInput.value = value && /^#([0-9a-f]{6})$/i.test(value) ? value : '';
+      if(searchInput.__uiColorSync) searchInput.__uiColorSync();
     }
+    enhanceUiColorInputs(editor);
+    enhanceUiSelects($('#settingsModal'));
+    refreshUiSelects($('#settingsModal'));
   }
 
   function selectSettingsTab(name){
@@ -1477,6 +2117,7 @@
       select.appendChild(opt);
     });
     if(enabled.includes(current)) select.value = current; else select.value = enabled[0];
+    refreshUiSelects(select.parentElement || document);
   }
 
   // ===== Onboarding
@@ -1505,6 +2146,7 @@
     });
     const current = presets[0];
     select.value = current ? current.id : select.value;
+    refreshUiSelects(select.parentElement || document);
     onboardingUpdatePresetMeta();
   }
 
@@ -1524,6 +2166,7 @@
     if(state && state.active && state.active.type==='preset' && state.active.id){
       select.value = state.active.id;
     }
+    refreshUiSelects(select.parentElement || document);
   }
 
   async function onboardingUpdatePresetMeta(){
@@ -1695,10 +2338,7 @@
   function onboardingClose(){
     const modal = $('#onboarding');
     if(!modal) return;
-    modal.classList.remove('open');
-    modal.setAttribute('aria-hidden','true');
-    const settingsOpen = $('#settingsModal') && $('#settingsModal').classList.contains('open');
-    if(!settingsOpen) document.body.classList.remove('modal-open');
+    closeModalAnimated(modal);
   }
 
   function onboardingFillFields(){
@@ -1749,7 +2389,7 @@
     onboardingUpdateUi();
     modal.classList.add('open');
     modal.setAttribute('aria-hidden','false');
-    document.body.classList.add('modal-open');
+    syncModalOpenState();
   }
 
   // ===== Background engine
@@ -2423,6 +3063,8 @@
     bgRenderCustom(state);
     bgSetActiveTab((state.ui && state.ui.tab) || 'presets', false);
     bgBindUploadInput();
+    enhanceUiSelects(engine);
+    refreshUiSelects(engine);
   }
 
   function bgSetActiveTab(name, persist){
@@ -2511,14 +3153,14 @@
     bgRenderSettings();
   }
 
-  function bgSaveCollection(){
+  async function bgSaveCollection(){
     const nameInput = document.getElementById('bgCollectionName');
     const urlsInput = document.getElementById('bgCollectionUrls');
     if(!urlsInput) return;
     const name = nameInput ? nameInput.value.trim() : '';
     const urls = urlsInput.value.split(/\r?\n/).map(v => v.trim()).filter(Boolean);
     if(!urls.length){
-      alert(t('background.collections.minOneUrl'));
+      await uiAlert(t('background.collections.minOneUrl'));
       return;
     }
     bgUpdateState(state => {
@@ -2547,11 +3189,11 @@
     if(urlsInput) urlsInput.value = '';
   }
 
-  function bgApplyCollection(id){
+  async function bgApplyCollection(id){
     const state = bgLoadState();
     const collection = state.collections.find(c => c.id === id);
     if(!collection || !collection.urls.length){
-      alert(t('background.collections.emptyCollection'));
+      await uiAlert(t('background.collections.emptyCollection'));
       return;
     }
     const options = collection.urls.map(url => ({ type: 'collection', collectionId: collection.id, url }));
@@ -2563,7 +3205,7 @@
     const state = bgLoadState();
     const collection = state.collections.find(c => c.id === id);
     if(!collection || !collection.urls.length){
-      alert(t('background.collections.emptyCollection'));
+      await uiAlert(t('background.collections.emptyCollection'));
       return;
     }
     const button = document.querySelector('[data-action="bg-collection-cache"][data-collection="' + id + '"]');
@@ -2582,17 +3224,17 @@
         }
         return stateUpdate;
       });
-      alert(t('background.collections.saved'));
+      await uiAlert(t('background.collections.saved'));
     } catch (err) {
       console.error(err);
-      alert(t('background.loadError'));
+      await uiAlert(t('background.loadError'));
     } finally {
       if(button) button.disabled = false;
     }
     bgRenderSettings();
   }
 
-  function bgHandleCustom(action){
+  async function bgHandleCustom(action){
     const input = document.getElementById('bgCustomUrl');
     if(!input) return;
     const value = input.value.trim();
@@ -2603,7 +3245,7 @@
     }
     if(action === 'apply'){
       if(!value){
-        alert(t('background.custom.enterUrl'));
+        await uiAlert(t('background.custom.enterUrl'));
         return;
       }
       bgUpdateState(state => { state.customUrl = value; return state; });
@@ -2622,7 +3264,7 @@
     }
   }
 
-  function bgHandleClick(event){
+  async function bgHandleClick(event){
     const target = event.target;
     if(!target) return;
     const tabBtn = target.closest('.bg-tab');
@@ -2633,7 +3275,7 @@
     const action = target.dataset.action;
     if(!action) return;
     if(action === 'bg-random'){
-      bgRandomPick();
+      await bgRandomPick();
       return;
     }
     if(action === 'bg-undo'){
@@ -2669,7 +3311,7 @@
       return;
     }
     if(action === 'bg-collection-save'){
-      bgSaveCollection();
+      await bgSaveCollection();
       return;
     }
     if(action === 'bg-collection-clear'){
@@ -2677,11 +3319,11 @@
       return;
     }
     if(action === 'bg-collection-apply'){
-      bgApplyCollection(target.dataset.collection);
+      await bgApplyCollection(target.dataset.collection);
       return;
     }
     if(action === 'bg-collection-cache'){
-      bgCacheCollection(target.dataset.collection);
+      await bgCacheCollection(target.dataset.collection);
       return;
     }
     if(action === 'bg-collection-remove'){
@@ -2699,15 +3341,15 @@
       return;
     }
     if(action === 'bg-custom-apply'){
-      bgHandleCustom('apply');
+      await bgHandleCustom('apply');
       return;
     }
     if(action === 'bg-custom-save'){
-      bgHandleCustom('save');
+      await bgHandleCustom('save');
       return;
     }
     if(action === 'bg-custom-clear'){
-      bgHandleCustom('clear');
+      await bgHandleCustom('clear');
       return;
     }
     if(action === 'bg-tint-widgets'){
@@ -2929,11 +3571,11 @@
     });
   }
 
-  function bgRandomPick(){
+  async function bgRandomPick(){
     const state = bgLoadState();
     const candidates = bgCollectCandidates(state, false);
     if(!candidates.length){
-      alert(t('background.noneAvailable'));
+      await uiAlert(t('background.noneAvailable'));
       return;
     }
     const pick = bgCloneRef(candidates[Math.floor(Math.random() * candidates.length)]);
@@ -3364,12 +4006,12 @@
       });
 
       // Quick add
-      add(t('palette.quick.addTodo'), { g:'quick', a: ()=>{ const v = prompt(t('todo.prompt')); if(v && v.trim()) addTodo(v.trim()); }});
-      add(t('palette.quick.addNote'), { g:'quick', a: ()=>{ const v = prompt(t('notes.prompt')); if(v && v.trim()) appendNote(v.trim()); }});
+      add(t('palette.quick.addTodo'), { g:'quick', a: async ()=>{ const v = await uiPrompt(t('todo.prompt'), '', t('todo.add')); if(v && v.trim()) addTodo(v.trim()); }});
+      add(t('palette.quick.addNote'), { g:'quick', a: async ()=>{ const v = await uiPrompt(t('notes.prompt'), '', t('notes.title')); if(v && v.trim()) appendNote(v.trim()); }});
 
       // Tiles and widgets refresh
       add(t('palette.tiles.add'), { k:'+', g:'tiles', a: addTile });
-      add(t('palette.tiles.reset'), { g:'tiles', a: ()=>{ if(confirm(t('tiles.resetConfirm'))){ store.set('tiles', defaultTiles()); renderTiles(); }} });
+      add(t('palette.tiles.reset'), { g:'tiles', a: async ()=>{ if(await uiConfirm(t('tiles.resetConfirm'))){ store.set('tiles', defaultTiles()); renderTiles(); }} });
       add(t('palette.refresh.weather'), { g:'command', a: loadWeather });
       add(t('palette.refresh.news'), { g:'command', a: loadNews });
       add(t('palette.refresh.transport'), { g:'command', a: loadTransportDepartures });
@@ -3531,7 +4173,7 @@
     list.addEventListener('mousedown', onListMouseDown);
     loadItems();
     function closePalette(){
-      modal.classList.remove('open'); modal.setAttribute('aria-hidden','true');
+      closeModalAnimated(modal);
       input.removeEventListener('input', applyFilter);
       input.removeEventListener('keydown', onKey);
       modal.removeEventListener('click', onOverlayClick);
@@ -3545,6 +4187,15 @@
 // ===== Init
   async function init(){
     await initI18n();
+    initAnimations();
+    initButtonMicroAnimations();
+    enhanceUiSelects();
+    enhanceUiColorInputs();
+    refreshUiSelects();
+    document.addEventListener('click', e=>{
+      if(uiActiveSelect && !uiActiveSelect.contains(e.target)) closeUiSelect();
+      if(uiActiveColor && !uiActiveColor.contains(e.target)) closeUiColor();
+    });
     // Theme
     const theme = store.get('theme','auto');
     applyTheme(theme);
@@ -3733,8 +4384,8 @@
     }
 
     // Persist settings fields (shortcuts, feeds, wordlist)
-    $('#shortcutConfig').addEventListener('change', ()=>{ try{ const j=JSON.parse($('#shortcutConfig').value); store.set('shortcuts', j);}catch{ alert(t('settings.search.invalidShortcuts')); } });
-    $('#feedsConfig').addEventListener('change', ()=>{ try{ const j=JSON.parse($('#feedsConfig').value); store.set('news.custom', j); fillNewsSources(); loadNews(); }catch{ alert(t('settings.search.invalidFeeds')); } });
+    $('#shortcutConfig').addEventListener('change', async ()=>{ try{ const j=JSON.parse($('#shortcutConfig').value); store.set('shortcuts', j);}catch{ await uiAlert(t('settings.search.invalidShortcuts')); } });
+    $('#feedsConfig').addEventListener('change', async ()=>{ try{ const j=JSON.parse($('#feedsConfig').value); store.set('news.custom', j); fillNewsSources(); loadNews(); }catch{ await uiAlert(t('settings.search.invalidFeeds')); } });
     const wordlistEditor = $('#wordlistEditor');
     const wordlistSave = $('#wordlistSave');
     const wordlistReset = $('#wordlistReset');
@@ -3759,7 +4410,7 @@
     if(!localStorage.getItem('tiles')) store.set('tiles', defaultTiles());
     renderTiles();
     $('#addTile').addEventListener('click', addTile);
-    $('#resetTiles').addEventListener('click', ()=>{ if(confirm(t('tiles.resetConfirm'))){ store.set('tiles', defaultTiles()); renderTiles(); }});
+    $('#resetTiles').addEventListener('click', async ()=>{ if(await uiConfirm(t('tiles.resetConfirm'))){ store.set('tiles', defaultTiles()); renderTiles(); }});
 
     // Weather
     $('#setCity').addEventListener('click', ()=>{ const v=$('#cityInput').value.trim(); if(v){ store.set('weather.city', v); loadWeather(); }});
@@ -3797,6 +4448,13 @@
     $('#settingsModal').addEventListener('click', e=>{ if(e.target.id==='settingsModal') closeSettings(); });
     document.addEventListener('keydown', e=>{
       if(e.key==='Escape'){
+        if($('#uiDialog') && $('#uiDialog').classList.contains('open')){ closeUiDialog(undefined); return; }
+        if($('#tileDialog') && $('#tileDialog').classList.contains('open')){
+          closeModalAnimated($('#tileDialog'));
+          return;
+        }
+        if(uiActiveColor){ closeUiColor(true); return; }
+        if(uiActiveSelect){ closeUiSelect(true); return; }
         if($('#onboarding') && $('#onboarding').classList.contains('open')) onboardingSkip();
         else closeSettings();
       }

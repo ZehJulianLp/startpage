@@ -11,11 +11,16 @@
     "loadError": "Load failed",
     "noMatches": "No matchiez",
     "emptyDash": "--",
-    "dash": "-"
+    "dash": "-",
+    "cancel": "Nope",
+    "ok": "OKai",
+    "default": "Defawlt"
   },
   "header": {
     "themeToggleTitle": "Dark/Light",
-    "settingsTitle": "Settnz"
+    "settingsTitle": "Settnz",
+    "themeAria": "Switch da theme",
+    "settingsAria": "Open settingz"
   },
   "search": {
     "placeholder": "Serch... (e.g. !yt lo-fi, !etc Home)",
@@ -38,7 +43,8 @@
       }
     },
     "recentShortcut": "Shortcut {shortcut} - {query}",
-    "recentSearch": "Serch ({engine}) - {query}"
+    "recentSearch": "Serch ({engine}) - {query}",
+    "submitAria": "Do da search"
   },
   "todo": {
     "title": "To-Do",
@@ -64,7 +70,13 @@
     "invalidUrl": "Invalid URL",
     "promptTitleNew": "Tile title",
     "promptUrlNew": "URL (https://...)",
-    "resetConfirm": "Restore defalt tiles?"
+    "resetConfirm": "Restore defalt tiles?",
+    "dialog": {
+      "titleLabel": "Titel",
+      "urlLabel": "URL",
+      "save": "Saves"
+    },
+    "resetAria": "Reset da tilez"
   },
   "weather": {
     "title": "Wezur today",
@@ -126,7 +138,8 @@
       "stop": "Stop"
     },
     "platform": "Platform {platform}",
-    "cancelled": "Canzeld"
+    "cancelled": "Canzeld",
+    "refreshAria": "Refresh transportz"
   },
   "quote": {
     "title": "Quote / Nerd Nudge",
@@ -160,7 +173,8 @@
     "title": "Nuuz",
     "refreshTitle": "Re-load",
     "source": "RSS via Startpage Proxy (CORS proxy)",
-    "noItems": "No items"
+    "noItems": "No items",
+    "refreshAria": "Refresh newz"
   },
   "footer": {
     "tagline": "Local-first dashboard  *  stores only in teh browser (localStorage)"
@@ -486,5 +500,10 @@
       "userDescription": "Local presetz from assets/user-presetz/",
       "tags": " (Tags: {tags})"
     }
+  },
+  "dialogs": {
+    "alertTitle": "Hai!",
+    "confirmTitle": "Shur?",
+    "promptTitle": "Typez"
   }
 }

@@ -11,11 +11,16 @@
     "loadError": "Woad faiwed",
     "noMatches": "No matches",
     "emptyDash": "--",
-    "dash": "-"
+    "dash": "-",
+    "cancel": "cancew",
+    "ok": "okie",
+    "default": "defauwt"
   },
   "header": {
     "themeToggleTitle": "Dawk/Wight",
-    "settingsTitle": "Settwings"
+    "settingsTitle": "Settwings",
+    "themeAria": "toggwle theme",
+    "settingsAria": "open settings"
   },
   "search": {
     "placeholder": "Seawch... (e.g. !yt wo-fi, !etc Home)",
@@ -38,7 +43,8 @@
       }
     },
     "recentShortcut": "Showtcut {shortcut} - {query}",
-    "recentSearch": "Seawch ({engine}) - {query}"
+    "recentSearch": "Seawch ({engine}) - {query}",
+    "submitAria": "stawt seaawch"
   },
   "todo": {
     "title": "To-Do",
@@ -64,7 +70,13 @@
     "invalidUrl": "Invawid UWW",
     "promptTitleNew": "Tiwe titwe",
     "promptUrlNew": "UWW (https://...)",
-    "resetConfirm": "Westowe defauwt tiwes?"
+    "resetConfirm": "Westowe defauwt tiwes?",
+    "dialog": {
+      "titleLabel": "titwe",
+      "urlLabel": "uwu",
+      "save": "save"
+    },
+    "resetAria": "weset tiwes"
   },
   "weather": {
     "title": "Weadew today",
@@ -126,7 +138,8 @@
       "stop": "Stop"
     },
     "platform": "Pwatfowm {platform}",
-    "cancelled": "Cancewwed"
+    "cancelled": "Cancewwed",
+    "refreshAria": "wefwesh twanspowt"
   },
   "quote": {
     "title": "Quote / Newd Nudge",
@@ -160,7 +173,8 @@
     "title": "Nyews",
     "refreshTitle": "Wewoad",
     "source": "WSS via Stawtpage Pwoxy (COWS pwoxy)",
-    "noItems": "No items"
+    "noItems": "No items",
+    "refreshAria": "wefwesh nyews"
   },
   "footer": {
     "tagline": "Wocaw-fiwst dashboawd  *  stowes onwy in da bwowsew (wocawStowage)"
@@ -486,5 +500,10 @@
       "userDescription": "Wocaw pweset fwom assets/usew-pwesets/",
       "tags": " (Tags: {tags})"
     }
+  },
+  "dialogs": {
+    "alertTitle": "notice owo",
+    "confirmTitle": "confiwm",
+    "promptTitle": "input"
   }
 }

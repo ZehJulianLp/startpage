@@ -11,11 +11,16 @@
     "loadError": "Error al cargar",
     "noMatches": "Sin coincidencias",
     "emptyDash": "—",
-    "dash": "–"
+    "dash": "–",
+    "cancel": "Cancelar",
+    "ok": "OK",
+    "default": "Predeterminado"
   },
   "header": {
     "themeToggleTitle": "Oscuro/Claro",
-    "settingsTitle": "Configuración"
+    "settingsTitle": "Configuración",
+    "themeAria": "Cambiar tema",
+    "settingsAria": "Abrir ajustes"
   },
   "search": {
     "placeholder": "Buscar... (p. ej. !yt lo-fi, !etc Home)",
@@ -38,7 +43,8 @@
       }
     },
     "recentShortcut": "Atajo {shortcut} – {query}",
-    "recentSearch": "Búsqueda ({engine}) – {query}"
+    "recentSearch": "Búsqueda ({engine}) – {query}",
+    "submitAria": "Iniciar busqueda"
   },
   "todo": {
     "title": "Tareas",
@@ -64,7 +70,13 @@
     "invalidUrl": "URL no válida",
     "promptTitleNew": "Título de la tarjeta",
     "promptUrlNew": "URL (https://…)",
-    "resetConfirm": "¿Restaurar las tarjetas predeterminadas?"
+    "resetConfirm": "¿Restaurar las tarjetas predeterminadas?",
+    "dialog": {
+      "titleLabel": "Titulo",
+      "urlLabel": "URL",
+      "save": "Guardar"
+    },
+    "resetAria": "Restablecer mosaicos"
   },
   "weather": {
     "title": "Tiempo hoy",
@@ -126,7 +138,8 @@
       "stop": "Parada"
     },
     "platform": "Andén {platform}",
-    "cancelled": "Cancelado"
+    "cancelled": "Cancelado",
+    "refreshAria": "Actualizar transporte"
   },
   "quote": {
     "title": "Cita / Impulso nerd",
@@ -160,7 +173,8 @@
     "title": "Noticias",
     "refreshTitle": "Recargar",
     "source": "RSS vía proxy Startpage (proxy CORS)",
-    "noItems": "Sin elementos"
+    "noItems": "Sin elementos",
+    "refreshAria": "Actualizar noticias"
   },
   "footer": {
     "tagline": "Panel local · solo guarda en el navegador (localStorage)"
@@ -486,5 +500,10 @@
       "userDescription": "Preset local de assets/user-presets/",
       "tags": " (Etiquetas: {tags})"
     }
+  },
+  "dialogs": {
+    "alertTitle": "Aviso",
+    "confirmTitle": "Confirmar",
+    "promptTitle": "Entrada"
   }
 }

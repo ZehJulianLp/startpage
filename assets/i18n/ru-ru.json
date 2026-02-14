@@ -11,11 +11,16 @@
     "loadError": "Ошибка загрузки",
     "noMatches": "Нет совпадений",
     "emptyDash": "—",
-    "dash": "–"
+    "dash": "–",
+    "cancel": "??????",
+    "ok": "??",
+    "default": "?? ?????????"
   },
   "header": {
     "themeToggleTitle": "Тёмная/светлая",
-    "settingsTitle": "Настройки"
+    "settingsTitle": "Настройки",
+    "themeAria": "??????????? ????",
+    "settingsAria": "??????? ?????????"
   },
   "search": {
     "placeholder": "Поиск... (например: !yt lo-fi, !etc Home)",
@@ -38,7 +43,8 @@
       }
     },
     "recentShortcut": "Ярлык {shortcut} – {query}",
-    "recentSearch": "Поиск ({engine}) – {query}"
+    "recentSearch": "Поиск ({engine}) – {query}",
+    "submitAria": "????????? ?????"
   },
   "todo": {
     "title": "Задачи",
@@ -64,7 +70,13 @@
     "invalidUrl": "Неверный URL",
     "promptTitleNew": "Название плитки",
     "promptUrlNew": "URL (https://…)",
-    "resetConfirm": "Восстановить стандартные плитки?"
+    "resetConfirm": "Восстановить стандартные плитки?",
+    "dialog": {
+      "titleLabel": "????????",
+      "urlLabel": "URL",
+      "save": "?????????"
+    },
+    "resetAria": "???????? ??????"
   },
   "weather": {
     "title": "Погода сегодня",
@@ -126,7 +138,8 @@
       "stop": "Остановка"
     },
     "platform": "Платформа {platform}",
-    "cancelled": "Отменено"
+    "cancelled": "Отменено",
+    "refreshAria": "???????? ?????????"
   },
   "quote": {
     "title": "Цитата / Небольшой импульс",
@@ -160,7 +173,8 @@
     "title": "Новости",
     "refreshTitle": "Обновить",
     "source": "RSS через прокси Startpage (CORS прокси)",
-    "noItems": "Нет записей"
+    "noItems": "Нет записей",
+    "refreshAria": "???????? ???????"
   },
   "footer": {
     "tagline": "Локальная панель · хранит данные только в браузере (localStorage)"
@@ -486,5 +500,10 @@
       "userDescription": "Локальный пресет из assets/user-presets/",
       "tags": " (Теги: {tags})"
     }
+  },
+  "dialogs": {
+    "alertTitle": "???????????",
+    "confirmTitle": "???????????",
+    "promptTitle": "????"
   }
 }

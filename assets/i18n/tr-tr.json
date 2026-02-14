@@ -11,11 +11,16 @@
     "loadError": "Y?kleme ba?ar?s?z",
     "noMatches": "E?le?me yok",
     "emptyDash": "?",
-    "dash": "?"
+    "dash": "?",
+    "cancel": "Iptal",
+    "ok": "Tamam",
+    "default": "Varsayilan"
   },
   "header": {
     "themeToggleTitle": "Koyu/A??k",
-    "settingsTitle": "Ayarlar"
+    "settingsTitle": "Ayarlar",
+    "themeAria": "Temayi degistir",
+    "settingsAria": "Ayarlari ac"
   },
   "search": {
     "placeholder": "Ara... (?rn. !yt lo-fi, !etc Home)",
@@ -38,7 +43,8 @@
       }
     },
     "recentShortcut": "K?sayol {shortcut} ? {query}",
-    "recentSearch": "Arama ({engine}) ? {query}"
+    "recentSearch": "Arama ({engine}) ? {query}",
+    "submitAria": "Aramayi baslat"
   },
   "todo": {
     "title": "Yap?lacaklar",
@@ -64,7 +70,13 @@
     "invalidUrl": "Ge?ersiz URL",
     "promptTitleNew": "Kutucuk ba?l???",
     "promptUrlNew": "URL (https://?)",
-    "resetConfirm": "Varsay?lan kutucuklar geri y?klensin mi?"
+    "resetConfirm": "Varsay?lan kutucuklar geri y?klensin mi?",
+    "dialog": {
+      "titleLabel": "Baslik",
+      "urlLabel": "URL",
+      "save": "Kaydet"
+    },
+    "resetAria": "Kutucuklari sifirla"
   },
   "weather": {
     "title": "Bug?nk? hava",
@@ -126,7 +138,8 @@
       "stop": "Durak"
     },
     "platform": "Peron {platform}",
-    "cancelled": "?ptal"
+    "cancelled": "?ptal",
+    "refreshAria": "Ulasimi yenile"
   },
   "quote": {
     "title": "Al?nt? / Nerd d?rt?s?",
@@ -160,7 +173,8 @@
     "title": "Haberler",
     "refreshTitle": "Yenile",
     "source": "Startpage proxy ?zerinden RSS (CORS proxy)",
-    "noItems": "??e yok"
+    "noItems": "??e yok",
+    "refreshAria": "Haberlari yenile"
   },
   "footer": {
     "tagline": "Yerel ?ncelikli panel ? sadece taray?c?da saklar (localStorage)"
@@ -486,5 +500,10 @@
       "userDescription": "assets/user-presets/ i?inden yerel preset",
       "tags": " (Etiketler: {tags})"
     }
+  },
+  "dialogs": {
+    "alertTitle": "Bilgi",
+    "confirmTitle": "Onayla",
+    "promptTitle": "Girdi"
   }
 }

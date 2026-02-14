@@ -11,11 +11,16 @@
     "loadError": "Hoist failed",
     "noMatches": "Nay mates",
     "emptyDash": "--",
-    "dash": "-"
+    "dash": "-",
+    "cancel": "Belay",
+    "ok": "Aye",
+    "default": "Default"
   },
   "header": {
     "themeToggleTitle": "Dark/Light",
-    "settingsTitle": "Cap'n log"
+    "settingsTitle": "Cap'n log",
+    "themeAria": "Toggle theme",
+    "settingsAria": "Open settings"
   },
   "search": {
     "placeholder": "Spyglass... (e.g. !yt lo-fi, !etc Home)",
@@ -38,7 +43,8 @@
       }
     },
     "recentShortcut": "Shortcut {shortcut} - {query}",
-    "recentSearch": "Spyglass ({engine}) - {query}"
+    "recentSearch": "Spyglass ({engine}) - {query}",
+    "submitAria": "Start search"
   },
   "todo": {
     "title": "T'-Do",
@@ -64,7 +70,13 @@
     "invalidUrl": "Invalid URL",
     "promptTitleNew": "Tile title",
     "promptUrlNew": "URL (https://...)",
-    "resetConfirm": "Restore standard tiles?"
+    "resetConfirm": "Restore standard tiles?",
+    "dialog": {
+      "titleLabel": "Title",
+      "urlLabel": "URL",
+      "save": "Save"
+    },
+    "resetAria": "Reset tiles"
   },
   "weather": {
     "title": "Weather today",
@@ -126,7 +138,8 @@
       "stop": "Stop"
     },
     "platform": "Platform {platform}",
-    "cancelled": "Scrapped"
+    "cancelled": "Scrapped",
+    "refreshAria": "Refresh transport"
   },
   "quote": {
     "title": "Quote / Nerd Nudge",
@@ -160,7 +173,8 @@
     "title": "Tidings",
     "refreshTitle": "Hoist again",
     "source": "RSS via Startpage Proxy (CORS proxy)",
-    "noItems": "Nay items"
+    "noItems": "Nay items",
+    "refreshAria": "Refresh news"
   },
   "footer": {
     "tagline": "Local-first dashboard  *  stores only in th' browser (localStorage)"
@@ -486,5 +500,10 @@
       "userDescription": "Local preset from assets/user-presets/",
       "tags": " (Tags: {tags})"
     }
+  },
+  "dialogs": {
+    "alertTitle": "Ahoy",
+    "confirmTitle": "Confirm",
+    "promptTitle": "Input"
   }
 }

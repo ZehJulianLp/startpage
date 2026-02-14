@@ -11,11 +11,16 @@
     "loadError": "ロードに失敗しました",
     "noMatches": "一致しません",
     "emptyDash": "—",
-    "dash": "–"
+    "dash": "–",
+    "cancel": "?????",
+    "ok": "OK",
+    "default": "?????"
   },
   "header": {
     "themeToggleTitle": "ダーク/ライト",
-    "settingsTitle": "設定"
+    "settingsTitle": "設定",
+    "themeAria": "????????",
+    "settingsAria": "?????"
   },
   "search": {
     "placeholder": "検索… (例:!yt ローファイ、!etc ホーム)",
@@ -38,7 +43,8 @@
       }
     },
     "recentShortcut": "ショートカット {shortcut} – {query}",
-    "recentSearch": "検索 ({engine}) – {query}"
+    "recentSearch": "検索 ({engine}) – {query}",
+    "submitAria": "?????"
   },
   "todo": {
     "title": "やるべきこと",
@@ -64,7 +70,13 @@
     "invalidUrl": "無効な URL",
     "promptTitleNew": "タイルのタイトル",
     "promptUrlNew": "URL（https://…）",
-    "resetConfirm": "デフォルトのタイルを復元しますか?"
+    "resetConfirm": "デフォルトのタイルを復元しますか?",
+    "dialog": {
+      "titleLabel": "????",
+      "urlLabel": "URL",
+      "save": "??"
+    },
+    "resetAria": "????????"
   },
   "weather": {
     "title": "今日の天気",
@@ -126,7 +138,8 @@
       "stop": "停止"
     },
     "platform": "プラットフォーム {platform}",
-    "cancelled": "キャンセル"
+    "cancelled": "キャンセル",
+    "refreshAria": "???????"
   },
   "quote": {
     "title": "引用 / オタクナッジ",
@@ -160,7 +173,8 @@
     "title": "ニュース",
     "refreshTitle": "リロード",
     "source": "スタートページ プロキシ (CORS プロキシ) 経由の RSS",
-    "noItems": "アイテムがありません"
+    "noItems": "アイテムがありません",
+    "refreshAria": "???????"
   },
   "footer": {
     "tagline": "ローカルファーストのダッシュボード · ブラウザーのみに保存 (localStorage)"
@@ -486,5 +500,10 @@
       "userDescription": "ローカルプリセット（assets/user-presets/）",
       "tags": "(タグ: {tags})"
     }
+  },
+  "dialogs": {
+    "alertTitle": "????",
+    "confirmTitle": "??",
+    "promptTitle": "??"
   }
 }

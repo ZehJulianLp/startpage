@@ -11,11 +11,16 @@
     "loadError": "Falha ao carregar",
     "noMatches": "Nenhuma correspond?ncia",
     "emptyDash": "?",
-    "dash": "?"
+    "dash": "?",
+    "cancel": "Cancelar",
+    "ok": "OK",
+    "default": "Padrao"
   },
   "header": {
     "themeToggleTitle": "Escuro/Claro",
-    "settingsTitle": "Configura??es"
+    "settingsTitle": "Configura??es",
+    "themeAria": "Alternar tema",
+    "settingsAria": "Abrir configuracoes"
   },
   "search": {
     "placeholder": "Buscar... (ex.: !yt lo-fi, !etc Home)",
@@ -38,7 +43,8 @@
       }
     },
     "recentShortcut": "Atalho {shortcut} ? {query}",
-    "recentSearch": "Busca ({engine}) ? {query}"
+    "recentSearch": "Busca ({engine}) ? {query}",
+    "submitAria": "Iniciar busca"
   },
   "todo": {
     "title": "Tarefas",
@@ -64,7 +70,13 @@
     "invalidUrl": "URL inv?lida",
     "promptTitleNew": "T?tulo do bloco",
     "promptUrlNew": "URL (https://?)",
-    "resetConfirm": "Restaurar blocos padr?o?"
+    "resetConfirm": "Restaurar blocos padr?o?",
+    "dialog": {
+      "titleLabel": "Titulo",
+      "urlLabel": "URL",
+      "save": "Salvar"
+    },
+    "resetAria": "Redefinir blocos"
   },
   "weather": {
     "title": "Clima hoje",
@@ -126,7 +138,8 @@
       "stop": "Parada"
     },
     "platform": "Plataforma {platform}",
-    "cancelled": "Cancelado"
+    "cancelled": "Cancelado",
+    "refreshAria": "Atualizar transporte"
   },
   "quote": {
     "title": "Cita??o / Impulso nerd",
@@ -160,7 +173,8 @@
     "title": "Not?cias",
     "refreshTitle": "Recarregar",
     "source": "RSS via proxy Startpage (proxy CORS)",
-    "noItems": "Sem itens"
+    "noItems": "Sem itens",
+    "refreshAria": "Atualizar noticias"
   },
   "footer": {
     "tagline": "Painel local-first ? salva apenas no navegador (localStorage)"
@@ -486,5 +500,10 @@
       "userDescription": "Preset local de assets/user-presets/",
       "tags": " (Tags: {tags})"
     }
+  },
+  "dialogs": {
+    "alertTitle": "Aviso",
+    "confirmTitle": "Confirmar",
+    "promptTitle": "Entrada"
   }
 }
