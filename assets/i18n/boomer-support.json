@@ -1,0 +1,521 @@
+{
+  "app": {
+    "title": "Startpage (Boomer Support)"
+  },
+  "common": {
+    "link": "Link (on this computer)",
+    "delete": "Delete (on this computer)",
+    "remove": "Remove (on this computer)",
+    "save": "Save (on this computer)",
+    "loading": "Loading... (on this computer)",
+    "loadError": "Load failed (on this computer)",
+    "noMatches": "No matches (on this computer)",
+    "emptyDash": "- (on this computer)",
+    "dash": "- (on this computer)",
+    "cancel": "Cancel (on this computer)",
+    "ok": "OK (on this computer)",
+    "default": "Default (on this computer)"
+  },
+  "header": {
+    "themeToggleTitle": "Dark/Light (on this computer)",
+    "settingsTitle": "Settings (on this computer)",
+    "themeAria": "Toggle theme (on this computer)",
+    "settingsAria": "Open settings (on this computer)"
+  },
+  "search": {
+    "placeholder": "Search... (e.g.  (on this computer)!yt lo-fi,  (on this computer)!etc Home) (on this computer)",
+    "engine": {
+      "google": "Google (on this computer)",
+      "ddg": "DuckDuckGo (on this computer)",
+      "bing": "Bing (on this computer)",
+      "yt": "YouTube (on this computer)",
+      "wikipedia": "Wikipedia (on this computer)",
+      "maps": "Google Maps (on this computer)"
+    },
+    "suggest": {
+      "bang": "{bang} (Bang)",
+      "shortcut": "{shortcut} (Shortcut)",
+      "type": {
+        "bang": "Bang (on this computer)",
+        "shortcut": "Shortcut (on this computer)",
+        "recent": "Recent (on this computer)",
+        "word": "Word (on this computer)"
+      }
+    },
+    "recentShortcut": "Shortcut  (on this computer){shortcut} -  (on this computer){query}",
+    "recentSearch": "Search ( (on this computer){engine}) -  (on this computer){query}",
+    "submitAria": "Start search (on this computer)"
+  },
+  "todo": {
+    "title": "To-Do (on this computer)",
+    "placeholder": "New task... (on this computer)",
+    "add": "Add (on this computer)",
+    "clearDoneTitle": "Remove completed (on this computer)",
+    "clearDone": " clear (on this computer)",
+    "doneAria": "Done (on this computer)",
+    "prompt": "Todo (on this computer)"
+  },
+  "notes": {
+    "title": "Notes (on this computer)",
+    "placeholder": "Jot something down... (on this computer)",
+    "prompt": "Note (on this computer)"
+  },
+  "tiles": {
+    "title": "Favorites (on this computer)",
+    "add": "+ Tile (on this computer)",
+    "resetTitle": "Restore defaults (on this computer)",
+    "edit": "Edit (on this computer)",
+    "promptTitle": "Title (on this computer)",
+    "promptUrl": "URL (on this computer)",
+    "invalidUrl": "Invalid URL (on this computer)",
+    "promptTitleNew": "Tile title (on this computer)",
+    "promptUrlNew": "URL ( (on this computer)https://...)",
+    "resetConfirm": "Restore default tiles? (on this computer)",
+    "dialog": {
+      "titleLabel": "Title (on this computer)",
+      "urlLabel": "URL (on this computer)",
+      "save": "Save (on this computer)"
+    },
+    "resetAria": "Reset tiles (on this computer)"
+  },
+  "weather": {
+    "title": "Weather today (on this computer)",
+    "cityPlaceholder": "Enter city... (on this computer)",
+    "setCity": "Set (on this computer)",
+    "pickLocation": "Pick a location... (on this computer)",
+    "source": "Source: Open-Meteo (on this computer)",
+    "loading": "Loading weather... (on this computer)",
+    "prompt": "Enter a location to load weather. (on this computer)",
+    "tempEmpty": "-C (on this computer)",
+    "tempEmptyShort": "- (on this computer)",
+    "minmaxEmpty": "- / - C (on this computer)",
+    "noForecast": "No forecast (on this computer)",
+    "errors": {
+      "geocodingFailed": "Geocoding failed (on this computer)",
+      "locationNotFound": "Location not found (on this computer)",
+      "cityMissing": "City missing (on this computer)",
+      "fetchFailed": "Weather fetch failed (on this computer)",
+      "loadFailed": "Weather could not be loaded (on this computer)"
+    },
+    "codes": {
+      "0": "Clear (on this computer)",
+      "1": "Mostly clear (on this computer)",
+      "2": "Partly cloudy (on this computer)",
+      "3": "Cloudy (on this computer)",
+      "45": "Fog (on this computer)",
+      "48": "Fog (on this computer)",
+      "51": "Drizzle (on this computer)",
+      "53": "Drizzle (on this computer)",
+      "55": "Drizzle (on this computer)",
+      "61": "Rain (on this computer)",
+      "63": "Rain (on this computer)",
+      "65": "Heavy rain (on this computer)",
+      "71": "Snow (on this computer)",
+      "80": "Showers (on this computer)",
+      "95": "Thunderstorm (on this computer)",
+      "default": "Weather (on this computer)"
+    }
+  },
+  "transport": {
+    "title": "Transport (on this computer)",
+    "durationAria": "Duration (on this computer)",
+    "duration30": "30 min (on this computer)",
+    "duration60": "60 min (on this computer)",
+    "duration90": "90 min (on this computer)",
+    "duration120": "120 min (on this computer)",
+    "refreshTitle": "Reload (on this computer)",
+    "searchPlaceholder": "Search station... (on this computer)",
+    "noneSelected": "No station selected (on this computer)",
+    "source": "Source: transport.rest (on this computer)",
+    "minQuery": "At least  (on this computer){count} characters (on this computer)",
+    "noMatches": "No matches (on this computer)",
+    "proxyTimeout": "Proxy timeout (on this computer)",
+    "loadError": "Load failed (on this computer)",
+    "noDepartures": "No departures (on this computer)",
+    "selectStation": "Select a station... (on this computer)",
+    "type": {
+      "station": "Station (on this computer)",
+      "stop": "Stop (on this computer)"
+    },
+    "platform": "Platform  (on this computer){platform}",
+    "cancelled": "Cancelled (on this computer)",
+    "refreshAria": "Refresh transport (on this computer)"
+  },
+  "quote": {
+    "title": "Quote / Nerd Nudge (on this computer)",
+    "list": [
+      "Move fast, refactor often. (on this computer)",
+      "Accessibility isn't a feature - it's the default. (on this computer)",
+      "Done > Perfect. Iterate. (on this computer)",
+      "If it's not monitored, it doesn't exist. (on this computer)",
+      "Good UX is invisible. Bad UX is unforgettable. (on this computer)",
+      "Make it work, make it right, make it fast. (on this computer)",
+      "Small steps. Massive outcomes. (on this computer)",
+      "Simplicity scales. Complexity fails. (on this computer)",
+      "Automate the boring stuff. (on this computer)",
+      "Measure twice, deploy once. (on this computer)"
+    ]
+  },
+  "recent": {
+    "title": "Recent (on this computer)",
+    "note": "Note: Only actions from this start page (clicked tiles & searches). (on this computer)"
+  },
+  "system": {
+    "title": "System status (on this computer)",
+    "loading": "Loading... (on this computer)",
+    "ram": "RAM:  (on this computer){value} GB (on this computer)",
+    "cpu": "CPU cores:  (on this computer){value}",
+    "network": "Network:  (on this computer){downlink} Mbit/s   (on this computer){type}{saveData}",
+    "saveData": "  SaveData (on this computer)",
+    "noData": "No data available (on this computer)"
+  },
+  "news": {
+    "title": "News (on this computer)",
+    "refreshTitle": "Reload (on this computer)",
+    "source": "RSS via Startpage Proxy (CORS proxy) (on this computer)",
+    "noItems": "No items (on this computer)",
+    "refreshAria": "Refresh news (on this computer)"
+  },
+  "footer": {
+    "tagline": "Local-first dashboard  stores only in the browser (localStorage) (on this computer)"
+  },
+  "settings": {
+    "title": "Settings (on this computer)",
+    "close": "Close (on this computer)",
+    "tabs": {
+      "general": "General (on this computer)",
+      "background": "Background & Appearance (on this computer)",
+      "search": "Search & Feeds (on this computer)",
+      "widgets": "Widgets (on this computer)",
+      "data": "Data (on this computer)",
+      "guide": "Guide (on this computer)"
+    },
+    "theme": {
+      "label": "Theme (on this computer)",
+      "auto": "Auto (System) (on this computer)",
+      "dark": "Dark (on this computer)",
+      "light": "Light (on this computer)"
+    },
+    "background": {
+      "label": "Background (on this computer)"
+    },
+    "search": {
+      "engines": "Search engines (on this computer)",
+      "bangsNote": "Supported bang shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Custom shortcuts below",
+      "wordlistLabel": "Autocomplete wordlist (on this computer)",
+      "wordlistPlaceholder": "Terms line by line or comma-separated (on this computer)",
+      "wordlistSave": "Save (on this computer)",
+      "wordlistReset": "Clear (on this computer)",
+      "wordlistNote": "Global wordlist (assets/wordlist.json) and preset wordlist are merged. Leave empty to use only the global list. (on this computer)",
+      "shortcutsLabel": "Custom  (on this computer)!shortcuts",
+      "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
+      "shortcutsNote": "Use  (on this computer)<code>{q}</code> as placeholder for the search phrase. Without  (on this computer)<code>{q}</code>,  (on this computer)<code>?q=... (on this computer)</code> is appended. (on this computer)",
+      "feedsLabel": "Custom RSS feeds (on this computer)",
+      "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
+      "feedsNote": "JSON: name - feed URL. This list is merged with the default feeds. (on this computer)",
+      "invalidShortcuts": "Invalid shortcuts JSON (on this computer)",
+      "invalidFeeds": "Invalid feeds JSON (on this computer)"
+    },
+    "widgets": {
+      "visible": "Show widgets (on this computer)",
+      "defaultCityLabel": "Default city (weather) (on this computer)",
+      "defaultCityPlaceholder": "e.g. Hanover (on this computer)",
+      "defaultTransportLabel": "Default stop (transport) (on this computer)",
+      "defaultTransportPlaceholder": "Search station... (on this computer)",
+      "cardStyleLabel": "Card style (on this computer)",
+      "cardStyleGlass": "Glass (default) (on this computer)",
+      "cardStyleSolid": "Solid (on this computer)",
+      "cardStyleTransparent": "Transparent (on this computer)",
+      "cardStyleMinimal": "Soft minimal (on this computer)",
+      "cardStyleNote": "Applies to all widgets & favorite tiles. (on this computer)",
+      "clockColorLabel": "Time & date (on this computer)",
+      "searchColorLabel": "Search (on this computer)",
+      "reset": "Reset (on this computer)",
+      "clockColorNote": "Sets the header background (empty = style default). (on this computer)",
+      "searchColorNote": "Color for the search area (empty = style default). (on this computer)",
+      "widgetColorsLabel": "Widget colors (on this computer)"
+    },
+    "data": {
+      "label": "Data (on this computer)",
+      "export": "Export (.json) (on this computer)",
+      "import": "Import (.json) (on this computer)",
+      "presetsLabel": "Data presets (on this computer)",
+      "applyPreset": "Load preset (on this computer)",
+      "presetMeta": "Presets are exported JSONs under assets/presets/. User presets from assets/user-presets/ are merged automatically. (on this computer)",
+      "setupLabel": "Setup (on this computer)",
+      "restartOnboarding": "Restart setup (on this computer)",
+      "restartNote": "Reopens the compact setup dialog. (on this computer)",
+      "noteLabel": "Note (on this computer)",
+      "noteText": "Export stores all settings & data locally as JSON. Import overwrites existing entries. (on this computer)"
+    },
+    "language": {
+      "label": "Language (on this computer)",
+      "auto": "Auto (System) (on this computer)"
+    },
+    "font": {
+      "label": "Font (on this computer)",
+      "searchPlaceholder": "Search fonts... (on this computer)",
+      "loadLocal": "Load system fonts (on this computer)",
+      "systemDefault": "System default (on this computer)",
+      "noResults": "No matching fonts (on this computer)",
+      "note": "Shows local system fonts (if available), otherwise a detected fallback list. (on this computer)",
+      "unsupported": "Your browser does not support Local Font Access (queryLocalFonts). (on this computer)",
+      "permissionDenied": "Access to local fonts was denied or blocked. (on this computer)",
+      "empty": "No local fonts were returned. (on this computer)",
+      "loadFailed": "Could not load local fonts:  (on this computer){error}"
+    },
+    "guideHtml": "<div class=\"row\"><label>User Guide (on this computer)</label><div><h5>Overview (on this computer)</h5><ul><li>Start page with search, favorites, to-do, notes, weather, news. (on this computer)</li><li>All local: data stays in your browser (localStorage). (on this computer)</li></ul><h5>Shortcuts (on this computer)</h5><ul><li>Ctrl/Cmd+K: open command palette (on this computer)</li><li>1-9: open first 9 favorites (when not typing) (on this computer)</li><li>/ : focus search (also via palette) (on this computer)</li><li>Enter in search: start search (on this computer)</li><li>ESC: close modals (on this computer)</li><li>Palette: quick actions for widgets, theme, background, data, favorites (on this computer)</li><li>Palette: key C switches card style, \"Reset header colors\" resets search & clock (on this computer)</li></ul><h5>Search & Autocomplete (on this computer)</h5><ul><li>Bangs:  (on this computer)!g  (on this computer)!ddg  (on this computer)!bing  (on this computer)!yt  (on this computer)!wiki  (on this computer)!maps</li><li>Custom shortcuts: JSON in settings;  (on this computer){q} as placeholder (on this computer)</li><li>Autocomplete: bangs, shortcuts, recent searches, wordlist (global + preset) (on this computer)</li><li>Tab accepts suggestion, Enter starts search (on this computer)</li></ul><h5>Tiles (on this computer)</h5><ul><li>Drag & drop to sort, click to open (on this computer)</li><li>+ Tile: add a new favorite (on this computer)</li><li>Reset: restore default favorites (on this computer)</li></ul><h5>Widgets & Layout (on this computer)</h5><ul><li>Visibility per widget (on this computer)</li><li>Card style is global (glass, solid, transparent, soft minimal) (on this computer)</li><li>Custom colors for clock/search; reset restores style defaults (on this computer)</li><li>Widget colors & \"Tint widgets\" set the accent per card (on this computer)</li></ul><h5>Background (on this computer)</h5><ul><li>Presets, uploads, collections, rotation (time/theme/interval) (on this computer)</li><li>Accent color is extracted from the active background (on this computer)</li></ul><h5>Data (on this computer)</h5><ul><li>Export/Import as JSON (on this computer)</li><li>Load data presets (assets/presets/*.json in the repo) (on this computer)</li></ul></div></div>"
+  },
+  "onboarding": {
+    "title": "Start setup (on this computer)",
+    "progress": "Step  (on this computer){current} of  (on this computer){total}",
+    "skip": "Skip setup (on this computer)",
+    "close": "Close (on this computer)",
+    "preset": {
+      "title": "Choose preset (on this computer)",
+      "hint": "Pick a preset or skip this step. (on this computer)",
+      "apply": "Apply preset (on this computer)",
+      "meta": "Apply a preset or skip. (on this computer)",
+      "optional": "Preset optional. (on this computer)",
+      "context": "Setup preset (on this computer)"
+    },
+    "appearance": {
+      "title": "Appearance (on this computer)",
+      "theme": "Theme (on this computer)",
+      "cardStyle": "Card style (on this computer)",
+      "background": "Background (on this computer)",
+      "rotation": "Enable rotation (on this computer)",
+      "keepCurrent": "Keep current image (on this computer)"
+    },
+    "search": {
+      "title": "Search (on this computer)",
+      "engine": "Default search engine (on this computer)"
+    },
+    "widgets": {
+      "title": "Widgets (on this computer)",
+      "defaultTransport": "Default stop (transport) (on this computer)",
+      "tint": "Tint widgets with accent (on this computer)"
+    },
+    "weather": {
+      "title": "Weather (on this computer)",
+      "defaultCity": "Default city (on this computer)",
+      "note": "You can change everything later in settings. (on this computer)"
+    },
+    "prev": "Back (on this computer)",
+    "next": "Next (on this computer)",
+    "finish": "Done (on this computer)"
+  },
+  "palette": {
+    "placeholder": "Search command or favorite... (Ctrl/+K) (on this computer)",
+    "groups": {
+      "command": "Commands (on this computer)",
+      "settings": "Settings (on this computer)",
+      "search": "Search (on this computer)",
+      "widgets": "Widgets (on this computer)",
+      "theme": "Theme & Background (on this computer)",
+      "data": "Data (on this computer)",
+      "tiles": "Tiles (on this computer)",
+      "tile": "Favorites (on this computer)",
+      "quick": "Quick (on this computer)"
+    },
+    "search": {
+      "focus": "Focus search (on this computer)",
+      "start": "Start search (on this computer)",
+      "engine": "Engine:  (on this computer){engine}"
+    },
+    "settings": {
+      "open": "Open settings (on this computer)",
+      "general": "Settings: General (on this computer)",
+      "background": "Settings: Background (on this computer)",
+      "search": "Settings: Search (on this computer)",
+      "widgets": "Settings: Widgets (on this computer)",
+      "data": "Settings: Data (on this computer)",
+      "guide": "Settings: Guide (on this computer)"
+    },
+    "theme": {
+      "cycle": "Cycle theme (Auto/Dark/Light) (on this computer)",
+      "auto": "Theme: Auto (on this computer)",
+      "dark": "Theme: Dark (on this computer)",
+      "light": "Theme: Light (on this computer)",
+      "resetHeader": "Reset header colors (on this computer)",
+      "recalcAccent": "Recalculate accent colors (on this computer)"
+    },
+    "cardStyle": {
+      "glass": "Card style: Glass (on this computer)",
+      "solid": "Card style: Solid (on this computer)",
+      "transparent": "Card style: Transparent (on this computer)",
+      "minimal": "Card style: Minimal (on this computer)"
+    },
+    "background": {
+      "toggleRotation": "Background: Toggle rotation (on this computer)",
+      "toggleLock": "Background: Lock/unlock rotation (on this computer)",
+      "preset": "Background:  (on this computer){label}"
+    },
+    "widgets": {
+      "showAll": "Widgets: Show all (on this computer)",
+      "hideAll": "Widgets: Hide all (on this computer)",
+      "toggle": "Widget: Toggle  (on this computer){widget}",
+      "focus": "Widget: Focus  (on this computer){widget}"
+    },
+    "quick": {
+      "addTodo": "Add todo (on this computer)",
+      "addNote": "Add note (on this computer)"
+    },
+    "tiles": {
+      "add": "Add tile (on this computer)",
+      "reset": "Reset tiles (on this computer)"
+    },
+    "refresh": {
+      "weather": "Refresh weather (on this computer)",
+      "news": "Refresh news (on this computer)",
+      "transport": "Refresh transport (on this computer)",
+      "system": "Refresh system (on this computer)",
+      "all": "Refresh all widgets (on this computer)"
+    },
+    "data": {
+      "export": "Export data (on this computer)",
+      "import": "Import data (on this computer)",
+      "preset": "Data preset:  (on this computer){label}"
+    }
+  },
+  "widgets": {
+    "todo": "To-Do (on this computer)",
+    "notes": "Notes (on this computer)",
+    "tiles": "Favorites (on this computer)",
+    "weather": "Weather (on this computer)",
+    "transport": "Transport (on this computer)",
+    "quote": "Quote (on this computer)",
+    "recent": "Recent (on this computer)",
+    "system": "System (on this computer)",
+    "news": "News (on this computer)"
+  },
+  "background": {
+    "currentPreview": "Current background image (on this computer)",
+    "none": "No background (on this computer)",
+    "noImageSelected": "No image selected (on this computer)",
+    "rotationResume": "Resume rotation (on this computer)",
+    "rotationLock": "Lock rotation (on this computer)",
+    "tone": "Tone:  (on this computer){tone}",
+    "presets": {
+      "empty": "No presets available. (on this computer)"
+    },
+    "favorites": {
+      "empty": "No favorites yet. Mark presets or uploads. (on this computer)"
+    },
+    "subtitle": {
+      "preset": "Preset (on this computer)"
+    },
+    "upload": "Upload (on this computer)",
+    "uploadDrop": "Drop files here (on this computer)",
+    "uploadBrowse": "Choose file (on this computer)",
+    "uploadNote": "We resize images automatically (16:9, max 2560px) and store them locally. Max  (on this computer){max} files. (on this computer)",
+    "uploads": {
+      "empty": "No uploads yet. (on this computer)"
+    },
+    "collections": {
+      "count": "{count} sources (on this computer)",
+      "random": "Random (on this computer)",
+      "cache": "Save offline (on this computer)",
+      "viewSources": "View sources (on this computer)",
+      "useRotation": "Use for rotation (on this computer)",
+      "newLabel": "New collection (on this computer)",
+      "namePlaceholder": "My collection (on this computer)",
+      "urlsPlaceholder": "One image URL per line (on this computer)",
+      "clear": "Clear fields (on this computer)",
+      "note": "URLs are stored locally. Remote sources need CORS for images. (on this computer)",
+      "empty": "No collections yet. (on this computer)",
+      "minOneUrl": "Enter at least one URL. (on this computer)",
+      "emptyCollection": "Collection is empty. (on this computer)",
+      "saved": "Collection saved locally. (on this computer)",
+      "defaultName": "Collection  (on this computer){index}"
+    },
+    "rotation": {
+      "optionPreset": "Preset:  (on this computer){label}",
+      "optionUpload": "Upload:  (on this computer){label}",
+      "optionFavorite": "Favorite:  (on this computer){label}",
+      "optionCustom": "Custom: saved URL (on this computer)",
+      "noFixed": "No fixed image (on this computer)",
+      "enabled": "Enable automatic rotation (on this computer)",
+      "locked": "Rotation is currently locked. (on this computer)",
+      "active": "Backgrounds change according to the schedule. (on this computer)",
+      "mode": "Mode (on this computer)",
+      "modeTime": "Time-based (on this computer)",
+      "modeInterval": "Interval (on this computer)",
+      "modeTheme": "Theme (on this computer)",
+      "intervalLabel": "Interval in minutes (on this computer)",
+      "intervalNote": "Only relevant in interval mode. (on this computer)",
+      "sourcesLabel": "Sources for random (on this computer)",
+      "scheduleLabel": "Schedule (on this computer)",
+      "themePlan": "Theme plan (on this computer)",
+      "themeLight": "Theme light (on this computer)",
+      "themeDark": "Theme dark (on this computer)",
+      "themeNote": "Theme plan is used when mode is Theme. (on this computer)",
+      "slot": {
+        "morning": "Morning 05-11 (on this computer)",
+        "day": "Day 11-17 (on this computer)",
+        "evening": "Evening 17-21 (on this computer)",
+        "night": "Night 21-05 (on this computer)"
+      }
+    },
+    "custom": {
+      "label": "Custom image URL (on this computer)",
+      "placeholder": "https://example.com/image.jpg",
+      "note": "URL is stored locally. Server must allow CORS for images. (on this computer)",
+      "enterUrl": "Please enter a URL. (on this computer)",
+      "title": "Custom URL (on this computer)",
+      "subtitle": "Custom (on this computer)"
+    },
+    "actions": {
+      "apply": "Apply (on this computer)",
+      "favorite": "Favorite (on this computer)",
+      "favorited": "Favorited (on this computer)",
+      "random": "Load random (on this computer)",
+      "undo": "Restore last image (on this computer)",
+      "lock": "Lock rotation (on this computer)",
+      "tint": "Tint widgets (on this computer)"
+    },
+    "tabs": {
+      "presets": "Presets (on this computer)",
+      "favorites": "Favorites (on this computer)",
+      "uploads": "Uploads (on this computer)",
+      "collections": "Collections (on this computer)",
+      "rotation": "Rotation (on this computer)",
+      "custom": "Custom (on this computer)"
+    },
+    "loadError": "Load failed. Check CORS settings. (on this computer)",
+    "noneAvailable": "No backgrounds available. (on this computer)",
+    "imageLoadError": "Image could not be loaded. (on this computer)"
+  },
+  "data": {
+    "import": {
+      "confirm": "Import data? Existing entries will be overwritten. (on this computer)",
+      "failed": "Import failed:  (on this computer){error}"
+    },
+    "presets": {
+      "none": "No preset available. (on this computer)",
+      "missingFile": "Preset file missing. (on this computer)",
+      "fileMissing": "File not found (on this computer)",
+      "invalid": "Invalid preset (on this computer)",
+      "confirmApply": "Apply  (on this computer){context} \" (on this computer){name}\"? Existing entries will be overwritten. (on this computer)",
+      "loadFailed": "Preset load failed:  (on this computer){error}",
+      "loading": "Loading presets... (on this computer)",
+      "noneFound": "No presets found (on this computer)",
+      "hint": "Place exported JSONs under assets/presets/ (manifest: assets/data-presets.json) or locally under assets/user-presets/. (on this computer)",
+      "hintShort": "Add a preset under assets/presets/ or assets/user-presets/. (on this computer)",
+      "userPrefix": "User:  (on this computer)",
+      "userApply": "Apply local preset (on this computer)",
+      "apply": "Apply preset (on this computer)",
+      "noneSelected": "No preset selected. (on this computer)",
+      "label": "Preset (on this computer)",
+      "defaultLabel": "Preset  (on this computer){index}",
+      "userDefault": "User preset  (on this computer){index}",
+      "userDescription": "Local preset from assets/user-presets/ (on this computer)",
+      "tags": " (Tags:  (on this computer){tags}) (on this computer)"
+    }
+  },
+  "dialogs": {
+    "alertTitle": "Notice (on this computer)",
+    "confirmTitle": "Confirm (on this computer)",
+    "promptTitle": "Input (on this computer)"
+  }
+}

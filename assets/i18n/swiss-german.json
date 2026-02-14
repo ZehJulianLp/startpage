@@ -1,0 +1,521 @@
+{
+  "app": {
+    "title": "Startpage (Schwiizerduetsch)"
+  },
+  "common": {
+    "link": "[Schwiizerduetsch] Link",
+    "delete": "[Schwiizerduetsch] Delete",
+    "remove": "[Schwiizerduetsch] Remove",
+    "save": "[Schwiizerduetsch] Save",
+    "loading": "[Schwiizerduetsch] Loading...",
+    "loadError": "[Schwiizerduetsch] Load failed",
+    "noMatches": "[Schwiizerduetsch] No matches",
+    "emptyDash": "[Schwiizerduetsch] -",
+    "dash": "[Schwiizerduetsch] -",
+    "cancel": "[Schwiizerduetsch] Cancel",
+    "ok": "[Schwiizerduetsch] OK",
+    "default": "[Schwiizerduetsch] Default"
+  },
+  "header": {
+    "themeToggleTitle": "[Schwiizerduetsch] Dark/Light",
+    "settingsTitle": "[Schwiizerduetsch] Settings",
+    "themeAria": "[Schwiizerduetsch] Toggle theme",
+    "settingsAria": "[Schwiizerduetsch] Open settings"
+  },
+  "search": {
+    "placeholder": "[Schwiizerduetsch] Search... (e.g. !yt[Schwiizerduetsch]  lo-fi, !etc[Schwiizerduetsch]  Home)",
+    "engine": {
+      "google": "[Schwiizerduetsch] Google",
+      "ddg": "[Schwiizerduetsch] DuckDuckGo",
+      "bing": "[Schwiizerduetsch] Bing",
+      "yt": "[Schwiizerduetsch] YouTube",
+      "wikipedia": "[Schwiizerduetsch] Wikipedia",
+      "maps": "[Schwiizerduetsch] Google Maps"
+    },
+    "suggest": {
+      "bang": "{bang} (Bang)",
+      "shortcut": "{shortcut} (Shortcut)",
+      "type": {
+        "bang": "[Schwiizerduetsch] Bang",
+        "shortcut": "[Schwiizerduetsch] Shortcut",
+        "recent": "[Schwiizerduetsch] Recent",
+        "word": "[Schwiizerduetsch] Word"
+      }
+    },
+    "recentShortcut": "[Schwiizerduetsch] Shortcut {shortcut}[Schwiizerduetsch]  - {query}",
+    "recentSearch": "[Schwiizerduetsch] Search ({engine}[Schwiizerduetsch] ) - {query}",
+    "submitAria": "[Schwiizerduetsch] Start search"
+  },
+  "todo": {
+    "title": "[Schwiizerduetsch] To-Do",
+    "placeholder": "[Schwiizerduetsch] New task...",
+    "add": "[Schwiizerduetsch] Add",
+    "clearDoneTitle": "[Schwiizerduetsch] Remove completed",
+    "clearDone": "[Schwiizerduetsch]  clear",
+    "doneAria": "[Schwiizerduetsch] Done",
+    "prompt": "[Schwiizerduetsch] Todo"
+  },
+  "notes": {
+    "title": "[Schwiizerduetsch] Notes",
+    "placeholder": "[Schwiizerduetsch] Jot something down...",
+    "prompt": "[Schwiizerduetsch] Note"
+  },
+  "tiles": {
+    "title": "[Schwiizerduetsch] Favorites",
+    "add": "[Schwiizerduetsch] + Tile",
+    "resetTitle": "[Schwiizerduetsch] Restore defaults",
+    "edit": "[Schwiizerduetsch] Edit",
+    "promptTitle": "[Schwiizerduetsch] Title",
+    "promptUrl": "[Schwiizerduetsch] URL",
+    "invalidUrl": "[Schwiizerduetsch] Invalid URL",
+    "promptTitleNew": "[Schwiizerduetsch] Tile title",
+    "promptUrlNew": "[Schwiizerduetsch] URL (https://...)",
+    "resetConfirm": "[Schwiizerduetsch] Restore default tiles?",
+    "dialog": {
+      "titleLabel": "[Schwiizerduetsch] Title",
+      "urlLabel": "[Schwiizerduetsch] URL",
+      "save": "[Schwiizerduetsch] Save"
+    },
+    "resetAria": "[Schwiizerduetsch] Reset tiles"
+  },
+  "weather": {
+    "title": "[Schwiizerduetsch] Weather today",
+    "cityPlaceholder": "[Schwiizerduetsch] Enter city...",
+    "setCity": "[Schwiizerduetsch] Set",
+    "pickLocation": "[Schwiizerduetsch] Pick a location...",
+    "source": "[Schwiizerduetsch] Source: Open-Meteo",
+    "loading": "[Schwiizerduetsch] Loading weather...",
+    "prompt": "[Schwiizerduetsch] Enter a location to load weather.",
+    "tempEmpty": "[Schwiizerduetsch] -C",
+    "tempEmptyShort": "[Schwiizerduetsch] -",
+    "minmaxEmpty": "[Schwiizerduetsch] - / - C",
+    "noForecast": "[Schwiizerduetsch] No forecast",
+    "errors": {
+      "geocodingFailed": "[Schwiizerduetsch] Geocoding failed",
+      "locationNotFound": "[Schwiizerduetsch] Location not found",
+      "cityMissing": "[Schwiizerduetsch] City missing",
+      "fetchFailed": "[Schwiizerduetsch] Weather fetch failed",
+      "loadFailed": "[Schwiizerduetsch] Weather could not be loaded"
+    },
+    "codes": {
+      "0": "[Schwiizerduetsch] Clear",
+      "1": "[Schwiizerduetsch] Mostly clear",
+      "2": "[Schwiizerduetsch] Partly cloudy",
+      "3": "[Schwiizerduetsch] Cloudy",
+      "45": "[Schwiizerduetsch] Fog",
+      "48": "[Schwiizerduetsch] Fog",
+      "51": "[Schwiizerduetsch] Drizzle",
+      "53": "[Schwiizerduetsch] Drizzle",
+      "55": "[Schwiizerduetsch] Drizzle",
+      "61": "[Schwiizerduetsch] Rain",
+      "63": "[Schwiizerduetsch] Rain",
+      "65": "[Schwiizerduetsch] Heavy rain",
+      "71": "[Schwiizerduetsch] Snow",
+      "80": "[Schwiizerduetsch] Showers",
+      "95": "[Schwiizerduetsch] Thunderstorm",
+      "default": "[Schwiizerduetsch] Weather"
+    }
+  },
+  "transport": {
+    "title": "[Schwiizerduetsch] Transport",
+    "durationAria": "[Schwiizerduetsch] Duration",
+    "duration30": "[Schwiizerduetsch] 30 min",
+    "duration60": "[Schwiizerduetsch] 60 min",
+    "duration90": "[Schwiizerduetsch] 90 min",
+    "duration120": "[Schwiizerduetsch] 120 min",
+    "refreshTitle": "[Schwiizerduetsch] Reload",
+    "searchPlaceholder": "[Schwiizerduetsch] Search station...",
+    "noneSelected": "[Schwiizerduetsch] No station selected",
+    "source": "[Schwiizerduetsch] Source: transport.rest",
+    "minQuery": "[Schwiizerduetsch] At least {count}[Schwiizerduetsch]  characters",
+    "noMatches": "[Schwiizerduetsch] No matches",
+    "proxyTimeout": "[Schwiizerduetsch] Proxy timeout",
+    "loadError": "[Schwiizerduetsch] Load failed",
+    "noDepartures": "[Schwiizerduetsch] No departures",
+    "selectStation": "[Schwiizerduetsch] Select a station...",
+    "type": {
+      "station": "[Schwiizerduetsch] Station",
+      "stop": "[Schwiizerduetsch] Stop"
+    },
+    "platform": "[Schwiizerduetsch] Platform {platform}",
+    "cancelled": "[Schwiizerduetsch] Cancelled",
+    "refreshAria": "[Schwiizerduetsch] Refresh transport"
+  },
+  "quote": {
+    "title": "[Schwiizerduetsch] Quote / Nerd Nudge",
+    "list": [
+      "[Schwiizerduetsch] Move fast, refactor often.",
+      "[Schwiizerduetsch] Accessibility isn't a feature - it's the default.",
+      "[Schwiizerduetsch] Done > Perfect. Iterate.",
+      "[Schwiizerduetsch] If it's not monitored, it doesn't exist.",
+      "[Schwiizerduetsch] Good UX is invisible. Bad UX is unforgettable.",
+      "[Schwiizerduetsch] Make it work, make it right, make it fast.",
+      "[Schwiizerduetsch] Small steps. Massive outcomes.",
+      "[Schwiizerduetsch] Simplicity scales. Complexity fails.",
+      "[Schwiizerduetsch] Automate the boring stuff.",
+      "[Schwiizerduetsch] Measure twice, deploy once."
+    ]
+  },
+  "recent": {
+    "title": "[Schwiizerduetsch] Recent",
+    "note": "[Schwiizerduetsch] Note: Only actions from this start page (clicked tiles & searches)."
+  },
+  "system": {
+    "title": "[Schwiizerduetsch] System status",
+    "loading": "[Schwiizerduetsch] Loading...",
+    "ram": "[Schwiizerduetsch] RAM: {value}[Schwiizerduetsch]  GB",
+    "cpu": "[Schwiizerduetsch] CPU cores: {value}",
+    "network": "[Schwiizerduetsch] Network: {downlink}[Schwiizerduetsch]  Mbit/s  {type}{saveData}",
+    "saveData": "[Schwiizerduetsch]   SaveData",
+    "noData": "[Schwiizerduetsch] No data available"
+  },
+  "news": {
+    "title": "[Schwiizerduetsch] News",
+    "refreshTitle": "[Schwiizerduetsch] Reload",
+    "source": "[Schwiizerduetsch] RSS via Startpage Proxy (CORS proxy)",
+    "noItems": "[Schwiizerduetsch] No items",
+    "refreshAria": "[Schwiizerduetsch] Refresh news"
+  },
+  "footer": {
+    "tagline": "[Schwiizerduetsch] Local-first dashboard  stores only in the browser (localStorage)"
+  },
+  "settings": {
+    "title": "[Schwiizerduetsch] Settings",
+    "close": "[Schwiizerduetsch] Close",
+    "tabs": {
+      "general": "[Schwiizerduetsch] General",
+      "background": "[Schwiizerduetsch] Background & Appearance",
+      "search": "[Schwiizerduetsch] Search & Feeds",
+      "widgets": "[Schwiizerduetsch] Widgets",
+      "data": "[Schwiizerduetsch] Data",
+      "guide": "[Schwiizerduetsch] Guide"
+    },
+    "theme": {
+      "label": "[Schwiizerduetsch] Theme",
+      "auto": "[Schwiizerduetsch] Auto (System)",
+      "dark": "[Schwiizerduetsch] Dark",
+      "light": "[Schwiizerduetsch] Light"
+    },
+    "background": {
+      "label": "[Schwiizerduetsch] Background"
+    },
+    "search": {
+      "engines": "[Schwiizerduetsch] Search engines",
+      "bangsNote": "Supported bang shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Custom shortcuts below",
+      "wordlistLabel": "[Schwiizerduetsch] Autocomplete wordlist",
+      "wordlistPlaceholder": "[Schwiizerduetsch] Terms line by line or comma-separated",
+      "wordlistSave": "[Schwiizerduetsch] Save",
+      "wordlistReset": "[Schwiizerduetsch] Clear",
+      "wordlistNote": "[Schwiizerduetsch] Global wordlist (assets/wordlist.json) and preset wordlist are merged. Leave empty to use only the global list.",
+      "shortcutsLabel": "[Schwiizerduetsch] Custom !shortcuts",
+      "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
+      "shortcutsNote": "[Schwiizerduetsch] Use <code>{q}</code>[Schwiizerduetsch]  as placeholder for the search phrase. Without <code>{q}</code>[Schwiizerduetsch] , <code>[Schwiizerduetsch] ?q=...</code>[Schwiizerduetsch]  is appended.",
+      "feedsLabel": "[Schwiizerduetsch] Custom RSS feeds",
+      "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
+      "feedsNote": "[Schwiizerduetsch] JSON: name - feed URL. This list is merged with the default feeds.",
+      "invalidShortcuts": "[Schwiizerduetsch] Invalid shortcuts JSON",
+      "invalidFeeds": "[Schwiizerduetsch] Invalid feeds JSON"
+    },
+    "widgets": {
+      "visible": "[Schwiizerduetsch] Show widgets",
+      "defaultCityLabel": "[Schwiizerduetsch] Default city (weather)",
+      "defaultCityPlaceholder": "[Schwiizerduetsch] e.g. Hanover",
+      "defaultTransportLabel": "[Schwiizerduetsch] Default stop (transport)",
+      "defaultTransportPlaceholder": "[Schwiizerduetsch] Search station...",
+      "cardStyleLabel": "[Schwiizerduetsch] Card style",
+      "cardStyleGlass": "[Schwiizerduetsch] Glass (default)",
+      "cardStyleSolid": "[Schwiizerduetsch] Solid",
+      "cardStyleTransparent": "[Schwiizerduetsch] Transparent",
+      "cardStyleMinimal": "[Schwiizerduetsch] Soft minimal",
+      "cardStyleNote": "[Schwiizerduetsch] Applies to all widgets & favorite tiles.",
+      "clockColorLabel": "[Schwiizerduetsch] Time & date",
+      "searchColorLabel": "[Schwiizerduetsch] Search",
+      "reset": "[Schwiizerduetsch] Reset",
+      "clockColorNote": "[Schwiizerduetsch] Sets the header background (empty = style default).",
+      "searchColorNote": "[Schwiizerduetsch] Color for the search area (empty = style default).",
+      "widgetColorsLabel": "[Schwiizerduetsch] Widget colors"
+    },
+    "data": {
+      "label": "[Schwiizerduetsch] Data",
+      "export": "[Schwiizerduetsch] Export (.json)",
+      "import": "[Schwiizerduetsch] Import (.json)",
+      "presetsLabel": "[Schwiizerduetsch] Data presets",
+      "applyPreset": "[Schwiizerduetsch] Load preset",
+      "presetMeta": "[Schwiizerduetsch] Presets are exported JSONs under assets/presets/. User presets from assets/user-presets/ are merged automatically.",
+      "setupLabel": "[Schwiizerduetsch] Setup",
+      "restartOnboarding": "[Schwiizerduetsch] Restart setup",
+      "restartNote": "[Schwiizerduetsch] Reopens the compact setup dialog.",
+      "noteLabel": "[Schwiizerduetsch] Note",
+      "noteText": "[Schwiizerduetsch] Export stores all settings & data locally as JSON. Import overwrites existing entries."
+    },
+    "language": {
+      "label": "[Schwiizerduetsch] Language",
+      "auto": "[Schwiizerduetsch] Auto (System)"
+    },
+    "font": {
+      "label": "[Schwiizerduetsch] Font",
+      "searchPlaceholder": "[Schwiizerduetsch] Search fonts...",
+      "loadLocal": "[Schwiizerduetsch] Load system fonts",
+      "systemDefault": "[Schwiizerduetsch] System default",
+      "noResults": "[Schwiizerduetsch] No matching fonts",
+      "note": "[Schwiizerduetsch] Shows local system fonts (if available), otherwise a detected fallback list.",
+      "unsupported": "[Schwiizerduetsch] Your browser does not support Local Font Access (queryLocalFonts).",
+      "permissionDenied": "[Schwiizerduetsch] Access to local fonts was denied or blocked.",
+      "empty": "[Schwiizerduetsch] No local fonts were returned.",
+      "loadFailed": "[Schwiizerduetsch] Could not load local fonts: {error}"
+    },
+    "guideHtml": "<div class=\"row\"><label>[Schwiizerduetsch] User Guide</label><div><h5>[Schwiizerduetsch] Overview</h5><ul><li>[Schwiizerduetsch] Start page with search, favorites, to-do, notes, weather, news.</li><li>[Schwiizerduetsch] All local: data stays in your browser (localStorage).</li></ul><h5>[Schwiizerduetsch] Shortcuts</h5><ul><li>[Schwiizerduetsch] Ctrl/Cmd+K: open command palette</li><li>[Schwiizerduetsch] 1-9: open first 9 favorites (when not typing)</li><li>[Schwiizerduetsch] / : focus search (also via palette)</li><li>[Schwiizerduetsch] Enter in search: start search</li><li>[Schwiizerduetsch] ESC: close modals</li><li>[Schwiizerduetsch] Palette: quick actions for widgets, theme, background, data, favorites</li><li>[Schwiizerduetsch] Palette: key C switches card style, \"Reset header colors\" resets search & clock</li></ul><h5>[Schwiizerduetsch] Search & Autocomplete</h5><ul><li>[Schwiizerduetsch] Bangs: !g[Schwiizerduetsch]  !ddg[Schwiizerduetsch]  !bing[Schwiizerduetsch]  !yt[Schwiizerduetsch]  !wiki[Schwiizerduetsch]  !maps</li><li>[Schwiizerduetsch] Custom shortcuts: JSON in settings; {q}[Schwiizerduetsch]  as placeholder</li><li>[Schwiizerduetsch] Autocomplete: bangs, shortcuts, recent searches, wordlist (global + preset)</li><li>[Schwiizerduetsch] Tab accepts suggestion, Enter starts search</li></ul><h5>[Schwiizerduetsch] Tiles</h5><ul><li>[Schwiizerduetsch] Drag & drop to sort, click to open</li><li>[Schwiizerduetsch] + Tile: add a new favorite</li><li>[Schwiizerduetsch] Reset: restore default favorites</li></ul><h5>[Schwiizerduetsch] Widgets & Layout</h5><ul><li>[Schwiizerduetsch] Visibility per widget</li><li>[Schwiizerduetsch] Card style is global (glass, solid, transparent, soft minimal)</li><li>[Schwiizerduetsch] Custom colors for clock/search; reset restores style defaults</li><li>[Schwiizerduetsch] Widget colors & \"Tint widgets\" set the accent per card</li></ul><h5>[Schwiizerduetsch] Background</h5><ul><li>[Schwiizerduetsch] Presets, uploads, collections, rotation (time/theme/interval)</li><li>[Schwiizerduetsch] Accent color is extracted from the active background</li></ul><h5>[Schwiizerduetsch] Data</h5><ul><li>[Schwiizerduetsch] Export/Import as JSON</li><li>[Schwiizerduetsch] Load data presets (assets/presets/*.json in the repo)</li></ul></div></div>"
+  },
+  "onboarding": {
+    "title": "[Schwiizerduetsch] Start setup",
+    "progress": "[Schwiizerduetsch] Step {current}[Schwiizerduetsch]  of {total}",
+    "skip": "[Schwiizerduetsch] Skip setup",
+    "close": "[Schwiizerduetsch] Close",
+    "preset": {
+      "title": "[Schwiizerduetsch] Choose preset",
+      "hint": "[Schwiizerduetsch] Pick a preset or skip this step.",
+      "apply": "[Schwiizerduetsch] Apply preset",
+      "meta": "[Schwiizerduetsch] Apply a preset or skip.",
+      "optional": "[Schwiizerduetsch] Preset optional.",
+      "context": "[Schwiizerduetsch] Setup preset"
+    },
+    "appearance": {
+      "title": "[Schwiizerduetsch] Appearance",
+      "theme": "[Schwiizerduetsch] Theme",
+      "cardStyle": "[Schwiizerduetsch] Card style",
+      "background": "[Schwiizerduetsch] Background",
+      "rotation": "[Schwiizerduetsch] Enable rotation",
+      "keepCurrent": "[Schwiizerduetsch] Keep current image"
+    },
+    "search": {
+      "title": "[Schwiizerduetsch] Search",
+      "engine": "[Schwiizerduetsch] Default search engine"
+    },
+    "widgets": {
+      "title": "[Schwiizerduetsch] Widgets",
+      "defaultTransport": "[Schwiizerduetsch] Default stop (transport)",
+      "tint": "[Schwiizerduetsch] Tint widgets with accent"
+    },
+    "weather": {
+      "title": "[Schwiizerduetsch] Weather",
+      "defaultCity": "[Schwiizerduetsch] Default city",
+      "note": "[Schwiizerduetsch] You can change everything later in settings."
+    },
+    "prev": "[Schwiizerduetsch] Back",
+    "next": "[Schwiizerduetsch] Next",
+    "finish": "[Schwiizerduetsch] Done"
+  },
+  "palette": {
+    "placeholder": "[Schwiizerduetsch] Search command or favorite... (Ctrl/+K)",
+    "groups": {
+      "command": "[Schwiizerduetsch] Commands",
+      "settings": "[Schwiizerduetsch] Settings",
+      "search": "[Schwiizerduetsch] Search",
+      "widgets": "[Schwiizerduetsch] Widgets",
+      "theme": "[Schwiizerduetsch] Theme & Background",
+      "data": "[Schwiizerduetsch] Data",
+      "tiles": "[Schwiizerduetsch] Tiles",
+      "tile": "[Schwiizerduetsch] Favorites",
+      "quick": "[Schwiizerduetsch] Quick"
+    },
+    "search": {
+      "focus": "[Schwiizerduetsch] Focus search",
+      "start": "[Schwiizerduetsch] Start search",
+      "engine": "[Schwiizerduetsch] Engine: {engine}"
+    },
+    "settings": {
+      "open": "[Schwiizerduetsch] Open settings",
+      "general": "[Schwiizerduetsch] Settings: General",
+      "background": "[Schwiizerduetsch] Settings: Background",
+      "search": "[Schwiizerduetsch] Settings: Search",
+      "widgets": "[Schwiizerduetsch] Settings: Widgets",
+      "data": "[Schwiizerduetsch] Settings: Data",
+      "guide": "[Schwiizerduetsch] Settings: Guide"
+    },
+    "theme": {
+      "cycle": "[Schwiizerduetsch] Cycle theme (Auto/Dark/Light)",
+      "auto": "[Schwiizerduetsch] Theme: Auto",
+      "dark": "[Schwiizerduetsch] Theme: Dark",
+      "light": "[Schwiizerduetsch] Theme: Light",
+      "resetHeader": "[Schwiizerduetsch] Reset header colors",
+      "recalcAccent": "[Schwiizerduetsch] Recalculate accent colors"
+    },
+    "cardStyle": {
+      "glass": "[Schwiizerduetsch] Card style: Glass",
+      "solid": "[Schwiizerduetsch] Card style: Solid",
+      "transparent": "[Schwiizerduetsch] Card style: Transparent",
+      "minimal": "[Schwiizerduetsch] Card style: Minimal"
+    },
+    "background": {
+      "toggleRotation": "[Schwiizerduetsch] Background: Toggle rotation",
+      "toggleLock": "[Schwiizerduetsch] Background: Lock/unlock rotation",
+      "preset": "[Schwiizerduetsch] Background: {label}"
+    },
+    "widgets": {
+      "showAll": "[Schwiizerduetsch] Widgets: Show all",
+      "hideAll": "[Schwiizerduetsch] Widgets: Hide all",
+      "toggle": "[Schwiizerduetsch] Widget: Toggle {widget}",
+      "focus": "[Schwiizerduetsch] Widget: Focus {widget}"
+    },
+    "quick": {
+      "addTodo": "[Schwiizerduetsch] Add todo",
+      "addNote": "[Schwiizerduetsch] Add note"
+    },
+    "tiles": {
+      "add": "[Schwiizerduetsch] Add tile",
+      "reset": "[Schwiizerduetsch] Reset tiles"
+    },
+    "refresh": {
+      "weather": "[Schwiizerduetsch] Refresh weather",
+      "news": "[Schwiizerduetsch] Refresh news",
+      "transport": "[Schwiizerduetsch] Refresh transport",
+      "system": "[Schwiizerduetsch] Refresh system",
+      "all": "[Schwiizerduetsch] Refresh all widgets"
+    },
+    "data": {
+      "export": "[Schwiizerduetsch] Export data",
+      "import": "[Schwiizerduetsch] Import data",
+      "preset": "[Schwiizerduetsch] Data preset: {label}"
+    }
+  },
+  "widgets": {
+    "todo": "[Schwiizerduetsch] To-Do",
+    "notes": "[Schwiizerduetsch] Notes",
+    "tiles": "[Schwiizerduetsch] Favorites",
+    "weather": "[Schwiizerduetsch] Weather",
+    "transport": "[Schwiizerduetsch] Transport",
+    "quote": "[Schwiizerduetsch] Quote",
+    "recent": "[Schwiizerduetsch] Recent",
+    "system": "[Schwiizerduetsch] System",
+    "news": "[Schwiizerduetsch] News"
+  },
+  "background": {
+    "currentPreview": "[Schwiizerduetsch] Current background image",
+    "none": "[Schwiizerduetsch] No background",
+    "noImageSelected": "[Schwiizerduetsch] No image selected",
+    "rotationResume": "[Schwiizerduetsch] Resume rotation",
+    "rotationLock": "[Schwiizerduetsch] Lock rotation",
+    "tone": "[Schwiizerduetsch] Tone: {tone}",
+    "presets": {
+      "empty": "[Schwiizerduetsch] No presets available."
+    },
+    "favorites": {
+      "empty": "[Schwiizerduetsch] No favorites yet. Mark presets or uploads."
+    },
+    "subtitle": {
+      "preset": "[Schwiizerduetsch] Preset"
+    },
+    "upload": "[Schwiizerduetsch] Upload",
+    "uploadDrop": "[Schwiizerduetsch] Drop files here",
+    "uploadBrowse": "[Schwiizerduetsch] Choose file",
+    "uploadNote": "[Schwiizerduetsch] We resize images automatically (16:9, max 2560px) and store them locally. Max {max}[Schwiizerduetsch]  files.",
+    "uploads": {
+      "empty": "[Schwiizerduetsch] No uploads yet."
+    },
+    "collections": {
+      "count": "{count}[Schwiizerduetsch]  sources",
+      "random": "[Schwiizerduetsch] Random",
+      "cache": "[Schwiizerduetsch] Save offline",
+      "viewSources": "[Schwiizerduetsch] View sources",
+      "useRotation": "[Schwiizerduetsch] Use for rotation",
+      "newLabel": "[Schwiizerduetsch] New collection",
+      "namePlaceholder": "[Schwiizerduetsch] My collection",
+      "urlsPlaceholder": "[Schwiizerduetsch] One image URL per line",
+      "clear": "[Schwiizerduetsch] Clear fields",
+      "note": "[Schwiizerduetsch] URLs are stored locally. Remote sources need CORS for images.",
+      "empty": "[Schwiizerduetsch] No collections yet.",
+      "minOneUrl": "[Schwiizerduetsch] Enter at least one URL.",
+      "emptyCollection": "[Schwiizerduetsch] Collection is empty.",
+      "saved": "[Schwiizerduetsch] Collection saved locally.",
+      "defaultName": "[Schwiizerduetsch] Collection {index}"
+    },
+    "rotation": {
+      "optionPreset": "[Schwiizerduetsch] Preset: {label}",
+      "optionUpload": "[Schwiizerduetsch] Upload: {label}",
+      "optionFavorite": "[Schwiizerduetsch] Favorite: {label}",
+      "optionCustom": "[Schwiizerduetsch] Custom: saved URL",
+      "noFixed": "[Schwiizerduetsch] No fixed image",
+      "enabled": "[Schwiizerduetsch] Enable automatic rotation",
+      "locked": "[Schwiizerduetsch] Rotation is currently locked.",
+      "active": "[Schwiizerduetsch] Backgrounds change according to the schedule.",
+      "mode": "[Schwiizerduetsch] Mode",
+      "modeTime": "[Schwiizerduetsch] Time-based",
+      "modeInterval": "[Schwiizerduetsch] Interval",
+      "modeTheme": "[Schwiizerduetsch] Theme",
+      "intervalLabel": "[Schwiizerduetsch] Interval in minutes",
+      "intervalNote": "[Schwiizerduetsch] Only relevant in interval mode.",
+      "sourcesLabel": "[Schwiizerduetsch] Sources for random",
+      "scheduleLabel": "[Schwiizerduetsch] Schedule",
+      "themePlan": "[Schwiizerduetsch] Theme plan",
+      "themeLight": "[Schwiizerduetsch] Theme light",
+      "themeDark": "[Schwiizerduetsch] Theme dark",
+      "themeNote": "[Schwiizerduetsch] Theme plan is used when mode is Theme.",
+      "slot": {
+        "morning": "[Schwiizerduetsch] Morning 05-11",
+        "day": "[Schwiizerduetsch] Day 11-17",
+        "evening": "[Schwiizerduetsch] Evening 17-21",
+        "night": "[Schwiizerduetsch] Night 21-05"
+      }
+    },
+    "custom": {
+      "label": "[Schwiizerduetsch] Custom image URL",
+      "placeholder": "https://example.com/image.jpg",
+      "note": "[Schwiizerduetsch] URL is stored locally. Server must allow CORS for images.",
+      "enterUrl": "[Schwiizerduetsch] Please enter a URL.",
+      "title": "[Schwiizerduetsch] Custom URL",
+      "subtitle": "[Schwiizerduetsch] Custom"
+    },
+    "actions": {
+      "apply": "[Schwiizerduetsch] Apply",
+      "favorite": "[Schwiizerduetsch] Favorite",
+      "favorited": "[Schwiizerduetsch] Favorited",
+      "random": "[Schwiizerduetsch] Load random",
+      "undo": "[Schwiizerduetsch] Restore last image",
+      "lock": "[Schwiizerduetsch] Lock rotation",
+      "tint": "[Schwiizerduetsch] Tint widgets"
+    },
+    "tabs": {
+      "presets": "[Schwiizerduetsch] Presets",
+      "favorites": "[Schwiizerduetsch] Favorites",
+      "uploads": "[Schwiizerduetsch] Uploads",
+      "collections": "[Schwiizerduetsch] Collections",
+      "rotation": "[Schwiizerduetsch] Rotation",
+      "custom": "[Schwiizerduetsch] Custom"
+    },
+    "loadError": "[Schwiizerduetsch] Load failed. Check CORS settings.",
+    "noneAvailable": "[Schwiizerduetsch] No backgrounds available.",
+    "imageLoadError": "[Schwiizerduetsch] Image could not be loaded."
+  },
+  "data": {
+    "import": {
+      "confirm": "[Schwiizerduetsch] Import data? Existing entries will be overwritten.",
+      "failed": "[Schwiizerduetsch] Import failed: {error}"
+    },
+    "presets": {
+      "none": "[Schwiizerduetsch] No preset available.",
+      "missingFile": "[Schwiizerduetsch] Preset file missing.",
+      "fileMissing": "[Schwiizerduetsch] File not found",
+      "invalid": "[Schwiizerduetsch] Invalid preset",
+      "confirmApply": "[Schwiizerduetsch] Apply {context}[Schwiizerduetsch]  \"{name}[Schwiizerduetsch] \"? Existing entries will be overwritten.",
+      "loadFailed": "[Schwiizerduetsch] Preset load failed: {error}",
+      "loading": "[Schwiizerduetsch] Loading presets...",
+      "noneFound": "[Schwiizerduetsch] No presets found",
+      "hint": "[Schwiizerduetsch] Place exported JSONs under assets/presets/ (manifest: assets/data-presets.json) or locally under assets/user-presets/.",
+      "hintShort": "[Schwiizerduetsch] Add a preset under assets/presets/ or assets/user-presets/.",
+      "userPrefix": "[Schwiizerduetsch] User: ",
+      "userApply": "[Schwiizerduetsch] Apply local preset",
+      "apply": "[Schwiizerduetsch] Apply preset",
+      "noneSelected": "[Schwiizerduetsch] No preset selected.",
+      "label": "[Schwiizerduetsch] Preset",
+      "defaultLabel": "[Schwiizerduetsch] Preset {index}",
+      "userDefault": "[Schwiizerduetsch] User preset {index}",
+      "userDescription": "[Schwiizerduetsch] Local preset from assets/user-presets/",
+      "tags": "[Schwiizerduetsch]  (Tags: {tags}[Schwiizerduetsch] )"
+    }
+  },
+  "dialogs": {
+    "alertTitle": "[Schwiizerduetsch] Notice",
+    "confirmTitle": "[Schwiizerduetsch] Confirm",
+    "promptTitle": "[Schwiizerduetsch] Input"
+  }
+}

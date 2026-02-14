@@ -1,0 +1,521 @@
+{
+  "app": {
+    "title": "Startpage (Shakespeare)"
+  },
+  "common": {
+    "link": "Prithee, Link",
+    "delete": "Prithee, Delete",
+    "remove": "Prithee, Remove",
+    "save": "Prithee, Save",
+    "loading": "Prithee, Loading...",
+    "loadError": "Prithee, Load failed",
+    "noMatches": "Prithee, No matches",
+    "emptyDash": "Prithee, -",
+    "dash": "Prithee, -",
+    "cancel": "Prithee, Cancel",
+    "ok": "Prithee, OK",
+    "default": "Prithee, Default"
+  },
+  "header": {
+    "themeToggleTitle": "Prithee, Dark/Light",
+    "settingsTitle": "Prithee, Settings",
+    "themeAria": "Prithee, Toggle theme",
+    "settingsAria": "Prithee, Open settings"
+  },
+  "search": {
+    "placeholder": "Prithee, Search... (e.g. !ytPrithee,  lo-fi, !etcPrithee,  Home)",
+    "engine": {
+      "google": "Prithee, Google",
+      "ddg": "Prithee, DuckDuckGo",
+      "bing": "Prithee, Bing",
+      "yt": "Prithee, YouTube",
+      "wikipedia": "Prithee, Wikipedia",
+      "maps": "Prithee, Google Maps"
+    },
+    "suggest": {
+      "bang": "{bang} (Bang)",
+      "shortcut": "{shortcut} (Shortcut)",
+      "type": {
+        "bang": "Prithee, Bang",
+        "shortcut": "Prithee, Shortcut",
+        "recent": "Prithee, Recent",
+        "word": "Prithee, Word"
+      }
+    },
+    "recentShortcut": "Prithee, Shortcut {shortcut}Prithee,  - {query}",
+    "recentSearch": "Prithee, Search ({engine}Prithee, ) - {query}",
+    "submitAria": "Prithee, Start search"
+  },
+  "todo": {
+    "title": "Prithee, To-Do",
+    "placeholder": "Prithee, New task...",
+    "add": "Prithee, Add",
+    "clearDoneTitle": "Prithee, Remove completed",
+    "clearDone": "Prithee,  clear",
+    "doneAria": "Prithee, Done",
+    "prompt": "Prithee, Todo"
+  },
+  "notes": {
+    "title": "Prithee, Notes",
+    "placeholder": "Prithee, Jot something down...",
+    "prompt": "Prithee, Note"
+  },
+  "tiles": {
+    "title": "Prithee, Favorites",
+    "add": "Prithee, + Tile",
+    "resetTitle": "Prithee, Restore defaults",
+    "edit": "Prithee, Edit",
+    "promptTitle": "Prithee, Title",
+    "promptUrl": "Prithee, URL",
+    "invalidUrl": "Prithee, Invalid URL",
+    "promptTitleNew": "Prithee, Tile title",
+    "promptUrlNew": "Prithee, URL (https://...)",
+    "resetConfirm": "Prithee, Restore default tiles?",
+    "dialog": {
+      "titleLabel": "Prithee, Title",
+      "urlLabel": "Prithee, URL",
+      "save": "Prithee, Save"
+    },
+    "resetAria": "Prithee, Reset tiles"
+  },
+  "weather": {
+    "title": "Prithee, Weather today",
+    "cityPlaceholder": "Prithee, Enter city...",
+    "setCity": "Prithee, Set",
+    "pickLocation": "Prithee, Pick a location...",
+    "source": "Prithee, Source: Open-Meteo",
+    "loading": "Prithee, Loading weather...",
+    "prompt": "Prithee, Enter a location to load weather.",
+    "tempEmpty": "Prithee, -C",
+    "tempEmptyShort": "Prithee, -",
+    "minmaxEmpty": "Prithee, - / - C",
+    "noForecast": "Prithee, No forecast",
+    "errors": {
+      "geocodingFailed": "Prithee, Geocoding failed",
+      "locationNotFound": "Prithee, Location not found",
+      "cityMissing": "Prithee, City missing",
+      "fetchFailed": "Prithee, Weather fetch failed",
+      "loadFailed": "Prithee, Weather could not be loaded"
+    },
+    "codes": {
+      "0": "Prithee, Clear",
+      "1": "Prithee, Mostly clear",
+      "2": "Prithee, Partly cloudy",
+      "3": "Prithee, Cloudy",
+      "45": "Prithee, Fog",
+      "48": "Prithee, Fog",
+      "51": "Prithee, Drizzle",
+      "53": "Prithee, Drizzle",
+      "55": "Prithee, Drizzle",
+      "61": "Prithee, Rain",
+      "63": "Prithee, Rain",
+      "65": "Prithee, Heavy rain",
+      "71": "Prithee, Snow",
+      "80": "Prithee, Showers",
+      "95": "Prithee, Thunderstorm",
+      "default": "Prithee, Weather"
+    }
+  },
+  "transport": {
+    "title": "Prithee, Transport",
+    "durationAria": "Prithee, Duration",
+    "duration30": "Prithee, 30 min",
+    "duration60": "Prithee, 60 min",
+    "duration90": "Prithee, 90 min",
+    "duration120": "Prithee, 120 min",
+    "refreshTitle": "Prithee, Reload",
+    "searchPlaceholder": "Prithee, Search station...",
+    "noneSelected": "Prithee, No station selected",
+    "source": "Prithee, Source: transport.rest",
+    "minQuery": "Prithee, At least {count}Prithee,  characters",
+    "noMatches": "Prithee, No matches",
+    "proxyTimeout": "Prithee, Proxy timeout",
+    "loadError": "Prithee, Load failed",
+    "noDepartures": "Prithee, No departures",
+    "selectStation": "Prithee, Select a station...",
+    "type": {
+      "station": "Prithee, Station",
+      "stop": "Prithee, Stop"
+    },
+    "platform": "Prithee, Platform {platform}",
+    "cancelled": "Prithee, Cancelled",
+    "refreshAria": "Prithee, Refresh transport"
+  },
+  "quote": {
+    "title": "Prithee, Quote / Nerd Nudge",
+    "list": [
+      "Prithee, Move fast, refactor often.",
+      "Prithee, Accessibility isn't a feature - it's the default.",
+      "Prithee, Done > Perfect. Iterate.",
+      "Prithee, If it's not monitored, it doesn't exist.",
+      "Prithee, Good UX is invisible. Bad UX is unforgettable.",
+      "Prithee, Make it work, make it right, make it fast.",
+      "Prithee, Small steps. Massive outcomes.",
+      "Prithee, Simplicity scales. Complexity fails.",
+      "Prithee, Automate the boring stuff.",
+      "Prithee, Measure twice, deploy once."
+    ]
+  },
+  "recent": {
+    "title": "Prithee, Recent",
+    "note": "Prithee, Note: Only actions from this start page (clicked tiles & searches)."
+  },
+  "system": {
+    "title": "Prithee, System status",
+    "loading": "Prithee, Loading...",
+    "ram": "Prithee, RAM: {value}Prithee,  GB",
+    "cpu": "Prithee, CPU cores: {value}",
+    "network": "Prithee, Network: {downlink}Prithee,  Mbit/s  {type}{saveData}",
+    "saveData": "Prithee,   SaveData",
+    "noData": "Prithee, No data available"
+  },
+  "news": {
+    "title": "Prithee, News",
+    "refreshTitle": "Prithee, Reload",
+    "source": "Prithee, RSS via Startpage Proxy (CORS proxy)",
+    "noItems": "Prithee, No items",
+    "refreshAria": "Prithee, Refresh news"
+  },
+  "footer": {
+    "tagline": "Prithee, Local-first dashboard  stores only in the browser (localStorage)"
+  },
+  "settings": {
+    "title": "Prithee, Settings",
+    "close": "Prithee, Close",
+    "tabs": {
+      "general": "Prithee, General",
+      "background": "Prithee, Background & Appearance",
+      "search": "Prithee, Search & Feeds",
+      "widgets": "Prithee, Widgets",
+      "data": "Prithee, Data",
+      "guide": "Prithee, Guide"
+    },
+    "theme": {
+      "label": "Prithee, Theme",
+      "auto": "Prithee, Auto (System)",
+      "dark": "Prithee, Dark",
+      "light": "Prithee, Light"
+    },
+    "background": {
+      "label": "Prithee, Background"
+    },
+    "search": {
+      "engines": "Prithee, Search engines",
+      "bangsNote": "Supported bang shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Custom shortcuts below",
+      "wordlistLabel": "Prithee, Autocomplete wordlist",
+      "wordlistPlaceholder": "Prithee, Terms line by line or comma-separated",
+      "wordlistSave": "Prithee, Save",
+      "wordlistReset": "Prithee, Clear",
+      "wordlistNote": "Prithee, Global wordlist (assets/wordlist.json) and preset wordlist are merged. Leave empty to use only the global list.",
+      "shortcutsLabel": "Prithee, Custom !shortcuts",
+      "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
+      "shortcutsNote": "Prithee, Use <code>{q}</code>Prithee,  as placeholder for the search phrase. Without <code>{q}</code>Prithee, , <code>Prithee, ?q=...</code>Prithee,  is appended.",
+      "feedsLabel": "Prithee, Custom RSS feeds",
+      "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
+      "feedsNote": "Prithee, JSON: name - feed URL. This list is merged with the default feeds.",
+      "invalidShortcuts": "Prithee, Invalid shortcuts JSON",
+      "invalidFeeds": "Prithee, Invalid feeds JSON"
+    },
+    "widgets": {
+      "visible": "Prithee, Show widgets",
+      "defaultCityLabel": "Prithee, Default city (weather)",
+      "defaultCityPlaceholder": "Prithee, e.g. Hanover",
+      "defaultTransportLabel": "Prithee, Default stop (transport)",
+      "defaultTransportPlaceholder": "Prithee, Search station...",
+      "cardStyleLabel": "Prithee, Card style",
+      "cardStyleGlass": "Prithee, Glass (default)",
+      "cardStyleSolid": "Prithee, Solid",
+      "cardStyleTransparent": "Prithee, Transparent",
+      "cardStyleMinimal": "Prithee, Soft minimal",
+      "cardStyleNote": "Prithee, Applies to all widgets & favorite tiles.",
+      "clockColorLabel": "Prithee, Time & date",
+      "searchColorLabel": "Prithee, Search",
+      "reset": "Prithee, Reset",
+      "clockColorNote": "Prithee, Sets the header background (empty = style default).",
+      "searchColorNote": "Prithee, Color for the search area (empty = style default).",
+      "widgetColorsLabel": "Prithee, Widget colors"
+    },
+    "data": {
+      "label": "Prithee, Data",
+      "export": "Prithee, Export (.json)",
+      "import": "Prithee, Import (.json)",
+      "presetsLabel": "Prithee, Data presets",
+      "applyPreset": "Prithee, Load preset",
+      "presetMeta": "Prithee, Presets are exported JSONs under assets/presets/. User presets from assets/user-presets/ are merged automatically.",
+      "setupLabel": "Prithee, Setup",
+      "restartOnboarding": "Prithee, Restart setup",
+      "restartNote": "Prithee, Reopens the compact setup dialog.",
+      "noteLabel": "Prithee, Note",
+      "noteText": "Prithee, Export stores all settings & data locally as JSON. Import overwrites existing entries."
+    },
+    "language": {
+      "label": "Prithee, Language",
+      "auto": "Prithee, Auto (System)"
+    },
+    "font": {
+      "label": "Prithee, Font",
+      "searchPlaceholder": "Prithee, Search fonts...",
+      "loadLocal": "Prithee, Load system fonts",
+      "systemDefault": "Prithee, System default",
+      "noResults": "Prithee, No matching fonts",
+      "note": "Prithee, Shows local system fonts (if available), otherwise a detected fallback list.",
+      "unsupported": "Prithee, Your browser does not support Local Font Access (queryLocalFonts).",
+      "permissionDenied": "Prithee, Access to local fonts was denied or blocked.",
+      "empty": "Prithee, No local fonts were returned.",
+      "loadFailed": "Prithee, Could not load local fonts: {error}"
+    },
+    "guideHtml": "<div class=\"row\"><label>Prithee, User Guide</label><div><h5>Prithee, Overview</h5><ul><li>Prithee, Start page with search, favorites, to-do, notes, weather, news.</li><li>Prithee, All local: data stays in your browser (localStorage).</li></ul><h5>Prithee, Shortcuts</h5><ul><li>Prithee, Ctrl/Cmd+K: open command palette</li><li>Prithee, 1-9: open first 9 favorites (when not typing)</li><li>Prithee, / : focus search (also via palette)</li><li>Prithee, Enter in search: start search</li><li>Prithee, ESC: close modals</li><li>Prithee, Palette: quick actions for widgets, theme, background, data, favorites</li><li>Prithee, Palette: key C switches card style, \"Reset header colors\" resets search & clock</li></ul><h5>Prithee, Search & Autocomplete</h5><ul><li>Prithee, Bangs: !gPrithee,  !ddgPrithee,  !bingPrithee,  !ytPrithee,  !wikiPrithee,  !maps</li><li>Prithee, Custom shortcuts: JSON in settings; {q}Prithee,  as placeholder</li><li>Prithee, Autocomplete: bangs, shortcuts, recent searches, wordlist (global + preset)</li><li>Prithee, Tab accepts suggestion, Enter starts search</li></ul><h5>Prithee, Tiles</h5><ul><li>Prithee, Drag & drop to sort, click to open</li><li>Prithee, + Tile: add a new favorite</li><li>Prithee, Reset: restore default favorites</li></ul><h5>Prithee, Widgets & Layout</h5><ul><li>Prithee, Visibility per widget</li><li>Prithee, Card style is global (glass, solid, transparent, soft minimal)</li><li>Prithee, Custom colors for clock/search; reset restores style defaults</li><li>Prithee, Widget colors & \"Tint widgets\" set the accent per card</li></ul><h5>Prithee, Background</h5><ul><li>Prithee, Presets, uploads, collections, rotation (time/theme/interval)</li><li>Prithee, Accent color is extracted from the active background</li></ul><h5>Prithee, Data</h5><ul><li>Prithee, Export/Import as JSON</li><li>Prithee, Load data presets (assets/presets/*.json in the repo)</li></ul></div></div>"
+  },
+  "onboarding": {
+    "title": "Prithee, Start setup",
+    "progress": "Prithee, Step {current}Prithee,  of {total}",
+    "skip": "Prithee, Skip setup",
+    "close": "Prithee, Close",
+    "preset": {
+      "title": "Prithee, Choose preset",
+      "hint": "Prithee, Pick a preset or skip this step.",
+      "apply": "Prithee, Apply preset",
+      "meta": "Prithee, Apply a preset or skip.",
+      "optional": "Prithee, Preset optional.",
+      "context": "Prithee, Setup preset"
+    },
+    "appearance": {
+      "title": "Prithee, Appearance",
+      "theme": "Prithee, Theme",
+      "cardStyle": "Prithee, Card style",
+      "background": "Prithee, Background",
+      "rotation": "Prithee, Enable rotation",
+      "keepCurrent": "Prithee, Keep current image"
+    },
+    "search": {
+      "title": "Prithee, Search",
+      "engine": "Prithee, Default search engine"
+    },
+    "widgets": {
+      "title": "Prithee, Widgets",
+      "defaultTransport": "Prithee, Default stop (transport)",
+      "tint": "Prithee, Tint widgets with accent"
+    },
+    "weather": {
+      "title": "Prithee, Weather",
+      "defaultCity": "Prithee, Default city",
+      "note": "Prithee, You can change everything later in settings."
+    },
+    "prev": "Prithee, Back",
+    "next": "Prithee, Next",
+    "finish": "Prithee, Done"
+  },
+  "palette": {
+    "placeholder": "Prithee, Search command or favorite... (Ctrl/+K)",
+    "groups": {
+      "command": "Prithee, Commands",
+      "settings": "Prithee, Settings",
+      "search": "Prithee, Search",
+      "widgets": "Prithee, Widgets",
+      "theme": "Prithee, Theme & Background",
+      "data": "Prithee, Data",
+      "tiles": "Prithee, Tiles",
+      "tile": "Prithee, Favorites",
+      "quick": "Prithee, Quick"
+    },
+    "search": {
+      "focus": "Prithee, Focus search",
+      "start": "Prithee, Start search",
+      "engine": "Prithee, Engine: {engine}"
+    },
+    "settings": {
+      "open": "Prithee, Open settings",
+      "general": "Prithee, Settings: General",
+      "background": "Prithee, Settings: Background",
+      "search": "Prithee, Settings: Search",
+      "widgets": "Prithee, Settings: Widgets",
+      "data": "Prithee, Settings: Data",
+      "guide": "Prithee, Settings: Guide"
+    },
+    "theme": {
+      "cycle": "Prithee, Cycle theme (Auto/Dark/Light)",
+      "auto": "Prithee, Theme: Auto",
+      "dark": "Prithee, Theme: Dark",
+      "light": "Prithee, Theme: Light",
+      "resetHeader": "Prithee, Reset header colors",
+      "recalcAccent": "Prithee, Recalculate accent colors"
+    },
+    "cardStyle": {
+      "glass": "Prithee, Card style: Glass",
+      "solid": "Prithee, Card style: Solid",
+      "transparent": "Prithee, Card style: Transparent",
+      "minimal": "Prithee, Card style: Minimal"
+    },
+    "background": {
+      "toggleRotation": "Prithee, Background: Toggle rotation",
+      "toggleLock": "Prithee, Background: Lock/unlock rotation",
+      "preset": "Prithee, Background: {label}"
+    },
+    "widgets": {
+      "showAll": "Prithee, Widgets: Show all",
+      "hideAll": "Prithee, Widgets: Hide all",
+      "toggle": "Prithee, Widget: Toggle {widget}",
+      "focus": "Prithee, Widget: Focus {widget}"
+    },
+    "quick": {
+      "addTodo": "Prithee, Add todo",
+      "addNote": "Prithee, Add note"
+    },
+    "tiles": {
+      "add": "Prithee, Add tile",
+      "reset": "Prithee, Reset tiles"
+    },
+    "refresh": {
+      "weather": "Prithee, Refresh weather",
+      "news": "Prithee, Refresh news",
+      "transport": "Prithee, Refresh transport",
+      "system": "Prithee, Refresh system",
+      "all": "Prithee, Refresh all widgets"
+    },
+    "data": {
+      "export": "Prithee, Export data",
+      "import": "Prithee, Import data",
+      "preset": "Prithee, Data preset: {label}"
+    }
+  },
+  "widgets": {
+    "todo": "Prithee, To-Do",
+    "notes": "Prithee, Notes",
+    "tiles": "Prithee, Favorites",
+    "weather": "Prithee, Weather",
+    "transport": "Prithee, Transport",
+    "quote": "Prithee, Quote",
+    "recent": "Prithee, Recent",
+    "system": "Prithee, System",
+    "news": "Prithee, News"
+  },
+  "background": {
+    "currentPreview": "Prithee, Current background image",
+    "none": "Prithee, No background",
+    "noImageSelected": "Prithee, No image selected",
+    "rotationResume": "Prithee, Resume rotation",
+    "rotationLock": "Prithee, Lock rotation",
+    "tone": "Prithee, Tone: {tone}",
+    "presets": {
+      "empty": "Prithee, No presets available."
+    },
+    "favorites": {
+      "empty": "Prithee, No favorites yet. Mark presets or uploads."
+    },
+    "subtitle": {
+      "preset": "Prithee, Preset"
+    },
+    "upload": "Prithee, Upload",
+    "uploadDrop": "Prithee, Drop files here",
+    "uploadBrowse": "Prithee, Choose file",
+    "uploadNote": "Prithee, We resize images automatically (16:9, max 2560px) and store them locally. Max {max}Prithee,  files.",
+    "uploads": {
+      "empty": "Prithee, No uploads yet."
+    },
+    "collections": {
+      "count": "{count}Prithee,  sources",
+      "random": "Prithee, Random",
+      "cache": "Prithee, Save offline",
+      "viewSources": "Prithee, View sources",
+      "useRotation": "Prithee, Use for rotation",
+      "newLabel": "Prithee, New collection",
+      "namePlaceholder": "Prithee, My collection",
+      "urlsPlaceholder": "Prithee, One image URL per line",
+      "clear": "Prithee, Clear fields",
+      "note": "Prithee, URLs are stored locally. Remote sources need CORS for images.",
+      "empty": "Prithee, No collections yet.",
+      "minOneUrl": "Prithee, Enter at least one URL.",
+      "emptyCollection": "Prithee, Collection is empty.",
+      "saved": "Prithee, Collection saved locally.",
+      "defaultName": "Prithee, Collection {index}"
+    },
+    "rotation": {
+      "optionPreset": "Prithee, Preset: {label}",
+      "optionUpload": "Prithee, Upload: {label}",
+      "optionFavorite": "Prithee, Favorite: {label}",
+      "optionCustom": "Prithee, Custom: saved URL",
+      "noFixed": "Prithee, No fixed image",
+      "enabled": "Prithee, Enable automatic rotation",
+      "locked": "Prithee, Rotation is currently locked.",
+      "active": "Prithee, Backgrounds change according to the schedule.",
+      "mode": "Prithee, Mode",
+      "modeTime": "Prithee, Time-based",
+      "modeInterval": "Prithee, Interval",
+      "modeTheme": "Prithee, Theme",
+      "intervalLabel": "Prithee, Interval in minutes",
+      "intervalNote": "Prithee, Only relevant in interval mode.",
+      "sourcesLabel": "Prithee, Sources for random",
+      "scheduleLabel": "Prithee, Schedule",
+      "themePlan": "Prithee, Theme plan",
+      "themeLight": "Prithee, Theme light",
+      "themeDark": "Prithee, Theme dark",
+      "themeNote": "Prithee, Theme plan is used when mode is Theme.",
+      "slot": {
+        "morning": "Prithee, Morning 05-11",
+        "day": "Prithee, Day 11-17",
+        "evening": "Prithee, Evening 17-21",
+        "night": "Prithee, Night 21-05"
+      }
+    },
+    "custom": {
+      "label": "Prithee, Custom image URL",
+      "placeholder": "https://example.com/image.jpg",
+      "note": "Prithee, URL is stored locally. Server must allow CORS for images.",
+      "enterUrl": "Prithee, Please enter a URL.",
+      "title": "Prithee, Custom URL",
+      "subtitle": "Prithee, Custom"
+    },
+    "actions": {
+      "apply": "Prithee, Apply",
+      "favorite": "Prithee, Favorite",
+      "favorited": "Prithee, Favorited",
+      "random": "Prithee, Load random",
+      "undo": "Prithee, Restore last image",
+      "lock": "Prithee, Lock rotation",
+      "tint": "Prithee, Tint widgets"
+    },
+    "tabs": {
+      "presets": "Prithee, Presets",
+      "favorites": "Prithee, Favorites",
+      "uploads": "Prithee, Uploads",
+      "collections": "Prithee, Collections",
+      "rotation": "Prithee, Rotation",
+      "custom": "Prithee, Custom"
+    },
+    "loadError": "Prithee, Load failed. Check CORS settings.",
+    "noneAvailable": "Prithee, No backgrounds available.",
+    "imageLoadError": "Prithee, Image could not be loaded."
+  },
+  "data": {
+    "import": {
+      "confirm": "Prithee, Import data? Existing entries will be overwritten.",
+      "failed": "Prithee, Import failed: {error}"
+    },
+    "presets": {
+      "none": "Prithee, No preset available.",
+      "missingFile": "Prithee, Preset file missing.",
+      "fileMissing": "Prithee, File not found",
+      "invalid": "Prithee, Invalid preset",
+      "confirmApply": "Prithee, Apply {context}Prithee,  \"{name}Prithee, \"? Existing entries will be overwritten.",
+      "loadFailed": "Prithee, Preset load failed: {error}",
+      "loading": "Prithee, Loading presets...",
+      "noneFound": "Prithee, No presets found",
+      "hint": "Prithee, Place exported JSONs under assets/presets/ (manifest: assets/data-presets.json) or locally under assets/user-presets/.",
+      "hintShort": "Prithee, Add a preset under assets/presets/ or assets/user-presets/.",
+      "userPrefix": "Prithee, User: ",
+      "userApply": "Prithee, Apply local preset",
+      "apply": "Prithee, Apply preset",
+      "noneSelected": "Prithee, No preset selected.",
+      "label": "Prithee, Preset",
+      "defaultLabel": "Prithee, Preset {index}",
+      "userDefault": "Prithee, User preset {index}",
+      "userDescription": "Prithee, Local preset from assets/user-presets/",
+      "tags": "Prithee,  (Tags: {tags}Prithee, )"
+    }
+  },
+  "dialogs": {
+    "alertTitle": "Prithee, Notice",
+    "confirmTitle": "Prithee, Confirm",
+    "promptTitle": "Prithee, Input"
+  }
+}

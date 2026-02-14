@@ -1,0 +1,521 @@
+{
+  "app": {
+    "title": "STARTPAGE::ROOT"
+  },
+  "common": {
+    "link": "LINK",
+    "delete": "DELETE",
+    "remove": "REMOVE",
+    "save": "SAVE",
+    "loading": "LOADING...",
+    "loadError": "LOAD_FAILED",
+    "noMatches": "NO_MATCHES",
+    "emptyDash": "-",
+    "dash": "-",
+    "cancel": "CANCEL",
+    "ok": "OK",
+    "default": "DEFAULT"
+  },
+  "header": {
+    "themeToggleTitle": "DARK/LIGHT",
+    "settingsTitle": "SETTINGS",
+    "themeAria": "TOGGLE_THEME",
+    "settingsAria": "OPEN_SETTINGS"
+  },
+  "search": {
+    "placeholder": "SEARCH..._(E.G._!yt_LO-FI,_!etc_HOME)",
+    "engine": {
+      "google": "GOOGLE",
+      "ddg": "DUCKDUCKGO",
+      "bing": "BING",
+      "yt": "YOUTUBE",
+      "wikipedia": "WIKIPEDIA",
+      "maps": "GOOGLE_MAPS"
+    },
+    "suggest": {
+      "bang": "{bang} (Bang)",
+      "shortcut": "{shortcut} (Shortcut)",
+      "type": {
+        "bang": "BANG",
+        "shortcut": "SHORTCUT",
+        "recent": "RECENT",
+        "word": "WORD"
+      }
+    },
+    "recentShortcut": "SHORTCUT_{shortcut}_-_{query}",
+    "recentSearch": "SEARCH_({engine})_-_{query}",
+    "submitAria": "START_SEARCH"
+  },
+  "todo": {
+    "title": "TO-DO",
+    "placeholder": "NEW_TASK...",
+    "add": "ADD",
+    "clearDoneTitle": "REMOVE_COMPLETED",
+    "clearDone": "_CLEAR",
+    "doneAria": "DONE",
+    "prompt": "TODO"
+  },
+  "notes": {
+    "title": "NOTES",
+    "placeholder": "JOT_SOMETHING_DOWN...",
+    "prompt": "NOTE"
+  },
+  "tiles": {
+    "title": "FAVORITES",
+    "add": "+_TILE",
+    "resetTitle": "RESTORE_DEFAULTS",
+    "edit": "EDIT",
+    "promptTitle": "TITLE",
+    "promptUrl": "URL",
+    "invalidUrl": "INVALID_URL",
+    "promptTitleNew": "TILE_TITLE",
+    "promptUrlNew": "URL_(https://...)",
+    "resetConfirm": "RESTORE_DEFAULT_TILES?",
+    "dialog": {
+      "titleLabel": "TITLE",
+      "urlLabel": "URL",
+      "save": "SAVE"
+    },
+    "resetAria": "RESET_TILES"
+  },
+  "weather": {
+    "title": "WEATHER_TODAY",
+    "cityPlaceholder": "ENTER_CITY...",
+    "setCity": "SET",
+    "pickLocation": "PICK_A_LOCATION...",
+    "source": "SOURCE:_OPEN-METEO",
+    "loading": "LOADING_WEATHER...",
+    "prompt": "ENTER_A_LOCATION_TO_LOAD_WEATHER.",
+    "tempEmpty": "-C",
+    "tempEmptyShort": "-",
+    "minmaxEmpty": "-_/_-_C",
+    "noForecast": "NO_FORECAST",
+    "errors": {
+      "geocodingFailed": "GEOCODING_FAILED",
+      "locationNotFound": "LOCATION_NOT_FOUND",
+      "cityMissing": "CITY_MISSING",
+      "fetchFailed": "WEATHER_FETCH_FAILED",
+      "loadFailed": "WEATHER_COULD_NOT_BE_LOADED"
+    },
+    "codes": {
+      "0": "CLEAR",
+      "1": "MOSTLY_CLEAR",
+      "2": "PARTLY_CLOUDY",
+      "3": "CLOUDY",
+      "45": "FOG",
+      "48": "FOG",
+      "51": "DRIZZLE",
+      "53": "DRIZZLE",
+      "55": "DRIZZLE",
+      "61": "RAIN",
+      "63": "RAIN",
+      "65": "HEAVY_RAIN",
+      "71": "SNOW",
+      "80": "SHOWERS",
+      "95": "THUNDERSTORM",
+      "default": "WEATHER"
+    }
+  },
+  "transport": {
+    "title": "TRANSPORT",
+    "durationAria": "DURATION",
+    "duration30": "30_MIN",
+    "duration60": "60_MIN",
+    "duration90": "90_MIN",
+    "duration120": "120_MIN",
+    "refreshTitle": "RELOAD",
+    "searchPlaceholder": "SEARCH_STATION...",
+    "noneSelected": "NO_STATION_SELECTED",
+    "source": "SOURCE:_TRANSPORT.REST",
+    "minQuery": "AT_LEAST_{count}_CHARACTERS",
+    "noMatches": "NO_MATCHES",
+    "proxyTimeout": "PROXY_TIMEOUT",
+    "loadError": "LOAD_FAILED",
+    "noDepartures": "NO_DEPARTURES",
+    "selectStation": "SELECT_A_STATION...",
+    "type": {
+      "station": "STATION",
+      "stop": "STOP"
+    },
+    "platform": "PLATFORM_{platform}",
+    "cancelled": "CANCELLED",
+    "refreshAria": "REFRESH_TRANSPORT"
+  },
+  "quote": {
+    "title": "QUOTE_/_NERD_NUDGE",
+    "list": [
+      "MOVE_FAST,_REFACTOR_OFTEN.",
+      "ACCESSIBILITY_ISN'T_A_FEATURE_-_IT'S_THE_DEFAULT.",
+      "DONE_>_PERFECT._ITERATE.",
+      "IF_IT'S_NOT_MONITORED,_IT_DOESN'T_EXIST.",
+      "GOOD_UX_IS_INVISIBLE._BAD_UX_IS_UNFORGETTABLE.",
+      "MAKE_IT_WORK,_MAKE_IT_RIGHT,_MAKE_IT_FAST.",
+      "SMALL_STEPS._MASSIVE_OUTCOMES.",
+      "SIMPLICITY_SCALES._COMPLEXITY_FAILS.",
+      "AUTOMATE_THE_BORING_STUFF.",
+      "MEASURE_TWICE,_DEPLOY_ONCE."
+    ]
+  },
+  "recent": {
+    "title": "RECENT",
+    "note": "NOTE:_ONLY_ACTIONS_FROM_THIS_START_PAGE_(CLICKED_TILES_&_SEARCHES)."
+  },
+  "system": {
+    "title": "SYSTEM_STATUS",
+    "loading": "LOADING...",
+    "ram": "RAM:_{value}_GB",
+    "cpu": "CPU_CORES:_{value}",
+    "network": "NETWORK:_{downlink}_MBIT/S_{type}{saveData}",
+    "saveData": "_SAVEDATA",
+    "noData": "NO_DATA_AVAILABLE"
+  },
+  "news": {
+    "title": "NEWS",
+    "refreshTitle": "RELOAD",
+    "source": "RSS_VIA_STARTPAGE_PROXY_(CORS_PROXY)",
+    "noItems": "NO_ITEMS",
+    "refreshAria": "REFRESH_NEWS"
+  },
+  "footer": {
+    "tagline": "LOCAL-FIRST_DASHBOARD_STORES_ONLY_IN_THE_BROWSER_(LOCALSTORAGE)"
+  },
+  "settings": {
+    "title": "SETTINGS",
+    "close": "CLOSE",
+    "tabs": {
+      "general": "GENERAL",
+      "background": "BACKGROUND_&_APPEARANCE",
+      "search": "SEARCH_&_FEEDS",
+      "widgets": "WIDGETS",
+      "data": "DATA",
+      "guide": "GUIDE"
+    },
+    "theme": {
+      "label": "THEME",
+      "auto": "AUTO_(SYSTEM)",
+      "dark": "DARK",
+      "light": "LIGHT"
+    },
+    "background": {
+      "label": "BACKGROUND"
+    },
+    "search": {
+      "engines": "SEARCH_ENGINES",
+      "bangsNote": "Supported bang shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Custom shortcuts below",
+      "wordlistLabel": "AUTOCOMPLETE_WORDLIST",
+      "wordlistPlaceholder": "TERMS_LINE_BY_LINE_OR_COMMA-SEPARATED",
+      "wordlistSave": "SAVE",
+      "wordlistReset": "CLEAR",
+      "wordlistNote": "GLOBAL_WORDLIST_(ASSETS/WORDLIST.JSON)_AND_PRESET_WORDLIST_ARE_MERGED._LEAVE_EMPTY_TO_USE_ONLY_THE_GLOBAL_LIST.",
+      "shortcutsLabel": "CUSTOM_!shortcuts",
+      "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
+      "shortcutsNote": "USE_<code>{q}</code>_AS_PLACEHOLDER_FOR_THE_SEARCH_PHRASE._WITHOUT_<code>{q}</code>,_<code>?Q=...</code>_IS_APPENDED.",
+      "feedsLabel": "CUSTOM_RSS_FEEDS",
+      "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
+      "feedsNote": "JSON:_NAME_-_FEED_URL._THIS_LIST_IS_MERGED_WITH_THE_DEFAULT_FEEDS.",
+      "invalidShortcuts": "INVALID_SHORTCUTS_JSON",
+      "invalidFeeds": "INVALID_FEEDS_JSON"
+    },
+    "widgets": {
+      "visible": "SHOW_WIDGETS",
+      "defaultCityLabel": "DEFAULT_CITY_(WEATHER)",
+      "defaultCityPlaceholder": "E.G._HANOVER",
+      "defaultTransportLabel": "DEFAULT_STOP_(TRANSPORT)",
+      "defaultTransportPlaceholder": "SEARCH_STATION...",
+      "cardStyleLabel": "CARD_STYLE",
+      "cardStyleGlass": "GLASS_(DEFAULT)",
+      "cardStyleSolid": "SOLID",
+      "cardStyleTransparent": "TRANSPARENT",
+      "cardStyleMinimal": "SOFT_MINIMAL",
+      "cardStyleNote": "APPLIES_TO_ALL_WIDGETS_&_FAVORITE_TILES.",
+      "clockColorLabel": "TIME_&_DATE",
+      "searchColorLabel": "SEARCH",
+      "reset": "RESET",
+      "clockColorNote": "SETS_THE_HEADER_BACKGROUND_(EMPTY_=_STYLE_DEFAULT).",
+      "searchColorNote": "COLOR_FOR_THE_SEARCH_AREA_(EMPTY_=_STYLE_DEFAULT).",
+      "widgetColorsLabel": "WIDGET_COLORS"
+    },
+    "data": {
+      "label": "DATA",
+      "export": "EXPORT_(.JSON)",
+      "import": "IMPORT_(.JSON)",
+      "presetsLabel": "DATA_PRESETS",
+      "applyPreset": "LOAD_PRESET",
+      "presetMeta": "PRESETS_ARE_EXPORTED_JSONS_UNDER_ASSETS/PRESETS/._USER_PRESETS_FROM_ASSETS/USER-PRESETS/_ARE_MERGED_AUTOMATICALLY.",
+      "setupLabel": "SETUP",
+      "restartOnboarding": "RESTART_SETUP",
+      "restartNote": "REOPENS_THE_COMPACT_SETUP_DIALOG.",
+      "noteLabel": "NOTE",
+      "noteText": "EXPORT_STORES_ALL_SETTINGS_&_DATA_LOCALLY_AS_JSON._IMPORT_OVERWRITES_EXISTING_ENTRIES."
+    },
+    "language": {
+      "label": "LANGUAGE",
+      "auto": "AUTO_(SYSTEM)"
+    },
+    "font": {
+      "label": "FONT",
+      "searchPlaceholder": "SEARCH_FONTS...",
+      "loadLocal": "LOAD_SYSTEM_FONTS",
+      "systemDefault": "SYSTEM_DEFAULT",
+      "noResults": "NO_MATCHING_FONTS",
+      "note": "SHOWS_LOCAL_SYSTEM_FONTS_(IF_AVAILABLE),_OTHERWISE_A_DETECTED_FALLBACK_LIST.",
+      "unsupported": "YOUR_BROWSER_DOES_NOT_SUPPORT_LOCAL_FONT_ACCESS_(QUERYLOCALFONTS).",
+      "permissionDenied": "ACCESS_TO_LOCAL_FONTS_WAS_DENIED_OR_BLOCKED.",
+      "empty": "NO_LOCAL_FONTS_WERE_RETURNED.",
+      "loadFailed": "COULD_NOT_LOAD_LOCAL_FONTS:_{error}"
+    },
+    "guideHtml": "<div class=\"row\"><label>USER_GUIDE</label><div><h5>OVERVIEW</h5><ul><li>START_PAGE_WITH_SEARCH,_FAVORITES,_TO-DO,_NOTES,_WEATHER,_NEWS.</li><li>ALL_LOCAL:_DATA_STAYS_IN_YOUR_BROWSER_(LOCALSTORAGE).</li></ul><h5>SHORTCUTS</h5><ul><li>CTRL/CMD+K:_OPEN_COMMAND_PALETTE</li><li>1-9:_OPEN_FIRST_9_FAVORITES_(WHEN_NOT_TYPING)</li><li>/_:_FOCUS_SEARCH_(ALSO_VIA_PALETTE)</li><li>ENTER_IN_SEARCH:_START_SEARCH</li><li>ESC:_CLOSE_MODALS</li><li>PALETTE:_QUICK_ACTIONS_FOR_WIDGETS,_THEME,_BACKGROUND,_DATA,_FAVORITES</li><li>PALETTE:_KEY_C_SWITCHES_CARD_STYLE,_\"RESET_HEADER_COLORS\"_RESETS_SEARCH_&_CLOCK</li></ul><h5>SEARCH_&_AUTOCOMPLETE</h5><ul><li>BANGS:_!g_!ddg_!bing_!yt_!wiki_!maps</li><li>CUSTOM_SHORTCUTS:_JSON_IN_SETTINGS;_{q}_AS_PLACEHOLDER</li><li>AUTOCOMPLETE:_BANGS,_SHORTCUTS,_RECENT_SEARCHES,_WORDLIST_(GLOBAL_+_PRESET)</li><li>TAB_ACCEPTS_SUGGESTION,_ENTER_STARTS_SEARCH</li></ul><h5>TILES</h5><ul><li>DRAG_&_DROP_TO_SORT,_CLICK_TO_OPEN</li><li>+_TILE:_ADD_A_NEW_FAVORITE</li><li>RESET:_RESTORE_DEFAULT_FAVORITES</li></ul><h5>WIDGETS_&_LAYOUT</h5><ul><li>VISIBILITY_PER_WIDGET</li><li>CARD_STYLE_IS_GLOBAL_(GLASS,_SOLID,_TRANSPARENT,_SOFT_MINIMAL)</li><li>CUSTOM_COLORS_FOR_CLOCK/SEARCH;_RESET_RESTORES_STYLE_DEFAULTS</li><li>WIDGET_COLORS_&_\"TINT_WIDGETS\"_SET_THE_ACCENT_PER_CARD</li></ul><h5>BACKGROUND</h5><ul><li>PRESETS,_UPLOADS,_COLLECTIONS,_ROTATION_(TIME/THEME/INTERVAL)</li><li>ACCENT_COLOR_IS_EXTRACTED_FROM_THE_ACTIVE_BACKGROUND</li></ul><h5>DATA</h5><ul><li>EXPORT/IMPORT_AS_JSON</li><li>LOAD_DATA_PRESETS_(ASSETS/PRESETS/*.JSON_IN_THE_REPO)</li></ul></div></div>"
+  },
+  "onboarding": {
+    "title": "START_SETUP",
+    "progress": "STEP_{current}_OF_{total}",
+    "skip": "SKIP_SETUP",
+    "close": "CLOSE",
+    "preset": {
+      "title": "CHOOSE_PRESET",
+      "hint": "PICK_A_PRESET_OR_SKIP_THIS_STEP.",
+      "apply": "APPLY_PRESET",
+      "meta": "APPLY_A_PRESET_OR_SKIP.",
+      "optional": "PRESET_OPTIONAL.",
+      "context": "SETUP_PRESET"
+    },
+    "appearance": {
+      "title": "APPEARANCE",
+      "theme": "THEME",
+      "cardStyle": "CARD_STYLE",
+      "background": "BACKGROUND",
+      "rotation": "ENABLE_ROTATION",
+      "keepCurrent": "KEEP_CURRENT_IMAGE"
+    },
+    "search": {
+      "title": "SEARCH",
+      "engine": "DEFAULT_SEARCH_ENGINE"
+    },
+    "widgets": {
+      "title": "WIDGETS",
+      "defaultTransport": "DEFAULT_STOP_(TRANSPORT)",
+      "tint": "TINT_WIDGETS_WITH_ACCENT"
+    },
+    "weather": {
+      "title": "WEATHER",
+      "defaultCity": "DEFAULT_CITY",
+      "note": "YOU_CAN_CHANGE_EVERYTHING_LATER_IN_SETTINGS."
+    },
+    "prev": "BACK",
+    "next": "NEXT",
+    "finish": "DONE"
+  },
+  "palette": {
+    "placeholder": "SEARCH_COMMAND_OR_FAVORITE..._(CTRL/+K)",
+    "groups": {
+      "command": "COMMANDS",
+      "settings": "SETTINGS",
+      "search": "SEARCH",
+      "widgets": "WIDGETS",
+      "theme": "THEME_&_BACKGROUND",
+      "data": "DATA",
+      "tiles": "TILES",
+      "tile": "FAVORITES",
+      "quick": "QUICK"
+    },
+    "search": {
+      "focus": "FOCUS_SEARCH",
+      "start": "START_SEARCH",
+      "engine": "ENGINE:_{engine}"
+    },
+    "settings": {
+      "open": "OPEN_SETTINGS",
+      "general": "SETTINGS:_GENERAL",
+      "background": "SETTINGS:_BACKGROUND",
+      "search": "SETTINGS:_SEARCH",
+      "widgets": "SETTINGS:_WIDGETS",
+      "data": "SETTINGS:_DATA",
+      "guide": "SETTINGS:_GUIDE"
+    },
+    "theme": {
+      "cycle": "CYCLE_THEME_(AUTO/DARK/LIGHT)",
+      "auto": "THEME:_AUTO",
+      "dark": "THEME:_DARK",
+      "light": "THEME:_LIGHT",
+      "resetHeader": "RESET_HEADER_COLORS",
+      "recalcAccent": "RECALCULATE_ACCENT_COLORS"
+    },
+    "cardStyle": {
+      "glass": "CARD_STYLE:_GLASS",
+      "solid": "CARD_STYLE:_SOLID",
+      "transparent": "CARD_STYLE:_TRANSPARENT",
+      "minimal": "CARD_STYLE:_MINIMAL"
+    },
+    "background": {
+      "toggleRotation": "BACKGROUND:_TOGGLE_ROTATION",
+      "toggleLock": "BACKGROUND:_LOCK/UNLOCK_ROTATION",
+      "preset": "BACKGROUND:_{label}"
+    },
+    "widgets": {
+      "showAll": "WIDGETS:_SHOW_ALL",
+      "hideAll": "WIDGETS:_HIDE_ALL",
+      "toggle": "WIDGET:_TOGGLE_{widget}",
+      "focus": "WIDGET:_FOCUS_{widget}"
+    },
+    "quick": {
+      "addTodo": "ADD_TODO",
+      "addNote": "ADD_NOTE"
+    },
+    "tiles": {
+      "add": "ADD_TILE",
+      "reset": "RESET_TILES"
+    },
+    "refresh": {
+      "weather": "REFRESH_WEATHER",
+      "news": "REFRESH_NEWS",
+      "transport": "REFRESH_TRANSPORT",
+      "system": "REFRESH_SYSTEM",
+      "all": "REFRESH_ALL_WIDGETS"
+    },
+    "data": {
+      "export": "EXPORT_DATA",
+      "import": "IMPORT_DATA",
+      "preset": "DATA_PRESET:_{label}"
+    }
+  },
+  "widgets": {
+    "todo": "TO-DO",
+    "notes": "NOTES",
+    "tiles": "FAVORITES",
+    "weather": "WEATHER",
+    "transport": "TRANSPORT",
+    "quote": "QUOTE",
+    "recent": "RECENT",
+    "system": "SYSTEM",
+    "news": "NEWS"
+  },
+  "background": {
+    "currentPreview": "CURRENT_BACKGROUND_IMAGE",
+    "none": "NO_BACKGROUND",
+    "noImageSelected": "NO_IMAGE_SELECTED",
+    "rotationResume": "RESUME_ROTATION",
+    "rotationLock": "LOCK_ROTATION",
+    "tone": "TONE:_{tone}",
+    "presets": {
+      "empty": "NO_PRESETS_AVAILABLE."
+    },
+    "favorites": {
+      "empty": "NO_FAVORITES_YET._MARK_PRESETS_OR_UPLOADS."
+    },
+    "subtitle": {
+      "preset": "PRESET"
+    },
+    "upload": "UPLOAD",
+    "uploadDrop": "DROP_FILES_HERE",
+    "uploadBrowse": "CHOOSE_FILE",
+    "uploadNote": "WE_RESIZE_IMAGES_AUTOMATICALLY_(16:9,_MAX_2560PX)_AND_STORE_THEM_LOCALLY._MAX_{max}_FILES.",
+    "uploads": {
+      "empty": "NO_UPLOADS_YET."
+    },
+    "collections": {
+      "count": "{count}_SOURCES",
+      "random": "RANDOM",
+      "cache": "SAVE_OFFLINE",
+      "viewSources": "VIEW_SOURCES",
+      "useRotation": "USE_FOR_ROTATION",
+      "newLabel": "NEW_COLLECTION",
+      "namePlaceholder": "MY_COLLECTION",
+      "urlsPlaceholder": "ONE_IMAGE_URL_PER_LINE",
+      "clear": "CLEAR_FIELDS",
+      "note": "URLS_ARE_STORED_LOCALLY._REMOTE_SOURCES_NEED_CORS_FOR_IMAGES.",
+      "empty": "NO_COLLECTIONS_YET.",
+      "minOneUrl": "ENTER_AT_LEAST_ONE_URL.",
+      "emptyCollection": "COLLECTION_IS_EMPTY.",
+      "saved": "COLLECTION_SAVED_LOCALLY.",
+      "defaultName": "COLLECTION_{index}"
+    },
+    "rotation": {
+      "optionPreset": "PRESET:_{label}",
+      "optionUpload": "UPLOAD:_{label}",
+      "optionFavorite": "FAVORITE:_{label}",
+      "optionCustom": "CUSTOM:_SAVED_URL",
+      "noFixed": "NO_FIXED_IMAGE",
+      "enabled": "ENABLE_AUTOMATIC_ROTATION",
+      "locked": "ROTATION_IS_CURRENTLY_LOCKED.",
+      "active": "BACKGROUNDS_CHANGE_ACCORDING_TO_THE_SCHEDULE.",
+      "mode": "MODE",
+      "modeTime": "TIME-BASED",
+      "modeInterval": "INTERVAL",
+      "modeTheme": "THEME",
+      "intervalLabel": "INTERVAL_IN_MINUTES",
+      "intervalNote": "ONLY_RELEVANT_IN_INTERVAL_MODE.",
+      "sourcesLabel": "SOURCES_FOR_RANDOM",
+      "scheduleLabel": "SCHEDULE",
+      "themePlan": "THEME_PLAN",
+      "themeLight": "THEME_LIGHT",
+      "themeDark": "THEME_DARK",
+      "themeNote": "THEME_PLAN_IS_USED_WHEN_MODE_IS_THEME.",
+      "slot": {
+        "morning": "MORNING_05-11",
+        "day": "DAY_11-17",
+        "evening": "EVENING_17-21",
+        "night": "NIGHT_21-05"
+      }
+    },
+    "custom": {
+      "label": "CUSTOM_IMAGE_URL",
+      "placeholder": "https://example.com/image.jpg",
+      "note": "URL_IS_STORED_LOCALLY._SERVER_MUST_ALLOW_CORS_FOR_IMAGES.",
+      "enterUrl": "PLEASE_ENTER_A_URL.",
+      "title": "CUSTOM_URL",
+      "subtitle": "CUSTOM"
+    },
+    "actions": {
+      "apply": "APPLY",
+      "favorite": "FAVORITE",
+      "favorited": "FAVORITED",
+      "random": "LOAD_RANDOM",
+      "undo": "RESTORE_LAST_IMAGE",
+      "lock": "LOCK_ROTATION",
+      "tint": "TINT_WIDGETS"
+    },
+    "tabs": {
+      "presets": "PRESETS",
+      "favorites": "FAVORITES",
+      "uploads": "UPLOADS",
+      "collections": "COLLECTIONS",
+      "rotation": "ROTATION",
+      "custom": "CUSTOM"
+    },
+    "loadError": "LOAD_FAILED._CHECK_CORS_SETTINGS.",
+    "noneAvailable": "NO_BACKGROUNDS_AVAILABLE.",
+    "imageLoadError": "IMAGE_COULD_NOT_BE_LOADED."
+  },
+  "data": {
+    "import": {
+      "confirm": "IMPORT_DATA?_EXISTING_ENTRIES_WILL_BE_OVERWRITTEN.",
+      "failed": "IMPORT_FAILED:_{error}"
+    },
+    "presets": {
+      "none": "NO_PRESET_AVAILABLE.",
+      "missingFile": "PRESET_FILE_MISSING.",
+      "fileMissing": "FILE_NOT_FOUND",
+      "invalid": "INVALID_PRESET",
+      "confirmApply": "APPLY_{context}_\"{name}\"?_EXISTING_ENTRIES_WILL_BE_OVERWRITTEN.",
+      "loadFailed": "PRESET_LOAD_FAILED:_{error}",
+      "loading": "LOADING_PRESETS...",
+      "noneFound": "NO_PRESETS_FOUND",
+      "hint": "PLACE_EXPORTED_JSONS_UNDER_ASSETS/PRESETS/_(MANIFEST:_ASSETS/DATA-PRESETS.JSON)_OR_LOCALLY_UNDER_ASSETS/USER-PRESETS/.",
+      "hintShort": "ADD_A_PRESET_UNDER_ASSETS/PRESETS/_OR_ASSETS/USER-PRESETS/.",
+      "userPrefix": "USER:_",
+      "userApply": "APPLY_LOCAL_PRESET",
+      "apply": "APPLY_PRESET",
+      "noneSelected": "NO_PRESET_SELECTED.",
+      "label": "PRESET",
+      "defaultLabel": "PRESET_{index}",
+      "userDefault": "USER_PRESET_{index}",
+      "userDescription": "LOCAL_PRESET_FROM_ASSETS/USER-PRESETS/",
+      "tags": "_(TAGS:_{tags})"
+    }
+  },
+  "dialogs": {
+    "alertTitle": "NOTICE",
+    "confirmTitle": "CONFIRM",
+    "promptTitle": "INPUT"
+  }
+}

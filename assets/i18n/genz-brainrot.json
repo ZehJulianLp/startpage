@@ -1,0 +1,521 @@
+{
+  "app": {
+    "title": "Startpage (Gen Z Brainrot)"
+  },
+  "common": {
+    "link": "Link no cap",
+    "delete": "Delete no cap",
+    "remove": "Remove no cap",
+    "save": "Save no cap",
+    "loading": "Loading... no cap",
+    "loadError": "Load failed no cap",
+    "noMatches": "No matches no cap",
+    "emptyDash": "- no cap",
+    "dash": "- no cap",
+    "cancel": "Cancel no cap",
+    "ok": "OK no cap",
+    "default": "Default no cap"
+  },
+  "header": {
+    "themeToggleTitle": "Dark/Light no cap",
+    "settingsTitle": "Settings no cap",
+    "themeAria": "Toggle theme no cap",
+    "settingsAria": "Open settings no cap"
+  },
+  "search": {
+    "placeholder": "Search... (e.g.  no cap!yt lo-fi,  no cap!etc Home) no cap",
+    "engine": {
+      "google": "Google no cap",
+      "ddg": "DuckDuckGo no cap",
+      "bing": "Bing no cap",
+      "yt": "YouTube no cap",
+      "wikipedia": "Wikipedia no cap",
+      "maps": "Google Maps no cap"
+    },
+    "suggest": {
+      "bang": "{bang} (Bang)",
+      "shortcut": "{shortcut} (Shortcut)",
+      "type": {
+        "bang": "Bang no cap",
+        "shortcut": "Shortcut no cap",
+        "recent": "Recent no cap",
+        "word": "Word no cap"
+      }
+    },
+    "recentShortcut": "Shortcut  no cap{shortcut} -  no cap{query}",
+    "recentSearch": "Search ( no cap{engine}) -  no cap{query}",
+    "submitAria": "Start search no cap"
+  },
+  "todo": {
+    "title": "To-Do no cap",
+    "placeholder": "New task... no cap",
+    "add": "Add no cap",
+    "clearDoneTitle": "Remove completed no cap",
+    "clearDone": " clear no cap",
+    "doneAria": "Done no cap",
+    "prompt": "Todo no cap"
+  },
+  "notes": {
+    "title": "Notes no cap",
+    "placeholder": "Jot something down... no cap",
+    "prompt": "Note no cap"
+  },
+  "tiles": {
+    "title": "Favorites no cap",
+    "add": "+ Tile no cap",
+    "resetTitle": "Restore defaults no cap",
+    "edit": "Edit no cap",
+    "promptTitle": "Title no cap",
+    "promptUrl": "URL no cap",
+    "invalidUrl": "Invalid URL no cap",
+    "promptTitleNew": "Tile title no cap",
+    "promptUrlNew": "URL ( no caphttps://...)",
+    "resetConfirm": "Restore default tiles? no cap",
+    "dialog": {
+      "titleLabel": "Title no cap",
+      "urlLabel": "URL no cap",
+      "save": "Save no cap"
+    },
+    "resetAria": "Reset tiles no cap"
+  },
+  "weather": {
+    "title": "Weather today no cap",
+    "cityPlaceholder": "Enter city... no cap",
+    "setCity": "Set no cap",
+    "pickLocation": "Pick a location... no cap",
+    "source": "Source: Open-Meteo no cap",
+    "loading": "Loading weather... no cap",
+    "prompt": "Enter a location to load weather. no cap",
+    "tempEmpty": "-C no cap",
+    "tempEmptyShort": "- no cap",
+    "minmaxEmpty": "- / - C no cap",
+    "noForecast": "No forecast no cap",
+    "errors": {
+      "geocodingFailed": "Geocoding failed no cap",
+      "locationNotFound": "Location not found no cap",
+      "cityMissing": "City missing no cap",
+      "fetchFailed": "Weather fetch failed no cap",
+      "loadFailed": "Weather could not be loaded no cap"
+    },
+    "codes": {
+      "0": "Clear no cap",
+      "1": "Mostly clear no cap",
+      "2": "Partly cloudy no cap",
+      "3": "Cloudy no cap",
+      "45": "Fog no cap",
+      "48": "Fog no cap",
+      "51": "Drizzle no cap",
+      "53": "Drizzle no cap",
+      "55": "Drizzle no cap",
+      "61": "Rain no cap",
+      "63": "Rain no cap",
+      "65": "Heavy rain no cap",
+      "71": "Snow no cap",
+      "80": "Showers no cap",
+      "95": "Thunderstorm no cap",
+      "default": "Weather no cap"
+    }
+  },
+  "transport": {
+    "title": "Transport no cap",
+    "durationAria": "Duration no cap",
+    "duration30": "30 min no cap",
+    "duration60": "60 min no cap",
+    "duration90": "90 min no cap",
+    "duration120": "120 min no cap",
+    "refreshTitle": "Reload no cap",
+    "searchPlaceholder": "Search station... no cap",
+    "noneSelected": "No station selected no cap",
+    "source": "Source: transport.rest no cap",
+    "minQuery": "At least  no cap{count} characters no cap",
+    "noMatches": "No matches no cap",
+    "proxyTimeout": "Proxy timeout no cap",
+    "loadError": "Load failed no cap",
+    "noDepartures": "No departures no cap",
+    "selectStation": "Select a station... no cap",
+    "type": {
+      "station": "Station no cap",
+      "stop": "Stop no cap"
+    },
+    "platform": "Platform  no cap{platform}",
+    "cancelled": "Cancelled no cap",
+    "refreshAria": "Refresh transport no cap"
+  },
+  "quote": {
+    "title": "Quote / Nerd Nudge no cap",
+    "list": [
+      "Move fast, refactor often. no cap",
+      "Accessibility isn't a feature - it's the default. no cap",
+      "Done > Perfect. Iterate. no cap",
+      "If it's not monitored, it doesn't exist. no cap",
+      "Good UX is invisible. Bad UX is unforgettable. no cap",
+      "Make it work, make it right, make it fast. no cap",
+      "Small steps. Massive outcomes. no cap",
+      "Simplicity scales. Complexity fails. no cap",
+      "Automate the boring stuff. no cap",
+      "Measure twice, deploy once. no cap"
+    ]
+  },
+  "recent": {
+    "title": "Recent no cap",
+    "note": "Note: Only actions from this start page (clicked tiles & searches). no cap"
+  },
+  "system": {
+    "title": "System status no cap",
+    "loading": "Loading... no cap",
+    "ram": "RAM:  no cap{value} GB no cap",
+    "cpu": "CPU cores:  no cap{value}",
+    "network": "Network:  no cap{downlink} Mbit/s   no cap{type}{saveData}",
+    "saveData": "  SaveData no cap",
+    "noData": "No data available no cap"
+  },
+  "news": {
+    "title": "News no cap",
+    "refreshTitle": "Reload no cap",
+    "source": "RSS via Startpage Proxy (CORS proxy) no cap",
+    "noItems": "No items no cap",
+    "refreshAria": "Refresh news no cap"
+  },
+  "footer": {
+    "tagline": "Local-first dashboard  stores only in the browser (localStorage) no cap"
+  },
+  "settings": {
+    "title": "Settings no cap",
+    "close": "Close no cap",
+    "tabs": {
+      "general": "General no cap",
+      "background": "Background & Appearance no cap",
+      "search": "Search & Feeds no cap",
+      "widgets": "Widgets no cap",
+      "data": "Data no cap",
+      "guide": "Guide no cap"
+    },
+    "theme": {
+      "label": "Theme no cap",
+      "auto": "Auto (System) no cap",
+      "dark": "Dark no cap",
+      "light": "Light no cap"
+    },
+    "background": {
+      "label": "Background no cap"
+    },
+    "search": {
+      "engines": "Search engines no cap",
+      "bangsNote": "Supported bang shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Custom shortcuts below",
+      "wordlistLabel": "Autocomplete wordlist no cap",
+      "wordlistPlaceholder": "Terms line by line or comma-separated no cap",
+      "wordlistSave": "Save no cap",
+      "wordlistReset": "Clear no cap",
+      "wordlistNote": "Global wordlist (assets/wordlist.json) and preset wordlist are merged. Leave empty to use only the global list. no cap",
+      "shortcutsLabel": "Custom  no cap!shortcuts",
+      "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
+      "shortcutsNote": "Use  no cap<code>{q}</code> as placeholder for the search phrase. Without  no cap<code>{q}</code>,  no cap<code>?q=... no cap</code> is appended. no cap",
+      "feedsLabel": "Custom RSS feeds no cap",
+      "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
+      "feedsNote": "JSON: name - feed URL. This list is merged with the default feeds. no cap",
+      "invalidShortcuts": "Invalid shortcuts JSON no cap",
+      "invalidFeeds": "Invalid feeds JSON no cap"
+    },
+    "widgets": {
+      "visible": "Show widgets no cap",
+      "defaultCityLabel": "Default city (weather) no cap",
+      "defaultCityPlaceholder": "e.g. Hanover no cap",
+      "defaultTransportLabel": "Default stop (transport) no cap",
+      "defaultTransportPlaceholder": "Search station... no cap",
+      "cardStyleLabel": "Card style no cap",
+      "cardStyleGlass": "Glass (default) no cap",
+      "cardStyleSolid": "Solid no cap",
+      "cardStyleTransparent": "Transparent no cap",
+      "cardStyleMinimal": "Soft minimal no cap",
+      "cardStyleNote": "Applies to all widgets & favorite tiles. no cap",
+      "clockColorLabel": "Time & date no cap",
+      "searchColorLabel": "Search no cap",
+      "reset": "Reset no cap",
+      "clockColorNote": "Sets the header background (empty = style default). no cap",
+      "searchColorNote": "Color for the search area (empty = style default). no cap",
+      "widgetColorsLabel": "Widget colors no cap"
+    },
+    "data": {
+      "label": "Data no cap",
+      "export": "Export (.json) no cap",
+      "import": "Import (.json) no cap",
+      "presetsLabel": "Data presets no cap",
+      "applyPreset": "Load preset no cap",
+      "presetMeta": "Presets are exported JSONs under assets/presets/. User presets from assets/user-presets/ are merged automatically. no cap",
+      "setupLabel": "Setup no cap",
+      "restartOnboarding": "Restart setup no cap",
+      "restartNote": "Reopens the compact setup dialog. no cap",
+      "noteLabel": "Note no cap",
+      "noteText": "Export stores all settings & data locally as JSON. Import overwrites existing entries. no cap"
+    },
+    "language": {
+      "label": "Language no cap",
+      "auto": "Auto (System) no cap"
+    },
+    "font": {
+      "label": "Font no cap",
+      "searchPlaceholder": "Search fonts... no cap",
+      "loadLocal": "Load system fonts no cap",
+      "systemDefault": "System default no cap",
+      "noResults": "No matching fonts no cap",
+      "note": "Shows local system fonts (if available), otherwise a detected fallback list. no cap",
+      "unsupported": "Your browser does not support Local Font Access (queryLocalFonts). no cap",
+      "permissionDenied": "Access to local fonts was denied or blocked. no cap",
+      "empty": "No local fonts were returned. no cap",
+      "loadFailed": "Could not load local fonts:  no cap{error}"
+    },
+    "guideHtml": "<div class=\"row\"><label>User Guide no cap</label><div><h5>Overview no cap</h5><ul><li>Start page with search, favorites, to-do, notes, weather, news. no cap</li><li>All local: data stays in your browser (localStorage). no cap</li></ul><h5>Shortcuts no cap</h5><ul><li>Ctrl/Cmd+K: open command palette no cap</li><li>1-9: open first 9 favorites (when not typing) no cap</li><li>/ : focus search (also via palette) no cap</li><li>Enter in search: start search no cap</li><li>ESC: close modals no cap</li><li>Palette: quick actions for widgets, theme, background, data, favorites no cap</li><li>Palette: key C switches card style, \"Reset header colors\" resets search & clock no cap</li></ul><h5>Search & Autocomplete no cap</h5><ul><li>Bangs:  no cap!g  no cap!ddg  no cap!bing  no cap!yt  no cap!wiki  no cap!maps</li><li>Custom shortcuts: JSON in settings;  no cap{q} as placeholder no cap</li><li>Autocomplete: bangs, shortcuts, recent searches, wordlist (global + preset) no cap</li><li>Tab accepts suggestion, Enter starts search no cap</li></ul><h5>Tiles no cap</h5><ul><li>Drag & drop to sort, click to open no cap</li><li>+ Tile: add a new favorite no cap</li><li>Reset: restore default favorites no cap</li></ul><h5>Widgets & Layout no cap</h5><ul><li>Visibility per widget no cap</li><li>Card style is global (glass, solid, transparent, soft minimal) no cap</li><li>Custom colors for clock/search; reset restores style defaults no cap</li><li>Widget colors & \"Tint widgets\" set the accent per card no cap</li></ul><h5>Background no cap</h5><ul><li>Presets, uploads, collections, rotation (time/theme/interval) no cap</li><li>Accent color is extracted from the active background no cap</li></ul><h5>Data no cap</h5><ul><li>Export/Import as JSON no cap</li><li>Load data presets (assets/presets/*.json in the repo) no cap</li></ul></div></div>"
+  },
+  "onboarding": {
+    "title": "Start setup no cap",
+    "progress": "Step  no cap{current} of  no cap{total}",
+    "skip": "Skip setup no cap",
+    "close": "Close no cap",
+    "preset": {
+      "title": "Choose preset no cap",
+      "hint": "Pick a preset or skip this step. no cap",
+      "apply": "Apply preset no cap",
+      "meta": "Apply a preset or skip. no cap",
+      "optional": "Preset optional. no cap",
+      "context": "Setup preset no cap"
+    },
+    "appearance": {
+      "title": "Appearance no cap",
+      "theme": "Theme no cap",
+      "cardStyle": "Card style no cap",
+      "background": "Background no cap",
+      "rotation": "Enable rotation no cap",
+      "keepCurrent": "Keep current image no cap"
+    },
+    "search": {
+      "title": "Search no cap",
+      "engine": "Default search engine no cap"
+    },
+    "widgets": {
+      "title": "Widgets no cap",
+      "defaultTransport": "Default stop (transport) no cap",
+      "tint": "Tint widgets with accent no cap"
+    },
+    "weather": {
+      "title": "Weather no cap",
+      "defaultCity": "Default city no cap",
+      "note": "You can change everything later in settings. no cap"
+    },
+    "prev": "Back no cap",
+    "next": "Next no cap",
+    "finish": "Done no cap"
+  },
+  "palette": {
+    "placeholder": "Search command or favorite... (Ctrl/+K) no cap",
+    "groups": {
+      "command": "Commands no cap",
+      "settings": "Settings no cap",
+      "search": "Search no cap",
+      "widgets": "Widgets no cap",
+      "theme": "Theme & Background no cap",
+      "data": "Data no cap",
+      "tiles": "Tiles no cap",
+      "tile": "Favorites no cap",
+      "quick": "Quick no cap"
+    },
+    "search": {
+      "focus": "Focus search no cap",
+      "start": "Start search no cap",
+      "engine": "Engine:  no cap{engine}"
+    },
+    "settings": {
+      "open": "Open settings no cap",
+      "general": "Settings: General no cap",
+      "background": "Settings: Background no cap",
+      "search": "Settings: Search no cap",
+      "widgets": "Settings: Widgets no cap",
+      "data": "Settings: Data no cap",
+      "guide": "Settings: Guide no cap"
+    },
+    "theme": {
+      "cycle": "Cycle theme (Auto/Dark/Light) no cap",
+      "auto": "Theme: Auto no cap",
+      "dark": "Theme: Dark no cap",
+      "light": "Theme: Light no cap",
+      "resetHeader": "Reset header colors no cap",
+      "recalcAccent": "Recalculate accent colors no cap"
+    },
+    "cardStyle": {
+      "glass": "Card style: Glass no cap",
+      "solid": "Card style: Solid no cap",
+      "transparent": "Card style: Transparent no cap",
+      "minimal": "Card style: Minimal no cap"
+    },
+    "background": {
+      "toggleRotation": "Background: Toggle rotation no cap",
+      "toggleLock": "Background: Lock/unlock rotation no cap",
+      "preset": "Background:  no cap{label}"
+    },
+    "widgets": {
+      "showAll": "Widgets: Show all no cap",
+      "hideAll": "Widgets: Hide all no cap",
+      "toggle": "Widget: Toggle  no cap{widget}",
+      "focus": "Widget: Focus  no cap{widget}"
+    },
+    "quick": {
+      "addTodo": "Add todo no cap",
+      "addNote": "Add note no cap"
+    },
+    "tiles": {
+      "add": "Add tile no cap",
+      "reset": "Reset tiles no cap"
+    },
+    "refresh": {
+      "weather": "Refresh weather no cap",
+      "news": "Refresh news no cap",
+      "transport": "Refresh transport no cap",
+      "system": "Refresh system no cap",
+      "all": "Refresh all widgets no cap"
+    },
+    "data": {
+      "export": "Export data no cap",
+      "import": "Import data no cap",
+      "preset": "Data preset:  no cap{label}"
+    }
+  },
+  "widgets": {
+    "todo": "To-Do no cap",
+    "notes": "Notes no cap",
+    "tiles": "Favorites no cap",
+    "weather": "Weather no cap",
+    "transport": "Transport no cap",
+    "quote": "Quote no cap",
+    "recent": "Recent no cap",
+    "system": "System no cap",
+    "news": "News no cap"
+  },
+  "background": {
+    "currentPreview": "Current background image no cap",
+    "none": "No background no cap",
+    "noImageSelected": "No image selected no cap",
+    "rotationResume": "Resume rotation no cap",
+    "rotationLock": "Lock rotation no cap",
+    "tone": "Tone:  no cap{tone}",
+    "presets": {
+      "empty": "No presets available. no cap"
+    },
+    "favorites": {
+      "empty": "No favorites yet. Mark presets or uploads. no cap"
+    },
+    "subtitle": {
+      "preset": "Preset no cap"
+    },
+    "upload": "Upload no cap",
+    "uploadDrop": "Drop files here no cap",
+    "uploadBrowse": "Choose file no cap",
+    "uploadNote": "We resize images automatically (16:9, max 2560px) and store them locally. Max  no cap{max} files. no cap",
+    "uploads": {
+      "empty": "No uploads yet. no cap"
+    },
+    "collections": {
+      "count": "{count} sources no cap",
+      "random": "Random no cap",
+      "cache": "Save offline no cap",
+      "viewSources": "View sources no cap",
+      "useRotation": "Use for rotation no cap",
+      "newLabel": "New collection no cap",
+      "namePlaceholder": "My collection no cap",
+      "urlsPlaceholder": "One image URL per line no cap",
+      "clear": "Clear fields no cap",
+      "note": "URLs are stored locally. Remote sources need CORS for images. no cap",
+      "empty": "No collections yet. no cap",
+      "minOneUrl": "Enter at least one URL. no cap",
+      "emptyCollection": "Collection is empty. no cap",
+      "saved": "Collection saved locally. no cap",
+      "defaultName": "Collection  no cap{index}"
+    },
+    "rotation": {
+      "optionPreset": "Preset:  no cap{label}",
+      "optionUpload": "Upload:  no cap{label}",
+      "optionFavorite": "Favorite:  no cap{label}",
+      "optionCustom": "Custom: saved URL no cap",
+      "noFixed": "No fixed image no cap",
+      "enabled": "Enable automatic rotation no cap",
+      "locked": "Rotation is currently locked. no cap",
+      "active": "Backgrounds change according to the schedule. no cap",
+      "mode": "Mode no cap",
+      "modeTime": "Time-based no cap",
+      "modeInterval": "Interval no cap",
+      "modeTheme": "Theme no cap",
+      "intervalLabel": "Interval in minutes no cap",
+      "intervalNote": "Only relevant in interval mode. no cap",
+      "sourcesLabel": "Sources for random no cap",
+      "scheduleLabel": "Schedule no cap",
+      "themePlan": "Theme plan no cap",
+      "themeLight": "Theme light no cap",
+      "themeDark": "Theme dark no cap",
+      "themeNote": "Theme plan is used when mode is Theme. no cap",
+      "slot": {
+        "morning": "Morning 05-11 no cap",
+        "day": "Day 11-17 no cap",
+        "evening": "Evening 17-21 no cap",
+        "night": "Night 21-05 no cap"
+      }
+    },
+    "custom": {
+      "label": "Custom image URL no cap",
+      "placeholder": "https://example.com/image.jpg",
+      "note": "URL is stored locally. Server must allow CORS for images. no cap",
+      "enterUrl": "Please enter a URL. no cap",
+      "title": "Custom URL no cap",
+      "subtitle": "Custom no cap"
+    },
+    "actions": {
+      "apply": "Apply no cap",
+      "favorite": "Favorite no cap",
+      "favorited": "Favorited no cap",
+      "random": "Load random no cap",
+      "undo": "Restore last image no cap",
+      "lock": "Lock rotation no cap",
+      "tint": "Tint widgets no cap"
+    },
+    "tabs": {
+      "presets": "Presets no cap",
+      "favorites": "Favorites no cap",
+      "uploads": "Uploads no cap",
+      "collections": "Collections no cap",
+      "rotation": "Rotation no cap",
+      "custom": "Custom no cap"
+    },
+    "loadError": "Load failed. Check CORS settings. no cap",
+    "noneAvailable": "No backgrounds available. no cap",
+    "imageLoadError": "Image could not be loaded. no cap"
+  },
+  "data": {
+    "import": {
+      "confirm": "Import data? Existing entries will be overwritten. no cap",
+      "failed": "Import failed:  no cap{error}"
+    },
+    "presets": {
+      "none": "No preset available. no cap",
+      "missingFile": "Preset file missing. no cap",
+      "fileMissing": "File not found no cap",
+      "invalid": "Invalid preset no cap",
+      "confirmApply": "Apply  no cap{context} \" no cap{name}\"? Existing entries will be overwritten. no cap",
+      "loadFailed": "Preset load failed:  no cap{error}",
+      "loading": "Loading presets... no cap",
+      "noneFound": "No presets found no cap",
+      "hint": "Place exported JSONs under assets/presets/ (manifest: assets/data-presets.json) or locally under assets/user-presets/. no cap",
+      "hintShort": "Add a preset under assets/presets/ or assets/user-presets/. no cap",
+      "userPrefix": "User:  no cap",
+      "userApply": "Apply local preset no cap",
+      "apply": "Apply preset no cap",
+      "noneSelected": "No preset selected. no cap",
+      "label": "Preset no cap",
+      "defaultLabel": "Preset  no cap{index}",
+      "userDefault": "User preset  no cap{index}",
+      "userDescription": "Local preset from assets/user-presets/ no cap",
+      "tags": " (Tags:  no cap{tags}) no cap"
+    }
+  },
+  "dialogs": {
+    "alertTitle": "Notice no cap",
+    "confirmTitle": "Confirm no cap",
+    "promptTitle": "Input no cap"
+  }
+}

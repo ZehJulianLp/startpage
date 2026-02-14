@@ -1,0 +1,521 @@
+{
+  "app": {
+    "title": "Startpage (Corporate Buzzword)"
+  },
+  "common": {
+    "link": "Synergy note: Link",
+    "delete": "Synergy note: Delete",
+    "remove": "Synergy note: Remove",
+    "save": "Synergy note: Save",
+    "loading": "Synergy note: Loading...",
+    "loadError": "Synergy note: Load failed",
+    "noMatches": "Synergy note: No matches",
+    "emptyDash": "Synergy note: -",
+    "dash": "Synergy note: -",
+    "cancel": "Synergy note: Cancel",
+    "ok": "Synergy note: OK",
+    "default": "Synergy note: Default"
+  },
+  "header": {
+    "themeToggleTitle": "Synergy note: Dark/Light",
+    "settingsTitle": "Synergy note: Settings",
+    "themeAria": "Synergy note: Toggle theme",
+    "settingsAria": "Synergy note: Open settings"
+  },
+  "search": {
+    "placeholder": "Synergy note: Search... (e.g. !ytSynergy note:  lo-fi, !etcSynergy note:  Home)",
+    "engine": {
+      "google": "Synergy note: Google",
+      "ddg": "Synergy note: DuckDuckGo",
+      "bing": "Synergy note: Bing",
+      "yt": "Synergy note: YouTube",
+      "wikipedia": "Synergy note: Wikipedia",
+      "maps": "Synergy note: Google Maps"
+    },
+    "suggest": {
+      "bang": "{bang} (Bang)",
+      "shortcut": "{shortcut} (Shortcut)",
+      "type": {
+        "bang": "Synergy note: Bang",
+        "shortcut": "Synergy note: Shortcut",
+        "recent": "Synergy note: Recent",
+        "word": "Synergy note: Word"
+      }
+    },
+    "recentShortcut": "Synergy note: Shortcut {shortcut}Synergy note:  - {query}",
+    "recentSearch": "Synergy note: Search ({engine}Synergy note: ) - {query}",
+    "submitAria": "Synergy note: Start search"
+  },
+  "todo": {
+    "title": "Synergy note: To-Do",
+    "placeholder": "Synergy note: New task...",
+    "add": "Synergy note: Add",
+    "clearDoneTitle": "Synergy note: Remove completed",
+    "clearDone": "Synergy note:  clear",
+    "doneAria": "Synergy note: Done",
+    "prompt": "Synergy note: Todo"
+  },
+  "notes": {
+    "title": "Synergy note: Notes",
+    "placeholder": "Synergy note: Jot something down...",
+    "prompt": "Synergy note: Note"
+  },
+  "tiles": {
+    "title": "Synergy note: Favorites",
+    "add": "Synergy note: + Tile",
+    "resetTitle": "Synergy note: Restore defaults",
+    "edit": "Synergy note: Edit",
+    "promptTitle": "Synergy note: Title",
+    "promptUrl": "Synergy note: URL",
+    "invalidUrl": "Synergy note: Invalid URL",
+    "promptTitleNew": "Synergy note: Tile title",
+    "promptUrlNew": "Synergy note: URL (https://...)",
+    "resetConfirm": "Synergy note: Restore default tiles?",
+    "dialog": {
+      "titleLabel": "Synergy note: Title",
+      "urlLabel": "Synergy note: URL",
+      "save": "Synergy note: Save"
+    },
+    "resetAria": "Synergy note: Reset tiles"
+  },
+  "weather": {
+    "title": "Synergy note: Weather today",
+    "cityPlaceholder": "Synergy note: Enter city...",
+    "setCity": "Synergy note: Set",
+    "pickLocation": "Synergy note: Pick a location...",
+    "source": "Synergy note: Source: Open-Meteo",
+    "loading": "Synergy note: Loading weather...",
+    "prompt": "Synergy note: Enter a location to load weather.",
+    "tempEmpty": "Synergy note: -C",
+    "tempEmptyShort": "Synergy note: -",
+    "minmaxEmpty": "Synergy note: - / - C",
+    "noForecast": "Synergy note: No forecast",
+    "errors": {
+      "geocodingFailed": "Synergy note: Geocoding failed",
+      "locationNotFound": "Synergy note: Location not found",
+      "cityMissing": "Synergy note: City missing",
+      "fetchFailed": "Synergy note: Weather fetch failed",
+      "loadFailed": "Synergy note: Weather could not be loaded"
+    },
+    "codes": {
+      "0": "Synergy note: Clear",
+      "1": "Synergy note: Mostly clear",
+      "2": "Synergy note: Partly cloudy",
+      "3": "Synergy note: Cloudy",
+      "45": "Synergy note: Fog",
+      "48": "Synergy note: Fog",
+      "51": "Synergy note: Drizzle",
+      "53": "Synergy note: Drizzle",
+      "55": "Synergy note: Drizzle",
+      "61": "Synergy note: Rain",
+      "63": "Synergy note: Rain",
+      "65": "Synergy note: Heavy rain",
+      "71": "Synergy note: Snow",
+      "80": "Synergy note: Showers",
+      "95": "Synergy note: Thunderstorm",
+      "default": "Synergy note: Weather"
+    }
+  },
+  "transport": {
+    "title": "Synergy note: Transport",
+    "durationAria": "Synergy note: Duration",
+    "duration30": "Synergy note: 30 min",
+    "duration60": "Synergy note: 60 min",
+    "duration90": "Synergy note: 90 min",
+    "duration120": "Synergy note: 120 min",
+    "refreshTitle": "Synergy note: Reload",
+    "searchPlaceholder": "Synergy note: Search station...",
+    "noneSelected": "Synergy note: No station selected",
+    "source": "Synergy note: Source: transport.rest",
+    "minQuery": "Synergy note: At least {count}Synergy note:  characters",
+    "noMatches": "Synergy note: No matches",
+    "proxyTimeout": "Synergy note: Proxy timeout",
+    "loadError": "Synergy note: Load failed",
+    "noDepartures": "Synergy note: No departures",
+    "selectStation": "Synergy note: Select a station...",
+    "type": {
+      "station": "Synergy note: Station",
+      "stop": "Synergy note: Stop"
+    },
+    "platform": "Synergy note: Platform {platform}",
+    "cancelled": "Synergy note: Cancelled",
+    "refreshAria": "Synergy note: Refresh transport"
+  },
+  "quote": {
+    "title": "Synergy note: Quote / Nerd Nudge",
+    "list": [
+      "Synergy note: Move fast, refactor often.",
+      "Synergy note: Accessibility isn't a feature - it's the default.",
+      "Synergy note: Done > Perfect. Iterate.",
+      "Synergy note: If it's not monitored, it doesn't exist.",
+      "Synergy note: Good UX is invisible. Bad UX is unforgettable.",
+      "Synergy note: Make it work, make it right, make it fast.",
+      "Synergy note: Small steps. Massive outcomes.",
+      "Synergy note: Simplicity scales. Complexity fails.",
+      "Synergy note: Automate the boring stuff.",
+      "Synergy note: Measure twice, deploy once."
+    ]
+  },
+  "recent": {
+    "title": "Synergy note: Recent",
+    "note": "Synergy note: Note: Only actions from this start page (clicked tiles & searches)."
+  },
+  "system": {
+    "title": "Synergy note: System status",
+    "loading": "Synergy note: Loading...",
+    "ram": "Synergy note: RAM: {value}Synergy note:  GB",
+    "cpu": "Synergy note: CPU cores: {value}",
+    "network": "Synergy note: Network: {downlink}Synergy note:  Mbit/s  {type}{saveData}",
+    "saveData": "Synergy note:   SaveData",
+    "noData": "Synergy note: No data available"
+  },
+  "news": {
+    "title": "Synergy note: News",
+    "refreshTitle": "Synergy note: Reload",
+    "source": "Synergy note: RSS via Startpage Proxy (CORS proxy)",
+    "noItems": "Synergy note: No items",
+    "refreshAria": "Synergy note: Refresh news"
+  },
+  "footer": {
+    "tagline": "Synergy note: Local-first dashboard  stores only in the browser (localStorage)"
+  },
+  "settings": {
+    "title": "Synergy note: Settings",
+    "close": "Synergy note: Close",
+    "tabs": {
+      "general": "Synergy note: General",
+      "background": "Synergy note: Background & Appearance",
+      "search": "Synergy note: Search & Feeds",
+      "widgets": "Synergy note: Widgets",
+      "data": "Synergy note: Data",
+      "guide": "Synergy note: Guide"
+    },
+    "theme": {
+      "label": "Synergy note: Theme",
+      "auto": "Synergy note: Auto (System)",
+      "dark": "Synergy note: Dark",
+      "light": "Synergy note: Light"
+    },
+    "background": {
+      "label": "Synergy note: Background"
+    },
+    "search": {
+      "engines": "Synergy note: Search engines",
+      "bangsNote": "Supported bang shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Custom shortcuts below",
+      "wordlistLabel": "Synergy note: Autocomplete wordlist",
+      "wordlistPlaceholder": "Synergy note: Terms line by line or comma-separated",
+      "wordlistSave": "Synergy note: Save",
+      "wordlistReset": "Synergy note: Clear",
+      "wordlistNote": "Synergy note: Global wordlist (assets/wordlist.json) and preset wordlist are merged. Leave empty to use only the global list.",
+      "shortcutsLabel": "Synergy note: Custom !shortcuts",
+      "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
+      "shortcutsNote": "Synergy note: Use <code>{q}</code>Synergy note:  as placeholder for the search phrase. Without <code>{q}</code>Synergy note: , <code>Synergy note: ?q=...</code>Synergy note:  is appended.",
+      "feedsLabel": "Synergy note: Custom RSS feeds",
+      "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
+      "feedsNote": "Synergy note: JSON: name - feed URL. This list is merged with the default feeds.",
+      "invalidShortcuts": "Synergy note: Invalid shortcuts JSON",
+      "invalidFeeds": "Synergy note: Invalid feeds JSON"
+    },
+    "widgets": {
+      "visible": "Synergy note: Show widgets",
+      "defaultCityLabel": "Synergy note: Default city (weather)",
+      "defaultCityPlaceholder": "Synergy note: e.g. Hanover",
+      "defaultTransportLabel": "Synergy note: Default stop (transport)",
+      "defaultTransportPlaceholder": "Synergy note: Search station...",
+      "cardStyleLabel": "Synergy note: Card style",
+      "cardStyleGlass": "Synergy note: Glass (default)",
+      "cardStyleSolid": "Synergy note: Solid",
+      "cardStyleTransparent": "Synergy note: Transparent",
+      "cardStyleMinimal": "Synergy note: Soft minimal",
+      "cardStyleNote": "Synergy note: Applies to all widgets & favorite tiles.",
+      "clockColorLabel": "Synergy note: Time & date",
+      "searchColorLabel": "Synergy note: Search",
+      "reset": "Synergy note: Reset",
+      "clockColorNote": "Synergy note: Sets the header background (empty = style default).",
+      "searchColorNote": "Synergy note: Color for the search area (empty = style default).",
+      "widgetColorsLabel": "Synergy note: Widget colors"
+    },
+    "data": {
+      "label": "Synergy note: Data",
+      "export": "Synergy note: Export (.json)",
+      "import": "Synergy note: Import (.json)",
+      "presetsLabel": "Synergy note: Data presets",
+      "applyPreset": "Synergy note: Load preset",
+      "presetMeta": "Synergy note: Presets are exported JSONs under assets/presets/. User presets from assets/user-presets/ are merged automatically.",
+      "setupLabel": "Synergy note: Setup",
+      "restartOnboarding": "Synergy note: Restart setup",
+      "restartNote": "Synergy note: Reopens the compact setup dialog.",
+      "noteLabel": "Synergy note: Note",
+      "noteText": "Synergy note: Export stores all settings & data locally as JSON. Import overwrites existing entries."
+    },
+    "language": {
+      "label": "Synergy note: Language",
+      "auto": "Synergy note: Auto (System)"
+    },
+    "font": {
+      "label": "Synergy note: Font",
+      "searchPlaceholder": "Synergy note: Search fonts...",
+      "loadLocal": "Synergy note: Load system fonts",
+      "systemDefault": "Synergy note: System default",
+      "noResults": "Synergy note: No matching fonts",
+      "note": "Synergy note: Shows local system fonts (if available), otherwise a detected fallback list.",
+      "unsupported": "Synergy note: Your browser does not support Local Font Access (queryLocalFonts).",
+      "permissionDenied": "Synergy note: Access to local fonts was denied or blocked.",
+      "empty": "Synergy note: No local fonts were returned.",
+      "loadFailed": "Synergy note: Could not load local fonts: {error}"
+    },
+    "guideHtml": "<div class=\"row\"><label>Synergy note: User Guide</label><div><h5>Synergy note: Overview</h5><ul><li>Synergy note: Start page with search, favorites, to-do, notes, weather, news.</li><li>Synergy note: All local: data stays in your browser (localStorage).</li></ul><h5>Synergy note: Shortcuts</h5><ul><li>Synergy note: Ctrl/Cmd+K: open command palette</li><li>Synergy note: 1-9: open first 9 favorites (when not typing)</li><li>Synergy note: / : focus search (also via palette)</li><li>Synergy note: Enter in search: start search</li><li>Synergy note: ESC: close modals</li><li>Synergy note: Palette: quick actions for widgets, theme, background, data, favorites</li><li>Synergy note: Palette: key C switches card style, \"Reset header colors\" resets search & clock</li></ul><h5>Synergy note: Search & Autocomplete</h5><ul><li>Synergy note: Bangs: !gSynergy note:  !ddgSynergy note:  !bingSynergy note:  !ytSynergy note:  !wikiSynergy note:  !maps</li><li>Synergy note: Custom shortcuts: JSON in settings; {q}Synergy note:  as placeholder</li><li>Synergy note: Autocomplete: bangs, shortcuts, recent searches, wordlist (global + preset)</li><li>Synergy note: Tab accepts suggestion, Enter starts search</li></ul><h5>Synergy note: Tiles</h5><ul><li>Synergy note: Drag & drop to sort, click to open</li><li>Synergy note: + Tile: add a new favorite</li><li>Synergy note: Reset: restore default favorites</li></ul><h5>Synergy note: Widgets & Layout</h5><ul><li>Synergy note: Visibility per widget</li><li>Synergy note: Card style is global (glass, solid, transparent, soft minimal)</li><li>Synergy note: Custom colors for clock/search; reset restores style defaults</li><li>Synergy note: Widget colors & \"Tint widgets\" set the accent per card</li></ul><h5>Synergy note: Background</h5><ul><li>Synergy note: Presets, uploads, collections, rotation (time/theme/interval)</li><li>Synergy note: Accent color is extracted from the active background</li></ul><h5>Synergy note: Data</h5><ul><li>Synergy note: Export/Import as JSON</li><li>Synergy note: Load data presets (assets/presets/*.json in the repo)</li></ul></div></div>"
+  },
+  "onboarding": {
+    "title": "Synergy note: Start setup",
+    "progress": "Synergy note: Step {current}Synergy note:  of {total}",
+    "skip": "Synergy note: Skip setup",
+    "close": "Synergy note: Close",
+    "preset": {
+      "title": "Synergy note: Choose preset",
+      "hint": "Synergy note: Pick a preset or skip this step.",
+      "apply": "Synergy note: Apply preset",
+      "meta": "Synergy note: Apply a preset or skip.",
+      "optional": "Synergy note: Preset optional.",
+      "context": "Synergy note: Setup preset"
+    },
+    "appearance": {
+      "title": "Synergy note: Appearance",
+      "theme": "Synergy note: Theme",
+      "cardStyle": "Synergy note: Card style",
+      "background": "Synergy note: Background",
+      "rotation": "Synergy note: Enable rotation",
+      "keepCurrent": "Synergy note: Keep current image"
+    },
+    "search": {
+      "title": "Synergy note: Search",
+      "engine": "Synergy note: Default search engine"
+    },
+    "widgets": {
+      "title": "Synergy note: Widgets",
+      "defaultTransport": "Synergy note: Default stop (transport)",
+      "tint": "Synergy note: Tint widgets with accent"
+    },
+    "weather": {
+      "title": "Synergy note: Weather",
+      "defaultCity": "Synergy note: Default city",
+      "note": "Synergy note: You can change everything later in settings."
+    },
+    "prev": "Synergy note: Back",
+    "next": "Synergy note: Next",
+    "finish": "Synergy note: Done"
+  },
+  "palette": {
+    "placeholder": "Synergy note: Search command or favorite... (Ctrl/+K)",
+    "groups": {
+      "command": "Synergy note: Commands",
+      "settings": "Synergy note: Settings",
+      "search": "Synergy note: Search",
+      "widgets": "Synergy note: Widgets",
+      "theme": "Synergy note: Theme & Background",
+      "data": "Synergy note: Data",
+      "tiles": "Synergy note: Tiles",
+      "tile": "Synergy note: Favorites",
+      "quick": "Synergy note: Quick"
+    },
+    "search": {
+      "focus": "Synergy note: Focus search",
+      "start": "Synergy note: Start search",
+      "engine": "Synergy note: Engine: {engine}"
+    },
+    "settings": {
+      "open": "Synergy note: Open settings",
+      "general": "Synergy note: Settings: General",
+      "background": "Synergy note: Settings: Background",
+      "search": "Synergy note: Settings: Search",
+      "widgets": "Synergy note: Settings: Widgets",
+      "data": "Synergy note: Settings: Data",
+      "guide": "Synergy note: Settings: Guide"
+    },
+    "theme": {
+      "cycle": "Synergy note: Cycle theme (Auto/Dark/Light)",
+      "auto": "Synergy note: Theme: Auto",
+      "dark": "Synergy note: Theme: Dark",
+      "light": "Synergy note: Theme: Light",
+      "resetHeader": "Synergy note: Reset header colors",
+      "recalcAccent": "Synergy note: Recalculate accent colors"
+    },
+    "cardStyle": {
+      "glass": "Synergy note: Card style: Glass",
+      "solid": "Synergy note: Card style: Solid",
+      "transparent": "Synergy note: Card style: Transparent",
+      "minimal": "Synergy note: Card style: Minimal"
+    },
+    "background": {
+      "toggleRotation": "Synergy note: Background: Toggle rotation",
+      "toggleLock": "Synergy note: Background: Lock/unlock rotation",
+      "preset": "Synergy note: Background: {label}"
+    },
+    "widgets": {
+      "showAll": "Synergy note: Widgets: Show all",
+      "hideAll": "Synergy note: Widgets: Hide all",
+      "toggle": "Synergy note: Widget: Toggle {widget}",
+      "focus": "Synergy note: Widget: Focus {widget}"
+    },
+    "quick": {
+      "addTodo": "Synergy note: Add todo",
+      "addNote": "Synergy note: Add note"
+    },
+    "tiles": {
+      "add": "Synergy note: Add tile",
+      "reset": "Synergy note: Reset tiles"
+    },
+    "refresh": {
+      "weather": "Synergy note: Refresh weather",
+      "news": "Synergy note: Refresh news",
+      "transport": "Synergy note: Refresh transport",
+      "system": "Synergy note: Refresh system",
+      "all": "Synergy note: Refresh all widgets"
+    },
+    "data": {
+      "export": "Synergy note: Export data",
+      "import": "Synergy note: Import data",
+      "preset": "Synergy note: Data preset: {label}"
+    }
+  },
+  "widgets": {
+    "todo": "Synergy note: To-Do",
+    "notes": "Synergy note: Notes",
+    "tiles": "Synergy note: Favorites",
+    "weather": "Synergy note: Weather",
+    "transport": "Synergy note: Transport",
+    "quote": "Synergy note: Quote",
+    "recent": "Synergy note: Recent",
+    "system": "Synergy note: System",
+    "news": "Synergy note: News"
+  },
+  "background": {
+    "currentPreview": "Synergy note: Current background image",
+    "none": "Synergy note: No background",
+    "noImageSelected": "Synergy note: No image selected",
+    "rotationResume": "Synergy note: Resume rotation",
+    "rotationLock": "Synergy note: Lock rotation",
+    "tone": "Synergy note: Tone: {tone}",
+    "presets": {
+      "empty": "Synergy note: No presets available."
+    },
+    "favorites": {
+      "empty": "Synergy note: No favorites yet. Mark presets or uploads."
+    },
+    "subtitle": {
+      "preset": "Synergy note: Preset"
+    },
+    "upload": "Synergy note: Upload",
+    "uploadDrop": "Synergy note: Drop files here",
+    "uploadBrowse": "Synergy note: Choose file",
+    "uploadNote": "Synergy note: We resize images automatically (16:9, max 2560px) and store them locally. Max {max}Synergy note:  files.",
+    "uploads": {
+      "empty": "Synergy note: No uploads yet."
+    },
+    "collections": {
+      "count": "{count}Synergy note:  sources",
+      "random": "Synergy note: Random",
+      "cache": "Synergy note: Save offline",
+      "viewSources": "Synergy note: View sources",
+      "useRotation": "Synergy note: Use for rotation",
+      "newLabel": "Synergy note: New collection",
+      "namePlaceholder": "Synergy note: My collection",
+      "urlsPlaceholder": "Synergy note: One image URL per line",
+      "clear": "Synergy note: Clear fields",
+      "note": "Synergy note: URLs are stored locally. Remote sources need CORS for images.",
+      "empty": "Synergy note: No collections yet.",
+      "minOneUrl": "Synergy note: Enter at least one URL.",
+      "emptyCollection": "Synergy note: Collection is empty.",
+      "saved": "Synergy note: Collection saved locally.",
+      "defaultName": "Synergy note: Collection {index}"
+    },
+    "rotation": {
+      "optionPreset": "Synergy note: Preset: {label}",
+      "optionUpload": "Synergy note: Upload: {label}",
+      "optionFavorite": "Synergy note: Favorite: {label}",
+      "optionCustom": "Synergy note: Custom: saved URL",
+      "noFixed": "Synergy note: No fixed image",
+      "enabled": "Synergy note: Enable automatic rotation",
+      "locked": "Synergy note: Rotation is currently locked.",
+      "active": "Synergy note: Backgrounds change according to the schedule.",
+      "mode": "Synergy note: Mode",
+      "modeTime": "Synergy note: Time-based",
+      "modeInterval": "Synergy note: Interval",
+      "modeTheme": "Synergy note: Theme",
+      "intervalLabel": "Synergy note: Interval in minutes",
+      "intervalNote": "Synergy note: Only relevant in interval mode.",
+      "sourcesLabel": "Synergy note: Sources for random",
+      "scheduleLabel": "Synergy note: Schedule",
+      "themePlan": "Synergy note: Theme plan",
+      "themeLight": "Synergy note: Theme light",
+      "themeDark": "Synergy note: Theme dark",
+      "themeNote": "Synergy note: Theme plan is used when mode is Theme.",
+      "slot": {
+        "morning": "Synergy note: Morning 05-11",
+        "day": "Synergy note: Day 11-17",
+        "evening": "Synergy note: Evening 17-21",
+        "night": "Synergy note: Night 21-05"
+      }
+    },
+    "custom": {
+      "label": "Synergy note: Custom image URL",
+      "placeholder": "https://example.com/image.jpg",
+      "note": "Synergy note: URL is stored locally. Server must allow CORS for images.",
+      "enterUrl": "Synergy note: Please enter a URL.",
+      "title": "Synergy note: Custom URL",
+      "subtitle": "Synergy note: Custom"
+    },
+    "actions": {
+      "apply": "Synergy note: Apply",
+      "favorite": "Synergy note: Favorite",
+      "favorited": "Synergy note: Favorited",
+      "random": "Synergy note: Load random",
+      "undo": "Synergy note: Restore last image",
+      "lock": "Synergy note: Lock rotation",
+      "tint": "Synergy note: Tint widgets"
+    },
+    "tabs": {
+      "presets": "Synergy note: Presets",
+      "favorites": "Synergy note: Favorites",
+      "uploads": "Synergy note: Uploads",
+      "collections": "Synergy note: Collections",
+      "rotation": "Synergy note: Rotation",
+      "custom": "Synergy note: Custom"
+    },
+    "loadError": "Synergy note: Load failed. Check CORS settings.",
+    "noneAvailable": "Synergy note: No backgrounds available.",
+    "imageLoadError": "Synergy note: Image could not be loaded."
+  },
+  "data": {
+    "import": {
+      "confirm": "Synergy note: Import data? Existing entries will be overwritten.",
+      "failed": "Synergy note: Import failed: {error}"
+    },
+    "presets": {
+      "none": "Synergy note: No preset available.",
+      "missingFile": "Synergy note: Preset file missing.",
+      "fileMissing": "Synergy note: File not found",
+      "invalid": "Synergy note: Invalid preset",
+      "confirmApply": "Synergy note: Apply {context}Synergy note:  \"{name}Synergy note: \"? Existing entries will be overwritten.",
+      "loadFailed": "Synergy note: Preset load failed: {error}",
+      "loading": "Synergy note: Loading presets...",
+      "noneFound": "Synergy note: No presets found",
+      "hint": "Synergy note: Place exported JSONs under assets/presets/ (manifest: assets/data-presets.json) or locally under assets/user-presets/.",
+      "hintShort": "Synergy note: Add a preset under assets/presets/ or assets/user-presets/.",
+      "userPrefix": "Synergy note: User: ",
+      "userApply": "Synergy note: Apply local preset",
+      "apply": "Synergy note: Apply preset",
+      "noneSelected": "Synergy note: No preset selected.",
+      "label": "Synergy note: Preset",
+      "defaultLabel": "Synergy note: Preset {index}",
+      "userDefault": "Synergy note: User preset {index}",
+      "userDescription": "Synergy note: Local preset from assets/user-presets/",
+      "tags": "Synergy note:  (Tags: {tags}Synergy note: )"
+    }
+  },
+  "dialogs": {
+    "alertTitle": "Synergy note: Notice",
+    "confirmTitle": "Synergy note: Confirm",
+    "promptTitle": "Synergy note: Input"
+  }
+}

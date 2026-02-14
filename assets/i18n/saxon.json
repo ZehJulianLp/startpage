@@ -1,0 +1,521 @@
+{
+  "app": {
+    "title": "Startpage (Saechsisch)"
+  },
+  "common": {
+    "link": "[Saechsisch] Link",
+    "delete": "[Saechsisch] Delete",
+    "remove": "[Saechsisch] Remove",
+    "save": "[Saechsisch] Save",
+    "loading": "[Saechsisch] Loading...",
+    "loadError": "[Saechsisch] Load failed",
+    "noMatches": "[Saechsisch] No matches",
+    "emptyDash": "[Saechsisch] -",
+    "dash": "[Saechsisch] -",
+    "cancel": "[Saechsisch] Cancel",
+    "ok": "[Saechsisch] OK",
+    "default": "[Saechsisch] Default"
+  },
+  "header": {
+    "themeToggleTitle": "[Saechsisch] Dark/Light",
+    "settingsTitle": "[Saechsisch] Settings",
+    "themeAria": "[Saechsisch] Toggle theme",
+    "settingsAria": "[Saechsisch] Open settings"
+  },
+  "search": {
+    "placeholder": "[Saechsisch] Search... (e.g. !yt[Saechsisch]  lo-fi, !etc[Saechsisch]  Home)",
+    "engine": {
+      "google": "[Saechsisch] Google",
+      "ddg": "[Saechsisch] DuckDuckGo",
+      "bing": "[Saechsisch] Bing",
+      "yt": "[Saechsisch] YouTube",
+      "wikipedia": "[Saechsisch] Wikipedia",
+      "maps": "[Saechsisch] Google Maps"
+    },
+    "suggest": {
+      "bang": "{bang} (Bang)",
+      "shortcut": "{shortcut} (Shortcut)",
+      "type": {
+        "bang": "[Saechsisch] Bang",
+        "shortcut": "[Saechsisch] Shortcut",
+        "recent": "[Saechsisch] Recent",
+        "word": "[Saechsisch] Word"
+      }
+    },
+    "recentShortcut": "[Saechsisch] Shortcut {shortcut}[Saechsisch]  - {query}",
+    "recentSearch": "[Saechsisch] Search ({engine}[Saechsisch] ) - {query}",
+    "submitAria": "[Saechsisch] Start search"
+  },
+  "todo": {
+    "title": "[Saechsisch] To-Do",
+    "placeholder": "[Saechsisch] New task...",
+    "add": "[Saechsisch] Add",
+    "clearDoneTitle": "[Saechsisch] Remove completed",
+    "clearDone": "[Saechsisch]  clear",
+    "doneAria": "[Saechsisch] Done",
+    "prompt": "[Saechsisch] Todo"
+  },
+  "notes": {
+    "title": "[Saechsisch] Notes",
+    "placeholder": "[Saechsisch] Jot something down...",
+    "prompt": "[Saechsisch] Note"
+  },
+  "tiles": {
+    "title": "[Saechsisch] Favorites",
+    "add": "[Saechsisch] + Tile",
+    "resetTitle": "[Saechsisch] Restore defaults",
+    "edit": "[Saechsisch] Edit",
+    "promptTitle": "[Saechsisch] Title",
+    "promptUrl": "[Saechsisch] URL",
+    "invalidUrl": "[Saechsisch] Invalid URL",
+    "promptTitleNew": "[Saechsisch] Tile title",
+    "promptUrlNew": "[Saechsisch] URL (https://...)",
+    "resetConfirm": "[Saechsisch] Restore default tiles?",
+    "dialog": {
+      "titleLabel": "[Saechsisch] Title",
+      "urlLabel": "[Saechsisch] URL",
+      "save": "[Saechsisch] Save"
+    },
+    "resetAria": "[Saechsisch] Reset tiles"
+  },
+  "weather": {
+    "title": "[Saechsisch] Weather today",
+    "cityPlaceholder": "[Saechsisch] Enter city...",
+    "setCity": "[Saechsisch] Set",
+    "pickLocation": "[Saechsisch] Pick a location...",
+    "source": "[Saechsisch] Source: Open-Meteo",
+    "loading": "[Saechsisch] Loading weather...",
+    "prompt": "[Saechsisch] Enter a location to load weather.",
+    "tempEmpty": "[Saechsisch] -C",
+    "tempEmptyShort": "[Saechsisch] -",
+    "minmaxEmpty": "[Saechsisch] - / - C",
+    "noForecast": "[Saechsisch] No forecast",
+    "errors": {
+      "geocodingFailed": "[Saechsisch] Geocoding failed",
+      "locationNotFound": "[Saechsisch] Location not found",
+      "cityMissing": "[Saechsisch] City missing",
+      "fetchFailed": "[Saechsisch] Weather fetch failed",
+      "loadFailed": "[Saechsisch] Weather could not be loaded"
+    },
+    "codes": {
+      "0": "[Saechsisch] Clear",
+      "1": "[Saechsisch] Mostly clear",
+      "2": "[Saechsisch] Partly cloudy",
+      "3": "[Saechsisch] Cloudy",
+      "45": "[Saechsisch] Fog",
+      "48": "[Saechsisch] Fog",
+      "51": "[Saechsisch] Drizzle",
+      "53": "[Saechsisch] Drizzle",
+      "55": "[Saechsisch] Drizzle",
+      "61": "[Saechsisch] Rain",
+      "63": "[Saechsisch] Rain",
+      "65": "[Saechsisch] Heavy rain",
+      "71": "[Saechsisch] Snow",
+      "80": "[Saechsisch] Showers",
+      "95": "[Saechsisch] Thunderstorm",
+      "default": "[Saechsisch] Weather"
+    }
+  },
+  "transport": {
+    "title": "[Saechsisch] Transport",
+    "durationAria": "[Saechsisch] Duration",
+    "duration30": "[Saechsisch] 30 min",
+    "duration60": "[Saechsisch] 60 min",
+    "duration90": "[Saechsisch] 90 min",
+    "duration120": "[Saechsisch] 120 min",
+    "refreshTitle": "[Saechsisch] Reload",
+    "searchPlaceholder": "[Saechsisch] Search station...",
+    "noneSelected": "[Saechsisch] No station selected",
+    "source": "[Saechsisch] Source: transport.rest",
+    "minQuery": "[Saechsisch] At least {count}[Saechsisch]  characters",
+    "noMatches": "[Saechsisch] No matches",
+    "proxyTimeout": "[Saechsisch] Proxy timeout",
+    "loadError": "[Saechsisch] Load failed",
+    "noDepartures": "[Saechsisch] No departures",
+    "selectStation": "[Saechsisch] Select a station...",
+    "type": {
+      "station": "[Saechsisch] Station",
+      "stop": "[Saechsisch] Stop"
+    },
+    "platform": "[Saechsisch] Platform {platform}",
+    "cancelled": "[Saechsisch] Cancelled",
+    "refreshAria": "[Saechsisch] Refresh transport"
+  },
+  "quote": {
+    "title": "[Saechsisch] Quote / Nerd Nudge",
+    "list": [
+      "[Saechsisch] Move fast, refactor often.",
+      "[Saechsisch] Accessibility isn't a feature - it's the default.",
+      "[Saechsisch] Done > Perfect. Iterate.",
+      "[Saechsisch] If it's not monitored, it doesn't exist.",
+      "[Saechsisch] Good UX is invisible. Bad UX is unforgettable.",
+      "[Saechsisch] Make it work, make it right, make it fast.",
+      "[Saechsisch] Small steps. Massive outcomes.",
+      "[Saechsisch] Simplicity scales. Complexity fails.",
+      "[Saechsisch] Automate the boring stuff.",
+      "[Saechsisch] Measure twice, deploy once."
+    ]
+  },
+  "recent": {
+    "title": "[Saechsisch] Recent",
+    "note": "[Saechsisch] Note: Only actions from this start page (clicked tiles & searches)."
+  },
+  "system": {
+    "title": "[Saechsisch] System status",
+    "loading": "[Saechsisch] Loading...",
+    "ram": "[Saechsisch] RAM: {value}[Saechsisch]  GB",
+    "cpu": "[Saechsisch] CPU cores: {value}",
+    "network": "[Saechsisch] Network: {downlink}[Saechsisch]  Mbit/s  {type}{saveData}",
+    "saveData": "[Saechsisch]   SaveData",
+    "noData": "[Saechsisch] No data available"
+  },
+  "news": {
+    "title": "[Saechsisch] News",
+    "refreshTitle": "[Saechsisch] Reload",
+    "source": "[Saechsisch] RSS via Startpage Proxy (CORS proxy)",
+    "noItems": "[Saechsisch] No items",
+    "refreshAria": "[Saechsisch] Refresh news"
+  },
+  "footer": {
+    "tagline": "[Saechsisch] Local-first dashboard  stores only in the browser (localStorage)"
+  },
+  "settings": {
+    "title": "[Saechsisch] Settings",
+    "close": "[Saechsisch] Close",
+    "tabs": {
+      "general": "[Saechsisch] General",
+      "background": "[Saechsisch] Background & Appearance",
+      "search": "[Saechsisch] Search & Feeds",
+      "widgets": "[Saechsisch] Widgets",
+      "data": "[Saechsisch] Data",
+      "guide": "[Saechsisch] Guide"
+    },
+    "theme": {
+      "label": "[Saechsisch] Theme",
+      "auto": "[Saechsisch] Auto (System)",
+      "dark": "[Saechsisch] Dark",
+      "light": "[Saechsisch] Light"
+    },
+    "background": {
+      "label": "[Saechsisch] Background"
+    },
+    "search": {
+      "engines": "[Saechsisch] Search engines",
+      "bangsNote": "Supported bang shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Custom shortcuts below",
+      "wordlistLabel": "[Saechsisch] Autocomplete wordlist",
+      "wordlistPlaceholder": "[Saechsisch] Terms line by line or comma-separated",
+      "wordlistSave": "[Saechsisch] Save",
+      "wordlistReset": "[Saechsisch] Clear",
+      "wordlistNote": "[Saechsisch] Global wordlist (assets/wordlist.json) and preset wordlist are merged. Leave empty to use only the global list.",
+      "shortcutsLabel": "[Saechsisch] Custom !shortcuts",
+      "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
+      "shortcutsNote": "[Saechsisch] Use <code>{q}</code>[Saechsisch]  as placeholder for the search phrase. Without <code>{q}</code>[Saechsisch] , <code>[Saechsisch] ?q=...</code>[Saechsisch]  is appended.",
+      "feedsLabel": "[Saechsisch] Custom RSS feeds",
+      "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
+      "feedsNote": "[Saechsisch] JSON: name - feed URL. This list is merged with the default feeds.",
+      "invalidShortcuts": "[Saechsisch] Invalid shortcuts JSON",
+      "invalidFeeds": "[Saechsisch] Invalid feeds JSON"
+    },
+    "widgets": {
+      "visible": "[Saechsisch] Show widgets",
+      "defaultCityLabel": "[Saechsisch] Default city (weather)",
+      "defaultCityPlaceholder": "[Saechsisch] e.g. Hanover",
+      "defaultTransportLabel": "[Saechsisch] Default stop (transport)",
+      "defaultTransportPlaceholder": "[Saechsisch] Search station...",
+      "cardStyleLabel": "[Saechsisch] Card style",
+      "cardStyleGlass": "[Saechsisch] Glass (default)",
+      "cardStyleSolid": "[Saechsisch] Solid",
+      "cardStyleTransparent": "[Saechsisch] Transparent",
+      "cardStyleMinimal": "[Saechsisch] Soft minimal",
+      "cardStyleNote": "[Saechsisch] Applies to all widgets & favorite tiles.",
+      "clockColorLabel": "[Saechsisch] Time & date",
+      "searchColorLabel": "[Saechsisch] Search",
+      "reset": "[Saechsisch] Reset",
+      "clockColorNote": "[Saechsisch] Sets the header background (empty = style default).",
+      "searchColorNote": "[Saechsisch] Color for the search area (empty = style default).",
+      "widgetColorsLabel": "[Saechsisch] Widget colors"
+    },
+    "data": {
+      "label": "[Saechsisch] Data",
+      "export": "[Saechsisch] Export (.json)",
+      "import": "[Saechsisch] Import (.json)",
+      "presetsLabel": "[Saechsisch] Data presets",
+      "applyPreset": "[Saechsisch] Load preset",
+      "presetMeta": "[Saechsisch] Presets are exported JSONs under assets/presets/. User presets from assets/user-presets/ are merged automatically.",
+      "setupLabel": "[Saechsisch] Setup",
+      "restartOnboarding": "[Saechsisch] Restart setup",
+      "restartNote": "[Saechsisch] Reopens the compact setup dialog.",
+      "noteLabel": "[Saechsisch] Note",
+      "noteText": "[Saechsisch] Export stores all settings & data locally as JSON. Import overwrites existing entries."
+    },
+    "language": {
+      "label": "[Saechsisch] Language",
+      "auto": "[Saechsisch] Auto (System)"
+    },
+    "font": {
+      "label": "[Saechsisch] Font",
+      "searchPlaceholder": "[Saechsisch] Search fonts...",
+      "loadLocal": "[Saechsisch] Load system fonts",
+      "systemDefault": "[Saechsisch] System default",
+      "noResults": "[Saechsisch] No matching fonts",
+      "note": "[Saechsisch] Shows local system fonts (if available), otherwise a detected fallback list.",
+      "unsupported": "[Saechsisch] Your browser does not support Local Font Access (queryLocalFonts).",
+      "permissionDenied": "[Saechsisch] Access to local fonts was denied or blocked.",
+      "empty": "[Saechsisch] No local fonts were returned.",
+      "loadFailed": "[Saechsisch] Could not load local fonts: {error}"
+    },
+    "guideHtml": "<div class=\"row\"><label>[Saechsisch] User Guide</label><div><h5>[Saechsisch] Overview</h5><ul><li>[Saechsisch] Start page with search, favorites, to-do, notes, weather, news.</li><li>[Saechsisch] All local: data stays in your browser (localStorage).</li></ul><h5>[Saechsisch] Shortcuts</h5><ul><li>[Saechsisch] Ctrl/Cmd+K: open command palette</li><li>[Saechsisch] 1-9: open first 9 favorites (when not typing)</li><li>[Saechsisch] / : focus search (also via palette)</li><li>[Saechsisch] Enter in search: start search</li><li>[Saechsisch] ESC: close modals</li><li>[Saechsisch] Palette: quick actions for widgets, theme, background, data, favorites</li><li>[Saechsisch] Palette: key C switches card style, \"Reset header colors\" resets search & clock</li></ul><h5>[Saechsisch] Search & Autocomplete</h5><ul><li>[Saechsisch] Bangs: !g[Saechsisch]  !ddg[Saechsisch]  !bing[Saechsisch]  !yt[Saechsisch]  !wiki[Saechsisch]  !maps</li><li>[Saechsisch] Custom shortcuts: JSON in settings; {q}[Saechsisch]  as placeholder</li><li>[Saechsisch] Autocomplete: bangs, shortcuts, recent searches, wordlist (global + preset)</li><li>[Saechsisch] Tab accepts suggestion, Enter starts search</li></ul><h5>[Saechsisch] Tiles</h5><ul><li>[Saechsisch] Drag & drop to sort, click to open</li><li>[Saechsisch] + Tile: add a new favorite</li><li>[Saechsisch] Reset: restore default favorites</li></ul><h5>[Saechsisch] Widgets & Layout</h5><ul><li>[Saechsisch] Visibility per widget</li><li>[Saechsisch] Card style is global (glass, solid, transparent, soft minimal)</li><li>[Saechsisch] Custom colors for clock/search; reset restores style defaults</li><li>[Saechsisch] Widget colors & \"Tint widgets\" set the accent per card</li></ul><h5>[Saechsisch] Background</h5><ul><li>[Saechsisch] Presets, uploads, collections, rotation (time/theme/interval)</li><li>[Saechsisch] Accent color is extracted from the active background</li></ul><h5>[Saechsisch] Data</h5><ul><li>[Saechsisch] Export/Import as JSON</li><li>[Saechsisch] Load data presets (assets/presets/*.json in the repo)</li></ul></div></div>"
+  },
+  "onboarding": {
+    "title": "[Saechsisch] Start setup",
+    "progress": "[Saechsisch] Step {current}[Saechsisch]  of {total}",
+    "skip": "[Saechsisch] Skip setup",
+    "close": "[Saechsisch] Close",
+    "preset": {
+      "title": "[Saechsisch] Choose preset",
+      "hint": "[Saechsisch] Pick a preset or skip this step.",
+      "apply": "[Saechsisch] Apply preset",
+      "meta": "[Saechsisch] Apply a preset or skip.",
+      "optional": "[Saechsisch] Preset optional.",
+      "context": "[Saechsisch] Setup preset"
+    },
+    "appearance": {
+      "title": "[Saechsisch] Appearance",
+      "theme": "[Saechsisch] Theme",
+      "cardStyle": "[Saechsisch] Card style",
+      "background": "[Saechsisch] Background",
+      "rotation": "[Saechsisch] Enable rotation",
+      "keepCurrent": "[Saechsisch] Keep current image"
+    },
+    "search": {
+      "title": "[Saechsisch] Search",
+      "engine": "[Saechsisch] Default search engine"
+    },
+    "widgets": {
+      "title": "[Saechsisch] Widgets",
+      "defaultTransport": "[Saechsisch] Default stop (transport)",
+      "tint": "[Saechsisch] Tint widgets with accent"
+    },
+    "weather": {
+      "title": "[Saechsisch] Weather",
+      "defaultCity": "[Saechsisch] Default city",
+      "note": "[Saechsisch] You can change everything later in settings."
+    },
+    "prev": "[Saechsisch] Back",
+    "next": "[Saechsisch] Next",
+    "finish": "[Saechsisch] Done"
+  },
+  "palette": {
+    "placeholder": "[Saechsisch] Search command or favorite... (Ctrl/+K)",
+    "groups": {
+      "command": "[Saechsisch] Commands",
+      "settings": "[Saechsisch] Settings",
+      "search": "[Saechsisch] Search",
+      "widgets": "[Saechsisch] Widgets",
+      "theme": "[Saechsisch] Theme & Background",
+      "data": "[Saechsisch] Data",
+      "tiles": "[Saechsisch] Tiles",
+      "tile": "[Saechsisch] Favorites",
+      "quick": "[Saechsisch] Quick"
+    },
+    "search": {
+      "focus": "[Saechsisch] Focus search",
+      "start": "[Saechsisch] Start search",
+      "engine": "[Saechsisch] Engine: {engine}"
+    },
+    "settings": {
+      "open": "[Saechsisch] Open settings",
+      "general": "[Saechsisch] Settings: General",
+      "background": "[Saechsisch] Settings: Background",
+      "search": "[Saechsisch] Settings: Search",
+      "widgets": "[Saechsisch] Settings: Widgets",
+      "data": "[Saechsisch] Settings: Data",
+      "guide": "[Saechsisch] Settings: Guide"
+    },
+    "theme": {
+      "cycle": "[Saechsisch] Cycle theme (Auto/Dark/Light)",
+      "auto": "[Saechsisch] Theme: Auto",
+      "dark": "[Saechsisch] Theme: Dark",
+      "light": "[Saechsisch] Theme: Light",
+      "resetHeader": "[Saechsisch] Reset header colors",
+      "recalcAccent": "[Saechsisch] Recalculate accent colors"
+    },
+    "cardStyle": {
+      "glass": "[Saechsisch] Card style: Glass",
+      "solid": "[Saechsisch] Card style: Solid",
+      "transparent": "[Saechsisch] Card style: Transparent",
+      "minimal": "[Saechsisch] Card style: Minimal"
+    },
+    "background": {
+      "toggleRotation": "[Saechsisch] Background: Toggle rotation",
+      "toggleLock": "[Saechsisch] Background: Lock/unlock rotation",
+      "preset": "[Saechsisch] Background: {label}"
+    },
+    "widgets": {
+      "showAll": "[Saechsisch] Widgets: Show all",
+      "hideAll": "[Saechsisch] Widgets: Hide all",
+      "toggle": "[Saechsisch] Widget: Toggle {widget}",
+      "focus": "[Saechsisch] Widget: Focus {widget}"
+    },
+    "quick": {
+      "addTodo": "[Saechsisch] Add todo",
+      "addNote": "[Saechsisch] Add note"
+    },
+    "tiles": {
+      "add": "[Saechsisch] Add tile",
+      "reset": "[Saechsisch] Reset tiles"
+    },
+    "refresh": {
+      "weather": "[Saechsisch] Refresh weather",
+      "news": "[Saechsisch] Refresh news",
+      "transport": "[Saechsisch] Refresh transport",
+      "system": "[Saechsisch] Refresh system",
+      "all": "[Saechsisch] Refresh all widgets"
+    },
+    "data": {
+      "export": "[Saechsisch] Export data",
+      "import": "[Saechsisch] Import data",
+      "preset": "[Saechsisch] Data preset: {label}"
+    }
+  },
+  "widgets": {
+    "todo": "[Saechsisch] To-Do",
+    "notes": "[Saechsisch] Notes",
+    "tiles": "[Saechsisch] Favorites",
+    "weather": "[Saechsisch] Weather",
+    "transport": "[Saechsisch] Transport",
+    "quote": "[Saechsisch] Quote",
+    "recent": "[Saechsisch] Recent",
+    "system": "[Saechsisch] System",
+    "news": "[Saechsisch] News"
+  },
+  "background": {
+    "currentPreview": "[Saechsisch] Current background image",
+    "none": "[Saechsisch] No background",
+    "noImageSelected": "[Saechsisch] No image selected",
+    "rotationResume": "[Saechsisch] Resume rotation",
+    "rotationLock": "[Saechsisch] Lock rotation",
+    "tone": "[Saechsisch] Tone: {tone}",
+    "presets": {
+      "empty": "[Saechsisch] No presets available."
+    },
+    "favorites": {
+      "empty": "[Saechsisch] No favorites yet. Mark presets or uploads."
+    },
+    "subtitle": {
+      "preset": "[Saechsisch] Preset"
+    },
+    "upload": "[Saechsisch] Upload",
+    "uploadDrop": "[Saechsisch] Drop files here",
+    "uploadBrowse": "[Saechsisch] Choose file",
+    "uploadNote": "[Saechsisch] We resize images automatically (16:9, max 2560px) and store them locally. Max {max}[Saechsisch]  files.",
+    "uploads": {
+      "empty": "[Saechsisch] No uploads yet."
+    },
+    "collections": {
+      "count": "{count}[Saechsisch]  sources",
+      "random": "[Saechsisch] Random",
+      "cache": "[Saechsisch] Save offline",
+      "viewSources": "[Saechsisch] View sources",
+      "useRotation": "[Saechsisch] Use for rotation",
+      "newLabel": "[Saechsisch] New collection",
+      "namePlaceholder": "[Saechsisch] My collection",
+      "urlsPlaceholder": "[Saechsisch] One image URL per line",
+      "clear": "[Saechsisch] Clear fields",
+      "note": "[Saechsisch] URLs are stored locally. Remote sources need CORS for images.",
+      "empty": "[Saechsisch] No collections yet.",
+      "minOneUrl": "[Saechsisch] Enter at least one URL.",
+      "emptyCollection": "[Saechsisch] Collection is empty.",
+      "saved": "[Saechsisch] Collection saved locally.",
+      "defaultName": "[Saechsisch] Collection {index}"
+    },
+    "rotation": {
+      "optionPreset": "[Saechsisch] Preset: {label}",
+      "optionUpload": "[Saechsisch] Upload: {label}",
+      "optionFavorite": "[Saechsisch] Favorite: {label}",
+      "optionCustom": "[Saechsisch] Custom: saved URL",
+      "noFixed": "[Saechsisch] No fixed image",
+      "enabled": "[Saechsisch] Enable automatic rotation",
+      "locked": "[Saechsisch] Rotation is currently locked.",
+      "active": "[Saechsisch] Backgrounds change according to the schedule.",
+      "mode": "[Saechsisch] Mode",
+      "modeTime": "[Saechsisch] Time-based",
+      "modeInterval": "[Saechsisch] Interval",
+      "modeTheme": "[Saechsisch] Theme",
+      "intervalLabel": "[Saechsisch] Interval in minutes",
+      "intervalNote": "[Saechsisch] Only relevant in interval mode.",
+      "sourcesLabel": "[Saechsisch] Sources for random",
+      "scheduleLabel": "[Saechsisch] Schedule",
+      "themePlan": "[Saechsisch] Theme plan",
+      "themeLight": "[Saechsisch] Theme light",
+      "themeDark": "[Saechsisch] Theme dark",
+      "themeNote": "[Saechsisch] Theme plan is used when mode is Theme.",
+      "slot": {
+        "morning": "[Saechsisch] Morning 05-11",
+        "day": "[Saechsisch] Day 11-17",
+        "evening": "[Saechsisch] Evening 17-21",
+        "night": "[Saechsisch] Night 21-05"
+      }
+    },
+    "custom": {
+      "label": "[Saechsisch] Custom image URL",
+      "placeholder": "https://example.com/image.jpg",
+      "note": "[Saechsisch] URL is stored locally. Server must allow CORS for images.",
+      "enterUrl": "[Saechsisch] Please enter a URL.",
+      "title": "[Saechsisch] Custom URL",
+      "subtitle": "[Saechsisch] Custom"
+    },
+    "actions": {
+      "apply": "[Saechsisch] Apply",
+      "favorite": "[Saechsisch] Favorite",
+      "favorited": "[Saechsisch] Favorited",
+      "random": "[Saechsisch] Load random",
+      "undo": "[Saechsisch] Restore last image",
+      "lock": "[Saechsisch] Lock rotation",
+      "tint": "[Saechsisch] Tint widgets"
+    },
+    "tabs": {
+      "presets": "[Saechsisch] Presets",
+      "favorites": "[Saechsisch] Favorites",
+      "uploads": "[Saechsisch] Uploads",
+      "collections": "[Saechsisch] Collections",
+      "rotation": "[Saechsisch] Rotation",
+      "custom": "[Saechsisch] Custom"
+    },
+    "loadError": "[Saechsisch] Load failed. Check CORS settings.",
+    "noneAvailable": "[Saechsisch] No backgrounds available.",
+    "imageLoadError": "[Saechsisch] Image could not be loaded."
+  },
+  "data": {
+    "import": {
+      "confirm": "[Saechsisch] Import data? Existing entries will be overwritten.",
+      "failed": "[Saechsisch] Import failed: {error}"
+    },
+    "presets": {
+      "none": "[Saechsisch] No preset available.",
+      "missingFile": "[Saechsisch] Preset file missing.",
+      "fileMissing": "[Saechsisch] File not found",
+      "invalid": "[Saechsisch] Invalid preset",
+      "confirmApply": "[Saechsisch] Apply {context}[Saechsisch]  \"{name}[Saechsisch] \"? Existing entries will be overwritten.",
+      "loadFailed": "[Saechsisch] Preset load failed: {error}",
+      "loading": "[Saechsisch] Loading presets...",
+      "noneFound": "[Saechsisch] No presets found",
+      "hint": "[Saechsisch] Place exported JSONs under assets/presets/ (manifest: assets/data-presets.json) or locally under assets/user-presets/.",
+      "hintShort": "[Saechsisch] Add a preset under assets/presets/ or assets/user-presets/.",
+      "userPrefix": "[Saechsisch] User: ",
+      "userApply": "[Saechsisch] Apply local preset",
+      "apply": "[Saechsisch] Apply preset",
+      "noneSelected": "[Saechsisch] No preset selected.",
+      "label": "[Saechsisch] Preset",
+      "defaultLabel": "[Saechsisch] Preset {index}",
+      "userDefault": "[Saechsisch] User preset {index}",
+      "userDescription": "[Saechsisch] Local preset from assets/user-presets/",
+      "tags": "[Saechsisch]  (Tags: {tags}[Saechsisch] )"
+    }
+  },
+  "dialogs": {
+    "alertTitle": "[Saechsisch] Notice",
+    "confirmTitle": "[Saechsisch] Confirm",
+    "promptTitle": "[Saechsisch] Input"
+  }
+}

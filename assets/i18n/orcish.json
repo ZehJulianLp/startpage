@@ -1,0 +1,521 @@
+{
+  "app": {
+    "title": "Startpage (Orcish)"
+  },
+  "common": {
+    "link": "Link GRAH",
+    "delete": "Delete GRAH",
+    "remove": "Remove GRAH",
+    "save": "Save GRAH",
+    "loading": "Loading... GRAH",
+    "loadError": "Load failed GRAH",
+    "noMatches": "No matches GRAH",
+    "emptyDash": "- GRAH",
+    "dash": "- GRAH",
+    "cancel": "Cancel GRAH",
+    "ok": "OK GRAH",
+    "default": "Default GRAH"
+  },
+  "header": {
+    "themeToggleTitle": "Dark/Light GRAH",
+    "settingsTitle": "Settings GRAH",
+    "themeAria": "Toggle theme GRAH",
+    "settingsAria": "Open settings GRAH"
+  },
+  "search": {
+    "placeholder": "Search... (e.g.  GRAH!yt lo-fi,  GRAH!etc Home) GRAH",
+    "engine": {
+      "google": "Google GRAH",
+      "ddg": "DuckDuckGo GRAH",
+      "bing": "Bing GRAH",
+      "yt": "YouTube GRAH",
+      "wikipedia": "Wikipedia GRAH",
+      "maps": "Google Maps GRAH"
+    },
+    "suggest": {
+      "bang": "{bang} (Bang)",
+      "shortcut": "{shortcut} (Shortcut)",
+      "type": {
+        "bang": "Bang GRAH",
+        "shortcut": "Shortcut GRAH",
+        "recent": "Recent GRAH",
+        "word": "Word GRAH"
+      }
+    },
+    "recentShortcut": "Shortcut  GRAH{shortcut} -  GRAH{query}",
+    "recentSearch": "Search ( GRAH{engine}) -  GRAH{query}",
+    "submitAria": "Start search GRAH"
+  },
+  "todo": {
+    "title": "To-Do GRAH",
+    "placeholder": "New task... GRAH",
+    "add": "Add GRAH",
+    "clearDoneTitle": "Remove completed GRAH",
+    "clearDone": " clear GRAH",
+    "doneAria": "Done GRAH",
+    "prompt": "Todo GRAH"
+  },
+  "notes": {
+    "title": "Notes GRAH",
+    "placeholder": "Jot something down... GRAH",
+    "prompt": "Note GRAH"
+  },
+  "tiles": {
+    "title": "Favorites GRAH",
+    "add": "+ Tile GRAH",
+    "resetTitle": "Restore defaults GRAH",
+    "edit": "Edit GRAH",
+    "promptTitle": "Title GRAH",
+    "promptUrl": "URL GRAH",
+    "invalidUrl": "Invalid URL GRAH",
+    "promptTitleNew": "Tile title GRAH",
+    "promptUrlNew": "URL ( GRAHhttps://...)",
+    "resetConfirm": "Restore default tiles? GRAH",
+    "dialog": {
+      "titleLabel": "Title GRAH",
+      "urlLabel": "URL GRAH",
+      "save": "Save GRAH"
+    },
+    "resetAria": "Reset tiles GRAH"
+  },
+  "weather": {
+    "title": "Weather today GRAH",
+    "cityPlaceholder": "Enter city... GRAH",
+    "setCity": "Set GRAH",
+    "pickLocation": "Pick a location... GRAH",
+    "source": "Source: Open-Meteo GRAH",
+    "loading": "Loading weather... GRAH",
+    "prompt": "Enter a location to load weather. GRAH",
+    "tempEmpty": "-C GRAH",
+    "tempEmptyShort": "- GRAH",
+    "minmaxEmpty": "- / - C GRAH",
+    "noForecast": "No forecast GRAH",
+    "errors": {
+      "geocodingFailed": "Geocoding failed GRAH",
+      "locationNotFound": "Location not found GRAH",
+      "cityMissing": "City missing GRAH",
+      "fetchFailed": "Weather fetch failed GRAH",
+      "loadFailed": "Weather could not be loaded GRAH"
+    },
+    "codes": {
+      "0": "Clear GRAH",
+      "1": "Mostly clear GRAH",
+      "2": "Partly cloudy GRAH",
+      "3": "Cloudy GRAH",
+      "45": "Fog GRAH",
+      "48": "Fog GRAH",
+      "51": "Drizzle GRAH",
+      "53": "Drizzle GRAH",
+      "55": "Drizzle GRAH",
+      "61": "Rain GRAH",
+      "63": "Rain GRAH",
+      "65": "Heavy rain GRAH",
+      "71": "Snow GRAH",
+      "80": "Showers GRAH",
+      "95": "Thunderstorm GRAH",
+      "default": "Weather GRAH"
+    }
+  },
+  "transport": {
+    "title": "Transport GRAH",
+    "durationAria": "Duration GRAH",
+    "duration30": "30 min GRAH",
+    "duration60": "60 min GRAH",
+    "duration90": "90 min GRAH",
+    "duration120": "120 min GRAH",
+    "refreshTitle": "Reload GRAH",
+    "searchPlaceholder": "Search station... GRAH",
+    "noneSelected": "No station selected GRAH",
+    "source": "Source: transport.rest GRAH",
+    "minQuery": "At least  GRAH{count} characters GRAH",
+    "noMatches": "No matches GRAH",
+    "proxyTimeout": "Proxy timeout GRAH",
+    "loadError": "Load failed GRAH",
+    "noDepartures": "No departures GRAH",
+    "selectStation": "Select a station... GRAH",
+    "type": {
+      "station": "Station GRAH",
+      "stop": "Stop GRAH"
+    },
+    "platform": "Platform  GRAH{platform}",
+    "cancelled": "Cancelled GRAH",
+    "refreshAria": "Refresh transport GRAH"
+  },
+  "quote": {
+    "title": "Quote / Nerd Nudge GRAH",
+    "list": [
+      "Move fast, refactor often. GRAH",
+      "Accessibility isn't a feature - it's the default. GRAH",
+      "Done > Perfect. Iterate. GRAH",
+      "If it's not monitored, it doesn't exist. GRAH",
+      "Good UX is invisible. Bad UX is unforgettable. GRAH",
+      "Make it work, make it right, make it fast. GRAH",
+      "Small steps. Massive outcomes. GRAH",
+      "Simplicity scales. Complexity fails. GRAH",
+      "Automate the boring stuff. GRAH",
+      "Measure twice, deploy once. GRAH"
+    ]
+  },
+  "recent": {
+    "title": "Recent GRAH",
+    "note": "Note: Only actions from this start page (clicked tiles & searches). GRAH"
+  },
+  "system": {
+    "title": "System status GRAH",
+    "loading": "Loading... GRAH",
+    "ram": "RAM:  GRAH{value} GB GRAH",
+    "cpu": "CPU cores:  GRAH{value}",
+    "network": "Network:  GRAH{downlink} Mbit/s   GRAH{type}{saveData}",
+    "saveData": "  SaveData GRAH",
+    "noData": "No data available GRAH"
+  },
+  "news": {
+    "title": "News GRAH",
+    "refreshTitle": "Reload GRAH",
+    "source": "RSS via Startpage Proxy (CORS proxy) GRAH",
+    "noItems": "No items GRAH",
+    "refreshAria": "Refresh news GRAH"
+  },
+  "footer": {
+    "tagline": "Local-first dashboard  stores only in the browser (localStorage) GRAH"
+  },
+  "settings": {
+    "title": "Settings GRAH",
+    "close": "Close GRAH",
+    "tabs": {
+      "general": "General GRAH",
+      "background": "Background & Appearance GRAH",
+      "search": "Search & Feeds GRAH",
+      "widgets": "Widgets GRAH",
+      "data": "Data GRAH",
+      "guide": "Guide GRAH"
+    },
+    "theme": {
+      "label": "Theme GRAH",
+      "auto": "Auto (System) GRAH",
+      "dark": "Dark GRAH",
+      "light": "Light GRAH"
+    },
+    "background": {
+      "label": "Background GRAH"
+    },
+    "search": {
+      "engines": "Search engines GRAH",
+      "bangsNote": "Supported bang shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Custom shortcuts below",
+      "wordlistLabel": "Autocomplete wordlist GRAH",
+      "wordlistPlaceholder": "Terms line by line or comma-separated GRAH",
+      "wordlistSave": "Save GRAH",
+      "wordlistReset": "Clear GRAH",
+      "wordlistNote": "Global wordlist (assets/wordlist.json) and preset wordlist are merged. Leave empty to use only the global list. GRAH",
+      "shortcutsLabel": "Custom  GRAH!shortcuts",
+      "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
+      "shortcutsNote": "Use  GRAH<code>{q}</code> as placeholder for the search phrase. Without  GRAH<code>{q}</code>,  GRAH<code>?q=... GRAH</code> is appended. GRAH",
+      "feedsLabel": "Custom RSS feeds GRAH",
+      "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
+      "feedsNote": "JSON: name - feed URL. This list is merged with the default feeds. GRAH",
+      "invalidShortcuts": "Invalid shortcuts JSON GRAH",
+      "invalidFeeds": "Invalid feeds JSON GRAH"
+    },
+    "widgets": {
+      "visible": "Show widgets GRAH",
+      "defaultCityLabel": "Default city (weather) GRAH",
+      "defaultCityPlaceholder": "e.g. Hanover GRAH",
+      "defaultTransportLabel": "Default stop (transport) GRAH",
+      "defaultTransportPlaceholder": "Search station... GRAH",
+      "cardStyleLabel": "Card style GRAH",
+      "cardStyleGlass": "Glass (default) GRAH",
+      "cardStyleSolid": "Solid GRAH",
+      "cardStyleTransparent": "Transparent GRAH",
+      "cardStyleMinimal": "Soft minimal GRAH",
+      "cardStyleNote": "Applies to all widgets & favorite tiles. GRAH",
+      "clockColorLabel": "Time & date GRAH",
+      "searchColorLabel": "Search GRAH",
+      "reset": "Reset GRAH",
+      "clockColorNote": "Sets the header background (empty = style default). GRAH",
+      "searchColorNote": "Color for the search area (empty = style default). GRAH",
+      "widgetColorsLabel": "Widget colors GRAH"
+    },
+    "data": {
+      "label": "Data GRAH",
+      "export": "Export (.json) GRAH",
+      "import": "Import (.json) GRAH",
+      "presetsLabel": "Data presets GRAH",
+      "applyPreset": "Load preset GRAH",
+      "presetMeta": "Presets are exported JSONs under assets/presets/. User presets from assets/user-presets/ are merged automatically. GRAH",
+      "setupLabel": "Setup GRAH",
+      "restartOnboarding": "Restart setup GRAH",
+      "restartNote": "Reopens the compact setup dialog. GRAH",
+      "noteLabel": "Note GRAH",
+      "noteText": "Export stores all settings & data locally as JSON. Import overwrites existing entries. GRAH"
+    },
+    "language": {
+      "label": "Language GRAH",
+      "auto": "Auto (System) GRAH"
+    },
+    "font": {
+      "label": "Font GRAH",
+      "searchPlaceholder": "Search fonts... GRAH",
+      "loadLocal": "Load system fonts GRAH",
+      "systemDefault": "System default GRAH",
+      "noResults": "No matching fonts GRAH",
+      "note": "Shows local system fonts (if available), otherwise a detected fallback list. GRAH",
+      "unsupported": "Your browser does not support Local Font Access (queryLocalFonts). GRAH",
+      "permissionDenied": "Access to local fonts was denied or blocked. GRAH",
+      "empty": "No local fonts were returned. GRAH",
+      "loadFailed": "Could not load local fonts:  GRAH{error}"
+    },
+    "guideHtml": "<div class=\"row\"><label>User Guide GRAH</label><div><h5>Overview GRAH</h5><ul><li>Start page with search, favorites, to-do, notes, weather, news. GRAH</li><li>All local: data stays in your browser (localStorage). GRAH</li></ul><h5>Shortcuts GRAH</h5><ul><li>Ctrl/Cmd+K: open command palette GRAH</li><li>1-9: open first 9 favorites (when not typing) GRAH</li><li>/ : focus search (also via palette) GRAH</li><li>Enter in search: start search GRAH</li><li>ESC: close modals GRAH</li><li>Palette: quick actions for widgets, theme, background, data, favorites GRAH</li><li>Palette: key C switches card style, \"Reset header colors\" resets search & clock GRAH</li></ul><h5>Search & Autocomplete GRAH</h5><ul><li>Bangs:  GRAH!g  GRAH!ddg  GRAH!bing  GRAH!yt  GRAH!wiki  GRAH!maps</li><li>Custom shortcuts: JSON in settings;  GRAH{q} as placeholder GRAH</li><li>Autocomplete: bangs, shortcuts, recent searches, wordlist (global + preset) GRAH</li><li>Tab accepts suggestion, Enter starts search GRAH</li></ul><h5>Tiles GRAH</h5><ul><li>Drag & drop to sort, click to open GRAH</li><li>+ Tile: add a new favorite GRAH</li><li>Reset: restore default favorites GRAH</li></ul><h5>Widgets & Layout GRAH</h5><ul><li>Visibility per widget GRAH</li><li>Card style is global (glass, solid, transparent, soft minimal) GRAH</li><li>Custom colors for clock/search; reset restores style defaults GRAH</li><li>Widget colors & \"Tint widgets\" set the accent per card GRAH</li></ul><h5>Background GRAH</h5><ul><li>Presets, uploads, collections, rotation (time/theme/interval) GRAH</li><li>Accent color is extracted from the active background GRAH</li></ul><h5>Data GRAH</h5><ul><li>Export/Import as JSON GRAH</li><li>Load data presets (assets/presets/*.json in the repo) GRAH</li></ul></div></div>"
+  },
+  "onboarding": {
+    "title": "Start setup GRAH",
+    "progress": "Step  GRAH{current} of  GRAH{total}",
+    "skip": "Skip setup GRAH",
+    "close": "Close GRAH",
+    "preset": {
+      "title": "Choose preset GRAH",
+      "hint": "Pick a preset or skip this step. GRAH",
+      "apply": "Apply preset GRAH",
+      "meta": "Apply a preset or skip. GRAH",
+      "optional": "Preset optional. GRAH",
+      "context": "Setup preset GRAH"
+    },
+    "appearance": {
+      "title": "Appearance GRAH",
+      "theme": "Theme GRAH",
+      "cardStyle": "Card style GRAH",
+      "background": "Background GRAH",
+      "rotation": "Enable rotation GRAH",
+      "keepCurrent": "Keep current image GRAH"
+    },
+    "search": {
+      "title": "Search GRAH",
+      "engine": "Default search engine GRAH"
+    },
+    "widgets": {
+      "title": "Widgets GRAH",
+      "defaultTransport": "Default stop (transport) GRAH",
+      "tint": "Tint widgets with accent GRAH"
+    },
+    "weather": {
+      "title": "Weather GRAH",
+      "defaultCity": "Default city GRAH",
+      "note": "You can change everything later in settings. GRAH"
+    },
+    "prev": "Back GRAH",
+    "next": "Next GRAH",
+    "finish": "Done GRAH"
+  },
+  "palette": {
+    "placeholder": "Search command or favorite... (Ctrl/+K) GRAH",
+    "groups": {
+      "command": "Commands GRAH",
+      "settings": "Settings GRAH",
+      "search": "Search GRAH",
+      "widgets": "Widgets GRAH",
+      "theme": "Theme & Background GRAH",
+      "data": "Data GRAH",
+      "tiles": "Tiles GRAH",
+      "tile": "Favorites GRAH",
+      "quick": "Quick GRAH"
+    },
+    "search": {
+      "focus": "Focus search GRAH",
+      "start": "Start search GRAH",
+      "engine": "Engine:  GRAH{engine}"
+    },
+    "settings": {
+      "open": "Open settings GRAH",
+      "general": "Settings: General GRAH",
+      "background": "Settings: Background GRAH",
+      "search": "Settings: Search GRAH",
+      "widgets": "Settings: Widgets GRAH",
+      "data": "Settings: Data GRAH",
+      "guide": "Settings: Guide GRAH"
+    },
+    "theme": {
+      "cycle": "Cycle theme (Auto/Dark/Light) GRAH",
+      "auto": "Theme: Auto GRAH",
+      "dark": "Theme: Dark GRAH",
+      "light": "Theme: Light GRAH",
+      "resetHeader": "Reset header colors GRAH",
+      "recalcAccent": "Recalculate accent colors GRAH"
+    },
+    "cardStyle": {
+      "glass": "Card style: Glass GRAH",
+      "solid": "Card style: Solid GRAH",
+      "transparent": "Card style: Transparent GRAH",
+      "minimal": "Card style: Minimal GRAH"
+    },
+    "background": {
+      "toggleRotation": "Background: Toggle rotation GRAH",
+      "toggleLock": "Background: Lock/unlock rotation GRAH",
+      "preset": "Background:  GRAH{label}"
+    },
+    "widgets": {
+      "showAll": "Widgets: Show all GRAH",
+      "hideAll": "Widgets: Hide all GRAH",
+      "toggle": "Widget: Toggle  GRAH{widget}",
+      "focus": "Widget: Focus  GRAH{widget}"
+    },
+    "quick": {
+      "addTodo": "Add todo GRAH",
+      "addNote": "Add note GRAH"
+    },
+    "tiles": {
+      "add": "Add tile GRAH",
+      "reset": "Reset tiles GRAH"
+    },
+    "refresh": {
+      "weather": "Refresh weather GRAH",
+      "news": "Refresh news GRAH",
+      "transport": "Refresh transport GRAH",
+      "system": "Refresh system GRAH",
+      "all": "Refresh all widgets GRAH"
+    },
+    "data": {
+      "export": "Export data GRAH",
+      "import": "Import data GRAH",
+      "preset": "Data preset:  GRAH{label}"
+    }
+  },
+  "widgets": {
+    "todo": "To-Do GRAH",
+    "notes": "Notes GRAH",
+    "tiles": "Favorites GRAH",
+    "weather": "Weather GRAH",
+    "transport": "Transport GRAH",
+    "quote": "Quote GRAH",
+    "recent": "Recent GRAH",
+    "system": "System GRAH",
+    "news": "News GRAH"
+  },
+  "background": {
+    "currentPreview": "Current background image GRAH",
+    "none": "No background GRAH",
+    "noImageSelected": "No image selected GRAH",
+    "rotationResume": "Resume rotation GRAH",
+    "rotationLock": "Lock rotation GRAH",
+    "tone": "Tone:  GRAH{tone}",
+    "presets": {
+      "empty": "No presets available. GRAH"
+    },
+    "favorites": {
+      "empty": "No favorites yet. Mark presets or uploads. GRAH"
+    },
+    "subtitle": {
+      "preset": "Preset GRAH"
+    },
+    "upload": "Upload GRAH",
+    "uploadDrop": "Drop files here GRAH",
+    "uploadBrowse": "Choose file GRAH",
+    "uploadNote": "We resize images automatically (16:9, max 2560px) and store them locally. Max  GRAH{max} files. GRAH",
+    "uploads": {
+      "empty": "No uploads yet. GRAH"
+    },
+    "collections": {
+      "count": "{count} sources GRAH",
+      "random": "Random GRAH",
+      "cache": "Save offline GRAH",
+      "viewSources": "View sources GRAH",
+      "useRotation": "Use for rotation GRAH",
+      "newLabel": "New collection GRAH",
+      "namePlaceholder": "My collection GRAH",
+      "urlsPlaceholder": "One image URL per line GRAH",
+      "clear": "Clear fields GRAH",
+      "note": "URLs are stored locally. Remote sources need CORS for images. GRAH",
+      "empty": "No collections yet. GRAH",
+      "minOneUrl": "Enter at least one URL. GRAH",
+      "emptyCollection": "Collection is empty. GRAH",
+      "saved": "Collection saved locally. GRAH",
+      "defaultName": "Collection  GRAH{index}"
+    },
+    "rotation": {
+      "optionPreset": "Preset:  GRAH{label}",
+      "optionUpload": "Upload:  GRAH{label}",
+      "optionFavorite": "Favorite:  GRAH{label}",
+      "optionCustom": "Custom: saved URL GRAH",
+      "noFixed": "No fixed image GRAH",
+      "enabled": "Enable automatic rotation GRAH",
+      "locked": "Rotation is currently locked. GRAH",
+      "active": "Backgrounds change according to the schedule. GRAH",
+      "mode": "Mode GRAH",
+      "modeTime": "Time-based GRAH",
+      "modeInterval": "Interval GRAH",
+      "modeTheme": "Theme GRAH",
+      "intervalLabel": "Interval in minutes GRAH",
+      "intervalNote": "Only relevant in interval mode. GRAH",
+      "sourcesLabel": "Sources for random GRAH",
+      "scheduleLabel": "Schedule GRAH",
+      "themePlan": "Theme plan GRAH",
+      "themeLight": "Theme light GRAH",
+      "themeDark": "Theme dark GRAH",
+      "themeNote": "Theme plan is used when mode is Theme. GRAH",
+      "slot": {
+        "morning": "Morning 05-11 GRAH",
+        "day": "Day 11-17 GRAH",
+        "evening": "Evening 17-21 GRAH",
+        "night": "Night 21-05 GRAH"
+      }
+    },
+    "custom": {
+      "label": "Custom image URL GRAH",
+      "placeholder": "https://example.com/image.jpg",
+      "note": "URL is stored locally. Server must allow CORS for images. GRAH",
+      "enterUrl": "Please enter a URL. GRAH",
+      "title": "Custom URL GRAH",
+      "subtitle": "Custom GRAH"
+    },
+    "actions": {
+      "apply": "Apply GRAH",
+      "favorite": "Favorite GRAH",
+      "favorited": "Favorited GRAH",
+      "random": "Load random GRAH",
+      "undo": "Restore last image GRAH",
+      "lock": "Lock rotation GRAH",
+      "tint": "Tint widgets GRAH"
+    },
+    "tabs": {
+      "presets": "Presets GRAH",
+      "favorites": "Favorites GRAH",
+      "uploads": "Uploads GRAH",
+      "collections": "Collections GRAH",
+      "rotation": "Rotation GRAH",
+      "custom": "Custom GRAH"
+    },
+    "loadError": "Load failed. Check CORS settings. GRAH",
+    "noneAvailable": "No backgrounds available. GRAH",
+    "imageLoadError": "Image could not be loaded. GRAH"
+  },
+  "data": {
+    "import": {
+      "confirm": "Import data? Existing entries will be overwritten. GRAH",
+      "failed": "Import failed:  GRAH{error}"
+    },
+    "presets": {
+      "none": "No preset available. GRAH",
+      "missingFile": "Preset file missing. GRAH",
+      "fileMissing": "File not found GRAH",
+      "invalid": "Invalid preset GRAH",
+      "confirmApply": "Apply  GRAH{context} \" GRAH{name}\"? Existing entries will be overwritten. GRAH",
+      "loadFailed": "Preset load failed:  GRAH{error}",
+      "loading": "Loading presets... GRAH",
+      "noneFound": "No presets found GRAH",
+      "hint": "Place exported JSONs under assets/presets/ (manifest: assets/data-presets.json) or locally under assets/user-presets/. GRAH",
+      "hintShort": "Add a preset under assets/presets/ or assets/user-presets/. GRAH",
+      "userPrefix": "User:  GRAH",
+      "userApply": "Apply local preset GRAH",
+      "apply": "Apply preset GRAH",
+      "noneSelected": "No preset selected. GRAH",
+      "label": "Preset GRAH",
+      "defaultLabel": "Preset  GRAH{index}",
+      "userDefault": "User preset  GRAH{index}",
+      "userDescription": "Local preset from assets/user-presets/ GRAH",
+      "tags": " (Tags:  GRAH{tags}) GRAH"
+    }
+  },
+  "dialogs": {
+    "alertTitle": "Notice GRAH",
+    "confirmTitle": "Confirm GRAH",
+    "promptTitle": "Input GRAH"
+  }
+}

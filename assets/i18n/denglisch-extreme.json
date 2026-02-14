@@ -1,0 +1,521 @@
+{
+  "app": {
+    "title": "Startpage (Denglisch Extreme)"
+  },
+  "common": {
+    "link": "Link (aber in mega Denglisch)",
+    "delete": "Delete (aber in mega Denglisch)",
+    "remove": "Remove (aber in mega Denglisch)",
+    "save": "Save (aber in mega Denglisch)",
+    "loading": "Loading... (aber in mega Denglisch)",
+    "loadError": "Load failed (aber in mega Denglisch)",
+    "noMatches": "No matches (aber in mega Denglisch)",
+    "emptyDash": "- (aber in mega Denglisch)",
+    "dash": "- (aber in mega Denglisch)",
+    "cancel": "Cancel (aber in mega Denglisch)",
+    "ok": "OK (aber in mega Denglisch)",
+    "default": "Default (aber in mega Denglisch)"
+  },
+  "header": {
+    "themeToggleTitle": "Dark/Light (aber in mega Denglisch)",
+    "settingsTitle": "Settings (aber in mega Denglisch)",
+    "themeAria": "Toggle theme (aber in mega Denglisch)",
+    "settingsAria": "Open settings (aber in mega Denglisch)"
+  },
+  "search": {
+    "placeholder": "Search... (e.g.  (aber in mega Denglisch)!yt lo-fi,  (aber in mega Denglisch)!etc Home) (aber in mega Denglisch)",
+    "engine": {
+      "google": "Google (aber in mega Denglisch)",
+      "ddg": "DuckDuckGo (aber in mega Denglisch)",
+      "bing": "Bing (aber in mega Denglisch)",
+      "yt": "YouTube (aber in mega Denglisch)",
+      "wikipedia": "Wikipedia (aber in mega Denglisch)",
+      "maps": "Google Maps (aber in mega Denglisch)"
+    },
+    "suggest": {
+      "bang": "{bang} (Bang)",
+      "shortcut": "{shortcut} (Shortcut)",
+      "type": {
+        "bang": "Bang (aber in mega Denglisch)",
+        "shortcut": "Shortcut (aber in mega Denglisch)",
+        "recent": "Recent (aber in mega Denglisch)",
+        "word": "Word (aber in mega Denglisch)"
+      }
+    },
+    "recentShortcut": "Shortcut  (aber in mega Denglisch){shortcut} -  (aber in mega Denglisch){query}",
+    "recentSearch": "Search ( (aber in mega Denglisch){engine}) -  (aber in mega Denglisch){query}",
+    "submitAria": "Start search (aber in mega Denglisch)"
+  },
+  "todo": {
+    "title": "To-Do (aber in mega Denglisch)",
+    "placeholder": "New task... (aber in mega Denglisch)",
+    "add": "Add (aber in mega Denglisch)",
+    "clearDoneTitle": "Remove completed (aber in mega Denglisch)",
+    "clearDone": " clear (aber in mega Denglisch)",
+    "doneAria": "Done (aber in mega Denglisch)",
+    "prompt": "Todo (aber in mega Denglisch)"
+  },
+  "notes": {
+    "title": "Notes (aber in mega Denglisch)",
+    "placeholder": "Jot something down... (aber in mega Denglisch)",
+    "prompt": "Note (aber in mega Denglisch)"
+  },
+  "tiles": {
+    "title": "Favorites (aber in mega Denglisch)",
+    "add": "+ Tile (aber in mega Denglisch)",
+    "resetTitle": "Restore defaults (aber in mega Denglisch)",
+    "edit": "Edit (aber in mega Denglisch)",
+    "promptTitle": "Title (aber in mega Denglisch)",
+    "promptUrl": "URL (aber in mega Denglisch)",
+    "invalidUrl": "Invalid URL (aber in mega Denglisch)",
+    "promptTitleNew": "Tile title (aber in mega Denglisch)",
+    "promptUrlNew": "URL ( (aber in mega Denglisch)https://...)",
+    "resetConfirm": "Restore default tiles? (aber in mega Denglisch)",
+    "dialog": {
+      "titleLabel": "Title (aber in mega Denglisch)",
+      "urlLabel": "URL (aber in mega Denglisch)",
+      "save": "Save (aber in mega Denglisch)"
+    },
+    "resetAria": "Reset tiles (aber in mega Denglisch)"
+  },
+  "weather": {
+    "title": "Weather today (aber in mega Denglisch)",
+    "cityPlaceholder": "Enter city... (aber in mega Denglisch)",
+    "setCity": "Set (aber in mega Denglisch)",
+    "pickLocation": "Pick a location... (aber in mega Denglisch)",
+    "source": "Source: Open-Meteo (aber in mega Denglisch)",
+    "loading": "Loading weather... (aber in mega Denglisch)",
+    "prompt": "Enter a location to load weather. (aber in mega Denglisch)",
+    "tempEmpty": "-C (aber in mega Denglisch)",
+    "tempEmptyShort": "- (aber in mega Denglisch)",
+    "minmaxEmpty": "- / - C (aber in mega Denglisch)",
+    "noForecast": "No forecast (aber in mega Denglisch)",
+    "errors": {
+      "geocodingFailed": "Geocoding failed (aber in mega Denglisch)",
+      "locationNotFound": "Location not found (aber in mega Denglisch)",
+      "cityMissing": "City missing (aber in mega Denglisch)",
+      "fetchFailed": "Weather fetch failed (aber in mega Denglisch)",
+      "loadFailed": "Weather could not be loaded (aber in mega Denglisch)"
+    },
+    "codes": {
+      "0": "Clear (aber in mega Denglisch)",
+      "1": "Mostly clear (aber in mega Denglisch)",
+      "2": "Partly cloudy (aber in mega Denglisch)",
+      "3": "Cloudy (aber in mega Denglisch)",
+      "45": "Fog (aber in mega Denglisch)",
+      "48": "Fog (aber in mega Denglisch)",
+      "51": "Drizzle (aber in mega Denglisch)",
+      "53": "Drizzle (aber in mega Denglisch)",
+      "55": "Drizzle (aber in mega Denglisch)",
+      "61": "Rain (aber in mega Denglisch)",
+      "63": "Rain (aber in mega Denglisch)",
+      "65": "Heavy rain (aber in mega Denglisch)",
+      "71": "Snow (aber in mega Denglisch)",
+      "80": "Showers (aber in mega Denglisch)",
+      "95": "Thunderstorm (aber in mega Denglisch)",
+      "default": "Weather (aber in mega Denglisch)"
+    }
+  },
+  "transport": {
+    "title": "Transport (aber in mega Denglisch)",
+    "durationAria": "Duration (aber in mega Denglisch)",
+    "duration30": "30 min (aber in mega Denglisch)",
+    "duration60": "60 min (aber in mega Denglisch)",
+    "duration90": "90 min (aber in mega Denglisch)",
+    "duration120": "120 min (aber in mega Denglisch)",
+    "refreshTitle": "Reload (aber in mega Denglisch)",
+    "searchPlaceholder": "Search station... (aber in mega Denglisch)",
+    "noneSelected": "No station selected (aber in mega Denglisch)",
+    "source": "Source: transport.rest (aber in mega Denglisch)",
+    "minQuery": "At least  (aber in mega Denglisch){count} characters (aber in mega Denglisch)",
+    "noMatches": "No matches (aber in mega Denglisch)",
+    "proxyTimeout": "Proxy timeout (aber in mega Denglisch)",
+    "loadError": "Load failed (aber in mega Denglisch)",
+    "noDepartures": "No departures (aber in mega Denglisch)",
+    "selectStation": "Select a station... (aber in mega Denglisch)",
+    "type": {
+      "station": "Station (aber in mega Denglisch)",
+      "stop": "Stop (aber in mega Denglisch)"
+    },
+    "platform": "Platform  (aber in mega Denglisch){platform}",
+    "cancelled": "Cancelled (aber in mega Denglisch)",
+    "refreshAria": "Refresh transport (aber in mega Denglisch)"
+  },
+  "quote": {
+    "title": "Quote / Nerd Nudge (aber in mega Denglisch)",
+    "list": [
+      "Move fast, refactor often. (aber in mega Denglisch)",
+      "Accessibility isn't a feature - it's the default. (aber in mega Denglisch)",
+      "Done > Perfect. Iterate. (aber in mega Denglisch)",
+      "If it's not monitored, it doesn't exist. (aber in mega Denglisch)",
+      "Good UX is invisible. Bad UX is unforgettable. (aber in mega Denglisch)",
+      "Make it work, make it right, make it fast. (aber in mega Denglisch)",
+      "Small steps. Massive outcomes. (aber in mega Denglisch)",
+      "Simplicity scales. Complexity fails. (aber in mega Denglisch)",
+      "Automate the boring stuff. (aber in mega Denglisch)",
+      "Measure twice, deploy once. (aber in mega Denglisch)"
+    ]
+  },
+  "recent": {
+    "title": "Recent (aber in mega Denglisch)",
+    "note": "Note: Only actions from this start page (clicked tiles & searches). (aber in mega Denglisch)"
+  },
+  "system": {
+    "title": "System status (aber in mega Denglisch)",
+    "loading": "Loading... (aber in mega Denglisch)",
+    "ram": "RAM:  (aber in mega Denglisch){value} GB (aber in mega Denglisch)",
+    "cpu": "CPU cores:  (aber in mega Denglisch){value}",
+    "network": "Network:  (aber in mega Denglisch){downlink} Mbit/s   (aber in mega Denglisch){type}{saveData}",
+    "saveData": "  SaveData (aber in mega Denglisch)",
+    "noData": "No data available (aber in mega Denglisch)"
+  },
+  "news": {
+    "title": "News (aber in mega Denglisch)",
+    "refreshTitle": "Reload (aber in mega Denglisch)",
+    "source": "RSS via Startpage Proxy (CORS proxy) (aber in mega Denglisch)",
+    "noItems": "No items (aber in mega Denglisch)",
+    "refreshAria": "Refresh news (aber in mega Denglisch)"
+  },
+  "footer": {
+    "tagline": "Local-first dashboard  stores only in the browser (localStorage) (aber in mega Denglisch)"
+  },
+  "settings": {
+    "title": "Settings (aber in mega Denglisch)",
+    "close": "Close (aber in mega Denglisch)",
+    "tabs": {
+      "general": "General (aber in mega Denglisch)",
+      "background": "Background & Appearance (aber in mega Denglisch)",
+      "search": "Search & Feeds (aber in mega Denglisch)",
+      "widgets": "Widgets (aber in mega Denglisch)",
+      "data": "Data (aber in mega Denglisch)",
+      "guide": "Guide (aber in mega Denglisch)"
+    },
+    "theme": {
+      "label": "Theme (aber in mega Denglisch)",
+      "auto": "Auto (System) (aber in mega Denglisch)",
+      "dark": "Dark (aber in mega Denglisch)",
+      "light": "Light (aber in mega Denglisch)"
+    },
+    "background": {
+      "label": "Background (aber in mega Denglisch)"
+    },
+    "search": {
+      "engines": "Search engines (aber in mega Denglisch)",
+      "bangsNote": "Supported bang shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Custom shortcuts below",
+      "wordlistLabel": "Autocomplete wordlist (aber in mega Denglisch)",
+      "wordlistPlaceholder": "Terms line by line or comma-separated (aber in mega Denglisch)",
+      "wordlistSave": "Save (aber in mega Denglisch)",
+      "wordlistReset": "Clear (aber in mega Denglisch)",
+      "wordlistNote": "Global wordlist (assets/wordlist.json) and preset wordlist are merged. Leave empty to use only the global list. (aber in mega Denglisch)",
+      "shortcutsLabel": "Custom  (aber in mega Denglisch)!shortcuts",
+      "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
+      "shortcutsNote": "Use  (aber in mega Denglisch)<code>{q}</code> as placeholder for the search phrase. Without  (aber in mega Denglisch)<code>{q}</code>,  (aber in mega Denglisch)<code>?q=... (aber in mega Denglisch)</code> is appended. (aber in mega Denglisch)",
+      "feedsLabel": "Custom RSS feeds (aber in mega Denglisch)",
+      "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
+      "feedsNote": "JSON: name - feed URL. This list is merged with the default feeds. (aber in mega Denglisch)",
+      "invalidShortcuts": "Invalid shortcuts JSON (aber in mega Denglisch)",
+      "invalidFeeds": "Invalid feeds JSON (aber in mega Denglisch)"
+    },
+    "widgets": {
+      "visible": "Show widgets (aber in mega Denglisch)",
+      "defaultCityLabel": "Default city (weather) (aber in mega Denglisch)",
+      "defaultCityPlaceholder": "e.g. Hanover (aber in mega Denglisch)",
+      "defaultTransportLabel": "Default stop (transport) (aber in mega Denglisch)",
+      "defaultTransportPlaceholder": "Search station... (aber in mega Denglisch)",
+      "cardStyleLabel": "Card style (aber in mega Denglisch)",
+      "cardStyleGlass": "Glass (default) (aber in mega Denglisch)",
+      "cardStyleSolid": "Solid (aber in mega Denglisch)",
+      "cardStyleTransparent": "Transparent (aber in mega Denglisch)",
+      "cardStyleMinimal": "Soft minimal (aber in mega Denglisch)",
+      "cardStyleNote": "Applies to all widgets & favorite tiles. (aber in mega Denglisch)",
+      "clockColorLabel": "Time & date (aber in mega Denglisch)",
+      "searchColorLabel": "Search (aber in mega Denglisch)",
+      "reset": "Reset (aber in mega Denglisch)",
+      "clockColorNote": "Sets the header background (empty = style default). (aber in mega Denglisch)",
+      "searchColorNote": "Color for the search area (empty = style default). (aber in mega Denglisch)",
+      "widgetColorsLabel": "Widget colors (aber in mega Denglisch)"
+    },
+    "data": {
+      "label": "Data (aber in mega Denglisch)",
+      "export": "Export (.json) (aber in mega Denglisch)",
+      "import": "Import (.json) (aber in mega Denglisch)",
+      "presetsLabel": "Data presets (aber in mega Denglisch)",
+      "applyPreset": "Load preset (aber in mega Denglisch)",
+      "presetMeta": "Presets are exported JSONs under assets/presets/. User presets from assets/user-presets/ are merged automatically. (aber in mega Denglisch)",
+      "setupLabel": "Setup (aber in mega Denglisch)",
+      "restartOnboarding": "Restart setup (aber in mega Denglisch)",
+      "restartNote": "Reopens the compact setup dialog. (aber in mega Denglisch)",
+      "noteLabel": "Note (aber in mega Denglisch)",
+      "noteText": "Export stores all settings & data locally as JSON. Import overwrites existing entries. (aber in mega Denglisch)"
+    },
+    "language": {
+      "label": "Language (aber in mega Denglisch)",
+      "auto": "Auto (System) (aber in mega Denglisch)"
+    },
+    "font": {
+      "label": "Font (aber in mega Denglisch)",
+      "searchPlaceholder": "Search fonts... (aber in mega Denglisch)",
+      "loadLocal": "Load system fonts (aber in mega Denglisch)",
+      "systemDefault": "System default (aber in mega Denglisch)",
+      "noResults": "No matching fonts (aber in mega Denglisch)",
+      "note": "Shows local system fonts (if available), otherwise a detected fallback list. (aber in mega Denglisch)",
+      "unsupported": "Your browser does not support Local Font Access (queryLocalFonts). (aber in mega Denglisch)",
+      "permissionDenied": "Access to local fonts was denied or blocked. (aber in mega Denglisch)",
+      "empty": "No local fonts were returned. (aber in mega Denglisch)",
+      "loadFailed": "Could not load local fonts:  (aber in mega Denglisch){error}"
+    },
+    "guideHtml": "<div class=\"row\"><label>User Guide (aber in mega Denglisch)</label><div><h5>Overview (aber in mega Denglisch)</h5><ul><li>Start page with search, favorites, to-do, notes, weather, news. (aber in mega Denglisch)</li><li>All local: data stays in your browser (localStorage). (aber in mega Denglisch)</li></ul><h5>Shortcuts (aber in mega Denglisch)</h5><ul><li>Ctrl/Cmd+K: open command palette (aber in mega Denglisch)</li><li>1-9: open first 9 favorites (when not typing) (aber in mega Denglisch)</li><li>/ : focus search (also via palette) (aber in mega Denglisch)</li><li>Enter in search: start search (aber in mega Denglisch)</li><li>ESC: close modals (aber in mega Denglisch)</li><li>Palette: quick actions for widgets, theme, background, data, favorites (aber in mega Denglisch)</li><li>Palette: key C switches card style, \"Reset header colors\" resets search & clock (aber in mega Denglisch)</li></ul><h5>Search & Autocomplete (aber in mega Denglisch)</h5><ul><li>Bangs:  (aber in mega Denglisch)!g  (aber in mega Denglisch)!ddg  (aber in mega Denglisch)!bing  (aber in mega Denglisch)!yt  (aber in mega Denglisch)!wiki  (aber in mega Denglisch)!maps</li><li>Custom shortcuts: JSON in settings;  (aber in mega Denglisch){q} as placeholder (aber in mega Denglisch)</li><li>Autocomplete: bangs, shortcuts, recent searches, wordlist (global + preset) (aber in mega Denglisch)</li><li>Tab accepts suggestion, Enter starts search (aber in mega Denglisch)</li></ul><h5>Tiles (aber in mega Denglisch)</h5><ul><li>Drag & drop to sort, click to open (aber in mega Denglisch)</li><li>+ Tile: add a new favorite (aber in mega Denglisch)</li><li>Reset: restore default favorites (aber in mega Denglisch)</li></ul><h5>Widgets & Layout (aber in mega Denglisch)</h5><ul><li>Visibility per widget (aber in mega Denglisch)</li><li>Card style is global (glass, solid, transparent, soft minimal) (aber in mega Denglisch)</li><li>Custom colors for clock/search; reset restores style defaults (aber in mega Denglisch)</li><li>Widget colors & \"Tint widgets\" set the accent per card (aber in mega Denglisch)</li></ul><h5>Background (aber in mega Denglisch)</h5><ul><li>Presets, uploads, collections, rotation (time/theme/interval) (aber in mega Denglisch)</li><li>Accent color is extracted from the active background (aber in mega Denglisch)</li></ul><h5>Data (aber in mega Denglisch)</h5><ul><li>Export/Import as JSON (aber in mega Denglisch)</li><li>Load data presets (assets/presets/*.json in the repo) (aber in mega Denglisch)</li></ul></div></div>"
+  },
+  "onboarding": {
+    "title": "Start setup (aber in mega Denglisch)",
+    "progress": "Step  (aber in mega Denglisch){current} of  (aber in mega Denglisch){total}",
+    "skip": "Skip setup (aber in mega Denglisch)",
+    "close": "Close (aber in mega Denglisch)",
+    "preset": {
+      "title": "Choose preset (aber in mega Denglisch)",
+      "hint": "Pick a preset or skip this step. (aber in mega Denglisch)",
+      "apply": "Apply preset (aber in mega Denglisch)",
+      "meta": "Apply a preset or skip. (aber in mega Denglisch)",
+      "optional": "Preset optional. (aber in mega Denglisch)",
+      "context": "Setup preset (aber in mega Denglisch)"
+    },
+    "appearance": {
+      "title": "Appearance (aber in mega Denglisch)",
+      "theme": "Theme (aber in mega Denglisch)",
+      "cardStyle": "Card style (aber in mega Denglisch)",
+      "background": "Background (aber in mega Denglisch)",
+      "rotation": "Enable rotation (aber in mega Denglisch)",
+      "keepCurrent": "Keep current image (aber in mega Denglisch)"
+    },
+    "search": {
+      "title": "Search (aber in mega Denglisch)",
+      "engine": "Default search engine (aber in mega Denglisch)"
+    },
+    "widgets": {
+      "title": "Widgets (aber in mega Denglisch)",
+      "defaultTransport": "Default stop (transport) (aber in mega Denglisch)",
+      "tint": "Tint widgets with accent (aber in mega Denglisch)"
+    },
+    "weather": {
+      "title": "Weather (aber in mega Denglisch)",
+      "defaultCity": "Default city (aber in mega Denglisch)",
+      "note": "You can change everything later in settings. (aber in mega Denglisch)"
+    },
+    "prev": "Back (aber in mega Denglisch)",
+    "next": "Next (aber in mega Denglisch)",
+    "finish": "Done (aber in mega Denglisch)"
+  },
+  "palette": {
+    "placeholder": "Search command or favorite... (Ctrl/+K) (aber in mega Denglisch)",
+    "groups": {
+      "command": "Commands (aber in mega Denglisch)",
+      "settings": "Settings (aber in mega Denglisch)",
+      "search": "Search (aber in mega Denglisch)",
+      "widgets": "Widgets (aber in mega Denglisch)",
+      "theme": "Theme & Background (aber in mega Denglisch)",
+      "data": "Data (aber in mega Denglisch)",
+      "tiles": "Tiles (aber in mega Denglisch)",
+      "tile": "Favorites (aber in mega Denglisch)",
+      "quick": "Quick (aber in mega Denglisch)"
+    },
+    "search": {
+      "focus": "Focus search (aber in mega Denglisch)",
+      "start": "Start search (aber in mega Denglisch)",
+      "engine": "Engine:  (aber in mega Denglisch){engine}"
+    },
+    "settings": {
+      "open": "Open settings (aber in mega Denglisch)",
+      "general": "Settings: General (aber in mega Denglisch)",
+      "background": "Settings: Background (aber in mega Denglisch)",
+      "search": "Settings: Search (aber in mega Denglisch)",
+      "widgets": "Settings: Widgets (aber in mega Denglisch)",
+      "data": "Settings: Data (aber in mega Denglisch)",
+      "guide": "Settings: Guide (aber in mega Denglisch)"
+    },
+    "theme": {
+      "cycle": "Cycle theme (Auto/Dark/Light) (aber in mega Denglisch)",
+      "auto": "Theme: Auto (aber in mega Denglisch)",
+      "dark": "Theme: Dark (aber in mega Denglisch)",
+      "light": "Theme: Light (aber in mega Denglisch)",
+      "resetHeader": "Reset header colors (aber in mega Denglisch)",
+      "recalcAccent": "Recalculate accent colors (aber in mega Denglisch)"
+    },
+    "cardStyle": {
+      "glass": "Card style: Glass (aber in mega Denglisch)",
+      "solid": "Card style: Solid (aber in mega Denglisch)",
+      "transparent": "Card style: Transparent (aber in mega Denglisch)",
+      "minimal": "Card style: Minimal (aber in mega Denglisch)"
+    },
+    "background": {
+      "toggleRotation": "Background: Toggle rotation (aber in mega Denglisch)",
+      "toggleLock": "Background: Lock/unlock rotation (aber in mega Denglisch)",
+      "preset": "Background:  (aber in mega Denglisch){label}"
+    },
+    "widgets": {
+      "showAll": "Widgets: Show all (aber in mega Denglisch)",
+      "hideAll": "Widgets: Hide all (aber in mega Denglisch)",
+      "toggle": "Widget: Toggle  (aber in mega Denglisch){widget}",
+      "focus": "Widget: Focus  (aber in mega Denglisch){widget}"
+    },
+    "quick": {
+      "addTodo": "Add todo (aber in mega Denglisch)",
+      "addNote": "Add note (aber in mega Denglisch)"
+    },
+    "tiles": {
+      "add": "Add tile (aber in mega Denglisch)",
+      "reset": "Reset tiles (aber in mega Denglisch)"
+    },
+    "refresh": {
+      "weather": "Refresh weather (aber in mega Denglisch)",
+      "news": "Refresh news (aber in mega Denglisch)",
+      "transport": "Refresh transport (aber in mega Denglisch)",
+      "system": "Refresh system (aber in mega Denglisch)",
+      "all": "Refresh all widgets (aber in mega Denglisch)"
+    },
+    "data": {
+      "export": "Export data (aber in mega Denglisch)",
+      "import": "Import data (aber in mega Denglisch)",
+      "preset": "Data preset:  (aber in mega Denglisch){label}"
+    }
+  },
+  "widgets": {
+    "todo": "To-Do (aber in mega Denglisch)",
+    "notes": "Notes (aber in mega Denglisch)",
+    "tiles": "Favorites (aber in mega Denglisch)",
+    "weather": "Weather (aber in mega Denglisch)",
+    "transport": "Transport (aber in mega Denglisch)",
+    "quote": "Quote (aber in mega Denglisch)",
+    "recent": "Recent (aber in mega Denglisch)",
+    "system": "System (aber in mega Denglisch)",
+    "news": "News (aber in mega Denglisch)"
+  },
+  "background": {
+    "currentPreview": "Current background image (aber in mega Denglisch)",
+    "none": "No background (aber in mega Denglisch)",
+    "noImageSelected": "No image selected (aber in mega Denglisch)",
+    "rotationResume": "Resume rotation (aber in mega Denglisch)",
+    "rotationLock": "Lock rotation (aber in mega Denglisch)",
+    "tone": "Tone:  (aber in mega Denglisch){tone}",
+    "presets": {
+      "empty": "No presets available. (aber in mega Denglisch)"
+    },
+    "favorites": {
+      "empty": "No favorites yet. Mark presets or uploads. (aber in mega Denglisch)"
+    },
+    "subtitle": {
+      "preset": "Preset (aber in mega Denglisch)"
+    },
+    "upload": "Upload (aber in mega Denglisch)",
+    "uploadDrop": "Drop files here (aber in mega Denglisch)",
+    "uploadBrowse": "Choose file (aber in mega Denglisch)",
+    "uploadNote": "We resize images automatically (16:9, max 2560px) and store them locally. Max  (aber in mega Denglisch){max} files. (aber in mega Denglisch)",
+    "uploads": {
+      "empty": "No uploads yet. (aber in mega Denglisch)"
+    },
+    "collections": {
+      "count": "{count} sources (aber in mega Denglisch)",
+      "random": "Random (aber in mega Denglisch)",
+      "cache": "Save offline (aber in mega Denglisch)",
+      "viewSources": "View sources (aber in mega Denglisch)",
+      "useRotation": "Use for rotation (aber in mega Denglisch)",
+      "newLabel": "New collection (aber in mega Denglisch)",
+      "namePlaceholder": "My collection (aber in mega Denglisch)",
+      "urlsPlaceholder": "One image URL per line (aber in mega Denglisch)",
+      "clear": "Clear fields (aber in mega Denglisch)",
+      "note": "URLs are stored locally. Remote sources need CORS for images. (aber in mega Denglisch)",
+      "empty": "No collections yet. (aber in mega Denglisch)",
+      "minOneUrl": "Enter at least one URL. (aber in mega Denglisch)",
+      "emptyCollection": "Collection is empty. (aber in mega Denglisch)",
+      "saved": "Collection saved locally. (aber in mega Denglisch)",
+      "defaultName": "Collection  (aber in mega Denglisch){index}"
+    },
+    "rotation": {
+      "optionPreset": "Preset:  (aber in mega Denglisch){label}",
+      "optionUpload": "Upload:  (aber in mega Denglisch){label}",
+      "optionFavorite": "Favorite:  (aber in mega Denglisch){label}",
+      "optionCustom": "Custom: saved URL (aber in mega Denglisch)",
+      "noFixed": "No fixed image (aber in mega Denglisch)",
+      "enabled": "Enable automatic rotation (aber in mega Denglisch)",
+      "locked": "Rotation is currently locked. (aber in mega Denglisch)",
+      "active": "Backgrounds change according to the schedule. (aber in mega Denglisch)",
+      "mode": "Mode (aber in mega Denglisch)",
+      "modeTime": "Time-based (aber in mega Denglisch)",
+      "modeInterval": "Interval (aber in mega Denglisch)",
+      "modeTheme": "Theme (aber in mega Denglisch)",
+      "intervalLabel": "Interval in minutes (aber in mega Denglisch)",
+      "intervalNote": "Only relevant in interval mode. (aber in mega Denglisch)",
+      "sourcesLabel": "Sources for random (aber in mega Denglisch)",
+      "scheduleLabel": "Schedule (aber in mega Denglisch)",
+      "themePlan": "Theme plan (aber in mega Denglisch)",
+      "themeLight": "Theme light (aber in mega Denglisch)",
+      "themeDark": "Theme dark (aber in mega Denglisch)",
+      "themeNote": "Theme plan is used when mode is Theme. (aber in mega Denglisch)",
+      "slot": {
+        "morning": "Morning 05-11 (aber in mega Denglisch)",
+        "day": "Day 11-17 (aber in mega Denglisch)",
+        "evening": "Evening 17-21 (aber in mega Denglisch)",
+        "night": "Night 21-05 (aber in mega Denglisch)"
+      }
+    },
+    "custom": {
+      "label": "Custom image URL (aber in mega Denglisch)",
+      "placeholder": "https://example.com/image.jpg",
+      "note": "URL is stored locally. Server must allow CORS for images. (aber in mega Denglisch)",
+      "enterUrl": "Please enter a URL. (aber in mega Denglisch)",
+      "title": "Custom URL (aber in mega Denglisch)",
+      "subtitle": "Custom (aber in mega Denglisch)"
+    },
+    "actions": {
+      "apply": "Apply (aber in mega Denglisch)",
+      "favorite": "Favorite (aber in mega Denglisch)",
+      "favorited": "Favorited (aber in mega Denglisch)",
+      "random": "Load random (aber in mega Denglisch)",
+      "undo": "Restore last image (aber in mega Denglisch)",
+      "lock": "Lock rotation (aber in mega Denglisch)",
+      "tint": "Tint widgets (aber in mega Denglisch)"
+    },
+    "tabs": {
+      "presets": "Presets (aber in mega Denglisch)",
+      "favorites": "Favorites (aber in mega Denglisch)",
+      "uploads": "Uploads (aber in mega Denglisch)",
+      "collections": "Collections (aber in mega Denglisch)",
+      "rotation": "Rotation (aber in mega Denglisch)",
+      "custom": "Custom (aber in mega Denglisch)"
+    },
+    "loadError": "Load failed. Check CORS settings. (aber in mega Denglisch)",
+    "noneAvailable": "No backgrounds available. (aber in mega Denglisch)",
+    "imageLoadError": "Image could not be loaded. (aber in mega Denglisch)"
+  },
+  "data": {
+    "import": {
+      "confirm": "Import data? Existing entries will be overwritten. (aber in mega Denglisch)",
+      "failed": "Import failed:  (aber in mega Denglisch){error}"
+    },
+    "presets": {
+      "none": "No preset available. (aber in mega Denglisch)",
+      "missingFile": "Preset file missing. (aber in mega Denglisch)",
+      "fileMissing": "File not found (aber in mega Denglisch)",
+      "invalid": "Invalid preset (aber in mega Denglisch)",
+      "confirmApply": "Apply  (aber in mega Denglisch){context} \" (aber in mega Denglisch){name}\"? Existing entries will be overwritten. (aber in mega Denglisch)",
+      "loadFailed": "Preset load failed:  (aber in mega Denglisch){error}",
+      "loading": "Loading presets... (aber in mega Denglisch)",
+      "noneFound": "No presets found (aber in mega Denglisch)",
+      "hint": "Place exported JSONs under assets/presets/ (manifest: assets/data-presets.json) or locally under assets/user-presets/. (aber in mega Denglisch)",
+      "hintShort": "Add a preset under assets/presets/ or assets/user-presets/. (aber in mega Denglisch)",
+      "userPrefix": "User:  (aber in mega Denglisch)",
+      "userApply": "Apply local preset (aber in mega Denglisch)",
+      "apply": "Apply preset (aber in mega Denglisch)",
+      "noneSelected": "No preset selected. (aber in mega Denglisch)",
+      "label": "Preset (aber in mega Denglisch)",
+      "defaultLabel": "Preset  (aber in mega Denglisch){index}",
+      "userDefault": "User preset  (aber in mega Denglisch){index}",
+      "userDescription": "Local preset from assets/user-presets/ (aber in mega Denglisch)",
+      "tags": " (Tags:  (aber in mega Denglisch){tags}) (aber in mega Denglisch)"
+    }
+  },
+  "dialogs": {
+    "alertTitle": "Notice (aber in mega Denglisch)",
+    "confirmTitle": "Confirm (aber in mega Denglisch)",
+    "promptTitle": "Input (aber in mega Denglisch)"
+  }
+}

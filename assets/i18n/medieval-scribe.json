@@ -1,0 +1,521 @@
+{
+  "app": {
+    "title": "Startpage (Medieval Scribe)"
+  },
+  "common": {
+    "link": "By quill and ink: Link",
+    "delete": "By quill and ink: Delete",
+    "remove": "By quill and ink: Remove",
+    "save": "By quill and ink: Save",
+    "loading": "By quill and ink: Loading...",
+    "loadError": "By quill and ink: Load failed",
+    "noMatches": "By quill and ink: No matches",
+    "emptyDash": "By quill and ink: -",
+    "dash": "By quill and ink: -",
+    "cancel": "By quill and ink: Cancel",
+    "ok": "By quill and ink: OK",
+    "default": "By quill and ink: Default"
+  },
+  "header": {
+    "themeToggleTitle": "By quill and ink: Dark/Light",
+    "settingsTitle": "By quill and ink: Settings",
+    "themeAria": "By quill and ink: Toggle theme",
+    "settingsAria": "By quill and ink: Open settings"
+  },
+  "search": {
+    "placeholder": "By quill and ink: Search... (e.g. !ytBy quill and ink:  lo-fi, !etcBy quill and ink:  Home)",
+    "engine": {
+      "google": "By quill and ink: Google",
+      "ddg": "By quill and ink: DuckDuckGo",
+      "bing": "By quill and ink: Bing",
+      "yt": "By quill and ink: YouTube",
+      "wikipedia": "By quill and ink: Wikipedia",
+      "maps": "By quill and ink: Google Maps"
+    },
+    "suggest": {
+      "bang": "{bang} (Bang)",
+      "shortcut": "{shortcut} (Shortcut)",
+      "type": {
+        "bang": "By quill and ink: Bang",
+        "shortcut": "By quill and ink: Shortcut",
+        "recent": "By quill and ink: Recent",
+        "word": "By quill and ink: Word"
+      }
+    },
+    "recentShortcut": "By quill and ink: Shortcut {shortcut}By quill and ink:  - {query}",
+    "recentSearch": "By quill and ink: Search ({engine}By quill and ink: ) - {query}",
+    "submitAria": "By quill and ink: Start search"
+  },
+  "todo": {
+    "title": "By quill and ink: To-Do",
+    "placeholder": "By quill and ink: New task...",
+    "add": "By quill and ink: Add",
+    "clearDoneTitle": "By quill and ink: Remove completed",
+    "clearDone": "By quill and ink:  clear",
+    "doneAria": "By quill and ink: Done",
+    "prompt": "By quill and ink: Todo"
+  },
+  "notes": {
+    "title": "By quill and ink: Notes",
+    "placeholder": "By quill and ink: Jot something down...",
+    "prompt": "By quill and ink: Note"
+  },
+  "tiles": {
+    "title": "By quill and ink: Favorites",
+    "add": "By quill and ink: + Tile",
+    "resetTitle": "By quill and ink: Restore defaults",
+    "edit": "By quill and ink: Edit",
+    "promptTitle": "By quill and ink: Title",
+    "promptUrl": "By quill and ink: URL",
+    "invalidUrl": "By quill and ink: Invalid URL",
+    "promptTitleNew": "By quill and ink: Tile title",
+    "promptUrlNew": "By quill and ink: URL (https://...)",
+    "resetConfirm": "By quill and ink: Restore default tiles?",
+    "dialog": {
+      "titleLabel": "By quill and ink: Title",
+      "urlLabel": "By quill and ink: URL",
+      "save": "By quill and ink: Save"
+    },
+    "resetAria": "By quill and ink: Reset tiles"
+  },
+  "weather": {
+    "title": "By quill and ink: Weather today",
+    "cityPlaceholder": "By quill and ink: Enter city...",
+    "setCity": "By quill and ink: Set",
+    "pickLocation": "By quill and ink: Pick a location...",
+    "source": "By quill and ink: Source: Open-Meteo",
+    "loading": "By quill and ink: Loading weather...",
+    "prompt": "By quill and ink: Enter a location to load weather.",
+    "tempEmpty": "By quill and ink: -C",
+    "tempEmptyShort": "By quill and ink: -",
+    "minmaxEmpty": "By quill and ink: - / - C",
+    "noForecast": "By quill and ink: No forecast",
+    "errors": {
+      "geocodingFailed": "By quill and ink: Geocoding failed",
+      "locationNotFound": "By quill and ink: Location not found",
+      "cityMissing": "By quill and ink: City missing",
+      "fetchFailed": "By quill and ink: Weather fetch failed",
+      "loadFailed": "By quill and ink: Weather could not be loaded"
+    },
+    "codes": {
+      "0": "By quill and ink: Clear",
+      "1": "By quill and ink: Mostly clear",
+      "2": "By quill and ink: Partly cloudy",
+      "3": "By quill and ink: Cloudy",
+      "45": "By quill and ink: Fog",
+      "48": "By quill and ink: Fog",
+      "51": "By quill and ink: Drizzle",
+      "53": "By quill and ink: Drizzle",
+      "55": "By quill and ink: Drizzle",
+      "61": "By quill and ink: Rain",
+      "63": "By quill and ink: Rain",
+      "65": "By quill and ink: Heavy rain",
+      "71": "By quill and ink: Snow",
+      "80": "By quill and ink: Showers",
+      "95": "By quill and ink: Thunderstorm",
+      "default": "By quill and ink: Weather"
+    }
+  },
+  "transport": {
+    "title": "By quill and ink: Transport",
+    "durationAria": "By quill and ink: Duration",
+    "duration30": "By quill and ink: 30 min",
+    "duration60": "By quill and ink: 60 min",
+    "duration90": "By quill and ink: 90 min",
+    "duration120": "By quill and ink: 120 min",
+    "refreshTitle": "By quill and ink: Reload",
+    "searchPlaceholder": "By quill and ink: Search station...",
+    "noneSelected": "By quill and ink: No station selected",
+    "source": "By quill and ink: Source: transport.rest",
+    "minQuery": "By quill and ink: At least {count}By quill and ink:  characters",
+    "noMatches": "By quill and ink: No matches",
+    "proxyTimeout": "By quill and ink: Proxy timeout",
+    "loadError": "By quill and ink: Load failed",
+    "noDepartures": "By quill and ink: No departures",
+    "selectStation": "By quill and ink: Select a station...",
+    "type": {
+      "station": "By quill and ink: Station",
+      "stop": "By quill and ink: Stop"
+    },
+    "platform": "By quill and ink: Platform {platform}",
+    "cancelled": "By quill and ink: Cancelled",
+    "refreshAria": "By quill and ink: Refresh transport"
+  },
+  "quote": {
+    "title": "By quill and ink: Quote / Nerd Nudge",
+    "list": [
+      "By quill and ink: Move fast, refactor often.",
+      "By quill and ink: Accessibility isn't a feature - it's the default.",
+      "By quill and ink: Done > Perfect. Iterate.",
+      "By quill and ink: If it's not monitored, it doesn't exist.",
+      "By quill and ink: Good UX is invisible. Bad UX is unforgettable.",
+      "By quill and ink: Make it work, make it right, make it fast.",
+      "By quill and ink: Small steps. Massive outcomes.",
+      "By quill and ink: Simplicity scales. Complexity fails.",
+      "By quill and ink: Automate the boring stuff.",
+      "By quill and ink: Measure twice, deploy once."
+    ]
+  },
+  "recent": {
+    "title": "By quill and ink: Recent",
+    "note": "By quill and ink: Note: Only actions from this start page (clicked tiles & searches)."
+  },
+  "system": {
+    "title": "By quill and ink: System status",
+    "loading": "By quill and ink: Loading...",
+    "ram": "By quill and ink: RAM: {value}By quill and ink:  GB",
+    "cpu": "By quill and ink: CPU cores: {value}",
+    "network": "By quill and ink: Network: {downlink}By quill and ink:  Mbit/s  {type}{saveData}",
+    "saveData": "By quill and ink:   SaveData",
+    "noData": "By quill and ink: No data available"
+  },
+  "news": {
+    "title": "By quill and ink: News",
+    "refreshTitle": "By quill and ink: Reload",
+    "source": "By quill and ink: RSS via Startpage Proxy (CORS proxy)",
+    "noItems": "By quill and ink: No items",
+    "refreshAria": "By quill and ink: Refresh news"
+  },
+  "footer": {
+    "tagline": "By quill and ink: Local-first dashboard  stores only in the browser (localStorage)"
+  },
+  "settings": {
+    "title": "By quill and ink: Settings",
+    "close": "By quill and ink: Close",
+    "tabs": {
+      "general": "By quill and ink: General",
+      "background": "By quill and ink: Background & Appearance",
+      "search": "By quill and ink: Search & Feeds",
+      "widgets": "By quill and ink: Widgets",
+      "data": "By quill and ink: Data",
+      "guide": "By quill and ink: Guide"
+    },
+    "theme": {
+      "label": "By quill and ink: Theme",
+      "auto": "By quill and ink: Auto (System)",
+      "dark": "By quill and ink: Dark",
+      "light": "By quill and ink: Light"
+    },
+    "background": {
+      "label": "By quill and ink: Background"
+    },
+    "search": {
+      "engines": "By quill and ink: Search engines",
+      "bangsNote": "Supported bang shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Custom shortcuts below",
+      "wordlistLabel": "By quill and ink: Autocomplete wordlist",
+      "wordlistPlaceholder": "By quill and ink: Terms line by line or comma-separated",
+      "wordlistSave": "By quill and ink: Save",
+      "wordlistReset": "By quill and ink: Clear",
+      "wordlistNote": "By quill and ink: Global wordlist (assets/wordlist.json) and preset wordlist are merged. Leave empty to use only the global list.",
+      "shortcutsLabel": "By quill and ink: Custom !shortcuts",
+      "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
+      "shortcutsNote": "By quill and ink: Use <code>{q}</code>By quill and ink:  as placeholder for the search phrase. Without <code>{q}</code>By quill and ink: , <code>By quill and ink: ?q=...</code>By quill and ink:  is appended.",
+      "feedsLabel": "By quill and ink: Custom RSS feeds",
+      "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
+      "feedsNote": "By quill and ink: JSON: name - feed URL. This list is merged with the default feeds.",
+      "invalidShortcuts": "By quill and ink: Invalid shortcuts JSON",
+      "invalidFeeds": "By quill and ink: Invalid feeds JSON"
+    },
+    "widgets": {
+      "visible": "By quill and ink: Show widgets",
+      "defaultCityLabel": "By quill and ink: Default city (weather)",
+      "defaultCityPlaceholder": "By quill and ink: e.g. Hanover",
+      "defaultTransportLabel": "By quill and ink: Default stop (transport)",
+      "defaultTransportPlaceholder": "By quill and ink: Search station...",
+      "cardStyleLabel": "By quill and ink: Card style",
+      "cardStyleGlass": "By quill and ink: Glass (default)",
+      "cardStyleSolid": "By quill and ink: Solid",
+      "cardStyleTransparent": "By quill and ink: Transparent",
+      "cardStyleMinimal": "By quill and ink: Soft minimal",
+      "cardStyleNote": "By quill and ink: Applies to all widgets & favorite tiles.",
+      "clockColorLabel": "By quill and ink: Time & date",
+      "searchColorLabel": "By quill and ink: Search",
+      "reset": "By quill and ink: Reset",
+      "clockColorNote": "By quill and ink: Sets the header background (empty = style default).",
+      "searchColorNote": "By quill and ink: Color for the search area (empty = style default).",
+      "widgetColorsLabel": "By quill and ink: Widget colors"
+    },
+    "data": {
+      "label": "By quill and ink: Data",
+      "export": "By quill and ink: Export (.json)",
+      "import": "By quill and ink: Import (.json)",
+      "presetsLabel": "By quill and ink: Data presets",
+      "applyPreset": "By quill and ink: Load preset",
+      "presetMeta": "By quill and ink: Presets are exported JSONs under assets/presets/. User presets from assets/user-presets/ are merged automatically.",
+      "setupLabel": "By quill and ink: Setup",
+      "restartOnboarding": "By quill and ink: Restart setup",
+      "restartNote": "By quill and ink: Reopens the compact setup dialog.",
+      "noteLabel": "By quill and ink: Note",
+      "noteText": "By quill and ink: Export stores all settings & data locally as JSON. Import overwrites existing entries."
+    },
+    "language": {
+      "label": "By quill and ink: Language",
+      "auto": "By quill and ink: Auto (System)"
+    },
+    "font": {
+      "label": "By quill and ink: Font",
+      "searchPlaceholder": "By quill and ink: Search fonts...",
+      "loadLocal": "By quill and ink: Load system fonts",
+      "systemDefault": "By quill and ink: System default",
+      "noResults": "By quill and ink: No matching fonts",
+      "note": "By quill and ink: Shows local system fonts (if available), otherwise a detected fallback list.",
+      "unsupported": "By quill and ink: Your browser does not support Local Font Access (queryLocalFonts).",
+      "permissionDenied": "By quill and ink: Access to local fonts was denied or blocked.",
+      "empty": "By quill and ink: No local fonts were returned.",
+      "loadFailed": "By quill and ink: Could not load local fonts: {error}"
+    },
+    "guideHtml": "<div class=\"row\"><label>By quill and ink: User Guide</label><div><h5>By quill and ink: Overview</h5><ul><li>By quill and ink: Start page with search, favorites, to-do, notes, weather, news.</li><li>By quill and ink: All local: data stays in your browser (localStorage).</li></ul><h5>By quill and ink: Shortcuts</h5><ul><li>By quill and ink: Ctrl/Cmd+K: open command palette</li><li>By quill and ink: 1-9: open first 9 favorites (when not typing)</li><li>By quill and ink: / : focus search (also via palette)</li><li>By quill and ink: Enter in search: start search</li><li>By quill and ink: ESC: close modals</li><li>By quill and ink: Palette: quick actions for widgets, theme, background, data, favorites</li><li>By quill and ink: Palette: key C switches card style, \"Reset header colors\" resets search & clock</li></ul><h5>By quill and ink: Search & Autocomplete</h5><ul><li>By quill and ink: Bangs: !gBy quill and ink:  !ddgBy quill and ink:  !bingBy quill and ink:  !ytBy quill and ink:  !wikiBy quill and ink:  !maps</li><li>By quill and ink: Custom shortcuts: JSON in settings; {q}By quill and ink:  as placeholder</li><li>By quill and ink: Autocomplete: bangs, shortcuts, recent searches, wordlist (global + preset)</li><li>By quill and ink: Tab accepts suggestion, Enter starts search</li></ul><h5>By quill and ink: Tiles</h5><ul><li>By quill and ink: Drag & drop to sort, click to open</li><li>By quill and ink: + Tile: add a new favorite</li><li>By quill and ink: Reset: restore default favorites</li></ul><h5>By quill and ink: Widgets & Layout</h5><ul><li>By quill and ink: Visibility per widget</li><li>By quill and ink: Card style is global (glass, solid, transparent, soft minimal)</li><li>By quill and ink: Custom colors for clock/search; reset restores style defaults</li><li>By quill and ink: Widget colors & \"Tint widgets\" set the accent per card</li></ul><h5>By quill and ink: Background</h5><ul><li>By quill and ink: Presets, uploads, collections, rotation (time/theme/interval)</li><li>By quill and ink: Accent color is extracted from the active background</li></ul><h5>By quill and ink: Data</h5><ul><li>By quill and ink: Export/Import as JSON</li><li>By quill and ink: Load data presets (assets/presets/*.json in the repo)</li></ul></div></div>"
+  },
+  "onboarding": {
+    "title": "By quill and ink: Start setup",
+    "progress": "By quill and ink: Step {current}By quill and ink:  of {total}",
+    "skip": "By quill and ink: Skip setup",
+    "close": "By quill and ink: Close",
+    "preset": {
+      "title": "By quill and ink: Choose preset",
+      "hint": "By quill and ink: Pick a preset or skip this step.",
+      "apply": "By quill and ink: Apply preset",
+      "meta": "By quill and ink: Apply a preset or skip.",
+      "optional": "By quill and ink: Preset optional.",
+      "context": "By quill and ink: Setup preset"
+    },
+    "appearance": {
+      "title": "By quill and ink: Appearance",
+      "theme": "By quill and ink: Theme",
+      "cardStyle": "By quill and ink: Card style",
+      "background": "By quill and ink: Background",
+      "rotation": "By quill and ink: Enable rotation",
+      "keepCurrent": "By quill and ink: Keep current image"
+    },
+    "search": {
+      "title": "By quill and ink: Search",
+      "engine": "By quill and ink: Default search engine"
+    },
+    "widgets": {
+      "title": "By quill and ink: Widgets",
+      "defaultTransport": "By quill and ink: Default stop (transport)",
+      "tint": "By quill and ink: Tint widgets with accent"
+    },
+    "weather": {
+      "title": "By quill and ink: Weather",
+      "defaultCity": "By quill and ink: Default city",
+      "note": "By quill and ink: You can change everything later in settings."
+    },
+    "prev": "By quill and ink: Back",
+    "next": "By quill and ink: Next",
+    "finish": "By quill and ink: Done"
+  },
+  "palette": {
+    "placeholder": "By quill and ink: Search command or favorite... (Ctrl/+K)",
+    "groups": {
+      "command": "By quill and ink: Commands",
+      "settings": "By quill and ink: Settings",
+      "search": "By quill and ink: Search",
+      "widgets": "By quill and ink: Widgets",
+      "theme": "By quill and ink: Theme & Background",
+      "data": "By quill and ink: Data",
+      "tiles": "By quill and ink: Tiles",
+      "tile": "By quill and ink: Favorites",
+      "quick": "By quill and ink: Quick"
+    },
+    "search": {
+      "focus": "By quill and ink: Focus search",
+      "start": "By quill and ink: Start search",
+      "engine": "By quill and ink: Engine: {engine}"
+    },
+    "settings": {
+      "open": "By quill and ink: Open settings",
+      "general": "By quill and ink: Settings: General",
+      "background": "By quill and ink: Settings: Background",
+      "search": "By quill and ink: Settings: Search",
+      "widgets": "By quill and ink: Settings: Widgets",
+      "data": "By quill and ink: Settings: Data",
+      "guide": "By quill and ink: Settings: Guide"
+    },
+    "theme": {
+      "cycle": "By quill and ink: Cycle theme (Auto/Dark/Light)",
+      "auto": "By quill and ink: Theme: Auto",
+      "dark": "By quill and ink: Theme: Dark",
+      "light": "By quill and ink: Theme: Light",
+      "resetHeader": "By quill and ink: Reset header colors",
+      "recalcAccent": "By quill and ink: Recalculate accent colors"
+    },
+    "cardStyle": {
+      "glass": "By quill and ink: Card style: Glass",
+      "solid": "By quill and ink: Card style: Solid",
+      "transparent": "By quill and ink: Card style: Transparent",
+      "minimal": "By quill and ink: Card style: Minimal"
+    },
+    "background": {
+      "toggleRotation": "By quill and ink: Background: Toggle rotation",
+      "toggleLock": "By quill and ink: Background: Lock/unlock rotation",
+      "preset": "By quill and ink: Background: {label}"
+    },
+    "widgets": {
+      "showAll": "By quill and ink: Widgets: Show all",
+      "hideAll": "By quill and ink: Widgets: Hide all",
+      "toggle": "By quill and ink: Widget: Toggle {widget}",
+      "focus": "By quill and ink: Widget: Focus {widget}"
+    },
+    "quick": {
+      "addTodo": "By quill and ink: Add todo",
+      "addNote": "By quill and ink: Add note"
+    },
+    "tiles": {
+      "add": "By quill and ink: Add tile",
+      "reset": "By quill and ink: Reset tiles"
+    },
+    "refresh": {
+      "weather": "By quill and ink: Refresh weather",
+      "news": "By quill and ink: Refresh news",
+      "transport": "By quill and ink: Refresh transport",
+      "system": "By quill and ink: Refresh system",
+      "all": "By quill and ink: Refresh all widgets"
+    },
+    "data": {
+      "export": "By quill and ink: Export data",
+      "import": "By quill and ink: Import data",
+      "preset": "By quill and ink: Data preset: {label}"
+    }
+  },
+  "widgets": {
+    "todo": "By quill and ink: To-Do",
+    "notes": "By quill and ink: Notes",
+    "tiles": "By quill and ink: Favorites",
+    "weather": "By quill and ink: Weather",
+    "transport": "By quill and ink: Transport",
+    "quote": "By quill and ink: Quote",
+    "recent": "By quill and ink: Recent",
+    "system": "By quill and ink: System",
+    "news": "By quill and ink: News"
+  },
+  "background": {
+    "currentPreview": "By quill and ink: Current background image",
+    "none": "By quill and ink: No background",
+    "noImageSelected": "By quill and ink: No image selected",
+    "rotationResume": "By quill and ink: Resume rotation",
+    "rotationLock": "By quill and ink: Lock rotation",
+    "tone": "By quill and ink: Tone: {tone}",
+    "presets": {
+      "empty": "By quill and ink: No presets available."
+    },
+    "favorites": {
+      "empty": "By quill and ink: No favorites yet. Mark presets or uploads."
+    },
+    "subtitle": {
+      "preset": "By quill and ink: Preset"
+    },
+    "upload": "By quill and ink: Upload",
+    "uploadDrop": "By quill and ink: Drop files here",
+    "uploadBrowse": "By quill and ink: Choose file",
+    "uploadNote": "By quill and ink: We resize images automatically (16:9, max 2560px) and store them locally. Max {max}By quill and ink:  files.",
+    "uploads": {
+      "empty": "By quill and ink: No uploads yet."
+    },
+    "collections": {
+      "count": "{count}By quill and ink:  sources",
+      "random": "By quill and ink: Random",
+      "cache": "By quill and ink: Save offline",
+      "viewSources": "By quill and ink: View sources",
+      "useRotation": "By quill and ink: Use for rotation",
+      "newLabel": "By quill and ink: New collection",
+      "namePlaceholder": "By quill and ink: My collection",
+      "urlsPlaceholder": "By quill and ink: One image URL per line",
+      "clear": "By quill and ink: Clear fields",
+      "note": "By quill and ink: URLs are stored locally. Remote sources need CORS for images.",
+      "empty": "By quill and ink: No collections yet.",
+      "minOneUrl": "By quill and ink: Enter at least one URL.",
+      "emptyCollection": "By quill and ink: Collection is empty.",
+      "saved": "By quill and ink: Collection saved locally.",
+      "defaultName": "By quill and ink: Collection {index}"
+    },
+    "rotation": {
+      "optionPreset": "By quill and ink: Preset: {label}",
+      "optionUpload": "By quill and ink: Upload: {label}",
+      "optionFavorite": "By quill and ink: Favorite: {label}",
+      "optionCustom": "By quill and ink: Custom: saved URL",
+      "noFixed": "By quill and ink: No fixed image",
+      "enabled": "By quill and ink: Enable automatic rotation",
+      "locked": "By quill and ink: Rotation is currently locked.",
+      "active": "By quill and ink: Backgrounds change according to the schedule.",
+      "mode": "By quill and ink: Mode",
+      "modeTime": "By quill and ink: Time-based",
+      "modeInterval": "By quill and ink: Interval",
+      "modeTheme": "By quill and ink: Theme",
+      "intervalLabel": "By quill and ink: Interval in minutes",
+      "intervalNote": "By quill and ink: Only relevant in interval mode.",
+      "sourcesLabel": "By quill and ink: Sources for random",
+      "scheduleLabel": "By quill and ink: Schedule",
+      "themePlan": "By quill and ink: Theme plan",
+      "themeLight": "By quill and ink: Theme light",
+      "themeDark": "By quill and ink: Theme dark",
+      "themeNote": "By quill and ink: Theme plan is used when mode is Theme.",
+      "slot": {
+        "morning": "By quill and ink: Morning 05-11",
+        "day": "By quill and ink: Day 11-17",
+        "evening": "By quill and ink: Evening 17-21",
+        "night": "By quill and ink: Night 21-05"
+      }
+    },
+    "custom": {
+      "label": "By quill and ink: Custom image URL",
+      "placeholder": "https://example.com/image.jpg",
+      "note": "By quill and ink: URL is stored locally. Server must allow CORS for images.",
+      "enterUrl": "By quill and ink: Please enter a URL.",
+      "title": "By quill and ink: Custom URL",
+      "subtitle": "By quill and ink: Custom"
+    },
+    "actions": {
+      "apply": "By quill and ink: Apply",
+      "favorite": "By quill and ink: Favorite",
+      "favorited": "By quill and ink: Favorited",
+      "random": "By quill and ink: Load random",
+      "undo": "By quill and ink: Restore last image",
+      "lock": "By quill and ink: Lock rotation",
+      "tint": "By quill and ink: Tint widgets"
+    },
+    "tabs": {
+      "presets": "By quill and ink: Presets",
+      "favorites": "By quill and ink: Favorites",
+      "uploads": "By quill and ink: Uploads",
+      "collections": "By quill and ink: Collections",
+      "rotation": "By quill and ink: Rotation",
+      "custom": "By quill and ink: Custom"
+    },
+    "loadError": "By quill and ink: Load failed. Check CORS settings.",
+    "noneAvailable": "By quill and ink: No backgrounds available.",
+    "imageLoadError": "By quill and ink: Image could not be loaded."
+  },
+  "data": {
+    "import": {
+      "confirm": "By quill and ink: Import data? Existing entries will be overwritten.",
+      "failed": "By quill and ink: Import failed: {error}"
+    },
+    "presets": {
+      "none": "By quill and ink: No preset available.",
+      "missingFile": "By quill and ink: Preset file missing.",
+      "fileMissing": "By quill and ink: File not found",
+      "invalid": "By quill and ink: Invalid preset",
+      "confirmApply": "By quill and ink: Apply {context}By quill and ink:  \"{name}By quill and ink: \"? Existing entries will be overwritten.",
+      "loadFailed": "By quill and ink: Preset load failed: {error}",
+      "loading": "By quill and ink: Loading presets...",
+      "noneFound": "By quill and ink: No presets found",
+      "hint": "By quill and ink: Place exported JSONs under assets/presets/ (manifest: assets/data-presets.json) or locally under assets/user-presets/.",
+      "hintShort": "By quill and ink: Add a preset under assets/presets/ or assets/user-presets/.",
+      "userPrefix": "By quill and ink: User: ",
+      "userApply": "By quill and ink: Apply local preset",
+      "apply": "By quill and ink: Apply preset",
+      "noneSelected": "By quill and ink: No preset selected.",
+      "label": "By quill and ink: Preset",
+      "defaultLabel": "By quill and ink: Preset {index}",
+      "userDefault": "By quill and ink: User preset {index}",
+      "userDescription": "By quill and ink: Local preset from assets/user-presets/",
+      "tags": "By quill and ink:  (Tags: {tags}By quill and ink: )"
+    }
+  },
+  "dialogs": {
+    "alertTitle": "By quill and ink: Notice",
+    "confirmTitle": "By quill and ink: Confirm",
+    "promptTitle": "By quill and ink: Input"
+  }
+}

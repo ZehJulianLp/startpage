@@ -1,0 +1,521 @@
+{
+  "app": {
+    "title": "Startpage (Valley Girl)"
+  },
+  "common": {
+    "link": "Like, Link",
+    "delete": "Like, Delete",
+    "remove": "Like, Remove",
+    "save": "Like, Save",
+    "loading": "Like, Loading...",
+    "loadError": "Like, Load failed",
+    "noMatches": "Like, No matches",
+    "emptyDash": "Like, -",
+    "dash": "Like, -",
+    "cancel": "Like, Cancel",
+    "ok": "Like, OK",
+    "default": "Like, Default"
+  },
+  "header": {
+    "themeToggleTitle": "Like, Dark/Light",
+    "settingsTitle": "Like, Settings",
+    "themeAria": "Like, Toggle theme",
+    "settingsAria": "Like, Open settings"
+  },
+  "search": {
+    "placeholder": "Like, Search... (e.g. !ytLike,  lo-fi, !etcLike,  Home)",
+    "engine": {
+      "google": "Like, Google",
+      "ddg": "Like, DuckDuckGo",
+      "bing": "Like, Bing",
+      "yt": "Like, YouTube",
+      "wikipedia": "Like, Wikipedia",
+      "maps": "Like, Google Maps"
+    },
+    "suggest": {
+      "bang": "{bang} (Bang)",
+      "shortcut": "{shortcut} (Shortcut)",
+      "type": {
+        "bang": "Like, Bang",
+        "shortcut": "Like, Shortcut",
+        "recent": "Like, Recent",
+        "word": "Like, Word"
+      }
+    },
+    "recentShortcut": "Like, Shortcut {shortcut}Like,  - {query}",
+    "recentSearch": "Like, Search ({engine}Like, ) - {query}",
+    "submitAria": "Like, Start search"
+  },
+  "todo": {
+    "title": "Like, To-Do",
+    "placeholder": "Like, New task...",
+    "add": "Like, Add",
+    "clearDoneTitle": "Like, Remove completed",
+    "clearDone": "Like,  clear",
+    "doneAria": "Like, Done",
+    "prompt": "Like, Todo"
+  },
+  "notes": {
+    "title": "Like, Notes",
+    "placeholder": "Like, Jot something down...",
+    "prompt": "Like, Note"
+  },
+  "tiles": {
+    "title": "Like, Favorites",
+    "add": "Like, + Tile",
+    "resetTitle": "Like, Restore defaults",
+    "edit": "Like, Edit",
+    "promptTitle": "Like, Title",
+    "promptUrl": "Like, URL",
+    "invalidUrl": "Like, Invalid URL",
+    "promptTitleNew": "Like, Tile title",
+    "promptUrlNew": "Like, URL (https://...)",
+    "resetConfirm": "Like, Restore default tiles?",
+    "dialog": {
+      "titleLabel": "Like, Title",
+      "urlLabel": "Like, URL",
+      "save": "Like, Save"
+    },
+    "resetAria": "Like, Reset tiles"
+  },
+  "weather": {
+    "title": "Like, Weather today",
+    "cityPlaceholder": "Like, Enter city...",
+    "setCity": "Like, Set",
+    "pickLocation": "Like, Pick a location...",
+    "source": "Like, Source: Open-Meteo",
+    "loading": "Like, Loading weather...",
+    "prompt": "Like, Enter a location to load weather.",
+    "tempEmpty": "Like, -C",
+    "tempEmptyShort": "Like, -",
+    "minmaxEmpty": "Like, - / - C",
+    "noForecast": "Like, No forecast",
+    "errors": {
+      "geocodingFailed": "Like, Geocoding failed",
+      "locationNotFound": "Like, Location not found",
+      "cityMissing": "Like, City missing",
+      "fetchFailed": "Like, Weather fetch failed",
+      "loadFailed": "Like, Weather could not be loaded"
+    },
+    "codes": {
+      "0": "Like, Clear",
+      "1": "Like, Mostly clear",
+      "2": "Like, Partly cloudy",
+      "3": "Like, Cloudy",
+      "45": "Like, Fog",
+      "48": "Like, Fog",
+      "51": "Like, Drizzle",
+      "53": "Like, Drizzle",
+      "55": "Like, Drizzle",
+      "61": "Like, Rain",
+      "63": "Like, Rain",
+      "65": "Like, Heavy rain",
+      "71": "Like, Snow",
+      "80": "Like, Showers",
+      "95": "Like, Thunderstorm",
+      "default": "Like, Weather"
+    }
+  },
+  "transport": {
+    "title": "Like, Transport",
+    "durationAria": "Like, Duration",
+    "duration30": "Like, 30 min",
+    "duration60": "Like, 60 min",
+    "duration90": "Like, 90 min",
+    "duration120": "Like, 120 min",
+    "refreshTitle": "Like, Reload",
+    "searchPlaceholder": "Like, Search station...",
+    "noneSelected": "Like, No station selected",
+    "source": "Like, Source: transport.rest",
+    "minQuery": "Like, At least {count}Like,  characters",
+    "noMatches": "Like, No matches",
+    "proxyTimeout": "Like, Proxy timeout",
+    "loadError": "Like, Load failed",
+    "noDepartures": "Like, No departures",
+    "selectStation": "Like, Select a station...",
+    "type": {
+      "station": "Like, Station",
+      "stop": "Like, Stop"
+    },
+    "platform": "Like, Platform {platform}",
+    "cancelled": "Like, Cancelled",
+    "refreshAria": "Like, Refresh transport"
+  },
+  "quote": {
+    "title": "Like, Quote / Nerd Nudge",
+    "list": [
+      "Like, Move fast, refactor often.",
+      "Like, Accessibility isn't a feature - it's the default.",
+      "Like, Done > Perfect. Iterate.",
+      "Like, If it's not monitored, it doesn't exist.",
+      "Like, Good UX is invisible. Bad UX is unforgettable.",
+      "Like, Make it work, make it right, make it fast.",
+      "Like, Small steps. Massive outcomes.",
+      "Like, Simplicity scales. Complexity fails.",
+      "Like, Automate the boring stuff.",
+      "Like, Measure twice, deploy once."
+    ]
+  },
+  "recent": {
+    "title": "Like, Recent",
+    "note": "Like, Note: Only actions from this start page (clicked tiles & searches)."
+  },
+  "system": {
+    "title": "Like, System status",
+    "loading": "Like, Loading...",
+    "ram": "Like, RAM: {value}Like,  GB",
+    "cpu": "Like, CPU cores: {value}",
+    "network": "Like, Network: {downlink}Like,  Mbit/s  {type}{saveData}",
+    "saveData": "Like,   SaveData",
+    "noData": "Like, No data available"
+  },
+  "news": {
+    "title": "Like, News",
+    "refreshTitle": "Like, Reload",
+    "source": "Like, RSS via Startpage Proxy (CORS proxy)",
+    "noItems": "Like, No items",
+    "refreshAria": "Like, Refresh news"
+  },
+  "footer": {
+    "tagline": "Like, Local-first dashboard  stores only in the browser (localStorage)"
+  },
+  "settings": {
+    "title": "Like, Settings",
+    "close": "Like, Close",
+    "tabs": {
+      "general": "Like, General",
+      "background": "Like, Background & Appearance",
+      "search": "Like, Search & Feeds",
+      "widgets": "Like, Widgets",
+      "data": "Like, Data",
+      "guide": "Like, Guide"
+    },
+    "theme": {
+      "label": "Like, Theme",
+      "auto": "Like, Auto (System)",
+      "dark": "Like, Dark",
+      "light": "Like, Light"
+    },
+    "background": {
+      "label": "Like, Background"
+    },
+    "search": {
+      "engines": "Like, Search engines",
+      "bangsNote": "Supported bang shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Custom shortcuts below",
+      "wordlistLabel": "Like, Autocomplete wordlist",
+      "wordlistPlaceholder": "Like, Terms line by line or comma-separated",
+      "wordlistSave": "Like, Save",
+      "wordlistReset": "Like, Clear",
+      "wordlistNote": "Like, Global wordlist (assets/wordlist.json) and preset wordlist are merged. Leave empty to use only the global list.",
+      "shortcutsLabel": "Like, Custom !shortcuts",
+      "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
+      "shortcutsNote": "Like, Use <code>{q}</code>Like,  as placeholder for the search phrase. Without <code>{q}</code>Like, , <code>Like, ?q=...</code>Like,  is appended.",
+      "feedsLabel": "Like, Custom RSS feeds",
+      "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
+      "feedsNote": "Like, JSON: name - feed URL. This list is merged with the default feeds.",
+      "invalidShortcuts": "Like, Invalid shortcuts JSON",
+      "invalidFeeds": "Like, Invalid feeds JSON"
+    },
+    "widgets": {
+      "visible": "Like, Show widgets",
+      "defaultCityLabel": "Like, Default city (weather)",
+      "defaultCityPlaceholder": "Like, e.g. Hanover",
+      "defaultTransportLabel": "Like, Default stop (transport)",
+      "defaultTransportPlaceholder": "Like, Search station...",
+      "cardStyleLabel": "Like, Card style",
+      "cardStyleGlass": "Like, Glass (default)",
+      "cardStyleSolid": "Like, Solid",
+      "cardStyleTransparent": "Like, Transparent",
+      "cardStyleMinimal": "Like, Soft minimal",
+      "cardStyleNote": "Like, Applies to all widgets & favorite tiles.",
+      "clockColorLabel": "Like, Time & date",
+      "searchColorLabel": "Like, Search",
+      "reset": "Like, Reset",
+      "clockColorNote": "Like, Sets the header background (empty = style default).",
+      "searchColorNote": "Like, Color for the search area (empty = style default).",
+      "widgetColorsLabel": "Like, Widget colors"
+    },
+    "data": {
+      "label": "Like, Data",
+      "export": "Like, Export (.json)",
+      "import": "Like, Import (.json)",
+      "presetsLabel": "Like, Data presets",
+      "applyPreset": "Like, Load preset",
+      "presetMeta": "Like, Presets are exported JSONs under assets/presets/. User presets from assets/user-presets/ are merged automatically.",
+      "setupLabel": "Like, Setup",
+      "restartOnboarding": "Like, Restart setup",
+      "restartNote": "Like, Reopens the compact setup dialog.",
+      "noteLabel": "Like, Note",
+      "noteText": "Like, Export stores all settings & data locally as JSON. Import overwrites existing entries."
+    },
+    "language": {
+      "label": "Like, Language",
+      "auto": "Like, Auto (System)"
+    },
+    "font": {
+      "label": "Like, Font",
+      "searchPlaceholder": "Like, Search fonts...",
+      "loadLocal": "Like, Load system fonts",
+      "systemDefault": "Like, System default",
+      "noResults": "Like, No matching fonts",
+      "note": "Like, Shows local system fonts (if available), otherwise a detected fallback list.",
+      "unsupported": "Like, Your browser does not support Local Font Access (queryLocalFonts).",
+      "permissionDenied": "Like, Access to local fonts was denied or blocked.",
+      "empty": "Like, No local fonts were returned.",
+      "loadFailed": "Like, Could not load local fonts: {error}"
+    },
+    "guideHtml": "<div class=\"row\"><label>Like, User Guide</label><div><h5>Like, Overview</h5><ul><li>Like, Start page with search, favorites, to-do, notes, weather, news.</li><li>Like, All local: data stays in your browser (localStorage).</li></ul><h5>Like, Shortcuts</h5><ul><li>Like, Ctrl/Cmd+K: open command palette</li><li>Like, 1-9: open first 9 favorites (when not typing)</li><li>Like, / : focus search (also via palette)</li><li>Like, Enter in search: start search</li><li>Like, ESC: close modals</li><li>Like, Palette: quick actions for widgets, theme, background, data, favorites</li><li>Like, Palette: key C switches card style, \"Reset header colors\" resets search & clock</li></ul><h5>Like, Search & Autocomplete</h5><ul><li>Like, Bangs: !gLike,  !ddgLike,  !bingLike,  !ytLike,  !wikiLike,  !maps</li><li>Like, Custom shortcuts: JSON in settings; {q}Like,  as placeholder</li><li>Like, Autocomplete: bangs, shortcuts, recent searches, wordlist (global + preset)</li><li>Like, Tab accepts suggestion, Enter starts search</li></ul><h5>Like, Tiles</h5><ul><li>Like, Drag & drop to sort, click to open</li><li>Like, + Tile: add a new favorite</li><li>Like, Reset: restore default favorites</li></ul><h5>Like, Widgets & Layout</h5><ul><li>Like, Visibility per widget</li><li>Like, Card style is global (glass, solid, transparent, soft minimal)</li><li>Like, Custom colors for clock/search; reset restores style defaults</li><li>Like, Widget colors & \"Tint widgets\" set the accent per card</li></ul><h5>Like, Background</h5><ul><li>Like, Presets, uploads, collections, rotation (time/theme/interval)</li><li>Like, Accent color is extracted from the active background</li></ul><h5>Like, Data</h5><ul><li>Like, Export/Import as JSON</li><li>Like, Load data presets (assets/presets/*.json in the repo)</li></ul></div></div>"
+  },
+  "onboarding": {
+    "title": "Like, Start setup",
+    "progress": "Like, Step {current}Like,  of {total}",
+    "skip": "Like, Skip setup",
+    "close": "Like, Close",
+    "preset": {
+      "title": "Like, Choose preset",
+      "hint": "Like, Pick a preset or skip this step.",
+      "apply": "Like, Apply preset",
+      "meta": "Like, Apply a preset or skip.",
+      "optional": "Like, Preset optional.",
+      "context": "Like, Setup preset"
+    },
+    "appearance": {
+      "title": "Like, Appearance",
+      "theme": "Like, Theme",
+      "cardStyle": "Like, Card style",
+      "background": "Like, Background",
+      "rotation": "Like, Enable rotation",
+      "keepCurrent": "Like, Keep current image"
+    },
+    "search": {
+      "title": "Like, Search",
+      "engine": "Like, Default search engine"
+    },
+    "widgets": {
+      "title": "Like, Widgets",
+      "defaultTransport": "Like, Default stop (transport)",
+      "tint": "Like, Tint widgets with accent"
+    },
+    "weather": {
+      "title": "Like, Weather",
+      "defaultCity": "Like, Default city",
+      "note": "Like, You can change everything later in settings."
+    },
+    "prev": "Like, Back",
+    "next": "Like, Next",
+    "finish": "Like, Done"
+  },
+  "palette": {
+    "placeholder": "Like, Search command or favorite... (Ctrl/+K)",
+    "groups": {
+      "command": "Like, Commands",
+      "settings": "Like, Settings",
+      "search": "Like, Search",
+      "widgets": "Like, Widgets",
+      "theme": "Like, Theme & Background",
+      "data": "Like, Data",
+      "tiles": "Like, Tiles",
+      "tile": "Like, Favorites",
+      "quick": "Like, Quick"
+    },
+    "search": {
+      "focus": "Like, Focus search",
+      "start": "Like, Start search",
+      "engine": "Like, Engine: {engine}"
+    },
+    "settings": {
+      "open": "Like, Open settings",
+      "general": "Like, Settings: General",
+      "background": "Like, Settings: Background",
+      "search": "Like, Settings: Search",
+      "widgets": "Like, Settings: Widgets",
+      "data": "Like, Settings: Data",
+      "guide": "Like, Settings: Guide"
+    },
+    "theme": {
+      "cycle": "Like, Cycle theme (Auto/Dark/Light)",
+      "auto": "Like, Theme: Auto",
+      "dark": "Like, Theme: Dark",
+      "light": "Like, Theme: Light",
+      "resetHeader": "Like, Reset header colors",
+      "recalcAccent": "Like, Recalculate accent colors"
+    },
+    "cardStyle": {
+      "glass": "Like, Card style: Glass",
+      "solid": "Like, Card style: Solid",
+      "transparent": "Like, Card style: Transparent",
+      "minimal": "Like, Card style: Minimal"
+    },
+    "background": {
+      "toggleRotation": "Like, Background: Toggle rotation",
+      "toggleLock": "Like, Background: Lock/unlock rotation",
+      "preset": "Like, Background: {label}"
+    },
+    "widgets": {
+      "showAll": "Like, Widgets: Show all",
+      "hideAll": "Like, Widgets: Hide all",
+      "toggle": "Like, Widget: Toggle {widget}",
+      "focus": "Like, Widget: Focus {widget}"
+    },
+    "quick": {
+      "addTodo": "Like, Add todo",
+      "addNote": "Like, Add note"
+    },
+    "tiles": {
+      "add": "Like, Add tile",
+      "reset": "Like, Reset tiles"
+    },
+    "refresh": {
+      "weather": "Like, Refresh weather",
+      "news": "Like, Refresh news",
+      "transport": "Like, Refresh transport",
+      "system": "Like, Refresh system",
+      "all": "Like, Refresh all widgets"
+    },
+    "data": {
+      "export": "Like, Export data",
+      "import": "Like, Import data",
+      "preset": "Like, Data preset: {label}"
+    }
+  },
+  "widgets": {
+    "todo": "Like, To-Do",
+    "notes": "Like, Notes",
+    "tiles": "Like, Favorites",
+    "weather": "Like, Weather",
+    "transport": "Like, Transport",
+    "quote": "Like, Quote",
+    "recent": "Like, Recent",
+    "system": "Like, System",
+    "news": "Like, News"
+  },
+  "background": {
+    "currentPreview": "Like, Current background image",
+    "none": "Like, No background",
+    "noImageSelected": "Like, No image selected",
+    "rotationResume": "Like, Resume rotation",
+    "rotationLock": "Like, Lock rotation",
+    "tone": "Like, Tone: {tone}",
+    "presets": {
+      "empty": "Like, No presets available."
+    },
+    "favorites": {
+      "empty": "Like, No favorites yet. Mark presets or uploads."
+    },
+    "subtitle": {
+      "preset": "Like, Preset"
+    },
+    "upload": "Like, Upload",
+    "uploadDrop": "Like, Drop files here",
+    "uploadBrowse": "Like, Choose file",
+    "uploadNote": "Like, We resize images automatically (16:9, max 2560px) and store them locally. Max {max}Like,  files.",
+    "uploads": {
+      "empty": "Like, No uploads yet."
+    },
+    "collections": {
+      "count": "{count}Like,  sources",
+      "random": "Like, Random",
+      "cache": "Like, Save offline",
+      "viewSources": "Like, View sources",
+      "useRotation": "Like, Use for rotation",
+      "newLabel": "Like, New collection",
+      "namePlaceholder": "Like, My collection",
+      "urlsPlaceholder": "Like, One image URL per line",
+      "clear": "Like, Clear fields",
+      "note": "Like, URLs are stored locally. Remote sources need CORS for images.",
+      "empty": "Like, No collections yet.",
+      "minOneUrl": "Like, Enter at least one URL.",
+      "emptyCollection": "Like, Collection is empty.",
+      "saved": "Like, Collection saved locally.",
+      "defaultName": "Like, Collection {index}"
+    },
+    "rotation": {
+      "optionPreset": "Like, Preset: {label}",
+      "optionUpload": "Like, Upload: {label}",
+      "optionFavorite": "Like, Favorite: {label}",
+      "optionCustom": "Like, Custom: saved URL",
+      "noFixed": "Like, No fixed image",
+      "enabled": "Like, Enable automatic rotation",
+      "locked": "Like, Rotation is currently locked.",
+      "active": "Like, Backgrounds change according to the schedule.",
+      "mode": "Like, Mode",
+      "modeTime": "Like, Time-based",
+      "modeInterval": "Like, Interval",
+      "modeTheme": "Like, Theme",
+      "intervalLabel": "Like, Interval in minutes",
+      "intervalNote": "Like, Only relevant in interval mode.",
+      "sourcesLabel": "Like, Sources for random",
+      "scheduleLabel": "Like, Schedule",
+      "themePlan": "Like, Theme plan",
+      "themeLight": "Like, Theme light",
+      "themeDark": "Like, Theme dark",
+      "themeNote": "Like, Theme plan is used when mode is Theme.",
+      "slot": {
+        "morning": "Like, Morning 05-11",
+        "day": "Like, Day 11-17",
+        "evening": "Like, Evening 17-21",
+        "night": "Like, Night 21-05"
+      }
+    },
+    "custom": {
+      "label": "Like, Custom image URL",
+      "placeholder": "https://example.com/image.jpg",
+      "note": "Like, URL is stored locally. Server must allow CORS for images.",
+      "enterUrl": "Like, Please enter a URL.",
+      "title": "Like, Custom URL",
+      "subtitle": "Like, Custom"
+    },
+    "actions": {
+      "apply": "Like, Apply",
+      "favorite": "Like, Favorite",
+      "favorited": "Like, Favorited",
+      "random": "Like, Load random",
+      "undo": "Like, Restore last image",
+      "lock": "Like, Lock rotation",
+      "tint": "Like, Tint widgets"
+    },
+    "tabs": {
+      "presets": "Like, Presets",
+      "favorites": "Like, Favorites",
+      "uploads": "Like, Uploads",
+      "collections": "Like, Collections",
+      "rotation": "Like, Rotation",
+      "custom": "Like, Custom"
+    },
+    "loadError": "Like, Load failed. Check CORS settings.",
+    "noneAvailable": "Like, No backgrounds available.",
+    "imageLoadError": "Like, Image could not be loaded."
+  },
+  "data": {
+    "import": {
+      "confirm": "Like, Import data? Existing entries will be overwritten.",
+      "failed": "Like, Import failed: {error}"
+    },
+    "presets": {
+      "none": "Like, No preset available.",
+      "missingFile": "Like, Preset file missing.",
+      "fileMissing": "Like, File not found",
+      "invalid": "Like, Invalid preset",
+      "confirmApply": "Like, Apply {context}Like,  \"{name}Like, \"? Existing entries will be overwritten.",
+      "loadFailed": "Like, Preset load failed: {error}",
+      "loading": "Like, Loading presets...",
+      "noneFound": "Like, No presets found",
+      "hint": "Like, Place exported JSONs under assets/presets/ (manifest: assets/data-presets.json) or locally under assets/user-presets/.",
+      "hintShort": "Like, Add a preset under assets/presets/ or assets/user-presets/.",
+      "userPrefix": "Like, User: ",
+      "userApply": "Like, Apply local preset",
+      "apply": "Like, Apply preset",
+      "noneSelected": "Like, No preset selected.",
+      "label": "Like, Preset",
+      "defaultLabel": "Like, Preset {index}",
+      "userDefault": "Like, User preset {index}",
+      "userDescription": "Like, Local preset from assets/user-presets/",
+      "tags": "Like,  (Tags: {tags}Like, )"
+    }
+  },
+  "dialogs": {
+    "alertTitle": "Like, Notice",
+    "confirmTitle": "Like, Confirm",
+    "promptTitle": "Like, Input"
+  }
+}

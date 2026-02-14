@@ -1,0 +1,521 @@
+{
+  "app": {
+    "title": "Startpage (Space Captain)"
+  },
+  "common": {
+    "link": "Captains log: Link",
+    "delete": "Captains log: Delete",
+    "remove": "Captains log: Remove",
+    "save": "Captains log: Save",
+    "loading": "Captains log: Loading...",
+    "loadError": "Captains log: Load failed",
+    "noMatches": "Captains log: No matches",
+    "emptyDash": "Captains log: -",
+    "dash": "Captains log: -",
+    "cancel": "Captains log: Cancel",
+    "ok": "Captains log: OK",
+    "default": "Captains log: Default"
+  },
+  "header": {
+    "themeToggleTitle": "Captains log: Dark/Light",
+    "settingsTitle": "Captains log: Settings",
+    "themeAria": "Captains log: Toggle theme",
+    "settingsAria": "Captains log: Open settings"
+  },
+  "search": {
+    "placeholder": "Captains log: Search... (e.g. !ytCaptains log:  lo-fi, !etcCaptains log:  Home)",
+    "engine": {
+      "google": "Captains log: Google",
+      "ddg": "Captains log: DuckDuckGo",
+      "bing": "Captains log: Bing",
+      "yt": "Captains log: YouTube",
+      "wikipedia": "Captains log: Wikipedia",
+      "maps": "Captains log: Google Maps"
+    },
+    "suggest": {
+      "bang": "{bang} (Bang)",
+      "shortcut": "{shortcut} (Shortcut)",
+      "type": {
+        "bang": "Captains log: Bang",
+        "shortcut": "Captains log: Shortcut",
+        "recent": "Captains log: Recent",
+        "word": "Captains log: Word"
+      }
+    },
+    "recentShortcut": "Captains log: Shortcut {shortcut}Captains log:  - {query}",
+    "recentSearch": "Captains log: Search ({engine}Captains log: ) - {query}",
+    "submitAria": "Captains log: Start search"
+  },
+  "todo": {
+    "title": "Captains log: To-Do",
+    "placeholder": "Captains log: New task...",
+    "add": "Captains log: Add",
+    "clearDoneTitle": "Captains log: Remove completed",
+    "clearDone": "Captains log:  clear",
+    "doneAria": "Captains log: Done",
+    "prompt": "Captains log: Todo"
+  },
+  "notes": {
+    "title": "Captains log: Notes",
+    "placeholder": "Captains log: Jot something down...",
+    "prompt": "Captains log: Note"
+  },
+  "tiles": {
+    "title": "Captains log: Favorites",
+    "add": "Captains log: + Tile",
+    "resetTitle": "Captains log: Restore defaults",
+    "edit": "Captains log: Edit",
+    "promptTitle": "Captains log: Title",
+    "promptUrl": "Captains log: URL",
+    "invalidUrl": "Captains log: Invalid URL",
+    "promptTitleNew": "Captains log: Tile title",
+    "promptUrlNew": "Captains log: URL (https://...)",
+    "resetConfirm": "Captains log: Restore default tiles?",
+    "dialog": {
+      "titleLabel": "Captains log: Title",
+      "urlLabel": "Captains log: URL",
+      "save": "Captains log: Save"
+    },
+    "resetAria": "Captains log: Reset tiles"
+  },
+  "weather": {
+    "title": "Captains log: Weather today",
+    "cityPlaceholder": "Captains log: Enter city...",
+    "setCity": "Captains log: Set",
+    "pickLocation": "Captains log: Pick a location...",
+    "source": "Captains log: Source: Open-Meteo",
+    "loading": "Captains log: Loading weather...",
+    "prompt": "Captains log: Enter a location to load weather.",
+    "tempEmpty": "Captains log: -C",
+    "tempEmptyShort": "Captains log: -",
+    "minmaxEmpty": "Captains log: - / - C",
+    "noForecast": "Captains log: No forecast",
+    "errors": {
+      "geocodingFailed": "Captains log: Geocoding failed",
+      "locationNotFound": "Captains log: Location not found",
+      "cityMissing": "Captains log: City missing",
+      "fetchFailed": "Captains log: Weather fetch failed",
+      "loadFailed": "Captains log: Weather could not be loaded"
+    },
+    "codes": {
+      "0": "Captains log: Clear",
+      "1": "Captains log: Mostly clear",
+      "2": "Captains log: Partly cloudy",
+      "3": "Captains log: Cloudy",
+      "45": "Captains log: Fog",
+      "48": "Captains log: Fog",
+      "51": "Captains log: Drizzle",
+      "53": "Captains log: Drizzle",
+      "55": "Captains log: Drizzle",
+      "61": "Captains log: Rain",
+      "63": "Captains log: Rain",
+      "65": "Captains log: Heavy rain",
+      "71": "Captains log: Snow",
+      "80": "Captains log: Showers",
+      "95": "Captains log: Thunderstorm",
+      "default": "Captains log: Weather"
+    }
+  },
+  "transport": {
+    "title": "Captains log: Transport",
+    "durationAria": "Captains log: Duration",
+    "duration30": "Captains log: 30 min",
+    "duration60": "Captains log: 60 min",
+    "duration90": "Captains log: 90 min",
+    "duration120": "Captains log: 120 min",
+    "refreshTitle": "Captains log: Reload",
+    "searchPlaceholder": "Captains log: Search station...",
+    "noneSelected": "Captains log: No station selected",
+    "source": "Captains log: Source: transport.rest",
+    "minQuery": "Captains log: At least {count}Captains log:  characters",
+    "noMatches": "Captains log: No matches",
+    "proxyTimeout": "Captains log: Proxy timeout",
+    "loadError": "Captains log: Load failed",
+    "noDepartures": "Captains log: No departures",
+    "selectStation": "Captains log: Select a station...",
+    "type": {
+      "station": "Captains log: Station",
+      "stop": "Captains log: Stop"
+    },
+    "platform": "Captains log: Platform {platform}",
+    "cancelled": "Captains log: Cancelled",
+    "refreshAria": "Captains log: Refresh transport"
+  },
+  "quote": {
+    "title": "Captains log: Quote / Nerd Nudge",
+    "list": [
+      "Captains log: Move fast, refactor often.",
+      "Captains log: Accessibility isn't a feature - it's the default.",
+      "Captains log: Done > Perfect. Iterate.",
+      "Captains log: If it's not monitored, it doesn't exist.",
+      "Captains log: Good UX is invisible. Bad UX is unforgettable.",
+      "Captains log: Make it work, make it right, make it fast.",
+      "Captains log: Small steps. Massive outcomes.",
+      "Captains log: Simplicity scales. Complexity fails.",
+      "Captains log: Automate the boring stuff.",
+      "Captains log: Measure twice, deploy once."
+    ]
+  },
+  "recent": {
+    "title": "Captains log: Recent",
+    "note": "Captains log: Note: Only actions from this start page (clicked tiles & searches)."
+  },
+  "system": {
+    "title": "Captains log: System status",
+    "loading": "Captains log: Loading...",
+    "ram": "Captains log: RAM: {value}Captains log:  GB",
+    "cpu": "Captains log: CPU cores: {value}",
+    "network": "Captains log: Network: {downlink}Captains log:  Mbit/s  {type}{saveData}",
+    "saveData": "Captains log:   SaveData",
+    "noData": "Captains log: No data available"
+  },
+  "news": {
+    "title": "Captains log: News",
+    "refreshTitle": "Captains log: Reload",
+    "source": "Captains log: RSS via Startpage Proxy (CORS proxy)",
+    "noItems": "Captains log: No items",
+    "refreshAria": "Captains log: Refresh news"
+  },
+  "footer": {
+    "tagline": "Captains log: Local-first dashboard  stores only in the browser (localStorage)"
+  },
+  "settings": {
+    "title": "Captains log: Settings",
+    "close": "Captains log: Close",
+    "tabs": {
+      "general": "Captains log: General",
+      "background": "Captains log: Background & Appearance",
+      "search": "Captains log: Search & Feeds",
+      "widgets": "Captains log: Widgets",
+      "data": "Captains log: Data",
+      "guide": "Captains log: Guide"
+    },
+    "theme": {
+      "label": "Captains log: Theme",
+      "auto": "Captains log: Auto (System)",
+      "dark": "Captains log: Dark",
+      "light": "Captains log: Light"
+    },
+    "background": {
+      "label": "Captains log: Background"
+    },
+    "search": {
+      "engines": "Captains log: Search engines",
+      "bangsNote": "Supported bang shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Custom shortcuts below",
+      "wordlistLabel": "Captains log: Autocomplete wordlist",
+      "wordlistPlaceholder": "Captains log: Terms line by line or comma-separated",
+      "wordlistSave": "Captains log: Save",
+      "wordlistReset": "Captains log: Clear",
+      "wordlistNote": "Captains log: Global wordlist (assets/wordlist.json) and preset wordlist are merged. Leave empty to use only the global list.",
+      "shortcutsLabel": "Captains log: Custom !shortcuts",
+      "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
+      "shortcutsNote": "Captains log: Use <code>{q}</code>Captains log:  as placeholder for the search phrase. Without <code>{q}</code>Captains log: , <code>Captains log: ?q=...</code>Captains log:  is appended.",
+      "feedsLabel": "Captains log: Custom RSS feeds",
+      "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
+      "feedsNote": "Captains log: JSON: name - feed URL. This list is merged with the default feeds.",
+      "invalidShortcuts": "Captains log: Invalid shortcuts JSON",
+      "invalidFeeds": "Captains log: Invalid feeds JSON"
+    },
+    "widgets": {
+      "visible": "Captains log: Show widgets",
+      "defaultCityLabel": "Captains log: Default city (weather)",
+      "defaultCityPlaceholder": "Captains log: e.g. Hanover",
+      "defaultTransportLabel": "Captains log: Default stop (transport)",
+      "defaultTransportPlaceholder": "Captains log: Search station...",
+      "cardStyleLabel": "Captains log: Card style",
+      "cardStyleGlass": "Captains log: Glass (default)",
+      "cardStyleSolid": "Captains log: Solid",
+      "cardStyleTransparent": "Captains log: Transparent",
+      "cardStyleMinimal": "Captains log: Soft minimal",
+      "cardStyleNote": "Captains log: Applies to all widgets & favorite tiles.",
+      "clockColorLabel": "Captains log: Time & date",
+      "searchColorLabel": "Captains log: Search",
+      "reset": "Captains log: Reset",
+      "clockColorNote": "Captains log: Sets the header background (empty = style default).",
+      "searchColorNote": "Captains log: Color for the search area (empty = style default).",
+      "widgetColorsLabel": "Captains log: Widget colors"
+    },
+    "data": {
+      "label": "Captains log: Data",
+      "export": "Captains log: Export (.json)",
+      "import": "Captains log: Import (.json)",
+      "presetsLabel": "Captains log: Data presets",
+      "applyPreset": "Captains log: Load preset",
+      "presetMeta": "Captains log: Presets are exported JSONs under assets/presets/. User presets from assets/user-presets/ are merged automatically.",
+      "setupLabel": "Captains log: Setup",
+      "restartOnboarding": "Captains log: Restart setup",
+      "restartNote": "Captains log: Reopens the compact setup dialog.",
+      "noteLabel": "Captains log: Note",
+      "noteText": "Captains log: Export stores all settings & data locally as JSON. Import overwrites existing entries."
+    },
+    "language": {
+      "label": "Captains log: Language",
+      "auto": "Captains log: Auto (System)"
+    },
+    "font": {
+      "label": "Captains log: Font",
+      "searchPlaceholder": "Captains log: Search fonts...",
+      "loadLocal": "Captains log: Load system fonts",
+      "systemDefault": "Captains log: System default",
+      "noResults": "Captains log: No matching fonts",
+      "note": "Captains log: Shows local system fonts (if available), otherwise a detected fallback list.",
+      "unsupported": "Captains log: Your browser does not support Local Font Access (queryLocalFonts).",
+      "permissionDenied": "Captains log: Access to local fonts was denied or blocked.",
+      "empty": "Captains log: No local fonts were returned.",
+      "loadFailed": "Captains log: Could not load local fonts: {error}"
+    },
+    "guideHtml": "<div class=\"row\"><label>Captains log: User Guide</label><div><h5>Captains log: Overview</h5><ul><li>Captains log: Start page with search, favorites, to-do, notes, weather, news.</li><li>Captains log: All local: data stays in your browser (localStorage).</li></ul><h5>Captains log: Shortcuts</h5><ul><li>Captains log: Ctrl/Cmd+K: open command palette</li><li>Captains log: 1-9: open first 9 favorites (when not typing)</li><li>Captains log: / : focus search (also via palette)</li><li>Captains log: Enter in search: start search</li><li>Captains log: ESC: close modals</li><li>Captains log: Palette: quick actions for widgets, theme, background, data, favorites</li><li>Captains log: Palette: key C switches card style, \"Reset header colors\" resets search & clock</li></ul><h5>Captains log: Search & Autocomplete</h5><ul><li>Captains log: Bangs: !gCaptains log:  !ddgCaptains log:  !bingCaptains log:  !ytCaptains log:  !wikiCaptains log:  !maps</li><li>Captains log: Custom shortcuts: JSON in settings; {q}Captains log:  as placeholder</li><li>Captains log: Autocomplete: bangs, shortcuts, recent searches, wordlist (global + preset)</li><li>Captains log: Tab accepts suggestion, Enter starts search</li></ul><h5>Captains log: Tiles</h5><ul><li>Captains log: Drag & drop to sort, click to open</li><li>Captains log: + Tile: add a new favorite</li><li>Captains log: Reset: restore default favorites</li></ul><h5>Captains log: Widgets & Layout</h5><ul><li>Captains log: Visibility per widget</li><li>Captains log: Card style is global (glass, solid, transparent, soft minimal)</li><li>Captains log: Custom colors for clock/search; reset restores style defaults</li><li>Captains log: Widget colors & \"Tint widgets\" set the accent per card</li></ul><h5>Captains log: Background</h5><ul><li>Captains log: Presets, uploads, collections, rotation (time/theme/interval)</li><li>Captains log: Accent color is extracted from the active background</li></ul><h5>Captains log: Data</h5><ul><li>Captains log: Export/Import as JSON</li><li>Captains log: Load data presets (assets/presets/*.json in the repo)</li></ul></div></div>"
+  },
+  "onboarding": {
+    "title": "Captains log: Start setup",
+    "progress": "Captains log: Step {current}Captains log:  of {total}",
+    "skip": "Captains log: Skip setup",
+    "close": "Captains log: Close",
+    "preset": {
+      "title": "Captains log: Choose preset",
+      "hint": "Captains log: Pick a preset or skip this step.",
+      "apply": "Captains log: Apply preset",
+      "meta": "Captains log: Apply a preset or skip.",
+      "optional": "Captains log: Preset optional.",
+      "context": "Captains log: Setup preset"
+    },
+    "appearance": {
+      "title": "Captains log: Appearance",
+      "theme": "Captains log: Theme",
+      "cardStyle": "Captains log: Card style",
+      "background": "Captains log: Background",
+      "rotation": "Captains log: Enable rotation",
+      "keepCurrent": "Captains log: Keep current image"
+    },
+    "search": {
+      "title": "Captains log: Search",
+      "engine": "Captains log: Default search engine"
+    },
+    "widgets": {
+      "title": "Captains log: Widgets",
+      "defaultTransport": "Captains log: Default stop (transport)",
+      "tint": "Captains log: Tint widgets with accent"
+    },
+    "weather": {
+      "title": "Captains log: Weather",
+      "defaultCity": "Captains log: Default city",
+      "note": "Captains log: You can change everything later in settings."
+    },
+    "prev": "Captains log: Back",
+    "next": "Captains log: Next",
+    "finish": "Captains log: Done"
+  },
+  "palette": {
+    "placeholder": "Captains log: Search command or favorite... (Ctrl/+K)",
+    "groups": {
+      "command": "Captains log: Commands",
+      "settings": "Captains log: Settings",
+      "search": "Captains log: Search",
+      "widgets": "Captains log: Widgets",
+      "theme": "Captains log: Theme & Background",
+      "data": "Captains log: Data",
+      "tiles": "Captains log: Tiles",
+      "tile": "Captains log: Favorites",
+      "quick": "Captains log: Quick"
+    },
+    "search": {
+      "focus": "Captains log: Focus search",
+      "start": "Captains log: Start search",
+      "engine": "Captains log: Engine: {engine}"
+    },
+    "settings": {
+      "open": "Captains log: Open settings",
+      "general": "Captains log: Settings: General",
+      "background": "Captains log: Settings: Background",
+      "search": "Captains log: Settings: Search",
+      "widgets": "Captains log: Settings: Widgets",
+      "data": "Captains log: Settings: Data",
+      "guide": "Captains log: Settings: Guide"
+    },
+    "theme": {
+      "cycle": "Captains log: Cycle theme (Auto/Dark/Light)",
+      "auto": "Captains log: Theme: Auto",
+      "dark": "Captains log: Theme: Dark",
+      "light": "Captains log: Theme: Light",
+      "resetHeader": "Captains log: Reset header colors",
+      "recalcAccent": "Captains log: Recalculate accent colors"
+    },
+    "cardStyle": {
+      "glass": "Captains log: Card style: Glass",
+      "solid": "Captains log: Card style: Solid",
+      "transparent": "Captains log: Card style: Transparent",
+      "minimal": "Captains log: Card style: Minimal"
+    },
+    "background": {
+      "toggleRotation": "Captains log: Background: Toggle rotation",
+      "toggleLock": "Captains log: Background: Lock/unlock rotation",
+      "preset": "Captains log: Background: {label}"
+    },
+    "widgets": {
+      "showAll": "Captains log: Widgets: Show all",
+      "hideAll": "Captains log: Widgets: Hide all",
+      "toggle": "Captains log: Widget: Toggle {widget}",
+      "focus": "Captains log: Widget: Focus {widget}"
+    },
+    "quick": {
+      "addTodo": "Captains log: Add todo",
+      "addNote": "Captains log: Add note"
+    },
+    "tiles": {
+      "add": "Captains log: Add tile",
+      "reset": "Captains log: Reset tiles"
+    },
+    "refresh": {
+      "weather": "Captains log: Refresh weather",
+      "news": "Captains log: Refresh news",
+      "transport": "Captains log: Refresh transport",
+      "system": "Captains log: Refresh system",
+      "all": "Captains log: Refresh all widgets"
+    },
+    "data": {
+      "export": "Captains log: Export data",
+      "import": "Captains log: Import data",
+      "preset": "Captains log: Data preset: {label}"
+    }
+  },
+  "widgets": {
+    "todo": "Captains log: To-Do",
+    "notes": "Captains log: Notes",
+    "tiles": "Captains log: Favorites",
+    "weather": "Captains log: Weather",
+    "transport": "Captains log: Transport",
+    "quote": "Captains log: Quote",
+    "recent": "Captains log: Recent",
+    "system": "Captains log: System",
+    "news": "Captains log: News"
+  },
+  "background": {
+    "currentPreview": "Captains log: Current background image",
+    "none": "Captains log: No background",
+    "noImageSelected": "Captains log: No image selected",
+    "rotationResume": "Captains log: Resume rotation",
+    "rotationLock": "Captains log: Lock rotation",
+    "tone": "Captains log: Tone: {tone}",
+    "presets": {
+      "empty": "Captains log: No presets available."
+    },
+    "favorites": {
+      "empty": "Captains log: No favorites yet. Mark presets or uploads."
+    },
+    "subtitle": {
+      "preset": "Captains log: Preset"
+    },
+    "upload": "Captains log: Upload",
+    "uploadDrop": "Captains log: Drop files here",
+    "uploadBrowse": "Captains log: Choose file",
+    "uploadNote": "Captains log: We resize images automatically (16:9, max 2560px) and store them locally. Max {max}Captains log:  files.",
+    "uploads": {
+      "empty": "Captains log: No uploads yet."
+    },
+    "collections": {
+      "count": "{count}Captains log:  sources",
+      "random": "Captains log: Random",
+      "cache": "Captains log: Save offline",
+      "viewSources": "Captains log: View sources",
+      "useRotation": "Captains log: Use for rotation",
+      "newLabel": "Captains log: New collection",
+      "namePlaceholder": "Captains log: My collection",
+      "urlsPlaceholder": "Captains log: One image URL per line",
+      "clear": "Captains log: Clear fields",
+      "note": "Captains log: URLs are stored locally. Remote sources need CORS for images.",
+      "empty": "Captains log: No collections yet.",
+      "minOneUrl": "Captains log: Enter at least one URL.",
+      "emptyCollection": "Captains log: Collection is empty.",
+      "saved": "Captains log: Collection saved locally.",
+      "defaultName": "Captains log: Collection {index}"
+    },
+    "rotation": {
+      "optionPreset": "Captains log: Preset: {label}",
+      "optionUpload": "Captains log: Upload: {label}",
+      "optionFavorite": "Captains log: Favorite: {label}",
+      "optionCustom": "Captains log: Custom: saved URL",
+      "noFixed": "Captains log: No fixed image",
+      "enabled": "Captains log: Enable automatic rotation",
+      "locked": "Captains log: Rotation is currently locked.",
+      "active": "Captains log: Backgrounds change according to the schedule.",
+      "mode": "Captains log: Mode",
+      "modeTime": "Captains log: Time-based",
+      "modeInterval": "Captains log: Interval",
+      "modeTheme": "Captains log: Theme",
+      "intervalLabel": "Captains log: Interval in minutes",
+      "intervalNote": "Captains log: Only relevant in interval mode.",
+      "sourcesLabel": "Captains log: Sources for random",
+      "scheduleLabel": "Captains log: Schedule",
+      "themePlan": "Captains log: Theme plan",
+      "themeLight": "Captains log: Theme light",
+      "themeDark": "Captains log: Theme dark",
+      "themeNote": "Captains log: Theme plan is used when mode is Theme.",
+      "slot": {
+        "morning": "Captains log: Morning 05-11",
+        "day": "Captains log: Day 11-17",
+        "evening": "Captains log: Evening 17-21",
+        "night": "Captains log: Night 21-05"
+      }
+    },
+    "custom": {
+      "label": "Captains log: Custom image URL",
+      "placeholder": "https://example.com/image.jpg",
+      "note": "Captains log: URL is stored locally. Server must allow CORS for images.",
+      "enterUrl": "Captains log: Please enter a URL.",
+      "title": "Captains log: Custom URL",
+      "subtitle": "Captains log: Custom"
+    },
+    "actions": {
+      "apply": "Captains log: Apply",
+      "favorite": "Captains log: Favorite",
+      "favorited": "Captains log: Favorited",
+      "random": "Captains log: Load random",
+      "undo": "Captains log: Restore last image",
+      "lock": "Captains log: Lock rotation",
+      "tint": "Captains log: Tint widgets"
+    },
+    "tabs": {
+      "presets": "Captains log: Presets",
+      "favorites": "Captains log: Favorites",
+      "uploads": "Captains log: Uploads",
+      "collections": "Captains log: Collections",
+      "rotation": "Captains log: Rotation",
+      "custom": "Captains log: Custom"
+    },
+    "loadError": "Captains log: Load failed. Check CORS settings.",
+    "noneAvailable": "Captains log: No backgrounds available.",
+    "imageLoadError": "Captains log: Image could not be loaded."
+  },
+  "data": {
+    "import": {
+      "confirm": "Captains log: Import data? Existing entries will be overwritten.",
+      "failed": "Captains log: Import failed: {error}"
+    },
+    "presets": {
+      "none": "Captains log: No preset available.",
+      "missingFile": "Captains log: Preset file missing.",
+      "fileMissing": "Captains log: File not found",
+      "invalid": "Captains log: Invalid preset",
+      "confirmApply": "Captains log: Apply {context}Captains log:  \"{name}Captains log: \"? Existing entries will be overwritten.",
+      "loadFailed": "Captains log: Preset load failed: {error}",
+      "loading": "Captains log: Loading presets...",
+      "noneFound": "Captains log: No presets found",
+      "hint": "Captains log: Place exported JSONs under assets/presets/ (manifest: assets/data-presets.json) or locally under assets/user-presets/.",
+      "hintShort": "Captains log: Add a preset under assets/presets/ or assets/user-presets/.",
+      "userPrefix": "Captains log: User: ",
+      "userApply": "Captains log: Apply local preset",
+      "apply": "Captains log: Apply preset",
+      "noneSelected": "Captains log: No preset selected.",
+      "label": "Captains log: Preset",
+      "defaultLabel": "Captains log: Preset {index}",
+      "userDefault": "Captains log: User preset {index}",
+      "userDescription": "Captains log: Local preset from assets/user-presets/",
+      "tags": "Captains log:  (Tags: {tags}Captains log: )"
+    }
+  },
+  "dialogs": {
+    "alertTitle": "Captains log: Notice",
+    "confirmTitle": "Captains log: Confirm",
+    "promptTitle": "Captains log: Input"
+  }
+}

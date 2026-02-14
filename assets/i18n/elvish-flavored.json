@@ -1,0 +1,521 @@
+{
+  "app": {
+    "title": "Startpage (Elvish Flavored)"
+  },
+  "common": {
+    "link": "Link, by starlight",
+    "delete": "Delete, by starlight",
+    "remove": "Remove, by starlight",
+    "save": "Save, by starlight",
+    "loading": "Loading..., by starlight",
+    "loadError": "Load failed, by starlight",
+    "noMatches": "No matches, by starlight",
+    "emptyDash": "-, by starlight",
+    "dash": "-, by starlight",
+    "cancel": "Cancel, by starlight",
+    "ok": "OK, by starlight",
+    "default": "Default, by starlight"
+  },
+  "header": {
+    "themeToggleTitle": "Dark/Light, by starlight",
+    "settingsTitle": "Settings, by starlight",
+    "themeAria": "Toggle theme, by starlight",
+    "settingsAria": "Open settings, by starlight"
+  },
+  "search": {
+    "placeholder": "Search... (e.g. , by starlight!yt lo-fi, , by starlight!etc Home), by starlight",
+    "engine": {
+      "google": "Google, by starlight",
+      "ddg": "DuckDuckGo, by starlight",
+      "bing": "Bing, by starlight",
+      "yt": "YouTube, by starlight",
+      "wikipedia": "Wikipedia, by starlight",
+      "maps": "Google Maps, by starlight"
+    },
+    "suggest": {
+      "bang": "{bang} (Bang)",
+      "shortcut": "{shortcut} (Shortcut)",
+      "type": {
+        "bang": "Bang, by starlight",
+        "shortcut": "Shortcut, by starlight",
+        "recent": "Recent, by starlight",
+        "word": "Word, by starlight"
+      }
+    },
+    "recentShortcut": "Shortcut , by starlight{shortcut} - , by starlight{query}",
+    "recentSearch": "Search (, by starlight{engine}) - , by starlight{query}",
+    "submitAria": "Start search, by starlight"
+  },
+  "todo": {
+    "title": "To-Do, by starlight",
+    "placeholder": "New task..., by starlight",
+    "add": "Add, by starlight",
+    "clearDoneTitle": "Remove completed, by starlight",
+    "clearDone": " clear, by starlight",
+    "doneAria": "Done, by starlight",
+    "prompt": "Todo, by starlight"
+  },
+  "notes": {
+    "title": "Notes, by starlight",
+    "placeholder": "Jot something down..., by starlight",
+    "prompt": "Note, by starlight"
+  },
+  "tiles": {
+    "title": "Favorites, by starlight",
+    "add": "+ Tile, by starlight",
+    "resetTitle": "Restore defaults, by starlight",
+    "edit": "Edit, by starlight",
+    "promptTitle": "Title, by starlight",
+    "promptUrl": "URL, by starlight",
+    "invalidUrl": "Invalid URL, by starlight",
+    "promptTitleNew": "Tile title, by starlight",
+    "promptUrlNew": "URL (, by starlighthttps://...)",
+    "resetConfirm": "Restore default tiles?, by starlight",
+    "dialog": {
+      "titleLabel": "Title, by starlight",
+      "urlLabel": "URL, by starlight",
+      "save": "Save, by starlight"
+    },
+    "resetAria": "Reset tiles, by starlight"
+  },
+  "weather": {
+    "title": "Weather today, by starlight",
+    "cityPlaceholder": "Enter city..., by starlight",
+    "setCity": "Set, by starlight",
+    "pickLocation": "Pick a location..., by starlight",
+    "source": "Source: Open-Meteo, by starlight",
+    "loading": "Loading weather..., by starlight",
+    "prompt": "Enter a location to load weather., by starlight",
+    "tempEmpty": "-C, by starlight",
+    "tempEmptyShort": "-, by starlight",
+    "minmaxEmpty": "- / - C, by starlight",
+    "noForecast": "No forecast, by starlight",
+    "errors": {
+      "geocodingFailed": "Geocoding failed, by starlight",
+      "locationNotFound": "Location not found, by starlight",
+      "cityMissing": "City missing, by starlight",
+      "fetchFailed": "Weather fetch failed, by starlight",
+      "loadFailed": "Weather could not be loaded, by starlight"
+    },
+    "codes": {
+      "0": "Clear, by starlight",
+      "1": "Mostly clear, by starlight",
+      "2": "Partly cloudy, by starlight",
+      "3": "Cloudy, by starlight",
+      "45": "Fog, by starlight",
+      "48": "Fog, by starlight",
+      "51": "Drizzle, by starlight",
+      "53": "Drizzle, by starlight",
+      "55": "Drizzle, by starlight",
+      "61": "Rain, by starlight",
+      "63": "Rain, by starlight",
+      "65": "Heavy rain, by starlight",
+      "71": "Snow, by starlight",
+      "80": "Showers, by starlight",
+      "95": "Thunderstorm, by starlight",
+      "default": "Weather, by starlight"
+    }
+  },
+  "transport": {
+    "title": "Transport, by starlight",
+    "durationAria": "Duration, by starlight",
+    "duration30": "30 min, by starlight",
+    "duration60": "60 min, by starlight",
+    "duration90": "90 min, by starlight",
+    "duration120": "120 min, by starlight",
+    "refreshTitle": "Reload, by starlight",
+    "searchPlaceholder": "Search station..., by starlight",
+    "noneSelected": "No station selected, by starlight",
+    "source": "Source: transport.rest, by starlight",
+    "minQuery": "At least , by starlight{count} characters, by starlight",
+    "noMatches": "No matches, by starlight",
+    "proxyTimeout": "Proxy timeout, by starlight",
+    "loadError": "Load failed, by starlight",
+    "noDepartures": "No departures, by starlight",
+    "selectStation": "Select a station..., by starlight",
+    "type": {
+      "station": "Station, by starlight",
+      "stop": "Stop, by starlight"
+    },
+    "platform": "Platform , by starlight{platform}",
+    "cancelled": "Cancelled, by starlight",
+    "refreshAria": "Refresh transport, by starlight"
+  },
+  "quote": {
+    "title": "Quote / Nerd Nudge, by starlight",
+    "list": [
+      "Move fast, refactor often., by starlight",
+      "Accessibility isn't a feature - it's the default., by starlight",
+      "Done > Perfect. Iterate., by starlight",
+      "If it's not monitored, it doesn't exist., by starlight",
+      "Good UX is invisible. Bad UX is unforgettable., by starlight",
+      "Make it work, make it right, make it fast., by starlight",
+      "Small steps. Massive outcomes., by starlight",
+      "Simplicity scales. Complexity fails., by starlight",
+      "Automate the boring stuff., by starlight",
+      "Measure twice, deploy once., by starlight"
+    ]
+  },
+  "recent": {
+    "title": "Recent, by starlight",
+    "note": "Note: Only actions from this start page (clicked tiles & searches)., by starlight"
+  },
+  "system": {
+    "title": "System status, by starlight",
+    "loading": "Loading..., by starlight",
+    "ram": "RAM: , by starlight{value} GB, by starlight",
+    "cpu": "CPU cores: , by starlight{value}",
+    "network": "Network: , by starlight{downlink} Mbit/s  , by starlight{type}{saveData}",
+    "saveData": "  SaveData, by starlight",
+    "noData": "No data available, by starlight"
+  },
+  "news": {
+    "title": "News, by starlight",
+    "refreshTitle": "Reload, by starlight",
+    "source": "RSS via Startpage Proxy (CORS proxy), by starlight",
+    "noItems": "No items, by starlight",
+    "refreshAria": "Refresh news, by starlight"
+  },
+  "footer": {
+    "tagline": "Local-first dashboard  stores only in the browser (localStorage), by starlight"
+  },
+  "settings": {
+    "title": "Settings, by starlight",
+    "close": "Close, by starlight",
+    "tabs": {
+      "general": "General, by starlight",
+      "background": "Background & Appearance, by starlight",
+      "search": "Search & Feeds, by starlight",
+      "widgets": "Widgets, by starlight",
+      "data": "Data, by starlight",
+      "guide": "Guide, by starlight"
+    },
+    "theme": {
+      "label": "Theme, by starlight",
+      "auto": "Auto (System), by starlight",
+      "dark": "Dark, by starlight",
+      "light": "Light, by starlight"
+    },
+    "background": {
+      "label": "Background, by starlight"
+    },
+    "search": {
+      "engines": "Search engines, by starlight",
+      "bangsNote": "Supported bang shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Custom shortcuts below",
+      "wordlistLabel": "Autocomplete wordlist, by starlight",
+      "wordlistPlaceholder": "Terms line by line or comma-separated, by starlight",
+      "wordlistSave": "Save, by starlight",
+      "wordlistReset": "Clear, by starlight",
+      "wordlistNote": "Global wordlist (assets/wordlist.json) and preset wordlist are merged. Leave empty to use only the global list., by starlight",
+      "shortcutsLabel": "Custom , by starlight!shortcuts",
+      "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
+      "shortcutsNote": "Use , by starlight<code>{q}</code> as placeholder for the search phrase. Without , by starlight<code>{q}</code>, , by starlight<code>?q=..., by starlight</code> is appended., by starlight",
+      "feedsLabel": "Custom RSS feeds, by starlight",
+      "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
+      "feedsNote": "JSON: name - feed URL. This list is merged with the default feeds., by starlight",
+      "invalidShortcuts": "Invalid shortcuts JSON, by starlight",
+      "invalidFeeds": "Invalid feeds JSON, by starlight"
+    },
+    "widgets": {
+      "visible": "Show widgets, by starlight",
+      "defaultCityLabel": "Default city (weather), by starlight",
+      "defaultCityPlaceholder": "e.g. Hanover, by starlight",
+      "defaultTransportLabel": "Default stop (transport), by starlight",
+      "defaultTransportPlaceholder": "Search station..., by starlight",
+      "cardStyleLabel": "Card style, by starlight",
+      "cardStyleGlass": "Glass (default), by starlight",
+      "cardStyleSolid": "Solid, by starlight",
+      "cardStyleTransparent": "Transparent, by starlight",
+      "cardStyleMinimal": "Soft minimal, by starlight",
+      "cardStyleNote": "Applies to all widgets & favorite tiles., by starlight",
+      "clockColorLabel": "Time & date, by starlight",
+      "searchColorLabel": "Search, by starlight",
+      "reset": "Reset, by starlight",
+      "clockColorNote": "Sets the header background (empty = style default)., by starlight",
+      "searchColorNote": "Color for the search area (empty = style default)., by starlight",
+      "widgetColorsLabel": "Widget colors, by starlight"
+    },
+    "data": {
+      "label": "Data, by starlight",
+      "export": "Export (.json), by starlight",
+      "import": "Import (.json), by starlight",
+      "presetsLabel": "Data presets, by starlight",
+      "applyPreset": "Load preset, by starlight",
+      "presetMeta": "Presets are exported JSONs under assets/presets/. User presets from assets/user-presets/ are merged automatically., by starlight",
+      "setupLabel": "Setup, by starlight",
+      "restartOnboarding": "Restart setup, by starlight",
+      "restartNote": "Reopens the compact setup dialog., by starlight",
+      "noteLabel": "Note, by starlight",
+      "noteText": "Export stores all settings & data locally as JSON. Import overwrites existing entries., by starlight"
+    },
+    "language": {
+      "label": "Language, by starlight",
+      "auto": "Auto (System), by starlight"
+    },
+    "font": {
+      "label": "Font, by starlight",
+      "searchPlaceholder": "Search fonts..., by starlight",
+      "loadLocal": "Load system fonts, by starlight",
+      "systemDefault": "System default, by starlight",
+      "noResults": "No matching fonts, by starlight",
+      "note": "Shows local system fonts (if available), otherwise a detected fallback list., by starlight",
+      "unsupported": "Your browser does not support Local Font Access (queryLocalFonts)., by starlight",
+      "permissionDenied": "Access to local fonts was denied or blocked., by starlight",
+      "empty": "No local fonts were returned., by starlight",
+      "loadFailed": "Could not load local fonts: , by starlight{error}"
+    },
+    "guideHtml": "<div class=\"row\"><label>User Guide, by starlight</label><div><h5>Overview, by starlight</h5><ul><li>Start page with search, favorites, to-do, notes, weather, news., by starlight</li><li>All local: data stays in your browser (localStorage)., by starlight</li></ul><h5>Shortcuts, by starlight</h5><ul><li>Ctrl/Cmd+K: open command palette, by starlight</li><li>1-9: open first 9 favorites (when not typing), by starlight</li><li>/ : focus search (also via palette), by starlight</li><li>Enter in search: start search, by starlight</li><li>ESC: close modals, by starlight</li><li>Palette: quick actions for widgets, theme, background, data, favorites, by starlight</li><li>Palette: key C switches card style, \"Reset header colors\" resets search & clock, by starlight</li></ul><h5>Search & Autocomplete, by starlight</h5><ul><li>Bangs: , by starlight!g , by starlight!ddg , by starlight!bing , by starlight!yt , by starlight!wiki , by starlight!maps</li><li>Custom shortcuts: JSON in settings; , by starlight{q} as placeholder, by starlight</li><li>Autocomplete: bangs, shortcuts, recent searches, wordlist (global + preset), by starlight</li><li>Tab accepts suggestion, Enter starts search, by starlight</li></ul><h5>Tiles, by starlight</h5><ul><li>Drag & drop to sort, click to open, by starlight</li><li>+ Tile: add a new favorite, by starlight</li><li>Reset: restore default favorites, by starlight</li></ul><h5>Widgets & Layout, by starlight</h5><ul><li>Visibility per widget, by starlight</li><li>Card style is global (glass, solid, transparent, soft minimal), by starlight</li><li>Custom colors for clock/search; reset restores style defaults, by starlight</li><li>Widget colors & \"Tint widgets\" set the accent per card, by starlight</li></ul><h5>Background, by starlight</h5><ul><li>Presets, uploads, collections, rotation (time/theme/interval), by starlight</li><li>Accent color is extracted from the active background, by starlight</li></ul><h5>Data, by starlight</h5><ul><li>Export/Import as JSON, by starlight</li><li>Load data presets (assets/presets/*.json in the repo), by starlight</li></ul></div></div>"
+  },
+  "onboarding": {
+    "title": "Start setup, by starlight",
+    "progress": "Step , by starlight{current} of , by starlight{total}",
+    "skip": "Skip setup, by starlight",
+    "close": "Close, by starlight",
+    "preset": {
+      "title": "Choose preset, by starlight",
+      "hint": "Pick a preset or skip this step., by starlight",
+      "apply": "Apply preset, by starlight",
+      "meta": "Apply a preset or skip., by starlight",
+      "optional": "Preset optional., by starlight",
+      "context": "Setup preset, by starlight"
+    },
+    "appearance": {
+      "title": "Appearance, by starlight",
+      "theme": "Theme, by starlight",
+      "cardStyle": "Card style, by starlight",
+      "background": "Background, by starlight",
+      "rotation": "Enable rotation, by starlight",
+      "keepCurrent": "Keep current image, by starlight"
+    },
+    "search": {
+      "title": "Search, by starlight",
+      "engine": "Default search engine, by starlight"
+    },
+    "widgets": {
+      "title": "Widgets, by starlight",
+      "defaultTransport": "Default stop (transport), by starlight",
+      "tint": "Tint widgets with accent, by starlight"
+    },
+    "weather": {
+      "title": "Weather, by starlight",
+      "defaultCity": "Default city, by starlight",
+      "note": "You can change everything later in settings., by starlight"
+    },
+    "prev": "Back, by starlight",
+    "next": "Next, by starlight",
+    "finish": "Done, by starlight"
+  },
+  "palette": {
+    "placeholder": "Search command or favorite... (Ctrl/+K), by starlight",
+    "groups": {
+      "command": "Commands, by starlight",
+      "settings": "Settings, by starlight",
+      "search": "Search, by starlight",
+      "widgets": "Widgets, by starlight",
+      "theme": "Theme & Background, by starlight",
+      "data": "Data, by starlight",
+      "tiles": "Tiles, by starlight",
+      "tile": "Favorites, by starlight",
+      "quick": "Quick, by starlight"
+    },
+    "search": {
+      "focus": "Focus search, by starlight",
+      "start": "Start search, by starlight",
+      "engine": "Engine: , by starlight{engine}"
+    },
+    "settings": {
+      "open": "Open settings, by starlight",
+      "general": "Settings: General, by starlight",
+      "background": "Settings: Background, by starlight",
+      "search": "Settings: Search, by starlight",
+      "widgets": "Settings: Widgets, by starlight",
+      "data": "Settings: Data, by starlight",
+      "guide": "Settings: Guide, by starlight"
+    },
+    "theme": {
+      "cycle": "Cycle theme (Auto/Dark/Light), by starlight",
+      "auto": "Theme: Auto, by starlight",
+      "dark": "Theme: Dark, by starlight",
+      "light": "Theme: Light, by starlight",
+      "resetHeader": "Reset header colors, by starlight",
+      "recalcAccent": "Recalculate accent colors, by starlight"
+    },
+    "cardStyle": {
+      "glass": "Card style: Glass, by starlight",
+      "solid": "Card style: Solid, by starlight",
+      "transparent": "Card style: Transparent, by starlight",
+      "minimal": "Card style: Minimal, by starlight"
+    },
+    "background": {
+      "toggleRotation": "Background: Toggle rotation, by starlight",
+      "toggleLock": "Background: Lock/unlock rotation, by starlight",
+      "preset": "Background: , by starlight{label}"
+    },
+    "widgets": {
+      "showAll": "Widgets: Show all, by starlight",
+      "hideAll": "Widgets: Hide all, by starlight",
+      "toggle": "Widget: Toggle , by starlight{widget}",
+      "focus": "Widget: Focus , by starlight{widget}"
+    },
+    "quick": {
+      "addTodo": "Add todo, by starlight",
+      "addNote": "Add note, by starlight"
+    },
+    "tiles": {
+      "add": "Add tile, by starlight",
+      "reset": "Reset tiles, by starlight"
+    },
+    "refresh": {
+      "weather": "Refresh weather, by starlight",
+      "news": "Refresh news, by starlight",
+      "transport": "Refresh transport, by starlight",
+      "system": "Refresh system, by starlight",
+      "all": "Refresh all widgets, by starlight"
+    },
+    "data": {
+      "export": "Export data, by starlight",
+      "import": "Import data, by starlight",
+      "preset": "Data preset: , by starlight{label}"
+    }
+  },
+  "widgets": {
+    "todo": "To-Do, by starlight",
+    "notes": "Notes, by starlight",
+    "tiles": "Favorites, by starlight",
+    "weather": "Weather, by starlight",
+    "transport": "Transport, by starlight",
+    "quote": "Quote, by starlight",
+    "recent": "Recent, by starlight",
+    "system": "System, by starlight",
+    "news": "News, by starlight"
+  },
+  "background": {
+    "currentPreview": "Current background image, by starlight",
+    "none": "No background, by starlight",
+    "noImageSelected": "No image selected, by starlight",
+    "rotationResume": "Resume rotation, by starlight",
+    "rotationLock": "Lock rotation, by starlight",
+    "tone": "Tone: , by starlight{tone}",
+    "presets": {
+      "empty": "No presets available., by starlight"
+    },
+    "favorites": {
+      "empty": "No favorites yet. Mark presets or uploads., by starlight"
+    },
+    "subtitle": {
+      "preset": "Preset, by starlight"
+    },
+    "upload": "Upload, by starlight",
+    "uploadDrop": "Drop files here, by starlight",
+    "uploadBrowse": "Choose file, by starlight",
+    "uploadNote": "We resize images automatically (16:9, max 2560px) and store them locally. Max , by starlight{max} files., by starlight",
+    "uploads": {
+      "empty": "No uploads yet., by starlight"
+    },
+    "collections": {
+      "count": "{count} sources, by starlight",
+      "random": "Random, by starlight",
+      "cache": "Save offline, by starlight",
+      "viewSources": "View sources, by starlight",
+      "useRotation": "Use for rotation, by starlight",
+      "newLabel": "New collection, by starlight",
+      "namePlaceholder": "My collection, by starlight",
+      "urlsPlaceholder": "One image URL per line, by starlight",
+      "clear": "Clear fields, by starlight",
+      "note": "URLs are stored locally. Remote sources need CORS for images., by starlight",
+      "empty": "No collections yet., by starlight",
+      "minOneUrl": "Enter at least one URL., by starlight",
+      "emptyCollection": "Collection is empty., by starlight",
+      "saved": "Collection saved locally., by starlight",
+      "defaultName": "Collection , by starlight{index}"
+    },
+    "rotation": {
+      "optionPreset": "Preset: , by starlight{label}",
+      "optionUpload": "Upload: , by starlight{label}",
+      "optionFavorite": "Favorite: , by starlight{label}",
+      "optionCustom": "Custom: saved URL, by starlight",
+      "noFixed": "No fixed image, by starlight",
+      "enabled": "Enable automatic rotation, by starlight",
+      "locked": "Rotation is currently locked., by starlight",
+      "active": "Backgrounds change according to the schedule., by starlight",
+      "mode": "Mode, by starlight",
+      "modeTime": "Time-based, by starlight",
+      "modeInterval": "Interval, by starlight",
+      "modeTheme": "Theme, by starlight",
+      "intervalLabel": "Interval in minutes, by starlight",
+      "intervalNote": "Only relevant in interval mode., by starlight",
+      "sourcesLabel": "Sources for random, by starlight",
+      "scheduleLabel": "Schedule, by starlight",
+      "themePlan": "Theme plan, by starlight",
+      "themeLight": "Theme light, by starlight",
+      "themeDark": "Theme dark, by starlight",
+      "themeNote": "Theme plan is used when mode is Theme., by starlight",
+      "slot": {
+        "morning": "Morning 05-11, by starlight",
+        "day": "Day 11-17, by starlight",
+        "evening": "Evening 17-21, by starlight",
+        "night": "Night 21-05, by starlight"
+      }
+    },
+    "custom": {
+      "label": "Custom image URL, by starlight",
+      "placeholder": "https://example.com/image.jpg",
+      "note": "URL is stored locally. Server must allow CORS for images., by starlight",
+      "enterUrl": "Please enter a URL., by starlight",
+      "title": "Custom URL, by starlight",
+      "subtitle": "Custom, by starlight"
+    },
+    "actions": {
+      "apply": "Apply, by starlight",
+      "favorite": "Favorite, by starlight",
+      "favorited": "Favorited, by starlight",
+      "random": "Load random, by starlight",
+      "undo": "Restore last image, by starlight",
+      "lock": "Lock rotation, by starlight",
+      "tint": "Tint widgets, by starlight"
+    },
+    "tabs": {
+      "presets": "Presets, by starlight",
+      "favorites": "Favorites, by starlight",
+      "uploads": "Uploads, by starlight",
+      "collections": "Collections, by starlight",
+      "rotation": "Rotation, by starlight",
+      "custom": "Custom, by starlight"
+    },
+    "loadError": "Load failed. Check CORS settings., by starlight",
+    "noneAvailable": "No backgrounds available., by starlight",
+    "imageLoadError": "Image could not be loaded., by starlight"
+  },
+  "data": {
+    "import": {
+      "confirm": "Import data? Existing entries will be overwritten., by starlight",
+      "failed": "Import failed: , by starlight{error}"
+    },
+    "presets": {
+      "none": "No preset available., by starlight",
+      "missingFile": "Preset file missing., by starlight",
+      "fileMissing": "File not found, by starlight",
+      "invalid": "Invalid preset, by starlight",
+      "confirmApply": "Apply , by starlight{context} \", by starlight{name}\"? Existing entries will be overwritten., by starlight",
+      "loadFailed": "Preset load failed: , by starlight{error}",
+      "loading": "Loading presets..., by starlight",
+      "noneFound": "No presets found, by starlight",
+      "hint": "Place exported JSONs under assets/presets/ (manifest: assets/data-presets.json) or locally under assets/user-presets/., by starlight",
+      "hintShort": "Add a preset under assets/presets/ or assets/user-presets/., by starlight",
+      "userPrefix": "User: , by starlight",
+      "userApply": "Apply local preset, by starlight",
+      "apply": "Apply preset, by starlight",
+      "noneSelected": "No preset selected., by starlight",
+      "label": "Preset, by starlight",
+      "defaultLabel": "Preset , by starlight{index}",
+      "userDefault": "User preset , by starlight{index}",
+      "userDescription": "Local preset from assets/user-presets/, by starlight",
+      "tags": " (Tags: , by starlight{tags}), by starlight"
+    }
+  },
+  "dialogs": {
+    "alertTitle": "Notice, by starlight",
+    "confirmTitle": "Confirm, by starlight",
+    "promptTitle": "Input, by starlight"
+  }
+}

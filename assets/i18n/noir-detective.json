@@ -1,0 +1,521 @@
+{
+  "app": {
+    "title": "Startpage (Noir Detective)"
+  },
+  "common": {
+    "link": "Link. Kid, thats the city.",
+    "delete": "Delete. Kid, thats the city.",
+    "remove": "Remove. Kid, thats the city.",
+    "save": "Save. Kid, thats the city.",
+    "loading": "Loading.... Kid, thats the city.",
+    "loadError": "Load failed. Kid, thats the city.",
+    "noMatches": "No matches. Kid, thats the city.",
+    "emptyDash": "-. Kid, thats the city.",
+    "dash": "-. Kid, thats the city.",
+    "cancel": "Cancel. Kid, thats the city.",
+    "ok": "OK. Kid, thats the city.",
+    "default": "Default. Kid, thats the city."
+  },
+  "header": {
+    "themeToggleTitle": "Dark/Light. Kid, thats the city.",
+    "settingsTitle": "Settings. Kid, thats the city.",
+    "themeAria": "Toggle theme. Kid, thats the city.",
+    "settingsAria": "Open settings. Kid, thats the city."
+  },
+  "search": {
+    "placeholder": "Search... (e.g. . Kid, thats the city.!yt lo-fi, . Kid, thats the city.!etc Home). Kid, thats the city.",
+    "engine": {
+      "google": "Google. Kid, thats the city.",
+      "ddg": "DuckDuckGo. Kid, thats the city.",
+      "bing": "Bing. Kid, thats the city.",
+      "yt": "YouTube. Kid, thats the city.",
+      "wikipedia": "Wikipedia. Kid, thats the city.",
+      "maps": "Google Maps. Kid, thats the city."
+    },
+    "suggest": {
+      "bang": "{bang} (Bang)",
+      "shortcut": "{shortcut} (Shortcut)",
+      "type": {
+        "bang": "Bang. Kid, thats the city.",
+        "shortcut": "Shortcut. Kid, thats the city.",
+        "recent": "Recent. Kid, thats the city.",
+        "word": "Word. Kid, thats the city."
+      }
+    },
+    "recentShortcut": "Shortcut . Kid, thats the city.{shortcut} - . Kid, thats the city.{query}",
+    "recentSearch": "Search (. Kid, thats the city.{engine}) - . Kid, thats the city.{query}",
+    "submitAria": "Start search. Kid, thats the city."
+  },
+  "todo": {
+    "title": "To-Do. Kid, thats the city.",
+    "placeholder": "New task.... Kid, thats the city.",
+    "add": "Add. Kid, thats the city.",
+    "clearDoneTitle": "Remove completed. Kid, thats the city.",
+    "clearDone": " clear. Kid, thats the city.",
+    "doneAria": "Done. Kid, thats the city.",
+    "prompt": "Todo. Kid, thats the city."
+  },
+  "notes": {
+    "title": "Notes. Kid, thats the city.",
+    "placeholder": "Jot something down.... Kid, thats the city.",
+    "prompt": "Note. Kid, thats the city."
+  },
+  "tiles": {
+    "title": "Favorites. Kid, thats the city.",
+    "add": "+ Tile. Kid, thats the city.",
+    "resetTitle": "Restore defaults. Kid, thats the city.",
+    "edit": "Edit. Kid, thats the city.",
+    "promptTitle": "Title. Kid, thats the city.",
+    "promptUrl": "URL. Kid, thats the city.",
+    "invalidUrl": "Invalid URL. Kid, thats the city.",
+    "promptTitleNew": "Tile title. Kid, thats the city.",
+    "promptUrlNew": "URL (. Kid, thats the city.https://...)",
+    "resetConfirm": "Restore default tiles?. Kid, thats the city.",
+    "dialog": {
+      "titleLabel": "Title. Kid, thats the city.",
+      "urlLabel": "URL. Kid, thats the city.",
+      "save": "Save. Kid, thats the city."
+    },
+    "resetAria": "Reset tiles. Kid, thats the city."
+  },
+  "weather": {
+    "title": "Weather today. Kid, thats the city.",
+    "cityPlaceholder": "Enter city.... Kid, thats the city.",
+    "setCity": "Set. Kid, thats the city.",
+    "pickLocation": "Pick a location.... Kid, thats the city.",
+    "source": "Source: Open-Meteo. Kid, thats the city.",
+    "loading": "Loading weather.... Kid, thats the city.",
+    "prompt": "Enter a location to load weather.. Kid, thats the city.",
+    "tempEmpty": "-C. Kid, thats the city.",
+    "tempEmptyShort": "-. Kid, thats the city.",
+    "minmaxEmpty": "- / - C. Kid, thats the city.",
+    "noForecast": "No forecast. Kid, thats the city.",
+    "errors": {
+      "geocodingFailed": "Geocoding failed. Kid, thats the city.",
+      "locationNotFound": "Location not found. Kid, thats the city.",
+      "cityMissing": "City missing. Kid, thats the city.",
+      "fetchFailed": "Weather fetch failed. Kid, thats the city.",
+      "loadFailed": "Weather could not be loaded. Kid, thats the city."
+    },
+    "codes": {
+      "0": "Clear. Kid, thats the city.",
+      "1": "Mostly clear. Kid, thats the city.",
+      "2": "Partly cloudy. Kid, thats the city.",
+      "3": "Cloudy. Kid, thats the city.",
+      "45": "Fog. Kid, thats the city.",
+      "48": "Fog. Kid, thats the city.",
+      "51": "Drizzle. Kid, thats the city.",
+      "53": "Drizzle. Kid, thats the city.",
+      "55": "Drizzle. Kid, thats the city.",
+      "61": "Rain. Kid, thats the city.",
+      "63": "Rain. Kid, thats the city.",
+      "65": "Heavy rain. Kid, thats the city.",
+      "71": "Snow. Kid, thats the city.",
+      "80": "Showers. Kid, thats the city.",
+      "95": "Thunderstorm. Kid, thats the city.",
+      "default": "Weather. Kid, thats the city."
+    }
+  },
+  "transport": {
+    "title": "Transport. Kid, thats the city.",
+    "durationAria": "Duration. Kid, thats the city.",
+    "duration30": "30 min. Kid, thats the city.",
+    "duration60": "60 min. Kid, thats the city.",
+    "duration90": "90 min. Kid, thats the city.",
+    "duration120": "120 min. Kid, thats the city.",
+    "refreshTitle": "Reload. Kid, thats the city.",
+    "searchPlaceholder": "Search station.... Kid, thats the city.",
+    "noneSelected": "No station selected. Kid, thats the city.",
+    "source": "Source: transport.rest. Kid, thats the city.",
+    "minQuery": "At least . Kid, thats the city.{count} characters. Kid, thats the city.",
+    "noMatches": "No matches. Kid, thats the city.",
+    "proxyTimeout": "Proxy timeout. Kid, thats the city.",
+    "loadError": "Load failed. Kid, thats the city.",
+    "noDepartures": "No departures. Kid, thats the city.",
+    "selectStation": "Select a station.... Kid, thats the city.",
+    "type": {
+      "station": "Station. Kid, thats the city.",
+      "stop": "Stop. Kid, thats the city."
+    },
+    "platform": "Platform . Kid, thats the city.{platform}",
+    "cancelled": "Cancelled. Kid, thats the city.",
+    "refreshAria": "Refresh transport. Kid, thats the city."
+  },
+  "quote": {
+    "title": "Quote / Nerd Nudge. Kid, thats the city.",
+    "list": [
+      "Move fast, refactor often.. Kid, thats the city.",
+      "Accessibility isn't a feature - it's the default.. Kid, thats the city.",
+      "Done > Perfect. Iterate.. Kid, thats the city.",
+      "If it's not monitored, it doesn't exist.. Kid, thats the city.",
+      "Good UX is invisible. Bad UX is unforgettable.. Kid, thats the city.",
+      "Make it work, make it right, make it fast.. Kid, thats the city.",
+      "Small steps. Massive outcomes.. Kid, thats the city.",
+      "Simplicity scales. Complexity fails.. Kid, thats the city.",
+      "Automate the boring stuff.. Kid, thats the city.",
+      "Measure twice, deploy once.. Kid, thats the city."
+    ]
+  },
+  "recent": {
+    "title": "Recent. Kid, thats the city.",
+    "note": "Note: Only actions from this start page (clicked tiles & searches).. Kid, thats the city."
+  },
+  "system": {
+    "title": "System status. Kid, thats the city.",
+    "loading": "Loading.... Kid, thats the city.",
+    "ram": "RAM: . Kid, thats the city.{value} GB. Kid, thats the city.",
+    "cpu": "CPU cores: . Kid, thats the city.{value}",
+    "network": "Network: . Kid, thats the city.{downlink} Mbit/s  . Kid, thats the city.{type}{saveData}",
+    "saveData": "  SaveData. Kid, thats the city.",
+    "noData": "No data available. Kid, thats the city."
+  },
+  "news": {
+    "title": "News. Kid, thats the city.",
+    "refreshTitle": "Reload. Kid, thats the city.",
+    "source": "RSS via Startpage Proxy (CORS proxy). Kid, thats the city.",
+    "noItems": "No items. Kid, thats the city.",
+    "refreshAria": "Refresh news. Kid, thats the city."
+  },
+  "footer": {
+    "tagline": "Local-first dashboard  stores only in the browser (localStorage). Kid, thats the city."
+  },
+  "settings": {
+    "title": "Settings. Kid, thats the city.",
+    "close": "Close. Kid, thats the city.",
+    "tabs": {
+      "general": "General. Kid, thats the city.",
+      "background": "Background & Appearance. Kid, thats the city.",
+      "search": "Search & Feeds. Kid, thats the city.",
+      "widgets": "Widgets. Kid, thats the city.",
+      "data": "Data. Kid, thats the city.",
+      "guide": "Guide. Kid, thats the city."
+    },
+    "theme": {
+      "label": "Theme. Kid, thats the city.",
+      "auto": "Auto (System). Kid, thats the city.",
+      "dark": "Dark. Kid, thats the city.",
+      "light": "Light. Kid, thats the city."
+    },
+    "background": {
+      "label": "Background. Kid, thats the city."
+    },
+    "search": {
+      "engines": "Search engines. Kid, thats the city.",
+      "bangsNote": "Supported bang shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Custom shortcuts below",
+      "wordlistLabel": "Autocomplete wordlist. Kid, thats the city.",
+      "wordlistPlaceholder": "Terms line by line or comma-separated. Kid, thats the city.",
+      "wordlistSave": "Save. Kid, thats the city.",
+      "wordlistReset": "Clear. Kid, thats the city.",
+      "wordlistNote": "Global wordlist (assets/wordlist.json) and preset wordlist are merged. Leave empty to use only the global list.. Kid, thats the city.",
+      "shortcutsLabel": "Custom . Kid, thats the city.!shortcuts",
+      "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
+      "shortcutsNote": "Use . Kid, thats the city.<code>{q}</code> as placeholder for the search phrase. Without . Kid, thats the city.<code>{q}</code>, . Kid, thats the city.<code>?q=.... Kid, thats the city.</code> is appended.. Kid, thats the city.",
+      "feedsLabel": "Custom RSS feeds. Kid, thats the city.",
+      "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
+      "feedsNote": "JSON: name - feed URL. This list is merged with the default feeds.. Kid, thats the city.",
+      "invalidShortcuts": "Invalid shortcuts JSON. Kid, thats the city.",
+      "invalidFeeds": "Invalid feeds JSON. Kid, thats the city."
+    },
+    "widgets": {
+      "visible": "Show widgets. Kid, thats the city.",
+      "defaultCityLabel": "Default city (weather). Kid, thats the city.",
+      "defaultCityPlaceholder": "e.g. Hanover. Kid, thats the city.",
+      "defaultTransportLabel": "Default stop (transport). Kid, thats the city.",
+      "defaultTransportPlaceholder": "Search station.... Kid, thats the city.",
+      "cardStyleLabel": "Card style. Kid, thats the city.",
+      "cardStyleGlass": "Glass (default). Kid, thats the city.",
+      "cardStyleSolid": "Solid. Kid, thats the city.",
+      "cardStyleTransparent": "Transparent. Kid, thats the city.",
+      "cardStyleMinimal": "Soft minimal. Kid, thats the city.",
+      "cardStyleNote": "Applies to all widgets & favorite tiles.. Kid, thats the city.",
+      "clockColorLabel": "Time & date. Kid, thats the city.",
+      "searchColorLabel": "Search. Kid, thats the city.",
+      "reset": "Reset. Kid, thats the city.",
+      "clockColorNote": "Sets the header background (empty = style default).. Kid, thats the city.",
+      "searchColorNote": "Color for the search area (empty = style default).. Kid, thats the city.",
+      "widgetColorsLabel": "Widget colors. Kid, thats the city."
+    },
+    "data": {
+      "label": "Data. Kid, thats the city.",
+      "export": "Export (.json). Kid, thats the city.",
+      "import": "Import (.json). Kid, thats the city.",
+      "presetsLabel": "Data presets. Kid, thats the city.",
+      "applyPreset": "Load preset. Kid, thats the city.",
+      "presetMeta": "Presets are exported JSONs under assets/presets/. User presets from assets/user-presets/ are merged automatically.. Kid, thats the city.",
+      "setupLabel": "Setup. Kid, thats the city.",
+      "restartOnboarding": "Restart setup. Kid, thats the city.",
+      "restartNote": "Reopens the compact setup dialog.. Kid, thats the city.",
+      "noteLabel": "Note. Kid, thats the city.",
+      "noteText": "Export stores all settings & data locally as JSON. Import overwrites existing entries.. Kid, thats the city."
+    },
+    "language": {
+      "label": "Language. Kid, thats the city.",
+      "auto": "Auto (System). Kid, thats the city."
+    },
+    "font": {
+      "label": "Font. Kid, thats the city.",
+      "searchPlaceholder": "Search fonts.... Kid, thats the city.",
+      "loadLocal": "Load system fonts. Kid, thats the city.",
+      "systemDefault": "System default. Kid, thats the city.",
+      "noResults": "No matching fonts. Kid, thats the city.",
+      "note": "Shows local system fonts (if available), otherwise a detected fallback list.. Kid, thats the city.",
+      "unsupported": "Your browser does not support Local Font Access (queryLocalFonts).. Kid, thats the city.",
+      "permissionDenied": "Access to local fonts was denied or blocked.. Kid, thats the city.",
+      "empty": "No local fonts were returned.. Kid, thats the city.",
+      "loadFailed": "Could not load local fonts: . Kid, thats the city.{error}"
+    },
+    "guideHtml": "<div class=\"row\"><label>User Guide. Kid, thats the city.</label><div><h5>Overview. Kid, thats the city.</h5><ul><li>Start page with search, favorites, to-do, notes, weather, news.. Kid, thats the city.</li><li>All local: data stays in your browser (localStorage).. Kid, thats the city.</li></ul><h5>Shortcuts. Kid, thats the city.</h5><ul><li>Ctrl/Cmd+K: open command palette. Kid, thats the city.</li><li>1-9: open first 9 favorites (when not typing). Kid, thats the city.</li><li>/ : focus search (also via palette). Kid, thats the city.</li><li>Enter in search: start search. Kid, thats the city.</li><li>ESC: close modals. Kid, thats the city.</li><li>Palette: quick actions for widgets, theme, background, data, favorites. Kid, thats the city.</li><li>Palette: key C switches card style, \"Reset header colors\" resets search & clock. Kid, thats the city.</li></ul><h5>Search & Autocomplete. Kid, thats the city.</h5><ul><li>Bangs: . Kid, thats the city.!g . Kid, thats the city.!ddg . Kid, thats the city.!bing . Kid, thats the city.!yt . Kid, thats the city.!wiki . Kid, thats the city.!maps</li><li>Custom shortcuts: JSON in settings; . Kid, thats the city.{q} as placeholder. Kid, thats the city.</li><li>Autocomplete: bangs, shortcuts, recent searches, wordlist (global + preset). Kid, thats the city.</li><li>Tab accepts suggestion, Enter starts search. Kid, thats the city.</li></ul><h5>Tiles. Kid, thats the city.</h5><ul><li>Drag & drop to sort, click to open. Kid, thats the city.</li><li>+ Tile: add a new favorite. Kid, thats the city.</li><li>Reset: restore default favorites. Kid, thats the city.</li></ul><h5>Widgets & Layout. Kid, thats the city.</h5><ul><li>Visibility per widget. Kid, thats the city.</li><li>Card style is global (glass, solid, transparent, soft minimal). Kid, thats the city.</li><li>Custom colors for clock/search; reset restores style defaults. Kid, thats the city.</li><li>Widget colors & \"Tint widgets\" set the accent per card. Kid, thats the city.</li></ul><h5>Background. Kid, thats the city.</h5><ul><li>Presets, uploads, collections, rotation (time/theme/interval). Kid, thats the city.</li><li>Accent color is extracted from the active background. Kid, thats the city.</li></ul><h5>Data. Kid, thats the city.</h5><ul><li>Export/Import as JSON. Kid, thats the city.</li><li>Load data presets (assets/presets/*.json in the repo). Kid, thats the city.</li></ul></div></div>"
+  },
+  "onboarding": {
+    "title": "Start setup. Kid, thats the city.",
+    "progress": "Step . Kid, thats the city.{current} of . Kid, thats the city.{total}",
+    "skip": "Skip setup. Kid, thats the city.",
+    "close": "Close. Kid, thats the city.",
+    "preset": {
+      "title": "Choose preset. Kid, thats the city.",
+      "hint": "Pick a preset or skip this step.. Kid, thats the city.",
+      "apply": "Apply preset. Kid, thats the city.",
+      "meta": "Apply a preset or skip.. Kid, thats the city.",
+      "optional": "Preset optional.. Kid, thats the city.",
+      "context": "Setup preset. Kid, thats the city."
+    },
+    "appearance": {
+      "title": "Appearance. Kid, thats the city.",
+      "theme": "Theme. Kid, thats the city.",
+      "cardStyle": "Card style. Kid, thats the city.",
+      "background": "Background. Kid, thats the city.",
+      "rotation": "Enable rotation. Kid, thats the city.",
+      "keepCurrent": "Keep current image. Kid, thats the city."
+    },
+    "search": {
+      "title": "Search. Kid, thats the city.",
+      "engine": "Default search engine. Kid, thats the city."
+    },
+    "widgets": {
+      "title": "Widgets. Kid, thats the city.",
+      "defaultTransport": "Default stop (transport). Kid, thats the city.",
+      "tint": "Tint widgets with accent. Kid, thats the city."
+    },
+    "weather": {
+      "title": "Weather. Kid, thats the city.",
+      "defaultCity": "Default city. Kid, thats the city.",
+      "note": "You can change everything later in settings.. Kid, thats the city."
+    },
+    "prev": "Back. Kid, thats the city.",
+    "next": "Next. Kid, thats the city.",
+    "finish": "Done. Kid, thats the city."
+  },
+  "palette": {
+    "placeholder": "Search command or favorite... (Ctrl/+K). Kid, thats the city.",
+    "groups": {
+      "command": "Commands. Kid, thats the city.",
+      "settings": "Settings. Kid, thats the city.",
+      "search": "Search. Kid, thats the city.",
+      "widgets": "Widgets. Kid, thats the city.",
+      "theme": "Theme & Background. Kid, thats the city.",
+      "data": "Data. Kid, thats the city.",
+      "tiles": "Tiles. Kid, thats the city.",
+      "tile": "Favorites. Kid, thats the city.",
+      "quick": "Quick. Kid, thats the city."
+    },
+    "search": {
+      "focus": "Focus search. Kid, thats the city.",
+      "start": "Start search. Kid, thats the city.",
+      "engine": "Engine: . Kid, thats the city.{engine}"
+    },
+    "settings": {
+      "open": "Open settings. Kid, thats the city.",
+      "general": "Settings: General. Kid, thats the city.",
+      "background": "Settings: Background. Kid, thats the city.",
+      "search": "Settings: Search. Kid, thats the city.",
+      "widgets": "Settings: Widgets. Kid, thats the city.",
+      "data": "Settings: Data. Kid, thats the city.",
+      "guide": "Settings: Guide. Kid, thats the city."
+    },
+    "theme": {
+      "cycle": "Cycle theme (Auto/Dark/Light). Kid, thats the city.",
+      "auto": "Theme: Auto. Kid, thats the city.",
+      "dark": "Theme: Dark. Kid, thats the city.",
+      "light": "Theme: Light. Kid, thats the city.",
+      "resetHeader": "Reset header colors. Kid, thats the city.",
+      "recalcAccent": "Recalculate accent colors. Kid, thats the city."
+    },
+    "cardStyle": {
+      "glass": "Card style: Glass. Kid, thats the city.",
+      "solid": "Card style: Solid. Kid, thats the city.",
+      "transparent": "Card style: Transparent. Kid, thats the city.",
+      "minimal": "Card style: Minimal. Kid, thats the city."
+    },
+    "background": {
+      "toggleRotation": "Background: Toggle rotation. Kid, thats the city.",
+      "toggleLock": "Background: Lock/unlock rotation. Kid, thats the city.",
+      "preset": "Background: . Kid, thats the city.{label}"
+    },
+    "widgets": {
+      "showAll": "Widgets: Show all. Kid, thats the city.",
+      "hideAll": "Widgets: Hide all. Kid, thats the city.",
+      "toggle": "Widget: Toggle . Kid, thats the city.{widget}",
+      "focus": "Widget: Focus . Kid, thats the city.{widget}"
+    },
+    "quick": {
+      "addTodo": "Add todo. Kid, thats the city.",
+      "addNote": "Add note. Kid, thats the city."
+    },
+    "tiles": {
+      "add": "Add tile. Kid, thats the city.",
+      "reset": "Reset tiles. Kid, thats the city."
+    },
+    "refresh": {
+      "weather": "Refresh weather. Kid, thats the city.",
+      "news": "Refresh news. Kid, thats the city.",
+      "transport": "Refresh transport. Kid, thats the city.",
+      "system": "Refresh system. Kid, thats the city.",
+      "all": "Refresh all widgets. Kid, thats the city."
+    },
+    "data": {
+      "export": "Export data. Kid, thats the city.",
+      "import": "Import data. Kid, thats the city.",
+      "preset": "Data preset: . Kid, thats the city.{label}"
+    }
+  },
+  "widgets": {
+    "todo": "To-Do. Kid, thats the city.",
+    "notes": "Notes. Kid, thats the city.",
+    "tiles": "Favorites. Kid, thats the city.",
+    "weather": "Weather. Kid, thats the city.",
+    "transport": "Transport. Kid, thats the city.",
+    "quote": "Quote. Kid, thats the city.",
+    "recent": "Recent. Kid, thats the city.",
+    "system": "System. Kid, thats the city.",
+    "news": "News. Kid, thats the city."
+  },
+  "background": {
+    "currentPreview": "Current background image. Kid, thats the city.",
+    "none": "No background. Kid, thats the city.",
+    "noImageSelected": "No image selected. Kid, thats the city.",
+    "rotationResume": "Resume rotation. Kid, thats the city.",
+    "rotationLock": "Lock rotation. Kid, thats the city.",
+    "tone": "Tone: . Kid, thats the city.{tone}",
+    "presets": {
+      "empty": "No presets available.. Kid, thats the city."
+    },
+    "favorites": {
+      "empty": "No favorites yet. Mark presets or uploads.. Kid, thats the city."
+    },
+    "subtitle": {
+      "preset": "Preset. Kid, thats the city."
+    },
+    "upload": "Upload. Kid, thats the city.",
+    "uploadDrop": "Drop files here. Kid, thats the city.",
+    "uploadBrowse": "Choose file. Kid, thats the city.",
+    "uploadNote": "We resize images automatically (16:9, max 2560px) and store them locally. Max . Kid, thats the city.{max} files.. Kid, thats the city.",
+    "uploads": {
+      "empty": "No uploads yet.. Kid, thats the city."
+    },
+    "collections": {
+      "count": "{count} sources. Kid, thats the city.",
+      "random": "Random. Kid, thats the city.",
+      "cache": "Save offline. Kid, thats the city.",
+      "viewSources": "View sources. Kid, thats the city.",
+      "useRotation": "Use for rotation. Kid, thats the city.",
+      "newLabel": "New collection. Kid, thats the city.",
+      "namePlaceholder": "My collection. Kid, thats the city.",
+      "urlsPlaceholder": "One image URL per line. Kid, thats the city.",
+      "clear": "Clear fields. Kid, thats the city.",
+      "note": "URLs are stored locally. Remote sources need CORS for images.. Kid, thats the city.",
+      "empty": "No collections yet.. Kid, thats the city.",
+      "minOneUrl": "Enter at least one URL.. Kid, thats the city.",
+      "emptyCollection": "Collection is empty.. Kid, thats the city.",
+      "saved": "Collection saved locally.. Kid, thats the city.",
+      "defaultName": "Collection . Kid, thats the city.{index}"
+    },
+    "rotation": {
+      "optionPreset": "Preset: . Kid, thats the city.{label}",
+      "optionUpload": "Upload: . Kid, thats the city.{label}",
+      "optionFavorite": "Favorite: . Kid, thats the city.{label}",
+      "optionCustom": "Custom: saved URL. Kid, thats the city.",
+      "noFixed": "No fixed image. Kid, thats the city.",
+      "enabled": "Enable automatic rotation. Kid, thats the city.",
+      "locked": "Rotation is currently locked.. Kid, thats the city.",
+      "active": "Backgrounds change according to the schedule.. Kid, thats the city.",
+      "mode": "Mode. Kid, thats the city.",
+      "modeTime": "Time-based. Kid, thats the city.",
+      "modeInterval": "Interval. Kid, thats the city.",
+      "modeTheme": "Theme. Kid, thats the city.",
+      "intervalLabel": "Interval in minutes. Kid, thats the city.",
+      "intervalNote": "Only relevant in interval mode.. Kid, thats the city.",
+      "sourcesLabel": "Sources for random. Kid, thats the city.",
+      "scheduleLabel": "Schedule. Kid, thats the city.",
+      "themePlan": "Theme plan. Kid, thats the city.",
+      "themeLight": "Theme light. Kid, thats the city.",
+      "themeDark": "Theme dark. Kid, thats the city.",
+      "themeNote": "Theme plan is used when mode is Theme.. Kid, thats the city.",
+      "slot": {
+        "morning": "Morning 05-11. Kid, thats the city.",
+        "day": "Day 11-17. Kid, thats the city.",
+        "evening": "Evening 17-21. Kid, thats the city.",
+        "night": "Night 21-05. Kid, thats the city."
+      }
+    },
+    "custom": {
+      "label": "Custom image URL. Kid, thats the city.",
+      "placeholder": "https://example.com/image.jpg",
+      "note": "URL is stored locally. Server must allow CORS for images.. Kid, thats the city.",
+      "enterUrl": "Please enter a URL.. Kid, thats the city.",
+      "title": "Custom URL. Kid, thats the city.",
+      "subtitle": "Custom. Kid, thats the city."
+    },
+    "actions": {
+      "apply": "Apply. Kid, thats the city.",
+      "favorite": "Favorite. Kid, thats the city.",
+      "favorited": "Favorited. Kid, thats the city.",
+      "random": "Load random. Kid, thats the city.",
+      "undo": "Restore last image. Kid, thats the city.",
+      "lock": "Lock rotation. Kid, thats the city.",
+      "tint": "Tint widgets. Kid, thats the city."
+    },
+    "tabs": {
+      "presets": "Presets. Kid, thats the city.",
+      "favorites": "Favorites. Kid, thats the city.",
+      "uploads": "Uploads. Kid, thats the city.",
+      "collections": "Collections. Kid, thats the city.",
+      "rotation": "Rotation. Kid, thats the city.",
+      "custom": "Custom. Kid, thats the city."
+    },
+    "loadError": "Load failed. Check CORS settings.. Kid, thats the city.",
+    "noneAvailable": "No backgrounds available.. Kid, thats the city.",
+    "imageLoadError": "Image could not be loaded.. Kid, thats the city."
+  },
+  "data": {
+    "import": {
+      "confirm": "Import data? Existing entries will be overwritten.. Kid, thats the city.",
+      "failed": "Import failed: . Kid, thats the city.{error}"
+    },
+    "presets": {
+      "none": "No preset available.. Kid, thats the city.",
+      "missingFile": "Preset file missing.. Kid, thats the city.",
+      "fileMissing": "File not found. Kid, thats the city.",
+      "invalid": "Invalid preset. Kid, thats the city.",
+      "confirmApply": "Apply . Kid, thats the city.{context} \". Kid, thats the city.{name}\"? Existing entries will be overwritten.. Kid, thats the city.",
+      "loadFailed": "Preset load failed: . Kid, thats the city.{error}",
+      "loading": "Loading presets.... Kid, thats the city.",
+      "noneFound": "No presets found. Kid, thats the city.",
+      "hint": "Place exported JSONs under assets/presets/ (manifest: assets/data-presets.json) or locally under assets/user-presets/.. Kid, thats the city.",
+      "hintShort": "Add a preset under assets/presets/ or assets/user-presets/.. Kid, thats the city.",
+      "userPrefix": "User: . Kid, thats the city.",
+      "userApply": "Apply local preset. Kid, thats the city.",
+      "apply": "Apply preset. Kid, thats the city.",
+      "noneSelected": "No preset selected.. Kid, thats the city.",
+      "label": "Preset. Kid, thats the city.",
+      "defaultLabel": "Preset . Kid, thats the city.{index}",
+      "userDefault": "User preset . Kid, thats the city.{index}",
+      "userDescription": "Local preset from assets/user-presets/. Kid, thats the city.",
+      "tags": " (Tags: . Kid, thats the city.{tags}). Kid, thats the city."
+    }
+  },
+  "dialogs": {
+    "alertTitle": "Notice. Kid, thats the city.",
+    "confirmTitle": "Confirm. Kid, thats the city.",
+    "promptTitle": "Input. Kid, thats the city."
+  }
+}

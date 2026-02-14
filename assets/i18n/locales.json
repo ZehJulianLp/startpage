@@ -70,5 +70,85 @@
   {
     "id": "uwu",
     "label": "UwU"
+  },
+  {
+    "id": "bavarian",
+    "label": "Bavarian"
+  },
+  {
+    "id": "saxon",
+    "label": "Saxon"
+  },
+  {
+    "id": "swiss-german",
+    "label": "Swiss German"
+  },
+  {
+    "id": "kiezdeutsch",
+    "label": "Kiezdeutsch"
+  },
+  {
+    "id": "shakespeare",
+    "label": "Shakespeare English"
+  },
+  {
+    "id": "medieval-scribe",
+    "label": "Medieval Scribe"
+  },
+  {
+    "id": "corporate-buzzword",
+    "label": "Corporate Buzzword"
+  },
+  {
+    "id": "boomer-support",
+    "label": "Boomer Tech Support"
+  },
+  {
+    "id": "genz-brainrot",
+    "label": "Gen Z Brainrot"
+  },
+  {
+    "id": "hacker-terminal",
+    "label": "Hacker Terminal"
+  },
+  {
+    "id": "emoji-mode",
+    "label": "Emoji Mode"
+  },
+  {
+    "id": "denglisch-extreme",
+    "label": "Denglisch Extreme"
+  },
+  {
+    "id": "valley-girl",
+    "label": "Valley Girl"
+  },
+  {
+    "id": "noir-detective",
+    "label": "Noir Detective"
+  },
+  {
+    "id": "space-captain",
+    "label": "Space Captain Log"
+  },
+  {
+    "id": "orcish",
+    "label": "Orcish"
+  },
+  {
+    "id": "elvish-flavored",
+    "label": "Elvish Flavored"
+  },
+  {
+    "id": "vampire-gothic",
+    "label": "Vampire Gothic"
+  },
+  {
+    "id": "pirate-plusplus",
+    "label": "Pirate++"
+  },
+  {
+    "id": "ai-overexplainer",
+    "label": "AI Overexplainer"
   }
 ]

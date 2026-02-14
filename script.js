@@ -38,8 +38,13 @@
     if(!norm) return undefined;
     if(I18N_INTL_ALIASES[norm]) return I18N_INTL_ALIASES[norm];
     const parts = norm.split('-');
-    if(parts.length === 1) return parts[0];
-    return `${parts[0]}-${parts[1].toUpperCase()}`;
+    const candidate = (parts.length === 1) ? parts[0] : `${parts[0]}-${parts[1].toUpperCase()}`;
+    try{
+      const [canonical] = Intl.getCanonicalLocales(candidate);
+      return canonical || undefined;
+    }catch{
+      return undefined;
+    }
   }
 
   function getI18nValue(obj, key){

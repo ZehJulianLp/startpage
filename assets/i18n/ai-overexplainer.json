@@ -1,0 +1,521 @@
+{
+  "app": {
+    "title": "Startpage (AI Overexplainer)"
+  },
+  "common": {
+    "link": "Link (Context: this label is intentionally explicit.)",
+    "delete": "Delete (Context: this label is intentionally explicit.)",
+    "remove": "Remove (Context: this label is intentionally explicit.)",
+    "save": "Save (Context: this label is intentionally explicit.)",
+    "loading": "Loading... (Context: this label is intentionally explicit.)",
+    "loadError": "Load failed (Context: this label is intentionally explicit.)",
+    "noMatches": "No matches (Context: this label is intentionally explicit.)",
+    "emptyDash": "- (Context: this label is intentionally explicit.)",
+    "dash": "- (Context: this label is intentionally explicit.)",
+    "cancel": "Cancel (Context: this label is intentionally explicit.)",
+    "ok": "OK (Context: this label is intentionally explicit.)",
+    "default": "Default (Context: this label is intentionally explicit.)"
+  },
+  "header": {
+    "themeToggleTitle": "Dark/Light (Context: this label is intentionally explicit.)",
+    "settingsTitle": "Settings (Context: this label is intentionally explicit.)",
+    "themeAria": "Toggle theme (Context: this label is intentionally explicit.)",
+    "settingsAria": "Open settings (Context: this label is intentionally explicit.)"
+  },
+  "search": {
+    "placeholder": "Search... (e.g.  (Context: this label is intentionally explicit.)!yt lo-fi,  (Context: this label is intentionally explicit.)!etc Home) (Context: this label is intentionally explicit.)",
+    "engine": {
+      "google": "Google (Context: this label is intentionally explicit.)",
+      "ddg": "DuckDuckGo (Context: this label is intentionally explicit.)",
+      "bing": "Bing (Context: this label is intentionally explicit.)",
+      "yt": "YouTube (Context: this label is intentionally explicit.)",
+      "wikipedia": "Wikipedia (Context: this label is intentionally explicit.)",
+      "maps": "Google Maps (Context: this label is intentionally explicit.)"
+    },
+    "suggest": {
+      "bang": "{bang} (Bang)",
+      "shortcut": "{shortcut} (Shortcut)",
+      "type": {
+        "bang": "Bang (Context: this label is intentionally explicit.)",
+        "shortcut": "Shortcut (Context: this label is intentionally explicit.)",
+        "recent": "Recent (Context: this label is intentionally explicit.)",
+        "word": "Word (Context: this label is intentionally explicit.)"
+      }
+    },
+    "recentShortcut": "Shortcut  (Context: this label is intentionally explicit.){shortcut} -  (Context: this label is intentionally explicit.){query}",
+    "recentSearch": "Search ( (Context: this label is intentionally explicit.){engine}) -  (Context: this label is intentionally explicit.){query}",
+    "submitAria": "Start search (Context: this label is intentionally explicit.)"
+  },
+  "todo": {
+    "title": "To-Do (Context: this label is intentionally explicit.)",
+    "placeholder": "New task... (Context: this label is intentionally explicit.)",
+    "add": "Add (Context: this label is intentionally explicit.)",
+    "clearDoneTitle": "Remove completed (Context: this label is intentionally explicit.)",
+    "clearDone": " clear (Context: this label is intentionally explicit.)",
+    "doneAria": "Done (Context: this label is intentionally explicit.)",
+    "prompt": "Todo (Context: this label is intentionally explicit.)"
+  },
+  "notes": {
+    "title": "Notes (Context: this label is intentionally explicit.)",
+    "placeholder": "Jot something down... (Context: this label is intentionally explicit.)",
+    "prompt": "Note (Context: this label is intentionally explicit.)"
+  },
+  "tiles": {
+    "title": "Favorites (Context: this label is intentionally explicit.)",
+    "add": "+ Tile (Context: this label is intentionally explicit.)",
+    "resetTitle": "Restore defaults (Context: this label is intentionally explicit.)",
+    "edit": "Edit (Context: this label is intentionally explicit.)",
+    "promptTitle": "Title (Context: this label is intentionally explicit.)",
+    "promptUrl": "URL (Context: this label is intentionally explicit.)",
+    "invalidUrl": "Invalid URL (Context: this label is intentionally explicit.)",
+    "promptTitleNew": "Tile title (Context: this label is intentionally explicit.)",
+    "promptUrlNew": "URL ( (Context: this label is intentionally explicit.)https://...)",
+    "resetConfirm": "Restore default tiles? (Context: this label is intentionally explicit.)",
+    "dialog": {
+      "titleLabel": "Title (Context: this label is intentionally explicit.)",
+      "urlLabel": "URL (Context: this label is intentionally explicit.)",
+      "save": "Save (Context: this label is intentionally explicit.)"
+    },
+    "resetAria": "Reset tiles (Context: this label is intentionally explicit.)"
+  },
+  "weather": {
+    "title": "Weather today (Context: this label is intentionally explicit.)",
+    "cityPlaceholder": "Enter city... (Context: this label is intentionally explicit.)",
+    "setCity": "Set (Context: this label is intentionally explicit.)",
+    "pickLocation": "Pick a location... (Context: this label is intentionally explicit.)",
+    "source": "Source: Open-Meteo (Context: this label is intentionally explicit.)",
+    "loading": "Loading weather... (Context: this label is intentionally explicit.)",
+    "prompt": "Enter a location to load weather. (Context: this label is intentionally explicit.)",
+    "tempEmpty": "-C (Context: this label is intentionally explicit.)",
+    "tempEmptyShort": "- (Context: this label is intentionally explicit.)",
+    "minmaxEmpty": "- / - C (Context: this label is intentionally explicit.)",
+    "noForecast": "No forecast (Context: this label is intentionally explicit.)",
+    "errors": {
+      "geocodingFailed": "Geocoding failed (Context: this label is intentionally explicit.)",
+      "locationNotFound": "Location not found (Context: this label is intentionally explicit.)",
+      "cityMissing": "City missing (Context: this label is intentionally explicit.)",
+      "fetchFailed": "Weather fetch failed (Context: this label is intentionally explicit.)",
+      "loadFailed": "Weather could not be loaded (Context: this label is intentionally explicit.)"
+    },
+    "codes": {
+      "0": "Clear (Context: this label is intentionally explicit.)",
+      "1": "Mostly clear (Context: this label is intentionally explicit.)",
+      "2": "Partly cloudy (Context: this label is intentionally explicit.)",
+      "3": "Cloudy (Context: this label is intentionally explicit.)",
+      "45": "Fog (Context: this label is intentionally explicit.)",
+      "48": "Fog (Context: this label is intentionally explicit.)",
+      "51": "Drizzle (Context: this label is intentionally explicit.)",
+      "53": "Drizzle (Context: this label is intentionally explicit.)",
+      "55": "Drizzle (Context: this label is intentionally explicit.)",
+      "61": "Rain (Context: this label is intentionally explicit.)",
+      "63": "Rain (Context: this label is intentionally explicit.)",
+      "65": "Heavy rain (Context: this label is intentionally explicit.)",
+      "71": "Snow (Context: this label is intentionally explicit.)",
+      "80": "Showers (Context: this label is intentionally explicit.)",
+      "95": "Thunderstorm (Context: this label is intentionally explicit.)",
+      "default": "Weather (Context: this label is intentionally explicit.)"
+    }
+  },
+  "transport": {
+    "title": "Transport (Context: this label is intentionally explicit.)",
+    "durationAria": "Duration (Context: this label is intentionally explicit.)",
+    "duration30": "30 min (Context: this label is intentionally explicit.)",
+    "duration60": "60 min (Context: this label is intentionally explicit.)",
+    "duration90": "90 min (Context: this label is intentionally explicit.)",
+    "duration120": "120 min (Context: this label is intentionally explicit.)",
+    "refreshTitle": "Reload (Context: this label is intentionally explicit.)",
+    "searchPlaceholder": "Search station... (Context: this label is intentionally explicit.)",
+    "noneSelected": "No station selected (Context: this label is intentionally explicit.)",
+    "source": "Source: transport.rest (Context: this label is intentionally explicit.)",
+    "minQuery": "At least  (Context: this label is intentionally explicit.){count} characters (Context: this label is intentionally explicit.)",
+    "noMatches": "No matches (Context: this label is intentionally explicit.)",
+    "proxyTimeout": "Proxy timeout (Context: this label is intentionally explicit.)",
+    "loadError": "Load failed (Context: this label is intentionally explicit.)",
+    "noDepartures": "No departures (Context: this label is intentionally explicit.)",
+    "selectStation": "Select a station... (Context: this label is intentionally explicit.)",
+    "type": {
+      "station": "Station (Context: this label is intentionally explicit.)",
+      "stop": "Stop (Context: this label is intentionally explicit.)"
+    },
+    "platform": "Platform  (Context: this label is intentionally explicit.){platform}",
+    "cancelled": "Cancelled (Context: this label is intentionally explicit.)",
+    "refreshAria": "Refresh transport (Context: this label is intentionally explicit.)"
+  },
+  "quote": {
+    "title": "Quote / Nerd Nudge (Context: this label is intentionally explicit.)",
+    "list": [
+      "Move fast, refactor often. (Context: this label is intentionally explicit.)",
+      "Accessibility isn't a feature - it's the default. (Context: this label is intentionally explicit.)",
+      "Done > Perfect. Iterate. (Context: this label is intentionally explicit.)",
+      "If it's not monitored, it doesn't exist. (Context: this label is intentionally explicit.)",
+      "Good UX is invisible. Bad UX is unforgettable. (Context: this label is intentionally explicit.)",
+      "Make it work, make it right, make it fast. (Context: this label is intentionally explicit.)",
+      "Small steps. Massive outcomes. (Context: this label is intentionally explicit.)",
+      "Simplicity scales. Complexity fails. (Context: this label is intentionally explicit.)",
+      "Automate the boring stuff. (Context: this label is intentionally explicit.)",
+      "Measure twice, deploy once. (Context: this label is intentionally explicit.)"
+    ]
+  },
+  "recent": {
+    "title": "Recent (Context: this label is intentionally explicit.)",
+    "note": "Note: Only actions from this start page (clicked tiles & searches). (Context: this label is intentionally explicit.)"
+  },
+  "system": {
+    "title": "System status (Context: this label is intentionally explicit.)",
+    "loading": "Loading... (Context: this label is intentionally explicit.)",
+    "ram": "RAM:  (Context: this label is intentionally explicit.){value} GB (Context: this label is intentionally explicit.)",
+    "cpu": "CPU cores:  (Context: this label is intentionally explicit.){value}",
+    "network": "Network:  (Context: this label is intentionally explicit.){downlink} Mbit/s   (Context: this label is intentionally explicit.){type}{saveData}",
+    "saveData": "  SaveData (Context: this label is intentionally explicit.)",
+    "noData": "No data available (Context: this label is intentionally explicit.)"
+  },
+  "news": {
+    "title": "News (Context: this label is intentionally explicit.)",
+    "refreshTitle": "Reload (Context: this label is intentionally explicit.)",
+    "source": "RSS via Startpage Proxy (CORS proxy) (Context: this label is intentionally explicit.)",
+    "noItems": "No items (Context: this label is intentionally explicit.)",
+    "refreshAria": "Refresh news (Context: this label is intentionally explicit.)"
+  },
+  "footer": {
+    "tagline": "Local-first dashboard  stores only in the browser (localStorage) (Context: this label is intentionally explicit.)"
+  },
+  "settings": {
+    "title": "Settings (Context: this label is intentionally explicit.)",
+    "close": "Close (Context: this label is intentionally explicit.)",
+    "tabs": {
+      "general": "General (Context: this label is intentionally explicit.)",
+      "background": "Background & Appearance (Context: this label is intentionally explicit.)",
+      "search": "Search & Feeds (Context: this label is intentionally explicit.)",
+      "widgets": "Widgets (Context: this label is intentionally explicit.)",
+      "data": "Data (Context: this label is intentionally explicit.)",
+      "guide": "Guide (Context: this label is intentionally explicit.)"
+    },
+    "theme": {
+      "label": "Theme (Context: this label is intentionally explicit.)",
+      "auto": "Auto (System) (Context: this label is intentionally explicit.)",
+      "dark": "Dark (Context: this label is intentionally explicit.)",
+      "light": "Light (Context: this label is intentionally explicit.)"
+    },
+    "background": {
+      "label": "Background (Context: this label is intentionally explicit.)"
+    },
+    "search": {
+      "engines": "Search engines (Context: this label is intentionally explicit.)",
+      "bangsNote": "Supported bang shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Custom shortcuts below",
+      "wordlistLabel": "Autocomplete wordlist (Context: this label is intentionally explicit.)",
+      "wordlistPlaceholder": "Terms line by line or comma-separated (Context: this label is intentionally explicit.)",
+      "wordlistSave": "Save (Context: this label is intentionally explicit.)",
+      "wordlistReset": "Clear (Context: this label is intentionally explicit.)",
+      "wordlistNote": "Global wordlist (assets/wordlist.json) and preset wordlist are merged. Leave empty to use only the global list. (Context: this label is intentionally explicit.)",
+      "shortcutsLabel": "Custom  (Context: this label is intentionally explicit.)!shortcuts",
+      "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
+      "shortcutsNote": "Use  (Context: this label is intentionally explicit.)<code>{q}</code> as placeholder for the search phrase. Without  (Context: this label is intentionally explicit.)<code>{q}</code>,  (Context: this label is intentionally explicit.)<code>?q=... (Context: this label is intentionally explicit.)</code> is appended. (Context: this label is intentionally explicit.)",
+      "feedsLabel": "Custom RSS feeds (Context: this label is intentionally explicit.)",
+      "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
+      "feedsNote": "JSON: name - feed URL. This list is merged with the default feeds. (Context: this label is intentionally explicit.)",
+      "invalidShortcuts": "Invalid shortcuts JSON (Context: this label is intentionally explicit.)",
+      "invalidFeeds": "Invalid feeds JSON (Context: this label is intentionally explicit.)"
+    },
+    "widgets": {
+      "visible": "Show widgets (Context: this label is intentionally explicit.)",
+      "defaultCityLabel": "Default city (weather) (Context: this label is intentionally explicit.)",
+      "defaultCityPlaceholder": "e.g. Hanover (Context: this label is intentionally explicit.)",
+      "defaultTransportLabel": "Default stop (transport) (Context: this label is intentionally explicit.)",
+      "defaultTransportPlaceholder": "Search station... (Context: this label is intentionally explicit.)",
+      "cardStyleLabel": "Card style (Context: this label is intentionally explicit.)",
+      "cardStyleGlass": "Glass (default) (Context: this label is intentionally explicit.)",
+      "cardStyleSolid": "Solid (Context: this label is intentionally explicit.)",
+      "cardStyleTransparent": "Transparent (Context: this label is intentionally explicit.)",
+      "cardStyleMinimal": "Soft minimal (Context: this label is intentionally explicit.)",
+      "cardStyleNote": "Applies to all widgets & favorite tiles. (Context: this label is intentionally explicit.)",
+      "clockColorLabel": "Time & date (Context: this label is intentionally explicit.)",
+      "searchColorLabel": "Search (Context: this label is intentionally explicit.)",
+      "reset": "Reset (Context: this label is intentionally explicit.)",
+      "clockColorNote": "Sets the header background (empty = style default). (Context: this label is intentionally explicit.)",
+      "searchColorNote": "Color for the search area (empty = style default). (Context: this label is intentionally explicit.)",
+      "widgetColorsLabel": "Widget colors (Context: this label is intentionally explicit.)"
+    },
+    "data": {
+      "label": "Data (Context: this label is intentionally explicit.)",
+      "export": "Export (.json) (Context: this label is intentionally explicit.)",
+      "import": "Import (.json) (Context: this label is intentionally explicit.)",
+      "presetsLabel": "Data presets (Context: this label is intentionally explicit.)",
+      "applyPreset": "Load preset (Context: this label is intentionally explicit.)",
+      "presetMeta": "Presets are exported JSONs under assets/presets/. User presets from assets/user-presets/ are merged automatically. (Context: this label is intentionally explicit.)",
+      "setupLabel": "Setup (Context: this label is intentionally explicit.)",
+      "restartOnboarding": "Restart setup (Context: this label is intentionally explicit.)",
+      "restartNote": "Reopens the compact setup dialog. (Context: this label is intentionally explicit.)",
+      "noteLabel": "Note (Context: this label is intentionally explicit.)",
+      "noteText": "Export stores all settings & data locally as JSON. Import overwrites existing entries. (Context: this label is intentionally explicit.)"
+    },
+    "language": {
+      "label": "Language (Context: this label is intentionally explicit.)",
+      "auto": "Auto (System) (Context: this label is intentionally explicit.)"
+    },
+    "font": {
+      "label": "Font (Context: this label is intentionally explicit.)",
+      "searchPlaceholder": "Search fonts... (Context: this label is intentionally explicit.)",
+      "loadLocal": "Load system fonts (Context: this label is intentionally explicit.)",
+      "systemDefault": "System default (Context: this label is intentionally explicit.)",
+      "noResults": "No matching fonts (Context: this label is intentionally explicit.)",
+      "note": "Shows local system fonts (if available), otherwise a detected fallback list. (Context: this label is intentionally explicit.)",
+      "unsupported": "Your browser does not support Local Font Access (queryLocalFonts). (Context: this label is intentionally explicit.)",
+      "permissionDenied": "Access to local fonts was denied or blocked. (Context: this label is intentionally explicit.)",
+      "empty": "No local fonts were returned. (Context: this label is intentionally explicit.)",
+      "loadFailed": "Could not load local fonts:  (Context: this label is intentionally explicit.){error}"
+    },
+    "guideHtml": "<div class=\"row\"><label>User Guide (Context: this label is intentionally explicit.)</label><div><h5>Overview (Context: this label is intentionally explicit.)</h5><ul><li>Start page with search, favorites, to-do, notes, weather, news. (Context: this label is intentionally explicit.)</li><li>All local: data stays in your browser (localStorage). (Context: this label is intentionally explicit.)</li></ul><h5>Shortcuts (Context: this label is intentionally explicit.)</h5><ul><li>Ctrl/Cmd+K: open command palette (Context: this label is intentionally explicit.)</li><li>1-9: open first 9 favorites (when not typing) (Context: this label is intentionally explicit.)</li><li>/ : focus search (also via palette) (Context: this label is intentionally explicit.)</li><li>Enter in search: start search (Context: this label is intentionally explicit.)</li><li>ESC: close modals (Context: this label is intentionally explicit.)</li><li>Palette: quick actions for widgets, theme, background, data, favorites (Context: this label is intentionally explicit.)</li><li>Palette: key C switches card style, \"Reset header colors\" resets search & clock (Context: this label is intentionally explicit.)</li></ul><h5>Search & Autocomplete (Context: this label is intentionally explicit.)</h5><ul><li>Bangs:  (Context: this label is intentionally explicit.)!g  (Context: this label is intentionally explicit.)!ddg  (Context: this label is intentionally explicit.)!bing  (Context: this label is intentionally explicit.)!yt  (Context: this label is intentionally explicit.)!wiki  (Context: this label is intentionally explicit.)!maps</li><li>Custom shortcuts: JSON in settings;  (Context: this label is intentionally explicit.){q} as placeholder (Context: this label is intentionally explicit.)</li><li>Autocomplete: bangs, shortcuts, recent searches, wordlist (global + preset) (Context: this label is intentionally explicit.)</li><li>Tab accepts suggestion, Enter starts search (Context: this label is intentionally explicit.)</li></ul><h5>Tiles (Context: this label is intentionally explicit.)</h5><ul><li>Drag & drop to sort, click to open (Context: this label is intentionally explicit.)</li><li>+ Tile: add a new favorite (Context: this label is intentionally explicit.)</li><li>Reset: restore default favorites (Context: this label is intentionally explicit.)</li></ul><h5>Widgets & Layout (Context: this label is intentionally explicit.)</h5><ul><li>Visibility per widget (Context: this label is intentionally explicit.)</li><li>Card style is global (glass, solid, transparent, soft minimal) (Context: this label is intentionally explicit.)</li><li>Custom colors for clock/search; reset restores style defaults (Context: this label is intentionally explicit.)</li><li>Widget colors & \"Tint widgets\" set the accent per card (Context: this label is intentionally explicit.)</li></ul><h5>Background (Context: this label is intentionally explicit.)</h5><ul><li>Presets, uploads, collections, rotation (time/theme/interval) (Context: this label is intentionally explicit.)</li><li>Accent color is extracted from the active background (Context: this label is intentionally explicit.)</li></ul><h5>Data (Context: this label is intentionally explicit.)</h5><ul><li>Export/Import as JSON (Context: this label is intentionally explicit.)</li><li>Load data presets (assets/presets/*.json in the repo) (Context: this label is intentionally explicit.)</li></ul></div></div>"
+  },
+  "onboarding": {
+    "title": "Start setup (Context: this label is intentionally explicit.)",
+    "progress": "Step  (Context: this label is intentionally explicit.){current} of  (Context: this label is intentionally explicit.){total}",
+    "skip": "Skip setup (Context: this label is intentionally explicit.)",
+    "close": "Close (Context: this label is intentionally explicit.)",
+    "preset": {
+      "title": "Choose preset (Context: this label is intentionally explicit.)",
+      "hint": "Pick a preset or skip this step. (Context: this label is intentionally explicit.)",
+      "apply": "Apply preset (Context: this label is intentionally explicit.)",
+      "meta": "Apply a preset or skip. (Context: this label is intentionally explicit.)",
+      "optional": "Preset optional. (Context: this label is intentionally explicit.)",
+      "context": "Setup preset (Context: this label is intentionally explicit.)"
+    },
+    "appearance": {
+      "title": "Appearance (Context: this label is intentionally explicit.)",
+      "theme": "Theme (Context: this label is intentionally explicit.)",
+      "cardStyle": "Card style (Context: this label is intentionally explicit.)",
+      "background": "Background (Context: this label is intentionally explicit.)",
+      "rotation": "Enable rotation (Context: this label is intentionally explicit.)",
+      "keepCurrent": "Keep current image (Context: this label is intentionally explicit.)"
+    },
+    "search": {
+      "title": "Search (Context: this label is intentionally explicit.)",
+      "engine": "Default search engine (Context: this label is intentionally explicit.)"
+    },
+    "widgets": {
+      "title": "Widgets (Context: this label is intentionally explicit.)",
+      "defaultTransport": "Default stop (transport) (Context: this label is intentionally explicit.)",
+      "tint": "Tint widgets with accent (Context: this label is intentionally explicit.)"
+    },
+    "weather": {
+      "title": "Weather (Context: this label is intentionally explicit.)",
+      "defaultCity": "Default city (Context: this label is intentionally explicit.)",
+      "note": "You can change everything later in settings. (Context: this label is intentionally explicit.)"
+    },
+    "prev": "Back (Context: this label is intentionally explicit.)",
+    "next": "Next (Context: this label is intentionally explicit.)",
+    "finish": "Done (Context: this label is intentionally explicit.)"
+  },
+  "palette": {
+    "placeholder": "Search command or favorite... (Ctrl/+K) (Context: this label is intentionally explicit.)",
+    "groups": {
+      "command": "Commands (Context: this label is intentionally explicit.)",
+      "settings": "Settings (Context: this label is intentionally explicit.)",
+      "search": "Search (Context: this label is intentionally explicit.)",
+      "widgets": "Widgets (Context: this label is intentionally explicit.)",
+      "theme": "Theme & Background (Context: this label is intentionally explicit.)",
+      "data": "Data (Context: this label is intentionally explicit.)",
+      "tiles": "Tiles (Context: this label is intentionally explicit.)",
+      "tile": "Favorites (Context: this label is intentionally explicit.)",
+      "quick": "Quick (Context: this label is intentionally explicit.)"
+    },
+    "search": {
+      "focus": "Focus search (Context: this label is intentionally explicit.)",
+      "start": "Start search (Context: this label is intentionally explicit.)",
+      "engine": "Engine:  (Context: this label is intentionally explicit.){engine}"
+    },
+    "settings": {
+      "open": "Open settings (Context: this label is intentionally explicit.)",
+      "general": "Settings: General (Context: this label is intentionally explicit.)",
+      "background": "Settings: Background (Context: this label is intentionally explicit.)",
+      "search": "Settings: Search (Context: this label is intentionally explicit.)",
+      "widgets": "Settings: Widgets (Context: this label is intentionally explicit.)",
+      "data": "Settings: Data (Context: this label is intentionally explicit.)",
+      "guide": "Settings: Guide (Context: this label is intentionally explicit.)"
+    },
+    "theme": {
+      "cycle": "Cycle theme (Auto/Dark/Light) (Context: this label is intentionally explicit.)",
+      "auto": "Theme: Auto (Context: this label is intentionally explicit.)",
+      "dark": "Theme: Dark (Context: this label is intentionally explicit.)",
+      "light": "Theme: Light (Context: this label is intentionally explicit.)",
+      "resetHeader": "Reset header colors (Context: this label is intentionally explicit.)",
+      "recalcAccent": "Recalculate accent colors (Context: this label is intentionally explicit.)"
+    },
+    "cardStyle": {
+      "glass": "Card style: Glass (Context: this label is intentionally explicit.)",
+      "solid": "Card style: Solid (Context: this label is intentionally explicit.)",
+      "transparent": "Card style: Transparent (Context: this label is intentionally explicit.)",
+      "minimal": "Card style: Minimal (Context: this label is intentionally explicit.)"
+    },
+    "background": {
+      "toggleRotation": "Background: Toggle rotation (Context: this label is intentionally explicit.)",
+      "toggleLock": "Background: Lock/unlock rotation (Context: this label is intentionally explicit.)",
+      "preset": "Background:  (Context: this label is intentionally explicit.){label}"
+    },
+    "widgets": {
+      "showAll": "Widgets: Show all (Context: this label is intentionally explicit.)",
+      "hideAll": "Widgets: Hide all (Context: this label is intentionally explicit.)",
+      "toggle": "Widget: Toggle  (Context: this label is intentionally explicit.){widget}",
+      "focus": "Widget: Focus  (Context: this label is intentionally explicit.){widget}"
+    },
+    "quick": {
+      "addTodo": "Add todo (Context: this label is intentionally explicit.)",
+      "addNote": "Add note (Context: this label is intentionally explicit.)"
+    },
+    "tiles": {
+      "add": "Add tile (Context: this label is intentionally explicit.)",
+      "reset": "Reset tiles (Context: this label is intentionally explicit.)"
+    },
+    "refresh": {
+      "weather": "Refresh weather (Context: this label is intentionally explicit.)",
+      "news": "Refresh news (Context: this label is intentionally explicit.)",
+      "transport": "Refresh transport (Context: this label is intentionally explicit.)",
+      "system": "Refresh system (Context: this label is intentionally explicit.)",
+      "all": "Refresh all widgets (Context: this label is intentionally explicit.)"
+    },
+    "data": {
+      "export": "Export data (Context: this label is intentionally explicit.)",
+      "import": "Import data (Context: this label is intentionally explicit.)",
+      "preset": "Data preset:  (Context: this label is intentionally explicit.){label}"
+    }
+  },
+  "widgets": {
+    "todo": "To-Do (Context: this label is intentionally explicit.)",
+    "notes": "Notes (Context: this label is intentionally explicit.)",
+    "tiles": "Favorites (Context: this label is intentionally explicit.)",
+    "weather": "Weather (Context: this label is intentionally explicit.)",
+    "transport": "Transport (Context: this label is intentionally explicit.)",
+    "quote": "Quote (Context: this label is intentionally explicit.)",
+    "recent": "Recent (Context: this label is intentionally explicit.)",
+    "system": "System (Context: this label is intentionally explicit.)",
+    "news": "News (Context: this label is intentionally explicit.)"
+  },
+  "background": {
+    "currentPreview": "Current background image (Context: this label is intentionally explicit.)",
+    "none": "No background (Context: this label is intentionally explicit.)",
+    "noImageSelected": "No image selected (Context: this label is intentionally explicit.)",
+    "rotationResume": "Resume rotation (Context: this label is intentionally explicit.)",
+    "rotationLock": "Lock rotation (Context: this label is intentionally explicit.)",
+    "tone": "Tone:  (Context: this label is intentionally explicit.){tone}",
+    "presets": {
+      "empty": "No presets available. (Context: this label is intentionally explicit.)"
+    },
+    "favorites": {
+      "empty": "No favorites yet. Mark presets or uploads. (Context: this label is intentionally explicit.)"
+    },
+    "subtitle": {
+      "preset": "Preset (Context: this label is intentionally explicit.)"
+    },
+    "upload": "Upload (Context: this label is intentionally explicit.)",
+    "uploadDrop": "Drop files here (Context: this label is intentionally explicit.)",
+    "uploadBrowse": "Choose file (Context: this label is intentionally explicit.)",
+    "uploadNote": "We resize images automatically (16:9, max 2560px) and store them locally. Max  (Context: this label is intentionally explicit.){max} files. (Context: this label is intentionally explicit.)",
+    "uploads": {
+      "empty": "No uploads yet. (Context: this label is intentionally explicit.)"
+    },
+    "collections": {
+      "count": "{count} sources (Context: this label is intentionally explicit.)",
+      "random": "Random (Context: this label is intentionally explicit.)",
+      "cache": "Save offline (Context: this label is intentionally explicit.)",
+      "viewSources": "View sources (Context: this label is intentionally explicit.)",
+      "useRotation": "Use for rotation (Context: this label is intentionally explicit.)",
+      "newLabel": "New collection (Context: this label is intentionally explicit.)",
+      "namePlaceholder": "My collection (Context: this label is intentionally explicit.)",
+      "urlsPlaceholder": "One image URL per line (Context: this label is intentionally explicit.)",
+      "clear": "Clear fields (Context: this label is intentionally explicit.)",
+      "note": "URLs are stored locally. Remote sources need CORS for images. (Context: this label is intentionally explicit.)",
+      "empty": "No collections yet. (Context: this label is intentionally explicit.)",
+      "minOneUrl": "Enter at least one URL. (Context: this label is intentionally explicit.)",
+      "emptyCollection": "Collection is empty. (Context: this label is intentionally explicit.)",
+      "saved": "Collection saved locally. (Context: this label is intentionally explicit.)",
+      "defaultName": "Collection  (Context: this label is intentionally explicit.){index}"
+    },
+    "rotation": {
+      "optionPreset": "Preset:  (Context: this label is intentionally explicit.){label}",
+      "optionUpload": "Upload:  (Context: this label is intentionally explicit.){label}",
+      "optionFavorite": "Favorite:  (Context: this label is intentionally explicit.){label}",
+      "optionCustom": "Custom: saved URL (Context: this label is intentionally explicit.)",
+      "noFixed": "No fixed image (Context: this label is intentionally explicit.)",
+      "enabled": "Enable automatic rotation (Context: this label is intentionally explicit.)",
+      "locked": "Rotation is currently locked. (Context: this label is intentionally explicit.)",
+      "active": "Backgrounds change according to the schedule. (Context: this label is intentionally explicit.)",
+      "mode": "Mode (Context: this label is intentionally explicit.)",
+      "modeTime": "Time-based (Context: this label is intentionally explicit.)",
+      "modeInterval": "Interval (Context: this label is intentionally explicit.)",
+      "modeTheme": "Theme (Context: this label is intentionally explicit.)",
+      "intervalLabel": "Interval in minutes (Context: this label is intentionally explicit.)",
+      "intervalNote": "Only relevant in interval mode. (Context: this label is intentionally explicit.)",
+      "sourcesLabel": "Sources for random (Context: this label is intentionally explicit.)",
+      "scheduleLabel": "Schedule (Context: this label is intentionally explicit.)",
+      "themePlan": "Theme plan (Context: this label is intentionally explicit.)",
+      "themeLight": "Theme light (Context: this label is intentionally explicit.)",
+      "themeDark": "Theme dark (Context: this label is intentionally explicit.)",
+      "themeNote": "Theme plan is used when mode is Theme. (Context: this label is intentionally explicit.)",
+      "slot": {
+        "morning": "Morning 05-11 (Context: this label is intentionally explicit.)",
+        "day": "Day 11-17 (Context: this label is intentionally explicit.)",
+        "evening": "Evening 17-21 (Context: this label is intentionally explicit.)",
+        "night": "Night 21-05 (Context: this label is intentionally explicit.)"
+      }
+    },
+    "custom": {
+      "label": "Custom image URL (Context: this label is intentionally explicit.)",
+      "placeholder": "https://example.com/image.jpg",
+      "note": "URL is stored locally. Server must allow CORS for images. (Context: this label is intentionally explicit.)",
+      "enterUrl": "Please enter a URL. (Context: this label is intentionally explicit.)",
+      "title": "Custom URL (Context: this label is intentionally explicit.)",
+      "subtitle": "Custom (Context: this label is intentionally explicit.)"
+    },
+    "actions": {
+      "apply": "Apply (Context: this label is intentionally explicit.)",
+      "favorite": "Favorite (Context: this label is intentionally explicit.)",
+      "favorited": "Favorited (Context: this label is intentionally explicit.)",
+      "random": "Load random (Context: this label is intentionally explicit.)",
+      "undo": "Restore last image (Context: this label is intentionally explicit.)",
+      "lock": "Lock rotation (Context: this label is intentionally explicit.)",
+      "tint": "Tint widgets (Context: this label is intentionally explicit.)"
+    },
+    "tabs": {
+      "presets": "Presets (Context: this label is intentionally explicit.)",
+      "favorites": "Favorites (Context: this label is intentionally explicit.)",
+      "uploads": "Uploads (Context: this label is intentionally explicit.)",
+      "collections": "Collections (Context: this label is intentionally explicit.)",
+      "rotation": "Rotation (Context: this label is intentionally explicit.)",
+      "custom": "Custom (Context: this label is intentionally explicit.)"
+    },
+    "loadError": "Load failed. Check CORS settings. (Context: this label is intentionally explicit.)",
+    "noneAvailable": "No backgrounds available. (Context: this label is intentionally explicit.)",
+    "imageLoadError": "Image could not be loaded. (Context: this label is intentionally explicit.)"
+  },
+  "data": {
+    "import": {
+      "confirm": "Import data? Existing entries will be overwritten. (Context: this label is intentionally explicit.)",
+      "failed": "Import failed:  (Context: this label is intentionally explicit.){error}"
+    },
+    "presets": {
+      "none": "No preset available. (Context: this label is intentionally explicit.)",
+      "missingFile": "Preset file missing. (Context: this label is intentionally explicit.)",
+      "fileMissing": "File not found (Context: this label is intentionally explicit.)",
+      "invalid": "Invalid preset (Context: this label is intentionally explicit.)",
+      "confirmApply": "Apply  (Context: this label is intentionally explicit.){context} \" (Context: this label is intentionally explicit.){name}\"? Existing entries will be overwritten. (Context: this label is intentionally explicit.)",
+      "loadFailed": "Preset load failed:  (Context: this label is intentionally explicit.){error}",
+      "loading": "Loading presets... (Context: this label is intentionally explicit.)",
+      "noneFound": "No presets found (Context: this label is intentionally explicit.)",
+      "hint": "Place exported JSONs under assets/presets/ (manifest: assets/data-presets.json) or locally under assets/user-presets/. (Context: this label is intentionally explicit.)",
+      "hintShort": "Add a preset under assets/presets/ or assets/user-presets/. (Context: this label is intentionally explicit.)",
+      "userPrefix": "User:  (Context: this label is intentionally explicit.)",
+      "userApply": "Apply local preset (Context: this label is intentionally explicit.)",
+      "apply": "Apply preset (Context: this label is intentionally explicit.)",
+      "noneSelected": "No preset selected. (Context: this label is intentionally explicit.)",
+      "label": "Preset (Context: this label is intentionally explicit.)",
+      "defaultLabel": "Preset  (Context: this label is intentionally explicit.){index}",
+      "userDefault": "User preset  (Context: this label is intentionally explicit.){index}",
+      "userDescription": "Local preset from assets/user-presets/ (Context: this label is intentionally explicit.)",
+      "tags": " (Tags:  (Context: this label is intentionally explicit.){tags}) (Context: this label is intentionally explicit.)"
+    }
+  },
+  "dialogs": {
+    "alertTitle": "Notice (Context: this label is intentionally explicit.)",
+    "confirmTitle": "Confirm (Context: this label is intentionally explicit.)",
+    "promptTitle": "Input (Context: this label is intentionally explicit.)"
+  }
+}

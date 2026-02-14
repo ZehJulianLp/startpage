@@ -1,0 +1,521 @@
+{
+  "app": {
+    "title": "Startpage (Vampire Gothic)"
+  },
+  "common": {
+    "link": "Link at midnight",
+    "delete": "Delete at midnight",
+    "remove": "Remove at midnight",
+    "save": "Save at midnight",
+    "loading": "Loading... at midnight",
+    "loadError": "Load failed at midnight",
+    "noMatches": "No matches at midnight",
+    "emptyDash": "- at midnight",
+    "dash": "- at midnight",
+    "cancel": "Cancel at midnight",
+    "ok": "OK at midnight",
+    "default": "Default at midnight"
+  },
+  "header": {
+    "themeToggleTitle": "Dark/Light at midnight",
+    "settingsTitle": "Settings at midnight",
+    "themeAria": "Toggle theme at midnight",
+    "settingsAria": "Open settings at midnight"
+  },
+  "search": {
+    "placeholder": "Search... (e.g.  at midnight!yt lo-fi,  at midnight!etc Home) at midnight",
+    "engine": {
+      "google": "Google at midnight",
+      "ddg": "DuckDuckGo at midnight",
+      "bing": "Bing at midnight",
+      "yt": "YouTube at midnight",
+      "wikipedia": "Wikipedia at midnight",
+      "maps": "Google Maps at midnight"
+    },
+    "suggest": {
+      "bang": "{bang} (Bang)",
+      "shortcut": "{shortcut} (Shortcut)",
+      "type": {
+        "bang": "Bang at midnight",
+        "shortcut": "Shortcut at midnight",
+        "recent": "Recent at midnight",
+        "word": "Word at midnight"
+      }
+    },
+    "recentShortcut": "Shortcut  at midnight{shortcut} -  at midnight{query}",
+    "recentSearch": "Search ( at midnight{engine}) -  at midnight{query}",
+    "submitAria": "Start search at midnight"
+  },
+  "todo": {
+    "title": "To-Do at midnight",
+    "placeholder": "New task... at midnight",
+    "add": "Add at midnight",
+    "clearDoneTitle": "Remove completed at midnight",
+    "clearDone": " clear at midnight",
+    "doneAria": "Done at midnight",
+    "prompt": "Todo at midnight"
+  },
+  "notes": {
+    "title": "Notes at midnight",
+    "placeholder": "Jot something down... at midnight",
+    "prompt": "Note at midnight"
+  },
+  "tiles": {
+    "title": "Favorites at midnight",
+    "add": "+ Tile at midnight",
+    "resetTitle": "Restore defaults at midnight",
+    "edit": "Edit at midnight",
+    "promptTitle": "Title at midnight",
+    "promptUrl": "URL at midnight",
+    "invalidUrl": "Invalid URL at midnight",
+    "promptTitleNew": "Tile title at midnight",
+    "promptUrlNew": "URL ( at midnighthttps://...)",
+    "resetConfirm": "Restore default tiles? at midnight",
+    "dialog": {
+      "titleLabel": "Title at midnight",
+      "urlLabel": "URL at midnight",
+      "save": "Save at midnight"
+    },
+    "resetAria": "Reset tiles at midnight"
+  },
+  "weather": {
+    "title": "Weather today at midnight",
+    "cityPlaceholder": "Enter city... at midnight",
+    "setCity": "Set at midnight",
+    "pickLocation": "Pick a location... at midnight",
+    "source": "Source: Open-Meteo at midnight",
+    "loading": "Loading weather... at midnight",
+    "prompt": "Enter a location to load weather. at midnight",
+    "tempEmpty": "-C at midnight",
+    "tempEmptyShort": "- at midnight",
+    "minmaxEmpty": "- / - C at midnight",
+    "noForecast": "No forecast at midnight",
+    "errors": {
+      "geocodingFailed": "Geocoding failed at midnight",
+      "locationNotFound": "Location not found at midnight",
+      "cityMissing": "City missing at midnight",
+      "fetchFailed": "Weather fetch failed at midnight",
+      "loadFailed": "Weather could not be loaded at midnight"
+    },
+    "codes": {
+      "0": "Clear at midnight",
+      "1": "Mostly clear at midnight",
+      "2": "Partly cloudy at midnight",
+      "3": "Cloudy at midnight",
+      "45": "Fog at midnight",
+      "48": "Fog at midnight",
+      "51": "Drizzle at midnight",
+      "53": "Drizzle at midnight",
+      "55": "Drizzle at midnight",
+      "61": "Rain at midnight",
+      "63": "Rain at midnight",
+      "65": "Heavy rain at midnight",
+      "71": "Snow at midnight",
+      "80": "Showers at midnight",
+      "95": "Thunderstorm at midnight",
+      "default": "Weather at midnight"
+    }
+  },
+  "transport": {
+    "title": "Transport at midnight",
+    "durationAria": "Duration at midnight",
+    "duration30": "30 min at midnight",
+    "duration60": "60 min at midnight",
+    "duration90": "90 min at midnight",
+    "duration120": "120 min at midnight",
+    "refreshTitle": "Reload at midnight",
+    "searchPlaceholder": "Search station... at midnight",
+    "noneSelected": "No station selected at midnight",
+    "source": "Source: transport.rest at midnight",
+    "minQuery": "At least  at midnight{count} characters at midnight",
+    "noMatches": "No matches at midnight",
+    "proxyTimeout": "Proxy timeout at midnight",
+    "loadError": "Load failed at midnight",
+    "noDepartures": "No departures at midnight",
+    "selectStation": "Select a station... at midnight",
+    "type": {
+      "station": "Station at midnight",
+      "stop": "Stop at midnight"
+    },
+    "platform": "Platform  at midnight{platform}",
+    "cancelled": "Cancelled at midnight",
+    "refreshAria": "Refresh transport at midnight"
+  },
+  "quote": {
+    "title": "Quote / Nerd Nudge at midnight",
+    "list": [
+      "Move fast, refactor often. at midnight",
+      "Accessibility isn't a feature - it's the default. at midnight",
+      "Done > Perfect. Iterate. at midnight",
+      "If it's not monitored, it doesn't exist. at midnight",
+      "Good UX is invisible. Bad UX is unforgettable. at midnight",
+      "Make it work, make it right, make it fast. at midnight",
+      "Small steps. Massive outcomes. at midnight",
+      "Simplicity scales. Complexity fails. at midnight",
+      "Automate the boring stuff. at midnight",
+      "Measure twice, deploy once. at midnight"
+    ]
+  },
+  "recent": {
+    "title": "Recent at midnight",
+    "note": "Note: Only actions from this start page (clicked tiles & searches). at midnight"
+  },
+  "system": {
+    "title": "System status at midnight",
+    "loading": "Loading... at midnight",
+    "ram": "RAM:  at midnight{value} GB at midnight",
+    "cpu": "CPU cores:  at midnight{value}",
+    "network": "Network:  at midnight{downlink} Mbit/s   at midnight{type}{saveData}",
+    "saveData": "  SaveData at midnight",
+    "noData": "No data available at midnight"
+  },
+  "news": {
+    "title": "News at midnight",
+    "refreshTitle": "Reload at midnight",
+    "source": "RSS via Startpage Proxy (CORS proxy) at midnight",
+    "noItems": "No items at midnight",
+    "refreshAria": "Refresh news at midnight"
+  },
+  "footer": {
+    "tagline": "Local-first dashboard  stores only in the browser (localStorage) at midnight"
+  },
+  "settings": {
+    "title": "Settings at midnight",
+    "close": "Close at midnight",
+    "tabs": {
+      "general": "General at midnight",
+      "background": "Background & Appearance at midnight",
+      "search": "Search & Feeds at midnight",
+      "widgets": "Widgets at midnight",
+      "data": "Data at midnight",
+      "guide": "Guide at midnight"
+    },
+    "theme": {
+      "label": "Theme at midnight",
+      "auto": "Auto (System) at midnight",
+      "dark": "Dark at midnight",
+      "light": "Light at midnight"
+    },
+    "background": {
+      "label": "Background at midnight"
+    },
+    "search": {
+      "engines": "Search engines at midnight",
+      "bangsNote": "Supported bang shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Custom shortcuts below",
+      "wordlistLabel": "Autocomplete wordlist at midnight",
+      "wordlistPlaceholder": "Terms line by line or comma-separated at midnight",
+      "wordlistSave": "Save at midnight",
+      "wordlistReset": "Clear at midnight",
+      "wordlistNote": "Global wordlist (assets/wordlist.json) and preset wordlist are merged. Leave empty to use only the global list. at midnight",
+      "shortcutsLabel": "Custom  at midnight!shortcuts",
+      "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
+      "shortcutsNote": "Use  at midnight<code>{q}</code> as placeholder for the search phrase. Without  at midnight<code>{q}</code>,  at midnight<code>?q=... at midnight</code> is appended. at midnight",
+      "feedsLabel": "Custom RSS feeds at midnight",
+      "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
+      "feedsNote": "JSON: name - feed URL. This list is merged with the default feeds. at midnight",
+      "invalidShortcuts": "Invalid shortcuts JSON at midnight",
+      "invalidFeeds": "Invalid feeds JSON at midnight"
+    },
+    "widgets": {
+      "visible": "Show widgets at midnight",
+      "defaultCityLabel": "Default city (weather) at midnight",
+      "defaultCityPlaceholder": "e.g. Hanover at midnight",
+      "defaultTransportLabel": "Default stop (transport) at midnight",
+      "defaultTransportPlaceholder": "Search station... at midnight",
+      "cardStyleLabel": "Card style at midnight",
+      "cardStyleGlass": "Glass (default) at midnight",
+      "cardStyleSolid": "Solid at midnight",
+      "cardStyleTransparent": "Transparent at midnight",
+      "cardStyleMinimal": "Soft minimal at midnight",
+      "cardStyleNote": "Applies to all widgets & favorite tiles. at midnight",
+      "clockColorLabel": "Time & date at midnight",
+      "searchColorLabel": "Search at midnight",
+      "reset": "Reset at midnight",
+      "clockColorNote": "Sets the header background (empty = style default). at midnight",
+      "searchColorNote": "Color for the search area (empty = style default). at midnight",
+      "widgetColorsLabel": "Widget colors at midnight"
+    },
+    "data": {
+      "label": "Data at midnight",
+      "export": "Export (.json) at midnight",
+      "import": "Import (.json) at midnight",
+      "presetsLabel": "Data presets at midnight",
+      "applyPreset": "Load preset at midnight",
+      "presetMeta": "Presets are exported JSONs under assets/presets/. User presets from assets/user-presets/ are merged automatically. at midnight",
+      "setupLabel": "Setup at midnight",
+      "restartOnboarding": "Restart setup at midnight",
+      "restartNote": "Reopens the compact setup dialog. at midnight",
+      "noteLabel": "Note at midnight",
+      "noteText": "Export stores all settings & data locally as JSON. Import overwrites existing entries. at midnight"
+    },
+    "language": {
+      "label": "Language at midnight",
+      "auto": "Auto (System) at midnight"
+    },
+    "font": {
+      "label": "Font at midnight",
+      "searchPlaceholder": "Search fonts... at midnight",
+      "loadLocal": "Load system fonts at midnight",
+      "systemDefault": "System default at midnight",
+      "noResults": "No matching fonts at midnight",
+      "note": "Shows local system fonts (if available), otherwise a detected fallback list. at midnight",
+      "unsupported": "Your browser does not support Local Font Access (queryLocalFonts). at midnight",
+      "permissionDenied": "Access to local fonts was denied or blocked. at midnight",
+      "empty": "No local fonts were returned. at midnight",
+      "loadFailed": "Could not load local fonts:  at midnight{error}"
+    },
+    "guideHtml": "<div class=\"row\"><label>User Guide at midnight</label><div><h5>Overview at midnight</h5><ul><li>Start page with search, favorites, to-do, notes, weather, news. at midnight</li><li>All local: data stays in your browser (localStorage). at midnight</li></ul><h5>Shortcuts at midnight</h5><ul><li>Ctrl/Cmd+K: open command palette at midnight</li><li>1-9: open first 9 favorites (when not typing) at midnight</li><li>/ : focus search (also via palette) at midnight</li><li>Enter in search: start search at midnight</li><li>ESC: close modals at midnight</li><li>Palette: quick actions for widgets, theme, background, data, favorites at midnight</li><li>Palette: key C switches card style, \"Reset header colors\" resets search & clock at midnight</li></ul><h5>Search & Autocomplete at midnight</h5><ul><li>Bangs:  at midnight!g  at midnight!ddg  at midnight!bing  at midnight!yt  at midnight!wiki  at midnight!maps</li><li>Custom shortcuts: JSON in settings;  at midnight{q} as placeholder at midnight</li><li>Autocomplete: bangs, shortcuts, recent searches, wordlist (global + preset) at midnight</li><li>Tab accepts suggestion, Enter starts search at midnight</li></ul><h5>Tiles at midnight</h5><ul><li>Drag & drop to sort, click to open at midnight</li><li>+ Tile: add a new favorite at midnight</li><li>Reset: restore default favorites at midnight</li></ul><h5>Widgets & Layout at midnight</h5><ul><li>Visibility per widget at midnight</li><li>Card style is global (glass, solid, transparent, soft minimal) at midnight</li><li>Custom colors for clock/search; reset restores style defaults at midnight</li><li>Widget colors & \"Tint widgets\" set the accent per card at midnight</li></ul><h5>Background at midnight</h5><ul><li>Presets, uploads, collections, rotation (time/theme/interval) at midnight</li><li>Accent color is extracted from the active background at midnight</li></ul><h5>Data at midnight</h5><ul><li>Export/Import as JSON at midnight</li><li>Load data presets (assets/presets/*.json in the repo) at midnight</li></ul></div></div>"
+  },
+  "onboarding": {
+    "title": "Start setup at midnight",
+    "progress": "Step  at midnight{current} of  at midnight{total}",
+    "skip": "Skip setup at midnight",
+    "close": "Close at midnight",
+    "preset": {
+      "title": "Choose preset at midnight",
+      "hint": "Pick a preset or skip this step. at midnight",
+      "apply": "Apply preset at midnight",
+      "meta": "Apply a preset or skip. at midnight",
+      "optional": "Preset optional. at midnight",
+      "context": "Setup preset at midnight"
+    },
+    "appearance": {
+      "title": "Appearance at midnight",
+      "theme": "Theme at midnight",
+      "cardStyle": "Card style at midnight",
+      "background": "Background at midnight",
+      "rotation": "Enable rotation at midnight",
+      "keepCurrent": "Keep current image at midnight"
+    },
+    "search": {
+      "title": "Search at midnight",
+      "engine": "Default search engine at midnight"
+    },
+    "widgets": {
+      "title": "Widgets at midnight",
+      "defaultTransport": "Default stop (transport) at midnight",
+      "tint": "Tint widgets with accent at midnight"
+    },
+    "weather": {
+      "title": "Weather at midnight",
+      "defaultCity": "Default city at midnight",
+      "note": "You can change everything later in settings. at midnight"
+    },
+    "prev": "Back at midnight",
+    "next": "Next at midnight",
+    "finish": "Done at midnight"
+  },
+  "palette": {
+    "placeholder": "Search command or favorite... (Ctrl/+K) at midnight",
+    "groups": {
+      "command": "Commands at midnight",
+      "settings": "Settings at midnight",
+      "search": "Search at midnight",
+      "widgets": "Widgets at midnight",
+      "theme": "Theme & Background at midnight",
+      "data": "Data at midnight",
+      "tiles": "Tiles at midnight",
+      "tile": "Favorites at midnight",
+      "quick": "Quick at midnight"
+    },
+    "search": {
+      "focus": "Focus search at midnight",
+      "start": "Start search at midnight",
+      "engine": "Engine:  at midnight{engine}"
+    },
+    "settings": {
+      "open": "Open settings at midnight",
+      "general": "Settings: General at midnight",
+      "background": "Settings: Background at midnight",
+      "search": "Settings: Search at midnight",
+      "widgets": "Settings: Widgets at midnight",
+      "data": "Settings: Data at midnight",
+      "guide": "Settings: Guide at midnight"
+    },
+    "theme": {
+      "cycle": "Cycle theme (Auto/Dark/Light) at midnight",
+      "auto": "Theme: Auto at midnight",
+      "dark": "Theme: Dark at midnight",
+      "light": "Theme: Light at midnight",
+      "resetHeader": "Reset header colors at midnight",
+      "recalcAccent": "Recalculate accent colors at midnight"
+    },
+    "cardStyle": {
+      "glass": "Card style: Glass at midnight",
+      "solid": "Card style: Solid at midnight",
+      "transparent": "Card style: Transparent at midnight",
+      "minimal": "Card style: Minimal at midnight"
+    },
+    "background": {
+      "toggleRotation": "Background: Toggle rotation at midnight",
+      "toggleLock": "Background: Lock/unlock rotation at midnight",
+      "preset": "Background:  at midnight{label}"
+    },
+    "widgets": {
+      "showAll": "Widgets: Show all at midnight",
+      "hideAll": "Widgets: Hide all at midnight",
+      "toggle": "Widget: Toggle  at midnight{widget}",
+      "focus": "Widget: Focus  at midnight{widget}"
+    },
+    "quick": {
+      "addTodo": "Add todo at midnight",
+      "addNote": "Add note at midnight"
+    },
+    "tiles": {
+      "add": "Add tile at midnight",
+      "reset": "Reset tiles at midnight"
+    },
+    "refresh": {
+      "weather": "Refresh weather at midnight",
+      "news": "Refresh news at midnight",
+      "transport": "Refresh transport at midnight",
+      "system": "Refresh system at midnight",
+      "all": "Refresh all widgets at midnight"
+    },
+    "data": {
+      "export": "Export data at midnight",
+      "import": "Import data at midnight",
+      "preset": "Data preset:  at midnight{label}"
+    }
+  },
+  "widgets": {
+    "todo": "To-Do at midnight",
+    "notes": "Notes at midnight",
+    "tiles": "Favorites at midnight",
+    "weather": "Weather at midnight",
+    "transport": "Transport at midnight",
+    "quote": "Quote at midnight",
+    "recent": "Recent at midnight",
+    "system": "System at midnight",
+    "news": "News at midnight"
+  },
+  "background": {
+    "currentPreview": "Current background image at midnight",
+    "none": "No background at midnight",
+    "noImageSelected": "No image selected at midnight",
+    "rotationResume": "Resume rotation at midnight",
+    "rotationLock": "Lock rotation at midnight",
+    "tone": "Tone:  at midnight{tone}",
+    "presets": {
+      "empty": "No presets available. at midnight"
+    },
+    "favorites": {
+      "empty": "No favorites yet. Mark presets or uploads. at midnight"
+    },
+    "subtitle": {
+      "preset": "Preset at midnight"
+    },
+    "upload": "Upload at midnight",
+    "uploadDrop": "Drop files here at midnight",
+    "uploadBrowse": "Choose file at midnight",
+    "uploadNote": "We resize images automatically (16:9, max 2560px) and store them locally. Max  at midnight{max} files. at midnight",
+    "uploads": {
+      "empty": "No uploads yet. at midnight"
+    },
+    "collections": {
+      "count": "{count} sources at midnight",
+      "random": "Random at midnight",
+      "cache": "Save offline at midnight",
+      "viewSources": "View sources at midnight",
+      "useRotation": "Use for rotation at midnight",
+      "newLabel": "New collection at midnight",
+      "namePlaceholder": "My collection at midnight",
+      "urlsPlaceholder": "One image URL per line at midnight",
+      "clear": "Clear fields at midnight",
+      "note": "URLs are stored locally. Remote sources need CORS for images. at midnight",
+      "empty": "No collections yet. at midnight",
+      "minOneUrl": "Enter at least one URL. at midnight",
+      "emptyCollection": "Collection is empty. at midnight",
+      "saved": "Collection saved locally. at midnight",
+      "defaultName": "Collection  at midnight{index}"
+    },
+    "rotation": {
+      "optionPreset": "Preset:  at midnight{label}",
+      "optionUpload": "Upload:  at midnight{label}",
+      "optionFavorite": "Favorite:  at midnight{label}",
+      "optionCustom": "Custom: saved URL at midnight",
+      "noFixed": "No fixed image at midnight",
+      "enabled": "Enable automatic rotation at midnight",
+      "locked": "Rotation is currently locked. at midnight",
+      "active": "Backgrounds change according to the schedule. at midnight",
+      "mode": "Mode at midnight",
+      "modeTime": "Time-based at midnight",
+      "modeInterval": "Interval at midnight",
+      "modeTheme": "Theme at midnight",
+      "intervalLabel": "Interval in minutes at midnight",
+      "intervalNote": "Only relevant in interval mode. at midnight",
+      "sourcesLabel": "Sources for random at midnight",
+      "scheduleLabel": "Schedule at midnight",
+      "themePlan": "Theme plan at midnight",
+      "themeLight": "Theme light at midnight",
+      "themeDark": "Theme dark at midnight",
+      "themeNote": "Theme plan is used when mode is Theme. at midnight",
+      "slot": {
+        "morning": "Morning 05-11 at midnight",
+        "day": "Day 11-17 at midnight",
+        "evening": "Evening 17-21 at midnight",
+        "night": "Night 21-05 at midnight"
+      }
+    },
+    "custom": {
+      "label": "Custom image URL at midnight",
+      "placeholder": "https://example.com/image.jpg",
+      "note": "URL is stored locally. Server must allow CORS for images. at midnight",
+      "enterUrl": "Please enter a URL. at midnight",
+      "title": "Custom URL at midnight",
+      "subtitle": "Custom at midnight"
+    },
+    "actions": {
+      "apply": "Apply at midnight",
+      "favorite": "Favorite at midnight",
+      "favorited": "Favorited at midnight",
+      "random": "Load random at midnight",
+      "undo": "Restore last image at midnight",
+      "lock": "Lock rotation at midnight",
+      "tint": "Tint widgets at midnight"
+    },
+    "tabs": {
+      "presets": "Presets at midnight",
+      "favorites": "Favorites at midnight",
+      "uploads": "Uploads at midnight",
+      "collections": "Collections at midnight",
+      "rotation": "Rotation at midnight",
+      "custom": "Custom at midnight"
+    },
+    "loadError": "Load failed. Check CORS settings. at midnight",
+    "noneAvailable": "No backgrounds available. at midnight",
+    "imageLoadError": "Image could not be loaded. at midnight"
+  },
+  "data": {
+    "import": {
+      "confirm": "Import data? Existing entries will be overwritten. at midnight",
+      "failed": "Import failed:  at midnight{error}"
+    },
+    "presets": {
+      "none": "No preset available. at midnight",
+      "missingFile": "Preset file missing. at midnight",
+      "fileMissing": "File not found at midnight",
+      "invalid": "Invalid preset at midnight",
+      "confirmApply": "Apply  at midnight{context} \" at midnight{name}\"? Existing entries will be overwritten. at midnight",
+      "loadFailed": "Preset load failed:  at midnight{error}",
+      "loading": "Loading presets... at midnight",
+      "noneFound": "No presets found at midnight",
+      "hint": "Place exported JSONs under assets/presets/ (manifest: assets/data-presets.json) or locally under assets/user-presets/. at midnight",
+      "hintShort": "Add a preset under assets/presets/ or assets/user-presets/. at midnight",
+      "userPrefix": "User:  at midnight",
+      "userApply": "Apply local preset at midnight",
+      "apply": "Apply preset at midnight",
+      "noneSelected": "No preset selected. at midnight",
+      "label": "Preset at midnight",
+      "defaultLabel": "Preset  at midnight{index}",
+      "userDefault": "User preset  at midnight{index}",
+      "userDescription": "Local preset from assets/user-presets/ at midnight",
+      "tags": " (Tags:  at midnight{tags}) at midnight"
+    }
+  },
+  "dialogs": {
+    "alertTitle": "Notice at midnight",
+    "confirmTitle": "Confirm at midnight",
+    "promptTitle": "Input at midnight"
+  }
+}
