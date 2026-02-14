@@ -233,7 +233,10 @@
       "reset": "Reset",
       "clockColorNote": "Legt den Hintergrund der Kopfzeile fest (leer = Stil-Vorgabe).",
       "searchColorNote": "Farbe für den Suchbereich (leer = Stil-Vorgabe).",
-      "widgetColorsLabel": "Widget-Farben"
+      "widgetColorsLabel": "Widget-Farben",
+      "weatherCitiesLabel": "Wetter-Städte",
+      "weatherCitiesPlaceholder": "Eine Stadt pro Zeile, z.B. Hannover\nBerlin\nHamburg",
+      "weatherCitiesNote": "Eine Stadt pro Zeile. Der erste Eintrag wird aktiv, falls die bisher aktive Stadt nicht enthalten ist."
     },
     "data": {
       "label": "Daten",

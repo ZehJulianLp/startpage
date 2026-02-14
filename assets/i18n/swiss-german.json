@@ -233,7 +233,10 @@
       "reset": "[Schwiizerduetsch] Reset",
       "clockColorNote": "[Schwiizerduetsch] Sets the header background (empty = style default).",
       "searchColorNote": "[Schwiizerduetsch] Color for the search area (empty = style default).",
-      "widgetColorsLabel": "[Schwiizerduetsch] Widget colors"
+      "widgetColorsLabel": "[Schwiizerduetsch] Widget colors",
+      "weatherCitiesLabel": "Weather cities",
+      "weatherCitiesPlaceholder": "One city per line, e.g. Hanover\nBerlin\nHamburg",
+      "weatherCitiesNote": "One city per line. The first entry becomes active if the previous active city is not included."
     },
     "data": {
       "label": "[Schwiizerduetsch] Data",

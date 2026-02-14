@@ -233,7 +233,10 @@
       "reset": "Restablecer",
       "clockColorNote": "Define el fondo del encabezado (vacío = estilo por defecto).",
       "searchColorNote": "Color del área de búsqueda (vacío = estilo por defecto).",
-      "widgetColorsLabel": "Colores de widgets"
+      "widgetColorsLabel": "Colores de widgets",
+      "weatherCitiesLabel": "Weather cities",
+      "weatherCitiesPlaceholder": "One city per line, e.g. Hanover\nBerlin\nHamburg",
+      "weatherCitiesNote": "One city per line. The first entry becomes active if the previous active city is not included."
     },
     "data": {
       "label": "Datos",

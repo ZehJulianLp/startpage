@@ -233,7 +233,10 @@
       "reset": "Reset (Context: this label is intentionally explicit.)",
       "clockColorNote": "Sets the header background (empty = style default). (Context: this label is intentionally explicit.)",
       "searchColorNote": "Color for the search area (empty = style default). (Context: this label is intentionally explicit.)",
-      "widgetColorsLabel": "Widget colors (Context: this label is intentionally explicit.)"
+      "widgetColorsLabel": "Widget colors (Context: this label is intentionally explicit.)",
+      "weatherCitiesLabel": "Weather cities",
+      "weatherCitiesPlaceholder": "One city per line, e.g. Hanover\nBerlin\nHamburg",
+      "weatherCitiesNote": "One city per line. The first entry becomes active if the previous active city is not included."
     },
     "data": {
       "label": "Data (Context: this label is intentionally explicit.)",

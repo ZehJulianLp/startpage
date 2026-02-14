@@ -1125,6 +1125,130 @@
     return Array.from(new Set(cleaned));
   }
 
+  const WEATHER_DEFAULT_CITY = 'Hannover';
+  const WEATHER_ENTRIES_KEY = 'weather.entries';
+  const WEATHER_ACTIVE_ID_KEY = 'weather.activeId';
+  const WEATHER_COORDS_CACHE_KEY = 'weather.coordsCache';
+
+  function weatherEntryIdFromCity(city){
+    const base = String(city || '').trim().toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+    return base || `city-${Date.now().toString(36)}`;
+  }
+
+  function normalizeWeatherEntries(entries){
+    if(!Array.isArray(entries)) return [];
+    const seen = new Set();
+    const out = [];
+    entries.forEach((entry, idx)=>{
+      if(!entry) return;
+      const city = String(entry.city || '').trim();
+      if(!city) return;
+      let id = String(entry.id || '').trim() || weatherEntryIdFromCity(city);
+      if(!id) id = `city-${idx + 1}`;
+      if(seen.has(id)){
+        let n = 2;
+        while(seen.has(`${id}-${n}`)) n += 1;
+        id = `${id}-${n}`;
+      }
+      seen.add(id);
+      out.push({ id, city });
+    });
+    return out;
+  }
+
+  function getWeatherEntries(){
+    const normalized = normalizeWeatherEntries(store.get(WEATHER_ENTRIES_KEY, []));
+    if(normalized.length) return normalized;
+    const legacyCity = String(store.get('weather.city', WEATHER_DEFAULT_CITY) || '').trim();
+    return [{ id: weatherEntryIdFromCity(legacyCity || WEATHER_DEFAULT_CITY), city: legacyCity || WEATHER_DEFAULT_CITY }];
+  }
+
+  function getWeatherActiveId(entries=getWeatherEntries()){
+    const current = String(store.get(WEATHER_ACTIVE_ID_KEY, '') || '').trim();
+    if(current && entries.some(entry=> entry.id === current)) return current;
+    return entries[0] ? entries[0].id : '';
+  }
+
+  function getWeatherActiveEntry(){
+    const entries = getWeatherEntries();
+    const activeId = getWeatherActiveId(entries);
+    return entries.find(entry=> entry.id === activeId) || entries[0] || null;
+  }
+
+  function getWeatherCoordsCache(){
+    const cache = store.get(WEATHER_COORDS_CACHE_KEY, {});
+    return cache && typeof cache === 'object' ? cache : {};
+  }
+
+  function setWeatherState(entries, activeId){
+    const normalized = normalizeWeatherEntries(entries);
+    const safeEntries = normalized.length ? normalized : [{ id: weatherEntryIdFromCity(WEATHER_DEFAULT_CITY), city: WEATHER_DEFAULT_CITY }];
+    const nextActive = safeEntries.some(entry=> entry.id === activeId) ? activeId : safeEntries[0].id;
+    store.set(WEATHER_ENTRIES_KEY, safeEntries);
+    store.set(WEATHER_ACTIVE_ID_KEY, nextActive);
+    const activeEntry = safeEntries.find(entry=> entry.id === nextActive) || safeEntries[0];
+    store.set('weather.city', activeEntry ? activeEntry.city : WEATHER_DEFAULT_CITY);
+    return { entries: safeEntries, activeId: nextActive };
+  }
+
+  function ensureWeatherStorage(){
+    const entries = normalizeWeatherEntries(store.get(WEATHER_ENTRIES_KEY, []));
+    const activeId = String(store.get(WEATHER_ACTIVE_ID_KEY, '') || '').trim();
+    const legacyCity = String(store.get('weather.city', WEATHER_DEFAULT_CITY) || '').trim();
+    let nextEntries = entries;
+    if(!nextEntries.length){
+      nextEntries = [{ id: weatherEntryIdFromCity(legacyCity || WEATHER_DEFAULT_CITY), city: legacyCity || WEATHER_DEFAULT_CITY }];
+    }
+    let nextActive = activeId;
+    if(!nextActive || !nextEntries.some(entry=> entry.id === nextActive)){
+      nextActive = nextEntries[0].id;
+    }
+    const state = setWeatherState(nextEntries, nextActive);
+
+    const legacyCoords = store.get('weather.coords', null);
+    const cache = getWeatherCoordsCache();
+    if(legacyCoords && typeof legacyCoords === 'object'){
+      const key = String(legacyCoords.city || '').trim().toLowerCase();
+      if(key){
+        cache[key] = legacyCoords;
+        store.set(WEATHER_COORDS_CACHE_KEY, cache);
+      }
+      localStorage.removeItem('weather.coords');
+    } else if(!localStorage.getItem(WEATHER_COORDS_CACHE_KEY)){
+      store.set(WEATHER_COORDS_CACHE_KEY, cache);
+    }
+    return state;
+  }
+
+  function parseWeatherCitiesInput(raw){
+    const lines = String(raw || '')
+      .split(/\r?\n/)
+      .map(line => line.trim())
+      .filter(Boolean);
+    return Array.from(new Set(lines.map(city => city.toLowerCase())))
+      .map(lower => lines.find(city => city.toLowerCase() === lower))
+      .filter(Boolean);
+  }
+
+  function applyWeatherCitiesFromInput(raw){
+    const cities = parseWeatherCitiesInput(raw);
+    if(!cities.length) return false;
+    const existing = getWeatherEntries();
+    const active = getWeatherActiveEntry();
+    const byCity = new Map(existing.map(entry => [entry.city.toLowerCase(), entry]));
+    const entries = cities.map(city => {
+      const found = byCity.get(city.toLowerCase());
+      return { id: found ? found.id : weatherEntryIdFromCity(city), city };
+    });
+    const activeNext = active
+      ? (entries.find(entry => entry.city.toLowerCase() === active.city.toLowerCase()) || entries[0])
+      : entries[0];
+    setWeatherState(entries, activeNext ? activeNext.id : '');
+    return true;
+  }
+
   function exportData(){
     const data = {};
     for(let i=0;i<localStorage.length;i++){
@@ -1150,6 +1274,7 @@
         if(!('wordlist.inline' in obj)) obj['wordlist.inline'] = [];
         obj['wordlist.inline'] = normalizeInlineWordlist(obj['wordlist.inline']);
         Object.keys(obj).forEach(k=> localStorage.setItem(k, JSON.stringify(obj[k])));
+        ensureWeatherStorage();
         location.reload();
       } catch(err){ await uiAlert(t('data.import.failed', { error: err.message }, 'Import failed: {error}')); }
     };
@@ -1251,6 +1376,7 @@
       const context = contextLabel || t('data.presets.label');
       if(!(await uiConfirm(t('data.presets.confirmApply', { context, name })))) return;
       Object.keys(obj).forEach(k=> localStorage.setItem(k, JSON.stringify(obj[k])));
+      ensureWeatherStorage();
       if(opts.markDone) store.set('onboarding.done', true);
       if(opts.reload !== false) location.reload();
     }catch(err){
@@ -1671,12 +1797,15 @@
   async function resolveCity(city){
     const name = (city || '').trim();
     if(!name) throw new Error(t('weather.errors.cityMissing'));
-    const cached = store.get('weather.coords', null);
+    const cacheKey = name.toLowerCase();
+    const cache = getWeatherCoordsCache();
+    const cached = cache[cacheKey];
     const fresh = 1000*60*60*12; // 12h cache
-    if(cached && cached.city === name && (Date.now() - cached.ts) < fresh) return cached;
+    if(cached && (Date.now() - cached.ts) < fresh) return cached;
     const loc = await lookupCity(name);
     const payload = { ...loc, city: name, ts: Date.now() };
-    store.set('weather.coords', payload);
+    cache[cacheKey] = payload;
+    store.set(WEATHER_COORDS_CACHE_KEY, cache);
     return payload;
   }
 
@@ -1727,13 +1856,103 @@
     return new Date(base.getTime() + (offsetSeconds||0)*1000);
   }
 
-  async function loadWeather(){
-    const city = (store.get('weather.city', 'Hannover') || '').trim();
-    $('#cityInput').value = city;
+  function renderWeatherCityList(){
+    const wrap = $('#weatherCities');
+    if(!wrap) return;
+    const entries = getWeatherEntries();
+    const activeId = getWeatherActiveId(entries);
+    wrap.innerHTML = '';
+    entries.forEach(entry=>{
+      const chip = document.createElement('div');
+      chip.className = 'chip weather-city-chip' + (entry.id === activeId ? ' active' : '');
+      chip.setAttribute('role', 'button');
+      chip.tabIndex = 0;
+      chip.setAttribute('aria-pressed', entry.id === activeId ? 'true' : 'false');
+      chip.innerHTML = `<span>${escapeHtml(entry.city)}</span>`;
+      const removeEntry = ()=>{
+        const list = getWeatherEntries().filter(item=> item.id !== entry.id);
+        const nextActive = activeId === entry.id ? (list[0] ? list[0].id : '') : activeId;
+        setWeatherState(list, nextActive);
+        loadWeather();
+      };
+      if(entries.length > 1){
+        const remove = document.createElement('button');
+        remove.type = 'button';
+        remove.className = 'weather-city-chip-remove';
+        remove.setAttribute('aria-label', t('common.delete', null, 'Delete'));
+        remove.textContent = 'x';
+        remove.addEventListener('click', e=>{
+          e.preventDefault();
+          e.stopPropagation();
+          removeEntry();
+        });
+        chip.appendChild(remove);
+      }
+      chip.addEventListener('mousedown', e=>{
+        if(e.button !== 1) return;
+        if(entries.length <= 1) return;
+        // Prevent browser auto-scroll mode on middle click.
+        e.preventDefault();
+      });
+      chip.addEventListener('mouseup', e=>{
+        if(e.button !== 1) return;
+        if(entries.length <= 1) return;
+        e.preventDefault();
+        removeEntry();
+      });
+      chip.addEventListener('auxclick', e=>{
+        if(e.button !== 1) return;
+        if(entries.length <= 1) return;
+        e.preventDefault();
+        removeEntry();
+      });
+      chip.addEventListener('click', ()=>{
+        const entriesNow = getWeatherEntries();
+        setWeatherState(entriesNow, entry.id);
+        loadWeather(entry.id);
+      });
+      chip.addEventListener('keydown', e=>{
+        if(e.key === 'Enter' || e.key === ' '){
+          e.preventDefault();
+          const entriesNow = getWeatherEntries();
+          setWeatherState(entriesNow, entry.id);
+          loadWeather(entry.id);
+        }
+      });
+      wrap.appendChild(chip);
+    });
+  }
+
+  function upsertWeatherEntry(city){
+    const clean = String(city || '').trim();
+    if(!clean) return null;
+    const entries = getWeatherEntries();
+    const existing = entries.find(entry=> entry.city.toLowerCase() === clean.toLowerCase());
+    if(existing){
+      setWeatherState(entries, existing.id);
+      return existing;
+    }
+    const next = { id: weatherEntryIdFromCity(clean), city: clean };
+    setWeatherState([...entries, next], next.id);
+    return next;
+  }
+
+  async function loadWeather(entryId){
+    ensureWeatherStorage();
+    if(entryId){
+      const entriesNow = getWeatherEntries();
+      if(entriesNow.some(entry=> entry.id === entryId)) setWeatherState(entriesNow, entryId);
+    }
+    renderWeatherCityList();
+    const active = getWeatherActiveEntry();
+    const city = active ? active.city : '';
+    const cityInput = $('#cityInput');
+    if(cityInput) cityInput.value = city;
     const tempEl = $('#tempNow');
     const textEl = $('#weatherText');
     const minmaxEl = $('#minmax');
     const hourlyEl = $('#hourly');
+    if(!tempEl || !textEl || !minmaxEl || !hourlyEl) return;
     textEl.textContent = city ? t('weather.loading') : t('weather.prompt');
     tempEl.textContent = t('weather.tempEmpty', null, '—°C');
     minmaxEl.textContent = t('weather.minmaxEmpty', null, '— / — °C');
@@ -1743,15 +1962,15 @@
 
     try {
       const loc = await resolveCity(city);
-      const url = `https://api.open-meteo.com/v1/forecast?latitude=${loc.lat}&longitude=${loc.lon}&hourly=temperature_2m,weathercode&current_weather=true&timezone=auto&daily=temperature_2m_max,temperature_2m_min&forecast_days=1`;
+      const url = `https://api.open-meteo.com/v1/forecast?latitude=${loc.lat}&longitude=${loc.lon}&hourly=temperature_2m,weathercode&current_weather=true&timezone=auto&daily=temperature_2m_max,temperature_2m_min&forecast_days=2`;
       const res = await fetch(url);
       if(!res.ok) throw new Error(t('weather.errors.fetchFailed'));
       const data = await res.json();
       const offset = Number(data.utc_offset_seconds) || 0;
       const curr = data.current_weather || {};
       updateWeatherIcon(curr.weathercode);
-      const t = Math.round(curr.temperature ?? NaN);
-      tempEl.textContent = isFinite(t) ? `${t}°C` : t('weather.tempEmpty', null, '—°C');
+      const tempNow = Math.round(curr.temperature ?? NaN);
+      tempEl.textContent = isFinite(tempNow) ? `${tempNow}°C` : t('weather.tempEmpty', null, '—°C');
       textEl.textContent = `${loc.name} · ${wmoText(curr.weathercode)}`;
       const dmax = Math.round((data.daily?.temperature_2m_max?.[0]) ?? NaN);
       const dmin = Math.round((data.daily?.temperature_2m_min?.[0]) ?? NaN);
@@ -1761,12 +1980,21 @@
       const temps = data.hourly?.temperature_2m || [];
       const codes = data.hourly?.weathercode || [];
       const container = hourlyEl; container.innerHTML='';
-      const now = Date.now() - (30*60*1000);
-      let added = 0;
-      for(let i=0;i<hours.length;i+=3){
+      const now = Date.now();
+      const horizon = now + (24 * 60 * 60 * 1000);
+      const upcoming = [];
+      for(let i=0;i<hours.length;i++){
         const tDate = parseWeatherTime(hours[i], offset);
         if(!tDate) continue;
-        if(tDate.getTime() < now) continue;
+        const ts = tDate.getTime();
+        if(ts < now || ts > horizon) continue;
+        upcoming.push({ i, tDate });
+      }
+      let added = 0;
+      for(let n=0;n<upcoming.length;n++){
+        if(n % 3 !== 0) continue;
+        const i = upcoming[n].i;
+        const tDate = upcoming[n].tDate;
         const chip = document.createElement('div');
         chip.className='chip';
         const timeLabel = tDate.toLocaleTimeString([], {hour:'2-digit'});
@@ -1774,7 +2002,6 @@
         chip.innerHTML = `<div class="chip-top"><span>${timeLabel}</span><span class="chip-temp">${isFinite(tempVal)? tempVal+'°' : t('weather.tempEmptyShort', null, '—°')}</span></div><div class="chip-text">${wmoText(codes[i])}</div>`;
         container.appendChild(chip);
         added++;
-        if(added>=8) break;
       }
       if(!added) container.innerHTML = `<div class="muted">${escapeHtml(t('weather.noForecast'))}</div>`;
       // Normalize degree symbols / overwrite any garbled text
@@ -2230,7 +2457,9 @@
     const theme = store.get('theme','auto');
     $('#themeSelect').value = theme;
     void initFontSettings({ preferLocal: false });
-    $('#defaultCity').value = store.get('weather.city','Hannover');
+    const weatherEntries = getWeatherEntries();
+    const defaultCities = $('#defaultCities');
+    if(defaultCities) defaultCities.value = weatherEntries.map(entry => entry.city).join('\n');
     const defaultTransport = store.get('transport.default', null);
     const transportDefaultInput = $('#transportDefaultInput');
     if(transportDefaultInput){
@@ -2359,9 +2588,9 @@
     rows.forEach(row=>{
       const has = sel => row.querySelector(sel);
       if(has('#themeSelect')) assign(row, panelGeneral);
-      else if(has('#bgEngine')) assign(row, panelBackground);
+      else if(has('#bgEngine') || has('#cardStyle') || has('#clockColor') || has('#searchColor') || has('#widgetColorEditor')) assign(row, panelBackground);
       else if(has('#enginePills') || has('#shortcutConfig') || has('#feedsConfig') || has('#wordlistEditor')) assign(row, panelSearch);
-      else if(has('#widgetToggles') || has('#widgetColorEditor') || has('#cardStyle') || has('#clockColor') || has('#searchColor') || has('#defaultCity') || has('#transportDefaultInput')) assign(row, panelWidgets);
+      else if(has('#widgetToggles') || has('#defaultCities') || has('#transportDefaultInput')) assign(row, panelWidgets);
       else if(has('#exportData') || has('#importData') || has('#dataNote') || has('#dataPresetSelect') || has('#applyPreset') || has('#restartOnboarding')) assign(row, panelData);
       else assign(row, panelGeneral);
     });
@@ -2556,8 +2785,10 @@
       const city = $('#onbCity');
       if(city){
         const val = city.value.trim();
-        store.set('weather.city', val);
-        loadWeather();
+        if(val){
+          const entry = upsertWeatherEntry(val);
+          loadWeather(entry ? entry.id : undefined);
+        }
       }
     }
   }
@@ -2632,7 +2863,8 @@
     const widgetConf = store.get('widgets', widgetDefaults());
     $$('.onb-widget-toggle').forEach(cb=>{ const key=cb.getAttribute('data-widget'); if(key && key in widgetConf) cb.checked = !!widgetConf[key]; });
     const tint = $('#onbTint'); if(tint){ tint.checked = false; }
-    const city = store.get('weather.city','');
+    const activeWeather = getWeatherActiveEntry();
+    const city = activeWeather ? activeWeather.city : '';
     const cityInput = $('#onbCity');
     if(cityInput){ cityInput.value = city; }
     const onbTransportField = $('#onbTransportField');
@@ -4461,6 +4693,7 @@
 // ===== Init
   async function init(){
     await initI18n();
+    ensureWeatherStorage();
     initAnimations();
     initButtonMicroAnimations();
     applyUiFont(store.get(UI_FONT_KEY, ''));
@@ -4494,7 +4727,18 @@
         media.addEventListener('change', () => { if(store.get('theme','auto') === 'auto') bgOnThemeChange(); });
       }
     }
-    $('#defaultCity').addEventListener('change', e=>{ store.set('weather.city', e.target.value.trim()); loadWeather(); });
+    const defaultCitiesInput = $('#defaultCities');
+    if(defaultCitiesInput){
+      defaultCitiesInput.addEventListener('change', e=>{
+        const applied = applyWeatherCitiesFromInput(e.target.value);
+        if(!applied){
+          fillSettings();
+          return;
+        }
+        loadWeather();
+        fillSettings();
+      });
+    }
     const transportDefaultInput = $('#transportDefaultInput');
     const transportDefaultSuggest = $('#transportDefaultSuggest');
     if(transportDefaultInput && transportDefaultSuggest){
@@ -4693,7 +4937,20 @@
     $('#resetTiles').addEventListener('click', async ()=>{ if(await uiConfirm(t('tiles.resetConfirm'))){ store.set('tiles', defaultTiles()); renderTiles(); }});
 
     // Weather
-    $('#setCity').addEventListener('click', ()=>{ const v=$('#cityInput').value.trim(); if(v){ store.set('weather.city', v); loadWeather(); }});
+    $('#setCity').addEventListener('click', ()=>{
+      const v = $('#cityInput').value.trim();
+      if(!v) return;
+      const entry = upsertWeatherEntry(v);
+      loadWeather(entry ? entry.id : undefined);
+    });
+    const cityInput = $('#cityInput');
+    if(cityInput){
+      cityInput.addEventListener('keydown', e=>{
+        if(e.key !== 'Enter') return;
+        e.preventDefault();
+        $('#setCity').click();
+      });
+    }
     loadWeather();
 
     // Transport

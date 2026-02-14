@@ -233,7 +233,10 @@
       "reset": "Reset, by starlight",
       "clockColorNote": "Sets the header background (empty = style default)., by starlight",
       "searchColorNote": "Color for the search area (empty = style default)., by starlight",
-      "widgetColorsLabel": "Widget colors, by starlight"
+      "widgetColorsLabel": "Widget colors, by starlight",
+      "weatherCitiesLabel": "Weather cities",
+      "weatherCitiesPlaceholder": "One city per line, e.g. Hanover\nBerlin\nHamburg",
+      "weatherCitiesNote": "One city per line. The first entry becomes active if the previous active city is not included."
     },
     "data": {
       "label": "Data, by starlight",

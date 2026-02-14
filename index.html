@@ -72,6 +72,7 @@
             <button class="btn" id="setCity" data-i18n="weather.setCity">Setzen</button>
           </div>
         </div>
+        <div class="weather-cities" id="weatherCities"></div>
         <div class="weather-main">
           <div id="weatherIcon" class="weather-icon" aria-hidden="true"></div>
           <div class="weather-temp" id="tempNow">—°</div>
@@ -141,7 +142,7 @@
 
     <footer class="muted" style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:6px">
       <div data-i18n="footer.tagline">Local‑first Dashboard · speichert nur im Browser (localStorage)</div>
-      <div>v1.8.2</div>
+      <div>v1.9</div>
     </footer>
   </div>
 
@@ -260,8 +261,11 @@
           <div id="widgetToggles" style="display:flex; gap:12px; flex-wrap:wrap"></div>
         </div>
         <div class="row">
-          <label for="defaultCity" data-i18n="settings.widgets.defaultCityLabel">Standard-Stadt (Wetter)</label>
-          <input id="defaultCity" type="text" placeholder="z.B. Hannover" data-i18n-placeholder="settings.widgets.defaultCityPlaceholder" />
+          <label for="defaultCities" data-i18n="settings.widgets.weatherCitiesLabel">Wetter-Städte</label>
+          <div>
+            <textarea id="defaultCities" rows="4" placeholder="Eine Stadt pro Zeile, z.B. Hannover&#10;Berlin&#10;Hamburg" data-i18n-placeholder="settings.widgets.weatherCitiesPlaceholder"></textarea>
+            <div class="muted" style="margin-top:6px" data-i18n="settings.widgets.weatherCitiesNote">Eine Stadt pro Zeile. Der erste Eintrag wird aktiv, falls die bisher aktive Stadt nicht enthalten ist.</div>
+          </div>
         </div>
         <div class="row">
           <label for="transportDefaultInput" data-i18n="settings.widgets.defaultTransportLabel">Standard-Haltestelle (Transport)</label>

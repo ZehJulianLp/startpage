@@ -233,7 +233,10 @@
       "reset": "Weset",
       "clockColorNote": "Sets da headew backgwound (empty = stywe defauwt).",
       "searchColorNote": "Cowow fow da seawch awea (empty = stywe defauwt).",
-      "widgetColorsLabel": "Widget cowows"
+      "widgetColorsLabel": "Widget cowows",
+      "weatherCitiesLabel": "Weather cities",
+      "weatherCitiesPlaceholder": "One city per line, e.g. Hanover\nBerlin\nHamburg",
+      "weatherCitiesNote": "One city per line. The first entry becomes active if the previous active city is not included."
     },
     "data": {
       "label": "Data",

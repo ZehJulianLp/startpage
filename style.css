@@ -506,6 +506,29 @@
 
     /* Weather */
     .weather-top { display:flex; align-items:center; justify-content:space-between; gap:8px }
+    .weather-cities { margin-top:8px; display:flex; gap:8px; flex-wrap:wrap }
+    .weather-city-chip { display:inline-flex; align-items:center; gap:8px; cursor:pointer }
+    .weather-city-chip.active { border-color: color-mix(in srgb, var(--accent) 42%, rgba(255,255,255,.08)); color: var(--fg) }
+    .weather-city-chip-remove {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      line-height: 1;
+      padding: 2px 4px;
+      min-width: 18px;
+      min-height: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .weather-city-chip-remove:hover {
+      color: var(--danger);
+      background: color-mix(in srgb, var(--danger) 18%, transparent);
+    }
     .weather-main { display:flex; gap:16px; align-items:center; margin-top:8px }
     .weather-temp { font-size:42px; font-weight:700 }
     .weather-minmax { color: var(--muted) }

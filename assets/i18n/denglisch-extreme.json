@@ -233,7 +233,10 @@
       "reset": "Reset (aber in mega Denglisch)",
       "clockColorNote": "Sets the header background (empty = style default). (aber in mega Denglisch)",
       "searchColorNote": "Color for the search area (empty = style default). (aber in mega Denglisch)",
-      "widgetColorsLabel": "Widget colors (aber in mega Denglisch)"
+      "widgetColorsLabel": "Widget colors (aber in mega Denglisch)",
+      "weatherCitiesLabel": "Weather cities",
+      "weatherCitiesPlaceholder": "One city per line, e.g. Hanover\nBerlin\nHamburg",
+      "weatherCitiesNote": "One city per line. The first entry becomes active if the previous active city is not included."
     },
     "data": {
       "label": "Data (aber in mega Denglisch)",

@@ -233,7 +233,10 @@
       "reset": "Reset at midnight",
       "clockColorNote": "Sets the header background (empty = style default). at midnight",
       "searchColorNote": "Color for the search area (empty = style default). at midnight",
-      "widgetColorsLabel": "Widget colors at midnight"
+      "widgetColorsLabel": "Widget colors at midnight",
+      "weatherCitiesLabel": "Weather cities",
+      "weatherCitiesPlaceholder": "One city per line, e.g. Hanover\nBerlin\nHamburg",
+      "weatherCitiesNote": "One city per line. The first entry becomes active if the previous active city is not included."
     },
     "data": {
       "label": "Data at midnight",

@@ -233,7 +233,10 @@
       "reset": "リセット",
       "clockColorNote": "ヘッダーの背景を設定します (空 = スタイルのデフォルト)。",
       "searchColorNote": "検索領域の色 (空 = スタイルのデフォルト)。",
-      "widgetColorsLabel": "ウィジェットの色"
+      "widgetColorsLabel": "ウィジェットの色",
+      "weatherCitiesLabel": "Weather cities",
+      "weatherCitiesPlaceholder": "One city per line, e.g. Hanover\nBerlin\nHamburg",
+      "weatherCitiesNote": "One city per line. The first entry becomes active if the previous active city is not included."
     },
     "data": {
       "label": "データ",
