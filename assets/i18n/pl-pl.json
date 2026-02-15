@@ -9,7 +9,7 @@
     "save": "Zapisz",
     "loading": "?adowanie...",
     "loadError": "B??d ?adowania",
-    "noMatches": "Brak wynik?w",
+    "noMatches": "Brak wynikow",
     "emptyDash": "?",
     "dash": "?",
     "cancel": "Anuluj",
@@ -34,15 +34,15 @@
     },
     "suggest": {
       "bang": "{bang} (Bang)",
-      "shortcut": "{shortcut} (Skr?t)",
+      "shortcut": "{shortcut} (Skrot)",
       "type": {
         "bang": "Bang",
-        "shortcut": "Skr?t",
+        "shortcut": "Skrot",
         "recent": "Ostatnie",
-        "word": "S?owo"
+        "word": "Soowo"
       }
     },
-    "recentShortcut": "Skr?t {shortcut} ? {query}",
+    "recentShortcut": "Skrot {shortcut} ? {query}",
     "recentSearch": "Wyszukiwanie ({engine}) ? {query}",
     "submitAria": "Uruchom wyszukiwanie"
   },
@@ -50,7 +50,7 @@
     "title": "Zadania",
     "placeholder": "Nowe zadanie...",
     "add": "Dodaj",
-    "clearDoneTitle": "Usu? uko?czone",
+    "clearDoneTitle": "Usu? ukooczone",
     "clearDone": "? usu?",
     "doneAria": "Gotowe",
     "prompt": "Zadanie"
@@ -63,14 +63,14 @@
   "tiles": {
     "title": "Ulubione",
     "add": "+ Kafelek",
-    "resetTitle": "Przywr?? domy?lne",
+    "resetTitle": "Przywr?? domyolne",
     "edit": "Edytuj",
     "promptTitle": "Tytu?",
     "promptUrl": "URL",
-    "invalidUrl": "Nieprawid?owy URL",
+    "invalidUrl": "Nieprawidoowy URL",
     "promptTitleNew": "Tytu? kafelka",
     "promptUrlNew": "URL (https://?)",
-    "resetConfirm": "Przywr?ci? domy?lne kafelki?",
+    "resetConfirm": "Przywroci? domyolne kafelki?",
     "dialog": {
       "titleLabel": "Tytul",
       "urlLabel": "URL",
@@ -83,9 +83,9 @@
     "cityPlaceholder": "Wpisz miasto...",
     "setCity": "Ustaw",
     "pickLocation": "Wybierz lokalizacj?...",
-    "source": "?r?d?o: Open-Meteo",
+    "source": "Zrodlo: Open-Meteo",
     "loading": "?adowanie pogody...",
-    "prompt": "Wpisz lokalizacj?, aby wczyta? pogod?.",
+    "prompt": "Wpisz lokalizacj?, aby wczyta? pogode.",
     "tempEmpty": "??C",
     "tempEmptyShort": "??",
     "minmaxEmpty": "? / ? ?C",
@@ -94,19 +94,19 @@
       "geocodingFailed": "B??d geokodowania",
       "locationNotFound": "Lokalizacja nie znaleziona",
       "cityMissing": "Brak miasta",
-      "fetchFailed": "Nie uda?o si? pobra? pogody",
-      "loadFailed": "Nie uda?o si? za?adowa? pogody"
+      "fetchFailed": "Nie udaoo si? pobra? pogody",
+      "loadFailed": "Nie udaoo si? zaoadowa? pogody"
     },
     "codes": {
       "0": "Bezchmurnie",
-      "1": "Przewa?nie bezchmurnie",
+      "1": "Przewaonie bezchmurnie",
       "2": "Cz??ciowe zachmurzenie",
       "3": "Zachmurzenie",
-      "45": "Mg?a",
-      "48": "Mg?a",
-      "51": "M?awka",
-      "53": "M?awka",
-      "55": "M?awka",
+      "45": "Mgoa",
+      "48": "Mgoa",
+      "51": "Moawka",
+      "53": "Moawka",
+      "55": "Moawka",
       "61": "Deszcz",
       "63": "Deszcz",
       "65": "Ulewny deszcz",
@@ -123,42 +123,42 @@
     "duration60": "60 min",
     "duration90": "90 min",
     "duration120": "120 min",
-    "refreshTitle": "Od?wie?",
+    "refreshTitle": "Odowie?",
     "searchPlaceholder": "Szukaj stacji...",
     "noneSelected": "Nie wybrano stacji",
-    "source": "?r?d?o: transport.rest",
-    "minQuery": "Co najmniej {count} znak?w",
-    "noMatches": "Brak wynik?w",
+    "source": "Zrodlo: transport.rest",
+    "minQuery": "Co najmniej {count} znakow",
+    "noMatches": "Brak wynikow",
     "proxyTimeout": "Przekroczono czas proxy",
     "loadError": "B??d ?adowania",
-    "noDepartures": "Brak odjazd?w",
+    "noDepartures": "Brak odjazdow",
     "selectStation": "Wybierz stacj?...",
     "type": {
       "station": "Stacja",
       "stop": "Przystanek"
     },
     "platform": "Peron {platform}",
-    "cancelled": "Odwo?ano",
+    "cancelled": "Odwooano",
     "refreshAria": "Odswiez transport"
   },
   "quote": {
     "title": "Cytat / Impuls nerdowski",
     "list": [
-      "Dzia?aj szybko, refaktoryzuj cz?sto.",
-      "Dost?pno?? to nie funkcja ? to standard.",
+      "Dzialaj szybko, refaktoryzuj czesto.",
+      "Dostopno?? to nie funkcja ? to standard.",
       "Zrobione > Perfekcyjne. Iteruj.",
-      "Je?li nie jest monitorowane, nie istnieje.",
-      "Dobry UX jest niewidoczny. Z?y UX zapada w pami??.",
-      "Najpierw niech dzia?a, potem dobrze, potem szybko.",
-      "Ma?e kroki. Wielkie rezultaty.",
-      "Prostota skaluje. Z?o?ono?? zawodzi.",
+      "Jeoli nie jest monitorowane, nie istnieje.",
+      "Dobry UX jest niewidoczny. Zoy UX zapada w pami??.",
+      "Najpierw niech dziaoa, potem dobrze, potem szybko.",
+      "Maoe kroki. Wielkie rezultaty.",
+      "Prostota skaluje. Zoooono?? zawodzi.",
       "Automatyzuj nudne rzeczy.",
-      "Mierz dwa razy, wdra?aj raz."
+      "Mierz dwa razy, wdraoaj raz."
     ]
   },
   "recent": {
     "title": "Ostatnie",
-    "note": "Uwaga: pokazuje tylko dzia?ania z tej strony (klikni?te kafelki i wyszukiwania)."
+    "note": "Uwaga: pokazuje tylko dziaoania z tej strony (klikniete kafelki i wyszukiwania)."
   },
   "system": {
     "title": "Status systemu",
@@ -166,29 +166,30 @@
     "ram": "RAM: {value} GB",
     "cpu": "Rdzenie CPU: {value}",
     "network": "Sie?: {downlink} Mbit/s ? {type}{saveData}",
-    "saveData": " ? Oszcz?dzanie danych",
+    "saveData": " ? Oszczodzanie danych",
     "noData": "Brak danych"
   },
   "news": {
-    "title": "Wiadomo?ci",
-    "refreshTitle": "Od?wie?",
+    "title": "Wiadomooci",
+    "refreshTitle": "Odowie?",
     "source": "RSS przez proxy Startpage (proxy CORS)",
-    "noItems": "Brak element?w",
+    "noItems": "Brak elementow",
     "refreshAria": "Odswiez wiadomosci"
   },
   "footer": {
-    "tagline": "Lokalny dashboard ? zapisuje tylko w przegl?darce (localStorage)"
+    "tagline": "Lokalny dashboard ? zapisuje tylko w przeglodarce (localStorage)"
   },
   "settings": {
     "title": "Ustawienia",
     "close": "Zamknij",
     "tabs": {
-      "general": "Og?lne",
-      "background": "T?o i wygl?d",
-      "search": "Wyszukiwanie i kana?y",
+      "general": "Ogolne",
+      "background": "Too i wyglod",
+      "search": "Wyszukiwanie i kanaoy",
       "widgets": "Widgety",
       "data": "Dane",
-      "guide": "Przewodnik"
+      "guide": "Przewodnik",
+      "ai": "Startpage Agent"
     },
     "theme": {
       "label": "Motyw",
@@ -197,43 +198,43 @@
       "light": "Jasny"
     },
     "background": {
-      "label": "T?o"
+      "label": "Too"
     },
     "search": {
       "engines": "Wyszukiwarki",
-      "bangsNote": "Obs?ugiwane skr?ty bang: <code>!g !ddg !bing !yt !wiki !maps</code> - w?asne skr?ty poni?ej",
-      "wordlistLabel": "Lista s??w dla autouzupe?niania",
+      "bangsNote": "Obsougiwane skroty bang: <code>!g !ddg !bing !yt !wiki !maps</code> - wlasne skroty ponioej",
+      "wordlistLabel": "Lista slow dla autouzupeoniania",
       "wordlistPlaceholder": "Terminy w wierszach lub rozdzielone przecinkami",
       "wordlistSave": "Zapisz",
       "wordlistReset": "Wyczy??",
-      "wordlistNote": "Globalna lista s??w (assets/wordlist.json) i lista z presetu s? ??czone. Zostaw puste, aby u?y? tylko listy globalnej.",
-      "shortcutsLabel": "W?asne !skr?ty",
+      "wordlistNote": "Globalna lista slow (assets/wordlist.json) i lista z presetu s? ??czone. Zostaw puste, aby uoy? tylko listy globalnej.",
+      "shortcutsLabel": "Woasne !skroty",
       "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
-      "shortcutsNote": "U?yj <code>{q}</code> jako placeholdera. Bez <code>{q}</code> dodawane jest <code>?q=...</code>.",
-      "feedsLabel": "W?asne kana?y RSS",
+      "shortcutsNote": "Uoyj <code>{q}</code> jako placeholdera. Bez <code>{q}</code> dodawane jest <code>?q=...</code>.",
+      "feedsLabel": "Woasne kanaoy RSS",
       "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
-      "feedsNote": "JSON: nazwa - URL kana?u. Ta lista jest ??czona z domy?lnymi kana?ami.",
-      "invalidShortcuts": "Nieprawid?owy JSON skr?t?w",
-      "invalidFeeds": "Nieprawid?owy JSON kana??w"
+      "feedsNote": "JSON: nazwa - URL kanaou. Ta lista jest ??czona z domyolnymi kanaoami.",
+      "invalidShortcuts": "Nieprawidoowy JSON skrotow",
+      "invalidFeeds": "Nieprawidoowy JSON kana??w"
     },
     "widgets": {
       "visible": "Poka? widgety",
-      "defaultCityLabel": "Domy?lne miasto (pogoda)",
+      "defaultCityLabel": "Domyolne miasto (pogoda)",
       "defaultCityPlaceholder": "np. Hannover",
-      "defaultTransportLabel": "Domy?lny przystanek (transport)",
+      "defaultTransportLabel": "Domyolny przystanek (transport)",
       "defaultTransportPlaceholder": "Szukaj stacji...",
       "cardStyleLabel": "Styl kart",
-      "cardStyleGlass": "Szk?o (domy?lnie)",
-      "cardStyleSolid": "Pe?ny",
+      "cardStyleGlass": "Szkoo (domyolnie)",
+      "cardStyleSolid": "Peony",
       "cardStyleTransparent": "Przezroczysty",
-      "cardStyleMinimal": "Mi?kki minimal",
-      "cardStyleNote": "Dotyczy wszystkich widget?w i kafelk?w ulubionych.",
+      "cardStyleMinimal": "Miokki minimal",
+      "cardStyleNote": "Dotyczy wszystkich widgetow i kafelkow ulubionych.",
       "clockColorLabel": "Czas i data",
       "searchColorLabel": "Wyszukiwanie",
       "reset": "Reset",
-      "clockColorNote": "Ustawia t?o nag??wka (puste = styl domy?lny).",
-      "searchColorNote": "Kolor obszaru wyszukiwania (puste = styl domy?lny).",
-      "widgetColorsLabel": "Kolory widget?w",
+      "clockColorNote": "Ustawia too nag??wka (puste = styl domyolny).",
+      "searchColorNote": "Kolor obszaru wyszukiwania (puste = styl domyolny).",
+      "widgetColorsLabel": "Kolory widgetow",
       "weatherCitiesLabel": "Weather cities",
       "weatherCitiesPlaceholder": "One city per line, e.g. Hanover\nBerlin\nHamburg",
       "weatherCitiesNote": "One city per line. The first entry becomes active if the previous active city is not included."
@@ -244,15 +245,15 @@
       "import": "Import (.json)",
       "presetsLabel": "Presety danych",
       "applyPreset": "Wczytaj preset",
-      "presetMeta": "Presety to eksportowane JSON w assets/presets/. Presety u?ytkownika w assets/user-presets/ s? ??czone automatycznie.",
+      "presetMeta": "Presety to eksportowane JSON w assets/presets/. Presety uzytkownika w assets/user-presets/ s? ??czone automatycznie.",
       "setupLabel": "Konfiguracja",
       "restartOnboarding": "Uruchom konfiguracj? ponownie",
-      "restartNote": "Ponownie otwiera kr?tki dialog konfiguracji.",
+      "restartNote": "Ponownie otwiera krotki dialog konfiguracji.",
       "noteLabel": "Uwaga",
-      "noteText": "Eksport zapisuje wszystkie ustawienia i dane lokalnie jako JSON. Import nadpisuje istniej?ce wpisy."
+      "noteText": "Eksport zapisuje wszystkie ustawienia i dane lokalnie jako JSON. Import nadpisuje istniejoce wpisy."
     },
     "language": {
-      "label": "J?zyk",
+      "label": "Jozyk",
       "auto": "Auto (system)"
     },
     "font": {
@@ -267,7 +268,12 @@
       "empty": "Nie zwrocono lokalnych czcionek.",
       "loadFailed": "Nie udalo sie wczytac lokalnych czcionek: {error}"
     },
-    "guideHtml": "<div class=\"row\"><label>Przewodnik u?ytkownika</label><div><h5>Przegl?d</h5><ul><li>Strona startowa z wyszukiwaniem, ulubionymi, zadaniami, notatkami, pogod? i wiadomo?ciami.</li><li>Wszystko lokalnie: dane pozostaj? w przegl?darce (localStorage).</li></ul><h5>Skr?ty</h5><ul><li>Ctrl/Cmd+K: otw?rz palet? polece?</li><li>1-9: otw?rz pierwsze 9 ulubionych (je?li nie piszesz)</li><li>/ : focus na wyszukiwanie (tak?e przez palet?)</li><li>Enter w wyszukiwaniu: uruchamia wyszukiwanie</li><li>ESC: zamyka okna modalne</li><li>Paleta: szybkie akcje dla widget?w, motywu, t?a, danych i ulubionych</li><li>Paleta: klawisz C prze??cza styl kart, \"Resetuj kolory nag??wka\" resetuje wyszukiwanie i zegar</li></ul><h5>Wyszukiwanie i autouzupe?nianie</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>W?asne skr?ty: JSON w ustawieniach; {q} jako placeholder</li><li>Autouzupe?nianie: bangs, skr?ty, ostatnie wyszukiwania, lista s??w (globalna + preset)</li><li>Tab akceptuje sugesti?, Enter uruchamia wyszukiwanie</li></ul><h5>Kafelki</h5><ul><li>Drag & drop do sortowania, klikni?cie aby otworzy?</li><li>+ Kafelek: dodaj nowego ulubionego</li><li>Reset: przywr?? domy?lne ulubione</li></ul><h5>Widgety i uk?ad</h5><ul><li>Widoczno?? per widget</li><li>Styl kart globalny (szk?o, pe?ny, przezroczysty, mi?kki minimal)</li><li>W?asne kolory dla zegara/wyszukiwania; reset przywraca styl domy?lny</li><li>Kolory widget?w i przycisk \"Tintuj widgety\" ustawiaj? akcent dla kart</li></ul><h5>T?o</h5><ul><li>Presety, uploady, kolekcje, rotacja (czas/temat/interwa?)</li><li>Kolor akcentu jest wyci?gany z aktywnego t?a</li></ul><h5>Dane</h5><ul><li>Eksport/Import jako JSON</li><li>Wczytanie preset?w danych (assets/presets/*.json w repo)</li></ul></div></div>"
+    "guideHtml": "<div class=\"row\"><label>Przewodnik uzytkownika</label><div><h5>Przeglad</h5><ul><li>Strona startowa z wyszukiwaniem, ulubionymi, zadaniami, notatkami, pogode i wiadomoociami.</li><li>Wszystko lokalnie: dane pozostaja w przeglodarce (localStorage).</li></ul><h5>Skroty</h5><ul><li>Ctrl/Cmd+K: otworz palet? polecen</li><li>1-9: otworz pierwsze 9 ulubionych (jesli nie piszesz)</li><li>/ : focus na wyszukiwanie (takze przez palet?)</li><li>Enter w wyszukiwaniu: uruchamia wyszukiwanie</li><li>ESC: zamyka okna modalne</li><li>Paleta: szybkie akcje dla widgetow, motywu, toa, danych i ulubionych</li><li>Paleta: klawisz C prze??cza styl kart, \"Resetuj kolory nag??wka\" resetuje wyszukiwanie i zegar</li></ul><h5>Wyszukiwanie i autouzupeonianie</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>Woasne skroty: JSON w ustawieniach; {q} jako placeholder</li><li>Autouzupelnianie: bangs, skroty, ostatnie wyszukiwania, lista slow (globalna + preset)</li><li>Tab akceptuje sugestie, Enter uruchamia wyszukiwanie</li></ul><h5>Kafelki</h5><ul><li>Drag & drop do sortowania, klikniecie aby otworzy?</li><li>+ Kafelek: dodaj nowego ulubionego</li><li>Reset: przywroc domyolne ulubione</li></ul><h5>Widgety i ukoad</h5><ul><li>Widocznosc per widget</li><li>Styl kart globalny (szkoo, peony, przezroczysty, miekki minimal)</li><li>Woasne kolory dla zegara/wyszukiwania; reset przywraca styl domyolny</li><li>Kolory widgetow i przycisk \"Tintuj widgety\" ustawiaj? akcent dla kart</li></ul><h5>Too</h5><ul><li>Presety, uploady, kolekcje, rotacja (czas/temat/interwa?)</li><li>Kolor akcentu jest wyciogany z aktywnego toa</li></ul><h5>Dane</h5><ul><li>Eksport/Import jako JSON</li><li>Wczytanie presetow danych (assets/presets/*.json w repo)</li></ul><h5>Startpage Agent</h5><ul><li>Zintegrowany czat AI z lokalnym Ollama (host/model w ustawieniach).</li><li>Obsługuje odpowiedzi strumieniowe, stop (przycisk/ESC), trwałą historię i Markdown.</li><li>Narzędzia agentowe mogą czytać/zmieniać widżety i ustawienia (zależnie od trybu potwierdzania).</li></ul></div></div>",
+    "general": {
+      "agentLabel": "Startpage Agent",
+      "agentEnabled": "Agent aktywny",
+      "agentHint": "Gdy wyłączony, nic nie jest wysyłane do Ollama."
+    }
   },
   "onboarding": {
     "title": "Rozpocznij konfiguracj?",
@@ -283,26 +289,26 @@
       "context": "Preset konfiguracji"
     },
     "appearance": {
-      "title": "Wygl?d",
+      "title": "Wyglod",
       "theme": "Motyw",
       "cardStyle": "Styl kart",
-      "background": "T?o",
+      "background": "Too",
       "rotation": "W??cz rotacj?",
       "keepCurrent": "Zachowaj bie??cy obraz"
     },
     "search": {
       "title": "Wyszukiwanie",
-      "engine": "Domy?lna wyszukiwarka"
+      "engine": "Domyolna wyszukiwarka"
     },
     "widgets": {
       "title": "Widgety",
-      "defaultTransport": "Domy?lny przystanek (transport)",
+      "defaultTransport": "Domyolny przystanek (transport)",
       "tint": "Tintuj widgety akcentem"
     },
     "weather": {
       "title": "Pogoda",
-      "defaultCity": "Domy?lne miasto",
-      "note": "Mo?esz p??niej zmieni? wszystko w ustawieniach."
+      "defaultCity": "Domyolne miasto",
+      "note": "Mooesz p??niej zmieni? wszystko w ustawieniach."
     },
     "prev": "Wstecz",
     "next": "Dalej",
@@ -315,7 +321,7 @@
       "settings": "Ustawienia",
       "search": "Wyszukiwanie",
       "widgets": "Widgety",
-      "theme": "Motyw i t?o",
+      "theme": "Motyw i too",
       "data": "Dane",
       "tiles": "Kafelki",
       "tile": "Ulubione",
@@ -327,9 +333,9 @@
       "engine": "Silnik: {engine}"
     },
     "settings": {
-      "open": "Otw?rz ustawienia",
-      "general": "Ustawienia: Og?lne",
-      "background": "Ustawienia: T?o",
+      "open": "Otworz ustawienia",
+      "general": "Ustawienia: Ogolne",
+      "background": "Ustawienia: Too",
       "search": "Ustawienia: Wyszukiwanie",
       "widgets": "Ustawienia: Widgety",
       "data": "Ustawienia: Dane",
@@ -344,15 +350,15 @@
       "recalcAccent": "Przelicz kolory akcentu"
     },
     "cardStyle": {
-      "glass": "Styl kart: Szk?o",
-      "solid": "Styl kart: Pe?ny",
+      "glass": "Styl kart: Szkoo",
+      "solid": "Styl kart: Peony",
       "transparent": "Styl kart: Przezroczysty",
       "minimal": "Styl kart: Minimal"
     },
     "background": {
-      "toggleRotation": "T?o: prze??cz rotacj?",
-      "toggleLock": "T?o: zablokuj/odblokuj rotacj?",
-      "preset": "T?o: {label}"
+      "toggleRotation": "Too: prze??cz rotacj?",
+      "toggleLock": "Too: zablokuj/odblokuj rotacj?",
+      "preset": "Too: {label}"
     },
     "widgets": {
       "showAll": "Widgety: poka? wszystkie",
@@ -369,11 +375,11 @@
       "reset": "Resetuj kafelki"
     },
     "refresh": {
-      "weather": "Od?wie? pogod?",
-      "news": "Od?wie? wiadomo?ci",
-      "transport": "Od?wie? transport",
-      "system": "Od?wie? system",
-      "all": "Od?wie? wszystkie widgety"
+      "weather": "Odowie? pogode",
+      "news": "Odowie? wiadomooci",
+      "transport": "Odowie? transport",
+      "system": "Odowie? system",
+      "all": "Odowie? wszystkie widgety"
     },
     "data": {
       "export": "Eksportuj dane",
@@ -390,17 +396,17 @@
     "quote": "Cytat",
     "recent": "Ostatnie",
     "system": "System",
-    "news": "Wiadomo?ci"
+    "news": "Wiadomooci"
   },
   "background": {
-    "currentPreview": "Aktualne t?o",
-    "none": "Brak t?a",
+    "currentPreview": "Aktualne too",
+    "none": "Brak toa",
     "noImageSelected": "Nie wybrano obrazu",
-    "rotationResume": "Wzn?w rotacj?",
+    "rotationResume": "Wznow rotacj?",
     "rotationLock": "Zablokuj rotacj?",
     "tone": "Ton: {tone}",
     "presets": {
-      "empty": "Brak preset?w."
+      "empty": "Brak presetow."
     },
     "favorites": {
       "empty": "Brak ulubionych. Oznacz presety lub uploady."
@@ -408,24 +414,24 @@
     "subtitle": {
       "preset": "Preset"
     },
-    "upload": "Prze?lij",
+    "upload": "Przeolij",
     "uploadDrop": "Upu?? pliki tutaj",
     "uploadBrowse": "Wybierz plik",
-    "uploadNote": "Automatycznie zmniejszamy obrazy (16:9, max 2560px) i zapisujemy lokalnie. Maks {max} plik?w.",
+    "uploadNote": "Automatycznie zmniejszamy obrazy (16:9, max 2560px) i zapisujemy lokalnie. Maks {max} plikow.",
     "uploads": {
-      "empty": "Brak upload?w."
+      "empty": "Brak uploadow."
     },
     "collections": {
-      "count": "{count} ?r?de?",
+      "count": "{count} zrodel",
       "random": "Losowo",
       "cache": "Zapisz offline",
-      "viewSources": "Zobacz ?r?d?a",
-      "useRotation": "U?yj do rotacji",
+      "viewSources": "Zobacz ?rodoa",
+      "useRotation": "Uoyj do rotacji",
       "newLabel": "Nowa kolekcja",
       "namePlaceholder": "Moja kolekcja",
       "urlsPlaceholder": "Jeden URL obrazu na lini?",
       "clear": "Wyczy?? pola",
-      "note": "URL-e s? zapisywane lokalnie. Zdalne ?r?d?a wymagaj? CORS dla obraz?w.",
+      "note": "URL-e s? zapisywane lokalnie. Zdalne ?rodoa wymagaj? CORS dla obrazow.",
       "empty": "Brak kolekcji.",
       "minOneUrl": "Wpisz co najmniej jeden URL.",
       "emptyCollection": "Kolekcja jest pusta.",
@@ -436,37 +442,37 @@
       "optionPreset": "Preset: {label}",
       "optionUpload": "Upload: {label}",
       "optionFavorite": "Ulubione: {label}",
-      "optionCustom": "W?asny: zapisany URL",
-      "noFixed": "Brak sta?ego obrazu",
+      "optionCustom": "Woasny: zapisany URL",
+      "noFixed": "Brak staoego obrazu",
       "enabled": "W??cz automatyczn? rotacj?",
       "locked": "Rotacja jest zablokowana.",
-      "active": "T?a zmieniaj? si? zgodnie z planem.",
+      "active": "Toa zmieniaj? si? zgodnie z planem.",
       "mode": "Tryb",
       "modeTime": "Czasowy",
       "modeInterval": "Interwa?",
       "modeTheme": "Motyw",
       "intervalLabel": "Interwa? w minutach",
-      "intervalNote": "Dotyczy tylko trybu interwa?u.",
-      "sourcesLabel": "?r?d?a losowe",
+      "intervalNote": "Dotyczy tylko trybu interwaou.",
+      "sourcesLabel": "?rodoa losowe",
       "scheduleLabel": "Harmonogram",
       "themePlan": "Plan motywu",
       "themeLight": "Motyw jasny",
       "themeDark": "Motyw ciemny",
-      "themeNote": "Plan motywu u?ywany, gdy tryb to Motyw.",
+      "themeNote": "Plan motywu uoywany, gdy tryb to Motyw.",
       "slot": {
         "morning": "Poranek 05-11",
         "day": "Dzie? 11-17",
-        "evening": "Wiecz?r 17-21",
+        "evening": "Wieczor 17-21",
         "night": "Noc 21-05"
       }
     },
     "custom": {
-      "label": "W?asny URL obrazu",
+      "label": "Woasny URL obrazu",
       "placeholder": "https://example.com/image.jpg",
-      "note": "URL jest zapisywany lokalnie. Serwer musi zezwala? na CORS dla obraz?w.",
+      "note": "URL jest zapisywany lokalnie. Serwer musi zezwala? na CORS dla obrazow.",
       "enterUrl": "Wpisz URL.",
-      "title": "W?asny URL",
-      "subtitle": "W?asny"
+      "title": "Woasny URL",
+      "subtitle": "Woasny"
     },
     "actions": {
       "apply": "Zastosuj",
@@ -483,35 +489,35 @@
       "uploads": "Uploady",
       "collections": "Kolekcje",
       "rotation": "Rotacja",
-      "custom": "W?asny"
+      "custom": "Woasny"
     },
     "loadError": "B??d ?adowania. Sprawd? ustawienia CORS.",
-    "noneAvailable": "Brak dost?pnych te?.",
-    "imageLoadError": "Nie uda?o si? za?adowa? obrazu."
+    "noneAvailable": "Brak dostopnych te?.",
+    "imageLoadError": "Nie udaoo si? zaoadowa? obrazu."
   },
   "data": {
     "import": {
-      "confirm": "Importowa? dane? Istniej?ce wpisy zostan? nadpisane.",
+      "confirm": "Importowa? dane? Istniejoce wpisy zostan? nadpisane.",
       "failed": "Import nieudany: {error}"
     },
     "presets": {
       "none": "Brak presetu.",
       "missingFile": "Brak pliku presetu.",
       "fileMissing": "Nie znaleziono pliku",
-      "invalid": "Nieprawid?owy preset",
-      "confirmApply": "Zastosowa? {context} \"{name}\"? Istniej?ce wpisy zostan? nadpisane.",
+      "invalid": "Nieprawidoowy preset",
+      "confirmApply": "Zastosowa? {context} \"{name}\"? Istniejoce wpisy zostan? nadpisane.",
       "loadFailed": "B??d ?adowania presetu: {error}",
-      "loading": "?adowanie preset?w...",
-      "noneFound": "Nie znaleziono preset?w",
+      "loading": "?adowanie presetow...",
+      "noneFound": "Nie znaleziono presetow",
       "hint": "Umie?? eksportowane JSON w assets/presets/ (manifest: assets/data-presets.json) lub lokalnie w assets/user-presets/.",
       "hintShort": "Dodaj preset do assets/presets/ lub assets/user-presets/.",
-      "userPrefix": "U?ytkownik: ",
+      "userPrefix": "Uoytkownik: ",
       "userApply": "Zastosuj lokalny preset",
       "apply": "Zastosuj preset",
       "noneSelected": "Nie wybrano presetu.",
       "label": "Preset",
       "defaultLabel": "Preset {index}",
-      "userDefault": "Preset u?ytkownika {index}",
+      "userDefault": "Preset uzytkownika {index}",
       "userDescription": "Lokalny preset z assets/user-presets/",
       "tags": " (Tagi: {tags})"
     }
@@ -520,5 +526,160 @@
     "alertTitle": "Informacja",
     "confirmTitle": "Potwierdz",
     "promptTitle": "Wpisz"
+  },
+  "agent": {
+    "ui": {
+      "title": "Startpage Agent",
+      "fabAria": "Startpage Agent",
+      "fabTitle": "Startpage Agent",
+      "openSettingsAria": "Otwórz ustawienia agenta",
+      "openSettingsTitle": "Ustawienia",
+      "closeAria": "Zamknij agenta",
+      "closeTitle": "Zamknij",
+      "modelDisplayDefault": "Model: —",
+      "inputPlaceholder": "Wiadomość do Startpage Agent...",
+      "send": "Wyślij",
+      "stop": "Zatrzymaj",
+      "hostLabel": "Host",
+      "modelLabel": "Model",
+      "emptyModel": "-"
+    },
+    "settings": {
+      "modelLabel": "Model",
+      "loadModels": "Wczytaj modele",
+      "hostLabel": "Host Ollama",
+      "confirmModeLabel": "Potwierdzanie narzędzi",
+      "confirmNever": "Nigdy",
+      "confirmAlways": "Zawsze",
+      "confirmRisky": "Only risky (open_url)",
+      "maxIterationsLabel": "Limit pętli agenta",
+      "maxIterationsDecAria": "Decrease loop limit",
+      "maxIterationsIncAria": "Increase loop limit",
+      "maxIterationsHint": "Maksymalna liczba iteracji narzędzi na wiadomość (1-10).",
+      "customPromptLabel": "Niestandardowy prompt",
+      "customPromptPlaceholder": "Additional instructions for Startpage Agent...",
+      "customPromptHint": "Used in addition to the system prompt for every request.",
+      "memoryLabel": "Pamięć / Notatki",
+      "memoryPlaceholder": "Persistent notes for the agent...",
+      "clearMemory": "Clear memory",
+      "actionsLabel": "Akcje",
+      "save": "Zapisz",
+      "clearChat": "Wyczyść czat",
+      "capabilitiesLabel": "Możliwości",
+      "availableToolsTitle": "Dostępne narzędzia",
+      "noModels": "No models"
+    },
+    "status": {
+      "ready": "Gotowe",
+      "loadingModels": "Wczytywanie modeli...",
+      "modelsLoaded": "Modele wczytane",
+      "noModelsFound": "Nie znaleziono modeli",
+      "loadModelsError": "Error loading models: {error}",
+      "disabledNamed": "Startpage Agent disabled",
+      "ollamaUnavailableDisabled": "Ollama unavailable - Startpage Agent disabled",
+      "disabled": "Agent jest wyłączony",
+      "chooseModel": "Wybierz model",
+      "streaming": "Streaming...",
+      "toolDenied": "Narzędzie odrzucone",
+      "toolRunning": "Tool: {tool}",
+      "toolDone": "Tool done: {tool}",
+      "toolError": "Tool error: {tool}",
+      "toolLimitReached": "Osiągnięto limit narzędzi",
+      "aborted": "Przerwano",
+      "error": "Error: {error}",
+      "settingsSaved": "Ustawienia zapisane",
+      "chatCleared": "Chat cleared",
+      "memoryCleared": "Memory cleared",
+      "confirmSaved": "Tool confirm saved",
+      "maxIterationsSaved": "Loop limit saved"
+    },
+    "confirm": {
+      "execute": "Uruchomić narzędzie?\n{tool}\n\n{args}",
+      "clearChat": "Wyczyścić historię czatu?",
+      "clearMemory": "Wyczyścić pamięć?"
+    },
+    "messages": {
+      "toolLimitReached": "I reached the tool limit for this message (max. {max} steps)."
+    },
+    "errors": {
+      "toolDeniedByUser": "Tool execution denied by user",
+      "unknownToolError": "Unknown tool error",
+      "unknown": "Unknown",
+      "invalidHost": "Invalid host. Only http/https URLs are allowed.",
+      "invalidMemory": "Memory is invalid. Use JSON or \"key: value\" lines."
+    },
+    "systemPrompt": {
+      "name": "Name: Startpage Agent",
+      "embedded": "You are embedded in a local Startpage instance.",
+      "jsonOnly": "If you must take an action, reply ONLY with exactly one JSON line in the format {\"tool\":\"<name>\",\"args\":{...}}.",
+      "noExtra": "No extra words, no Markdown, no code block for tool calls.",
+      "allowedTools": "Use only these tools: {tools}.",
+      "normalReply": "If no action is needed, respond normally.",
+      "askMissing": "If information is missing or a tool call would be invalid, ask follow-up questions as normal text.",
+      "customPromptSection": "CUSTOM_PROMPT",
+      "memorySection": "PERSISTENT_MEMORY"
+    },
+    "tools": {
+      "descriptions": {
+        "open_url": "Open a URL",
+        "search_web": "Search with engine",
+        "set_theme_accent": "Set accent color",
+        "set_theme_mode": "auto/dark/light",
+        "set_card_style": "glass/solid/transparent/minimal",
+        "load_preset": "Load data preset",
+        "set_background_preset": "Set background preset",
+        "toggle_background_rotation": "Toggle rotation",
+        "toggle_widget": "Enable/disable widget",
+        "show_all_widgets": "Enable all widgets",
+        "hide_all_widgets": "Disable all widgets",
+        "add_quicklink": "Add quicklink",
+        "remove_quicklink": "Remove quicklink",
+        "add_todo": "Create todo",
+        "toggle_todo": "Mark todo done/undone",
+        "remove_todo": "Delete todo",
+        "clear_done_todos": "Delete completed todos",
+        "append_note": "Append notes text",
+        "set_notes": "Replace notes",
+        "clear_notes": "Clear notes",
+        "set_search_engine": "Set default engine",
+        "set_locale": "Set language",
+        "set_ui_font": "Set UI font",
+        "set_engine_enabled": "Enable/disable engine",
+        "set_shortcuts": "Set shortcuts",
+        "set_custom_feeds": "Set custom feeds",
+        "set_wordlist_inline": "Set inline wordlist",
+        "set_widget_color": "Set widget color",
+        "set_surface_color": "Set header/search color",
+        "set_weather_cities": "Set weather cities",
+        "set_transport_duration": "Set transport duration",
+        "set_transport_default_name": "Set transport default stop",
+        "set_agent_enabled": "Enable/disable Startpage Agent",
+        "set_agent_host": "Set Startpage Agent host",
+        "set_agent_confirm_mode": "Set Startpage Agent confirm mode",
+        "set_agent_model": "Set Startpage Agent model",
+        "set_agent_custom_prompt": "Set custom prompt",
+        "set_agent_memory": "Replace memory",
+        "append_agent_memory": "Append memory",
+        "clear_agent_memory": "Clear memory",
+        "read_agent_memory": "Read memory",
+        "set_news_source": "Set news source",
+        "refresh_data": "Refresh widgets",
+        "read_widget_data": "Read one widget",
+        "read_all_widgets": "Read all widgets",
+        "read_weather_data": "Read weather data",
+        "read_transport_data": "Read transport data",
+        "read_todo_data": "Read todos",
+        "read_notes_data": "Read notes",
+        "read_tiles_data": "Read favorites",
+        "read_news_data": "Read news",
+        "read_quote_data": "Read quote",
+        "read_recent_data": "Read recent actions",
+        "read_system_data": "Read system status",
+        "set_weather_station_active": "Activate weather station",
+        "add_weather_station": "Add weather station",
+        "remove_weather_station": "Remove weather station",
+        "set_weather_city": "Set/activate city"
+      }
+    }
   }
 }

@@ -142,7 +142,7 @@
 
     <footer class="muted" style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:6px">
       <div data-i18n="footer.tagline">Local‑first Dashboard · speichert nur im Browser (localStorage)</div>
-      <div>v1.9</div>
+      <div>v1.10</div>
     </footer>
   </div>
 
@@ -155,7 +155,7 @@
       </div>
       <div class="tabs" role="tablist">
         <button class="tab-btn" data-tab="general" role="tab" aria-selected="true" data-i18n="settings.tabs.general">Allgemein</button>
-        <button class="tab-btn" data-tab="ai" role="tab" id="settingsTabAi">Startpage Agent</button>
+        <button class="tab-btn" data-tab="ai" role="tab" id="settingsTabAi" data-i18n="settings.tabs.ai">Startpage Agent</button>
         <button class="tab-btn" data-tab="background" role="tab" data-i18n="settings.tabs.background">Hintergrund &amp; Erscheinung</button>
         <button class="tab-btn" data-tab="search" role="tab" data-i18n="settings.tabs.search">Suche &amp; Feeds</button>
         <button class="tab-btn" data-tab="widgets" role="tab" data-i18n="settings.tabs.widgets">Widgets</button>
@@ -186,75 +186,75 @@
           </div>
         </div>
         <div class="row">
-          <label for="aiEnabledToggle">Startpage Agent</label>
+          <label for="aiEnabledToggle" data-i18n="settings.general.agentLabel">Startpage Agent</label>
           <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
             <label style="display:inline-flex; align-items:center; gap:8px">
               <input id="aiEnabledToggle" type="checkbox" />
-              <span>Agent aktiv</span>
+              <span data-i18n="settings.general.agentEnabled">Agent aktiv</span>
             </label>
-            <div class="muted">Wenn deaktiviert, wird nichts an Ollama gesendet.</div>
+            <div class="muted" data-i18n="settings.general.agentHint">Wenn deaktiviert, wird nichts an Ollama gesendet.</div>
           </div>
         </div>
       </div>
       <div id="tab-ai" class="tab-panel" role="tabpanel">
         <div class="row">
-          <label for="startpageAgentModel">Modell</label>
+          <label for="startpageAgentModel" data-i18n="agent.settings.modelLabel">Modell</label>
           <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
             <select id="startpageAgentModel" style="min-width:200px"></select>
-            <button class="btn" id="startpageAgentLoadModels" type="button">Modelle laden</button>
-            <div class="muted" id="startpageAgentSettingsStatus" style="font-size:12px; width:100%">Bereit</div>
+            <button class="btn" id="startpageAgentLoadModels" type="button" data-i18n="agent.settings.loadModels">Modelle laden</button>
+            <div class="muted" id="startpageAgentSettingsStatus" style="font-size:12px; width:100%" data-i18n="agent.status.ready">Bereit</div>
           </div>
         </div>
         <div class="row">
-          <label for="startpageAgentHost">Ollama Host</label>
+          <label for="startpageAgentHost" data-i18n="agent.settings.hostLabel">Ollama Host</label>
           <input type="text" id="startpageAgentHost" />
         </div>
         <div class="row">
-          <label for="startpageAgentConfirmMode">Tool Confirm</label>
+          <label for="startpageAgentConfirmMode" data-i18n="agent.settings.confirmModeLabel">Tool Confirm</label>
           <select id="startpageAgentConfirmMode">
-            <option value="0">Nie</option>
-            <option value="1">Immer</option>
-            <option value="2">Nur riskant (open_url)</option>
+            <option value="0" data-i18n="agent.settings.confirmNever">Nie</option>
+            <option value="1" data-i18n="agent.settings.confirmAlways">Immer</option>
+            <option value="2" data-i18n="agent.settings.confirmRisky">Nur riskant (open_url)</option>
           </select>
         </div>
         <div class="row">
-          <label for="startpageAgentMaxIterations">Agent-Loop Limit</label>
+          <label for="startpageAgentMaxIterations" data-i18n="agent.settings.maxIterationsLabel">Agent-Loop Limit</label>
           <div>
             <div class="startpage-agent-stepper">
-              <button class="btn icon-only" id="startpageAgentMaxIterationsDec" type="button" aria-label="Loop-Limit verringern">−</button>
+              <button class="btn icon-only" id="startpageAgentMaxIterationsDec" type="button" aria-label="Loop-Limit verringern" data-i18n-aria-label="agent.settings.maxIterationsDecAria">−</button>
               <input id="startpageAgentMaxIterations" type="number" min="1" max="10" step="1" />
-              <button class="btn icon-only" id="startpageAgentMaxIterationsInc" type="button" aria-label="Loop-Limit erhöhen">+</button>
+              <button class="btn icon-only" id="startpageAgentMaxIterationsInc" type="button" aria-label="Loop-Limit erhöhen" data-i18n-aria-label="agent.settings.maxIterationsIncAria">+</button>
             </div>
-            <div class="muted" style="margin-top:6px; font-size:12px">Maximale Anzahl Tool-Iterationen pro User-Nachricht (1-10).</div>
+            <div class="muted" style="margin-top:6px; font-size:12px" data-i18n="agent.settings.maxIterationsHint">Maximale Anzahl Tool-Iterationen pro User-Nachricht (1-10).</div>
           </div>
         </div>
         <div class="row">
-          <label for="startpageAgentCustomPrompt">Custom Prompt</label>
+          <label for="startpageAgentCustomPrompt" data-i18n="agent.settings.customPromptLabel">Custom Prompt</label>
           <div>
-            <textarea id="startpageAgentCustomPrompt" rows="4" placeholder="Zusätzliche Anweisungen für den Startpage Agent..."></textarea>
-            <div class="muted" style="margin-top:6px; font-size:12px">Wird zusätzlich zum Systemprompt bei jeder Anfrage verwendet.</div>
+            <textarea id="startpageAgentCustomPrompt" rows="4" placeholder="Zusätzliche Anweisungen für den Startpage Agent..." data-i18n-placeholder="agent.settings.customPromptPlaceholder"></textarea>
+            <div class="muted" style="margin-top:6px; font-size:12px" data-i18n="agent.settings.customPromptHint">Wird zusätzlich zum Systemprompt bei jeder Anfrage verwendet.</div>
           </div>
         </div>
         <div class="row">
-          <label for="startpageAgentMemory">Memory / Erinnerungen</label>
+          <label for="startpageAgentMemory" data-i18n="agent.settings.memoryLabel">Memory / Erinnerungen</label>
           <div>
-            <textarea id="startpageAgentMemory" rows="5" placeholder="Persistente Notizen für den Agenten..."></textarea>
+            <textarea id="startpageAgentMemory" rows="5" placeholder="Persistente Notizen für den Agenten..." data-i18n-placeholder="agent.settings.memoryPlaceholder"></textarea>
             <div style="display:flex; gap:8px; margin-top:8px; flex-wrap:wrap">
-              <button class="btn" id="startpageAgentClearMemory" type="button">Memory leeren</button>
+              <button class="btn" id="startpageAgentClearMemory" type="button" data-i18n="agent.settings.clearMemory">Memory leeren</button>
             </div>
           </div>
         </div>
         <div class="row">
-          <label>Aktionen</label>
+          <label data-i18n="agent.settings.actionsLabel">Aktionen</label>
           <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
-            <button class="btn" id="startpageAgentSaveSettings" type="button">Speichern</button>
-            <button class="btn" id="startpageAgentClearChat" type="button">Chat leeren</button>
+            <button class="btn" id="startpageAgentSaveSettings" type="button" data-i18n="agent.settings.save">Speichern</button>
+            <button class="btn" id="startpageAgentClearChat" type="button" data-i18n="agent.settings.clearChat">Chat leeren</button>
           </div>
         </div>
         <div class="row">
-          <label>Capabilities</label>
+          <label data-i18n="agent.settings.capabilitiesLabel">Capabilities</label>
           <div class="startpage-agent-capabilities">
-            <div class="startpage-agent-capabilities-title">Verfügbare Tools</div>
+            <div class="startpage-agent-capabilities-title" data-i18n="agent.settings.availableToolsTitle">Verfügbare Tools</div>
             <div id="startpageAgentCapabilities"></div>
           </div>
         </div>
@@ -569,29 +569,29 @@
   </div>
 
   <!-- Startpage Agent -->
-  <button class="btn startpage-agent-fab" id="startpageAgentFab" type="button" aria-label="Startpage Agent" title="Startpage Agent">
+  <button class="btn startpage-agent-fab" id="startpageAgentFab" type="button" aria-label="Startpage Agent" title="Startpage Agent" data-i18n-aria-label="agent.ui.fabAria" data-i18n-title="agent.ui.fabTitle">
     <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11a8 8 0 0 1 16 0v4a2 2 0 0 1-2 2h-4l-3 3v-3H6a2 2 0 0 1-2-2z"/></svg>
-    <span>Startpage Agent</span>
+    <span data-i18n="agent.ui.title">Startpage Agent</span>
   </button>
   <aside class="startpage-agent-panel" id="startpageAgentPanel" aria-hidden="true">
     <div class="startpage-agent-header">
-      <div class="startpage-agent-title">Startpage Agent</div>
-      <button class="btn icon-only" id="startpageAgentSettingsToggle" type="button" aria-label="Agent Settings" title="Settings">
+      <div class="startpage-agent-title" data-i18n="agent.ui.title">Startpage Agent</div>
+      <button class="btn icon-only" id="startpageAgentSettingsToggle" type="button" aria-label="Agent Settings" title="Settings" data-i18n-aria-label="agent.ui.openSettingsAria" data-i18n-title="agent.ui.openSettingsTitle">
         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1 1 0 0 0 .2 1.1l.1.1a2 2 0 0 1-2.8 2.8l-.1-.1a1 1 0 0 0-1.1-.2 1 1 0 0 0-.6.9V20a2 2 0 0 1-4 0v-.2a1 1 0 0 0-.6-.9 1 1 0 0 0-1.1.2l-.1.1a2 2 0 0 1-2.8-2.8l.1-.1a1 1 0 0 0 .2-1.1 1 1 0 0 0-.9-.6H4a2 2 0 0 1 0-4h.2a1 1 0 0 0 .9-.6 1 1 0 0 0-.2-1.1l-.1-.1a2 2 0 0 1 2.8-2.8l.1.1a1 1 0 0 0 1.1.2 1 1 0 0 0 .6-.9V4a2 2 0 0 1 4 0v.2a1 1 0 0 0 .6.9 1 1 0 0 0 1.1-.2l.1-.1a2 2 0 0 1 2.8 2.8l-.1.1a1 1 0 0 0-.2 1.1 1 1 0 0 0 .9.6H20a2 2 0 0 1 0 4h-.2a1 1 0 0 0-.9.6z"/></svg>
       </button>
-      <button class="btn icon-only" id="startpageAgentClose" type="button" aria-label="Close Agent" title="Close">
+      <button class="btn icon-only" id="startpageAgentClose" type="button" aria-label="Close Agent" title="Close" data-i18n-aria-label="agent.ui.closeAria" data-i18n-title="agent.ui.closeTitle">
         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
     </div>
-    <div class="startpage-agent-host" id="startpageAgentModelDisplay">Modell: —</div>
+    <div class="startpage-agent-host" id="startpageAgentModelDisplay" data-i18n="agent.ui.modelDisplayDefault">Modell: —</div>
     <div class="startpage-agent-host" id="startpageAgentHostDisplay">Host: http://localhost:11434</div>
     <div class="startpage-agent-messages" id="startpageAgentMessages"></div>
     <div class="startpage-agent-composer">
-      <textarea id="startpageAgentInput" rows="3" placeholder="Nachricht an Startpage Agent..."></textarea>
-      <button class="btn" id="startpageAgentSend" type="button">Senden</button>
-      <button class="btn hidden" id="startpageAgentStop" type="button">Abbrechen</button>
+      <textarea id="startpageAgentInput" rows="3" placeholder="Nachricht an Startpage Agent..." data-i18n-placeholder="agent.ui.inputPlaceholder"></textarea>
+      <button class="btn" id="startpageAgentSend" type="button" data-i18n="agent.ui.send">Senden</button>
+      <button class="btn hidden" id="startpageAgentStop" type="button" data-i18n="agent.ui.stop">Abbrechen</button>
     </div>
-    <div class="startpage-agent-status" id="startpageAgentStatus">Bereit</div>
+    <div class="startpage-agent-status" id="startpageAgentStatus" data-i18n="agent.status.ready">Bereit</div>
   </aside>
   <script src="script.js"></script>
 </body>

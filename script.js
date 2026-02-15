@@ -1111,6 +1111,8 @@
     loadNews();
     loadWeather();
     loadTransportDepartures();
+    updateAgentHostDisplay();
+    renderAgentCapabilities();
     refreshUiSelects();
     const palette = $('#palette');
     if(palette && palette.classList.contains('open') && window.__closePalette){
@@ -4807,74 +4809,77 @@
     'set_weather_city'
   ];
   const AGENT_TOOL_DESCRIPTIONS = {
-    open_url: 'oeffnet eine URL',
-    search_web: 'suche mit Engine',
-    set_theme_accent: 'setzt Akzentfarbe',
+    open_url: 'Open a URL',
+    search_web: 'Search with engine',
+    set_theme_accent: 'Set accent color',
     set_theme_mode: 'auto/dark/light',
     set_card_style: 'glass/solid/transparent/minimal',
-    load_preset: 'laedt Daten-Preset',
-    set_background_preset: 'setzt Hintergrund-Preset',
-    toggle_background_rotation: 'Rotation an/aus',
-    toggle_widget: 'Widget ein/aus',
-    show_all_widgets: 'alle Widgets an',
-    hide_all_widgets: 'alle Widgets aus',
-    add_quicklink: 'Quicklink hinzufuegen',
-    remove_quicklink: 'Quicklink entfernen',
-    add_todo: 'Todo anlegen',
-    toggle_todo: 'Todo done/undone',
-    remove_todo: 'Todo loeschen',
-    clear_done_todos: 'erledigte Todos loeschen',
-    append_note: 'Text an Notizen anhaengen',
-    set_notes: 'Notizen ersetzen',
-    clear_notes: 'Notizen leeren',
-    set_search_engine: 'Standardsuche setzen',
-    set_locale: 'Sprache setzen',
-    set_ui_font: 'UI-Schrift setzen',
-    set_engine_enabled: 'Suchmaschine aktivieren/deaktivieren',
-    set_shortcuts: 'Shortcuts setzen',
-    set_custom_feeds: 'Custom Feeds setzen',
-    set_wordlist_inline: 'Inline-Wortliste setzen',
-    set_widget_color: 'Widget-Farbe setzen',
-    set_surface_color: 'Header-/Suche-Farbe setzen',
-    set_weather_cities: 'Wetter-Staedte setzen',
-    set_transport_duration: 'Transport-Zeitraum setzen',
-    set_transport_default_name: 'Transport-Default setzen',
-    set_agent_enabled: 'Startpage Agent an/aus',
-    set_agent_host: 'Startpage Agent Host setzen',
-    set_agent_confirm_mode: 'Startpage Agent Confirm setzen',
-    set_agent_model: 'Startpage Agent Modell setzen',
-    set_agent_custom_prompt: 'Custom Prompt setzen',
-    set_agent_memory: 'Memory ersetzen',
-    append_agent_memory: 'Memory erweitern',
-    clear_agent_memory: 'Memory leeren',
-    read_agent_memory: 'Memory lesen',
-    set_news_source: 'News-Quelle setzen',
-    refresh_data: 'Widgets aktualisieren',
-    read_widget_data: 'liest ein Widget',
-    read_all_widgets: 'liest alle Widgets',
-    read_weather_data: 'liest Wetterdaten',
-    read_transport_data: 'liest Transportdaten',
-    read_todo_data: 'liest Todos',
-    read_notes_data: 'liest Notizen',
-    read_tiles_data: 'liest Favoriten',
-    read_news_data: 'liest News',
-    read_quote_data: 'liest Quote',
-    read_recent_data: 'liest letzte Aktionen',
-    read_system_data: 'liest Systemstatus',
-    set_weather_station_active: 'Wetterstation aktivieren',
-    add_weather_station: 'Wetterstation hinzufuegen',
-    remove_weather_station: 'Wetterstation entfernen',
-    set_weather_city: 'Stadt setzen/aktivieren'
+    load_preset: 'Load data preset',
+    set_background_preset: 'Set background preset',
+    toggle_background_rotation: 'Toggle rotation',
+    toggle_widget: 'Enable/disable widget',
+    show_all_widgets: 'Enable all widgets',
+    hide_all_widgets: 'Disable all widgets',
+    add_quicklink: 'Add quicklink',
+    remove_quicklink: 'Remove quicklink',
+    add_todo: 'Create todo',
+    toggle_todo: 'Mark todo done/undone',
+    remove_todo: 'Delete todo',
+    clear_done_todos: 'Delete completed todos',
+    append_note: 'Append notes text',
+    set_notes: 'Replace notes',
+    clear_notes: 'Clear notes',
+    set_search_engine: 'Set default engine',
+    set_locale: 'Set language',
+    set_ui_font: 'Set UI font',
+    set_engine_enabled: 'Enable/disable engine',
+    set_shortcuts: 'Set shortcuts',
+    set_custom_feeds: 'Set custom feeds',
+    set_wordlist_inline: 'Set inline wordlist',
+    set_widget_color: 'Set widget color',
+    set_surface_color: 'Set header/search color',
+    set_weather_cities: 'Set weather cities',
+    set_transport_duration: 'Set transport duration',
+    set_transport_default_name: 'Set transport default stop',
+    set_agent_enabled: 'Enable/disable Startpage Agent',
+    set_agent_host: 'Set Startpage Agent host',
+    set_agent_confirm_mode: 'Set Startpage Agent confirm mode',
+    set_agent_model: 'Set Startpage Agent model',
+    set_agent_custom_prompt: 'Set custom prompt',
+    set_agent_memory: 'Replace memory',
+    append_agent_memory: 'Append memory',
+    clear_agent_memory: 'Clear memory',
+    read_agent_memory: 'Read memory',
+    set_news_source: 'Set news source',
+    refresh_data: 'Refresh widgets',
+    read_widget_data: 'Read one widget',
+    read_all_widgets: 'Read all widgets',
+    read_weather_data: 'Read weather data',
+    read_transport_data: 'Read transport data',
+    read_todo_data: 'Read todos',
+    read_notes_data: 'Read notes',
+    read_tiles_data: 'Read favorites',
+    read_news_data: 'Read news',
+    read_quote_data: 'Read quote',
+    read_recent_data: 'Read recent actions',
+    read_system_data: 'Read system status',
+    set_weather_station_active: 'Activate weather station',
+    add_weather_station: 'Add weather station',
+    remove_weather_station: 'Remove weather station',
+    set_weather_city: 'Set/activate city'
   };
-  const AGENT_SYSTEM_PROMPT_BASE = [
-    'Name: Startpage Agent',
-    'Du bist in einer lokalen Startpage eingebettet.',
-    'Wenn du eine Aktion ausfuehren musst, antworte AUSSCHLIESSLICH mit genau einer JSON-Zeile im Format {"tool":"<name>","args":{...}}.',
-    'Keine weiteren Woerter, kein Markdown, kein Codeblock bei Toolcalls.',
-    `Nutze nur diese Tools: ${AGENT_TOOL_NAMES.join(', ')}.`,
-    'Wenn keine Aktion noetig ist, antworte normal.',
-    'Wenn Infos fehlen oder ein Tool-Call nicht valide waere, stelle Rueckfragen als normale Antwort.'
-  ].join('\n');
+
+  function buildAgentSystemPromptBase(){
+    return [
+      t('agent.systemPrompt.name', null, 'Name: Startpage Agent'),
+      t('agent.systemPrompt.embedded', null, 'You are embedded in a local Startpage instance.'),
+      t('agent.systemPrompt.jsonOnly', null, 'If you must take an action, reply ONLY with exactly one JSON line in the format {"tool":"<name>","args":{...}}.'),
+      t('agent.systemPrompt.noExtra', null, 'No extra words, no Markdown, no code block for tool calls.'),
+      t('agent.systemPrompt.allowedTools', { tools: AGENT_TOOL_NAMES.join(', ') }, `Use only these tools: ${AGENT_TOOL_NAMES.join(', ')}.`),
+      t('agent.systemPrompt.normalReply', null, 'If no action is needed, respond normally.'),
+      t('agent.systemPrompt.askMissing', null, 'If information is missing or a tool call would be invalid, ask follow-up questions as normal text.')
+    ].join('\n');
+  }
 
   function getAgentCustomPrompt(){
     return String(store.get(AGENT_KEYS.customPrompt, '') || '').trim();
@@ -4958,14 +4963,14 @@
   }
 
   function buildAgentSystemPrompt(){
-    const parts = [AGENT_SYSTEM_PROMPT_BASE];
+    const parts = [buildAgentSystemPromptBase()];
     const custom = getAgentCustomPrompt();
     const memory = getAgentMemoryText();
     if(custom){
-      parts.push(`CUSTOM_PROMPT:\n${custom}`);
+      parts.push(`${t('agent.systemPrompt.customPromptSection', null, 'CUSTOM_PROMPT')}:\n${custom}`);
     }
     if(memory){
-      parts.push(`PERSISTENTE_MEMORY:\n${memory}`);
+      parts.push(`${t('agent.systemPrompt.memorySection', null, 'PERSISTENT_MEMORY')}:\n${memory}`);
     }
     return parts.join('\n\n');
   }
@@ -5181,17 +5186,21 @@
 
   function updateAgentHostDisplay(){
     const el = $('#startpageAgentHostDisplay');
-    if(el) el.textContent = `Host: ${getAgentHost()}`;
+    if(el) el.textContent = `${t('agent.ui.hostLabel', null, 'Host')}: ${getAgentHost()}`;
     const modelEl = $('#startpageAgentModelDisplay');
     const model = String(store.get(AGENT_KEYS.model, '') || '').trim();
-    if(modelEl) modelEl.textContent = `Modell: ${model || '—'}`;
+    if(modelEl) modelEl.textContent = `${t('agent.ui.modelLabel', null, 'Model')}: ${model || t('agent.ui.emptyModel', null, '-')}`;
   }
 
   function renderAgentCapabilities(){
     const wrap = $('#startpageAgentCapabilities');
     if(!wrap) return;
     wrap.innerHTML = AGENT_TOOL_NAMES
-      .map(name => `<div class="startpage-agent-cap-item"><code>${escapeHtml(name)}</code>${escapeHtml(AGENT_TOOL_DESCRIPTIONS[name] || '')}</div>`)
+      .map(name => {
+        const fallback = AGENT_TOOL_DESCRIPTIONS[name] || '';
+        const desc = t(`agent.tools.descriptions.${name}`, null, fallback);
+        return `<div class="startpage-agent-cap-item"><code>${escapeHtml(name)}</code>${escapeHtml(desc)}</div>`;
+      })
       .join('');
   }
 
@@ -5327,7 +5336,7 @@
     if(!unique.length){
       const opt = document.createElement('option');
       opt.value = '';
-      opt.textContent = 'Keine Modelle';
+      opt.textContent = t('agent.settings.noModels', null, 'No models');
       modelSelect.appendChild(opt);
       modelSelect.value = '';
       store.set(AGENT_KEYS.models, []);
@@ -5348,9 +5357,9 @@
   }
 
   async function loadAgentModels(){
-    if(!isAgentEnabled()) throw new Error('Agent ist deaktiviert');
+    if(!isAgentEnabled()) throw new Error(t('agent.status.disabled', null, 'Agent is disabled'));
     const host = getAgentHost();
-    setAgentStatus('Lade Modelle...');
+    setAgentStatus(t('agent.status.loadingModels', null, 'Loading models...'));
     try {
       const res = await fetch(`${host}/api/tags`);
       if(!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -5358,10 +5367,12 @@
       const models = Array.isArray(payload && payload.models) ? payload.models : [];
       const names = models.map(m => String((m && (m.name || m.model)) || '').trim()).filter(Boolean);
       renderAgentModels(names);
-      setAgentStatus(names.length ? 'Modelle geladen' : 'Keine Modelle gefunden');
+      setAgentStatus(names.length
+        ? t('agent.status.modelsLoaded', null, 'Models loaded')
+        : t('agent.status.noModelsFound', null, 'No models found'));
       return names;
     } catch (err){
-      setAgentStatus(`Fehler beim Laden der Modelle: ${err.message}`);
+      setAgentStatus(t('agent.status.loadModelsError', { error: err.message }, `Error loading models: ${err.message}`));
       throw err;
     }
   }
@@ -5408,7 +5419,7 @@
   async function refreshAgentRuntimeAvailability(){
     if(!isAgentEnabled()){
       applyAgentEnabledState();
-      setAgentStatus('Startpage Agent deaktiviert');
+      setAgentStatus(t('agent.status.disabledNamed', null, 'Startpage Agent disabled'));
       return false;
     }
     const available = await checkOllamaAvailable();
@@ -5417,12 +5428,12 @@
       applyAgentEnabledState();
       const aiToggle = $('#aiEnabledToggle');
       if(aiToggle) aiToggle.checked = false;
-      setAgentStatus('Ollama nicht erreichbar - Startpage Agent deaktiviert');
+      setAgentStatus(t('agent.status.ollamaUnavailableDisabled', null, 'Ollama unavailable - Startpage Agent disabled'));
       if($('#settingsModal') && $('#settingsModal').classList.contains('open')) fillSettings();
       return false;
     }
     setAgentAvailability(available);
-    setAgentStatus('Bereit');
+    setAgentStatus(t('agent.status.ready', null, 'Ready'));
     return true;
   }
 
@@ -6189,7 +6200,8 @@
     const needsConfirm = mode === 1 || (mode === 2 && risky);
     if(!needsConfirm) return true;
     const pretty = JSON.stringify(args, null, 2);
-    return !!(await uiConfirm(`Tool ausfuehren?\n${tool}\n\n${pretty}`, 'Startpage Agent'));
+    const message = t('agent.confirm.execute', { tool, args: pretty }, `Run tool?\n${tool}\n\n${pretty}`);
+    return !!(await uiConfirm(message, t('agent.ui.title', null, 'Startpage Agent')));
   }
 
   function buildAgentModelMessages(){
@@ -6201,7 +6213,7 @@
 
   async function sendAgentMessage(){
     if(!isAgentEnabled()){
-      setAgentStatus('Agent ist deaktiviert');
+      setAgentStatus(t('agent.status.disabled', null, 'Agent is disabled'));
       return;
     }
     if(agentState.busy) return;
@@ -6211,14 +6223,14 @@
     if(!text) return;
     const model = getAgentModel();
     if(!model){
-      setAgentStatus('Bitte ein Modell waehlen');
+      setAgentStatus(t('agent.status.chooseModel', null, 'Please select a model'));
       return;
     }
     appendAgentHistory({ role: 'user', content: text });
     renderAgentMessages(true);
     input.value = '';
     setAgentBusy(true);
-    setAgentStatus('Streaming...');
+    setAgentStatus(t('agent.status.streaming', null, 'Streaming...'));
     const maxIterations = getAgentMaxToolIterations();
     let iteration = 0;
     try {
@@ -6242,35 +6254,38 @@
         if(!toolCall){
           appendAgentHistory({ role: 'assistant', content: finalText || '...' });
           renderAgentMessages(false);
-          setAgentStatus('Bereit');
+          setAgentStatus(t('agent.status.ready', null, 'Ready'));
           return;
         }
         appendAgentHistory({ role: 'assistant', content: finalText });
         const confirm = await agentMaybeConfirmTool(toolCall.tool, toolCall.args);
         if(!confirm){
-          const denied = { ok: false, error: 'Tool-Ausfuehrung vom Benutzer abgelehnt' };
+          const denied = { ok: false, error: t('agent.errors.toolDeniedByUser', null, 'Tool execution denied by user') };
           appendAgentHistory({ role: 'user', content: `TOOL_RESULT ${toolCall.tool}: ${JSON.stringify(denied)}` });
-          setAgentStatus('Tool abgelehnt');
+          setAgentStatus(t('agent.status.toolDenied', null, 'Tool denied'));
           continue;
         }
         let result;
         try {
-          setAgentStatus(`Tool: ${toolCall.tool}`);
+          setAgentStatus(t('agent.status.toolRunning', { tool: toolCall.tool }, `Tool: ${toolCall.tool}`));
           result = await runAgentTool(toolCall.tool, toolCall.args);
         } catch (err){
-          result = { ok: false, error: err && err.message ? err.message : 'Unbekannter Tool-Fehler' };
+          result = { ok: false, error: err && err.message ? err.message : t('agent.errors.unknownToolError', null, 'Unknown tool error') };
         }
         appendAgentHistory({ role: 'user', content: `TOOL_RESULT ${toolCall.tool}: ${JSON.stringify(result)}` });
-        setAgentStatus(result && result.ok ? `Tool erledigt: ${toolCall.tool}` : `Tool-Fehler: ${toolCall.tool}`);
+        setAgentStatus(result && result.ok
+          ? t('agent.status.toolDone', { tool: toolCall.tool }, `Tool done: ${toolCall.tool}`)
+          : t('agent.status.toolError', { tool: toolCall.tool }, `Tool error: ${toolCall.tool}`));
       }
-      appendAgentHistory({ role: 'assistant', content: `Ich habe das Tool-Limit fuer diese Nachricht erreicht (max. ${maxIterations} Schritte).` });
+      appendAgentHistory({ role: 'assistant', content: t('agent.messages.toolLimitReached', { max: maxIterations }, `I reached the tool limit for this message (max. ${maxIterations} steps).`) });
       renderAgentMessages(false);
-      setAgentStatus('Tool-Limit erreicht');
+      setAgentStatus(t('agent.status.toolLimitReached', null, 'Tool limit reached'));
     } catch (err){
       if(err && err.name === 'AbortError'){
-        setAgentStatus('Abgebrochen');
+        setAgentStatus(t('agent.status.aborted', null, 'Aborted'));
       } else {
-        setAgentStatus(`Fehler: ${err && err.message ? err.message : 'Unbekannt'}`);
+        const msg = err && err.message ? err.message : t('agent.errors.unknown', null, 'Unknown');
+        setAgentStatus(t('agent.status.error', { error: msg }, `Error: ${msg}`));
       }
       renderAgentMessages(false);
     } finally {
@@ -6285,7 +6300,7 @@
     if(agentState.abortController){
       agentState.abortController.abort();
       agentState.abortController = null;
-      setAgentStatus('Abgebrochen');
+      setAgentStatus(t('agent.status.aborted', null, 'Aborted'));
     }
   }
 
@@ -6300,7 +6315,7 @@
     renderAgentMessages(true);
     setAgentBusy(false);
     if(!isAgentEnabled()){
-      setAgentStatus('Agent deaktiviert');
+      setAgentStatus(t('agent.status.disabled', null, 'Agent is disabled'));
     }
     const existingModels = store.get(AGENT_KEYS.models, []);
     renderAgentModels(existingModels);
@@ -6337,7 +6352,10 @@
         const hostRaw = els.hostInput ? els.hostInput.value : '';
         const host = normalizeAgentHost(hostRaw);
         if(!host){
-          await uiAlert('Host ungueltig. Erlaubt sind nur http/https URLs.', 'Startpage Agent');
+          await uiAlert(
+            t('agent.errors.invalidHost', null, 'Invalid host. Only http/https URLs are allowed.'),
+            t('agent.ui.title', null, 'Startpage Agent')
+          );
           return;
         }
         const mode = els.confirmMode ? String(els.confirmMode.value || '2') : '2';
@@ -6349,7 +6367,10 @@
           try{
             memoryObj = parseAgentMemoryInput(els.memory.value || '');
           }catch{
-            await uiAlert('Memory ist ungueltig. Nutze JSON oder "key: value"-Zeilen.', 'Startpage Agent');
+            await uiAlert(
+              t('agent.errors.invalidMemory', null, 'Memory is invalid. Use JSON or "key: value" lines.'),
+              t('agent.ui.title', null, 'Startpage Agent')
+            );
             return;
           }
         }
@@ -6362,25 +6383,31 @@
         updateAgentHostDisplay();
         await refreshAgentRuntimeAvailability();
         if(els.memory) els.memory.value = getAgentMemoryText();
-        setAgentStatus('Settings gespeichert');
+        setAgentStatus(t('agent.status.settingsSaved', null, 'Settings saved'));
       });
     }
     if(els.clearChat){
       els.clearChat.addEventListener('click', async ()=>{
-        const ok = await uiConfirm('Chatverlauf wirklich loeschen?', 'Startpage Agent');
+        const ok = await uiConfirm(
+          t('agent.confirm.clearChat', null, 'Clear chat history?'),
+          t('agent.ui.title', null, 'Startpage Agent')
+        );
         if(!ok) return;
         setAgentHistory([]);
         renderAgentMessages(true);
-        setAgentStatus('Chat geleert');
+        setAgentStatus(t('agent.status.chatCleared', null, 'Chat cleared'));
       });
     }
     if(els.clearMemory){
       els.clearMemory.addEventListener('click', async ()=>{
-        const ok = await uiConfirm('Memory wirklich loeschen?', 'Startpage Agent');
+        const ok = await uiConfirm(
+          t('agent.confirm.clearMemory', null, 'Clear memory?'),
+          t('agent.ui.title', null, 'Startpage Agent')
+        );
         if(!ok) return;
         setAgentMemoryObject({});
         if(els.memory) els.memory.value = '';
-        setAgentStatus('Memory geleert');
+        setAgentStatus(t('agent.status.memoryCleared', null, 'Memory cleared'));
       });
     }
     if(els.confirmMode){
@@ -6388,7 +6415,7 @@
         const mode = Number(els.confirmMode.value);
         const safeMode = mode === 0 || mode === 1 || mode === 2 ? mode : 2;
         store.set(AGENT_KEYS.confirmMode, safeMode);
-        setAgentStatus('Tool Confirm gespeichert');
+        setAgentStatus(t('agent.status.confirmSaved', null, 'Tool confirm saved'));
       });
     }
     if(els.maxIterations){
@@ -6396,7 +6423,7 @@
         const next = clampAgentMaxIterations(els.maxIterations.value);
         els.maxIterations.value = String(next);
         store.set(AGENT_KEYS.maxIterations, next);
-        setAgentStatus('Loop-Limit gespeichert');
+        setAgentStatus(t('agent.status.maxIterationsSaved', null, 'Loop limit saved'));
       });
     }
     const adjustIterations = delta=>{
@@ -6405,7 +6432,7 @@
       const next = clampAgentMaxIterations(current + delta);
       els.maxIterations.value = String(next);
       store.set(AGENT_KEYS.maxIterations, next);
-      setAgentStatus('Loop-Limit gespeichert');
+      setAgentStatus(t('agent.status.maxIterationsSaved', null, 'Loop limit saved'));
     };
     if(els.maxIterationsDec){
       els.maxIterationsDec.addEventListener('click', ()=> adjustIterations(-1));

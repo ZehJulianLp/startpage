@@ -1,7 +1,7 @@
 # Startpage
 
 ## Overview
-Startpage is a customizable dashboard-style browser start page. Search, weather, tasks, notes, news, and system status run fully in the browser (localStorage). Version: **v1.9**. Live: https://julianverse.de/startpage/
+Startpage is a customizable dashboard-style browser start page. Search, weather, tasks, notes, news, system status, and the integrated Startpage Agent run fully in the browser (localStorage). Version: **v1.10**. Live: https://julianverse.de/startpage/
 
 ## Core Features
 - Quick search: Multiple engines, bang shortcuts (`!g`, `!ddg`, `!bing`, `!yt`, `!wiki`, `!maps`), custom shortcuts, and autocomplete (bangs, shortcuts, recent searches, global wordlist + preset wordlist).
@@ -16,6 +16,7 @@ Startpage is a customizable dashboard-style browser start page. Search, weather,
 - Layout and styling: Dark/Light/Auto theme, card styles (glass, solid, transparent, soft minimal), widget colors, dedicated header/search colors, and a "Tint widgets" action.
 - Command palette: `Ctrl/Cmd+K` for quick actions (theme, tiles, widget refresh, and more).
 - Data: JSON export/import plus data presets from `assets/presets/` (starter, coding, gaming, minimal, productivity, reading, art, privacy, student, finance); local user presets in `assets/user-presets/` are auto-detected.
+- Startpage Agent: Docked AI chat with Ollama (`/api/tags`, `/api/chat` stream), persistent chat history, model selection, tool-confirm modes, configurable agent loop limit, custom prompt + persistent memory, and agentic tools for reading/updating widgets/settings.
 
 ## Project Structure
 - `index.html` - Main markup.
