@@ -706,6 +706,276 @@
     .palette-item .k { margin-left:auto; color: var(--muted); font-size:12px }
     .palette-empty { padding:12px; color: var(--muted); font-size:14px }
 
+    /* Startpage Agent */
+    .startpage-agent-fab {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 920;
+      min-height: 52px;
+      padding: 10px 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .startpage-agent-panel {
+      position: fixed;
+      right: 20px;
+      bottom: 84px;
+      width: min(460px, calc(100vw - 24px));
+      height: min(72vh, 700px);
+      z-index: 919;
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+    }
+    .startpage-agent-panel.open {
+      display: flex;
+      animation: modal-pop var(--anim-fast) var(--anim-ease);
+    }
+    .startpage-agent-header {
+      display: grid;
+      grid-template-columns: minmax(120px, 1fr) auto auto;
+      grid-template-areas:
+        "title settings close";
+      gap: 8px;
+      align-items: center;
+      padding: 12px 12px 8px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .startpage-agent-title {
+      grid-area: title;
+      min-width: 0;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .startpage-agent-header select {
+      grid-area: model;
+      min-width: 0;
+      width: 100%;
+      min-height: 40px;
+      padding: 8px 10px;
+      font-size: 14px;
+    }
+    #startpageAgentLoadModels {
+      grid-area: load;
+      min-width: 0;
+      white-space: nowrap;
+    }
+    #startpageAgentSettingsToggle {
+      grid-area: settings;
+    }
+    #startpageAgentClose {
+      grid-area: close;
+      justify-self: end;
+    }
+    .startpage-agent-host {
+      padding: 8px 12px;
+      font-size: 12px;
+      color: var(--muted);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .startpage-agent-settings {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      background: color-mix(in srgb, var(--bg-soft) 75%, transparent);
+    }
+    .startpage-agent-settings.hidden {
+      display: none;
+    }
+    .startpage-agent-settings-row {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 8px;
+      align-items: center;
+      font-size: 13px;
+    }
+    .startpage-agent-settings-row:last-child {
+      grid-template-columns: 1fr;
+    }
+    .startpage-agent-capabilities {
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 8px;
+      margin-top: 2px;
+    }
+    .startpage-agent-stepper {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .startpage-agent-stepper .btn.icon-only {
+      width: 38px;
+      min-width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      font-size: 18px;
+      line-height: 1;
+      padding: 0;
+    }
+    #startpageAgentMaxIterations {
+      width: 110px;
+      min-width: 110px;
+      min-height: 46px;
+      height: 46px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      outline: none;
+      color: var(--fg);
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 1.2;
+      font-variant-numeric: tabular-nums;
+      text-align: center;
+      background: var(--bg-soft);
+      appearance: textfield;
+      -moz-appearance: textfield;
+      padding-right: 12px;
+    }
+    #startpageAgentMaxIterations::-webkit-outer-spin-button,
+    #startpageAgentMaxIterations::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    .startpage-agent-capabilities-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    #startpageAgentCapabilities {
+      display: grid;
+      gap: 6px;
+      max-height: 180px;
+      overflow: auto;
+      padding-right: 4px;
+    }
+    .startpage-agent-cap-item {
+      font-size: 12px;
+      line-height: 1.35;
+      background: color-mix(in srgb, var(--bg) 70%, transparent);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 8px;
+      padding: 6px 8px;
+    }
+    .startpage-agent-cap-item code {
+      font-size: 11px;
+      margin-right: 6px;
+    }
+    .startpage-agent-messages {
+      flex: 1;
+      overflow: auto;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background:
+        radial-gradient(600px 220px at 0% 0%, color-mix(in srgb, var(--accent) 8%, transparent), transparent 60%),
+        linear-gradient(180deg, color-mix(in srgb, var(--card) 92%, transparent), color-mix(in srgb, var(--bg-soft) 86%, transparent));
+    }
+    .startpage-agent-msg {
+      max-width: 92%;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: var(--bg-soft);
+      font-size: 14px;
+      line-height: 1.5;
+      word-break: break-word;
+    }
+    .startpage-agent-msg.user {
+      align-self: flex-end;
+      background: color-mix(in srgb, var(--accent) 18%, var(--bg-soft));
+      border-color: color-mix(in srgb, var(--accent) 35%, rgba(255,255,255,.10));
+    }
+    .startpage-agent-msg.assistant {
+      align-self: flex-start;
+    }
+    .startpage-agent-msg pre {
+      margin: 8px 0;
+      padding: 10px;
+      border-radius: 10px;
+      overflow: auto;
+      background: color-mix(in srgb, var(--bg) 90%, transparent);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .startpage-agent-msg code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12px;
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 6px;
+      padding: 1px 4px;
+    }
+    .startpage-agent-msg pre code {
+      background: transparent;
+      border: none;
+      padding: 0;
+    }
+    .startpage-agent-msg p {
+      margin: 0 0 8px;
+    }
+    .startpage-agent-msg p:last-child {
+      margin-bottom: 0;
+    }
+    .startpage-agent-msg ul,
+    .startpage-agent-msg ol {
+      margin: 0 0 8px 18px;
+      padding: 0;
+    }
+    .startpage-agent-msg h1,
+    .startpage-agent-msg h2,
+    .startpage-agent-msg h3,
+    .startpage-agent-msg h4,
+    .startpage-agent-msg h5,
+    .startpage-agent-msg h6 {
+      margin: 0 0 8px;
+      line-height: 1.3;
+    }
+    .startpage-agent-composer {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      align-items: end;
+      padding: 10px 12px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      background: color-mix(in srgb, var(--bg-soft) 78%, transparent);
+    }
+    .startpage-agent-composer textarea {
+      resize: none;
+      min-height: 72px;
+      max-height: 180px;
+      font-size: 14px;
+      padding: 10px 12px;
+    }
+    .startpage-agent-composer .hidden {
+      display: none;
+    }
+    .startpage-agent-status {
+      padding: 6px 12px 10px;
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,.06);
+      background: color-mix(in srgb, var(--bg-soft) 78%, transparent);
+    }
+
     /* Onboarding */
     .onboarding-sheet { max-width: 760px; }
     .onb-header { display:flex; align-items:center; justify-content:space-between; gap:12px; }
@@ -732,6 +1002,33 @@
     @media (max-width: 640px) {
       .tiles { grid-template-columns: repeat(2, 1fr); }
       .time h1 { font-size: 40px }
+      .startpage-agent-fab {
+        right: 12px;
+        bottom: 12px;
+        min-height: 46px;
+        padding: 8px 12px;
+        font-size: 13px;
+      }
+      .startpage-agent-panel {
+        right: 12px;
+        bottom: 72px;
+        width: calc(100vw - 24px);
+        height: min(78vh, 720px);
+      }
+      .startpage-agent-header {
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-areas:
+          "title close"
+          "settings settings";
+        gap: 6px;
+      }
+      .startpage-agent-title {
+        min-width: 0;
+      }
+      .startpage-agent-header select {
+        width: 100%;
+        min-width: 0;
+      }
     }
 
     body:not(.reduce-motion) .time,
