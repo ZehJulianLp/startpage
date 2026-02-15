@@ -4744,6 +4744,7 @@
   };
 
   const AGENT_DEFAULT_HOST = 'http://localhost:11434';
+  const AGENT_REQUIRED_ORIGIN = 'https://julianverse.de';
   const AGENT_DEFAULT_MAX_TOOL_ITERATIONS = 3;
   const AGENT_MIN_TOOL_ITERATIONS = 1;
   const AGENT_MAX_TOOL_ITERATIONS = 10;
@@ -5033,6 +5034,15 @@
     } catch {
       return null;
     }
+  }
+
+  function getAgentCorsHint(){
+    return `Setze OLLAMA_ORIGINS=${AGENT_REQUIRED_ORIGIN} und starte Ollama neu.`;
+  }
+
+  function withAgentCorsHint(message){
+    const base = String(message || '').trim();
+    return `${base} ${getAgentCorsHint()}`.trim();
   }
 
   function getAgentHistory(){
@@ -5362,7 +5372,13 @@
     setAgentStatus(t('agent.status.loadingModels', null, 'Loading models...'));
     try {
       const res = await fetch(`${host}/api/tags`);
-      if(!res.ok) throw new Error(`HTTP ${res.status}`);
+      if(!res.ok){
+        const isCorsLike = res.status === 403;
+        const msg = isCorsLike
+          ? withAgentCorsHint(`HTTP ${res.status}`)
+          : `HTTP ${res.status}`;
+        throw new Error(msg);
+      }
       const payload = await res.json();
       const models = Array.isArray(payload && payload.models) ? payload.models : [];
       const names = models.map(m => String((m && (m.name || m.model)) || '').trim()).filter(Boolean);
@@ -5372,7 +5388,11 @@
         : t('agent.status.noModelsFound', null, 'No models found'));
       return names;
     } catch (err){
-      setAgentStatus(t('agent.status.loadModelsError', { error: err.message }, `Error loading models: ${err.message}`));
+      const errMsg = String(err && err.message || 'Unknown error');
+      const hinted = /failed to fetch|cors|http 403/i.test(errMsg)
+        ? withAgentCorsHint(errMsg)
+        : errMsg;
+      setAgentStatus(t('agent.status.loadModelsError', { error: hinted }, `Error loading models: ${hinted}`));
       throw err;
     }
   }
@@ -5428,7 +5448,7 @@
       applyAgentEnabledState();
       const aiToggle = $('#aiEnabledToggle');
       if(aiToggle) aiToggle.checked = false;
-      setAgentStatus(t('agent.status.ollamaUnavailableDisabled', null, 'Ollama unavailable - Startpage Agent disabled'));
+      setAgentStatus(withAgentCorsHint(t('agent.status.ollamaUnavailableDisabled', null, 'Ollama unavailable - Startpage Agent disabled')));
       if($('#settingsModal') && $('#settingsModal').classList.contains('open')) fillSettings();
       return false;
     }
