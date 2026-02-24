@@ -1,7 +1,13 @@
-﻿# Startpage
+﻿![Startpage Screenshot](assets/img/screenshot.png)
+
+# Startpage
 
 ## Overview
-Startpage is a customizable dashboard-style browser start page. Search, weather, tasks, notes, news, system status, and the integrated Startpage Agent run fully in the browser (localStorage). Version: **v1.11.2**. Live: https://julianverse.de/startpage/
+Startpage is a **local-first browser start page** designed to replace the traditional new tab with a personal dashboard you fully control.
+
+Everything runs entirely in the browser — no accounts, no backend, no tracking. Search, widgets, notes, weather, and the integrated Startpage Agent live locally in your browser and adapt to your workflow and style.
+
+Version: **v1.11.2** · Live: https://julianverse.de/startpage/
 
 ## Core Features
 - Quick search: Multiple engines, bang shortcuts (`!g`, `!ddg`, `!bing`, `!yt`, `!wiki`, `!maps`), custom shortcuts, and autocomplete (bangs, shortcuts, recent searches, global wordlist + preset wordlist).
@@ -67,3 +73,4 @@ Optional automated E2E tests (Playwright/Cypress) can be placed under `tests/*.e
 
 ## License
 MIT License (see `LICENSE`).
+
