@@ -158,7 +158,9 @@
   },
   "recent": {
     "title": "Captains log: Recent",
-    "note": "Captains log: Note: Only actions from this start page (clicked tiles & searches)."
+    "note": "Captains log: Note: Only actions from this start page (clicked tiles & searches).",
+    "clear": "Clear data",
+    "clearConfirm": "Delete recent data?"
   },
   "system": {
     "title": "Captains log: System status",
@@ -237,7 +239,10 @@
       "widgetColorsLabel": "Captains log: Widget colors",
       "weatherCitiesLabel": "Weather cities",
       "weatherCitiesPlaceholder": "One city per line, e.g. Hanover\nBerlin\nHamburg",
-      "weatherCitiesNote": "One city per line. The first entry becomes active if the previous active city is not included."
+      "weatherCitiesNote": "One city per line. The first entry becomes active if the previous active city is not included.",
+      "recentEntriesLabel": "Recent entries",
+      "recentEntriesDecAria": "Decrease recent entries",
+      "recentEntriesIncAria": "Increase recent entries"
     },
     "data": {
       "label": "Captains log: Data",

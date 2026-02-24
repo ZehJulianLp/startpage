@@ -158,7 +158,9 @@
   },
   "recent": {
     "title": "Zuletzt (title)",
-    "note": "Hinweis: / Zeigt nur Aktionen von dieser Startseite (geklickte Kacheln & Suchen)."
+    "note": "Hinweis: / Zeigt nur Aktionen von dieser Startseite (geklickte Kacheln & Suchen).",
+    "clear": "Clear data",
+    "clearConfirm": "Delete recent data?"
   },
   "system": {
     "title": "Systemstatus (title)",
@@ -237,7 +239,10 @@
       "widgetColorsLabel": "Widget-Farben EN",
       "weatherCitiesLabel": "Weather-Städte",
       "weatherCitiesPlaceholder": "Eine Stadt pro Zeile, z.B. Hannover Berlin Hamburg",
-      "weatherCitiesNote": "Eine / Stadt pro Zeile. Der erste Eintrag wird aktiv, falls die bisher aktive Stadt nicht enthalten ist."
+      "weatherCitiesNote": "Eine / Stadt pro Zeile. Der erste Eintrag wird aktiv, falls die bisher aktive Stadt nicht enthalten ist.",
+      "recentEntriesLabel": "Recent entries",
+      "recentEntriesDecAria": "Decrease recent entries",
+      "recentEntriesIncAria": "Increase recent entries"
     },
     "data": {
       "label": "Data (label)",

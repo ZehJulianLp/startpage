@@ -158,7 +158,9 @@
   },
   "recent": {
     "title": "Ostatnie",
-    "note": "Uwaga: pokazuje tylko dziaoania z tej strony (klikniete kafelki i wyszukiwania)."
+    "note": "Uwaga: pokazuje tylko dziaoania z tej strony (klikniete kafelki i wyszukiwania).",
+    "clear": "Wyczysc dane",
+    "clearConfirm": "Usunac ostatnie dane?"
   },
   "system": {
     "title": "Status systemu",
@@ -237,7 +239,10 @@
       "widgetColorsLabel": "Kolory widgetow",
       "weatherCitiesLabel": "Weather cities",
       "weatherCitiesPlaceholder": "One city per line, e.g. Hanover\nBerlin\nHamburg",
-      "weatherCitiesNote": "One city per line. The first entry becomes active if the previous active city is not included."
+      "weatherCitiesNote": "One city per line. The first entry becomes active if the previous active city is not included.",
+      "recentEntriesLabel": "Ostatnie wpisy",
+      "recentEntriesDecAria": "Zmniejsz liczbe ostatnich wpisow",
+      "recentEntriesIncAria": "Zwieksz liczbe ostatnich wpisow"
     },
     "data": {
       "label": "Dane",

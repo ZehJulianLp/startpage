@@ -4,14 +4,14 @@
   },
   "common": {
     "link": "Link",
-    "delete": "Löschen",
+    "delete": "LÃ¶schen",
     "remove": "Entfernen",
     "save": "Speichern",
     "loading": "Lade...",
     "loadError": "Fehler beim Laden",
     "noMatches": "Keine Treffer",
-    "emptyDash": "—",
-    "dash": "–",
+    "emptyDash": "â€”",
+    "dash": "â€“",
     "cancel": "Abbrechen",
     "ok": "OK",
     "default": "Standard"
@@ -23,7 +23,7 @@
     "settingsAria": "Einstellungen oeffnen"
   },
   "search": {
-    "placeholder": "Suche… (z. B. !yt lo-fi, !etc Home)",
+    "placeholder": "Sucheâ€¦ (z. B. !yt lo-fi, !etc Home)",
     "engine": {
       "google": "Google",
       "ddg": "DuckDuckGo",
@@ -42,22 +42,22 @@
         "word": "Wort"
       }
     },
-    "recentShortcut": "Shortcut {shortcut} – {query}",
-    "recentSearch": "Suche ({engine}) – {query}",
+    "recentShortcut": "Shortcut {shortcut} â€“ {query}",
+    "recentSearch": "Suche ({engine}) â€“ {query}",
     "submitAria": "Suche starten"
   },
   "todo": {
     "title": "To-Do",
-    "placeholder": "Neue Aufgabe…",
-    "add": "Hinzufügen",
+    "placeholder": "Neue Aufgabeâ€¦",
+    "add": "HinzufÃ¼gen",
     "clearDoneTitle": "Erledigte entfernen",
-    "clearDone": "✓ löschen",
+    "clearDone": "âœ“ lÃ¶schen",
     "doneAria": "Fertig",
     "prompt": "Todo"
   },
   "notes": {
     "title": "Notizen",
-    "placeholder": "Schreib dir schnell was auf…",
+    "placeholder": "Schreib dir schnell was aufâ€¦",
     "prompt": "Notiz"
   },
   "tiles": {
@@ -67,9 +67,9 @@
     "edit": "Bearbeiten",
     "promptTitle": "Titel",
     "promptUrl": "URL",
-    "invalidUrl": "Ungültige URL",
+    "invalidUrl": "UngÃ¼ltige URL",
     "promptTitleNew": "Titel der Kachel",
-    "promptUrlNew": "URL (https://…)",
+    "promptUrlNew": "URL (https://â€¦)",
     "resetConfirm": "Standard-Kacheln wiederherstellen?",
     "dialog": {
       "titleLabel": "Titel",
@@ -80,15 +80,15 @@
   },
   "weather": {
     "title": "Wetter heute",
-    "cityPlaceholder": "Stadt eingeben…",
+    "cityPlaceholder": "Stadt eingebenâ€¦",
     "setCity": "Setzen",
-    "pickLocation": "Ort wählen…",
+    "pickLocation": "Ort wÃ¤hlenâ€¦",
     "source": "Quelle: Open-Meteo",
     "loading": "Lade Wetter...",
     "prompt": "Ort eingeben, um Wetter zu laden.",
-    "tempEmpty": "—°C",
-    "tempEmptyShort": "—°",
-    "minmaxEmpty": "— / — °C",
+    "tempEmpty": "â€”Â°C",
+    "tempEmptyShort": "â€”Â°",
+    "minmaxEmpty": "â€” / â€” Â°C",
     "noForecast": "Keine Prognose",
     "errors": {
       "geocodingFailed": "Geocoding fehlgeschlagen",
@@ -99,14 +99,14 @@
     },
     "codes": {
       "0": "Klar",
-      "1": "Überwiegend klar",
+      "1": "Ãœberwiegend klar",
       "2": "Wechselhaft",
-      "3": "Bewölkt",
+      "3": "BewÃ¶lkt",
       "45": "Nebel",
       "48": "Nebel",
-      "51": "Sprühregen",
-      "53": "Sprühregen",
-      "55": "Sprühregen",
+      "51": "SprÃ¼hregen",
+      "53": "SprÃ¼hregen",
+      "55": "SprÃ¼hregen",
       "61": "Regen",
       "63": "Regen",
       "65": "Starker Regen",
@@ -124,28 +124,28 @@
     "duration90": "90 min",
     "duration120": "120 min",
     "refreshTitle": "Neu laden",
-    "searchPlaceholder": "Station suchen…",
-    "noneSelected": "Keine Station gewählt",
+    "searchPlaceholder": "Station suchenâ€¦",
+    "noneSelected": "Keine Station gewÃ¤hlt",
     "source": "Quelle: transport.rest",
     "minQuery": "Mindestens {count} Zeichen",
     "noMatches": "Keine Treffer",
     "proxyTimeout": "Proxy Timeout",
     "loadError": "Fehler beim Laden",
     "noDepartures": "Keine Abfahrten",
-    "selectStation": "Station auswählen...",
+    "selectStation": "Station auswÃ¤hlen...",
     "type": {
       "station": "Station",
       "stop": "Stop"
     },
     "platform": "Gl. {platform}",
-    "cancelled": "Fällt aus",
+    "cancelled": "FÃ¤llt aus",
     "refreshAria": "Transport neu laden"
   },
   "quote": {
     "title": "Quote / Nerd-Impulse",
     "list": [
       "Move fast, refactor often.",
-      "Accessibility isn't a feature – it's the default.",
+      "Accessibility isn't a feature â€“ it's the default.",
       "Done > Perfect. Iterate.",
       "If it's not monitored, it doesn't exist.",
       "Good UX is invisible. Bad UX is unforgettable.",
@@ -158,16 +158,18 @@
   },
   "recent": {
     "title": "Zuletzt",
-    "note": "Hinweis: Zeigt nur Aktionen von dieser Startseite (geklickte Kacheln & Suchen)."
+    "note": "Hinweis: Zeigt nur Aktionen von dieser Startseite (geklickte Kacheln & Suchen).",
+    "clear": "Daten loeschen",
+    "clearConfirm": "Recent-Daten wirklich loeschen?"
   },
   "system": {
     "title": "Systemstatus",
-    "loading": "Lade…",
+    "loading": "Ladeâ€¦",
     "ram": "RAM: {value} GB",
     "cpu": "CPU-Kerne: {value}",
-    "network": "Netz: {downlink} Mbit/s · {type}{saveData}",
-    "saveData": " · SaveData",
-    "noData": "Keine Daten verfügbar"
+    "network": "Netz: {downlink} Mbit/s Â· {type}{saveData}",
+    "saveData": " Â· SaveData",
+    "noData": "Keine Daten verfÃ¼gbar"
   },
   "news": {
     "title": "News",
@@ -177,11 +179,11 @@
     "refreshAria": "News neu laden"
   },
   "footer": {
-    "tagline": "Local-first Dashboard · speichert nur im Browser (localStorage)"
+    "tagline": "Local-first Dashboard Â· speichert nur im Browser (localStorage)"
   },
   "settings": {
     "title": "Einstellungen",
-    "close": "Schließen",
+    "close": "SchlieÃŸen",
     "tabs": {
       "general": "Allgemein",
       "background": "Hintergrund & Erscheinung",
@@ -202,30 +204,30 @@
     },
     "search": {
       "engines": "Suchmaschinen",
-      "bangsNote": "Unterstützte Bang-Shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Eigene Shortcuts unten",
-      "wordlistLabel": "Wortliste für Autocomplete",
+      "bangsNote": "UnterstÃ¼tzte Bang-Shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Eigene Shortcuts unten",
+      "wordlistLabel": "Wortliste fÃ¼r Autocomplete",
       "wordlistPlaceholder": "Begriffe zeilenweise oder mit Komma getrennt",
       "wordlistSave": "Speichern",
       "wordlistReset": "Leeren",
       "wordlistNote": "Globale Wortliste (assets/wordlist.json) und die Preset-Wortliste werden gemerged. Leer lassen, um nur die globale Liste zu nutzen.",
       "shortcutsLabel": "Eigene !Shortcuts",
       "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
-      "shortcutsNote": "Verwende <code>{q}</code> als Platzhalter für die Suchphrase. Ohne <code>{q}</code> wird <code>?q=...</code> angehängt.",
+      "shortcutsNote": "Verwende <code>{q}</code> als Platzhalter fÃ¼r die Suchphrase. Ohne <code>{q}</code> wird <code>?q=...</code> angehÃ¤ngt.",
       "feedsLabel": "Custom RSS-Feeds",
       "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
       "feedsNote": "JSON: Name - Feed-URL. Diese Liste wird mit den Standardfeeds gemerged.",
-      "invalidShortcuts": "Ungültiges Shortcuts-JSON",
-      "invalidFeeds": "Ungültiges Feeds-JSON"
+      "invalidShortcuts": "UngÃ¼ltiges Shortcuts-JSON",
+      "invalidFeeds": "UngÃ¼ltiges Feeds-JSON"
     },
     "widgets": {
       "visible": "Widgets sichtbar",
       "defaultCityLabel": "Standard-Stadt (Wetter)",
       "defaultCityPlaceholder": "z.B. Hannover",
       "defaultTransportLabel": "Standard-Haltestelle (Transport)",
-      "defaultTransportPlaceholder": "Station suchen…",
+      "defaultTransportPlaceholder": "Station suchenâ€¦",
       "cardStyleLabel": "Kachel-Stil",
       "cardStyleGlass": "Glas (Standard)",
-      "cardStyleSolid": "Vollfläche",
+      "cardStyleSolid": "VollflÃ¤che",
       "cardStyleTransparent": "Transparent",
       "cardStyleMinimal": "Soft Minimal",
       "cardStyleNote": "Wirkt auf alle Widgets & Favoriten-Kacheln.",
@@ -233,11 +235,14 @@
       "searchColorLabel": "Suche",
       "reset": "Reset",
       "clockColorNote": "Legt den Hintergrund der Kopfzeile fest (leer = Stil-Vorgabe).",
-      "searchColorNote": "Farbe für den Suchbereich (leer = Stil-Vorgabe).",
+      "searchColorNote": "Farbe fÃ¼r den Suchbereich (leer = Stil-Vorgabe).",
       "widgetColorsLabel": "Widget-Farben",
-      "weatherCitiesLabel": "Wetter-Städte",
+      "weatherCitiesLabel": "Wetter-StÃ¤dte",
       "weatherCitiesPlaceholder": "Eine Stadt pro Zeile, z.B. Hannover\nBerlin\nHamburg",
-      "weatherCitiesNote": "Eine Stadt pro Zeile. Der erste Eintrag wird aktiv, falls die bisher aktive Stadt nicht enthalten ist."
+      "weatherCitiesNote": "Eine Stadt pro Zeile. Der erste Eintrag wird aktiv, falls die bisher aktive Stadt nicht enthalten ist.",
+      "recentEntriesLabel": "Recent-Eintraege",
+      "recentEntriesDecAria": "Recent-Eintraege verringern",
+      "recentEntriesIncAria": "Recent-Eintraege erhoehen"
     },
     "data": {
       "label": "Daten",
@@ -250,7 +255,7 @@
       "restartOnboarding": "Setup neu starten",
       "restartNote": "Startet den kompakten Einrichtungs-Dialog erneut.",
       "noteLabel": "Hinweis",
-      "noteText": "Export speichert sämtliche Einstellungen & Daten lokal als JSON. Import überschreibt vorhandene Einträge."
+      "noteText": "Export speichert sÃ¤mtliche Einstellungen & Daten lokal als JSON. Import Ã¼berschreibt vorhandene EintrÃ¤ge."
     },
     "language": {
       "label": "Sprache",
@@ -268,7 +273,7 @@
       "empty": "Es wurden keine lokalen Schriftarten zurueckgegeben.",
       "loadFailed": "Lokale Schriftarten konnten nicht geladen werden: {error}"
     },
-    "guideHtml": "<div class=\"row\"><label>User Guide</label><div><h5>Überblick</h5><ul><li>Startseite mit Suche, Favoriten, To-Do, Notizen, Wetter, News.</li><li>Alles lokal: Daten bleiben im Browser (localStorage).</li></ul><h5>Shortcuts</h5><ul><li>Ctrl/Cmd+K: Command Palette öffnen</li><li>1-9: Erste 9 Favoriten öffnen (wenn nicht tippen)</li><li>/ : Suche fokussieren (auch über Palette)</li><li>Enter in Suche: Startet die Suche</li><li>ESC: Modals schließen</li><li>Palette: Schnellaktionen für Widgets, Theme, Hintergrund, Daten, Favoriten</li><li>Palette: Taste C wechselt den Kachel-Stil, \"Header-Farben zurücksetzen\" stellt Suche & Uhr zurück</li></ul><h5>Suche & Autocomplete</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>Eigene Shortcuts: JSON in den Einstellungen; {q} als Platzhalter</li><li>Autocomplete: Bangs, Shortcuts, Recent-Suchen, Wortliste (global + Preset)</li><li>Tab übernimmt Vorschlag, Enter startet Suche</li></ul><h5>Tiles</h5><ul><li>Drag & Drop zum Sortieren, Klick zum Öffnen</li><li>+ Kachel: Neue Favoriten hinzufügen</li><li>Reset: Standardfavoriten wiederherstellen</li></ul><h5>Widgets & Layout</h5><ul><li>Sichtbarkeit je Widget umschaltbar</li><li>Kachel-Stil global anpassbar (Glas, Vollfläche, Transparent, Soft Minimal)</li><li>Eigene Farben für Uhr/Suche; Reset bringt Stil-Vorgabe zurück</li><li>Widget-Farben & Button \"Widgets einfärben\" setzen Akzent pro Karte</li></ul><h5>Hintergrund</h5><ul><li>Presets, Uploads, Sammlungen, Rotation (Zeit/Thema/Intervall)</li><li>Akzentfarbe wird aus dem aktiven Hintergrund extrahiert</li></ul><h5>Daten</h5><ul><li>Export/Import als JSON</li><li>Data Presets laden (assets/presets/*.json aus dem Repo)</li></ul><h5>Startpage Agent</h5><ul><li>Integrierter KI-Chat mit lokalem Ollama (Host/Modell in den Einstellungen).</li><li>Unterstützt Streaming-Antworten, Stop (Button/ESC), Verlauf-Persistenz und Markdown.</li><li>Agentische Tools können Widgets und Einstellungen lesen/ändern (je nach Confirm-Modus).</li></ul></div></div>",
+    "guideHtml": "<div class=\"row\"><label>User Guide</label><div><h5>Ãœberblick</h5><ul><li>Startseite mit Suche, Favoriten, To-Do, Notizen, Wetter, News.</li><li>Alles lokal: Daten bleiben im Browser (localStorage).</li></ul><h5>Shortcuts</h5><ul><li>Ctrl/Cmd+K: Command Palette Ã¶ffnen</li><li>1-9: Erste 9 Favoriten Ã¶ffnen (wenn nicht tippen)</li><li>/ : Suche fokussieren (auch Ã¼ber Palette)</li><li>Enter in Suche: Startet die Suche</li><li>ESC: Modals schlieÃŸen</li><li>Palette: Schnellaktionen fÃ¼r Widgets, Theme, Hintergrund, Daten, Favoriten</li><li>Palette: Taste C wechselt den Kachel-Stil, \"Header-Farben zurÃ¼cksetzen\" stellt Suche & Uhr zurÃ¼ck</li></ul><h5>Suche & Autocomplete</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>Eigene Shortcuts: JSON in den Einstellungen; {q} als Platzhalter</li><li>Autocomplete: Bangs, Shortcuts, Recent-Suchen, Wortliste (global + Preset)</li><li>Tab Ã¼bernimmt Vorschlag, Enter startet Suche</li></ul><h5>Tiles</h5><ul><li>Drag & Drop zum Sortieren, Klick zum Ã–ffnen</li><li>+ Kachel: Neue Favoriten hinzufÃ¼gen</li><li>Reset: Standardfavoriten wiederherstellen</li></ul><h5>Widgets & Layout</h5><ul><li>Sichtbarkeit je Widget umschaltbar</li><li>Kachel-Stil global anpassbar (Glas, VollflÃ¤che, Transparent, Soft Minimal)</li><li>Eigene Farben fÃ¼r Uhr/Suche; Reset bringt Stil-Vorgabe zurÃ¼ck</li><li>Widget-Farben & Button \"Widgets einfÃ¤rben\" setzen Akzent pro Karte</li></ul><h5>Hintergrund</h5><ul><li>Presets, Uploads, Sammlungen, Rotation (Zeit/Thema/Intervall)</li><li>Akzentfarbe wird aus dem aktiven Hintergrund extrahiert</li></ul><h5>Daten</h5><ul><li>Export/Import als JSON</li><li>Data Presets laden (assets/presets/*.json aus dem Repo)</li></ul><h5>Startpage Agent</h5><ul><li>Integrierter KI-Chat mit lokalem Ollama (Host/Modell in den Einstellungen).</li><li>UnterstÃ¼tzt Streaming-Antworten, Stop (Button/ESC), Verlauf-Persistenz und Markdown.</li><li>Agentische Tools kÃ¶nnen Widgets und Einstellungen lesen/Ã¤ndern (je nach Confirm-Modus).</li></ul></div></div>",
     "general": {
       "agentLabel": "Startpage Agent",
       "agentEnabled": "Agent aktiv",
@@ -278,13 +283,13 @@
   "onboarding": {
     "title": "Setup starten",
     "progress": "Schritt {current} von {total}",
-    "skip": "Setup überspringen",
-    "close": "Schließen",
+    "skip": "Setup Ã¼berspringen",
+    "close": "SchlieÃŸen",
     "preset": {
-      "title": "Preset wählen",
-      "hint": "Wähle ein Preset oder überspringe diesen Schritt.",
+      "title": "Preset wÃ¤hlen",
+      "hint": "WÃ¤hle ein Preset oder Ã¼berspringe diesen Schritt.",
       "apply": "Preset anwenden",
-      "meta": "Preset anwenden oder überspringen.",
+      "meta": "Preset anwenden oder Ã¼berspringen.",
       "optional": "Preset optional.",
       "context": "Setup-Preset"
     },
@@ -303,19 +308,19 @@
     "widgets": {
       "title": "Widgets",
       "defaultTransport": "Standard-Haltestelle (Transport)",
-      "tint": "Widgets an Akzent einfärben"
+      "tint": "Widgets an Akzent einfÃ¤rben"
     },
     "weather": {
       "title": "Wetter",
       "defaultCity": "Standard-Stadt",
-      "note": "Du kannst später jederzeit alles in den Einstellungen ändern."
+      "note": "Du kannst spÃ¤ter jederzeit alles in den Einstellungen Ã¤ndern."
     },
-    "prev": "Zurück",
+    "prev": "ZurÃ¼ck",
     "next": "Weiter",
     "finish": "Fertig"
   },
   "palette": {
-    "placeholder": "Befehl oder Favorit suchen… (Strg/⌘+K)",
+    "placeholder": "Befehl oder Favorit suchenâ€¦ (Strg/âŒ˜+K)",
     "groups": {
       "command": "Befehle",
       "settings": "Einstellungen",
@@ -333,7 +338,7 @@
       "engine": "Engine: {engine}"
     },
     "settings": {
-      "open": "Einstellungen öffnen",
+      "open": "Einstellungen Ã¶ffnen",
       "general": "Einstellungen: Allgemein",
       "background": "Einstellungen: Hintergrund",
       "search": "Einstellungen: Suche",
@@ -346,12 +351,12 @@
       "auto": "Theme: Auto",
       "dark": "Theme: Dark",
       "light": "Theme: Light",
-      "resetHeader": "Header-Farben zurücksetzen",
+      "resetHeader": "Header-Farben zurÃ¼cksetzen",
       "recalcAccent": "Akzentfarben neu berechnen"
     },
     "cardStyle": {
       "glass": "Kachel-Stil: Glas",
-      "solid": "Kachel-Stil: Vollfläche",
+      "solid": "Kachel-Stil: VollflÃ¤che",
       "transparent": "Kachel-Stil: Transparent",
       "minimal": "Kachel-Stil: Minimal"
     },
@@ -367,12 +372,12 @@
       "focus": "Widget: {widget} fokussieren"
     },
     "quick": {
-      "addTodo": "Todo hinzufügen",
-      "addNote": "Notiz hinzufügen"
+      "addTodo": "Todo hinzufÃ¼gen",
+      "addNote": "Notiz hinzufÃ¼gen"
     },
     "tiles": {
-      "add": "Tile hinzufügen",
-      "reset": "Tiles zurücksetzen"
+      "add": "Tile hinzufÃ¼gen",
+      "reset": "Tiles zurÃ¼cksetzen"
     },
     "refresh": {
       "weather": "Wetter aktualisieren",
@@ -401,7 +406,7 @@
   "background": {
     "currentPreview": "Aktuelles Hintergrundbild",
     "none": "Kein Hintergrund",
-    "noImageSelected": "Kein Bild ausgewählt",
+    "noImageSelected": "Kein Bild ausgewÃ¤hlt",
     "rotationResume": "Rotation fortsetzen",
     "rotationLock": "Rotation sperren",
     "tone": "Ton: {tone}",
@@ -416,14 +421,14 @@
     },
     "upload": "Upload",
     "uploadDrop": "Dateien hier ablegen",
-    "uploadBrowse": "Datei auswählen",
+    "uploadBrowse": "Datei auswÃ¤hlen",
     "uploadNote": "Wir verkleinern Bilder automatisch (16:9, max 2560px) und speichern sie lokal. Max {max} Dateien.",
     "uploads": {
       "empty": "Noch keine Uploads vorhanden."
     },
     "collections": {
       "count": "{count} Quellen",
-      "random": "Zufällig",
+      "random": "ZufÃ¤llig",
       "cache": "Offline speichern",
       "viewSources": "Quellen ansehen",
       "useRotation": "Rotation verwenden",
@@ -431,7 +436,7 @@
       "namePlaceholder": "Meine Sammlung",
       "urlsPlaceholder": "Eine Bild-URL pro Zeile",
       "clear": "Felder leeren",
-      "note": "URLs werden lokal gespeichert. Remote Quellen benötigen CORS für Bilder.",
+      "note": "URLs werden lokal gespeichert. Remote Quellen benÃ¶tigen CORS fÃ¼r Bilder.",
       "empty": "Noch keine Sammlungen angelegt.",
       "minOneUrl": "Mindestens eine URL eintragen.",
       "emptyCollection": "Sammlung ist leer.",
@@ -446,14 +451,14 @@
       "noFixed": "Kein festes Bild",
       "enabled": "Automatische Rotation aktiv",
       "locked": "Rotation ist aktuell gesperrt.",
-      "active": "Hintergründe wechseln nach dem Plan.",
+      "active": "HintergrÃ¼nde wechseln nach dem Plan.",
       "mode": "Modus",
-      "modeTime": "Zeitabhängig",
+      "modeTime": "ZeitabhÃ¤ngig",
       "modeInterval": "Intervall",
       "modeTheme": "Theme",
       "intervalLabel": "Intervall in Minuten",
       "intervalNote": "Relevanz nur im Intervall Modus.",
-      "sourcesLabel": "Quellen für Zufall",
+      "sourcesLabel": "Quellen fÃ¼r Zufall",
       "scheduleLabel": "Zeitplan",
       "themePlan": "Theme Plan",
       "themeLight": "Theme Light",
@@ -469,7 +474,7 @@
     "custom": {
       "label": "Eigene Bild URL",
       "placeholder": "https://example.com/image.jpg",
-      "note": "URL wird lokal gespeichert. Server muss CORS für Bilder erlauben.",
+      "note": "URL wird lokal gespeichert. Server muss CORS fÃ¼r Bilder erlauben.",
       "enterUrl": "Bitte eine URL eintragen.",
       "title": "Custom URL",
       "subtitle": "Custom"
@@ -478,10 +483,10 @@
       "apply": "Setzen",
       "favorite": "Favorisieren",
       "favorited": "Favorit",
-      "random": "Zufällig neu laden",
+      "random": "ZufÃ¤llig neu laden",
       "undo": "Letztes Bild wiederherstellen",
       "lock": "Rotation sperren",
-      "tint": "Widgets einfärben"
+      "tint": "Widgets einfÃ¤rben"
     },
     "tabs": {
       "presets": "Presets",
@@ -491,21 +496,21 @@
       "rotation": "Rotation",
       "custom": "Custom"
     },
-    "loadError": "Fehler beim Laden. Prüfe CORS Vorgaben.",
-    "noneAvailable": "Keine Hintergründe verfügbar.",
+    "loadError": "Fehler beim Laden. PrÃ¼fe CORS Vorgaben.",
+    "noneAvailable": "Keine HintergrÃ¼nde verfÃ¼gbar.",
     "imageLoadError": "Bild konnte nicht geladen werden."
   },
   "data": {
     "import": {
-      "confirm": "Daten importieren? Bestehende Einträge werden überschrieben.",
+      "confirm": "Daten importieren? Bestehende EintrÃ¤ge werden Ã¼berschrieben.",
       "failed": "Import fehlgeschlagen: {error}"
     },
     "presets": {
-      "none": "Kein Preset verfügbar.",
+      "none": "Kein Preset verfÃ¼gbar.",
       "missingFile": "Preset-Datei fehlt.",
       "fileMissing": "Datei nicht gefunden",
-      "invalid": "Preset ungültig",
-      "confirmApply": "{context} \"{name}\" anwenden? Bestehende Einträge werden überschrieben.",
+      "invalid": "Preset ungÃ¼ltig",
+      "confirmApply": "{context} \"{name}\" anwenden? Bestehende EintrÃ¤ge werden Ã¼berschrieben.",
       "loadFailed": "Preset laden fehlgeschlagen: {error}",
       "loading": "Lade Presets...",
       "noneFound": "Keine Presets gefunden",
@@ -514,7 +519,7 @@
       "userPrefix": "User: ",
       "userApply": "Lokales Preset anwenden",
       "apply": "Preset anwenden",
-      "noneSelected": "Kein Preset ausgewählt.",
+      "noneSelected": "Kein Preset ausgewÃ¤hlt.",
       "label": "Preset",
       "defaultLabel": "Preset {index}",
       "userDefault": "User Preset {index}",
@@ -532,17 +537,17 @@
       "title": "Startpage Agent",
       "fabAria": "Startpage Agent",
       "fabTitle": "Startpage Agent",
-      "openSettingsAria": "Agent-Einstellungen öffnen",
+      "openSettingsAria": "Agent-Einstellungen Ã¶ffnen",
       "openSettingsTitle": "Einstellungen",
-      "closeAria": "Agent schließen",
-      "closeTitle": "Schließen",
-      "modelDisplayDefault": "Modell: —",
+      "closeAria": "Agent schlieÃŸen",
+      "closeTitle": "SchlieÃŸen",
+      "modelDisplayDefault": "Modell: â€”",
       "inputPlaceholder": "Nachricht an Startpage Agent...",
       "send": "Senden",
       "stop": "Abbrechen",
       "hostLabel": "Host",
       "modelLabel": "Modell",
-      "emptyModel": "—"
+      "emptyModel": "â€”"
     },
     "settings": {
       "modelLabel": "Modell",
@@ -554,19 +559,19 @@
       "confirmRisky": "Nur riskant (open_url)",
       "maxIterationsLabel": "Agent-Loop-Limit",
       "maxIterationsDecAria": "Loop-Limit verringern",
-      "maxIterationsIncAria": "Loop-Limit erhöhen",
+      "maxIterationsIncAria": "Loop-Limit erhÃ¶hen",
       "maxIterationsHint": "Maximale Anzahl Tool-Iterationen pro User-Nachricht (1-10).",
       "customPromptLabel": "Custom Prompt",
-      "customPromptPlaceholder": "Zusätzliche Anweisungen für den Startpage Agent...",
-      "customPromptHint": "Wird zusätzlich zum Systemprompt bei jeder Anfrage verwendet.",
+      "customPromptPlaceholder": "ZusÃ¤tzliche Anweisungen fÃ¼r den Startpage Agent...",
+      "customPromptHint": "Wird zusÃ¤tzlich zum Systemprompt bei jeder Anfrage verwendet.",
       "memoryLabel": "Memory / Erinnerungen",
-      "memoryPlaceholder": "Persistente Notizen für den Agenten...",
+      "memoryPlaceholder": "Persistente Notizen fÃ¼r den Agenten...",
       "clearMemory": "Memory leeren",
       "actionsLabel": "Aktionen",
       "save": "Speichern",
       "clearChat": "Chat leeren",
       "capabilitiesLabel": "Capabilities",
-      "availableToolsTitle": "Verfügbare Tools",
+      "availableToolsTitle": "VerfÃ¼gbare Tools",
       "noModels": "Keine Modelle"
     },
     "status": {
@@ -578,7 +583,7 @@
       "disabledNamed": "Startpage Agent deaktiviert",
       "ollamaUnavailableDisabled": "Ollama nicht erreichbar - Startpage Agent deaktiviert",
       "disabled": "Agent ist deaktiviert",
-      "chooseModel": "Bitte ein Modell wählen",
+      "chooseModel": "Bitte ein Modell wÃ¤hlen",
       "streaming": "Streaming...",
       "toolDenied": "Tool abgelehnt",
       "toolRunning": "Tool: {tool}",
@@ -594,51 +599,51 @@
       "maxIterationsSaved": "Loop-Limit gespeichert"
     },
     "confirm": {
-      "execute": "Tool ausführen?\\n{tool}\\n\\n{args}",
-      "clearChat": "Chatverlauf wirklich löschen?",
-      "clearMemory": "Memory wirklich löschen?"
+      "execute": "Tool ausfÃ¼hren?\\n{tool}\\n\\n{args}",
+      "clearChat": "Chatverlauf wirklich lÃ¶schen?",
+      "clearMemory": "Memory wirklich lÃ¶schen?"
     },
     "messages": {
-      "toolLimitReached": "Ich habe das Tool-Limit für diese Nachricht erreicht (max. {max} Schritte)."
+      "toolLimitReached": "Ich habe das Tool-Limit fÃ¼r diese Nachricht erreicht (max. {max} Schritte)."
     },
     "errors": {
-      "toolDeniedByUser": "Tool-Ausführung vom Benutzer abgelehnt",
+      "toolDeniedByUser": "Tool-AusfÃ¼hrung vom Benutzer abgelehnt",
       "unknownToolError": "Unbekannter Tool-Fehler",
       "unknown": "Unbekannt",
-      "invalidHost": "Host ungültig. Erlaubt sind nur http/https URLs.",
-      "invalidMemory": "Memory ist ungültig. Nutze JSON oder „key: value“-Zeilen."
+      "invalidHost": "Host ungÃ¼ltig. Erlaubt sind nur http/https URLs.",
+      "invalidMemory": "Memory ist ungÃ¼ltig. Nutze JSON oder â€žkey: valueâ€œ-Zeilen."
     },
     "systemPrompt": {
       "name": "Name: Startpage Agent",
       "embedded": "Du bist in einer lokalen Startpage eingebettet.",
-      "jsonOnly": "Wenn du eine Aktion ausführen musst, antworte ausschließlich mit genau einer JSON-Zeile im Format {\"tool\":\"<name>\",\"args\":{...}}.",
-      "noExtra": "Keine weiteren Wörter, kein Markdown, kein Codeblock bei Toolcalls.",
+      "jsonOnly": "Wenn du eine Aktion ausfÃ¼hren musst, antworte ausschlieÃŸlich mit genau einer JSON-Zeile im Format {\"tool\":\"<name>\",\"args\":{...}}.",
+      "noExtra": "Keine weiteren WÃ¶rter, kein Markdown, kein Codeblock bei Toolcalls.",
       "allowedTools": "Nutze nur diese Tools: {tools}.",
-      "normalReply": "Wenn keine Aktion nötig ist, antworte normal.",
-      "askMissing": "Wenn Infos fehlen oder ein Tool-Call ungültig wäre, stelle Rückfragen als normale Antwort.",
+      "normalReply": "Wenn keine Aktion nÃ¶tig ist, antworte normal.",
+      "askMissing": "Wenn Infos fehlen oder ein Tool-Call ungÃ¼ltig wÃ¤re, stelle RÃ¼ckfragen als normale Antwort.",
       "customPromptSection": "CUSTOM_PROMPT",
       "memorySection": "PERSISTENTE_MEMORY"
     },
     "tools": {
       "descriptions": {
-        "open_url": "Öffnet eine URL",
+        "open_url": "Ã–ffnet eine URL",
         "search_web": "Suche mit Suchmaschine",
         "set_theme_accent": "Setzt Akzentfarbe",
         "set_theme_mode": "auto/dark/light",
         "set_card_style": "glass/solid/transparent/minimal",
-        "load_preset": "Lädt Daten-Preset",
+        "load_preset": "LÃ¤dt Daten-Preset",
         "set_background_preset": "Setzt Hintergrund-Preset",
         "toggle_background_rotation": "Rotation ein/aus",
         "toggle_widget": "Widget ein-/ausblenden",
         "show_all_widgets": "Alle Widgets anzeigen",
         "hide_all_widgets": "Alle Widgets ausblenden",
-        "add_quicklink": "Quicklink hinzufügen",
+        "add_quicklink": "Quicklink hinzufÃ¼gen",
         "remove_quicklink": "Quicklink entfernen",
         "add_todo": "Todo anlegen",
         "toggle_todo": "Todo erledigt/unerledigt",
-        "remove_todo": "Todo löschen",
-        "clear_done_todos": "Erledigte Todos löschen",
-        "append_note": "Text an Notizen anhängen",
+        "remove_todo": "Todo lÃ¶schen",
+        "clear_done_todos": "Erledigte Todos lÃ¶schen",
+        "append_note": "Text an Notizen anhÃ¤ngen",
         "set_notes": "Notizen ersetzen",
         "clear_notes": "Notizen leeren",
         "set_search_engine": "Standardsuche setzen",
@@ -650,7 +655,7 @@
         "set_wordlist_inline": "Inline-Wortliste setzen",
         "set_widget_color": "Widget-Farbe setzen",
         "set_surface_color": "Header-/Suche-Farbe setzen",
-        "set_weather_cities": "Wetter-Städte setzen",
+        "set_weather_cities": "Wetter-StÃ¤dte setzen",
         "set_transport_duration": "Transport-Zeitraum setzen",
         "set_transport_default_name": "Transport-Standardhalt setzen",
         "set_agent_enabled": "Startpage Agent aktivieren/deaktivieren",
@@ -676,7 +681,7 @@
         "read_recent_data": "Letzte Aktionen lesen",
         "read_system_data": "Systemstatus lesen",
         "set_weather_station_active": "Wetterstation aktivieren",
-        "add_weather_station": "Wetterstation hinzufügen",
+        "add_weather_station": "Wetterstation hinzufÃ¼gen",
         "remove_weather_station": "Wetterstation entfernen",
         "set_weather_city": "Stadt setzen/aktivieren"
       }

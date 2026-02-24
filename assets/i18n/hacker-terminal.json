@@ -158,7 +158,9 @@
   },
   "recent": {
     "title": "RECENT",
-    "note": "NOTE:_ONLY_ACTIONS_FROM_THIS_START_PAGE_(CLICKED_TILES_&_SEARCHES)."
+    "note": "NOTE:_ONLY_ACTIONS_FROM_THIS_START_PAGE_(CLICKED_TILES_&_SEARCHES).",
+    "clear": "Clear data",
+    "clearConfirm": "Delete recent data?"
   },
   "system": {
     "title": "SYSTEM_STATUS",
@@ -237,7 +239,10 @@
       "widgetColorsLabel": "WIDGET_COLORS",
       "weatherCitiesLabel": "Weather cities",
       "weatherCitiesPlaceholder": "One city per line, e.g. Hanover\nBerlin\nHamburg",
-      "weatherCitiesNote": "One city per line. The first entry becomes active if the previous active city is not included."
+      "weatherCitiesNote": "One city per line. The first entry becomes active if the previous active city is not included.",
+      "recentEntriesLabel": "Recent entries",
+      "recentEntriesDecAria": "Decrease recent entries",
+      "recentEntriesIncAria": "Increase recent entries"
     },
     "data": {
       "label": "DATA",

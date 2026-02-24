@@ -158,7 +158,9 @@
   },
   "recent": {
     "title": "Recenti",
-    "note": "Nota: mostra solo azioni di questa pagina (clic su preferiti e ricerche)."
+    "note": "Nota: mostra solo azioni di questa pagina (clic su preferiti e ricerche).",
+    "clear": "Cancella dati",
+    "clearConfirm": "Eliminare i dati recenti?"
   },
   "system": {
     "title": "Stato sistema",
@@ -237,7 +239,10 @@
       "widgetColorsLabel": "Colori widget",
       "weatherCitiesLabel": "Weather cities",
       "weatherCitiesPlaceholder": "One city per line, e.g. Hanover\nBerlin\nHamburg",
-      "weatherCitiesNote": "One city per line. The first entry becomes active if the previous active city is not included."
+      "weatherCitiesNote": "One city per line. The first entry becomes active if the previous active city is not included.",
+      "recentEntriesLabel": "Voci recenti",
+      "recentEntriesDecAria": "Riduci voci recenti",
+      "recentEntriesIncAria": "Aumenta voci recenti"
     },
     "data": {
       "label": "Dati",

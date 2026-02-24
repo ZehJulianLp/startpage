@@ -29,6 +29,10 @@
 
   const UI_FONT_KEY = 'ui.font.family';
   const UI_FONT_STACK = 'Inter, system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"';
+  const RECENT_MAX_KEY = 'recent.max';
+  const RECENT_MAX_DEFAULT = 12;
+  const RECENT_MAX_MIN = 0;
+  const RECENT_MAX_LIMIT = 50;
   let uiFontListCache = null;
   let uiFontListLoading = null;
   let uiFontListSource = 'none';
@@ -1706,7 +1710,7 @@
       el.className='tile';
       el.draggable = true;
       const host = (new URL(tile.url)).hostname;
-      const firstLetter = host.split('.')[0][0]?.toUpperCase() || '·';
+      const firstLetter = host.split('.')[0][0]?.toUpperCase() || 'Ã‚Â·';
       el.innerHTML = `
         <div class="favicon"><img alt="favicon" src="https://www.google.com/s2/favicons?sz=64&domain_url=${encodeURIComponent(tile.url)}"></div>
         <div class="meta">
@@ -1718,7 +1722,7 @@
           <button class="icon-only" title="${escapeHtml(t('common.delete'))}" aria-label="${escapeHtml(t('common.delete'))}">${iconSvg('trash')}</button>
         </div>`;
 
-      // Fallback, wenn Favicon nicht lädt → Buchstabe zeigen
+      // Fallback, wenn Favicon nicht lÃƒÂ¤dt Ã¢â€ â€™ Buchstabe zeigen
       const img = el.querySelector('.favicon img');
       img.addEventListener('error', ()=>{ const fv=el.querySelector('.favicon'); fv.textContent=firstLetter; img.remove(); });
 
@@ -1769,14 +1773,42 @@
   }
 
   // ===== Recent actions
+  function normalizeRecentMax(value){
+    const num = Number(value);
+    if(!Number.isFinite(num)) return RECENT_MAX_DEFAULT;
+    return Math.max(RECENT_MAX_MIN, Math.min(RECENT_MAX_LIMIT, Math.round(num)));
+  }
+  function getRecentMax(){
+    return normalizeRecentMax(store.get(RECENT_MAX_KEY, RECENT_MAX_DEFAULT));
+  }
+  function getRecentEntries(){
+    const raw = store.get('recent', []);
+    return Array.isArray(raw) ? raw : [];
+  }
+  function persistRecentEntries(list){
+    const max = getRecentMax();
+    const trimmed = list.slice(0, max);
+    store.set('recent', trimmed);
+    return trimmed;
+  }
+  function setRecentMax(value){
+    const max = normalizeRecentMax(value);
+    store.set(RECENT_MAX_KEY, max);
+    persistRecentEntries(getRecentEntries());
+    return max;
+  }
+  function clearRecent(){
+    store.set('recent', []);
+  }
   function addRecent(entry){
-    const list = store.get('recent', []);
+    const list = getRecentEntries();
     list.unshift({ ...entry, ts: Date.now() });
-    store.set('recent', list.slice(0, 12));
+    persistRecentEntries(list);
   }
   function renderRecent(){
-    const list = store.get('recent', []);
+    const list = persistRecentEntries(getRecentEntries());
     const wrap = $('#recentList');
+    if(!wrap) return;
     wrap.innerHTML='';
     list.forEach(it=>{
       const a = document.createElement('a');
@@ -1785,7 +1817,7 @@
     })
   }
 
-  // ===== Weather (Open‑Meteo)
+  // ===== Weather (OpenÃ¢â‚¬â€˜Meteo)
   async function lookupCity(name){
     const lang = getLocaleLang();
     const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(name)}&count=1&language=${encodeURIComponent(lang)}&format=json`);
@@ -1956,8 +1988,8 @@
     const hourlyEl = $('#hourly');
     if(!tempEl || !textEl || !minmaxEl || !hourlyEl) return;
     textEl.textContent = city ? t('weather.loading') : t('weather.prompt');
-    tempEl.textContent = t('weather.tempEmpty', null, '—°C');
-    minmaxEl.textContent = t('weather.minmaxEmpty', null, '— / — °C');
+    tempEl.textContent = t('weather.tempEmpty', null, 'Ã¢â‚¬â€Ã‚Â°C');
+    minmaxEl.textContent = t('weather.minmaxEmpty', null, 'Ã¢â‚¬â€ / Ã¢â‚¬â€ Ã‚Â°C');
     hourlyEl.innerHTML = '';
     updateWeatherIcon(null);
     if(!city) return;
@@ -1972,11 +2004,11 @@
       const curr = data.current_weather || {};
       updateWeatherIcon(curr.weathercode);
       const tempNow = Math.round(curr.temperature ?? NaN);
-      tempEl.textContent = isFinite(tempNow) ? `${tempNow}°C` : t('weather.tempEmpty', null, '—°C');
-      textEl.textContent = `${loc.name} · ${wmoText(curr.weathercode)}`;
+      tempEl.textContent = isFinite(tempNow) ? `${tempNow}Ã‚Â°C` : t('weather.tempEmpty', null, 'Ã¢â‚¬â€Ã‚Â°C');
+      textEl.textContent = `${loc.name} Ã‚Â· ${wmoText(curr.weathercode)}`;
       const dmax = Math.round((data.daily?.temperature_2m_max?.[0]) ?? NaN);
       const dmin = Math.round((data.daily?.temperature_2m_min?.[0]) ?? NaN);
-      minmaxEl.textContent = isFinite(dmin)&&isFinite(dmax) ? `${dmin} / ${dmax} °C` : t('weather.minmaxEmpty', null, '— / — °C');
+      minmaxEl.textContent = isFinite(dmin)&&isFinite(dmax) ? `${dmin} / ${dmax} Ã‚Â°C` : t('weather.minmaxEmpty', null, 'Ã¢â‚¬â€ / Ã¢â‚¬â€ Ã‚Â°C');
 
       const hours = data.hourly?.time || [];
       const temps = data.hourly?.temperature_2m || [];
@@ -2001,7 +2033,7 @@
         chip.className='chip';
         const timeLabel = tDate.toLocaleTimeString([], {hour:'2-digit'});
         const tempVal = Math.round(temps[i]);
-        chip.innerHTML = `<div class="chip-top"><span>${timeLabel}</span><span class="chip-temp">${isFinite(tempVal)? tempVal+'°' : t('weather.tempEmptyShort', null, '—°')}</span></div><div class="chip-text">${wmoText(codes[i])}</div>`;
+        chip.innerHTML = `<div class="chip-top"><span>${timeLabel}</span><span class="chip-temp">${isFinite(tempVal)? tempVal+'Ã‚Â°' : t('weather.tempEmptyShort', null, 'Ã¢â‚¬â€Ã‚Â°')}</span></div><div class="chip-text">${wmoText(codes[i])}</div>`;
         container.appendChild(chip);
         added++;
       }
@@ -2009,16 +2041,16 @@
       // Normalize degree symbols / overwrite any garbled text
       try {
         const t2 = Math.round((data.current_weather||{}).temperature ?? NaN);
-        tempEl.textContent = isFinite(t2) ? `${t2}°C` : '-°C';
+        tempEl.textContent = isFinite(t2) ? `${t2}Ã‚Â°C` : '-Ã‚Â°C';
         const dmax2 = Math.round((data.daily?.temperature_2m_max?.[0]) ?? NaN);
         const dmin2 = Math.round((data.daily?.temperature_2m_min?.[0]) ?? NaN);
-        minmaxEl.textContent = isFinite(dmin2)&&isFinite(dmax2) ? `${dmin2} / ${dmax2} °C` : '- / - °C';
+        minmaxEl.textContent = isFinite(dmin2)&&isFinite(dmax2) ? `${dmin2} / ${dmax2} Ã‚Â°C` : '- / - Ã‚Â°C';
       } catch {}
     } catch(err){
       console.warn(err);
       textEl.textContent = err.message === t('weather.errors.cityMissing') ? t('weather.prompt') : t('weather.errors.loadFailed');
-      tempEl.textContent = t('weather.tempEmpty', null, '—°C');
-      minmaxEl.textContent = t('weather.minmaxEmpty', null, '— / — °C');
+      tempEl.textContent = t('weather.tempEmpty', null, 'Ã¢â‚¬â€Ã‚Â°C');
+      minmaxEl.textContent = t('weather.minmaxEmpty', null, 'Ã¢â‚¬â€ / Ã¢â‚¬â€ Ã‚Â°C');
       hourlyEl.innerHTML='';
       updateWeatherIcon(null);
     }
@@ -2171,7 +2203,7 @@
     const line = dep && dep.line ? dep.line : null;
     const raw = String((line && (line.product || line.mode || line.name || line.id)) || '').toLowerCase();
     if(!raw) return false;
-    return raw.includes('bus') || raw.includes('tram') || raw.includes('street') || raw.includes('strassen') || raw.includes('straße') || raw.includes('strasse') || raw.includes('u-bahn') || raw.includes('ubahn') || raw.includes('subway') || raw.includes('metro') || raw.includes('stadtbahn') || raw.includes('urban') || raw.includes('s-bahn') || raw.includes('sbahn');
+    return raw.includes('bus') || raw.includes('tram') || raw.includes('street') || raw.includes('strassen') || raw.includes('straÃƒÅ¸e') || raw.includes('strasse') || raw.includes('u-bahn') || raw.includes('ubahn') || raw.includes('subway') || raw.includes('metro') || raw.includes('stadtbahn') || raw.includes('urban') || raw.includes('s-bahn') || raw.includes('sbahn');
   }
   function renderTransportList(items){
     const ul = $('#transportList'); if(!ul) return;
@@ -2371,7 +2403,7 @@
   // ===== Quote of the day (local)
   const QUOTES = [
     'Move fast, refactor often.',
-    'Accessibility isn\'t a feature – it\'s the default.',
+    'Accessibility isn\'t a feature Ã¢â‚¬â€œ it\'s the default.',
     'Done > Perfect. Iterate.',
     'If it\'s not monitored, it doesn\'t exist.',
     'Good UX is invisible. Bad UX is unforgettable.',
@@ -2425,7 +2457,7 @@
       const ul = $('#newsList'); ul.innerHTML='';
       const max = 8;
       items.forEach((it,i)=>{ if(i<max){
-        const title = it.querySelector('title')?.textContent || '—';
+        const title = it.querySelector('title')?.textContent || 'Ã¢â‚¬â€';
         const link = it.querySelector('link')?.textContent || '#';
         const li = document.createElement('li');
         li.innerHTML = `<a href="${link}" target="_blank" rel="noopener">${title}</a>`;
@@ -2485,6 +2517,8 @@
     if(transportDefaultInput){
       transportDefaultInput.value = defaultTransport && defaultTransport.name ? defaultTransport.name : '';
     }
+    const recentMaxSetting = $('#recentMaxSetting');
+    if(recentMaxSetting) recentMaxSetting.value = String(getRecentMax());
 
     // Engines
     const pills = $('#enginePills'); pills.innerHTML='';
@@ -2627,7 +2661,7 @@
       else if(has('#startpageAgentModel') || has('#startpageAgentLoadModels') || has('#startpageAgentHost') || has('#startpageAgentConfirmMode') || has('#startpageAgentMaxIterations') || has('#startpageAgentCustomPrompt') || has('#startpageAgentMemory') || has('#startpageAgentClearMemory') || has('#startpageAgentSaveSettings') || has('#startpageAgentClearChat') || has('#startpageAgentCapabilities')) assign(row, panelAi);
       else if(has('#bgEngine') || has('#cardStyle') || has('#clockColor') || has('#searchColor') || has('#widgetColorEditor')) assign(row, panelBackground);
       else if(has('#enginePills') || has('#shortcutConfig') || has('#feedsConfig') || has('#wordlistEditor')) assign(row, panelSearch);
-      else if(has('#widgetToggles') || has('#defaultCities') || has('#transportDefaultInput')) assign(row, panelWidgets);
+      else if(has('#widgetToggles') || has('#defaultCities') || has('#transportDefaultInput') || has('#recentMaxSetting') || has('#recentClearSetting')) assign(row, panelWidgets);
       else if(has('#exportData') || has('#importData') || has('#dataNote') || has('#dataPresetSelect') || has('#applyPreset') || has('#restartOnboarding')) assign(row, panelData);
       else assign(row, panelGeneral);
     });
@@ -4277,7 +4311,7 @@
     if('hardwareConcurrency' in navigator) info.push(t('system.cpu', { value: navigator.hardwareConcurrency }));
     if('connection' in navigator && navigator.connection){
       const c = navigator.connection;
-      info.push(t('system.network', { downlink: c.downlink ?? t('common.dash', null, '–'), type: c.effectiveType ?? t('common.dash', null, '–'), saveData: c.saveData ? t('system.saveData') : '' }));
+      info.push(t('system.network', { downlink: c.downlink ?? t('common.dash', null, 'Ã¢â‚¬â€œ'), type: c.effectiveType ?? t('common.dash', null, 'Ã¢â‚¬â€œ'), saveData: c.saveData ? t('system.saveData') : '' }));
     }
     $('#systemInfo').innerHTML = info.length? info.join('<br>') : t('system.noData');
   }
@@ -5302,8 +5336,8 @@
   }
 
   function readRecentSnapshot(){
-    const items = store.get('recent', []);
-    return { total: items.length, items };
+    const items = getRecentEntries();
+    return { total: items.length, max: getRecentMax(), items };
   }
 
   function readSystemSnapshot(){
@@ -6797,6 +6831,46 @@
     loadQuote();
 
     // Recent
+    const recentMaxSetting = $('#recentMaxSetting');
+    if(recentMaxSetting){
+      const applyMax = ()=>{
+        const next = setRecentMax(recentMaxSetting.value);
+        recentMaxSetting.value = String(next);
+        renderRecent();
+      };
+      recentMaxSetting.value = String(getRecentMax());
+      recentMaxSetting.addEventListener('change', applyMax);
+      recentMaxSetting.addEventListener('blur', applyMax);
+      recentMaxSetting.addEventListener('keydown', e=>{
+        if(e.key === 'Enter'){
+          e.preventDefault();
+          applyMax();
+        }
+      });
+      const nudgeRecentMax = (delta)=>{
+        const current = normalizeRecentMax(recentMaxSetting.value || getRecentMax());
+        const next = setRecentMax(current + delta);
+        recentMaxSetting.value = String(next);
+        renderRecent();
+      };
+      const recentMaxSettingDec = $('#recentMaxSettingDec');
+      if(recentMaxSettingDec){
+        recentMaxSettingDec.addEventListener('click', ()=> nudgeRecentMax(-1));
+      }
+      const recentMaxSettingInc = $('#recentMaxSettingInc');
+      if(recentMaxSettingInc){
+        recentMaxSettingInc.addEventListener('click', ()=> nudgeRecentMax(1));
+      }
+    }
+    const recentClearSetting = $('#recentClearSetting');
+    if(recentClearSetting){
+      recentClearSetting.addEventListener('click', async ()=>{
+        const ok = await uiConfirm(t('recent.clearConfirm', null, 'Delete recent data?'));
+        if(!ok) return;
+        clearRecent();
+        renderRecent();
+      });
+    }
     renderRecent();
 
     // Background

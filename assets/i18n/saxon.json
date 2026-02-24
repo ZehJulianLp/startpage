@@ -158,7 +158,9 @@
   },
   "recent": {
     "title": "Zuletzt",
-    "note": "Hinneweis: Zeigt nur Aktionen von dieser Startseite (geklickte Kacheln & Suchen)."
+    "note": "Hinneweis: Zeigt nur Aktionen von dieser Startseite (geklickte Kacheln & Suchen).",
+    "clear": "Clear data",
+    "clearConfirm": "Delete recent data?"
   },
   "system": {
     "title": "Systemschdand",
@@ -237,7 +239,10 @@
       "widgetColorsLabel": "Widget-Farben",
       "weatherCitiesLabel": "Wedder-Städte",
       "weatherCitiesPlaceholder": "Ne Stadd pro Zeile, z.B. Hannover\nBerlin\nHamburg",
-      "weatherCitiesNote": "Ne Stadd pro Zeile. Der erste Eintrag wird aktiv, falls die bisher aktive Stadd nisch enthalten iss."
+      "weatherCitiesNote": "Ne Stadd pro Zeile. Der erste Eintrag wird aktiv, falls die bisher aktive Stadd nisch enthalten iss.",
+      "recentEntriesLabel": "Recent entries",
+      "recentEntriesDecAria": "Decrease recent entries",
+      "recentEntriesIncAria": "Increase recent entries"
     },
     "data": {
       "label": "Doadn",

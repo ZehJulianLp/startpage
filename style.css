@@ -1,3 +1,42 @@
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("assets/fonts/Inter-300.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/Inter-400.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/fonts/Inter-500.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/fonts/Inter-600.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/fonts/Inter-700.ttf") format("truetype");
+}
     :root {
       --font-ui: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
       --bg: #0f1220;
@@ -561,11 +600,9 @@
     .transport-delay.early { color: var(--ok) }
     .transport-cancelled { color: var(--danger); font-weight:600; font-size:12px }
     .chip { background: var(--bg-soft); padding:6px 10px; border:1px solid rgba(255,255,255,.06); border-radius:999px; font-size:12px; white-space:nowrap }
-
     /* Recent */
     .recent-list { display:flex; gap:10px; flex-wrap:wrap }
     .recent-list a { text-decoration:none }
-
     /* Quote */
     .quote { font-style: italic; color: var(--muted) }
 
@@ -636,7 +673,7 @@
     .bg-selector { display:flex; flex-direction:column; gap:8px; }
     .bg-selector select { width:100%; }
     .bg-favorite-marker { display:inline-flex; align-items:center; gap:4px; font-size:12px; color: var(--muted); }
-    .bg-favorite-marker::before { content:'★'; color: var(--accent); }
+    .bg-favorite-marker::before { content:'\2605'; color: var(--accent); }
     .bg-empty { font-size:13px; color: var(--muted); text-align:center; padding:20px; border:1px dashed rgba(255,255,255,0.12); border-radius:12px; background: rgba(0,0,0,0.12); }
     @media (max-width: 720px) {
       .bg-current { flex-direction:column; }
@@ -648,7 +685,7 @@
     .sheet input[type="checkbox"]{ appearance:none; width:16px; height:16px; border-radius:6px; border:1px solid rgba(255,255,255,0.2); background: var(--glass); display:inline-flex; align-items:center; justify-content:center; cursor:pointer; transition: border-color .2s, background .2s, box-shadow .2s; vertical-align: middle; }
     .sheet input[type="checkbox"]:hover{ border-color: var(--accent); box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent); }
     .sheet input[type="checkbox"]:checked{ background: var(--accent); border-color: var(--accent); box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent); }
-    .sheet input[type="checkbox"]:checked::after{ content:'✓'; color:#fff; font-size:12px; line-height:1; }
+    .sheet input[type="checkbox"]:checked::after{ content:'\2713'; color:#fff; font-size:12px; line-height:1; }
 
     /* Tabs */
     .tabs { display:flex; gap:8px; border-bottom: 1px solid rgba(255,255,255,.08); margin: 10px 0 12px; position: sticky; top: 0; background: inherit; padding-bottom: 8px; z-index: 2 }
@@ -828,7 +865,8 @@
       line-height: 1;
       padding: 0;
     }
-    #startpageAgentMaxIterations {
+    #startpageAgentMaxIterations,
+    #recentMaxSetting {
       width: 110px;
       min-width: 110px;
       min-height: 46px;
@@ -849,7 +887,9 @@
       padding-right: 12px;
     }
     #startpageAgentMaxIterations::-webkit-outer-spin-button,
-    #startpageAgentMaxIterations::-webkit-inner-spin-button {
+    #startpageAgentMaxIterations::-webkit-inner-spin-button,
+    #recentMaxSetting::-webkit-outer-spin-button,
+    #recentMaxSetting::-webkit-inner-spin-button {
       -webkit-appearance: none;
       margin: 0;
     }
@@ -1089,3 +1129,4 @@
       body { scroll-behavior: auto; }
     }
   
+

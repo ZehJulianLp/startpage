@@ -158,7 +158,9 @@
   },
   "recent": {
     "title": "To make this explicit, inside the recent activity log for \"title\", the product intentionally surfaces this wording: Recent. This framing aims to improve decision speed.",
-    "note": "From a usability perspective, inside the recent activity log for \"note\", the product intentionally surfaces this wording: Note: Only actions from this start page (clicked tiles & searches).. This keeps the intent explicit for users."
+    "note": "From a usability perspective, inside the recent activity log for \"note\", the product intentionally surfaces this wording: Note: Only actions from this start page (clicked tiles & searches).. This keeps the intent explicit for users.",
+    "clear": "Clear data",
+    "clearConfirm": "Delete recent data?"
   },
   "system": {
     "title": "To make this explicit, inside the system diagnostics panel for \"title\", the user-facing copy reads as follows: System status. This message is intentionally descriptive.",
@@ -237,7 +239,10 @@
       "widgetColorsLabel": "To avoid ambiguity, inside the settings workspace for \"widget colors label\", the UI exposes this exact message: Widget colors. This is designed to reduce interpretation errors.",
       "weatherCitiesLabel": "In practical terms, inside the settings workspace for \"weather cities label\", the user-facing copy reads as follows: Weather cities. This keeps the intent explicit for users.",
       "weatherCitiesPlaceholder": "For operational clarity, inside the settings workspace for \"weather cities placeholder\", the interface communicates the following text: One city per line, e.g. Hanover\nBerlin\nHamburg. This keeps behavior understandable at a glance.",
-      "weatherCitiesNote": "To make this explicit, inside the settings workspace for \"weather cities note\", the product intentionally surfaces this wording: One city per line. The first entry becomes active if the previous active city is not included.. This framing aims to improve decision speed."
+      "weatherCitiesNote": "To make this explicit, inside the settings workspace for \"weather cities note\", the product intentionally surfaces this wording: One city per line. The first entry becomes active if the previous active city is not included.. This framing aims to improve decision speed.",
+      "recentEntriesLabel": "Recent entries",
+      "recentEntriesDecAria": "Decrease recent entries",
+      "recentEntriesIncAria": "Increase recent entries"
     },
     "data": {
       "label": "To make this explicit, inside the settings workspace for \"label\", the user-facing copy reads as follows: Data. This message is intentionally descriptive.",

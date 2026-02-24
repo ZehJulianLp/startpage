@@ -1,12 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Startpage</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -29,7 +26,7 @@
 
     <section class="search" id="searchBox">
       <select id="engine"></select>
-      <input id="query" type="text" placeholder="Suche… (z. B. !yt lo‑fi, !etc Home)" data-i18n-placeholder="search.placeholder" autocomplete="on" />
+      <input id="query" type="text" placeholder="Suche… (z.?B. !yt lo-fi, !etc Home)" data-i18n-placeholder="search.placeholder" autocomplete="on" />
       <button class="btn btn-go icon-only" id="go" data-i18n-aria-label="search.submitAria">
         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
       </button>
@@ -37,11 +34,11 @@
 
     <main class="grid">
       <section class="card col-6" id="todo">
-        <h3 data-i18n="todo.title">To‑Do</h3>
+        <h3 data-i18n="todo.title">To-Do</h3>
         <div class="todo-input">
           <input id="todoInput" type="text" placeholder="Neue Aufgabe…" data-i18n-placeholder="todo.placeholder" />
           <button class="btn" id="todoAdd" data-i18n="todo.add">Hinzufügen</button>
-          <button class="btn" id="todoClearDone" title="Erledigte entfernen" data-i18n-title="todo.clearDoneTitle" data-i18n="todo.clearDone">✓ löschen</button>
+          <button class="btn" id="todoClearDone" title="Erledigte entfernen" data-i18n-title="todo.clearDoneTitle" data-i18n="todo.clearDone">? löschen</button>
         </div>
         <div class="todo-list" id="todoList"></div>
       </section>
@@ -82,7 +79,7 @@
           </div>
         </div>
         <div class="weather-hourly" id="hourly"></div>
-        <div class="muted" id="weatherFoot" style="margin-top:8px; font-size:12px" data-i18n="weather.source">Quelle: Open‑Meteo</div>
+        <div class="muted" id="weatherFoot" style="margin-top:8px; font-size:12px" data-i18n="weather.source">Quelle: Open-Meteo</div>
       </section>
 
       <section class="card col-8" id="transportCard">
@@ -110,10 +107,9 @@
       </section>
 
       <section class="card col-4" id="quoteCard">
-        <h3 data-i18n="quote.title">Quote / Nerd‑Impulse</h3>
+        <h3 data-i18n="quote.title">Quote / Nerd-Impulse</h3>
         <div class="quote" id="quote">—</div>
       </section>
-
       <section class="card col-8" id="recent">
         <h3 data-i18n="recent.title">Zuletzt</h3>
         <div class="recent-list" id="recentList"></div>
@@ -136,12 +132,12 @@
           </div>
         </div>
         <ul id="newsList"></ul>
-        <div class="muted" style="margin-top:8px; font-size:12px" data-i18n="news.source">RSS via Startpage Proxy (CORS‑Proxy)</div>
+        <div class="muted" style="margin-top:8px; font-size:12px" data-i18n="news.source">RSS via Startpage Proxy (CORS-Proxy)</div>
       </section>
     </main>
 
     <footer class="muted" style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:6px">
-      <div data-i18n="footer.tagline">Local‑first Dashboard · speichert nur im Browser (localStorage)</div>
+      <div data-i18n="footer.tagline">Local-first Dashboard · speichert nur im Browser (localStorage)</div>
       <div>v1.10.1</div>
     </footer>
   </div>
@@ -221,7 +217,7 @@
           <label for="startpageAgentMaxIterations" data-i18n="agent.settings.maxIterationsLabel">Agent-Loop Limit</label>
           <div>
             <div class="startpage-agent-stepper">
-              <button class="btn icon-only" id="startpageAgentMaxIterationsDec" type="button" aria-label="Loop-Limit verringern" data-i18n-aria-label="agent.settings.maxIterationsDecAria">−</button>
+              <button class="btn icon-only" id="startpageAgentMaxIterationsDec" type="button" aria-label="Loop-Limit verringern" data-i18n-aria-label="agent.settings.maxIterationsDecAria">-</button>
               <input id="startpageAgentMaxIterations" type="number" min="1" max="10" step="1" />
               <button class="btn icon-only" id="startpageAgentMaxIterationsInc" type="button" aria-label="Loop-Limit erhöhen" data-i18n-aria-label="agent.settings.maxIterationsIncAria">+</button>
             </div>
@@ -346,6 +342,17 @@
           <div style="position:relative">
             <input id="transportDefaultInput" type="text" placeholder="Station suchen…" data-i18n-placeholder="settings.widgets.defaultTransportPlaceholder" autocomplete="off" />
             <div id="transportDefaultSuggest" class="transport-suggest hidden"></div>
+          </div>
+        </div>
+        <div class="row">
+          <label for="recentMaxSetting" data-i18n="settings.widgets.recentEntriesLabel">Recent entries</label>
+          <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
+            <div class="startpage-agent-stepper">
+              <button class="btn icon-only" id="recentMaxSettingDec" type="button" aria-label="Decrease recent entries" data-i18n-aria-label="settings.widgets.recentEntriesDecAria">-</button>
+              <input id="recentMaxSetting" type="number" min="0" max="50" step="1" />
+              <button class="btn icon-only" id="recentMaxSettingInc" type="button" aria-label="Increase recent entries" data-i18n-aria-label="settings.widgets.recentEntriesIncAria">+</button>
+            </div>
+            <button class="btn" id="recentClearSetting" type="button" data-i18n="recent.clear">Daten löschen</button>
           </div>
         </div>
         <div class="row">
@@ -531,7 +538,7 @@
   <!-- Command Palette -->
   <div class="modal" id="palette" aria-hidden="true">
     <div class="sheet">
-      <input class="palette-input" id="paletteInput" type="text" placeholder="Befehl oder Favorit suchen… (Strg/⌘+K)" data-i18n-placeholder="palette.placeholder" autocomplete="off" aria-controls="paletteList" aria-autocomplete="list" aria-activedescendant="" />
+      <input class="palette-input" id="paletteInput" type="text" placeholder="Befehl oder Favorit suchen… (Strg/?+K)" data-i18n-placeholder="palette.placeholder" autocomplete="off" aria-controls="paletteList" aria-autocomplete="list" aria-activedescendant="" />
       <ul id="paletteList" class="palette-list" role="listbox"></ul>
     </div>
   </div>

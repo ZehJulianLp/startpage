@@ -158,7 +158,9 @@
   },
   "recent": {
     "title": "Zuletzt",
-    "note": "Info: Zeigt nur Aktionen von dieser Startseite (geklickte Kacheln & Suchen)."
+    "note": "Info: Zeigt nur Aktionen von dieser Startseite (geklickte Kacheln & Suchen).",
+    "clear": "Clear data",
+    "clearConfirm": "Delete recent data?"
   },
   "system": {
     "title": "Systemstand",
@@ -237,7 +239,10 @@
       "widgetColorsLabel": "Widget-Farben",
       "weatherCitiesLabel": "Weda-Städte",
       "weatherCitiesPlaceholder": "A Stadt pro Zeile, z.B. Hannover\nBerlin\nHamburg",
-      "weatherCitiesNote": "A Stadt pro Zeile. Der erste Eintrag wird aktiv, falls die bisher aktive Stadt ned enthalten is."
+      "weatherCitiesNote": "A Stadt pro Zeile. Der erste Eintrag wird aktiv, falls die bisher aktive Stadt ned enthalten is.",
+      "recentEntriesLabel": "Recent entries",
+      "recentEntriesDecAria": "Decrease recent entries",
+      "recentEntriesIncAria": "Increase recent entries"
     },
     "data": {
       "label": "Doatn",
