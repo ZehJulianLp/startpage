@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "Startseite"
+    "title": "Startpage"
   },
   "common": {
     "link": "Link",
@@ -33,11 +33,11 @@
       "maps": "Google Maps"
     },
     "suggest": {
-      "bang": "{bang} (Knall)",
-      "shortcut": "{shortcut} (Verknüpfung)",
+      "bang": "{bang} (Bang)",
+      "shortcut": "{shortcut} (Shortcut)",
       "type": {
-        "bang": "Knall",
-        "shortcut": "Abkürzung",
+        "bang": "Bang",
+        "shortcut": "Shortcut",
         "recent": "Zuletzt",
         "word": "Wort"
       }
@@ -47,7 +47,7 @@
     "submitAria": "Suche starten"
   },
   "todo": {
-    "title": "Zu erledigen",
+    "title": "To-Do",
     "placeholder": "Neue Aufgabe…",
     "add": "Hinzufügen",
     "clearDoneTitle": "Erledigte entfernen",
@@ -144,21 +144,21 @@
   "quote": {
     "title": "Quote / Nerd-Impulse",
     "list": [
-      "Gehen Sie schnell vor und führen Sie häufig Umgestaltungen durch.",
-      "Barrierefreiheit ist keine Funktion, sondern die Standardeinstellung.",
-      "Fertig > Perfekt. Iterieren.",
-      "Wenn es nicht überwacht wird, existiert es nicht.",
-      "Gute UX ist unsichtbar. Schlechte UX ist unvergesslich.",
-      "Sorgen Sie dafür, dass es funktioniert, machen Sie es richtig, machen Sie es schnell.",
-      "Kleine Schritte. Massive Ergebnisse.",
-      "Einfachheitsskalen. Komplexität scheitert.",
-      "Automatisieren Sie die langweiligen Dinge.",
-      "Zweimal messen, einmal einsetzen."
+      "Move fast, refactor often.",
+      "Accessibility isn't a feature – it's the default.",
+      "Done > Perfect. Iterate.",
+      "If it's not monitored, it doesn't exist.",
+      "Good UX is invisible. Bad UX is unforgettable.",
+      "Make it work, make it right, make it fast.",
+      "Small steps. Massive outcomes.",
+      "Simplicity scales. Complexity fails.",
+      "Automate the boring stuff.",
+      "Measure twice, deploy once."
     ]
   },
   "recent": {
     "title": "Zuletzt",
-    "note": "Hinweis: Zeigt nur Aktionen von dieser Startseite (geklickte Kacheln & Suchen).",
+    "note": "Hinweis: Zeigt nur Aktionen von dieser Startpage (geklickte Kacheln & Suchen).",
     "clear": "Daten löschen",
     "clearConfirm": "Aktuelle Daten löschen?"
   },
@@ -172,7 +172,7 @@
     "noData": "Keine Daten verfügbar"
   },
   "news": {
-    "title": "Nachricht",
+    "title": "News",
     "refreshTitle": "Neu laden",
     "source": "RSS via Startpage Proxy (CORS-Proxy)",
     "noItems": "Keine Items",
@@ -190,8 +190,8 @@
       "search": "Suche & Feeds",
       "widgets": "Widgets",
       "data": "Daten",
-      "guide": "Führung",
-      "ai": "Startseite-Agent"
+      "guide": "Guide",
+      "ai": "Startpage-Agent"
     },
     "theme": {
       "label": "Thema",
@@ -240,9 +240,9 @@
       "weatherCitiesLabel": "Wetter-Städte",
       "weatherCitiesPlaceholder": "Eine Stadt pro Zeile, z.B. Hannover\nBerlin\nHamburg",
       "weatherCitiesNote": "Eine Stadt pro Zeile. Der erste Eintrag wird aktiv, falls die bisher aktive Stadt nicht enthalten ist.",
-      "recentEntriesLabel": "Aktuelle Einträge",
-      "recentEntriesDecAria": "Letzte Einträge verringern",
-      "recentEntriesIncAria": "Aktuelle Einträge erhöhen"
+      "recentEntriesLabel": "Zuletzt-Widget Einträge",
+      "recentEntriesDecAria": "Zuletzt-Widget Einträge verringern",
+      "recentEntriesIncAria": "Zuletzt-Widget Einträge erhöhen"
     },
     "data": {
       "label": "Daten",
@@ -275,22 +275,22 @@
     },
     "guideHtml": "<div class=\"row\"><label>User Guide</label><div><h5>Überblick</h5><ul><li>Startseite mit Suche, Favoriten, To-Do, Notizen, Wetter, News.</li><li>Alles lokal: Daten bleiben im Browser (localStorage).</li></ul><h5>Shortcuts</h5><ul><li>Ctrl/Cmd+K: Command Palette öffnen</li><li>1-9: Erste 9 Favoriten öffnen (wenn nicht tippen)</li><li>/ : Suche fokussieren (auch über Palette)</li><li>Enter in Suche: Startet die Suche</li><li>ESC: Modals schließen</li><li>Palette: Schnellaktionen für Widgets, Theme, Hintergrund, Daten, Favoriten</li><li>Palette: Taste C wechselt den Kachel-Stil, \"Header-Farben zurücksetzen\" stellt Suche & Uhr zurück</li></ul><h5>Suche & Autocomplete</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>Eigene Shortcuts: JSON in den Einstellungen; {q} als Platzhalter</li><li>Autocomplete: Bangs, Shortcuts, Recent-Suchen, Wortliste (global + Preset)</li><li>Tab übernimmt Vorschlag, Enter startet Suche</li></ul><h5>Tiles</h5><ul><li>Drag & Drop zum Sortieren, Klick zum Öffnen</li><li>+ Kachel: Neue Favoriten hinzufügen</li><li>Reset: Standardfavoriten wiederherstellen</li></ul><h5>Widgets & Layout</h5><ul><li>Sichtbarkeit je Widget umschaltbar</li><li>Kachel-Stil global anpassbar (Glas, Vollfläche, Transparent, Soft Minimal)</li><li>Eigene Farben für Uhr/Suche; Reset bringt Stil-Vorgabe zurück</li><li>Widget-Farben & Button \"Widgets einfärben\" setzen Akzent pro Karte</li></ul><h5>Hintergrund</h5><ul><li>Presets, Uploads, Sammlungen, Rotation (Zeit/Thema/Intervall)</li><li>Akzentfarbe wird aus dem aktiven Hintergrund extrahiert</li></ul><h5>Daten</h5><ul><li>Export/Import als JSON</li><li>Data Presets laden (assets/presets/*.json aus dem Repo)</li></ul><h5>Startpage Agent</h5><ul><li>Integrierter KI-Chat mit lokalem Ollama (Host/Modell in den Einstellungen).</li><li>Unterstützt Streaming-Antworten, Stop (Button/ESC), Verlauf-Persistenz und Markdown.</li><li>Agentische Tools können Widgets und Einstellungen lesen/ändern (je nach Confirm-Modus).</li></ul></div></div>",
     "general": {
-      "agentLabel": "Startseite-Agent",
+      "agentLabel": "Startpage-Agent",
       "agentEnabled": "Agent aktiv",
       "agentHint": "Wenn deaktiviert, wird nichts an Ollama gesendet."
     },
     "externalSources": {
       "label": "Externe Quellen",
-      "title": "Externe Dienste und Zweck",
-      "note": "Aufrufe erfolgen nur, wenn das jeweilige Widget oder Feature genutzt wird.",
+      "title": "Externe Quellen und Zweck",
+      "note": "Abfragen erfolgen nur, wenn das jeweilige Widget oder Feature genutzt wird.",
       "items": {
         "openMeteoForecast": "Wettervorhersagedaten für ausgewählte Orte.",
         "openMeteoGeocoding": "Stadt-/Standortsuche für das Wetter-Widget.",
         "startpageProxy": "Proxy für Transport- und RSS-/News-Anfragen.",
         "transportRest": "Über den Proxy genutztes ÖPNV-Backend.",
-        "googleFavicons": "Favicons für Lieblingskacheln.",
-        "unsplashImages": "Hintergrundbilder (falls ausgewählt).",
-        "searchEngines": "Externe Suchziele werden geöffnet, wenn eine Suche gestartet wird.",
+        "googleFavicons": "Favicons für Favouritenkacheln.",
+        "unsplashImages": "Hintergrundbilder (falls verwendet).",
+        "searchEngines": "Externe Suchmaschinen für die Suche.",
         "ollamaLocal": "Lokaler KI-Endpunkt für Startpage Agent (falls aktiviert)."
       }
     }
@@ -310,7 +310,7 @@
     },
     "appearance": {
       "title": "Darstellung",
-      "theme": "Thema",
+      "theme": "Theme",
       "cardStyle": "Karten-Stil",
       "background": "Hintergrund",
       "rotation": "Rotation aktivieren",
@@ -350,7 +350,7 @@
     "search": {
       "focus": "Suche fokussieren",
       "start": "Suche starten",
-      "engine": "Motor: {engine}"
+      "engine": "Engine: {engine}"
     },
     "settings": {
       "open": "Einstellungen öffnen",
@@ -408,7 +408,7 @@
     }
   },
   "widgets": {
-    "todo": "Zu erledigen",
+    "todo": "To-Do",
     "notes": "Notizen",
     "tiles": "Favoriten",
     "weather": "Wetter",
@@ -416,7 +416,7 @@
     "quote": "Zitat",
     "recent": "Zuletzt",
     "system": "System",
-    "news": "Nachricht"
+    "news": "News"
   },
   "background": {
     "currentPreview": "Aktuelles Hintergrundbild",
@@ -432,7 +432,7 @@
       "empty": "Noch keine Favoriten. Markiere Presets oder Uploads."
     },
     "subtitle": {
-      "preset": "Voreingestellt"
+      "preset": "Preset"
     },
     "upload": "Hochladen",
     "uploadDrop": "Dateien hier ablegen",
@@ -492,7 +492,7 @@
       "note": "URL wird lokal gespeichert. Server muss CORS für Bilder erlauben.",
       "enterUrl": "Bitte eine URL eintragen.",
       "title": "Benutzerdefinierte URL",
-      "subtitle": "Brauch"
+      "subtitle": "Custom URL"
     },
     "actions": {
       "apply": "Setzen",
@@ -504,12 +504,12 @@
       "tint": "Widgets einfärben"
     },
     "tabs": {
-      "presets": "Voreinstellungen",
+      "presets": "Presets",
       "favorites": "Favoriten",
       "uploads": "Uploads",
       "collections": "Sammlungen",
-      "rotation": "Drehung",
-      "custom": "Brauch"
+      "rotation": "Rotation",
+      "custom": "Custom URL"
     },
     "loadError": "Fehler beim Laden. Prüfe CORS Vorgaben.",
     "noneAvailable": "Keine Hintergründe verfügbar.",
@@ -549,9 +549,9 @@
   },
   "agent": {
     "ui": {
-      "title": "Startseite-Agent",
-      "fabAria": "Startseite-Agent",
-      "fabTitle": "Startseite-Agent",
+      "title": "Startpage-Agent",
+      "fabAria": "Startpage-Agent",
+      "fabTitle": "Startpage-Agent",
       "openSettingsAria": "Agent-Einstellungen öffnen",
       "openSettingsTitle": "Einstellungen",
       "closeAria": "Agent schließen",
@@ -560,7 +560,7 @@
       "inputPlaceholder": "Nachricht an Startpage Agent...",
       "send": "Senden",
       "stop": "Abbrechen",
-      "hostLabel": "Gastgeber",
+      "hostLabel": "Host",
       "modelLabel": "Modell",
       "emptyModel": "—"
     },
@@ -629,7 +629,7 @@
       "invalidMemory": "Memory ist ungültig. Nutze JSON oder \"key: value\"-Zeilen."
     },
     "systemPrompt": {
-      "name": "Name: Startseite-Agent",
+      "name": "Name: Startpage-Agent",
       "embedded": "Du bist in einer lokalen Startpage eingebettet.",
       "jsonOnly": "Wenn du eine Aktion ausführen musst, antworte ausschließlich mit genau einer JSON-Zeile im Format {\"tool\":\"<name>\",\"args\":{...}}.",
       "noExtra": "Keine weiteren Wörter, kein Markdown, kein Codeblock bei Toolcalls.",
