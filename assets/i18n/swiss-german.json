@@ -1,274 +1,274 @@
 {
   "app": {
-    "title": "Startpage (Schwiizerduetsch)"
+    "title": "Startsyte (Schwiizerdütsch)"
   },
   "common": {
-    "link": "[Schwiizerduetsch] Link",
-    "delete": "[Schwiizerduetsch] Delete",
-    "remove": "[Schwiizerduetsch] Remove",
-    "save": "[Schwiizerduetsch] Save",
-    "loading": "[Schwiizerduetsch] Loading...",
-    "loadError": "[Schwiizerduetsch] Load failed",
-    "noMatches": "[Schwiizerduetsch] No matches",
-    "emptyDash": "[Schwiizerduetsch] -",
-    "dash": "[Schwiizerduetsch] -",
-    "cancel": "[Schwiizerduetsch] Cancel",
-    "ok": "[Schwiizerduetsch] OK",
-    "default": "[Schwiizerduetsch] Default"
+    "link": "Link",
+    "delete": "Löschen",
+    "remove": "Wegneh",
+    "save": "Spichere",
+    "loading": "Lade...",
+    "loadError": "Lade hät nöd klappet",
+    "noMatches": "Kei Träffer",
+    "emptyDash": "--",
+    "dash": "-",
+    "cancel": "Abbräche",
+    "ok": "OK",
+    "default": "Standard"
   },
   "header": {
-    "themeToggleTitle": "[Schwiizerduetsch] Dark/Light",
-    "settingsTitle": "[Schwiizerduetsch] Settings",
-    "themeAria": "[Schwiizerduetsch] Toggle theme",
-    "settingsAria": "[Schwiizerduetsch] Open settings"
+    "themeToggleTitle": "Dark/Light",
+    "settingsTitle": "Iistellige",
+    "themeAria": "Theme umschalte",
+    "settingsAria": "Iistellige ufmache"
   },
   "search": {
-    "placeholder": "[Schwiizerduetsch] Search... (e.g. !yt[Schwiizerduetsch]  lo-fi, !etc[Schwiizerduetsch]  Home)",
+    "placeholder": "Sueche... (z. B. !yt lo-fi, !etc Home)",
     "engine": {
-      "google": "[Schwiizerduetsch] Google",
-      "ddg": "[Schwiizerduetsch] DuckDuckGo",
-      "bing": "[Schwiizerduetsch] Bing",
-      "yt": "[Schwiizerduetsch] YouTube",
-      "wikipedia": "[Schwiizerduetsch] Wikipedia",
-      "maps": "[Schwiizerduetsch] Google Maps"
+      "google": "Google",
+      "ddg": "DuckDuckGo",
+      "bing": "Bing",
+      "yt": "YouTube",
+      "wikipedia": "Wikipedia",
+      "maps": "Google Maps"
     },
     "suggest": {
       "bang": "{bang} (Bang)",
       "shortcut": "{shortcut} (Shortcut)",
       "type": {
-        "bang": "[Schwiizerduetsch] Bang",
-        "shortcut": "[Schwiizerduetsch] Shortcut",
-        "recent": "[Schwiizerduetsch] Recent",
-        "word": "[Schwiizerduetsch] Word"
+        "bang": "Bang",
+        "shortcut": "Shortcut",
+        "recent": "Zuletzt",
+        "word": "Wort"
       }
     },
-    "recentShortcut": "[Schwiizerduetsch] Shortcut {shortcut}[Schwiizerduetsch]  - {query}",
-    "recentSearch": "[Schwiizerduetsch] Search ({engine}[Schwiizerduetsch] ) - {query}",
-    "submitAria": "[Schwiizerduetsch] Start search"
+    "recentShortcut": "Shortcut {shortcut} - {query}",
+    "recentSearch": "Suche ({engine}) - {query}",
+    "submitAria": "Suechi starte"
   },
   "todo": {
-    "title": "[Schwiizerduetsch] To-Do",
-    "placeholder": "[Schwiizerduetsch] New task...",
-    "add": "[Schwiizerduetsch] Add",
-    "clearDoneTitle": "[Schwiizerduetsch] Remove completed",
-    "clearDone": "[Schwiizerduetsch]  clear",
-    "doneAria": "[Schwiizerduetsch] Done",
-    "prompt": "[Schwiizerduetsch] Todo"
+    "title": "To-Do",
+    "placeholder": "Neue Aufgabe...",
+    "add": "Hinzuefüege",
+    "clearDoneTitle": "Erledigte entfernen",
+    "clearDone": "✓ löschen",
+    "doneAria": "Fertig",
+    "prompt": "Todo"
   },
   "notes": {
-    "title": "[Schwiizerduetsch] Notes",
-    "placeholder": "[Schwiizerduetsch] Jot something down...",
-    "prompt": "[Schwiizerduetsch] Note"
+    "title": "Notize",
+    "placeholder": "Schreib dir schnell was auf...",
+    "prompt": "Notiz"
   },
   "tiles": {
-    "title": "[Schwiizerduetsch] Favorites",
-    "add": "[Schwiizerduetsch] + Tile",
-    "resetTitle": "[Schwiizerduetsch] Restore defaults",
-    "edit": "[Schwiizerduetsch] Edit",
-    "promptTitle": "[Schwiizerduetsch] Title",
-    "promptUrl": "[Schwiizerduetsch] URL",
-    "invalidUrl": "[Schwiizerduetsch] Invalid URL",
-    "promptTitleNew": "[Schwiizerduetsch] Tile title",
-    "promptUrlNew": "[Schwiizerduetsch] URL (https://...)",
-    "resetConfirm": "[Schwiizerduetsch] Restore default tiles?",
+    "title": "Favoritte",
+    "add": "+ Kachel",
+    "resetTitle": "Standard widerhärstelle",
+    "edit": "Bearbeite",
+    "promptTitle": "Titel",
+    "promptUrl": "URL",
+    "invalidUrl": "Ungültige URL",
+    "promptTitleNew": "Titel der Kachel",
+    "promptUrlNew": "URL (https://…)",
+    "resetConfirm": "Standard-Kachele widerhärstelle?",
     "dialog": {
-      "titleLabel": "[Schwiizerduetsch] Title",
-      "urlLabel": "[Schwiizerduetsch] URL",
-      "save": "[Schwiizerduetsch] Save"
+      "titleLabel": "Titel",
+      "urlLabel": "URL",
+      "save": "Spichere"
     },
-    "resetAria": "[Schwiizerduetsch] Reset tiles"
+    "resetAria": "Kachele zruggsetze"
   },
   "weather": {
-    "title": "[Schwiizerduetsch] Weather today",
-    "cityPlaceholder": "[Schwiizerduetsch] Enter city...",
-    "setCity": "[Schwiizerduetsch] Set",
-    "pickLocation": "[Schwiizerduetsch] Pick a location...",
-    "source": "[Schwiizerduetsch] Source: Open-Meteo",
-    "loading": "[Schwiizerduetsch] Loading weather...",
-    "prompt": "[Schwiizerduetsch] Enter a location to load weather.",
-    "tempEmpty": "[Schwiizerduetsch] -C",
-    "tempEmptyShort": "[Schwiizerduetsch] -",
-    "minmaxEmpty": "[Schwiizerduetsch] - / - C",
-    "noForecast": "[Schwiizerduetsch] No forecast",
+    "title": "Wätter hät",
+    "cityPlaceholder": "Stadt iigäh...",
+    "setCity": "Setze",
+    "pickLocation": "Ort wählen...",
+    "source": "Quelle: Open-Meteo",
+    "loading": "Lade Wätter...",
+    "prompt": "Gib en Ort i, zum Wätter z lade.",
+    "tempEmpty": "-°C",
+    "tempEmptyShort": "-°",
+    "minmaxEmpty": "- / - °C",
+    "noForecast": "Kei Prognose",
     "errors": {
-      "geocodingFailed": "[Schwiizerduetsch] Geocoding failed",
-      "locationNotFound": "[Schwiizerduetsch] Location not found",
-      "cityMissing": "[Schwiizerduetsch] City missing",
-      "fetchFailed": "[Schwiizerduetsch] Weather fetch failed",
-      "loadFailed": "[Schwiizerduetsch] Weather could not be loaded"
+      "geocodingFailed": "Geocoding fehlgeschlagen",
+      "locationNotFound": "Ort nöd gfunde",
+      "cityMissing": "Stadt fählt",
+      "fetchFailed": "Wätter abrüefe hät nöd klappet",
+      "loadFailed": "Wätter hät nöd chönne glade werde"
     },
     "codes": {
-      "0": "[Schwiizerduetsch] Clear",
-      "1": "[Schwiizerduetsch] Mostly clear",
-      "2": "[Schwiizerduetsch] Partly cloudy",
-      "3": "[Schwiizerduetsch] Cloudy",
-      "45": "[Schwiizerduetsch] Fog",
-      "48": "[Schwiizerduetsch] Fog",
-      "51": "[Schwiizerduetsch] Drizzle",
-      "53": "[Schwiizerduetsch] Drizzle",
-      "55": "[Schwiizerduetsch] Drizzle",
-      "61": "[Schwiizerduetsch] Rain",
-      "63": "[Schwiizerduetsch] Rain",
-      "65": "[Schwiizerduetsch] Heavy rain",
-      "71": "[Schwiizerduetsch] Snow",
-      "80": "[Schwiizerduetsch] Showers",
-      "95": "[Schwiizerduetsch] Thunderstorm",
-      "default": "[Schwiizerduetsch] Weather"
+      "0": "Klar",
+      "1": "Überwiegend klar",
+      "2": "Wechselhaft",
+      "3": "Bewölkt",
+      "45": "Nebel",
+      "48": "Nebel",
+      "51": "Sprühregen",
+      "53": "Sprühregen",
+      "55": "Sprühregen",
+      "61": "Regen",
+      "63": "Regen",
+      "65": "Starker Regen",
+      "71": "Schnee",
+      "80": "Schauer",
+      "95": "Gewitter",
+      "default": "Wetter"
     }
   },
   "transport": {
-    "title": "[Schwiizerduetsch] Transport",
-    "durationAria": "[Schwiizerduetsch] Duration",
-    "duration30": "[Schwiizerduetsch] 30 min",
-    "duration60": "[Schwiizerduetsch] 60 min",
-    "duration90": "[Schwiizerduetsch] 90 min",
-    "duration120": "[Schwiizerduetsch] 120 min",
-    "refreshTitle": "[Schwiizerduetsch] Reload",
-    "searchPlaceholder": "[Schwiizerduetsch] Search station...",
-    "noneSelected": "[Schwiizerduetsch] No station selected",
-    "source": "[Schwiizerduetsch] Source: transport.rest",
-    "minQuery": "[Schwiizerduetsch] At least {count}[Schwiizerduetsch]  characters",
-    "noMatches": "[Schwiizerduetsch] No matches",
-    "proxyTimeout": "[Schwiizerduetsch] Proxy timeout",
-    "loadError": "[Schwiizerduetsch] Load failed",
-    "noDepartures": "[Schwiizerduetsch] No departures",
-    "selectStation": "[Schwiizerduetsch] Select a station...",
+    "title": "ÖV",
+    "durationAria": "Zeitraum",
+    "duration30": "30 min",
+    "duration60": "60 min",
+    "duration90": "90 min",
+    "duration120": "120 min",
+    "refreshTitle": "Neu lade",
+    "searchPlaceholder": "Station sueche...",
+    "noneSelected": "Kei Station gewählt",
+    "source": "Quelle: transport.rest",
+    "minQuery": "Mindestens {count} Zeichen",
+    "noMatches": "Kei Träffer",
+    "proxyTimeout": "Proxy Timeout",
+    "loadError": "Lade hät nöd klappet",
+    "noDepartures": "Kei Abfahrte",
+    "selectStation": "Station auswählen...",
     "type": {
-      "station": "[Schwiizerduetsch] Station",
-      "stop": "[Schwiizerduetsch] Stop"
+      "station": "Station",
+      "stop": "Stop"
     },
-    "platform": "[Schwiizerduetsch] Platform {platform}",
-    "cancelled": "[Schwiizerduetsch] Cancelled",
-    "refreshAria": "[Schwiizerduetsch] Refresh transport"
+    "platform": "Gl. {platform}",
+    "cancelled": "Fällt aus",
+    "refreshAria": "Transport neu laden"
   },
   "quote": {
-    "title": "[Schwiizerduetsch] Quote / Nerd Nudge",
+    "title": "Quote / Nerd-Impulse",
     "list": [
-      "[Schwiizerduetsch] Move fast, refactor often.",
-      "[Schwiizerduetsch] Accessibility isn't a feature - it's the default.",
-      "[Schwiizerduetsch] Done > Perfect. Iterate.",
-      "[Schwiizerduetsch] If it's not monitored, it doesn't exist.",
-      "[Schwiizerduetsch] Good UX is invisible. Bad UX is unforgettable.",
-      "[Schwiizerduetsch] Make it work, make it right, make it fast.",
-      "[Schwiizerduetsch] Small steps. Massive outcomes.",
-      "[Schwiizerduetsch] Simplicity scales. Complexity fails.",
-      "[Schwiizerduetsch] Automate the boring stuff.",
-      "[Schwiizerduetsch] Measure twice, deploy once."
+      "Move fast, refactor often.",
+      "Accessibility isn't a feature - it's the default.",
+      "Done > Perfect. Iterate.",
+      "If it's not monitored, it doesn't exist.",
+      "Good UX is invisible. Bad UX is unforgettable.",
+      "Make it work, make it right, make it fast.",
+      "Small steps. Massive outcomes.",
+      "Simplicity scales. Complexity fails.",
+      "Automate the boring stuff.",
+      "Measure twice, deploy once."
     ]
   },
   "recent": {
-    "title": "[Schwiizerduetsch] Recent",
-    "note": "[Schwiizerduetsch] Note: Only actions from this start page (clicked tiles & searches)."
+    "title": "Zuletzt",
+    "note": "Hinweis: Zeigt nur Aktionen von dieser Startseite (geklickte Kacheln & Suchen)."
   },
   "system": {
-    "title": "[Schwiizerduetsch] System status",
-    "loading": "[Schwiizerduetsch] Loading...",
-    "ram": "[Schwiizerduetsch] RAM: {value}[Schwiizerduetsch]  GB",
-    "cpu": "[Schwiizerduetsch] CPU cores: {value}",
-    "network": "[Schwiizerduetsch] Network: {downlink}[Schwiizerduetsch]  Mbit/s  {type}{saveData}",
-    "saveData": "[Schwiizerduetsch]   SaveData",
-    "noData": "[Schwiizerduetsch] No data available"
+    "title": "Systemstatus",
+    "loading": "Lade...",
+    "ram": "RAM: {value} GB",
+    "cpu": "CPU-Kerne: {value}",
+    "network": "Netz: {downlink} Mbit/s · {type}{saveData}",
+    "saveData": "· SaveData",
+    "noData": "Kei Daten verfügbar"
   },
   "news": {
-    "title": "[Schwiizerduetsch] News",
-    "refreshTitle": "[Schwiizerduetsch] Reload",
-    "source": "[Schwiizerduetsch] RSS via Startpage Proxy (CORS proxy)",
-    "noItems": "[Schwiizerduetsch] No items",
-    "refreshAria": "[Schwiizerduetsch] Refresh news"
+    "title": "News",
+    "refreshTitle": "Neu lade",
+    "source": "RSS via Startpage Proxy (CORS-Proxy)",
+    "noItems": "Kei Items",
+    "refreshAria": "News neu lade"
   },
   "footer": {
-    "tagline": "[Schwiizerduetsch] Local-first dashboard  stores only in the browser (localStorage)"
+    "tagline": "Local-first Dashboard - speichert nur im Browser (localStorage)."
   },
   "settings": {
-    "title": "[Schwiizerduetsch] Settings",
-    "close": "[Schwiizerduetsch] Close",
+    "title": "Iistellige",
+    "close": "Schließen",
     "tabs": {
-      "general": "[Schwiizerduetsch] General",
-      "background": "[Schwiizerduetsch] Background & Appearance",
-      "search": "[Schwiizerduetsch] Search & Feeds",
-      "widgets": "[Schwiizerduetsch] Widgets",
-      "data": "[Schwiizerduetsch] Data",
-      "guide": "[Schwiizerduetsch] Guide",
+      "general": "Allgemein",
+      "background": "Hintergrund & Look",
+      "search": "Suechi & Feeds",
+      "widgets": "Widgets",
+      "data": "Date",
+      "guide": "Leitfaden",
       "ai": "Startpage Agent"
     },
     "theme": {
-      "label": "[Schwiizerduetsch] Theme",
-      "auto": "[Schwiizerduetsch] Auto (System)",
-      "dark": "[Schwiizerduetsch] Dark",
-      "light": "[Schwiizerduetsch] Light"
+      "label": "Theme",
+      "auto": "Auto (System)",
+      "dark": "Dark",
+      "light": "Light"
     },
     "background": {
-      "label": "[Schwiizerduetsch] Background"
+      "label": "Hintergrund"
     },
     "search": {
-      "engines": "[Schwiizerduetsch] Search engines",
-      "bangsNote": "Supported bang shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Custom shortcuts below",
-      "wordlistLabel": "[Schwiizerduetsch] Autocomplete wordlist",
-      "wordlistPlaceholder": "[Schwiizerduetsch] Terms line by line or comma-separated",
-      "wordlistSave": "[Schwiizerduetsch] Save",
-      "wordlistReset": "[Schwiizerduetsch] Clear",
-      "wordlistNote": "[Schwiizerduetsch] Global wordlist (assets/wordlist.json) and preset wordlist are merged. Leave empty to use only the global list.",
-      "shortcutsLabel": "[Schwiizerduetsch] Custom !shortcuts",
+      "engines": "Suechmaschine",
+      "bangsNote": "Unterstützte Bang-Shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Eigene Shortcuts unten",
+      "wordlistLabel": "Wortliste für Autocomplete",
+      "wordlistPlaceholder": "Begriff zeilewiis oder mit Komma trennt",
+      "wordlistSave": "Spichere",
+      "wordlistReset": "Leere",
+      "wordlistNote": "Globale Wortliste (assets/wordlist.json) und die Preset-Wortliste werden gemerged. Leer lassen, um nur die globale Liste zu nutzen.",
+      "shortcutsLabel": "Eigini !Shortcuts",
       "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
-      "shortcutsNote": "[Schwiizerduetsch] Use <code>{q}</code>[Schwiizerduetsch]  as placeholder for the search phrase. Without <code>{q}</code>[Schwiizerduetsch] , <code>[Schwiizerduetsch] ?q=...</code>[Schwiizerduetsch]  is appended.",
-      "feedsLabel": "[Schwiizerduetsch] Custom RSS feeds",
+      "shortcutsNote": "Verwende <code>{q}</code> als Platzhalter für die Suchphrase. Ohne <code>{q}</code> wird <code>?q=...</code> angehängt.",
+      "feedsLabel": "Custom RSS-Feeds",
       "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
-      "feedsNote": "[Schwiizerduetsch] JSON: name - feed URL. This list is merged with the default feeds.",
-      "invalidShortcuts": "[Schwiizerduetsch] Invalid shortcuts JSON",
-      "invalidFeeds": "[Schwiizerduetsch] Invalid feeds JSON"
+      "feedsNote": "JSON: Name - Feed-URL. Diese Liste wird mit den Standardfeeds gemerged.",
+      "invalidShortcuts": "Ungültiges Shortcuts-JSON",
+      "invalidFeeds": "Ungültiges Feeds-JSON"
     },
     "widgets": {
-      "visible": "[Schwiizerduetsch] Show widgets",
-      "defaultCityLabel": "[Schwiizerduetsch] Default city (weather)",
-      "defaultCityPlaceholder": "[Schwiizerduetsch] e.g. Hanover",
-      "defaultTransportLabel": "[Schwiizerduetsch] Default stop (transport)",
-      "defaultTransportPlaceholder": "[Schwiizerduetsch] Search station...",
-      "cardStyleLabel": "[Schwiizerduetsch] Card style",
-      "cardStyleGlass": "[Schwiizerduetsch] Glass (default)",
-      "cardStyleSolid": "[Schwiizerduetsch] Solid",
-      "cardStyleTransparent": "[Schwiizerduetsch] Transparent",
-      "cardStyleMinimal": "[Schwiizerduetsch] Soft minimal",
-      "cardStyleNote": "[Schwiizerduetsch] Applies to all widgets & favorite tiles.",
-      "clockColorLabel": "[Schwiizerduetsch] Time & date",
-      "searchColorLabel": "[Schwiizerduetsch] Search",
-      "reset": "[Schwiizerduetsch] Reset",
-      "clockColorNote": "[Schwiizerduetsch] Sets the header background (empty = style default).",
-      "searchColorNote": "[Schwiizerduetsch] Color for the search area (empty = style default).",
-      "widgetColorsLabel": "[Schwiizerduetsch] Widget colors",
-      "weatherCitiesLabel": "Weather cities",
-      "weatherCitiesPlaceholder": "One city per line, e.g. Hanover\nBerlin\nHamburg",
-      "weatherCitiesNote": "One city per line. The first entry becomes active if the previous active city is not included."
+      "visible": "Widgets sichtbar",
+      "defaultCityLabel": "Standard-Stadt (Wetter)",
+      "defaultCityPlaceholder": "z.B. Hannover",
+      "defaultTransportLabel": "Standard-Haltestelle (Transport)",
+      "defaultTransportPlaceholder": "Station sueche...",
+      "cardStyleLabel": "Kachel-Stil",
+      "cardStyleGlass": "Glas (Standard)",
+      "cardStyleSolid": "Vollfläche",
+      "cardStyleTransparent": "Transparent",
+      "cardStyleMinimal": "Soft Minimal",
+      "cardStyleNote": "Wirkt auf alle Widgets & Favoriten-Kacheln.",
+      "clockColorLabel": "Zeit & Datum",
+      "searchColorLabel": "Suche",
+      "reset": "Reset",
+      "clockColorNote": "Legt den Hintergrund der Kopfzeile fest (leer = Stil-Vorgabe).",
+      "searchColorNote": "Farbe für den Suchbereich (leer = Stil-Vorgabe).",
+      "widgetColorsLabel": "Widget-Farben",
+      "weatherCitiesLabel": "Wetter-Städte",
+      "weatherCitiesPlaceholder": "Eine Stadt pro Zeile, z.B. Hannover\nBerlin\nHamburg",
+      "weatherCitiesNote": "Eine Stadt pro Zeile. Der erste Eintrag wird aktiv, falls die bisher aktive Stadt nöd enthalten isch."
     },
     "data": {
-      "label": "[Schwiizerduetsch] Data",
-      "export": "[Schwiizerduetsch] Export (.json)",
-      "import": "[Schwiizerduetsch] Import (.json)",
-      "presetsLabel": "[Schwiizerduetsch] Data presets",
-      "applyPreset": "[Schwiizerduetsch] Load preset",
-      "presetMeta": "[Schwiizerduetsch] Presets are exported JSONs under assets/presets/. User presets from assets/user-presets/ are merged automatically.",
-      "setupLabel": "[Schwiizerduetsch] Setup",
-      "restartOnboarding": "[Schwiizerduetsch] Restart setup",
-      "restartNote": "[Schwiizerduetsch] Reopens the compact setup dialog.",
-      "noteLabel": "[Schwiizerduetsch] Note",
-      "noteText": "[Schwiizerduetsch] Export stores all settings & data locally as JSON. Import overwrites existing entries."
+      "label": "Daten",
+      "export": "Export (.json)",
+      "import": "Import (.json)",
+      "presetsLabel": "Data Presets",
+      "applyPreset": "Preset laden",
+      "presetMeta": "Presets liegen als exportierte JSONs unter assets/presets/. User-Presets aus assets/user-presets/ werden automatisch gemerged.",
+      "setupLabel": "Setup",
+      "restartOnboarding": "Setup neu starten",
+      "restartNote": "Startet den kompakten Einrichtungs-Dialog erneut.",
+      "noteLabel": "Hinweis",
+      "noteText": "Export speichert sämtliche Einstellungen & Daten lokal als JSON. Import überschreibt vorhandene Einträge."
     },
     "language": {
-      "label": "[Schwiizerduetsch] Language",
-      "auto": "[Schwiizerduetsch] Auto (System)"
+      "label": "Sprache",
+      "auto": "Auto (System)"
     },
     "font": {
-      "label": "[Schwiizerduetsch] Font",
-      "searchPlaceholder": "[Schwiizerduetsch] Search fonts...",
-      "loadLocal": "[Schwiizerduetsch] Load system fonts",
-      "systemDefault": "[Schwiizerduetsch] System default",
-      "noResults": "[Schwiizerduetsch] No matching fonts",
-      "note": "[Schwiizerduetsch] Shows local system fonts (if available), otherwise a detected fallback list.",
-      "unsupported": "[Schwiizerduetsch] Your browser does not support Local Font Access (queryLocalFonts).",
-      "permissionDenied": "[Schwiizerduetsch] Access to local fonts was denied or blocked.",
-      "empty": "[Schwiizerduetsch] No local fonts were returned.",
-      "loadFailed": "[Schwiizerduetsch] Could not load local fonts: {error}"
+      "label": "Schriftart",
+      "searchPlaceholder": "Schriftarten suchen...",
+      "loadLocal": "Systemfonts laden",
+      "systemDefault": "Systemstandard",
+      "noResults": "Kei passenden Schriftarten",
+      "note": "Zeigt lokale System-Schriftarten (falls verfuegbar), sonst eine erkannte Standardliste.",
+      "unsupported": "Dein Browser unterstuetzt Local Font Access (queryLocalFonts) nöd.",
+      "permissionDenied": "Zugriff auf lokale Schriftarten wurde verweigert oder blockiert.",
+      "empty": "Es wurden kei lokalen Schriftarten zurueckgegeben.",
+      "loadFailed": "Lokale Schriftarten konnten nöd geladen werden: {error}"
     },
-    "guideHtml": "<div class=\"row\"><label>[Schwiizerduetsch] User Guide</label><div><h5>[Schwiizerduetsch] Overview</h5><ul><li>[Schwiizerduetsch] Start page with search, favorites, to-do, notes, weather, news.</li><li>[Schwiizerduetsch] All local: data stays in your browser (localStorage).</li></ul><h5>[Schwiizerduetsch] Shortcuts</h5><ul><li>[Schwiizerduetsch] Ctrl/Cmd+K: open command palette</li><li>[Schwiizerduetsch] 1-9: open first 9 favorites (when not typing)</li><li>[Schwiizerduetsch] / : focus search (also via palette)</li><li>[Schwiizerduetsch] Enter in search: start search</li><li>[Schwiizerduetsch] ESC: close modals</li><li>[Schwiizerduetsch] Palette: quick actions for widgets, theme, background, data, favorites</li><li>[Schwiizerduetsch] Palette: key C switches card style, \"Reset header colors\" resets search & clock</li></ul><h5>[Schwiizerduetsch] Search & Autocomplete</h5><ul><li>[Schwiizerduetsch] Bangs: !g[Schwiizerduetsch]  !ddg[Schwiizerduetsch]  !bing[Schwiizerduetsch]  !yt[Schwiizerduetsch]  !wiki[Schwiizerduetsch]  !maps</li><li>[Schwiizerduetsch] Custom shortcuts: JSON in settings; {q}[Schwiizerduetsch]  as placeholder</li><li>[Schwiizerduetsch] Autocomplete: bangs, shortcuts, recent searches, wordlist (global + preset)</li><li>[Schwiizerduetsch] Tab accepts suggestion, Enter starts search</li></ul><h5>[Schwiizerduetsch] Tiles</h5><ul><li>[Schwiizerduetsch] Drag & drop to sort, click to open</li><li>[Schwiizerduetsch] + Tile: add a new favorite</li><li>[Schwiizerduetsch] Reset: restore default favorites</li></ul><h5>[Schwiizerduetsch] Widgets & Layout</h5><ul><li>[Schwiizerduetsch] Visibility per widget</li><li>[Schwiizerduetsch] Card style is global (glass, solid, transparent, soft minimal)</li><li>[Schwiizerduetsch] Custom colors for clock/search; reset restores style defaults</li><li>[Schwiizerduetsch] Widget colors & \"Tint widgets\" set the accent per card</li></ul><h5>[Schwiizerduetsch] Background</h5><ul><li>[Schwiizerduetsch] Presets, uploads, collections, rotation (time/theme/interval)</li><li>[Schwiizerduetsch] Accent color is extracted from the active background</li></ul><h5>[Schwiizerduetsch] Data</h5><ul><li>[Schwiizerduetsch] Export/Import as JSON</li><li>[Schwiizerduetsch] Load data presets (assets/presets/*.json in the repo)</li></ul><h5>Startpage Agent</h5><ul><li>Integrated AI chat with local Ollama (host/model in settings).</li><li>Supports streaming responses, stop (button/ESC), persistent history, and Markdown.</li><li>Agentic tools can read/change widgets and settings (depending on confirm mode).</li></ul></div></div>",
+    "guideHtml": "<div class=\"row\"><label>User Guide</label><div><h5>Überblick</h5><ul><li>Startseite mit Suche, Favoriten, To-Do, Notizen, Wetter, News.</li><li>Alles lokal: Daten bleiben im Browser (localStorage).</li></ul><h5>Shortcuts</h5><ul><li>Ctrl/Cmd+K: Command Palette öffnen</li><li>1-9: Erste 9 Favoriten öffnen (wenn nöd tippen)</li><li>/: Suche fokussieren (auch über Palette)</li><li>Enter in Suche: Startet die Suche</li><li>ESC: Modals schließen</li><li>Palette: Schnellaktionen für Widgets, Theme, Hintergrund, Daten, Favoriten</li><li>Palette: Taste C wechselt den Kachel-Stil, \"Header-Farben zurücksetzen\" stellt Suche & Uhr zurück</li></ul><h5>Suche & Autocomplete</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>Eigene Shortcuts: JSON in den Einstellungen; {q} als Platzhalter</li><li>Autocomplete: Bangs, Shortcuts, Recent-Suchen, Wortliste (global + Preset)</li><li>Tab übernimmt Vorschlag, Enter startet Suche</li></ul><h5>Tiles</h5><ul><li>Drag & Drop zum Sortieren, Klick zum Öffnen</li><li>+ Kachel: Neue Favoriten hinzufügen</li><li>Reset: Standardfavoriten wiederherstellen</li></ul><h5>Widgets & Layout</h5><ul><li>Sichtbarkeit je Widget umschaltbar</li><li>Kachel-Stil global anpassbar (Glas, Vollfläche, Transparent, Soft Minimal)</li><li>Eigene Farben für Uhr/Suche; Reset bringt Stil-Vorgabe zurück</li><li>Widget-Farben & Button \"Widgets einfärben\" setzen Akzent pro Karte</li></ul><h5>Hintergrund</h5><ul><li>Presets, Uploads, Sammlungen, Rotation (Zeit/Thema/Intervall)</li><li>Akzentfarbe wird aus dem aktiven Hintergrund extrahiert</li></ul><h5>Daten</h5><ul><li>Export/Import als JSON</li><li>Data Presets laden (assets/presets/*.json aus dem Repo)</li></ul><h5>Startpage Agent</h5><ul><li>Integrierter KI-Chat mit lokalem Ollama (Host/Modell in den Einstellungen).</li><li>Unterstützt Streaming-Antworten, Stop (Button/ESC), Verlauf-Persistenz und Markdown.</li><li>Agentische Tools können Widgets und Einstellungen lesen/ändern (je nach Confirm-Modus).</li></ul></div></div>",
     "general": {
       "agentLabel": "Startpage Agent",
       "agentEnabled": "Agent aktiv",
@@ -276,256 +276,256 @@
     }
   },
   "onboarding": {
-    "title": "[Schwiizerduetsch] Start setup",
-    "progress": "[Schwiizerduetsch] Step {current}[Schwiizerduetsch]  of {total}",
-    "skip": "[Schwiizerduetsch] Skip setup",
-    "close": "[Schwiizerduetsch] Close",
+    "title": "Setup starten",
+    "progress": "Schritt {current} von {total}",
+    "skip": "Setup überspringen",
+    "close": "Schließen",
     "preset": {
-      "title": "[Schwiizerduetsch] Choose preset",
-      "hint": "[Schwiizerduetsch] Pick a preset or skip this step.",
-      "apply": "[Schwiizerduetsch] Apply preset",
-      "meta": "[Schwiizerduetsch] Apply a preset or skip.",
-      "optional": "[Schwiizerduetsch] Preset optional.",
-      "context": "[Schwiizerduetsch] Setup preset"
+      "title": "Preset wählen",
+      "hint": "Wähle ein Preset oder überspringe diesen Schritt.",
+      "apply": "Preset anwenden",
+      "meta": "Preset anwenden oder überspringen.",
+      "optional": "Preset optional.",
+      "context": "Setup-Preset"
     },
     "appearance": {
-      "title": "[Schwiizerduetsch] Appearance",
-      "theme": "[Schwiizerduetsch] Theme",
-      "cardStyle": "[Schwiizerduetsch] Card style",
-      "background": "[Schwiizerduetsch] Background",
-      "rotation": "[Schwiizerduetsch] Enable rotation",
-      "keepCurrent": "[Schwiizerduetsch] Keep current image"
+      "title": "Darstellung",
+      "theme": "Theme",
+      "cardStyle": "Karten-Stil",
+      "background": "Hintergrund",
+      "rotation": "Rotation aktivieren",
+      "keepCurrent": "Aktives Bild behalten"
     },
     "search": {
-      "title": "[Schwiizerduetsch] Search",
-      "engine": "[Schwiizerduetsch] Default search engine"
+      "title": "Suche",
+      "engine": "Standard-Suchmaschine"
     },
     "widgets": {
-      "title": "[Schwiizerduetsch] Widgets",
-      "defaultTransport": "[Schwiizerduetsch] Default stop (transport)",
-      "tint": "[Schwiizerduetsch] Tint widgets with accent"
+      "title": "Widgets",
+      "defaultTransport": "Standard-Haltestelle (Transport)",
+      "tint": "Widgets an Akzent einfärben"
     },
     "weather": {
-      "title": "[Schwiizerduetsch] Weather",
-      "defaultCity": "[Schwiizerduetsch] Default city",
-      "note": "[Schwiizerduetsch] You can change everything later in settings."
+      "title": "Wetter",
+      "defaultCity": "Standard-Stadt",
+      "note": "Du kannst später jederzeit alles in den Einstellungen ändern."
     },
-    "prev": "[Schwiizerduetsch] Back",
-    "next": "[Schwiizerduetsch] Next",
-    "finish": "[Schwiizerduetsch] Done"
+    "prev": "Zurück",
+    "next": "Weiter",
+    "finish": "Fertig"
   },
   "palette": {
-    "placeholder": "[Schwiizerduetsch] Search command or favorite... (Ctrl/+K)",
+    "placeholder": "Befehl oder Favorit suchen... (Strg/⌘+K)",
     "groups": {
-      "command": "[Schwiizerduetsch] Commands",
-      "settings": "[Schwiizerduetsch] Settings",
-      "search": "[Schwiizerduetsch] Search",
-      "widgets": "[Schwiizerduetsch] Widgets",
-      "theme": "[Schwiizerduetsch] Theme & Background",
-      "data": "[Schwiizerduetsch] Data",
-      "tiles": "[Schwiizerduetsch] Tiles",
-      "tile": "[Schwiizerduetsch] Favorites",
-      "quick": "[Schwiizerduetsch] Quick"
+      "command": "Befehle",
+      "settings": "Einstellungen",
+      "search": "Suche",
+      "widgets": "Widgets",
+      "theme": "Theme & Hintergrund",
+      "data": "Daten",
+      "tiles": "Tiles",
+      "tile": "Favoriten",
+      "quick": "Schnell"
     },
     "search": {
-      "focus": "[Schwiizerduetsch] Focus search",
-      "start": "[Schwiizerduetsch] Start search",
-      "engine": "[Schwiizerduetsch] Engine: {engine}"
+      "focus": "Suche fokussieren",
+      "start": "Suechi starte",
+      "engine": "Engine: {engine}"
     },
     "settings": {
-      "open": "[Schwiizerduetsch] Open settings",
-      "general": "[Schwiizerduetsch] Settings: General",
-      "background": "[Schwiizerduetsch] Settings: Background",
-      "search": "[Schwiizerduetsch] Settings: Search",
-      "widgets": "[Schwiizerduetsch] Settings: Widgets",
-      "data": "[Schwiizerduetsch] Settings: Data",
-      "guide": "[Schwiizerduetsch] Settings: Guide"
+      "open": "Einstellungen öffnen",
+      "general": "Einstellungen: Allgemein",
+      "background": "Einstellungen: Hintergrund",
+      "search": "Einstellungen: Suche",
+      "widgets": "Einstellungen: Widgets",
+      "data": "Einstellungen: Daten",
+      "guide": "Einstellungen: Guide"
     },
     "theme": {
-      "cycle": "[Schwiizerduetsch] Cycle theme (Auto/Dark/Light)",
-      "auto": "[Schwiizerduetsch] Theme: Auto",
-      "dark": "[Schwiizerduetsch] Theme: Dark",
-      "light": "[Schwiizerduetsch] Theme: Light",
-      "resetHeader": "[Schwiizerduetsch] Reset header colors",
-      "recalcAccent": "[Schwiizerduetsch] Recalculate accent colors"
+      "cycle": "Theme wechseln (Auto/Dark/Light)",
+      "auto": "Theme: Auto",
+      "dark": "Theme: Dark",
+      "light": "Theme: Light",
+      "resetHeader": "Header-Farben zurücksetzen",
+      "recalcAccent": "Akzentfarben neu berechnen"
     },
     "cardStyle": {
-      "glass": "[Schwiizerduetsch] Card style: Glass",
-      "solid": "[Schwiizerduetsch] Card style: Solid",
-      "transparent": "[Schwiizerduetsch] Card style: Transparent",
-      "minimal": "[Schwiizerduetsch] Card style: Minimal"
+      "glass": "Kachel-Stil: Glas",
+      "solid": "Kachel-Stil: Vollfläche",
+      "transparent": "Kachel-Stil: Transparent",
+      "minimal": "Kachel-Stil: Minimal"
     },
     "background": {
-      "toggleRotation": "[Schwiizerduetsch] Background: Toggle rotation",
-      "toggleLock": "[Schwiizerduetsch] Background: Lock/unlock rotation",
-      "preset": "[Schwiizerduetsch] Background: {label}"
+      "toggleRotation": "Hintergrund: Rotation umschalten",
+      "toggleLock": "Hintergrund: Rotation sperren/fortsetzen",
+      "preset": "Hintergrund: {label}"
     },
     "widgets": {
-      "showAll": "[Schwiizerduetsch] Widgets: Show all",
-      "hideAll": "[Schwiizerduetsch] Widgets: Hide all",
-      "toggle": "[Schwiizerduetsch] Widget: Toggle {widget}",
-      "focus": "[Schwiizerduetsch] Widget: Focus {widget}"
+      "showAll": "Widgets: Alle anzeigen",
+      "hideAll": "Widgets: Alle ausblenden",
+      "toggle": "Widget: {widget} umschalten",
+      "focus": "Widget: {widget} fokussieren"
     },
     "quick": {
-      "addTodo": "[Schwiizerduetsch] Add todo",
-      "addNote": "[Schwiizerduetsch] Add note"
+      "addTodo": "Todo hinzufügen",
+      "addNote": "Notiz hinzufügen"
     },
     "tiles": {
-      "add": "[Schwiizerduetsch] Add tile",
-      "reset": "[Schwiizerduetsch] Reset tiles"
+      "add": "Tile hinzufügen",
+      "reset": "Tiles zurücksetzen"
     },
     "refresh": {
-      "weather": "[Schwiizerduetsch] Refresh weather",
-      "news": "[Schwiizerduetsch] Refresh news",
-      "transport": "[Schwiizerduetsch] Refresh transport",
-      "system": "[Schwiizerduetsch] Refresh system",
-      "all": "[Schwiizerduetsch] Refresh all widgets"
+      "weather": "Wetter aktualisieren",
+      "news": "News aktualisieren",
+      "transport": "Transport aktualisieren",
+      "system": "System aktualisieren",
+      "all": "Alle Widgets aktualisieren"
     },
     "data": {
-      "export": "[Schwiizerduetsch] Export data",
-      "import": "[Schwiizerduetsch] Import data",
-      "preset": "[Schwiizerduetsch] Data preset: {label}"
+      "export": "Daten exportieren",
+      "import": "Daten importieren",
+      "preset": "Data Preset: {label}"
     }
   },
   "widgets": {
-    "todo": "[Schwiizerduetsch] To-Do",
-    "notes": "[Schwiizerduetsch] Notes",
-    "tiles": "[Schwiizerduetsch] Favorites",
-    "weather": "[Schwiizerduetsch] Weather",
-    "transport": "[Schwiizerduetsch] Transport",
-    "quote": "[Schwiizerduetsch] Quote",
-    "recent": "[Schwiizerduetsch] Recent",
-    "system": "[Schwiizerduetsch] System",
-    "news": "[Schwiizerduetsch] News"
+    "todo": "To-Do",
+    "notes": "Notizen",
+    "tiles": "Favoriten",
+    "weather": "Wetter",
+    "transport": "Transport",
+    "quote": "Quote",
+    "recent": "Zuletzt",
+    "system": "System",
+    "news": "News"
   },
   "background": {
-    "currentPreview": "[Schwiizerduetsch] Current background image",
-    "none": "[Schwiizerduetsch] No background",
-    "noImageSelected": "[Schwiizerduetsch] No image selected",
-    "rotationResume": "[Schwiizerduetsch] Resume rotation",
-    "rotationLock": "[Schwiizerduetsch] Lock rotation",
-    "tone": "[Schwiizerduetsch] Tone: {tone}",
+    "currentPreview": "Aktuelles Hintergrundbild",
+    "none": "Kei Hintergrund",
+    "noImageSelected": "Kei Bild ausgewählt",
+    "rotationResume": "Rotation fortsetzen",
+    "rotationLock": "Rotation sperren",
+    "tone": "Ton: {tone}",
     "presets": {
-      "empty": "[Schwiizerduetsch] No presets available."
+      "empty": "Kei Presets vorhanden."
     },
     "favorites": {
-      "empty": "[Schwiizerduetsch] No favorites yet. Mark presets or uploads."
+      "empty": "Noch kei Favoriten. Markiere Presets oder Uploads."
     },
     "subtitle": {
-      "preset": "[Schwiizerduetsch] Preset"
+      "preset": "Preset"
     },
-    "upload": "[Schwiizerduetsch] Upload",
-    "uploadDrop": "[Schwiizerduetsch] Drop files here",
-    "uploadBrowse": "[Schwiizerduetsch] Choose file",
-    "uploadNote": "[Schwiizerduetsch] We resize images automatically (16:9, max 2560px) and store them locally. Max {max}[Schwiizerduetsch]  files.",
+    "upload": "Upload",
+    "uploadDrop": "Dateien hier ablegen",
+    "uploadBrowse": "Datei auswählen",
+    "uploadNote": "Wir verkleinern Bilder automatisch (16:9, max 2560px) und speichern sie lokal. Max {max} Dateien.",
     "uploads": {
-      "empty": "[Schwiizerduetsch] No uploads yet."
+      "empty": "Noch kei Uploads vorhanden."
     },
     "collections": {
-      "count": "{count}[Schwiizerduetsch]  sources",
-      "random": "[Schwiizerduetsch] Random",
-      "cache": "[Schwiizerduetsch] Save offline",
-      "viewSources": "[Schwiizerduetsch] View sources",
-      "useRotation": "[Schwiizerduetsch] Use for rotation",
-      "newLabel": "[Schwiizerduetsch] New collection",
-      "namePlaceholder": "[Schwiizerduetsch] My collection",
-      "urlsPlaceholder": "[Schwiizerduetsch] One image URL per line",
-      "clear": "[Schwiizerduetsch] Clear fields",
-      "note": "[Schwiizerduetsch] URLs are stored locally. Remote sources need CORS for images.",
-      "empty": "[Schwiizerduetsch] No collections yet.",
-      "minOneUrl": "[Schwiizerduetsch] Enter at least one URL.",
-      "emptyCollection": "[Schwiizerduetsch] Collection is empty.",
-      "saved": "[Schwiizerduetsch] Collection saved locally.",
-      "defaultName": "[Schwiizerduetsch] Collection {index}"
+      "count": "{count} Quellen",
+      "random": "Zufällig",
+      "cache": "Offline speichern",
+      "viewSources": "Quellen ansehen",
+      "useRotation": "Rotation verwenden",
+      "newLabel": "Neue Sammlung",
+      "namePlaceholder": "Meine Sammlung",
+      "urlsPlaceholder": "Eine Bild-URL pro Zeile",
+      "clear": "Felder leeren",
+      "note": "URLs werden lokal gespeichert. Remote Quellen benötigen CORS für Bilder.",
+      "empty": "Noch kei Sammlungen angelegt.",
+      "minOneUrl": "Mindestens eine URL eintragen.",
+      "emptyCollection": "Sammlung isch leer.",
+      "saved": "Sammlung lokal gespeichert.",
+      "defaultName": "Sammlung {index}"
     },
     "rotation": {
-      "optionPreset": "[Schwiizerduetsch] Preset: {label}",
-      "optionUpload": "[Schwiizerduetsch] Upload: {label}",
-      "optionFavorite": "[Schwiizerduetsch] Favorite: {label}",
-      "optionCustom": "[Schwiizerduetsch] Custom: saved URL",
-      "noFixed": "[Schwiizerduetsch] No fixed image",
-      "enabled": "[Schwiizerduetsch] Enable automatic rotation",
-      "locked": "[Schwiizerduetsch] Rotation is currently locked.",
-      "active": "[Schwiizerduetsch] Backgrounds change according to the schedule.",
-      "mode": "[Schwiizerduetsch] Mode",
-      "modeTime": "[Schwiizerduetsch] Time-based",
-      "modeInterval": "[Schwiizerduetsch] Interval",
-      "modeTheme": "[Schwiizerduetsch] Theme",
-      "intervalLabel": "[Schwiizerduetsch] Interval in minutes",
-      "intervalNote": "[Schwiizerduetsch] Only relevant in interval mode.",
-      "sourcesLabel": "[Schwiizerduetsch] Sources for random",
-      "scheduleLabel": "[Schwiizerduetsch] Schedule",
-      "themePlan": "[Schwiizerduetsch] Theme plan",
-      "themeLight": "[Schwiizerduetsch] Theme light",
-      "themeDark": "[Schwiizerduetsch] Theme dark",
-      "themeNote": "[Schwiizerduetsch] Theme plan is used when mode is Theme.",
+      "optionPreset": "Preset: {label}",
+      "optionUpload": "Upload: {label}",
+      "optionFavorite": "Favorit: {label}",
+      "optionCustom": "Custom: gespeicherte URL",
+      "noFixed": "Kei festes Bild",
+      "enabled": "Automatische Rotation aktiv",
+      "locked": "Rotation isch aktuell gesperrt.",
+      "active": "Hintergründe wechseln nach dem Plan.",
+      "mode": "Modus",
+      "modeTime": "Zeitabhängig",
+      "modeInterval": "Intervall",
+      "modeTheme": "Theme",
+      "intervalLabel": "Intervall in Minuten",
+      "intervalNote": "Relevanz nur im Intervall Modus.",
+      "sourcesLabel": "Quellen für Zufall",
+      "scheduleLabel": "Zeitplan",
+      "themePlan": "Theme Plan",
+      "themeLight": "Theme Light",
+      "themeDark": "Theme Dark",
+      "themeNote": "Theme Plan wird genutzt, wenn der Modus auf Theme steht.",
       "slot": {
-        "morning": "[Schwiizerduetsch] Morning 05-11",
-        "day": "[Schwiizerduetsch] Day 11-17",
-        "evening": "[Schwiizerduetsch] Evening 17-21",
-        "night": "[Schwiizerduetsch] Night 21-05"
+        "morning": "Morgen 05-11",
+        "day": "Tag 11-17",
+        "evening": "Abend 17-21",
+        "night": "Nacht 21-05"
       }
     },
     "custom": {
-      "label": "[Schwiizerduetsch] Custom image URL",
+      "label": "Eigene Bild URL",
       "placeholder": "https://example.com/image.jpg",
-      "note": "[Schwiizerduetsch] URL is stored locally. Server must allow CORS for images.",
-      "enterUrl": "[Schwiizerduetsch] Please enter a URL.",
-      "title": "[Schwiizerduetsch] Custom URL",
-      "subtitle": "[Schwiizerduetsch] Custom"
+      "note": "URL wird lokal gespeichert. Server muss CORS für Bilder erlauben.",
+      "enterUrl": "Bitte eine URL eintragen.",
+      "title": "Custom URL",
+      "subtitle": "Custom"
     },
     "actions": {
-      "apply": "[Schwiizerduetsch] Apply",
-      "favorite": "[Schwiizerduetsch] Favorite",
-      "favorited": "[Schwiizerduetsch] Favorited",
-      "random": "[Schwiizerduetsch] Load random",
-      "undo": "[Schwiizerduetsch] Restore last image",
-      "lock": "[Schwiizerduetsch] Lock rotation",
-      "tint": "[Schwiizerduetsch] Tint widgets"
+      "apply": "Setze",
+      "favorite": "Favorisieren",
+      "favorited": "Favorit",
+      "random": "Zufällig neu laden",
+      "undo": "Letztes Bild wiederherstellen",
+      "lock": "Rotation sperren",
+      "tint": "Widgets einfärben"
     },
     "tabs": {
-      "presets": "[Schwiizerduetsch] Presets",
-      "favorites": "[Schwiizerduetsch] Favorites",
-      "uploads": "[Schwiizerduetsch] Uploads",
-      "collections": "[Schwiizerduetsch] Collections",
-      "rotation": "[Schwiizerduetsch] Rotation",
-      "custom": "[Schwiizerduetsch] Custom"
+      "presets": "Presets",
+      "favorites": "Favoriten",
+      "uploads": "Uploads",
+      "collections": "Sammlungen",
+      "rotation": "Rotation",
+      "custom": "Custom"
     },
-    "loadError": "[Schwiizerduetsch] Load failed. Check CORS settings.",
-    "noneAvailable": "[Schwiizerduetsch] No backgrounds available.",
-    "imageLoadError": "[Schwiizerduetsch] Image could not be loaded."
+    "loadError": "Lade hät nöd klappet. Prüfe CORS Vorgaben.",
+    "noneAvailable": "Kei Hintergründe verfügbar.",
+    "imageLoadError": "Bild konnte nöd geladen werden."
   },
   "data": {
     "import": {
-      "confirm": "[Schwiizerduetsch] Import data? Existing entries will be overwritten.",
-      "failed": "[Schwiizerduetsch] Import failed: {error}"
+      "confirm": "Daten importieren? Bestehende Einträge werden überschrieben.",
+      "failed": "Import fehlgeschlagen: {error}"
     },
     "presets": {
-      "none": "[Schwiizerduetsch] No preset available.",
-      "missingFile": "[Schwiizerduetsch] Preset file missing.",
-      "fileMissing": "[Schwiizerduetsch] File not found",
-      "invalid": "[Schwiizerduetsch] Invalid preset",
-      "confirmApply": "[Schwiizerduetsch] Apply {context}[Schwiizerduetsch]  \"{name}[Schwiizerduetsch] \"? Existing entries will be overwritten.",
-      "loadFailed": "[Schwiizerduetsch] Preset load failed: {error}",
-      "loading": "[Schwiizerduetsch] Loading presets...",
-      "noneFound": "[Schwiizerduetsch] No presets found",
-      "hint": "[Schwiizerduetsch] Place exported JSONs under assets/presets/ (manifest: assets/data-presets.json) or locally under assets/user-presets/.",
-      "hintShort": "[Schwiizerduetsch] Add a preset under assets/presets/ or assets/user-presets/.",
-      "userPrefix": "[Schwiizerduetsch] User: ",
-      "userApply": "[Schwiizerduetsch] Apply local preset",
-      "apply": "[Schwiizerduetsch] Apply preset",
-      "noneSelected": "[Schwiizerduetsch] No preset selected.",
-      "label": "[Schwiizerduetsch] Preset",
-      "defaultLabel": "[Schwiizerduetsch] Preset {index}",
-      "userDefault": "[Schwiizerduetsch] User preset {index}",
-      "userDescription": "[Schwiizerduetsch] Local preset from assets/user-presets/",
-      "tags": "[Schwiizerduetsch]  (Tags: {tags}[Schwiizerduetsch] )"
+      "none": "Kei Preset verfügbar.",
+      "missingFile": "Preset-Datei fehlt.",
+      "fileMissing": "Datei nöd gefunden",
+      "invalid": "Preset ungültig",
+      "confirmApply": "{context} \"{name}\" anwenden? Bestehende Einträge werden überschrieben.",
+      "loadFailed": "Preset laden fehlgeschlagen: {error}",
+      "loading": "Lade Presets...",
+      "noneFound": "Kei Presets gefunden",
+      "hint": "Lege exportierte JSONs unter assets/presets/ (Manifest: assets/data-presets.json) oder lokal unter assets/user-presets/ ab.",
+      "hintShort": "Leg ein Preset unter assets/presets/ oder assets/user-presets/ ab.",
+      "userPrefix": "User:",
+      "userApply": "Lokales Preset anwenden",
+      "apply": "Preset anwenden",
+      "noneSelected": "Kei Preset ausgewählt.",
+      "label": "Preset",
+      "defaultLabel": "Preset {index}",
+      "userDefault": "User Preset {index}",
+      "userDescription": "Lokales Preset aus assets/user-presets/",
+      "tags": "(Tags: {tags})"
     }
   },
   "dialogs": {
-    "alertTitle": "[Schwiizerduetsch] Notice",
-    "confirmTitle": "[Schwiizerduetsch] Confirm",
-    "promptTitle": "[Schwiizerduetsch] Input"
+    "alertTitle": "Hinweis",
+    "confirmTitle": "Bestaetigen",
+    "promptTitle": "Eingabe"
   },
   "agent": {
     "ui": {
@@ -536,13 +536,13 @@
       "openSettingsTitle": "Einstellungen",
       "closeAria": "Agent schließen",
       "closeTitle": "Schließen",
-      "modelDisplayDefault": "Modell: —",
+      "modelDisplayDefault": "Modell: -",
       "inputPlaceholder": "Nachricht an Startpage Agent...",
       "send": "Senden",
-      "stop": "Abbrechen",
+      "stop": "Abbräche",
       "hostLabel": "Host",
       "modelLabel": "Modell",
-      "emptyModel": "—"
+      "emptyModel": "-"
     },
     "settings": {
       "modelLabel": "Modell",
@@ -563,21 +563,21 @@
       "memoryPlaceholder": "Persistente Notizen für den Agenten...",
       "clearMemory": "Memory leeren",
       "actionsLabel": "Aktionen",
-      "save": "Speichern",
+      "save": "Spichere",
       "clearChat": "Chat leeren",
       "capabilitiesLabel": "Capabilities",
       "availableToolsTitle": "Verfügbare Tools",
-      "noModels": "Keine Modelle"
+      "noModels": "Kei Modelle"
     },
     "status": {
       "ready": "Bereit",
       "loadingModels": "Lade Modelle...",
       "modelsLoaded": "Modelle geladen",
-      "noModelsFound": "Keine Modelle gefunden",
-      "loadModelsError": "Fehler beim Laden der Modelle: {error}",
+      "noModelsFound": "Kei Modelle gefunden",
+      "loadModelsError": "Lade hät nöd klappet der Modelle: {error}",
       "disabledNamed": "Startpage Agent deaktiviert",
-      "ollamaUnavailableDisabled": "Ollama nicht erreichbar - Startpage Agent deaktiviert",
-      "disabled": "Agent ist deaktiviert",
+      "ollamaUnavailableDisabled": "Ollama nöd erreichbar - Startpage Agent deaktiviert",
+      "disabled": "Agent isch deaktiviert",
       "chooseModel": "Bitte ein Modell wählen",
       "streaming": "Streaming...",
       "toolDenied": "Tool abgelehnt",
@@ -606,15 +606,15 @@
       "unknownToolError": "Unbekannter Tool-Fehler",
       "unknown": "Unbekannt",
       "invalidHost": "Host ungültig. Erlaubt sind nur http/https URLs.",
-      "invalidMemory": "Memory ist ungültig. Nutze JSON oder „key: value“-Zeilen."
+      "invalidMemory": "Memory isch ungültig. Nutze JSON oder „key: value“-Zeilen."
     },
     "systemPrompt": {
       "name": "Name: Startpage Agent",
       "embedded": "Du bist in einer lokalen Startpage eingebettet.",
       "jsonOnly": "Wenn du eine Aktion ausführen musst, antworte ausschließlich mit genau einer JSON-Zeile im Format {\"tool\":\"<name>\",\"args\":{...}}.",
-      "noExtra": "Keine weiteren Wörter, kein Markdown, kein Codeblock bei Toolcalls.",
+      "noExtra": "Kei weiteren Wörter, kei Markdown, kei Codeblock bei Toolcalls.",
       "allowedTools": "Nutze nur diese Tools: {tools}.",
-      "normalReply": "Wenn keine Aktion nötig ist, antworte normal.",
+      "normalReply": "Wenn kei Aktion nötig isch, antworte normal.",
       "askMissing": "Wenn Infos fehlen oder ein Tool-Call ungültig wäre, stelle Rückfragen als normale Antwort.",
       "customPromptSection": "CUSTOM_PROMPT",
       "memorySection": "PERSISTENTE_MEMORY"

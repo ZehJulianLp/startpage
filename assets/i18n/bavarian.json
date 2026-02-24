@@ -1,531 +1,531 @@
 {
   "app": {
-    "title": "Startpage (Boarisch)"
+    "title": "Startseitn (Boarisch)"
   },
   "common": {
-    "link": "[Boarisch] Link",
-    "delete": "[Boarisch] Delete",
-    "remove": "[Boarisch] Remove",
-    "save": "[Boarisch] Save",
-    "loading": "[Boarisch] Loading...",
-    "loadError": "[Boarisch] Load failed",
-    "noMatches": "[Boarisch] No matches",
-    "emptyDash": "[Boarisch] -",
-    "dash": "[Boarisch] -",
-    "cancel": "[Boarisch] Cancel",
-    "ok": "[Boarisch] OK",
-    "default": "[Boarisch] Default"
+    "link": "Link",
+    "delete": "Löschn",
+    "remove": "Wegdam",
+    "save": "Speicha",
+    "loading": "Lade...",
+    "loadError": "Ladn hod ned klappt",
+    "noMatches": "Koane Treffer",
+    "emptyDash": "--",
+    "dash": "-",
+    "cancel": "Lassn ma",
+    "ok": "OK",
+    "default": "Standard"
   },
   "header": {
-    "themeToggleTitle": "[Boarisch] Dark/Light",
-    "settingsTitle": "[Boarisch] Settings",
-    "themeAria": "[Boarisch] Toggle theme",
-    "settingsAria": "[Boarisch] Open settings"
+    "themeToggleTitle": "Dark/Light",
+    "settingsTitle": "Eistellungen",
+    "themeAria": "Theme umschoidn",
+    "settingsAria": "Eistellungen aufmocha"
   },
   "search": {
-    "placeholder": "[Boarisch] Search... (e.g. !yt[Boarisch]  lo-fi, !etc[Boarisch]  Home)",
+    "placeholder": "Suach... (z. B. !yt lo-fi, !etc Home)",
     "engine": {
-      "google": "[Boarisch] Google",
-      "ddg": "[Boarisch] DuckDuckGo",
-      "bing": "[Boarisch] Bing",
-      "yt": "[Boarisch] YouTube",
-      "wikipedia": "[Boarisch] Wikipedia",
-      "maps": "[Boarisch] Google Maps"
+      "google": "Google",
+      "ddg": "DuckDuckGo",
+      "bing": "Bing",
+      "yt": "YouTube",
+      "wikipedia": "Wikipedia",
+      "maps": "Google Maps"
     },
     "suggest": {
       "bang": "{bang} (Bang)",
       "shortcut": "{shortcut} (Shortcut)",
       "type": {
-        "bang": "[Boarisch] Bang",
-        "shortcut": "[Boarisch] Shortcut",
-        "recent": "[Boarisch] Recent",
-        "word": "[Boarisch] Word"
+        "bang": "Bang",
+        "shortcut": "Shortcut",
+        "recent": "Zuletzt",
+        "word": "Wort"
       }
     },
-    "recentShortcut": "[Boarisch] Shortcut {shortcut}[Boarisch]  - {query}",
-    "recentSearch": "[Boarisch] Search ({engine}[Boarisch] ) - {query}",
-    "submitAria": "[Boarisch] Start search"
+    "recentShortcut": "Shortcut {shortcut} - {query}",
+    "recentSearch": "Suche ({engine}) - {query}",
+    "submitAria": "Suach startn"
   },
   "todo": {
-    "title": "[Boarisch] To-Do",
-    "placeholder": "[Boarisch] New task...",
-    "add": "[Boarisch] Add",
-    "clearDoneTitle": "[Boarisch] Remove completed",
-    "clearDone": "[Boarisch]  clear",
-    "doneAria": "[Boarisch] Done",
-    "prompt": "[Boarisch] Todo"
+    "title": "To-Do",
+    "placeholder": "Neue Aufgabe...",
+    "add": "Dazua doa",
+    "clearDoneTitle": "Erledigte wegdam",
+    "clearDone": "✓ löschen",
+    "doneAria": "Fertig",
+    "prompt": "Todo"
   },
   "notes": {
-    "title": "[Boarisch] Notes",
-    "placeholder": "[Boarisch] Jot something down...",
-    "prompt": "[Boarisch] Note"
+    "title": "Notizn",
+    "placeholder": "Schreib dir schnell was auf...",
+    "prompt": "Notiz"
   },
   "tiles": {
-    "title": "[Boarisch] Favorites",
-    "add": "[Boarisch] + Tile",
-    "resetTitle": "[Boarisch] Restore defaults",
-    "edit": "[Boarisch] Edit",
-    "promptTitle": "[Boarisch] Title",
-    "promptUrl": "[Boarisch] URL",
-    "invalidUrl": "[Boarisch] Invalid URL",
-    "promptTitleNew": "[Boarisch] Tile title",
-    "promptUrlNew": "[Boarisch] URL (https://...)",
-    "resetConfirm": "[Boarisch] Restore default tiles?",
+    "title": "Favoritn",
+    "add": "+ Kachel",
+    "resetTitle": "Standard wieda hea richtn",
+    "edit": "Bearbeitn",
+    "promptTitle": "Titel",
+    "promptUrl": "URL",
+    "invalidUrl": "URL is unguidig",
+    "promptTitleNew": "Titel der Kachel",
+    "promptUrlNew": "URL (https://…)",
+    "resetConfirm": "Standard-Kacheln wieda hea richtn?",
     "dialog": {
-      "titleLabel": "[Boarisch] Title",
-      "urlLabel": "[Boarisch] URL",
-      "save": "[Boarisch] Save"
+      "titleLabel": "Titel",
+      "urlLabel": "URL",
+      "save": "Speicha"
     },
-    "resetAria": "[Boarisch] Reset tiles"
+    "resetAria": "Kacheln zrucksetzn"
   },
   "weather": {
-    "title": "[Boarisch] Weather today",
-    "cityPlaceholder": "[Boarisch] Enter city...",
-    "setCity": "[Boarisch] Set",
-    "pickLocation": "[Boarisch] Pick a location...",
-    "source": "[Boarisch] Source: Open-Meteo",
-    "loading": "[Boarisch] Loading weather...",
-    "prompt": "[Boarisch] Enter a location to load weather.",
-    "tempEmpty": "[Boarisch] -C",
-    "tempEmptyShort": "[Boarisch] -",
-    "minmaxEmpty": "[Boarisch] - / - C",
-    "noForecast": "[Boarisch] No forecast",
+    "title": "Weda heit",
+    "cityPlaceholder": "Stodt eigem...",
+    "setCity": "Setzn",
+    "pickLocation": "Ort auswaehln...",
+    "source": "Quelle: Open-Meteo",
+    "loading": "Lad Weda...",
+    "prompt": "Gib an Ort ei, damit da Weda gladen wird.",
+    "tempEmpty": "-°C",
+    "tempEmptyShort": "-°",
+    "minmaxEmpty": "- / - °C",
+    "noForecast": "Koane Prognose",
     "errors": {
-      "geocodingFailed": "[Boarisch] Geocoding failed",
-      "locationNotFound": "[Boarisch] Location not found",
-      "cityMissing": "[Boarisch] City missing",
-      "fetchFailed": "[Boarisch] Weather fetch failed",
-      "loadFailed": "[Boarisch] Weather could not be loaded"
+      "geocodingFailed": "Geocoding fehlgeschlagen",
+      "locationNotFound": "Ort ned gfundn",
+      "cityMissing": "Stodt fehlt",
+      "fetchFailed": "Weda ohoin hod ned klappt",
+      "loadFailed": "Weda hod ned gladen werdn kina"
     },
     "codes": {
-      "0": "[Boarisch] Clear",
-      "1": "[Boarisch] Mostly clear",
-      "2": "[Boarisch] Partly cloudy",
-      "3": "[Boarisch] Cloudy",
-      "45": "[Boarisch] Fog",
-      "48": "[Boarisch] Fog",
-      "51": "[Boarisch] Drizzle",
-      "53": "[Boarisch] Drizzle",
-      "55": "[Boarisch] Drizzle",
-      "61": "[Boarisch] Rain",
-      "63": "[Boarisch] Rain",
-      "65": "[Boarisch] Heavy rain",
-      "71": "[Boarisch] Snow",
-      "80": "[Boarisch] Showers",
-      "95": "[Boarisch] Thunderstorm",
-      "default": "[Boarisch] Weather"
+      "0": "Klar",
+      "1": "Iwawiegend klar",
+      "2": "Wechselhaft",
+      "3": "Bewoelkt",
+      "45": "Nebel",
+      "48": "Nebel",
+      "51": "Spriahregn",
+      "53": "Spriahregn",
+      "55": "Spriahregn",
+      "61": "Regen",
+      "63": "Regen",
+      "65": "Starker Regen",
+      "71": "Schnee",
+      "80": "Schauer",
+      "95": "Gewitter",
+      "default": "Weda"
     }
   },
   "transport": {
-    "title": "[Boarisch] Transport",
-    "durationAria": "[Boarisch] Duration",
-    "duration30": "[Boarisch] 30 min",
-    "duration60": "[Boarisch] 60 min",
-    "duration90": "[Boarisch] 90 min",
-    "duration120": "[Boarisch] 120 min",
-    "refreshTitle": "[Boarisch] Reload",
-    "searchPlaceholder": "[Boarisch] Search station...",
-    "noneSelected": "[Boarisch] No station selected",
-    "source": "[Boarisch] Source: transport.rest",
-    "minQuery": "[Boarisch] At least {count}[Boarisch]  characters",
-    "noMatches": "[Boarisch] No matches",
-    "proxyTimeout": "[Boarisch] Proxy timeout",
-    "loadError": "[Boarisch] Load failed",
-    "noDepartures": "[Boarisch] No departures",
-    "selectStation": "[Boarisch] Select a station...",
+    "title": "Verkehr",
+    "durationAria": "Zeitraum",
+    "duration30": "30 min",
+    "duration60": "60 min",
+    "duration90": "90 min",
+    "duration120": "120 min",
+    "refreshTitle": "Neu ladn",
+    "searchPlaceholder": "Station suacha...",
+    "noneSelected": "Koane Station gwaehlt",
+    "source": "Quelle: transport.rest",
+    "minQuery": "Mindestens {count} Zeichen",
+    "noMatches": "Koane Treffer",
+    "proxyTimeout": "Proxy Timeout",
+    "loadError": "Ladn hod ned klappt",
+    "noDepartures": "Koane Obfahrtn",
+    "selectStation": "Station ausauswaehln...",
     "type": {
-      "station": "[Boarisch] Station",
-      "stop": "[Boarisch] Stop"
+      "station": "Station",
+      "stop": "Stop"
     },
-    "platform": "[Boarisch] Platform {platform}",
-    "cancelled": "[Boarisch] Cancelled",
-    "refreshAria": "[Boarisch] Refresh transport"
+    "platform": "Gl. {platform}",
+    "cancelled": "Foidd aus",
+    "refreshAria": "Transport neu laden"
   },
   "quote": {
-    "title": "[Boarisch] Quote / Nerd Nudge",
+    "title": "Quote / Nerd-Impulse",
     "list": [
-      "[Boarisch] Move fast, refactor often.",
-      "[Boarisch] Accessibility isn't a feature - it's the default.",
-      "[Boarisch] Done > Perfect. Iterate.",
-      "[Boarisch] If it's not monitored, it doesn't exist.",
-      "[Boarisch] Good UX is invisible. Bad UX is unforgettable.",
-      "[Boarisch] Make it work, make it right, make it fast.",
-      "[Boarisch] Small steps. Massive outcomes.",
-      "[Boarisch] Simplicity scales. Complexity fails.",
-      "[Boarisch] Automate the boring stuff.",
-      "[Boarisch] Measure twice, deploy once."
+      "Move fast, refactor often.",
+      "Accessibility isn't a feature - it's the default.",
+      "Done > Perfect. Iterate.",
+      "If it's not monitored, it doesn't exist.",
+      "Good UX is invisible. Bad UX is unforgettable.",
+      "Make it work, make it right, make it fast.",
+      "Small steps. Massive outcomes.",
+      "Simplicity scales. Complexity fails.",
+      "Automate the boring stuff.",
+      "Measure twice, deploy once."
     ]
   },
   "recent": {
-    "title": "[Boarisch] Recent",
-    "note": "[Boarisch] Note: Only actions from this start page (clicked tiles & searches)."
+    "title": "Zuletzt",
+    "note": "Info: Zeigt nur Aktionen von dieser Startseite (geklickte Kacheln & Suchen)."
   },
   "system": {
-    "title": "[Boarisch] System status",
-    "loading": "[Boarisch] Loading...",
-    "ram": "[Boarisch] RAM: {value}[Boarisch]  GB",
-    "cpu": "[Boarisch] CPU cores: {value}",
-    "network": "[Boarisch] Network: {downlink}[Boarisch]  Mbit/s  {type}{saveData}",
-    "saveData": "[Boarisch]   SaveData",
-    "noData": "[Boarisch] No data available"
+    "title": "Systemstand",
+    "loading": "Lade...",
+    "ram": "RAM: {value} GB",
+    "cpu": "CPU-Kerne: {value}",
+    "network": "Netz: {downlink} Mbit/s · {type}{saveData}",
+    "saveData": "· SaveData",
+    "noData": "Koane Doatn verfügbar"
   },
   "news": {
-    "title": "[Boarisch] News",
-    "refreshTitle": "[Boarisch] Reload",
-    "source": "[Boarisch] RSS via Startpage Proxy (CORS proxy)",
-    "noItems": "[Boarisch] No items",
-    "refreshAria": "[Boarisch] Refresh news"
+    "title": "Neichkeidn",
+    "refreshTitle": "Neu ladn",
+    "source": "RSS via Startpage Proxy (CORS-Proxy)",
+    "noItems": "Koane Items",
+    "refreshAria": "Neichkeidn neu ladn"
   },
   "footer": {
-    "tagline": "[Boarisch] Local-first dashboard  stores only in the browser (localStorage)"
+    "tagline": "Local-first Dashboard - speichert nur im Browser (localStorage)."
   },
   "settings": {
-    "title": "[Boarisch] Settings",
-    "close": "[Boarisch] Close",
+    "title": "Eistellungen",
+    "close": "Schließen",
     "tabs": {
-      "general": "[Boarisch] General",
-      "background": "[Boarisch] Background & Appearance",
-      "search": "[Boarisch] Search & Feeds",
-      "widgets": "[Boarisch] Widgets",
-      "data": "[Boarisch] Data",
-      "guide": "[Boarisch] Guide",
+      "general": "Allgemei",
+      "background": "Hintagrund & Aussehn",
+      "search": "Suach & Feeds",
+      "widgets": "Widgets",
+      "data": "Doatn",
+      "guide": "Leitfaden",
       "ai": "Startpage Agent"
     },
     "theme": {
-      "label": "[Boarisch] Theme",
-      "auto": "[Boarisch] Auto (System)",
-      "dark": "[Boarisch] Dark",
-      "light": "[Boarisch] Light"
+      "label": "Theme",
+      "auto": "Auto (System)",
+      "dark": "Dark",
+      "light": "Light"
     },
     "background": {
-      "label": "[Boarisch] Background"
+      "label": "Hintergrund"
     },
     "search": {
-      "engines": "[Boarisch] Search engines",
-      "bangsNote": "Supported bang shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Custom shortcuts below",
-      "wordlistLabel": "[Boarisch] Autocomplete wordlist",
-      "wordlistPlaceholder": "[Boarisch] Terms line by line or comma-separated",
-      "wordlistSave": "[Boarisch] Save",
-      "wordlistReset": "[Boarisch] Clear",
-      "wordlistNote": "[Boarisch] Global wordlist (assets/wordlist.json) and preset wordlist are merged. Leave empty to use only the global list.",
-      "shortcutsLabel": "[Boarisch] Custom !shortcuts",
+      "engines": "Suachmaschinan",
+      "bangsNote": "Unterst?tzte Bang-Shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Eigene Shortcuts unten",
+      "wordlistLabel": "Wortliste für Autocomplete",
+      "wordlistPlaceholder": "Begriffe Zeile fia Zeile oda mit Komma trennt",
+      "wordlistSave": "Speicha",
+      "wordlistReset": "Leer macha",
+      "wordlistNote": "Globale Wortliste (assets/wordlist.json) und die Preset-Wortliste werden gemerged. Leer lassen, um nur die globale Liste zu nutzen.",
+      "shortcutsLabel": "Eigene !Shortcuts",
       "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
-      "shortcutsNote": "[Boarisch] Use <code>{q}</code>[Boarisch]  as placeholder for the search phrase. Without <code>{q}</code>[Boarisch] , <code>[Boarisch] ?q=...</code>[Boarisch]  is appended.",
-      "feedsLabel": "[Boarisch] Custom RSS feeds",
+      "shortcutsNote": "Verwende <code>{q}</code> als Platzhalter für die Suchphrase. Ohne <code>{q}</code> wird <code>?q=...</code> angehängt.",
+      "feedsLabel": "Custom RSS-Feeds",
       "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
-      "feedsNote": "[Boarisch] JSON: name - feed URL. This list is merged with the default feeds.",
-      "invalidShortcuts": "[Boarisch] Invalid shortcuts JSON",
-      "invalidFeeds": "[Boarisch] Invalid feeds JSON"
+      "feedsNote": "JSON: Name - Feed-URL. Diese Liste wird mit den Standardfeeds gemerged.",
+      "invalidShortcuts": "Ungültiges Shortcuts-JSON",
+      "invalidFeeds": "Ungültiges Feeds-JSON"
     },
     "widgets": {
-      "visible": "[Boarisch] Show widgets",
-      "defaultCityLabel": "[Boarisch] Default city (weather)",
-      "defaultCityPlaceholder": "[Boarisch] e.g. Hanover",
-      "defaultTransportLabel": "[Boarisch] Default stop (transport)",
-      "defaultTransportPlaceholder": "[Boarisch] Search station...",
-      "cardStyleLabel": "[Boarisch] Card style",
-      "cardStyleGlass": "[Boarisch] Glass (default)",
-      "cardStyleSolid": "[Boarisch] Solid",
-      "cardStyleTransparent": "[Boarisch] Transparent",
-      "cardStyleMinimal": "[Boarisch] Soft minimal",
-      "cardStyleNote": "[Boarisch] Applies to all widgets & favorite tiles.",
-      "clockColorLabel": "[Boarisch] Time & date",
-      "searchColorLabel": "[Boarisch] Search",
-      "reset": "[Boarisch] Reset",
-      "clockColorNote": "[Boarisch] Sets the header background (empty = style default).",
-      "searchColorNote": "[Boarisch] Color for the search area (empty = style default).",
-      "widgetColorsLabel": "[Boarisch] Widget colors",
-      "weatherCitiesLabel": "Weather cities",
-      "weatherCitiesPlaceholder": "One city per line, e.g. Hanover\nBerlin\nHamburg",
-      "weatherCitiesNote": "One city per line. The first entry becomes active if the previous active city is not included."
+      "visible": "Widgets sichtbar",
+      "defaultCityLabel": "Standard-Stadt (Weda)",
+      "defaultCityPlaceholder": "z.B. Hannover",
+      "defaultTransportLabel": "Standard-Haltestelle (Transport)",
+      "defaultTransportPlaceholder": "Station suacha...",
+      "cardStyleLabel": "Kachel-Stil",
+      "cardStyleGlass": "Glas (Standard)",
+      "cardStyleSolid": "Vollfläche",
+      "cardStyleTransparent": "Transparent",
+      "cardStyleMinimal": "Soft Minimal",
+      "cardStyleNote": "Wirkt auf alle Widgets & Favoriten-Kacheln.",
+      "clockColorLabel": "Zeit & Datum",
+      "searchColorLabel": "Suche",
+      "reset": "Reset",
+      "clockColorNote": "Legt den Hintergrund der Kopfzeile fest (leer = Stil-Vorgabe).",
+      "searchColorNote": "Farbe für den Suchbereich (leer = Stil-Vorgabe).",
+      "widgetColorsLabel": "Widget-Farben",
+      "weatherCitiesLabel": "Weda-Städte",
+      "weatherCitiesPlaceholder": "A Stadt pro Zeile, z.B. Hannover\nBerlin\nHamburg",
+      "weatherCitiesNote": "A Stadt pro Zeile. Der erste Eintrag wird aktiv, falls die bisher aktive Stadt ned enthalten is."
     },
     "data": {
-      "label": "[Boarisch] Data",
-      "export": "[Boarisch] Export (.json)",
-      "import": "[Boarisch] Import (.json)",
-      "presetsLabel": "[Boarisch] Data presets",
-      "applyPreset": "[Boarisch] Load preset",
-      "presetMeta": "[Boarisch] Presets are exported JSONs under assets/presets/. User presets from assets/user-presets/ are merged automatically.",
-      "setupLabel": "[Boarisch] Setup",
-      "restartOnboarding": "[Boarisch] Restart setup",
-      "restartNote": "[Boarisch] Reopens the compact setup dialog.",
-      "noteLabel": "[Boarisch] Note",
-      "noteText": "[Boarisch] Export stores all settings & data locally as JSON. Import overwrites existing entries."
+      "label": "Doatn",
+      "export": "Export (.json)",
+      "import": "Import (.json)",
+      "presetsLabel": "Data Presets",
+      "applyPreset": "Preset laden",
+      "presetMeta": "Presets liegen als exportierte JSONs unter assets/presets/. User-Presets aus assets/user-presets/ werden automatisch gemerged.",
+      "setupLabel": "Setup",
+      "restartOnboarding": "Setup neu starten",
+      "restartNote": "Startet den kompakten Einrichtungs-Dialog erneut.",
+      "noteLabel": "Info",
+      "noteText": "Export speichert sämtliche Einstellungen & Doatn lokal als JSON. Import überschreibt vorhandene Einträge."
     },
     "language": {
-      "label": "[Boarisch] Language",
-      "auto": "[Boarisch] Auto (System)"
+      "label": "Sprache",
+      "auto": "Auto (System)"
     },
     "font": {
-      "label": "[Boarisch] Font",
-      "searchPlaceholder": "[Boarisch] Search fonts...",
-      "loadLocal": "[Boarisch] Load system fonts",
-      "systemDefault": "[Boarisch] System default",
-      "noResults": "[Boarisch] No matching fonts",
-      "note": "[Boarisch] Shows local system fonts (if available), otherwise a detected fallback list.",
-      "unsupported": "[Boarisch] Your browser does not support Local Font Access (queryLocalFonts).",
-      "permissionDenied": "[Boarisch] Access to local fonts was denied or blocked.",
-      "empty": "[Boarisch] No local fonts were returned.",
-      "loadFailed": "[Boarisch] Could not load local fonts: {error}"
+      "label": "Schriftart",
+      "searchPlaceholder": "Schriftarten suchen...",
+      "loadLocal": "Systemfonts laden",
+      "systemDefault": "Systemstandard",
+      "noResults": "Koane passenden Schriftarten",
+      "note": "Zeigt lokale System-Schriftarten (falls verfuegbar), sonst a erkannte Standardliste.",
+      "unsupported": "Dein Browser unterstuetzt Local Font Access (queryLocalFonts) ned.",
+      "permissionDenied": "Zugriff auf lokale Schriftarten wurde verweigert oda blockiert.",
+      "empty": "Es wurden koane lokalen Schriftarten zurueckgegeben.",
+      "loadFailed": "Lokale Schriftarten konnten ned geladen werden: {error}"
     },
-    "guideHtml": "<div class=\"row\"><label>[Boarisch] User Guide</label><div><h5>[Boarisch] Overview</h5><ul><li>[Boarisch] Start page with search, favorites, to-do, notes, weather, news.</li><li>[Boarisch] All local: data stays in your browser (localStorage).</li></ul><h5>[Boarisch] Shortcuts</h5><ul><li>[Boarisch] Ctrl/Cmd+K: open command palette</li><li>[Boarisch] 1-9: open first 9 favorites (when not typing)</li><li>[Boarisch] / : focus search (also via palette)</li><li>[Boarisch] Enter in search: start search</li><li>[Boarisch] ESC: close modals</li><li>[Boarisch] Palette: quick actions for widgets, theme, background, data, favorites</li><li>[Boarisch] Palette: key C switches card style, \"Reset header colors\" resets search & clock</li></ul><h5>[Boarisch] Search & Autocomplete</h5><ul><li>[Boarisch] Bangs: !g[Boarisch]  !ddg[Boarisch]  !bing[Boarisch]  !yt[Boarisch]  !wiki[Boarisch]  !maps</li><li>[Boarisch] Custom shortcuts: JSON in settings; {q}[Boarisch]  as placeholder</li><li>[Boarisch] Autocomplete: bangs, shortcuts, recent searches, wordlist (global + preset)</li><li>[Boarisch] Tab accepts suggestion, Enter starts search</li></ul><h5>[Boarisch] Tiles</h5><ul><li>[Boarisch] Drag & drop to sort, click to open</li><li>[Boarisch] + Tile: add a new favorite</li><li>[Boarisch] Reset: restore default favorites</li></ul><h5>[Boarisch] Widgets & Layout</h5><ul><li>[Boarisch] Visibility per widget</li><li>[Boarisch] Card style is global (glass, solid, transparent, soft minimal)</li><li>[Boarisch] Custom colors for clock/search; reset restores style defaults</li><li>[Boarisch] Widget colors & \"Tint widgets\" set the accent per card</li></ul><h5>[Boarisch] Background</h5><ul><li>[Boarisch] Presets, uploads, collections, rotation (time/theme/interval)</li><li>[Boarisch] Accent color is extracted from the active background</li></ul><h5>[Boarisch] Data</h5><ul><li>[Boarisch] Export/Import as JSON</li><li>[Boarisch] Load data presets (assets/presets/*.json in the repo)</li></ul><h5>Startpage Agent</h5><ul><li>Integrated AI chat with local Ollama (host/model in settings).</li><li>Supports streaming responses, stop (button/ESC), persistent history, and Markdown.</li><li>Agentic tools can read/change widgets and settings (depending on confirm mode).</li></ul></div></div>",
+    "guideHtml": "<div class=\"row\"><label>User Guide</label><div><h5>Überblick</h5><ul><li>Startseite mit Suche, Favoriten, To-Do, Notizen, Weda, News.</li><li>Alles lokal: Doatn bleiben im Browser (localStorage).</li></ul><h5>Shortcuts</h5><ul><li>Ctrl/Cmd+K: Command Palette öffnen</li><li>1-9: Erste 9 Favoriten öffnen (wenn ned tippen)</li><li>/: Suche fokussieren (auch über Palette)</li><li>Enter in Suche: Startet die Suche</li><li>ESC: Modals schließen</li><li>Palette: Schnellaktionen für Widgets, Theme, Hintergrund, Doatn, Favoriten</li><li>Palette: Taste C wechselt den Kachel-Stil, \"Header-Farben zurücksetzen\" stellt Suche & Uhr zurück</li></ul><h5>Suche & Autocomplete</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>Eigene Shortcuts: JSON in den Einstellungen; {q} als Platzhalter</li><li>Autocomplete: Bangs, Shortcuts, Recent-Suchen, Wortliste (global + Preset)</li><li>Tab übernimmt Vorschlag, Enter startet Suche</li></ul><h5>Tiles</h5><ul><li>Drag & Drop zum Sortieren, Klick zum Öffnen</li><li>+ Kachel: Neue Favoriten hinzufügen</li><li>Reset: Standardfavoriten wiedaherstellen</li></ul><h5>Widgets & Layout</h5><ul><li>Sichtbarkeit je Widget umschaltbar</li><li>Kachel-Stil global anpassbar (Glas, Vollfläche, Transparent, Soft Minimal)</li><li>Eigene Farben für Uhr/Suche; Reset bringt Stil-Vorgabe zurück</li><li>Widget-Farben & Button \"Widgets einfärben\" setzen Akzent pro Karte</li></ul><h5>Hintergrund</h5><ul><li>Presets, Uploads, Sammlungen, Rotation (Zeit/Thema/Intervall)</li><li>Akzentfarbe wird aus dem aktiven Hintergrund extrahiert</li></ul><h5>Doatn</h5><ul><li>Export/Import als JSON</li><li>Data Presets laden (assets/presets/*.json aus dem Repo)</li></ul><h5>Startpage Agent</h5><ul><li>Integrierter KI-Chat mit lokalem Ollama (Host/Modell in den Einstellungen).</li><li>Unterstützt Streaming-Antworten, Stop (Button/ESC), Verlauf-Persistenz und Markdown.</li><li>Agentische Tools können Widgets und Einstellungen lesen/ändern (je nach Confirm-Modus).</li></ul></div></div>",
     "general": {
       "agentLabel": "Startpage Agent",
       "agentEnabled": "Agent aktiv",
-      "agentHint": "Wenn deaktiviert, wird nichts an Ollama gesendet."
+      "agentHint": "Wenn deaktiviert, wird neds an Ollama gesendet."
     }
   },
   "onboarding": {
-    "title": "[Boarisch] Start setup",
-    "progress": "[Boarisch] Step {current}[Boarisch]  of {total}",
-    "skip": "[Boarisch] Skip setup",
-    "close": "[Boarisch] Close",
+    "title": "Setup starten",
+    "progress": "Schritt {current} von {total}",
+    "skip": "Setup überspringen",
+    "close": "Schließen",
     "preset": {
-      "title": "[Boarisch] Choose preset",
-      "hint": "[Boarisch] Pick a preset or skip this step.",
-      "apply": "[Boarisch] Apply preset",
-      "meta": "[Boarisch] Apply a preset or skip.",
-      "optional": "[Boarisch] Preset optional.",
-      "context": "[Boarisch] Setup preset"
+      "title": "Preset auswaehln",
+      "hint": "Wähle ein Preset oda überspringe diesen Schritt.",
+      "apply": "Preset anwenden",
+      "meta": "Preset anwenden oda überspringen.",
+      "optional": "Preset optional.",
+      "context": "Setup-Preset"
     },
     "appearance": {
-      "title": "[Boarisch] Appearance",
-      "theme": "[Boarisch] Theme",
-      "cardStyle": "[Boarisch] Card style",
-      "background": "[Boarisch] Background",
-      "rotation": "[Boarisch] Enable rotation",
-      "keepCurrent": "[Boarisch] Keep current image"
+      "title": "Darstellung",
+      "theme": "Theme",
+      "cardStyle": "Karten-Stil",
+      "background": "Hintergrund",
+      "rotation": "Rotation aktivieren",
+      "keepCurrent": "Aktives Bild behalten"
     },
     "search": {
-      "title": "[Boarisch] Search",
-      "engine": "[Boarisch] Default search engine"
+      "title": "Suche",
+      "engine": "Standard-Suchmaschine"
     },
     "widgets": {
-      "title": "[Boarisch] Widgets",
-      "defaultTransport": "[Boarisch] Default stop (transport)",
-      "tint": "[Boarisch] Tint widgets with accent"
+      "title": "Widgets",
+      "defaultTransport": "Standard-Haltestelle (Transport)",
+      "tint": "Widgets an Akzent einfärben"
     },
     "weather": {
-      "title": "[Boarisch] Weather",
-      "defaultCity": "[Boarisch] Default city",
-      "note": "[Boarisch] You can change everything later in settings."
+      "title": "Weda",
+      "defaultCity": "Standard-Stadt",
+      "note": "Du kannst später jederzeit alles in den Einstellungen ändern."
     },
-    "prev": "[Boarisch] Back",
-    "next": "[Boarisch] Next",
-    "finish": "[Boarisch] Done"
+    "prev": "Zurück",
+    "next": "Weiter",
+    "finish": "Fertig"
   },
   "palette": {
-    "placeholder": "[Boarisch] Search command or favorite... (Ctrl/+K)",
+    "placeholder": "Befehl oda Favorit suchen... (Strg/⌘+K)",
     "groups": {
-      "command": "[Boarisch] Commands",
-      "settings": "[Boarisch] Settings",
-      "search": "[Boarisch] Search",
-      "widgets": "[Boarisch] Widgets",
-      "theme": "[Boarisch] Theme & Background",
-      "data": "[Boarisch] Data",
-      "tiles": "[Boarisch] Tiles",
-      "tile": "[Boarisch] Favorites",
-      "quick": "[Boarisch] Quick"
+      "command": "Befehle",
+      "settings": "Einstellungen",
+      "search": "Suche",
+      "widgets": "Widgets",
+      "theme": "Theme & Hintergrund",
+      "data": "Doatn",
+      "tiles": "Tiles",
+      "tile": "Favoriten",
+      "quick": "Schnell"
     },
     "search": {
-      "focus": "[Boarisch] Focus search",
-      "start": "[Boarisch] Start search",
-      "engine": "[Boarisch] Engine: {engine}"
+      "focus": "Suche fokussieren",
+      "start": "Suach startn",
+      "engine": "Engine: {engine}"
     },
     "settings": {
-      "open": "[Boarisch] Open settings",
-      "general": "[Boarisch] Settings: General",
-      "background": "[Boarisch] Settings: Background",
-      "search": "[Boarisch] Settings: Search",
-      "widgets": "[Boarisch] Settings: Widgets",
-      "data": "[Boarisch] Settings: Data",
-      "guide": "[Boarisch] Settings: Guide"
+      "open": "Einstellungen öffnen",
+      "general": "Einstellungen: Allgemein",
+      "background": "Einstellungen: Hintergrund",
+      "search": "Einstellungen: Suche",
+      "widgets": "Einstellungen: Widgets",
+      "data": "Einstellungen: Doatn",
+      "guide": "Einstellungen: Guide"
     },
     "theme": {
-      "cycle": "[Boarisch] Cycle theme (Auto/Dark/Light)",
-      "auto": "[Boarisch] Theme: Auto",
-      "dark": "[Boarisch] Theme: Dark",
-      "light": "[Boarisch] Theme: Light",
-      "resetHeader": "[Boarisch] Reset header colors",
-      "recalcAccent": "[Boarisch] Recalculate accent colors"
+      "cycle": "Theme wechseln (Auto/Dark/Light)",
+      "auto": "Theme: Auto",
+      "dark": "Theme: Dark",
+      "light": "Theme: Light",
+      "resetHeader": "Header-Farben zurücksetzen",
+      "recalcAccent": "Akzentfarben neu berechnen"
     },
     "cardStyle": {
-      "glass": "[Boarisch] Card style: Glass",
-      "solid": "[Boarisch] Card style: Solid",
-      "transparent": "[Boarisch] Card style: Transparent",
-      "minimal": "[Boarisch] Card style: Minimal"
+      "glass": "Kachel-Stil: Glas",
+      "solid": "Kachel-Stil: Vollfläche",
+      "transparent": "Kachel-Stil: Transparent",
+      "minimal": "Kachel-Stil: Minimal"
     },
     "background": {
-      "toggleRotation": "[Boarisch] Background: Toggle rotation",
-      "toggleLock": "[Boarisch] Background: Lock/unlock rotation",
-      "preset": "[Boarisch] Background: {label}"
+      "toggleRotation": "Hintergrund: Rotation umschalten",
+      "toggleLock": "Hintergrund: Rotation sperren/fortsetzen",
+      "preset": "Hintergrund: {label}"
     },
     "widgets": {
-      "showAll": "[Boarisch] Widgets: Show all",
-      "hideAll": "[Boarisch] Widgets: Hide all",
-      "toggle": "[Boarisch] Widget: Toggle {widget}",
-      "focus": "[Boarisch] Widget: Focus {widget}"
+      "showAll": "Widgets: Alle anzeigen",
+      "hideAll": "Widgets: Alle ausblenden",
+      "toggle": "Widget: {widget} umschalten",
+      "focus": "Widget: {widget} fokussieren"
     },
     "quick": {
-      "addTodo": "[Boarisch] Add todo",
-      "addNote": "[Boarisch] Add note"
+      "addTodo": "Todo hinzufügen",
+      "addNote": "Notiz hinzufügen"
     },
     "tiles": {
-      "add": "[Boarisch] Add tile",
-      "reset": "[Boarisch] Reset tiles"
+      "add": "Tile hinzufügen",
+      "reset": "Tiles zurücksetzen"
     },
     "refresh": {
-      "weather": "[Boarisch] Refresh weather",
-      "news": "[Boarisch] Refresh news",
-      "transport": "[Boarisch] Refresh transport",
-      "system": "[Boarisch] Refresh system",
-      "all": "[Boarisch] Refresh all widgets"
+      "weather": "Weda aktualisieren",
+      "news": "News aktualisieren",
+      "transport": "Transport aktualisieren",
+      "system": "System aktualisieren",
+      "all": "Alle Widgets aktualisieren"
     },
     "data": {
-      "export": "[Boarisch] Export data",
-      "import": "[Boarisch] Import data",
-      "preset": "[Boarisch] Data preset: {label}"
+      "export": "Doatn exportieren",
+      "import": "Doatn importieren",
+      "preset": "Data Preset: {label}"
     }
   },
   "widgets": {
-    "todo": "[Boarisch] To-Do",
-    "notes": "[Boarisch] Notes",
-    "tiles": "[Boarisch] Favorites",
-    "weather": "[Boarisch] Weather",
-    "transport": "[Boarisch] Transport",
-    "quote": "[Boarisch] Quote",
-    "recent": "[Boarisch] Recent",
-    "system": "[Boarisch] System",
-    "news": "[Boarisch] News"
+    "todo": "To-Do",
+    "notes": "Notizen",
+    "tiles": "Favoriten",
+    "weather": "Weda",
+    "transport": "Transport",
+    "quote": "Quote",
+    "recent": "Zuletzt",
+    "system": "System",
+    "news": "News"
   },
   "background": {
-    "currentPreview": "[Boarisch] Current background image",
-    "none": "[Boarisch] No background",
-    "noImageSelected": "[Boarisch] No image selected",
-    "rotationResume": "[Boarisch] Resume rotation",
-    "rotationLock": "[Boarisch] Lock rotation",
-    "tone": "[Boarisch] Tone: {tone}",
+    "currentPreview": "Aktuelles Hintergrundbild",
+    "none": "Koa Hintergrund",
+    "noImageSelected": "Koa Bild ausgwaehlt",
+    "rotationResume": "Rotation fortsetzen",
+    "rotationLock": "Rotation sperren",
+    "tone": "Ton: {tone}",
     "presets": {
-      "empty": "[Boarisch] No presets available."
+      "empty": "Koane Presets vorhanden."
     },
     "favorites": {
-      "empty": "[Boarisch] No favorites yet. Mark presets or uploads."
+      "empty": "Noch koane Favoriten. Markiere Presets oda Uploads."
     },
     "subtitle": {
-      "preset": "[Boarisch] Preset"
+      "preset": "Preset"
     },
-    "upload": "[Boarisch] Upload",
-    "uploadDrop": "[Boarisch] Drop files here",
-    "uploadBrowse": "[Boarisch] Choose file",
-    "uploadNote": "[Boarisch] We resize images automatically (16:9, max 2560px) and store them locally. Max {max}[Boarisch]  files.",
+    "upload": "Upload",
+    "uploadDrop": "Dateien hier ablegen",
+    "uploadBrowse": "Datei ausauswaehln",
+    "uploadNote": "Wir verkleinern Bilder automatisch (16:9, max 2560px) und speichern sie lokal. Max {max} Dateien.",
     "uploads": {
-      "empty": "[Boarisch] No uploads yet."
+      "empty": "Noch koane Uploads vorhanden."
     },
     "collections": {
-      "count": "{count}[Boarisch]  sources",
-      "random": "[Boarisch] Random",
-      "cache": "[Boarisch] Save offline",
-      "viewSources": "[Boarisch] View sources",
-      "useRotation": "[Boarisch] Use for rotation",
-      "newLabel": "[Boarisch] New collection",
-      "namePlaceholder": "[Boarisch] My collection",
-      "urlsPlaceholder": "[Boarisch] One image URL per line",
-      "clear": "[Boarisch] Clear fields",
-      "note": "[Boarisch] URLs are stored locally. Remote sources need CORS for images.",
-      "empty": "[Boarisch] No collections yet.",
-      "minOneUrl": "[Boarisch] Enter at least one URL.",
-      "emptyCollection": "[Boarisch] Collection is empty.",
-      "saved": "[Boarisch] Collection saved locally.",
-      "defaultName": "[Boarisch] Collection {index}"
+      "count": "{count} Quellen",
+      "random": "Zufällig",
+      "cache": "Offline speichern",
+      "viewSources": "Quellen ansehen",
+      "useRotation": "Rotation verwenden",
+      "newLabel": "Neue Sammlung",
+      "namePlaceholder": "Meine Sammlung",
+      "urlsPlaceholder": "A Bild-URL pro Zeile",
+      "clear": "Felder leeren",
+      "note": "URLs werden lokal gespeichert. Remote Quellen benötigen CORS für Bilder.",
+      "empty": "Noch koane Sammlungen angelegt.",
+      "minOneUrl": "Mindestens a URL eintragen.",
+      "emptyCollection": "Sammlung is leer.",
+      "saved": "Sammlung lokal gespeichert.",
+      "defaultName": "Sammlung {index}"
     },
     "rotation": {
-      "optionPreset": "[Boarisch] Preset: {label}",
-      "optionUpload": "[Boarisch] Upload: {label}",
-      "optionFavorite": "[Boarisch] Favorite: {label}",
-      "optionCustom": "[Boarisch] Custom: saved URL",
-      "noFixed": "[Boarisch] No fixed image",
-      "enabled": "[Boarisch] Enable automatic rotation",
-      "locked": "[Boarisch] Rotation is currently locked.",
-      "active": "[Boarisch] Backgrounds change according to the schedule.",
-      "mode": "[Boarisch] Mode",
-      "modeTime": "[Boarisch] Time-based",
-      "modeInterval": "[Boarisch] Interval",
-      "modeTheme": "[Boarisch] Theme",
-      "intervalLabel": "[Boarisch] Interval in minutes",
-      "intervalNote": "[Boarisch] Only relevant in interval mode.",
-      "sourcesLabel": "[Boarisch] Sources for random",
-      "scheduleLabel": "[Boarisch] Schedule",
-      "themePlan": "[Boarisch] Theme plan",
-      "themeLight": "[Boarisch] Theme light",
-      "themeDark": "[Boarisch] Theme dark",
-      "themeNote": "[Boarisch] Theme plan is used when mode is Theme.",
+      "optionPreset": "Preset: {label}",
+      "optionUpload": "Upload: {label}",
+      "optionFavorite": "Favorit: {label}",
+      "optionCustom": "Custom: gespeicherte URL",
+      "noFixed": "Koa festes Bild",
+      "enabled": "Automatische Rotation aktiv",
+      "locked": "Rotation is aktuell gesperrt.",
+      "active": "Hintergründe wechseln nach dem Plan.",
+      "mode": "Modus",
+      "modeTime": "Zeitabhängig",
+      "modeInterval": "Intervall",
+      "modeTheme": "Theme",
+      "intervalLabel": "Intervall in Minuten",
+      "intervalNote": "Relevanz nur im Intervall Modus.",
+      "sourcesLabel": "Quellen für Zufall",
+      "scheduleLabel": "Zeitplan",
+      "themePlan": "Theme Plan",
+      "themeLight": "Theme Light",
+      "themeDark": "Theme Dark",
+      "themeNote": "Theme Plan wird genutzt, wenn der Modus auf Theme steht.",
       "slot": {
-        "morning": "[Boarisch] Morning 05-11",
-        "day": "[Boarisch] Day 11-17",
-        "evening": "[Boarisch] Evening 17-21",
-        "night": "[Boarisch] Night 21-05"
+        "morning": "Morgen 05-11",
+        "day": "Tag 11-17",
+        "evening": "Abend 17-21",
+        "night": "Nacht 21-05"
       }
     },
     "custom": {
-      "label": "[Boarisch] Custom image URL",
+      "label": "Eigene Bild URL",
       "placeholder": "https://example.com/image.jpg",
-      "note": "[Boarisch] URL is stored locally. Server must allow CORS for images.",
-      "enterUrl": "[Boarisch] Please enter a URL.",
-      "title": "[Boarisch] Custom URL",
-      "subtitle": "[Boarisch] Custom"
+      "note": "URL wird lokal gespeichert. Server muss CORS für Bilder erlauben.",
+      "enterUrl": "Bitte a URL eintragen.",
+      "title": "Custom URL",
+      "subtitle": "Custom"
     },
     "actions": {
-      "apply": "[Boarisch] Apply",
-      "favorite": "[Boarisch] Favorite",
-      "favorited": "[Boarisch] Favorited",
-      "random": "[Boarisch] Load random",
-      "undo": "[Boarisch] Restore last image",
-      "lock": "[Boarisch] Lock rotation",
-      "tint": "[Boarisch] Tint widgets"
+      "apply": "Setzn",
+      "favorite": "Favorisieren",
+      "favorited": "Favorit",
+      "random": "Zufällig neu laden",
+      "undo": "Letztes Bild wiedaherstellen",
+      "lock": "Rotation sperren",
+      "tint": "Widgets einfärben"
     },
     "tabs": {
-      "presets": "[Boarisch] Presets",
-      "favorites": "[Boarisch] Favorites",
-      "uploads": "[Boarisch] Uploads",
-      "collections": "[Boarisch] Collections",
-      "rotation": "[Boarisch] Rotation",
-      "custom": "[Boarisch] Custom"
+      "presets": "Presets",
+      "favorites": "Favoriten",
+      "uploads": "Uploads",
+      "collections": "Sammlungen",
+      "rotation": "Rotation",
+      "custom": "Custom"
     },
-    "loadError": "[Boarisch] Load failed. Check CORS settings.",
-    "noneAvailable": "[Boarisch] No backgrounds available.",
-    "imageLoadError": "[Boarisch] Image could not be loaded."
+    "loadError": "Ladn hod ned klappt. Prüfe CORS Vorgaben.",
+    "noneAvailable": "Koane Hintergründe verfügbar.",
+    "imageLoadError": "Bild konnte ned geladen werden."
   },
   "data": {
     "import": {
-      "confirm": "[Boarisch] Import data? Existing entries will be overwritten.",
-      "failed": "[Boarisch] Import failed: {error}"
+      "confirm": "Doatn importieren? Bestehende Einträge werden überschrieben.",
+      "failed": "Import fehlgeschlagen: {error}"
     },
     "presets": {
-      "none": "[Boarisch] No preset available.",
-      "missingFile": "[Boarisch] Preset file missing.",
-      "fileMissing": "[Boarisch] File not found",
-      "invalid": "[Boarisch] Invalid preset",
-      "confirmApply": "[Boarisch] Apply {context}[Boarisch]  \"{name}[Boarisch] \"? Existing entries will be overwritten.",
-      "loadFailed": "[Boarisch] Preset load failed: {error}",
-      "loading": "[Boarisch] Loading presets...",
-      "noneFound": "[Boarisch] No presets found",
-      "hint": "[Boarisch] Place exported JSONs under assets/presets/ (manifest: assets/data-presets.json) or locally under assets/user-presets/.",
-      "hintShort": "[Boarisch] Add a preset under assets/presets/ or assets/user-presets/.",
-      "userPrefix": "[Boarisch] User: ",
-      "userApply": "[Boarisch] Apply local preset",
-      "apply": "[Boarisch] Apply preset",
-      "noneSelected": "[Boarisch] No preset selected.",
-      "label": "[Boarisch] Preset",
-      "defaultLabel": "[Boarisch] Preset {index}",
-      "userDefault": "[Boarisch] User preset {index}",
-      "userDescription": "[Boarisch] Local preset from assets/user-presets/",
-      "tags": "[Boarisch]  (Tags: {tags}[Boarisch] )"
+      "none": "Koa Preset verfügbar.",
+      "missingFile": "Preset-Datei fehlt.",
+      "fileMissing": "Datei ned gefunden",
+      "invalid": "Preset ungültig",
+      "confirmApply": "{context} \"{name}\" anwenden? Bestehende Einträge werden überschrieben.",
+      "loadFailed": "Preset laden fehlgeschlagen: {error}",
+      "loading": "Lade Presets...",
+      "noneFound": "Koane Presets gefunden",
+      "hint": "Lege exportierte JSONs unter assets/presets/ (Manifest: assets/data-presets.json) oda lokal unter assets/user-presets/ ab.",
+      "hintShort": "Leg ein Preset unter assets/presets/ oda assets/user-presets/ ab.",
+      "userPrefix": "User:",
+      "userApply": "Lokales Preset anwenden",
+      "apply": "Preset anwenden",
+      "noneSelected": "Koa Preset ausgwaehlt.",
+      "label": "Preset",
+      "defaultLabel": "Preset {index}",
+      "userDefault": "User Preset {index}",
+      "userDescription": "Lokales Preset aus assets/user-presets/",
+      "tags": "(Tags: {tags})"
     }
   },
   "dialogs": {
-    "alertTitle": "[Boarisch] Notice",
-    "confirmTitle": "[Boarisch] Confirm",
-    "promptTitle": "[Boarisch] Input"
+    "alertTitle": "Info",
+    "confirmTitle": "Bestaetigen",
+    "promptTitle": "Eingabe"
   },
   "agent": {
     "ui": {
@@ -536,13 +536,13 @@
       "openSettingsTitle": "Einstellungen",
       "closeAria": "Agent schließen",
       "closeTitle": "Schließen",
-      "modelDisplayDefault": "Modell: —",
+      "modelDisplayDefault": "Modell: -",
       "inputPlaceholder": "Nachricht an Startpage Agent...",
       "send": "Senden",
-      "stop": "Abbrechen",
+      "stop": "Lassn ma",
       "hostLabel": "Host",
       "modelLabel": "Modell",
-      "emptyModel": "—"
+      "emptyModel": "-"
     },
     "settings": {
       "modelLabel": "Modell",
@@ -563,22 +563,22 @@
       "memoryPlaceholder": "Persistente Notizen für den Agenten...",
       "clearMemory": "Memory leeren",
       "actionsLabel": "Aktionen",
-      "save": "Speichern",
+      "save": "Speicha",
       "clearChat": "Chat leeren",
       "capabilitiesLabel": "Capabilities",
       "availableToolsTitle": "Verfügbare Tools",
-      "noModels": "Keine Modelle"
+      "noModels": "Koane Modelle"
     },
     "status": {
       "ready": "Bereit",
       "loadingModels": "Lade Modelle...",
       "modelsLoaded": "Modelle geladen",
-      "noModelsFound": "Keine Modelle gefunden",
-      "loadModelsError": "Fehler beim Laden der Modelle: {error}",
+      "noModelsFound": "Koane Modelle gefunden",
+      "loadModelsError": "Ladn hod ned klappt der Modelle: {error}",
       "disabledNamed": "Startpage Agent deaktiviert",
-      "ollamaUnavailableDisabled": "Ollama nicht erreichbar - Startpage Agent deaktiviert",
-      "disabled": "Agent ist deaktiviert",
-      "chooseModel": "Bitte ein Modell wählen",
+      "ollamaUnavailableDisabled": "Ollama ned erreichbar - Startpage Agent deaktiviert",
+      "disabled": "Agent is deaktiviert",
+      "chooseModel": "Bitte ein Modell auswaehln",
       "streaming": "Streaming...",
       "toolDenied": "Tool abgelehnt",
       "toolRunning": "Tool: {tool}",
@@ -605,28 +605,28 @@
       "toolDeniedByUser": "Tool-Ausführung vom Benutzer abgelehnt",
       "unknownToolError": "Unbekannter Tool-Fehler",
       "unknown": "Unbekannt",
-      "invalidHost": "Host ungültig. Erlaubt sind nur http/https URLs.",
-      "invalidMemory": "Memory ist ungültig. Nutze JSON oder „key: value“-Zeilen."
+      "invalidHost": "Host ungültig. Erlaubt san nur http/https URLs.",
+      "invalidMemory": "Memory is ungültig. Nutze JSON oda „key: value“-Zeilen."
     },
     "systemPrompt": {
       "name": "Name: Startpage Agent",
       "embedded": "Du bist in einer lokalen Startpage eingebettet.",
-      "jsonOnly": "Wenn du eine Aktion ausführen musst, antworte ausschließlich mit genau einer JSON-Zeile im Format {\"tool\":\"<name>\",\"args\":{...}}.",
-      "noExtra": "Keine weiteren Wörter, kein Markdown, kein Codeblock bei Toolcalls.",
+      "jsonOnly": "Wenn du a Aktion ausführen musst, antworte ausschließlich mit genau einer JSON-Zeile im Format {\"tool\":\"<name>\",\"args\":{...}}.",
+      "noExtra": "Koane weiteren Wörter, koa Markdown, koa Codeblock bei Toolcalls.",
       "allowedTools": "Nutze nur diese Tools: {tools}.",
-      "normalReply": "Wenn keine Aktion nötig ist, antworte normal.",
-      "askMissing": "Wenn Infos fehlen oder ein Tool-Call ungültig wäre, stelle Rückfragen als normale Antwort.",
+      "normalReply": "Wenn koane Aktion nötig is, antworte normal.",
+      "askMissing": "Wenn Infos fehlen oda ein Tool-Call ungültig wäre, stelle Rückfragen als normale Antwort.",
       "customPromptSection": "CUSTOM_PROMPT",
       "memorySection": "PERSISTENTE_MEMORY"
     },
     "tools": {
       "descriptions": {
-        "open_url": "Öffnet eine URL",
+        "open_url": "Öffnet a URL",
         "search_web": "Suche mit Suchmaschine",
         "set_theme_accent": "Setzt Akzentfarbe",
         "set_theme_mode": "auto/dark/light",
         "set_card_style": "glass/solid/transparent/minimal",
-        "load_preset": "Lädt Daten-Preset",
+        "load_preset": "Lädt Doatn-Preset",
         "set_background_preset": "Setzt Hintergrund-Preset",
         "toggle_background_rotation": "Rotation ein/aus",
         "toggle_widget": "Widget ein-/ausblenden",
@@ -650,7 +650,7 @@
         "set_wordlist_inline": "Inline-Wortliste setzen",
         "set_widget_color": "Widget-Farbe setzen",
         "set_surface_color": "Header-/Suche-Farbe setzen",
-        "set_weather_cities": "Wetter-Städte setzen",
+        "set_weather_cities": "Weda-Städte setzen",
         "set_transport_duration": "Transport-Zeitraum setzen",
         "set_transport_default_name": "Transport-Standardhalt setzen",
         "set_agent_enabled": "Startpage Agent aktivieren/deaktivieren",
@@ -666,7 +666,7 @@
         "refresh_data": "Widgets aktualisieren",
         "read_widget_data": "Ein Widget lesen",
         "read_all_widgets": "Alle Widgets lesen",
-        "read_weather_data": "Wetterdaten lesen",
+        "read_weather_data": "Wedadaten lesen",
         "read_transport_data": "Transportdaten lesen",
         "read_todo_data": "Todos lesen",
         "read_notes_data": "Notizen lesen",
@@ -674,10 +674,10 @@
         "read_news_data": "News lesen",
         "read_quote_data": "Zitat lesen",
         "read_recent_data": "Letzte Aktionen lesen",
-        "read_system_data": "Systemstatus lesen",
-        "set_weather_station_active": "Wetterstation aktivieren",
-        "add_weather_station": "Wetterstation hinzufügen",
-        "remove_weather_station": "Wetterstation entfernen",
+        "read_system_data": "Systemstand lesen",
+        "set_weather_station_active": "Wedastation aktivieren",
+        "add_weather_station": "Wedastation hinzufügen",
+        "remove_weather_station": "Wedastation entfernen",
         "set_weather_city": "Stadt setzen/aktivieren"
       }
     }

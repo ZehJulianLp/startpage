@@ -1,548 +1,548 @@
 {
   "app": {
-    "title": "Startpage (Kiezdeutsch)"
+    "title": "Startseite (Kiezdeutsch)"
   },
   "common": {
-    "link": "Link, wallah",
-    "delete": "Delete, wallah",
-    "remove": "Remove, wallah",
-    "save": "Save, wallah",
-    "loading": "Loading..., wallah",
-    "loadError": "Load failed, wallah",
-    "noMatches": "No matches, wallah",
-    "emptyDash": "-, wallah",
-    "dash": "-, wallah",
-    "cancel": "Cancel, wallah",
-    "ok": "OK, wallah",
-    "default": "Default, wallah"
+    "link": "Link",
+    "delete": "Löschen",
+    "remove": "Rausnehmen",
+    "save": "Sichern",
+    "loading": "Lade...",
+    "loadError": "Fehler beim Laden",
+    "noMatches": "Keine Treffer",
+    "emptyDash": "-",
+    "dash": "-",
+    "cancel": "Lass mal",
+    "ok": "OK",
+    "default": "Standard"
   },
   "header": {
-    "themeToggleTitle": "Dark/Light, wallah",
-    "settingsTitle": "Settings, wallah",
-    "themeAria": "Toggle theme, wallah",
-    "settingsAria": "Open settings, wallah"
+    "themeToggleTitle": "Dark/Light",
+    "settingsTitle": "Einstellkram",
+    "themeAria": "Theme umschalten",
+    "settingsAria": "Einstellkram oeffnen"
   },
   "search": {
-    "placeholder": "Search... (e.g. , wallah!yt lo-fi, , wallah!etc Home), wallah",
+    "placeholder": "Such mal... (z. B. !yt lo-fi, !etc Home)",
     "engine": {
-      "google": "Google, wallah",
-      "ddg": "DuckDuckGo, wallah",
-      "bing": "Bing, wallah",
-      "yt": "YouTube, wallah",
-      "wikipedia": "Wikipedia, wallah",
-      "maps": "Google Maps, wallah"
+      "google": "Google",
+      "ddg": "DuckDuckGo",
+      "bing": "Bing",
+      "yt": "YouTube",
+      "wikipedia": "Wikipedia",
+      "maps": "Google Maps"
     },
     "suggest": {
       "bang": "{bang} (Bang)",
       "shortcut": "{shortcut} (Shortcut)",
       "type": {
-        "bang": "Bang, wallah",
-        "shortcut": "Shortcut, wallah",
-        "recent": "Recent, wallah",
-        "word": "Word, wallah"
+        "bang": "Bang",
+        "shortcut": "Shortcut",
+        "recent": "Zuletzt",
+        "word": "Wort"
       }
     },
-    "recentShortcut": "Shortcut , wallah{shortcut} - , wallah{query}",
-    "recentSearch": "Search (, wallah{engine}) - , wallah{query}",
-    "submitAria": "Start search, wallah"
+    "recentShortcut": "Shortcut {shortcut} - {query}",
+    "recentSearch": "Suche ({engine}) - {query}",
+    "submitAria": "Suche starten"
   },
   "todo": {
-    "title": "To-Do, wallah",
-    "placeholder": "New task..., wallah",
-    "add": "Add, wallah",
-    "clearDoneTitle": "Remove completed, wallah",
-    "clearDone": " clear, wallah",
-    "doneAria": "Done, wallah",
-    "prompt": "Todo, wallah"
+    "title": "To-Do-Liste",
+    "placeholder": "Neue Aufgabe...",
+    "add": "Hinzufügen",
+    "clearDoneTitle": "Erledigte entfernen",
+    "clearDone": "✓ löschen",
+    "doneAria": "Fertig",
+    "prompt": "Todo"
   },
   "notes": {
-    "title": "Notes, wallah",
-    "placeholder": "Jot something down..., wallah",
-    "prompt": "Note, wallah"
+    "title": "Notizzettel",
+    "placeholder": "Schreib dir schnell was auf...",
+    "prompt": "Notiz"
   },
   "tiles": {
-    "title": "Favorites, wallah",
-    "add": "+ Tile, wallah",
-    "resetTitle": "Restore defaults, wallah",
-    "edit": "Edit, wallah",
-    "promptTitle": "Title, wallah",
-    "promptUrl": "URL, wallah",
-    "invalidUrl": "Invalid URL, wallah",
-    "promptTitleNew": "Tile title, wallah",
-    "promptUrlNew": "URL (, wallahhttps://...)",
-    "resetConfirm": "Restore default tiles?, wallah",
+    "title": "Favs",
+    "add": "+ Tile",
+    "resetTitle": "Standard zuruecksetzen",
+    "edit": "Bearbeiten",
+    "promptTitle": "Titel",
+    "promptUrl": "URL",
+    "invalidUrl": "Ungültige URL",
+    "promptTitleNew": "Titel der Tile",
+    "promptUrlNew": "URL (https://…)",
+    "resetConfirm": "Standard-Tilen zuruecksetzen?",
     "dialog": {
-      "titleLabel": "Title, wallah",
-      "urlLabel": "URL, wallah",
-      "save": "Save, wallah"
+      "titleLabel": "Titel",
+      "urlLabel": "URL",
+      "save": "Sichern"
     },
-    "resetAria": "Reset tiles, wallah"
+    "resetAria": "Tilen zuruecksetzen"
   },
   "weather": {
-    "title": "Weather today, wallah",
-    "cityPlaceholder": "Enter city..., wallah",
-    "setCity": "Set, wallah",
-    "pickLocation": "Pick a location..., wallah",
-    "source": "Source: Open-Meteo, wallah",
-    "loading": "Loading weather..., wallah",
-    "prompt": "Enter a location to load weather., wallah",
-    "tempEmpty": "-C, wallah",
-    "tempEmptyShort": "-, wallah",
-    "minmaxEmpty": "- / - C, wallah",
-    "noForecast": "No forecast, wallah",
+    "title": "Wetter heute",
+    "cityPlaceholder": "Stadt tippen...",
+    "setCity": "Setzen",
+    "pickLocation": "Ort wählen...",
+    "source": "Quelle: Open-Meteo",
+    "loading": "Lade Wetter...",
+    "prompt": "Ort eingeben, um Wetter zu laden.",
+    "tempEmpty": "-°C",
+    "tempEmptyShort": "-°",
+    "minmaxEmpty": "- / - °C",
+    "noForecast": "Keine Prognose",
     "errors": {
-      "geocodingFailed": "Geocoding failed, wallah",
-      "locationNotFound": "Location not found, wallah",
-      "cityMissing": "City missing, wallah",
-      "fetchFailed": "Weather fetch failed, wallah",
-      "loadFailed": "Weather could not be loaded, wallah"
+      "geocodingFailed": "Geocoding fehlgeschlagen",
+      "locationNotFound": "Ort nich gefunden",
+      "cityMissing": "Stadt fehlt",
+      "fetchFailed": "Wetter abrufen fehlgeschlagen",
+      "loadFailed": "Wetter konnte nich geladen werden"
     },
     "codes": {
-      "0": "Clear, wallah",
-      "1": "Mostly clear, wallah",
-      "2": "Partly cloudy, wallah",
-      "3": "Cloudy, wallah",
-      "45": "Fog, wallah",
-      "48": "Fog, wallah",
-      "51": "Drizzle, wallah",
-      "53": "Drizzle, wallah",
-      "55": "Drizzle, wallah",
-      "61": "Rain, wallah",
-      "63": "Rain, wallah",
-      "65": "Heavy rain, wallah",
-      "71": "Snow, wallah",
-      "80": "Showers, wallah",
-      "95": "Thunderstorm, wallah",
-      "default": "Weather, wallah"
+      "0": "Klar",
+      "1": "Überwiegend klar",
+      "2": "Wechselhaft",
+      "3": "Bewölkt",
+      "45": "Nebel",
+      "48": "Nebel",
+      "51": "Sprühregen",
+      "53": "Sprühregen",
+      "55": "Sprühregen",
+      "61": "Regen",
+      "63": "Regen",
+      "65": "Starker Regen",
+      "71": "Schnee",
+      "80": "Schauer",
+      "95": "Gewitter",
+      "default": "Wetter"
     }
   },
   "transport": {
-    "title": "Transport, wallah",
-    "durationAria": "Duration, wallah",
-    "duration30": "30 min, wallah",
-    "duration60": "60 min, wallah",
-    "duration90": "90 min, wallah",
-    "duration120": "120 min, wallah",
-    "refreshTitle": "Reload, wallah",
-    "searchPlaceholder": "Search station..., wallah",
-    "noneSelected": "No station selected, wallah",
-    "source": "Source: transport.rest, wallah",
-    "minQuery": "At least , wallah{count} characters, wallah",
-    "noMatches": "No matches, wallah",
-    "proxyTimeout": "Proxy timeout, wallah",
-    "loadError": "Load failed, wallah",
-    "noDepartures": "No departures, wallah",
-    "selectStation": "Select a station..., wallah",
+    "title": "Bahn & Bus",
+    "durationAria": "Zeitraum",
+    "duration30": "30 min",
+    "duration60": "60 min",
+    "duration90": "90 min",
+    "duration120": "120 min",
+    "refreshTitle": "Neu holen",
+    "searchPlaceholder": "Station suchen...",
+    "noneSelected": "Keine Station gewählt",
+    "source": "Quelle: transport.rest",
+    "minQuery": "Mindestens {count} Zeichen",
+    "noMatches": "Keine Treffer",
+    "proxyTimeout": "Proxy Timeout",
+    "loadError": "Fehler beim Laden",
+    "noDepartures": "Keine Abfahrten",
+    "selectStation": "Station auswählen...",
     "type": {
-      "station": "Station, wallah",
-      "stop": "Stop, wallah"
+      "station": "Station",
+      "stop": "Stop"
     },
-    "platform": "Platform , wallah{platform}",
-    "cancelled": "Cancelled, wallah",
-    "refreshAria": "Refresh transport, wallah"
+    "platform": "Gl. {platform}",
+    "cancelled": "Fällt aus",
+    "refreshAria": "Bahn & Bus neu laden"
   },
   "quote": {
-    "title": "Quote / Nerd Nudge, wallah",
+    "title": "Quote / Nerd-Impulse",
     "list": [
-      "Move fast, refactor often., wallah",
-      "Accessibility isn't a feature - it's the default., wallah",
-      "Done > Perfect. Iterate., wallah",
-      "If it's not monitored, it doesn't exist., wallah",
-      "Good UX is invisible. Bad UX is unforgettable., wallah",
-      "Make it work, make it right, make it fast., wallah",
-      "Small steps. Massive outcomes., wallah",
-      "Simplicity scales. Complexity fails., wallah",
-      "Automate the boring stuff., wallah",
-      "Measure twice, deploy once., wallah"
+      "Move fast, refactor often.",
+      "Accessibility isn't a feature - it's the default.",
+      "Done > Perfect. Iterate.",
+      "If it's not monitored, it doesn't exist.",
+      "Good UX is invisible. Bad UX is unforgettable.",
+      "Make it work, make it right, make it fast.",
+      "Small steps. Massive outcomes.",
+      "Simplicity scales. Complexity fails.",
+      "Automate the boring stuff.",
+      "Measure twice, deploy once."
     ]
   },
   "recent": {
-    "title": "Recent, wallah",
-    "note": "Note: Only actions from this start page (clicked tiles & searches)., wallah"
+    "title": "Zuletzt",
+    "note": "Info: Zeigt nur Aktionen von dieser Startseite (geklickte Tilen & Suchen)."
   },
   "system": {
-    "title": "System status, wallah",
-    "loading": "Loading..., wallah",
-    "ram": "RAM: , wallah{value} GB, wallah",
-    "cpu": "CPU cores: , wallah{value}",
-    "network": "Network: , wallah{downlink} Mbit/s  , wallah{type}{saveData}",
-    "saveData": "  SaveData, wallah",
-    "noData": "No data available, wallah"
+    "title": "Systemcheck",
+    "loading": "Lade...",
+    "ram": "RAM: {value} GB",
+    "cpu": "CPU-Kerne: {value}",
+    "network": "Netz: {downlink} Mbit/s · {type}{saveData}",
+    "saveData": "· SaveData",
+    "noData": "Keine Daten verfügbar"
   },
   "news": {
-    "title": "News, wallah",
-    "refreshTitle": "Reload, wallah",
-    "source": "RSS via Startpage Proxy (CORS proxy), wallah",
-    "noItems": "No items, wallah",
-    "refreshAria": "Refresh news, wallah"
+    "title": "News-Feed",
+    "refreshTitle": "Neu holen",
+    "source": "RSS via Startpage Proxy (CORS-Proxy)",
+    "noItems": "Keine Items",
+    "refreshAria": "News neu laden"
   },
   "footer": {
-    "tagline": "Local-first dashboard  stores only in the browser (localStorage), wallah"
+    "tagline": "Local-first Dashboard - speichert nur im Browser (localStorage)."
   },
   "settings": {
-    "title": "Settings, wallah",
-    "close": "Close, wallah",
+    "title": "Einstellungen",
+    "close": "Schließen",
     "tabs": {
-      "general": "General, wallah",
-      "background": "Background & Appearance, wallah",
-      "search": "Search & Feeds, wallah",
-      "widgets": "Widgets, wallah",
-      "data": "Data, wallah",
-      "guide": "Guide, wallah",
+      "general": "Allgemein",
+      "background": "Hintergrund & Look",
+      "search": "Suche & Feeds",
+      "widgets": "Widgets",
+      "data": "Daten",
+      "guide": "Guide",
       "ai": "Startpage Agent"
     },
     "theme": {
-      "label": "Theme, wallah",
-      "auto": "Auto (System), wallah",
-      "dark": "Dark, wallah",
-      "light": "Light, wallah"
+      "label": "Theme",
+      "auto": "Auto (System)",
+      "dark": "Dark",
+      "light": "Light"
     },
     "background": {
-      "label": "Background, wallah"
+      "label": "Hintergrund"
     },
     "search": {
-      "engines": "Search engines, wallah",
-      "bangsNote": "Supported bang shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Custom shortcuts below",
-      "wordlistLabel": "Autocomplete wordlist, wallah",
-      "wordlistPlaceholder": "Terms line by line or comma-separated, wallah",
-      "wordlistSave": "Save, wallah",
-      "wordlistReset": "Clear, wallah",
-      "wordlistNote": "Global wordlist (assets/wordlist.json) and preset wordlist are merged. Leave empty to use only the global list., wallah",
-      "shortcutsLabel": "Custom , wallah!shortcuts",
-      "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
-      "shortcutsNote": "Use , wallah<code>{q}</code> as placeholder for the search phrase. Without , wallah<code>{q}</code>, , wallah<code>?q=..., wallah</code> is appended., wallah",
-      "feedsLabel": "Custom RSS feeds, wallah",
+      "engines": "Suchmaschinen",
+      "bangsNote": "Unterstützte Bang-Shortcuts: <code>!g!ddg!bing!yt!wiki!maps</code> - Eigene Shortcuts unten",
+      "wordlistLabel": "Wortliste für Autocomplete",
+      "wordlistPlaceholder": "Begriffe zeilenweise oder mit Komma getrennt",
+      "wordlistSave": "Sichern",
+      "wordlistReset": "Leeren",
+      "wordlistNote": "Globale Wortliste (assets/wordlist.json) un die Preset-Wortliste werden gemerged. Leer lassen, um nur die globale Liste zu nutzen.",
+      "shortcutsLabel": "Eigene!Shortcuts",
+      "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/@@P0@@\"}",
+      "shortcutsNote": "Verwende <code>{q}</code> als Platzhalter für die Suchphrase. Ohne <code>{q}</code> wird <code>?q=...</code> angehängt.",
+      "feedsLabel": "Custom RSS-Feeds",
       "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
-      "feedsNote": "JSON: name - feed URL. This list is merged with the default feeds., wallah",
-      "invalidShortcuts": "Invalid shortcuts JSON, wallah",
-      "invalidFeeds": "Invalid feeds JSON, wallah"
+      "feedsNote": "JSON: Name - Feed-URL. Diese Liste wird mit den Standardfeeds gemerged.",
+      "invalidShortcuts": "Ungültiges Shortcuts-JSON",
+      "invalidFeeds": "Ungültiges Feeds-JSON"
     },
     "widgets": {
-      "visible": "Show widgets, wallah",
-      "defaultCityLabel": "Default city (weather), wallah",
-      "defaultCityPlaceholder": "e.g. Hanover, wallah",
-      "defaultTransportLabel": "Default stop (transport), wallah",
-      "defaultTransportPlaceholder": "Search station..., wallah",
-      "cardStyleLabel": "Card style, wallah",
-      "cardStyleGlass": "Glass (default), wallah",
-      "cardStyleSolid": "Solid, wallah",
-      "cardStyleTransparent": "Transparent, wallah",
-      "cardStyleMinimal": "Soft minimal, wallah",
-      "cardStyleNote": "Applies to all widgets & favorite tiles., wallah",
-      "clockColorLabel": "Time & date, wallah",
-      "searchColorLabel": "Search, wallah",
-      "reset": "Reset, wallah",
-      "clockColorNote": "Sets the header background (empty = style default)., wallah",
-      "searchColorNote": "Color for the search area (empty = style default)., wallah",
-      "widgetColorsLabel": "Widget colors, wallah",
-      "weatherCitiesLabel": "Weather cities",
-      "weatherCitiesPlaceholder": "One city per line, e.g. Hanover\nBerlin\nHamburg",
-      "weatherCitiesNote": "One city per line. The first entry becomes active if the previous active city is not included."
+      "visible": "Widgets sichtbar",
+      "defaultCityLabel": "Standard-Stadt (Wetter)",
+      "defaultCityPlaceholder": "z.B. Hannover",
+      "defaultTransportLabel": "Standard-Haltestelle (Bahn & Bus)",
+      "defaultTransportPlaceholder": "Station suchen...",
+      "cardStyleLabel": "Tile-Stil",
+      "cardStyleGlass": "Glas (Standard)",
+      "cardStyleSolid": "Vollfläche",
+      "cardStyleTransparent": "Transparent",
+      "cardStyleMinimal": "Soft Minimal",
+      "cardStyleNote": "Wirkt auf alle Widgets & Favs-Tilen.",
+      "clockColorLabel": "Zeit & Datum",
+      "searchColorLabel": "Suche",
+      "reset": "Reset",
+      "clockColorNote": "Legt den Hintergrund der Kopfzeile fest (leer = Stil-Vorgabe).",
+      "searchColorNote": "Farbe für den Suchbereich (leer = Stil-Vorgabe).",
+      "widgetColorsLabel": "Widget-Farben",
+      "weatherCitiesLabel": "Wetter-Städte",
+      "weatherCitiesPlaceholder": "Eine Stadt pro Zeile, z.B. Hannover\nBerlin\nHamburg",
+      "weatherCitiesNote": "Eine Stadt pro Zeile. Der erste Eintrag wird aktiv, falls die bisher aktive Stadt nich enthalten ist."
     },
     "data": {
-      "label": "Data, wallah",
-      "export": "Export (.json), wallah",
-      "import": "Import (.json), wallah",
-      "presetsLabel": "Data presets, wallah",
-      "applyPreset": "Load preset, wallah",
-      "presetMeta": "Presets are exported JSONs under assets/presets/. User presets from assets/user-presets/ are merged automatically., wallah",
-      "setupLabel": "Setup, wallah",
-      "restartOnboarding": "Restart setup, wallah",
-      "restartNote": "Reopens the compact setup dialog., wallah",
-      "noteLabel": "Note, wallah",
-      "noteText": "Export stores all settings & data locally as JSON. Import overwrites existing entries., wallah"
+      "label": "Daten",
+      "export": "Export (.json)",
+      "import": "Import (.json)",
+      "presetsLabel": "Data Presets",
+      "applyPreset": "Preset laden",
+      "presetMeta": "Presets liegen als exportierte JSONs unter assets/presets/. User-Presets aus assets/user-presets/ werden automatisch gemerged.",
+      "setupLabel": "Setup",
+      "restartOnboarding": "Setup neu starten",
+      "restartNote": "Startet den kompakten Einrichtungs-Dialog erneut.",
+      "noteLabel": "Info",
+      "noteText": "Export speichert sämtliche Einstellkram & Daten lokal als JSON. Import überschreibt vorhandene Einträge."
     },
     "language": {
-      "label": "Language, wallah",
-      "auto": "Auto (System), wallah"
+      "label": "Sprache",
+      "auto": "Auto (System)"
     },
     "font": {
-      "label": "Font, wallah",
-      "searchPlaceholder": "Search fonts..., wallah",
-      "loadLocal": "Load system fonts, wallah",
-      "systemDefault": "System default, wallah",
-      "noResults": "No matching fonts, wallah",
-      "note": "Shows local system fonts (if available), otherwise a detected fallback list., wallah",
-      "unsupported": "Your browser does not support Local Font Access (queryLocalFonts)., wallah",
-      "permissionDenied": "Access to local fonts was denied or blocked., wallah",
-      "empty": "No local fonts were returned., wallah",
-      "loadFailed": "Could not load local fonts: , wallah{error}"
+      "label": "Schriftart",
+      "searchPlaceholder": "Schriftarten suchen...",
+      "loadLocal": "Systemfonts laden",
+      "systemDefault": "Systemstandard",
+      "noResults": "Keine passenden Schriftarten",
+      "note": "Zeigt lokale System-Schriftarten (falls verfuegbar), sonst ne erkannte Standardliste.",
+      "unsupported": "Dein Browser unterstuetzt Local Font Access (queryLocalFonts) nich.",
+      "permissionDenied": "Zugriff auf lokale Schriftarten wurde verweigert oder blockiert.",
+      "empty": "Es wurden keene lokalen Schriftarten zurueckgegeben.",
+      "loadFailed": "Lokale Schriftarten konnten nich geladen werden: {error}"
     },
-    "guideHtml": "<div class=\"row\"><label>User Guide, wallah</label><div><h5>Overview, wallah</h5><ul><li>Start page with search, favorites, to-do, notes, weather, news., wallah</li><li>All local: data stays in your browser (localStorage)., wallah</li></ul><h5>Shortcuts, wallah</h5><ul><li>Ctrl/Cmd+K: open command palette, wallah</li><li>1-9: open first 9 favorites (when not typing), wallah</li><li>/ : focus search (also via palette), wallah</li><li>Enter in search: start search, wallah</li><li>ESC: close modals, wallah</li><li>Palette: quick actions for widgets, theme, background, data, favorites, wallah</li><li>Palette: key C switches card style, \"Reset header colors\" resets search & clock, wallah</li></ul><h5>Search & Autocomplete, wallah</h5><ul><li>Bangs: , wallah!g , wallah!ddg , wallah!bing , wallah!yt , wallah!wiki , wallah!maps</li><li>Custom shortcuts: JSON in settings; , wallah{q} as placeholder, wallah</li><li>Autocomplete: bangs, shortcuts, recent searches, wordlist (global + preset), wallah</li><li>Tab accepts suggestion, Enter starts search, wallah</li></ul><h5>Tiles, wallah</h5><ul><li>Drag & drop to sort, click to open, wallah</li><li>+ Tile: add a new favorite, wallah</li><li>Reset: restore default favorites, wallah</li></ul><h5>Widgets & Layout, wallah</h5><ul><li>Visibility per widget, wallah</li><li>Card style is global (glass, solid, transparent, soft minimal), wallah</li><li>Custom colors for clock/search; reset restores style defaults, wallah</li><li>Widget colors & \"Tint widgets\" set the accent per card, wallah</li></ul><h5>Background, wallah</h5><ul><li>Presets, uploads, collections, rotation (time/theme/interval), wallah</li><li>Accent color is extracted from the active background, wallah</li></ul><h5>Data, wallah</h5><ul><li>Export/Import as JSON, wallah</li><li>Load data presets (assets/presets/*.json in the repo), wallah</li></ul><h5>Startpage Agent</h5><ul><li>Integrated AI chat with local Ollama (host/model in settings).</li><li>Supports streaming responses, stop (button/ESC), persistent history, and Markdown.</li><li>Agentic tools can read/change widgets and settings (depending on confirm mode).</li></ul></div></div>",
+    "guideHtml": "<div class=\"row\"><label>User Guide</label><div><h5>Überblick</h5><ul><li>Startseite mit Suche, Favs, To-Do, Notizen, Wetter, News.</li><li>Alles lokal: Daten bleiben im Browser (localStorage).</li></ul><h5>Shortcuts</h5><ul><li>Ctrl/Cmd+K: Command Palette öffnen</li><li>1-9: Erste 9 Favs öffnen (wenn nich tippen)</li><li>/: Suche fokussieren (auch über Palette)</li><li>Enter in Suche: Startet die Suche</li><li>ESC: Modals schließen</li><li>Palette: Schnellaktionen für Widgets, Theme, Hintergrund, Daten, Favs</li><li>Palette: Taste C wechselt den Tile-Stil, \"Header-Farben zurücksetzen\" stellt Suche & Uhr zurück</li></ul><h5>Suche & Autocomplete</h5><ul><li>Bangs:!g!ddg!bing!yt!wiki!maps</li><li>Eigene Shortcuts: JSON in den Einstellkram; {q} als Platzhalter</li><li>Autocomplete: Bangs, Shortcuts, Recent-Suchen, Wortliste (global + Preset)</li><li>Tab übernimmt Vorschlag, Enter startet Suche</li></ul><h5>Tiles</h5><ul><li>Drag & Drop zum Sortieren, Klick zum Öffnen</li><li>+ Tile: Neue Favs hinzufügen</li><li>Reset: Standardfavoriten zuruecksetzen</li></ul><h5>Widgets & Layout</h5><ul><li>Sichtbarkeit je Widget umschaltbar</li><li>Tile-Stil global anpassbar (Glas, Vollfläche, Transparent, Soft Minimal)</li><li>Eigene Farben für Uhr/Suche; Reset bringt Stil-Vorgabe zurück</li><li>Widget-Farben & Button \"Widgets einfärben\" setzen Akzent pro Karte</li></ul><h5>Hintergrund</h5><ul><li>Presets, Uploads, Sammlungen, Rotation (Zeit/Thema/Intervall)</li><li>Akzentfarbe wird aus dem aktiven Hintergrund extrahiert</li></ul><h5>Daten</h5><ul><li>Export/Import als JSON</li><li>Data Presets laden (assets/presets/*.json aus dem Repo)</li></ul><h5>Startpage Agent</h5><ul><li>Integrierter KI-Chat mit lokalem Ollama (Host/Modell in den Einstellkram).</li><li>Unterstützt Streaming-Antworten, Stop (Button/ESC), Verlauf-Persistenz un Markdown.</li><li>Agentische Tools können Widgets un Einstellkram lesen/ändern (je nach Confirm-Modus).</li></ul></div></div>",
     "general": {
       "agentLabel": "Startpage Agent",
       "agentEnabled": "Agent aktiv",
-      "agentHint": "Wenn deaktiviert, wird nichts an Ollama gesendet."
+      "agentHint": "Wenn deaktiviert, wird nichs an Ollama gesendet."
     }
   },
   "onboarding": {
-    "title": "Start setup, wallah",
-    "progress": "Step , wallah{current} of , wallah{total}",
-    "skip": "Skip setup, wallah",
-    "close": "Close, wallah",
+    "title": "Setup starten",
+    "progress": "Schritt {current} von {total}",
+    "skip": "Setup überspringen",
+    "close": "Schließen",
     "preset": {
-      "title": "Choose preset, wallah",
-      "hint": "Pick a preset or skip this step., wallah",
-      "apply": "Apply preset, wallah",
-      "meta": "Apply a preset or skip., wallah",
-      "optional": "Preset optional., wallah",
-      "context": "Setup preset, wallah"
+      "title": "Preset wählen",
+      "hint": "Wähle ein Preset oder überspringe diesen Schritt.",
+      "apply": "Preset anwenden",
+      "meta": "Preset anwenden oder überspringen.",
+      "optional": "Preset optional.",
+      "context": "Setup-Preset"
     },
     "appearance": {
-      "title": "Appearance, wallah",
-      "theme": "Theme, wallah",
-      "cardStyle": "Card style, wallah",
-      "background": "Background, wallah",
-      "rotation": "Enable rotation, wallah",
-      "keepCurrent": "Keep current image, wallah"
+      "title": "Darstellung",
+      "theme": "Theme",
+      "cardStyle": "Karten-Stil",
+      "background": "Hintergrund",
+      "rotation": "Rotation aktivieren",
+      "keepCurrent": "Aktives Bild behalten"
     },
     "search": {
-      "title": "Search, wallah",
-      "engine": "Default search engine, wallah"
+      "title": "Suche",
+      "engine": "Standard-Suchmaschine"
     },
     "widgets": {
-      "title": "Widgets, wallah",
-      "defaultTransport": "Default stop (transport), wallah",
-      "tint": "Tint widgets with accent, wallah"
+      "title": "Widgets",
+      "defaultTransport": "Standard-Haltestelle (Bahn & Bus)",
+      "tint": "Widgets an Akzent einfärben"
     },
     "weather": {
-      "title": "Weather, wallah",
-      "defaultCity": "Default city, wallah",
-      "note": "You can change everything later in settings., wallah"
+      "title": "Wetter",
+      "defaultCity": "Standard-Stadt",
+      "note": "Du kannst später jederzeit alles in den Einstellkram ändern."
     },
-    "prev": "Back, wallah",
-    "next": "Next, wallah",
-    "finish": "Done, wallah"
+    "prev": "Zurück",
+    "next": "Weiter",
+    "finish": "Fertig"
   },
   "palette": {
-    "placeholder": "Search command or favorite... (Ctrl/+K), wallah",
+    "placeholder": "Befehl oder Favorit suchen... (Strg/⌘+K)",
     "groups": {
-      "command": "Commands, wallah",
-      "settings": "Settings, wallah",
-      "search": "Search, wallah",
-      "widgets": "Widgets, wallah",
-      "theme": "Theme & Background, wallah",
-      "data": "Data, wallah",
-      "tiles": "Tiles, wallah",
-      "tile": "Favorites, wallah",
-      "quick": "Quick, wallah"
+      "command": "Befehle",
+      "settings": "Einstellkram",
+      "search": "Suche",
+      "widgets": "Widgets",
+      "theme": "Theme & Hintergrund",
+      "data": "Daten",
+      "tiles": "Tiles",
+      "tile": "Favs",
+      "quick": "Schnell"
     },
     "search": {
-      "focus": "Focus search, wallah",
-      "start": "Start search, wallah",
-      "engine": "Engine: , wallah{engine}"
+      "focus": "Suche fokussieren",
+      "start": "Suche starten",
+      "engine": "Engine: {engine}"
     },
     "settings": {
-      "open": "Open settings, wallah",
-      "general": "Settings: General, wallah",
-      "background": "Settings: Background, wallah",
-      "search": "Settings: Search, wallah",
-      "widgets": "Settings: Widgets, wallah",
-      "data": "Settings: Data, wallah",
-      "guide": "Settings: Guide, wallah"
+      "open": "Einstellkram öffnen",
+      "general": "Einstellkram: Allgemein",
+      "background": "Einstellkram: Hintergrund",
+      "search": "Einstellkram: Suche",
+      "widgets": "Einstellkram: Widgets",
+      "data": "Einstellkram: Daten",
+      "guide": "Einstellkram: Guide"
     },
     "theme": {
-      "cycle": "Cycle theme (Auto/Dark/Light), wallah",
-      "auto": "Theme: Auto, wallah",
-      "dark": "Theme: Dark, wallah",
-      "light": "Theme: Light, wallah",
-      "resetHeader": "Reset header colors, wallah",
-      "recalcAccent": "Recalculate accent colors, wallah"
+      "cycle": "Theme wechseln (Auto/Dark/Light)",
+      "auto": "Theme: Auto",
+      "dark": "Theme: Dark",
+      "light": "Theme: Light",
+      "resetHeader": "Header-Farben zurücksetzen",
+      "recalcAccent": "Akzentfarben neu berechnen"
     },
     "cardStyle": {
-      "glass": "Card style: Glass, wallah",
-      "solid": "Card style: Solid, wallah",
-      "transparent": "Card style: Transparent, wallah",
-      "minimal": "Card style: Minimal, wallah"
+      "glass": "Tile-Stil: Glas",
+      "solid": "Tile-Stil: Vollfläche",
+      "transparent": "Tile-Stil: Transparent",
+      "minimal": "Tile-Stil: Minimal"
     },
     "background": {
-      "toggleRotation": "Background: Toggle rotation, wallah",
-      "toggleLock": "Background: Lock/unlock rotation, wallah",
-      "preset": "Background: , wallah{label}"
+      "toggleRotation": "Hintergrund: Rotation umschalten",
+      "toggleLock": "Hintergrund: Rotation sperren/fortsetzen",
+      "preset": "Hintergrund: {label}"
     },
     "widgets": {
-      "showAll": "Widgets: Show all, wallah",
-      "hideAll": "Widgets: Hide all, wallah",
-      "toggle": "Widget: Toggle , wallah{widget}",
-      "focus": "Widget: Focus , wallah{widget}"
+      "showAll": "Widgets: Alle anzeigen",
+      "hideAll": "Widgets: Alle ausblenden",
+      "toggle": "Widget: {widget} umschalten",
+      "focus": "Widget: {widget} fokussieren"
     },
     "quick": {
-      "addTodo": "Add todo, wallah",
-      "addNote": "Add note, wallah"
+      "addTodo": "Todo hinzufügen",
+      "addNote": "Notiz hinzufügen"
     },
     "tiles": {
-      "add": "Add tile, wallah",
-      "reset": "Reset tiles, wallah"
+      "add": "Tile hinzufügen",
+      "reset": "Tiles zurücksetzen"
     },
     "refresh": {
-      "weather": "Refresh weather, wallah",
-      "news": "Refresh news, wallah",
-      "transport": "Refresh transport, wallah",
-      "system": "Refresh system, wallah",
-      "all": "Refresh all widgets, wallah"
+      "weather": "Wetter aktualisieren",
+      "news": "News aktualisieren",
+      "transport": "Bahn & Bus aktualisieren",
+      "system": "System aktualisieren",
+      "all": "Alle Widgets aktualisieren"
     },
     "data": {
-      "export": "Export data, wallah",
-      "import": "Import data, wallah",
-      "preset": "Data preset: , wallah{label}"
+      "export": "Daten exportieren",
+      "import": "Daten importieren",
+      "preset": "Data Preset: {label}"
     }
   },
   "widgets": {
-    "todo": "To-Do, wallah",
-    "notes": "Notes, wallah",
-    "tiles": "Favorites, wallah",
-    "weather": "Weather, wallah",
-    "transport": "Transport, wallah",
-    "quote": "Quote, wallah",
-    "recent": "Recent, wallah",
-    "system": "System, wallah",
-    "news": "News, wallah"
+    "todo": "To-Do",
+    "notes": "Notizen",
+    "tiles": "Favs",
+    "weather": "Wetter",
+    "transport": "Bahn & Bus",
+    "quote": "Quote",
+    "recent": "Zuletzt",
+    "system": "System",
+    "news": "News"
   },
   "background": {
-    "currentPreview": "Current background image, wallah",
-    "none": "No background, wallah",
-    "noImageSelected": "No image selected, wallah",
-    "rotationResume": "Resume rotation, wallah",
-    "rotationLock": "Lock rotation, wallah",
-    "tone": "Tone: , wallah{tone}",
+    "currentPreview": "Aktuelles Hintergrundbild",
+    "none": "Kein Hintergrund",
+    "noImageSelected": "Kein Bild ausgewählt",
+    "rotationResume": "Rotation fortsetzen",
+    "rotationLock": "Rotation sperren",
+    "tone": "Ton: {tone}",
     "presets": {
-      "empty": "No presets available., wallah"
+      "empty": "Keine Presets vorhanden."
     },
     "favorites": {
-      "empty": "No favorites yet. Mark presets or uploads., wallah"
+      "empty": "Noch keene Favs. Markiere Presets oder Uploads."
     },
     "subtitle": {
-      "preset": "Preset, wallah"
+      "preset": "Preset"
     },
-    "upload": "Upload, wallah",
-    "uploadDrop": "Drop files here, wallah",
-    "uploadBrowse": "Choose file, wallah",
-    "uploadNote": "We resize images automatically (16:9, max 2560px) and store them locally. Max , wallah{max} files., wallah",
+    "upload": "Upload",
+    "uploadDrop": "Dateien hier ablegen",
+    "uploadBrowse": "Datei auswählen",
+    "uploadNote": "Wir verkleinern Bilder automatisch (16:9, max 2560px) un speichern sie lokal. Max {max} Dateien.",
     "uploads": {
-      "empty": "No uploads yet., wallah"
+      "empty": "Noch keene Uploads vorhanden."
     },
     "collections": {
-      "count": "{count} sources, wallah",
-      "random": "Random, wallah",
-      "cache": "Save offline, wallah",
-      "viewSources": "View sources, wallah",
-      "useRotation": "Use for rotation, wallah",
-      "newLabel": "New collection, wallah",
-      "namePlaceholder": "My collection, wallah",
-      "urlsPlaceholder": "One image URL per line, wallah",
-      "clear": "Clear fields, wallah",
-      "note": "URLs are stored locally. Remote sources need CORS for images., wallah",
-      "empty": "No collections yet., wallah",
-      "minOneUrl": "Enter at least one URL., wallah",
-      "emptyCollection": "Collection is empty., wallah",
-      "saved": "Collection saved locally., wallah",
-      "defaultName": "Collection , wallah{index}"
+      "count": "{count} Quellen",
+      "random": "Zufällig",
+      "cache": "Offline speichern",
+      "viewSources": "Quellen ansehen",
+      "useRotation": "Rotation verwenden",
+      "newLabel": "Neue Sammlung",
+      "namePlaceholder": "Meine Sammlung",
+      "urlsPlaceholder": "Eine Bild-URL pro Zeile",
+      "clear": "Felder leeren",
+      "note": "URLs werden lokal gespeichert. Remote Quellen benötigen CORS für Bilder.",
+      "empty": "Noch keene Sammlungen angelegt.",
+      "minOneUrl": "Mindestens ne URL eintragen.",
+      "emptyCollection": "Sammlung ist leer.",
+      "saved": "Sammlung lokal gespeichert.",
+      "defaultName": "Sammlung {index}"
     },
     "rotation": {
-      "optionPreset": "Preset: , wallah{label}",
-      "optionUpload": "Upload: , wallah{label}",
-      "optionFavorite": "Favorite: , wallah{label}",
-      "optionCustom": "Custom: saved URL, wallah",
-      "noFixed": "No fixed image, wallah",
-      "enabled": "Enable automatic rotation, wallah",
-      "locked": "Rotation is currently locked., wallah",
-      "active": "Backgrounds change according to the schedule., wallah",
-      "mode": "Mode, wallah",
-      "modeTime": "Time-based, wallah",
-      "modeInterval": "Interval, wallah",
-      "modeTheme": "Theme, wallah",
-      "intervalLabel": "Interval in minutes, wallah",
-      "intervalNote": "Only relevant in interval mode., wallah",
-      "sourcesLabel": "Sources for random, wallah",
-      "scheduleLabel": "Schedule, wallah",
-      "themePlan": "Theme plan, wallah",
-      "themeLight": "Theme light, wallah",
-      "themeDark": "Theme dark, wallah",
-      "themeNote": "Theme plan is used when mode is Theme., wallah",
+      "optionPreset": "Preset: {label}",
+      "optionUpload": "Upload: {label}",
+      "optionFavorite": "Favorit: {label}",
+      "optionCustom": "Custom: gespeicherte URL",
+      "noFixed": "Kein festes Bild",
+      "enabled": "Automatische Rotation aktiv",
+      "locked": "Rotation ist aktuell gesperrt.",
+      "active": "Hintergründe wechseln nach dem Plan.",
+      "mode": "Modus",
+      "modeTime": "Zeitabhängig",
+      "modeInterval": "Intervall",
+      "modeTheme": "Theme",
+      "intervalLabel": "Intervall in Minuten",
+      "intervalNote": "Relevanz nur im Intervall Modus.",
+      "sourcesLabel": "Quellen für Zufall",
+      "scheduleLabel": "Zeitplan",
+      "themePlan": "Theme Plan",
+      "themeLight": "Theme Light",
+      "themeDark": "Theme Dark",
+      "themeNote": "Theme Plan wird genutzt, wenn der Modus auf Theme steht.",
       "slot": {
-        "morning": "Morning 05-11, wallah",
-        "day": "Day 11-17, wallah",
-        "evening": "Evening 17-21, wallah",
-        "night": "Night 21-05, wallah"
+        "morning": "Morgen 05-11",
+        "day": "Tag 11-17",
+        "evening": "Abend 17-21",
+        "night": "Nacht 21-05"
       }
     },
     "custom": {
-      "label": "Custom image URL, wallah",
+      "label": "Eigene Bild URL",
       "placeholder": "https://example.com/image.jpg",
-      "note": "URL is stored locally. Server must allow CORS for images., wallah",
-      "enterUrl": "Please enter a URL., wallah",
-      "title": "Custom URL, wallah",
-      "subtitle": "Custom, wallah"
+      "note": "URL wird lokal gespeichert. Server muss CORS für Bilder erlauben.",
+      "enterUrl": "Bitte ne URL eintragen.",
+      "title": "Custom URL",
+      "subtitle": "Custom"
     },
     "actions": {
-      "apply": "Apply, wallah",
-      "favorite": "Favorite, wallah",
-      "favorited": "Favorited, wallah",
-      "random": "Load random, wallah",
-      "undo": "Restore last image, wallah",
-      "lock": "Lock rotation, wallah",
-      "tint": "Tint widgets, wallah"
+      "apply": "Setzen",
+      "favorite": "Favorisieren",
+      "favorited": "Favorit",
+      "random": "Zufällig neu laden",
+      "undo": "Letztes Bild zuruecksetzen",
+      "lock": "Rotation sperren",
+      "tint": "Widgets einfärben"
     },
     "tabs": {
-      "presets": "Presets, wallah",
-      "favorites": "Favorites, wallah",
-      "uploads": "Uploads, wallah",
-      "collections": "Collections, wallah",
-      "rotation": "Rotation, wallah",
-      "custom": "Custom, wallah"
+      "presets": "Presets",
+      "favorites": "Favs",
+      "uploads": "Uploads",
+      "collections": "Sammlungen",
+      "rotation": "Rotation",
+      "custom": "Custom"
     },
-    "loadError": "Load failed. Check CORS settings., wallah",
-    "noneAvailable": "No backgrounds available., wallah",
-    "imageLoadError": "Image could not be loaded., wallah"
+    "loadError": "Fehler beim Laden. Prüfe CORS Vorgaben.",
+    "noneAvailable": "Keine Hintergründe verfügbar.",
+    "imageLoadError": "Bild konnte nich geladen werden."
   },
   "data": {
     "import": {
-      "confirm": "Import data? Existing entries will be overwritten., wallah",
-      "failed": "Import failed: , wallah{error}"
+      "confirm": "Daten importieren? Bestehende Einträge werden überschrieben.",
+      "failed": "Import fehlgeschlagen: {error}"
     },
     "presets": {
-      "none": "No preset available., wallah",
-      "missingFile": "Preset file missing., wallah",
-      "fileMissing": "File not found, wallah",
-      "invalid": "Invalid preset, wallah",
-      "confirmApply": "Apply , wallah{context} \", wallah{name}\"? Existing entries will be overwritten., wallah",
-      "loadFailed": "Preset load failed: , wallah{error}",
-      "loading": "Loading presets..., wallah",
-      "noneFound": "No presets found, wallah",
-      "hint": "Place exported JSONs under assets/presets/ (manifest: assets/data-presets.json) or locally under assets/user-presets/., wallah",
-      "hintShort": "Add a preset under assets/presets/ or assets/user-presets/., wallah",
-      "userPrefix": "User: , wallah",
-      "userApply": "Apply local preset, wallah",
-      "apply": "Apply preset, wallah",
-      "noneSelected": "No preset selected., wallah",
-      "label": "Preset, wallah",
-      "defaultLabel": "Preset , wallah{index}",
-      "userDefault": "User preset , wallah{index}",
-      "userDescription": "Local preset from assets/user-presets/, wallah",
-      "tags": " (Tags: , wallah{tags}), wallah"
+      "none": "Kein Preset verfügbar.",
+      "missingFile": "Preset-Datei fehlt.",
+      "fileMissing": "Datei nich gefunden",
+      "invalid": "Preset ungültig",
+      "confirmApply": "{context} \"{name}\" anwenden? Bestehende Einträge werden überschrieben.",
+      "loadFailed": "Preset laden fehlgeschlagen: {error}",
+      "loading": "Lade Presets...",
+      "noneFound": "Keine Presets gefunden",
+      "hint": "Lege exportierte JSONs unter assets/presets/ (Manifest: assets/data-presets.json) oder lokal unter assets/user-presets/ ab.",
+      "hintShort": "Leg ein Preset unter assets/presets/ oder assets/user-presets/ ab.",
+      "userPrefix": "User:",
+      "userApply": "Lokales Preset anwenden",
+      "apply": "Preset anwenden",
+      "noneSelected": "Kein Preset ausgewählt.",
+      "label": "Preset",
+      "defaultLabel": "Preset {index}",
+      "userDefault": "User Preset {index}",
+      "userDescription": "Lokales Preset aus assets/user-presets/",
+      "tags": "(Tags: {tags})"
     }
   },
   "dialogs": {
-    "alertTitle": "Notice, wallah",
-    "confirmTitle": "Confirm, wallah",
-    "promptTitle": "Input, wallah"
+    "alertTitle": "Info",
+    "confirmTitle": "Bestaetigen",
+    "promptTitle": "Eingabe"
   },
   "agent": {
     "ui": {
       "title": "Startpage Agent",
       "fabAria": "Startpage Agent",
       "fabTitle": "Startpage Agent",
-      "openSettingsAria": "Agent-Einstellungen öffnen",
-      "openSettingsTitle": "Einstellungen",
+      "openSettingsAria": "Agent-Einstellkram öffnen",
+      "openSettingsTitle": "Einstellkram",
       "closeAria": "Agent schließen",
       "closeTitle": "Schließen",
-      "modelDisplayDefault": "Modell: —",
+      "modelDisplayDefault": "Modell: -",
       "inputPlaceholder": "Nachricht an Startpage Agent...",
       "send": "Senden",
-      "stop": "Abbrechen",
+      "stop": "Lass mal",
       "hostLabel": "Host",
       "modelLabel": "Modell",
-      "emptyModel": "—"
+      "emptyModel": "-"
     },
     "settings": {
       "modelLabel": "Modell",
@@ -563,7 +563,7 @@
       "memoryPlaceholder": "Persistente Notizen für den Agenten...",
       "clearMemory": "Memory leeren",
       "actionsLabel": "Aktionen",
-      "save": "Speichern",
+      "save": "Sichern",
       "clearChat": "Chat leeren",
       "capabilitiesLabel": "Capabilities",
       "availableToolsTitle": "Verfügbare Tools",
@@ -576,7 +576,7 @@
       "noModelsFound": "Keine Modelle gefunden",
       "loadModelsError": "Fehler beim Laden der Modelle: {error}",
       "disabledNamed": "Startpage Agent deaktiviert",
-      "ollamaUnavailableDisabled": "Ollama nicht erreichbar - Startpage Agent deaktiviert",
+      "ollamaUnavailableDisabled": "Ollama nich erreichbar - Startpage Agent deaktiviert",
       "disabled": "Agent ist deaktiviert",
       "chooseModel": "Bitte ein Modell wählen",
       "streaming": "Streaming...",
@@ -587,7 +587,7 @@
       "toolLimitReached": "Tool-Limit erreicht",
       "aborted": "Abgebrochen",
       "error": "Fehler: {error}",
-      "settingsSaved": "Einstellungen gespeichert",
+      "settingsSaved": "Einstellkram gespeichert",
       "chatCleared": "Chat geleert",
       "memoryCleared": "Memory geleert",
       "confirmSaved": "Tool Confirm gespeichert",
@@ -611,17 +611,17 @@
     "systemPrompt": {
       "name": "Name: Startpage Agent",
       "embedded": "Du bist in einer lokalen Startpage eingebettet.",
-      "jsonOnly": "Wenn du eine Aktion ausführen musst, antworte ausschließlich mit genau einer JSON-Zeile im Format {\"tool\":\"<name>\",\"args\":{...}}.",
-      "noExtra": "Keine weiteren Wörter, kein Markdown, kein Codeblock bei Toolcalls.",
+      "jsonOnly": "Wenn du ne Aktion ausführen musst, antworte ausschließlich mit genau einer JSON-Zeile im Format {\"tool\":\"<name>\",\"args\":{...}}.",
+      "noExtra": "Keine weiteren Wörter, keen Markdown, keen Codeblock bei Toolcalls.",
       "allowedTools": "Nutze nur diese Tools: {tools}.",
-      "normalReply": "Wenn keine Aktion nötig ist, antworte normal.",
+      "normalReply": "Wenn keene Aktion nötig ist, antworte normal.",
       "askMissing": "Wenn Infos fehlen oder ein Tool-Call ungültig wäre, stelle Rückfragen als normale Antwort.",
       "customPromptSection": "CUSTOM_PROMPT",
       "memorySection": "PERSISTENTE_MEMORY"
     },
     "tools": {
       "descriptions": {
-        "open_url": "Öffnet eine URL",
+        "open_url": "Öffnet ne URL",
         "search_web": "Suche mit Suchmaschine",
         "set_theme_accent": "Setzt Akzentfarbe",
         "set_theme_mode": "auto/dark/light",
@@ -651,8 +651,8 @@
         "set_widget_color": "Widget-Farbe setzen",
         "set_surface_color": "Header-/Suche-Farbe setzen",
         "set_weather_cities": "Wetter-Städte setzen",
-        "set_transport_duration": "Transport-Zeitraum setzen",
-        "set_transport_default_name": "Transport-Standardhalt setzen",
+        "set_transport_duration": "Bahn & Bus-Zeitraum setzen",
+        "set_transport_default_name": "Bahn & Bus-Standardhalt setzen",
         "set_agent_enabled": "Startpage Agent aktivieren/deaktivieren",
         "set_agent_host": "Startpage-Agent-Host setzen",
         "set_agent_confirm_mode": "Startpage-Agent-Confirm setzen",
@@ -667,14 +667,14 @@
         "read_widget_data": "Ein Widget lesen",
         "read_all_widgets": "Alle Widgets lesen",
         "read_weather_data": "Wetterdaten lesen",
-        "read_transport_data": "Transportdaten lesen",
+        "read_transport_data": "Bahn & Busdaten lesen",
         "read_todo_data": "Todos lesen",
         "read_notes_data": "Notizen lesen",
-        "read_tiles_data": "Favoriten lesen",
+        "read_tiles_data": "Favs lesen",
         "read_news_data": "News lesen",
         "read_quote_data": "Zitat lesen",
         "read_recent_data": "Letzte Aktionen lesen",
-        "read_system_data": "Systemstatus lesen",
+        "read_system_data": "Systemcheck lesen",
         "set_weather_station_active": "Wetterstation aktivieren",
         "add_weather_station": "Wetterstation hinzufügen",
         "remove_weather_station": "Wetterstation entfernen",
