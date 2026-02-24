@@ -1496,6 +1496,27 @@
     return store.get('shortcuts', { '!etc':'https://julianverse.de/etc' });
   }
 
+  function normalizeDirectUrlCandidate(raw){
+    const input = String(raw || '').trim();
+    if(!input || /\s/.test(input)) return null;
+    if(/^javascript:/i.test(input)) return null;
+    const parseHttpUrl = value=>{
+      try{
+        const url = new URL(value);
+        if(!/^https?:$/i.test(url.protocol)) return null;
+        return url.href;
+      }catch{
+        return null;
+      }
+    };
+    const direct = parseHttpUrl(input);
+    if(direct) return direct;
+    if(input.startsWith('//')) return parseHttpUrl(`https:${input}`);
+    const hostLike = /^(localhost|\d{1,3}(?:\.\d{1,3}){3}|\[[0-9a-f:.]+\]|(?:[a-z0-9-]+\.)+[a-z]{2,})(?::\d{1,5})?(?:[/?#].*)?$/i;
+    if(!hostLike.test(input)) return null;
+    return parseHttpUrl(`https://${input}`);
+  }
+
   function loadGlobalWordlist(){
     if(globalWordlistPromise) return globalWordlistPromise;
     globalWordlistPromise = fetch(WORDLIST_URL).then(r=> r.ok ? r.json() : []).catch(()=>[]);
@@ -1627,6 +1648,14 @@
       else if(rest) target += (target.includes('?') ? '&' : '?') + 'q=' + encodeURIComponent(rest);
       addRecent({ title: t('search.recentShortcut', { shortcut: first, query: rest||'' }), url: target });
       window.location.href = target; return;
+    }
+
+    const directUrl = normalizeDirectUrlCandidate(q);
+    if(directUrl){
+      addRecent({ title: directUrl, url: directUrl });
+      renderSearchSuggest([]);
+      window.location.href = directUrl;
+      return;
     }
 
     // built-in bangs
