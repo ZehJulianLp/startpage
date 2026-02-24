@@ -1,7 +1,7 @@
-# Startpage
+﻿# Startpage
 
 ## Overview
-Startpage is a customizable dashboard-style browser start page. Search, weather, tasks, notes, news, system status, and the integrated Startpage Agent run fully in the browser (localStorage). Version: **v1.11**. Live: https://julianverse.de/startpage/
+Startpage is a customizable dashboard-style browser start page. Search, weather, tasks, notes, news, system status, and the integrated Startpage Agent run fully in the browser (localStorage). Version: **v1.11.1**. Live: https://julianverse.de/startpage/
 
 ## Core Features
 - Quick search: Multiple engines, bang shortcuts (`!g`, `!ddg`, `!bing`, `!yt`, `!wiki`, `!maps`), custom shortcuts, and autocomplete (bangs, shortcuts, recent searches, global wordlist + preset wordlist).
