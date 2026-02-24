@@ -1,26 +1,26 @@
 {
   "app": {
-    "title": "Startpage"
+    "title": "시작 페이지"
   },
   "common": {
     "link": "링크",
     "delete": "삭제",
     "remove": "제거하다",
-    "save": "??",
+    "save": "구하다",
     "loading": "로드 중...",
     "loadError": "로드 실패",
     "noMatches": "일치하는 항목 없음",
     "emptyDash": "—",
     "dash": "–",
-    "cancel": "??",
-    "ok": "OK",
-    "default": "???"
+    "cancel": "취소",
+    "ok": "좋아요",
+    "default": "기본"
   },
   "header": {
     "themeToggleTitle": "어두움/밝음",
     "settingsTitle": "설정",
-    "themeAria": "?? ??",
-    "settingsAria": "?? ??"
+    "themeAria": "테마 전환",
+    "settingsAria": "설정 열기"
   },
   "search": {
     "placeholder": "검색… (예:!yt lo-fi,!etc Home)",
@@ -44,7 +44,7 @@
     },
     "recentShortcut": "바로가기 {shortcut} – {query}",
     "recentSearch": "검색({engine}) – {query}",
-    "submitAria": "?? ??"
+    "submitAria": "검색 시작"
   },
   "todo": {
     "title": "할 일",
@@ -72,11 +72,11 @@
     "promptUrlNew": "URL(https://…)",
     "resetConfirm": "기본 타일을 복원하시겠습니까?",
     "dialog": {
-      "titleLabel": "??",
+      "titleLabel": "제목",
       "urlLabel": "URL",
-      "save": "??"
+      "save": "구하다"
     },
-    "resetAria": "?? ???"
+    "resetAria": "타일 ​​재설정"
   },
   "weather": {
     "title": "오늘 날씨",
@@ -139,7 +139,7 @@
     },
     "platform": "플랫폼 {platform}",
     "cancelled": "취소",
-    "refreshAria": "?? ?? ????"
+    "refreshAria": "새로고침 운송"
   },
   "quote": {
     "title": "인용문 / 너드 넛지",
@@ -159,8 +159,8 @@
   "recent": {
     "title": "최근의",
     "note": "참고: 이 시작 페이지의 작업만 가능합니다(타일 및 검색 클릭).",
-    "clear": "Recent data sakje",
-    "clearConfirm": "Recent data reul sakjehalgga?"
+    "clear": "데이터 지우기",
+    "clearConfirm": "최근 데이터를 삭제하시겠습니까?"
   },
   "system": {
     "title": "시스템 상태",
@@ -176,7 +176,7 @@
     "refreshTitle": "새로고침",
     "source": "시작 페이지 프록시(CORS 프록시)를 통한 RSS",
     "noItems": "항목 없음",
-    "refreshAria": "?? ????"
+    "refreshAria": "뉴스 새로고침"
   },
   "footer": {
     "tagline": "로컬 우선 대시보드 · 브라우저(localStorage)에만 저장"
@@ -191,7 +191,7 @@
       "widgets": "위젯",
       "data": "데이터",
       "guide": "가이드",
-      "ai": "Startpage Agent"
+      "ai": "시작 페이지 에이전트"
     },
     "theme": {
       "label": "주제",
@@ -212,7 +212,7 @@
       "wordlistNote": "전역 단어 목록(assets/wordlist.json)과 사전 설정된 단어 목록이 병합됩니다. 전역 목록만 사용하려면 비워 두세요.",
       "shortcutsLabel": "사용자 정의! 바로가기",
       "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
-      "shortcutsNote": "사용<code>{q}</code>검색 문구의 자리 표시자로 사용됩니다. 없이<code>{q}</code>,<code>?q=...</code>첨부되어 있습니다.",
+      "shortcutsNote": "<code>{q}</code>를 검색 문구의 자리 표시자로 사용하세요. <code>{q}</code>이 없으면 <code>?q=...</code>이 추가됩니다.",
       "feedsLabel": "사용자 정의 RSS 피드",
       "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
       "feedsNote": "JSON: 이름 - 피드 URL. 이 목록은 기본 피드와 병합됩니다.",
@@ -237,12 +237,12 @@
       "clockColorNote": "헤더 배경을 설정합니다(비어 있음 = 스타일 기본값).",
       "searchColorNote": "검색 영역의 색상입니다(비어 있음 = 스타일 기본값).",
       "widgetColorsLabel": "위젯 색상",
-      "weatherCitiesLabel": "Weather cities",
-      "weatherCitiesPlaceholder": "One city per line, e.g. Hanover\nBerlin\nHamburg",
-      "weatherCitiesNote": "One city per line. The first entry becomes active if the previous active city is not included.",
-      "recentEntriesLabel": "Recent entries",
-      "recentEntriesDecAria": "Recent entries juligi",
-      "recentEntriesIncAria": "Recent entries neurigi"
+      "weatherCitiesLabel": "날씨 도시",
+      "weatherCitiesPlaceholder": "한 줄에 하나의 도시(예: 하노버\n베를린\n함부르크",
+      "weatherCitiesNote": "한 줄에 도시 하나씩. 이전 활성 도시가 포함되지 않은 경우 첫 번째 항목이 활성화됩니다.",
+      "recentEntriesLabel": "최근 항목",
+      "recentEntriesDecAria": "최근 항목 줄이기",
+      "recentEntriesIncAria": "최근 항목 늘리기"
     },
     "data": {
       "label": "데이터",
@@ -262,22 +262,37 @@
       "auto": "자동(시스템)"
     },
     "font": {
-      "label": "??",
-      "searchPlaceholder": "?? ??...",
-      "loadLocal": "??? ?? ????",
-      "systemDefault": "??? ???",
-      "noResults": "???? ??? ????",
-      "note": "???? ?? ??? ??? ????, ????? ??? ?? ??? ?????.",
-      "unsupported": "????? Local Font Access (queryLocalFonts)? ???? ????.",
-      "permissionDenied": "?? ?? ??? ?????? ???????.",
-      "empty": "?? ??? ???? ?????.",
-      "loadFailed": "?? ??? ???? ?????: {error}"
+      "label": "세례반",
+      "searchPlaceholder": "글꼴 검색...",
+      "loadLocal": "시스템 글꼴 로드",
+      "systemDefault": "시스템 기본값",
+      "noResults": "일치하는 글꼴이 없습니다.",
+      "note": "로컬 시스템 글꼴(사용 가능한 경우)을 표시하고, 그렇지 않으면 감지된 대체 목록을 표시합니다.",
+      "unsupported": "귀하의 브라우저는 로컬 글꼴 액세스(queryLocalFonts)를 지원하지 않습니다.",
+      "permissionDenied": "로컬 글꼴에 대한 액세스가 거부되거나 차단되었습니다.",
+      "empty": "로컬 글꼴이 반환되지 않았습니다.",
+      "loadFailed": "로컬 글꼴을 로드할 수 없습니다: {error}"
     },
     "guideHtml": "<div class=\"row\"><label>사용자 가이드</label><div><h5>개요</h5><ul><li>검색, 즐겨찾기, 할 일, 메모, 날씨, 뉴스를 포함한 시작 페이지입니다.</li><li>모든 데이터는 로컬(localStorage)에 저장됩니다.</li></ul><h5>단축키</h5><ul><li>Ctrl/Cmd+K: 명령 팔레트 열기</li><li>1-9: 앞의 9개 즐겨찾기 열기(입력 중 제외)</li><li>/ : 검색 포커스(팔레트에서도 가능)</li><li>검색창 Enter: 검색 실행</li><li>ESC: 모달 닫기</li></ul><h5>검색 및 자동완성</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>사용자 지정 바로가기: 설정에 JSON으로 입력, {q}를 자리표시자로 사용</li><li>추천: Bang, 바로가기, 최근 검색, 단어 목록(전역 + 프리셋)</li><li>Tab으로 제안 적용, Enter로 검색 시작</li></ul><h5>타일</h5><ul><li>드래그 앤 드롭으로 정렬, 클릭으로 열기</li><li>+ 타일: 즐겨찾기 추가</li><li>초기화: 기본 즐겨찾기 복원</li></ul><h5>배경</h5><ul><li>프리셋, 업로드, 컬렉션, 회전(시간/테마/간격)</li><li>강조색은 현재 배경에서 추출됩니다</li></ul><h5>데이터</h5><ul><li>JSON으로 내보내기/가져오기</li><li>데이터 프리셋 불러오기(assets/presets/*.json)</li></ul><h5>Startpage Agent</h5><ul><li>로컬 Ollama와 통합된 AI 채팅(설정에서 host/model 변경).</li><li>스트리밍 응답, 중지(버튼/ESC), 기록 유지, Markdown을 지원합니다.</li><li>에이전트 도구는 위젯/설정을 읽고 변경할 수 있습니다(확인 모드에 따라 다름).</li></ul></div></div>",
     "general": {
-      "agentLabel": "Startpage Agent",
+      "agentLabel": "시작 페이지 에이전트",
       "agentEnabled": "에이전트 활성화",
       "agentHint": "비활성화되면 Ollama로 아무것도 전송되지 않습니다."
+    },
+    "externalSources": {
+      "label": "외부 소스",
+      "title": "외부 서비스 및 목적",
+      "note": "관련 위젯/기능을 사용할 때만 호출이 발생합니다.",
+      "items": {
+        "openMeteoForecast": "선택한 위치에 대한 일기 예보 데이터입니다.",
+        "openMeteoGeocoding": "날씨 위젯에 대한 도시/위치 조회.",
+        "startpageProxy": "전송 및 RSS/뉴스 요청을 위한 프록시입니다.",
+        "transportRest": "프록시를 통해 사용되는 대중 교통 백엔드입니다.",
+        "googleFavicons": "즐겨찾는 타일에 대한 파비콘.",
+        "unsplashImages": "배경 이미지(선택한 경우)",
+        "searchEngines": "검색이 시작되면 외부 검색 대상이 열립니다.",
+        "ollamaLocal": "시작 페이지 에이전트의 로컬 AI 엔드포인트(활성화된 경우)"
+      }
     }
   },
   "onboarding": {
@@ -510,7 +525,7 @@
       "missingFile": "사전 설정 파일이 없습니다.",
       "fileMissing": "파일을 찾을 수 없습니다",
       "invalid": "잘못된 사전 설정",
-      "confirmApply": "{context} \"{name}\"을(를) 적용하시겠습니까? 기존 항목을 덮어씁니다.",
+      "confirmApply": "{context} \"{name}\"을 적용하시겠습니까? 기존 항목을 덮어씁니다.",
       "loadFailed": "사전 설정 로드 실패: {error}",
       "loading": "사전 설정 로드 중...",
       "noneFound": "사전 설정을 찾을 수 없습니다.",
@@ -528,15 +543,15 @@
     }
   },
   "dialogs": {
-    "alertTitle": "??",
-    "confirmTitle": "??",
-    "promptTitle": "??"
+    "alertTitle": "알아채다",
+    "confirmTitle": "확인하다",
+    "promptTitle": "입력"
   },
   "agent": {
     "ui": {
-      "title": "Startpage Agent",
-      "fabAria": "Startpage Agent",
-      "fabTitle": "Startpage Agent",
+      "title": "시작 페이지 에이전트",
+      "fabAria": "시작 페이지 에이전트",
+      "fabTitle": "시작 페이지 에이전트",
       "openSettingsAria": "에이전트 설정 열기",
       "openSettingsTitle": "설정",
       "closeAria": "에이전트 닫기",
@@ -545,145 +560,145 @@
       "inputPlaceholder": "Startpage Agent에게 메시지...",
       "send": "보내기",
       "stop": "중지",
-      "hostLabel": "Host",
+      "hostLabel": "주인",
       "modelLabel": "모델",
       "emptyModel": "-"
     },
     "settings": {
       "modelLabel": "모델",
       "loadModels": "모델 불러오기",
-      "hostLabel": "Ollama host",
+      "hostLabel": "올라마 호스트",
       "confirmModeLabel": "툴 확인",
       "confirmNever": "안 함",
       "confirmAlways": "항상",
-      "confirmRisky": "Only risky (open_url)",
+      "confirmRisky": "위험할 때만(open_url)",
       "maxIterationsLabel": "에이전트 루프 한도",
-      "maxIterationsDecAria": "Decrease loop limit",
-      "maxIterationsIncAria": "Increase loop limit",
-      "maxIterationsHint": "Maximum tool iterations per user message (1-10).",
+      "maxIterationsDecAria": "루프 제한 감소",
+      "maxIterationsIncAria": "루프 제한 증가",
+      "maxIterationsHint": "사용자 메시지당 최대 도구 반복 횟수(1-10).",
       "customPromptLabel": "사용자 프롬프트",
-      "customPromptPlaceholder": "Additional instructions for Startpage Agent...",
-      "customPromptHint": "Used in addition to the system prompt for every request.",
+      "customPromptPlaceholder": "시작 페이지 에이전트에 대한 추가 지침...",
+      "customPromptHint": "모든 요청에 ​​대해 시스템 프롬프트와 함께 사용됩니다.",
       "memoryLabel": "메모리 / 메모",
-      "memoryPlaceholder": "Persistent notes for the agent...",
-      "clearMemory": "Clear memory",
+      "memoryPlaceholder": "상담원을 위한 영구 메모...",
+      "clearMemory": "메모리 지우기",
       "actionsLabel": "작업",
       "save": "저장",
       "clearChat": "채팅 지우기",
       "capabilitiesLabel": "기능",
       "availableToolsTitle": "사용 가능한 툴",
-      "noModels": "No models"
+      "noModels": "모델 없음"
     },
     "status": {
       "ready": "준비됨",
       "loadingModels": "모델 불러오는 중...",
       "modelsLoaded": "모델을 불러왔습니다",
       "noModelsFound": "모델을 찾을 수 없습니다",
-      "loadModelsError": "Error loading models: {error}",
-      "disabledNamed": "Startpage Agent disabled",
-      "ollamaUnavailableDisabled": "Ollama unavailable - Startpage Agent disabled",
+      "loadModelsError": "모델 로드 중 오류 발생: {error}",
+      "disabledNamed": "시작 페이지 에이전트가 비활성화되었습니다.",
+      "ollamaUnavailableDisabled": "Ollama를 사용할 수 없음 - 시작 페이지 에이전트가 비활성화됨",
       "disabled": "에이전트가 비활성화되었습니다",
       "chooseModel": "모델을 선택하세요",
-      "streaming": "Streaming...",
+      "streaming": "스트리밍 중...",
       "toolDenied": "툴 실행이 거부됨",
-      "toolRunning": "Tool: {tool}",
-      "toolDone": "Tool done: {tool}",
-      "toolError": "Tool error: {tool}",
+      "toolRunning": "도구: {tool}",
+      "toolDone": "완료된 도구: {tool}",
+      "toolError": "도구 오류: {tool}",
       "toolLimitReached": "툴 한도 도달",
       "aborted": "중단됨",
-      "error": "Error: {error}",
+      "error": "오류: {error}",
       "settingsSaved": "설정이 저장되었습니다",
-      "chatCleared": "Chat cleared",
-      "memoryCleared": "Memory cleared",
-      "confirmSaved": "Tool confirm saved",
-      "maxIterationsSaved": "Loop limit saved"
+      "chatCleared": "채팅이 삭제되었습니다.",
+      "memoryCleared": "메모리가 지워졌습니다.",
+      "confirmSaved": "도구 확인이 저장되었습니다.",
+      "maxIterationsSaved": "루프 제한이 저장되었습니다."
     },
     "confirm": {
-      "execute": "툴을 실행할까요?\n{tool}\n\n{args}",
-      "clearChat": "채팅 기록을 지울까요?",
-      "clearMemory": "메모리를 지울까요?"
+      "execute": "도구를 실행하시겠습니까?\n{tool}\n\n{args}",
+      "clearChat": "채팅 기록을 삭제하시겠습니까?",
+      "clearMemory": "기억을 지우시겠습니까?"
     },
     "messages": {
-      "toolLimitReached": "I reached the tool limit for this message (max. {max} steps)."
+      "toolLimitReached": "이 메시지에 대한 도구 제한(최대 {max} 단계)에 도달했습니다."
     },
     "errors": {
-      "toolDeniedByUser": "Tool execution denied by user",
-      "unknownToolError": "Unknown tool error",
-      "unknown": "Unknown",
-      "invalidHost": "Invalid host. Only http/https URLs are allowed.",
-      "invalidMemory": "Memory is invalid. Use JSON or \"key: value\" lines."
+      "toolDeniedByUser": "사용자가 도구 실행을 거부했습니다.",
+      "unknownToolError": "알 수 없는 도구 오류",
+      "unknown": "알려지지 않은",
+      "invalidHost": "호스트가 잘못되었습니다. http/https URL만 허용됩니다.",
+      "invalidMemory": "메모리가 유효하지 않습니다. JSON 또는 \"키: 값\" 줄을 사용하세요."
     },
     "systemPrompt": {
-      "name": "Name: Startpage Agent",
-      "embedded": "You are embedded in a local Startpage instance.",
-      "jsonOnly": "If you must take an action, reply ONLY with exactly one JSON line in the format {\"tool\":\"<name>\",\"args\":{...}}.",
-      "noExtra": "No extra words, no Markdown, no code block for tool calls.",
-      "allowedTools": "Use only these tools: {tools}.",
-      "normalReply": "If no action is needed, respond normally.",
-      "askMissing": "If information is missing or a tool call would be invalid, ask follow-up questions as normal text.",
+      "name": "이름: 시작 페이지 에이전트",
+      "embedded": "로컬 시작 페이지 인스턴스에 포함되어 있습니다.",
+      "jsonOnly": "조치를 취해야 하는 경우 {\"tool\":\"<name>\",\"args\":{...}} 형식의 JSON 줄 하나만 사용하여 응답하세요.",
+      "noExtra": "추가 단어, 마크다운, 도구 호출을 위한 코드 블록이 없습니다.",
+      "allowedTools": "다음 도구만 사용하십시오: {tools}.",
+      "normalReply": "조치가 필요하지 않은 경우 정상적으로 응답하십시오.",
+      "askMissing": "정보가 누락되었거나 도구 호출이 유효하지 않은 경우 일반 텍스트로 후속 질문을 하세요.",
       "customPromptSection": "CUSTOM_PROMPT",
       "memorySection": "PERSISTENT_MEMORY"
     },
     "tools": {
       "descriptions": {
-        "open_url": "Open a URL",
-        "search_web": "Search with engine",
-        "set_theme_accent": "Set accent color",
-        "set_theme_mode": "auto/dark/light",
-        "set_card_style": "glass/solid/transparent/minimal",
-        "load_preset": "Load data preset",
-        "set_background_preset": "Set background preset",
-        "toggle_background_rotation": "Toggle rotation",
-        "toggle_widget": "Enable/disable widget",
-        "show_all_widgets": "Enable all widgets",
-        "hide_all_widgets": "Disable all widgets",
-        "add_quicklink": "Add quicklink",
-        "remove_quicklink": "Remove quicklink",
-        "add_todo": "Create todo",
-        "toggle_todo": "Mark todo done/undone",
-        "remove_todo": "Delete todo",
-        "clear_done_todos": "Delete completed todos",
-        "append_note": "Append notes text",
-        "set_notes": "Replace notes",
-        "clear_notes": "Clear notes",
-        "set_search_engine": "Set default engine",
-        "set_locale": "Set language",
-        "set_ui_font": "Set UI font",
-        "set_engine_enabled": "Enable/disable engine",
-        "set_shortcuts": "Set shortcuts",
-        "set_custom_feeds": "Set custom feeds",
-        "set_wordlist_inline": "Set inline wordlist",
-        "set_widget_color": "Set widget color",
-        "set_surface_color": "Set header/search color",
-        "set_weather_cities": "Set weather cities",
-        "set_transport_duration": "Set transport duration",
-        "set_transport_default_name": "Set transport default stop",
-        "set_agent_enabled": "Enable/disable Startpage Agent",
-        "set_agent_host": "Set Startpage Agent host",
-        "set_agent_confirm_mode": "Set Startpage Agent confirm mode",
-        "set_agent_model": "Set Startpage Agent model",
-        "set_agent_custom_prompt": "Set custom prompt",
-        "set_agent_memory": "Replace memory",
-        "append_agent_memory": "Append memory",
-        "clear_agent_memory": "Clear memory",
-        "read_agent_memory": "Read memory",
-        "set_news_source": "Set news source",
-        "refresh_data": "Refresh widgets",
-        "read_widget_data": "Read one widget",
-        "read_all_widgets": "Read all widgets",
-        "read_weather_data": "Read weather data",
-        "read_transport_data": "Read transport data",
-        "read_todo_data": "Read todos",
-        "read_notes_data": "Read notes",
-        "read_tiles_data": "Read favorites",
-        "read_news_data": "Read news",
-        "read_quote_data": "Read quote",
-        "read_recent_data": "Read recent actions",
-        "read_system_data": "Read system status",
-        "set_weather_station_active": "Activate weather station",
-        "add_weather_station": "Add weather station",
-        "remove_weather_station": "Remove weather station",
-        "set_weather_city": "Set/activate city"
+        "open_url": "URL 열기",
+        "search_web": "엔진으로 검색",
+        "set_theme_accent": "강조 색상 설정",
+        "set_theme_mode": "자동/어두움/밝음",
+        "set_card_style": "유리/고체/투명/최소",
+        "load_preset": "데이터 사전 설정 로드",
+        "set_background_preset": "배경 사전 설정",
+        "toggle_background_rotation": "회전 전환",
+        "toggle_widget": "위젯 활성화/비활성화",
+        "show_all_widgets": "모든 위젯 활성화",
+        "hide_all_widgets": "모든 위젯 비활성화",
+        "add_quicklink": "빠른링크 추가",
+        "remove_quicklink": "빠른링크 삭제",
+        "add_todo": "할 일 만들기",
+        "toggle_todo": "할 일을 완료/실행 취소로 표시",
+        "remove_todo": "할 일 삭제",
+        "clear_done_todos": "완료된 할 일 삭제",
+        "append_note": "메모 텍스트 추가",
+        "set_notes": "메모 교체",
+        "clear_notes": "메모 지우기",
+        "set_search_engine": "기본 엔진 설정",
+        "set_locale": "언어 설정",
+        "set_ui_font": "UI 글꼴 설정",
+        "set_engine_enabled": "엔진 활성화/비활성화",
+        "set_shortcuts": "단축키 설정",
+        "set_custom_feeds": "맞춤 피드 설정",
+        "set_wordlist_inline": "인라인 단어 목록 설정",
+        "set_widget_color": "위젯 색상 설정",
+        "set_surface_color": "헤더/검색 색상 설정",
+        "set_weather_cities": "날씨 도시 설정",
+        "set_transport_duration": "운송 기간 설정",
+        "set_transport_default_name": "교통 기본 정류장 설정",
+        "set_agent_enabled": "시작 페이지 에이전트 활성화/비활성화",
+        "set_agent_host": "시작 페이지 에이전트 호스트 설정",
+        "set_agent_confirm_mode": "시작 페이지 에이전트 확인 모드 설정",
+        "set_agent_model": "시작 페이지 에이전트 모델 설정",
+        "set_agent_custom_prompt": "맞춤 프롬프트 설정",
+        "set_agent_memory": "메모리 교체",
+        "append_agent_memory": "메모리 추가",
+        "clear_agent_memory": "메모리 지우기",
+        "read_agent_memory": "메모리 읽기",
+        "set_news_source": "뉴스 매체 설정",
+        "refresh_data": "위젯 새로 고침",
+        "read_widget_data": "하나의 위젯 읽기",
+        "read_all_widgets": "모든 위젯 읽기",
+        "read_weather_data": "날씨 데이터 읽기",
+        "read_transport_data": "운송 데이터 읽기",
+        "read_todo_data": "할 일 읽기",
+        "read_notes_data": "메모 읽기",
+        "read_tiles_data": "즐겨찾기 읽기",
+        "read_news_data": "뉴스 읽기",
+        "read_quote_data": "견적 읽기",
+        "read_recent_data": "최근 활동 읽기",
+        "read_system_data": "시스템 상태 읽기",
+        "set_weather_station_active": "기상 관측소 활성화",
+        "add_weather_station": "기상 관측소 추가",
+        "remove_weather_station": "기상 관측소 제거",
+        "set_weather_city": "도시 설정/활성화"
       }
     }
   }

@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "Startpage"
+    "title": "Стартовая страница"
   },
   "common": {
     "link": "Ссылка",
@@ -12,15 +12,15 @@
     "noMatches": "Нет совпадений",
     "emptyDash": "—",
     "dash": "–",
-    "cancel": "??????",
-    "ok": "OK",
-    "default": "?? ?????????"
+    "cancel": "Отмена",
+    "ok": "ХОРОШО",
+    "default": "По умолчанию"
   },
   "header": {
     "themeToggleTitle": "Тёмная/светлая",
     "settingsTitle": "Настройки",
-    "themeAria": "??????????? ????",
-    "settingsAria": "??????? ?????????"
+    "themeAria": "Переключить тему",
+    "settingsAria": "Открыть настройки"
   },
   "search": {
     "placeholder": "Поиск... (например: !yt lo-fi, !etc Home)",
@@ -33,10 +33,10 @@
       "maps": "Google Карты"
     },
     "suggest": {
-      "bang": "{bang} (Bang)",
+      "bang": "{bang} (Бах)",
       "shortcut": "{shortcut} (Ярлык)",
       "type": {
-        "bang": "Bang",
+        "bang": "Хлопнуть",
         "shortcut": "Ярлык",
         "recent": "Недавние",
         "word": "Слово"
@@ -44,7 +44,7 @@
     },
     "recentShortcut": "Ярлык {shortcut} – {query}",
     "recentSearch": "Поиск ({engine}) – {query}",
-    "submitAria": "?????? ?????"
+    "submitAria": "Начать поиск"
   },
   "todo": {
     "title": "Задачи",
@@ -66,17 +66,17 @@
     "resetTitle": "Восстановить по умолчанию",
     "edit": "Редактировать",
     "promptTitle": "Название",
-    "promptUrl": "URL",
+    "promptUrl": "URL-адрес",
     "invalidUrl": "Неверный URL",
     "promptTitleNew": "Название плитки",
-    "promptUrlNew": "URL (https://…)",
-    "resetConfirm": "Восстановить стандартные плитки?",
+    "promptUrlNew": "URL-адрес (https://…)",
+    "resetConfirm": "Восстановить плитки по умолчанию?",
     "dialog": {
-      "titleLabel": "????????",
-      "urlLabel": "URL",
-      "save": "?????????"
+      "titleLabel": "Заголовок",
+      "urlLabel": "URL-адрес",
+      "save": "Сохранять"
     },
-    "resetAria": "???????? ??????"
+    "resetAria": "Сбросить плитки"
   },
   "weather": {
     "title": "Погода сегодня",
@@ -86,9 +86,9 @@
     "source": "Источник: Open-Meteo",
     "loading": "Загрузка погоды...",
     "prompt": "Введите место для загрузки погоды.",
-    "tempEmpty": "—°C",
+    "tempEmpty": "—°С",
     "tempEmptyShort": "—°",
-    "minmaxEmpty": "— / — °C",
+    "minmaxEmpty": "— / — °С",
     "noForecast": "Нет прогноза",
     "errors": {
       "geocodingFailed": "Ошибка геокодирования",
@@ -139,7 +139,7 @@
     },
     "platform": "Платформа {platform}",
     "cancelled": "Отменено",
-    "refreshAria": "???????? ?????????"
+    "refreshAria": "Обновить транспорт"
   },
   "quote": {
     "title": "Цитата / Небольшой импульс",
@@ -159,8 +159,8 @@
   "recent": {
     "title": "Недавнее",
     "note": "Примечание: показывает только действия на этой стартовой странице (клики по плиткам и поиски).",
-    "clear": "Udalit dannye",
-    "clearConfirm": "Udalit poslednie dannye?"
+    "clear": "Очистить данные",
+    "clearConfirm": "Удалить последние данные?"
   },
   "system": {
     "title": "Состояние системы",
@@ -176,7 +176,7 @@
     "refreshTitle": "Обновить",
     "source": "RSS через прокси Startpage (CORS прокси)",
     "noItems": "Нет записей",
-    "refreshAria": "???????? ???????"
+    "refreshAria": "Обновить новости"
   },
   "footer": {
     "tagline": "Локальная панель · хранит данные только в браузере (localStorage)"
@@ -191,7 +191,7 @@
       "widgets": "Виджеты",
       "data": "Данные",
       "guide": "Гайд",
-      "ai": "Startpage Agent"
+      "ai": "Агент стартовой страницы"
     },
     "theme": {
       "label": "Тема",
@@ -212,7 +212,7 @@
       "wordlistNote": "Глобальный список (assets/wordlist.json) и список из пресета объединяются. Оставьте пустым, чтобы использовать только глобальный список.",
       "shortcutsLabel": "Пользовательские !сокращения",
       "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
-      "shortcutsNote": "Используйте <code>{q}</code> как плейсхолдер для запроса. Без <code>{q}</code> добавляется <code>?q=...</code>.",
+      "shortcutsNote": "Используйте <code>{q}</code> в качестве заполнителя для поисковой фразы. Без <code>{q}</code> добавляется <code>?q=...</code>.",
       "feedsLabel": "Пользовательские RSS ленты",
       "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
       "feedsNote": "JSON: имя - URL ленты. Этот список объединяется со стандартными лентами.",
@@ -237,12 +237,12 @@
       "clockColorNote": "Задаёт фон шапки (пусто = стиль по умолчанию).",
       "searchColorNote": "Цвет области поиска (пусто = стиль по умолчанию).",
       "widgetColorsLabel": "Цвета виджетов",
-      "weatherCitiesLabel": "Weather cities",
-      "weatherCitiesPlaceholder": "One city per line, e.g. Hanover\nBerlin\nHamburg",
-      "weatherCitiesNote": "One city per line. The first entry becomes active if the previous active city is not included.",
-      "recentEntriesLabel": "Poslednie zapisi",
-      "recentEntriesDecAria": "Umenshit poslednie zapisi",
-      "recentEntriesIncAria": "Uvelichit poslednie zapisi"
+      "weatherCitiesLabel": "Погода в городах",
+      "weatherCitiesPlaceholder": "Один город в строке, например. Ганновер\nБерлин\nГамбург",
+      "weatherCitiesNote": "Один город в строке. Первая запись становится активной, если предыдущий активный город не включен.",
+      "recentEntriesLabel": "Последние записи",
+      "recentEntriesDecAria": "Уменьшить последние записи",
+      "recentEntriesIncAria": "Увеличить количество последних записей"
     },
     "data": {
       "label": "Данные",
@@ -262,22 +262,37 @@
       "auto": "Авто (система)"
     },
     "font": {
-      "label": "?????",
-      "searchPlaceholder": "????? ???????...",
-      "loadLocal": "????????? ????????? ??????",
-      "systemDefault": "????????? ?? ?????????",
-      "noResults": "?????????? ?????? ?? ???????",
-      "note": "?????????? ????????? ????????? ?????? (???? ????????), ????? ???????????? ????????? ??????.",
-      "unsupported": "??? ??????? ?? ???????????? Local Font Access (queryLocalFonts).",
-      "permissionDenied": "?????? ? ????????? ??????? ???????? ??? ????????????.",
-      "empty": "????????? ?????? ?? ???? ??????????.",
-      "loadFailed": "?? ??????? ????????? ????????? ??????: {error}"
+      "label": "Шрифт",
+      "searchPlaceholder": "Поиск шрифтов...",
+      "loadLocal": "Загрузить системные шрифты",
+      "systemDefault": "Система по умолчанию",
+      "noResults": "Нет подходящих шрифтов",
+      "note": "Показывает локальные системные шрифты (если доступны), в противном случае — обнаруженный резервный список.",
+      "unsupported": "Ваш браузер не поддерживает локальный доступ к шрифтам (queryLocalFonts).",
+      "permissionDenied": "Доступ к локальным шрифтам был запрещен или заблокирован.",
+      "empty": "Локальные шрифты не были возвращены.",
+      "loadFailed": "Не удалось загрузить локальные шрифты: {error}."
     },
     "guideHtml": "<div class=\"row\"><label>Руководство пользователя</label><div><h5>Обзор</h5><ul><li>Стартовая страница с поиском, избранным, задачами, заметками, погодой, новостями.</li><li>Всё локально: данные остаются в браузере (localStorage).</li></ul><h5>Горячие клавиши</h5><ul><li>Ctrl/Cmd+K: открыть командную палитру</li><li>1-9: открыть первые 9 избранных (если не вводите текст)</li><li>/ : фокус на поиск (также через палитру)</li><li>Enter в поиске: запустить поиск</li><li>ESC: закрыть модальные окна</li><li>Палитра: быстрые действия для виджетов, темы, фона, данных, избранного</li><li>Палитра: клавиша C переключает стиль карточек, \"Сбросить цвета шапки\" сбрасывает цвета поиска и часов</li></ul><h5>Поиск и автодополнение</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>Пользовательские сокращения: JSON в настройках; {q} как плейсхолдер</li><li>Автодополнение: bangs, ярлыки, недавние поиски, список слов (глобальный + пресет)</li><li>Tab принимает подсказку, Enter запускает поиск</li></ul><h5>Плитки</h5><ul><li>Drag & drop для сортировки, клик для открытия</li><li>+ Плитка: добавить новую избранную ссылку</li><li>Сброс: восстановить стандартные избранные</li></ul><h5>Виджеты и макет</h5><ul><li>Видимость каждого виджета переключается</li><li>Стиль карточек глобальный (стекло, сплошной, прозрачный, мягкий минимализм)</li><li>Свои цвета для часов/поиска; сброс возвращает стиль по умолчанию</li><li>Цвета виджетов и кнопка \"Окрасить виджеты\" задают акцент для карточек</li></ul><h5>Фон</h5><ul><li>Пресеты, загрузки, коллекции, ротация (время/тема/интервал)</li><li>Акцентный цвет извлекается из активного фона</li></ul><h5>Данные</h5><ul><li>Экспорт/Импорт как JSON</li><li>Загрузка пресетов данных (assets/presets/*.json в репозитории)</li></ul><h5>Startpage Agent</h5><ul><li>Встроенный AI-чат с локальным Ollama (host/model в настройках).</li><li>Поддерживает потоковые ответы, остановку (кнопка/ESC), постоянную историю и Markdown.</li><li>Агентные инструменты могут читать/менять виджеты и настройки (в зависимости от режима подтверждения).</li></ul></div></div>",
     "general": {
-      "agentLabel": "Startpage Agent",
+      "agentLabel": "Агент стартовой страницы",
       "agentEnabled": "Агент включен",
       "agentHint": "Если отключен, в Ollama ничего не отправляется."
+    },
+    "externalSources": {
+      "label": "Внешние источники",
+      "title": "Внешние услуги и цель",
+      "note": "Вызовы происходят только при использовании соответствующего виджета/функции.",
+      "items": {
+        "openMeteoForecast": "Данные прогноза погоды для выбранных мест.",
+        "openMeteoGeocoding": "Поиск города/места для виджета погоды.",
+        "startpageProxy": "Прокси для запросов транспорта и RSS/новостей.",
+        "transportRest": "Серверная часть общественного транспорта, используемая через прокси.",
+        "googleFavicons": "Фавиконки для любимых плиток.",
+        "unsplashImages": "Фоновые изображения (если выбраны).",
+        "searchEngines": "Внешние объекты поиска открываются при запуске поиска.",
+        "ollamaLocal": "Локальная конечная точка AI для агента начальной страницы (если включена)."
+      }
     }
   },
   "onboarding": {
@@ -528,15 +543,15 @@
     }
   },
   "dialogs": {
-    "alertTitle": "???????????",
-    "confirmTitle": "???????????",
-    "promptTitle": "????"
+    "alertTitle": "Уведомление",
+    "confirmTitle": "Подтверждать",
+    "promptTitle": "Вход"
   },
   "agent": {
     "ui": {
-      "title": "Startpage Agent",
-      "fabAria": "Startpage Agent",
-      "fabTitle": "Startpage Agent",
+      "title": "Агент стартовой страницы",
+      "fabAria": "Агент стартовой страницы",
+      "fabTitle": "Агент стартовой страницы",
       "openSettingsAria": "Открыть настройки агента",
       "openSettingsTitle": "Настройки",
       "closeAria": "Закрыть агента",
@@ -545,145 +560,145 @@
       "inputPlaceholder": "Сообщение для Startpage Agent...",
       "send": "Отправить",
       "stop": "Стоп",
-      "hostLabel": "Host",
+      "hostLabel": "Хозяин",
       "modelLabel": "Модель",
       "emptyModel": "-"
     },
     "settings": {
       "modelLabel": "Модель",
       "loadModels": "Загрузить модели",
-      "hostLabel": "Ollama host",
+      "hostLabel": "Оллама хозяин",
       "confirmModeLabel": "Подтверждение инструментов",
       "confirmNever": "Никогда",
       "confirmAlways": "Всегда",
-      "confirmRisky": "Only risky (open_url)",
+      "confirmRisky": "Только рискованно (open_url)",
       "maxIterationsLabel": "Лимит цикла агента",
-      "maxIterationsDecAria": "Decrease loop limit",
-      "maxIterationsIncAria": "Increase loop limit",
-      "maxIterationsHint": "Maximum tool iterations per user message (1-10).",
+      "maxIterationsDecAria": "Уменьшить лимит цикла",
+      "maxIterationsIncAria": "Увеличить лимит цикла",
+      "maxIterationsHint": "Максимальное количество итераций инструмента на одно сообщение пользователя (1–10).",
       "customPromptLabel": "Кастомный промпт",
-      "customPromptPlaceholder": "Additional instructions for Startpage Agent...",
-      "customPromptHint": "Used in addition to the system prompt for every request.",
+      "customPromptPlaceholder": "Дополнительные инструкции для агента стартовой страницы...",
+      "customPromptHint": "Используется в дополнение к системному запросу на каждый запрос.",
       "memoryLabel": "Память / Заметки",
-      "memoryPlaceholder": "Persistent notes for the agent...",
-      "clearMemory": "Clear memory",
+      "memoryPlaceholder": "Постоянные заметки для агента...",
+      "clearMemory": "Очистить память",
       "actionsLabel": "Действия",
       "save": "Сохранить",
       "clearChat": "Очистить чат",
       "capabilitiesLabel": "Возможности",
       "availableToolsTitle": "Доступные инструменты",
-      "noModels": "No models"
+      "noModels": "Нет моделей"
     },
     "status": {
       "ready": "Готово",
       "loadingModels": "Загрузка моделей...",
       "modelsLoaded": "Модели загружены",
       "noModelsFound": "Модели не найдены",
-      "loadModelsError": "Error loading models: {error}",
-      "disabledNamed": "Startpage Agent disabled",
-      "ollamaUnavailableDisabled": "Ollama unavailable - Startpage Agent disabled",
+      "loadModelsError": "Ошибка загрузки модели: {error}.",
+      "disabledNamed": "Агент стартовой страницы отключен",
+      "ollamaUnavailableDisabled": "Оллама недоступен – агент стартовой страницы отключен.",
       "disabled": "Агент отключен",
       "chooseModel": "Выберите модель",
-      "streaming": "Streaming...",
+      "streaming": "Потоковая передача...",
       "toolDenied": "Инструмент отклонен",
-      "toolRunning": "Tool: {tool}",
-      "toolDone": "Tool done: {tool}",
-      "toolError": "Tool error: {tool}",
+      "toolRunning": "Инструмент: {tool}",
+      "toolDone": "Инструмент готов: {tool}",
+      "toolError": "Ошибка инструмента: {tool}",
       "toolLimitReached": "Лимит инструментов достигнут",
       "aborted": "Прервано",
-      "error": "Error: {error}",
+      "error": "Ошибка: {error}",
       "settingsSaved": "Настройки сохранены",
-      "chatCleared": "Chat cleared",
-      "memoryCleared": "Memory cleared",
-      "confirmSaved": "Tool confirm saved",
-      "maxIterationsSaved": "Loop limit saved"
+      "chatCleared": "Чат очищен",
+      "memoryCleared": "Память очищена",
+      "confirmSaved": "Инструмент подтверждения сохранения",
+      "maxIterationsSaved": "Предел цикла сохранен."
     },
     "confirm": {
-      "execute": "Выполнить инструмент?\n{tool}\n\n{args}",
+      "execute": "Запустить инструмент?\n{tool}\n\n{args}",
       "clearChat": "Очистить историю чата?",
       "clearMemory": "Очистить память?"
     },
     "messages": {
-      "toolLimitReached": "I reached the tool limit for this message (max. {max} steps)."
+      "toolLimitReached": "Я достиг предела инструмента для этого сообщения (макс. {max} шагов)."
     },
     "errors": {
-      "toolDeniedByUser": "Tool execution denied by user",
-      "unknownToolError": "Unknown tool error",
-      "unknown": "Unknown",
-      "invalidHost": "Invalid host. Only http/https URLs are allowed.",
-      "invalidMemory": "Memory is invalid. Use JSON or \"key: value\" lines."
+      "toolDeniedByUser": "Выполнение инструмента запрещено пользователем",
+      "unknownToolError": "Неизвестная ошибка инструмента",
+      "unknown": "Неизвестный",
+      "invalidHost": "Неверный хост. Разрешены только URL-адреса http/https.",
+      "invalidMemory": "Память недействительна. Используйте JSON или строки «ключ: значение»."
     },
     "systemPrompt": {
-      "name": "Name: Startpage Agent",
-      "embedded": "You are embedded in a local Startpage instance.",
-      "jsonOnly": "If you must take an action, reply ONLY with exactly one JSON line in the format {\"tool\":\"<name>\",\"args\":{...}}.",
-      "noExtra": "No extra words, no Markdown, no code block for tool calls.",
-      "allowedTools": "Use only these tools: {tools}.",
-      "normalReply": "If no action is needed, respond normally.",
-      "askMissing": "If information is missing or a tool call would be invalid, ask follow-up questions as normal text.",
+      "name": "Имя: Агент стартовой страницы",
+      "embedded": "Вы встроены в локальный экземпляр стартовой страницы.",
+      "jsonOnly": "Если вам необходимо выполнить действие, отвечайте ТОЛЬКО одной строкой JSON в формате {\"tool\":\"<name>\",\"args\":{...}}.",
+      "noExtra": "Никаких лишних слов, никакого Markdown или блока кода для вызовов инструментов.",
+      "allowedTools": "Используйте только эти инструменты: {tools}.",
+      "normalReply": "Если никаких действий не требуется, отвечайте обычным образом.",
+      "askMissing": "Если информация отсутствует или вызов инструмента недействителен, задавайте дополнительные вопросы в виде обычного текста.",
       "customPromptSection": "CUSTOM_PROMPT",
       "memorySection": "PERSISTENT_MEMORY"
     },
     "tools": {
       "descriptions": {
-        "open_url": "Open a URL",
-        "search_web": "Search with engine",
-        "set_theme_accent": "Set accent color",
-        "set_theme_mode": "auto/dark/light",
-        "set_card_style": "glass/solid/transparent/minimal",
-        "load_preset": "Load data preset",
-        "set_background_preset": "Set background preset",
-        "toggle_background_rotation": "Toggle rotation",
-        "toggle_widget": "Enable/disable widget",
-        "show_all_widgets": "Enable all widgets",
-        "hide_all_widgets": "Disable all widgets",
-        "add_quicklink": "Add quicklink",
-        "remove_quicklink": "Remove quicklink",
-        "add_todo": "Create todo",
-        "toggle_todo": "Mark todo done/undone",
-        "remove_todo": "Delete todo",
-        "clear_done_todos": "Delete completed todos",
-        "append_note": "Append notes text",
-        "set_notes": "Replace notes",
-        "clear_notes": "Clear notes",
-        "set_search_engine": "Set default engine",
-        "set_locale": "Set language",
-        "set_ui_font": "Set UI font",
-        "set_engine_enabled": "Enable/disable engine",
-        "set_shortcuts": "Set shortcuts",
-        "set_custom_feeds": "Set custom feeds",
-        "set_wordlist_inline": "Set inline wordlist",
-        "set_widget_color": "Set widget color",
-        "set_surface_color": "Set header/search color",
-        "set_weather_cities": "Set weather cities",
-        "set_transport_duration": "Set transport duration",
-        "set_transport_default_name": "Set transport default stop",
-        "set_agent_enabled": "Enable/disable Startpage Agent",
-        "set_agent_host": "Set Startpage Agent host",
-        "set_agent_confirm_mode": "Set Startpage Agent confirm mode",
-        "set_agent_model": "Set Startpage Agent model",
-        "set_agent_custom_prompt": "Set custom prompt",
-        "set_agent_memory": "Replace memory",
-        "append_agent_memory": "Append memory",
-        "clear_agent_memory": "Clear memory",
-        "read_agent_memory": "Read memory",
-        "set_news_source": "Set news source",
-        "refresh_data": "Refresh widgets",
-        "read_widget_data": "Read one widget",
-        "read_all_widgets": "Read all widgets",
-        "read_weather_data": "Read weather data",
-        "read_transport_data": "Read transport data",
-        "read_todo_data": "Read todos",
-        "read_notes_data": "Read notes",
-        "read_tiles_data": "Read favorites",
-        "read_news_data": "Read news",
-        "read_quote_data": "Read quote",
-        "read_recent_data": "Read recent actions",
-        "read_system_data": "Read system status",
-        "set_weather_station_active": "Activate weather station",
-        "add_weather_station": "Add weather station",
-        "remove_weather_station": "Remove weather station",
-        "set_weather_city": "Set/activate city"
+        "open_url": "Открыть URL-адрес",
+        "search_web": "Поиск с помощью системы",
+        "set_theme_accent": "Установить цвет акцента",
+        "set_theme_mode": "авто/темный/светлый",
+        "set_card_style": "стекло/сплошное/прозрачное/минимальное",
+        "load_preset": "Загрузить предустановку данных",
+        "set_background_preset": "Установить предустановку фона",
+        "toggle_background_rotation": "Переключить вращение",
+        "toggle_widget": "Включить/отключить виджет",
+        "show_all_widgets": "Включить все виджеты",
+        "hide_all_widgets": "Отключить все виджеты",
+        "add_quicklink": "Добавить быструю ссылку",
+        "remove_quicklink": "Удалить быструю ссылку",
+        "add_todo": "Создать задачу",
+        "toggle_todo": "Отметить задачу выполненной/отмененной",
+        "remove_todo": "Удалить задачу",
+        "clear_done_todos": "Удалить выполненные задачи",
+        "append_note": "Добавить текст заметок",
+        "set_notes": "Заменить примечания",
+        "clear_notes": "Очистить заметки",
+        "set_search_engine": "Установить движок по умолчанию",
+        "set_locale": "Установить язык",
+        "set_ui_font": "Установить шрифт пользовательского интерфейса",
+        "set_engine_enabled": "Включить/выключить движок",
+        "set_shortcuts": "Установить ярлыки",
+        "set_custom_feeds": "Настройка пользовательских каналов",
+        "set_wordlist_inline": "Установить встроенный список слов",
+        "set_widget_color": "Установить цвет виджета",
+        "set_surface_color": "Установить цвет заголовка/поиска",
+        "set_weather_cities": "Установить города с погодой",
+        "set_transport_duration": "Установить продолжительность транспортировки",
+        "set_transport_default_name": "Установить остановку транспорта по умолчанию",
+        "set_agent_enabled": "Включить/отключить агент стартовой страницы",
+        "set_agent_host": "Установить хост агента начальной страницы",
+        "set_agent_confirm_mode": "Установить режим подтверждения агента стартовой страницы",
+        "set_agent_model": "Установить модель агента начальной страницы",
+        "set_agent_custom_prompt": "Установить пользовательскую подсказку",
+        "set_agent_memory": "Заменить память",
+        "append_agent_memory": "Добавить память",
+        "clear_agent_memory": "Очистить память",
+        "read_agent_memory": "Чтение памяти",
+        "set_news_source": "Установить источник новостей",
+        "refresh_data": "Обновить виджеты",
+        "read_widget_data": "Прочитать один виджет",
+        "read_all_widgets": "Читать все виджеты",
+        "read_weather_data": "Чтение данных о погоде",
+        "read_transport_data": "Чтение транспортных данных",
+        "read_todo_data": "Читать задачи",
+        "read_notes_data": "Читать заметки",
+        "read_tiles_data": "Читать избранное",
+        "read_news_data": "Читать новости",
+        "read_quote_data": "Читать цитату",
+        "read_recent_data": "Читать недавние действия",
+        "read_system_data": "Чтение статуса системы",
+        "set_weather_station_active": "Активировать метеостанцию",
+        "add_weather_station": "Добавить метеостанцию",
+        "remove_weather_station": "Удалить метеостанцию",
+        "set_weather_city": "Установить/активировать город"
       }
     }
   }

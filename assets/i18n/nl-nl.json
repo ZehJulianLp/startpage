@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "Startpage"
+    "title": "Startpagina"
   },
   "common": {
     "link": "Link",
@@ -10,8 +10,8 @@
     "loading": "Laden...",
     "loadError": "Laden mislukt",
     "noMatches": "Geen resultaten",
-    "emptyDash": "?",
-    "dash": "?",
+    "emptyDash": "—",
+    "dash": "–",
     "cancel": "Annuleren",
     "ok": "OK",
     "default": "Standaard"
@@ -33,17 +33,17 @@
       "maps": "Google Maps"
     },
     "suggest": {
-      "bang": "{bang} (Bang)",
+      "bang": "{bang} (knal)",
       "shortcut": "{shortcut} (Snelkoppeling)",
       "type": {
-        "bang": "Bang",
+        "bang": "Knal",
         "shortcut": "Snelkoppeling",
         "recent": "Recent",
         "word": "Woord"
       }
     },
-    "recentShortcut": "Snelkoppeling {shortcut} ? {query}",
-    "recentSearch": "Zoekopdracht ({engine}) ? {query}",
+    "recentShortcut": "Sneltoets {shortcut} – {query}",
+    "recentSearch": "Zoeken ({engine}) – {query}",
     "submitAria": "Zoeken starten"
   },
   "todo": {
@@ -51,7 +51,7 @@
     "placeholder": "Nieuwe taak...",
     "add": "Toevoegen",
     "clearDoneTitle": "Voltooide verwijderen",
-    "clearDone": "? wissen",
+    "clearDone": "✓ duidelijk",
     "doneAria": "Klaar",
     "prompt": "Taak"
   },
@@ -69,7 +69,7 @@
     "promptUrl": "URL",
     "invalidUrl": "Ongeldige URL",
     "promptTitleNew": "Tegeltitel",
-    "promptUrlNew": "URL (https://?)",
+    "promptUrlNew": "URL (https://…)",
     "resetConfirm": "Standaardtegels herstellen?",
     "dialog": {
       "titleLabel": "Titel",
@@ -86,9 +86,9 @@
     "source": "Bron: Open-Meteo",
     "loading": "Weer laden...",
     "prompt": "Voer een locatie in om het weer te laden.",
-    "tempEmpty": "??C",
-    "tempEmptyShort": "??",
-    "minmaxEmpty": "? / ? ?C",
+    "tempEmpty": "—°C",
+    "tempEmptyShort": "—°",
+    "minmaxEmpty": "— / — °C",
     "noForecast": "Geen verwachting",
     "errors": {
       "geocodingFailed": "Geocoding mislukt",
@@ -119,9 +119,9 @@
   "transport": {
     "title": "Vervoer",
     "durationAria": "Duur",
-    "duration30": "30 min",
+    "duration30": "30 minuten",
     "duration60": "60 min",
-    "duration90": "90 min",
+    "duration90": "90 minuten",
     "duration120": "120 min",
     "refreshTitle": "Herladen",
     "searchPlaceholder": "Station zoeken...",
@@ -153,7 +153,7 @@
       "Kleine stappen. Grote resultaten.",
       "Simpliciteit schaalt. Complexiteit faalt.",
       "Automatiseer het saaie.",
-      "Meet twee keer, deploy ??n keer."
+      "Twee keer meten, één keer inzetten."
     ]
   },
   "recent": {
@@ -167,8 +167,8 @@
     "loading": "Laden...",
     "ram": "RAM: {value} GB",
     "cpu": "CPU-kernen: {value}",
-    "network": "Netwerk: {downlink} Mbit/s ? {type}{saveData}",
-    "saveData": " ? Databesparing",
+    "network": "Netwerk: {downlink} Mbit/s · {type}{saveData}",
+    "saveData": "· Gegevens opslaan",
     "noData": "Geen gegevens beschikbaar"
   },
   "news": {
@@ -179,7 +179,7 @@
     "refreshAria": "Nieuws vernieuwen"
   },
   "footer": {
-    "tagline": "Local-first dashboard ? slaat alleen in de browser op (localStorage)"
+    "tagline": "Lokaal-eerst dashboard · slaat alleen op in de browser (localStorage)"
   },
   "settings": {
     "title": "Instellingen",
@@ -189,9 +189,9 @@
       "background": "Achtergrond en uiterlijk",
       "search": "Zoeken en feeds",
       "widgets": "Widgets",
-      "data": "Data",
+      "data": "Gegevens",
       "guide": "Handleiding",
-      "ai": "Startpage Agent"
+      "ai": "Startpaginaagent"
     },
     "theme": {
       "label": "Thema",
@@ -212,7 +212,7 @@
       "wordlistNote": "De globale woordenlijst (assets/wordlist.json) en de presetlijst worden samengevoegd. Laat leeg om alleen de globale lijst te gebruiken.",
       "shortcutsLabel": "Eigen !snelkoppelingen",
       "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
-      "shortcutsNote": "Gebruik <code>{q}</code> als placeholder. Zonder <code>{q}</code> wordt <code>?q=...</code> toegevoegd.",
+      "shortcutsNote": "Gebruik <code>{q}</code> als tijdelijke aanduiding voor de zoekterm. Zonder <code>{q}</code> wordt <code>?q=...</code> toegevoegd.",
       "feedsLabel": "Aangepaste RSS-feeds",
       "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
       "feedsNote": "JSON: naam - feed-URL. Deze lijst wordt samengevoegd met de standaardfeeds.",
@@ -233,25 +233,25 @@
       "cardStyleNote": "Geldt voor alle widgets en favoriettegels.",
       "clockColorLabel": "Tijd en datum",
       "searchColorLabel": "Zoeken",
-      "reset": "Reset",
+      "reset": "Opnieuw instellen",
       "clockColorNote": "Stelt de headerachtergrond in (leeg = stijlstandaard).",
       "searchColorNote": "Kleur voor het zoekgebied (leeg = stijlstandaard).",
       "widgetColorsLabel": "Widgetkleuren",
-      "weatherCitiesLabel": "Weather cities",
-      "weatherCitiesPlaceholder": "One city per line, e.g. Hanover\nBerlin\nHamburg",
-      "weatherCitiesNote": "One city per line. The first entry becomes active if the previous active city is not included.",
+      "weatherCitiesLabel": "Weer steden",
+      "weatherCitiesPlaceholder": "Eén stad per lijn, b.v. Hannover\nBerlijn\nHamburg",
+      "weatherCitiesNote": "Eén stad per lijn. De eerste invoer wordt actief als de vorige actieve stad niet is opgenomen.",
       "recentEntriesLabel": "Recente items",
       "recentEntriesDecAria": "Recente items verlagen",
       "recentEntriesIncAria": "Recente items verhogen"
     },
     "data": {
-      "label": "Data",
+      "label": "Gegevens",
       "export": "Exporteren (.json)",
       "import": "Importeren (.json)",
       "presetsLabel": "Data-presets",
       "applyPreset": "Preset laden",
-      "presetMeta": "Presets zijn ge?xporteerde JSON's onder assets/presets/. User-presets uit assets/user-presets/ worden automatisch samengevoegd.",
-      "setupLabel": "Setup",
+      "presetMeta": "Voorinstellingen zijn geëxporteerde JSON's onder assets/presets/. Gebruikersvoorinstellingen uit assets/user-presets/ worden automatisch samengevoegd.",
+      "setupLabel": "Installatie",
       "restartOnboarding": "Setup opnieuw starten",
       "restartNote": "Opent de compacte setup opnieuw.",
       "noteLabel": "Opmerking",
@@ -275,9 +275,24 @@
     },
     "guideHtml": "<div class=\"row\"><label>Gebruikershandleiding</label><div><h5>Overzicht</h5><ul><li>Startpagina met zoeken, favorieten, taken, notities, weer, nieuws.</li><li>Alles lokaal: data blijft in je browser (localStorage).</li></ul><h5>Sneltoetsen</h5><ul><li>Ctrl/Cmd+K: command palette openen</li><li>1-9: eerste 9 favorieten openen (als je niet typt)</li><li>/ : zoeken focussen (ook via palette)</li><li>Enter in zoeken: zoekopdracht starten</li><li>ESC: modals sluiten</li><li>Palette: snelle acties voor widgets, thema, achtergrond, data, favorieten</li><li>Palette: toets C wisselt kaartstijl, \"Headerkleuren resetten\" reset zoek en klok</li></ul><h5>Zoeken & autocompleet</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>Eigen snelkoppelingen: JSON in instellingen; {q} als placeholder</li><li>Autocompleet: bangs, snelkoppelingen, recente zoekopdrachten, woordenlijst (globaal + preset)</li><li>Tab accepteert suggestie, Enter start zoeken</li></ul><h5>Tegels</h5><ul><li>Drag & drop om te sorteren, klik om te openen</li><li>+ Tegel: nieuwe favoriet toevoegen</li><li>Reset: standaardfavorieten herstellen</li></ul><h5>Widgets & layout</h5><ul><li>Per widget zichtbaar</li><li>Kaartstijl is globaal (glas, vol, transparant, zacht minimal)</li><li>Eigen kleuren voor klok/zoeken; reset herstelt standaardstijl</li><li>Widgetkleuren en knop \"Widgets kleuren\" zetten accent per kaart</li></ul><h5>Achtergrond</h5><ul><li>Presets, uploads, collecties, rotatie (tijd/thema/interval)</li><li>Accentkleur wordt uit de actieve achtergrond gehaald</li></ul><h5>Data</h5><ul><li>Export/Import als JSON</li><li>Data-presets laden (assets/presets/*.json in de repo)</li></ul><h5>Startpage Agent</h5><ul><li>Geïntegreerde AI-chat met lokale Ollama (host/model in instellingen).</li><li>Ondersteunt streaming-antwoorden, stoppen (knop/ESC), persistente geschiedenis en Markdown.</li><li>Agentische tools kunnen widgets en instellingen lezen/wijzigen (afhankelijk van bevestigingsmodus).</li></ul></div></div>",
     "general": {
-      "agentLabel": "Startpage Agent",
+      "agentLabel": "Startpaginaagent",
       "agentEnabled": "Agent actief",
       "agentHint": "Als uitgeschakeld, wordt niets naar Ollama gestuurd."
+    },
+    "externalSources": {
+      "label": "Externe bronnen",
+      "title": "Externe diensten en doel",
+      "note": "Aanroepen gebeuren alleen wanneer de bijbehorende widget of functie wordt gebruikt.",
+      "items": {
+        "openMeteoForecast": "Weersverwachtingsgegevens voor geselecteerde locaties.",
+        "openMeteoGeocoding": "Zoeken naar stad of locatie voor de weerwidget.",
+        "startpageProxy": "Proxy voor transport- en RSS- of nieuwsverzoeken.",
+        "transportRest": "Backend voor openbaar vervoer, gebruikt via de proxy.",
+        "googleFavicons": "Favicons voor favorietentegels.",
+        "unsplashImages": "Achtergrondafbeeldingen, indien geselecteerd.",
+        "searchEngines": "Externe zoekdoelen die openen wanneer een zoekopdracht wordt gestart.",
+        "ollamaLocal": "Lokaal AI-endpoint voor Startpage Agent, indien ingeschakeld."
+      }
     }
   },
   "onboarding": {
@@ -320,14 +335,14 @@
     "finish": "Klaar"
   },
   "palette": {
-    "placeholder": "Zoek commando of favoriet... (Ctrl/?+K)",
+    "placeholder": "Zoekopdracht of favoriet… (Ctrl/⌘+K)",
     "groups": {
       "command": "Commando's",
       "settings": "Instellingen",
       "search": "Zoeken",
       "widgets": "Widgets",
       "theme": "Thema & achtergrond",
-      "data": "Data",
+      "data": "Gegevens",
       "tiles": "Tegels",
       "tile": "Favorieten",
       "quick": "Snel"
@@ -335,7 +350,7 @@
     "search": {
       "focus": "Zoekveld focussen",
       "start": "Zoekopdracht starten",
-      "engine": "Engine: {engine}"
+      "engine": "Motor: {engine}"
     },
     "settings": {
       "open": "Instellingen openen",
@@ -398,7 +413,7 @@
     "tiles": "Favorieten",
     "weather": "Weer",
     "transport": "Vervoer",
-    "quote": "Quote",
+    "quote": "Citaat",
     "recent": "Recent",
     "system": "Systeem",
     "news": "Nieuws"
@@ -417,9 +432,9 @@
       "empty": "Nog geen favorieten. Markeer presets of uploads."
     },
     "subtitle": {
-      "preset": "Preset"
+      "preset": "Voorinstelling"
     },
-    "upload": "Upload",
+    "upload": "Uploaden",
     "uploadDrop": "Sleep bestanden hierheen",
     "uploadBrowse": "Bestand kiezen",
     "uploadNote": "We verkleinen afbeeldingen automatisch (16:9, max 2560px) en slaan ze lokaal op. Max {max} bestanden.",
@@ -434,18 +449,18 @@
       "useRotation": "Voor rotatie gebruiken",
       "newLabel": "Nieuwe collectie",
       "namePlaceholder": "Mijn collectie",
-      "urlsPlaceholder": "??n afbeeldings-URL per regel",
+      "urlsPlaceholder": "Eén afbeeldings-URL per regel",
       "clear": "Velden wissen",
       "note": "URL's worden lokaal opgeslagen. Externe bronnen vereisen CORS voor afbeeldingen.",
       "empty": "Nog geen collecties.",
-      "minOneUrl": "Voer minimaal ??n URL in.",
+      "minOneUrl": "Voer minimaal één URL in.",
       "emptyCollection": "Collectie is leeg.",
       "saved": "Collectie lokaal opgeslagen.",
       "defaultName": "Collectie {index}"
     },
     "rotation": {
-      "optionPreset": "Preset: {label}",
-      "optionUpload": "Upload: {label}",
+      "optionPreset": "Voorinstelling: {label}",
+      "optionUpload": "Uploaden: {label}",
       "optionFavorite": "Favoriet: {label}",
       "optionCustom": "Aangepast: opgeslagen URL",
       "noFixed": "Geen vaste afbeelding",
@@ -489,7 +504,7 @@
       "tint": "Widgets kleuren"
     },
     "tabs": {
-      "presets": "Presets",
+      "presets": "Voorinstellingen",
       "favorites": "Favorieten",
       "uploads": "Uploads",
       "collections": "Collecties",
@@ -502,7 +517,7 @@
   },
   "data": {
     "import": {
-      "confirm": "Data importeren? Bestaande items worden overschreven.",
+      "confirm": "Gegevens importeren? Bestaande vermeldingen worden overschreven.",
       "failed": "Import mislukt: {error}"
     },
     "presets": {
@@ -510,21 +525,21 @@
       "missingFile": "Presetbestand ontbreekt.",
       "fileMissing": "Bestand niet gevonden",
       "invalid": "Ongeldig preset",
-      "confirmApply": "{context} \"{name}\" toepassen? Bestaande items worden overschreven.",
+      "confirmApply": "{context} \"{name}\" toepassen? Bestaande vermeldingen worden overschreven.",
       "loadFailed": "Preset laden mislukt: {error}",
       "loading": "Presets laden...",
       "noneFound": "Geen presets gevonden",
-      "hint": "Plaats ge?xporteerde JSON's onder assets/presets/ (manifest: assets/data-presets.json) of lokaal onder assets/user-presets/.",
+      "hint": "Plaats geëxporteerde JSON's onder assets/presets/ (manifest: assets/data-presets.json) of lokaal onder assets/user-presets/.",
       "hintShort": "Voeg een preset toe onder assets/presets/ of assets/user-presets/.",
       "userPrefix": "Gebruiker: ",
       "userApply": "Lokaal preset toepassen",
       "apply": "Preset toepassen",
       "noneSelected": "Geen preset geselecteerd.",
-      "label": "Preset",
-      "defaultLabel": "Preset {index}",
+      "label": "Voorinstelling",
+      "defaultLabel": "Voorinstelling {index}",
       "userDefault": "Gebruikerspreset {index}",
       "userDescription": "Lokale preset uit assets/user-presets/",
-      "tags": " (Tags: {tags})"
+      "tags": "(Tags: {tags})"
     }
   },
   "dialogs": {
@@ -534,9 +549,9 @@
   },
   "agent": {
     "ui": {
-      "title": "Startpage Agent",
-      "fabAria": "Startpage Agent",
-      "fabTitle": "Startpage Agent",
+      "title": "Startpaginaagent",
+      "fabAria": "Startpaginaagent",
+      "fabTitle": "Startpaginaagent",
       "openSettingsAria": "Agentinstellingen openen",
       "openSettingsTitle": "Instellingen",
       "closeAria": "Agent sluiten",
@@ -545,7 +560,7 @@
       "inputPlaceholder": "Bericht aan Startpage Agent...",
       "send": "Verzenden",
       "stop": "Stoppen",
-      "hostLabel": "Host",
+      "hostLabel": "Gastheer",
       "modelLabel": "Model",
       "emptyModel": "-"
     },
@@ -556,134 +571,134 @@
       "confirmModeLabel": "Toolbevestiging",
       "confirmNever": "Nooit",
       "confirmAlways": "Altijd",
-      "confirmRisky": "Only risky (open_url)",
+      "confirmRisky": "Alleen riskant (open_url)",
       "maxIterationsLabel": "Agent-looplimiet",
-      "maxIterationsDecAria": "Decrease loop limit",
-      "maxIterationsIncAria": "Increase loop limit",
+      "maxIterationsDecAria": "Verlaag de luslimiet",
+      "maxIterationsIncAria": "Verhoog de luslimiet",
       "maxIterationsHint": "Maximaal aantal tool-iteraties per gebruikersbericht (1-10).",
       "customPromptLabel": "Aangepaste prompt",
-      "customPromptPlaceholder": "Additional instructions for Startpage Agent...",
-      "customPromptHint": "Used in addition to the system prompt for every request.",
+      "customPromptPlaceholder": "Aanvullende instructies voor Startpage Agent...",
+      "customPromptHint": "Wordt gebruikt naast de systeemprompt voor elk verzoek.",
       "memoryLabel": "Geheugen / Notities",
-      "memoryPlaceholder": "Persistent notes for the agent...",
-      "clearMemory": "Clear memory",
+      "memoryPlaceholder": "Aanhoudende opmerkingen voor de agent...",
+      "clearMemory": "Geheugen wissen",
       "actionsLabel": "Acties",
       "save": "Opslaan",
       "clearChat": "Chat wissen",
       "capabilitiesLabel": "Mogelijkheden",
       "availableToolsTitle": "Beschikbare tools",
-      "noModels": "No models"
+      "noModels": "Geen modellen"
     },
     "status": {
       "ready": "Klaar",
       "loadingModels": "Modellen laden...",
       "modelsLoaded": "Modellen geladen",
       "noModelsFound": "Geen modellen gevonden",
-      "loadModelsError": "Error loading models: {error}",
-      "disabledNamed": "Startpage Agent disabled",
-      "ollamaUnavailableDisabled": "Ollama unavailable - Startpage Agent disabled",
+      "loadModelsError": "Fout bij laden van modellen: {error}",
+      "disabledNamed": "Startpaginaagent uitgeschakeld",
+      "ollamaUnavailableDisabled": "Ollama niet beschikbaar - Startpaginaagent uitgeschakeld",
       "disabled": "Agent is uitgeschakeld",
       "chooseModel": "Selecteer een model",
-      "streaming": "Streaming...",
+      "streaming": "Streamen...",
       "toolDenied": "Tool geweigerd",
-      "toolRunning": "Tool: {tool}",
-      "toolDone": "Tool done: {tool}",
-      "toolError": "Tool error: {tool}",
+      "toolRunning": "Gereedschap: {tool}",
+      "toolDone": "Gereedschap klaar: {tool}",
+      "toolError": "Gereedschapsfout: {tool}",
       "toolLimitReached": "Toollimiet bereikt",
       "aborted": "Afgebroken",
-      "error": "Error: {error}",
+      "error": "Fout: {error}",
       "settingsSaved": "Instellingen opgeslagen",
-      "chatCleared": "Chat cleared",
-      "memoryCleared": "Memory cleared",
-      "confirmSaved": "Tool confirm saved",
-      "maxIterationsSaved": "Loop limit saved"
+      "chatCleared": "Chat gewist",
+      "memoryCleared": "Geheugen gewist",
+      "confirmSaved": "Gereedschapsbevestiging opgeslagen",
+      "maxIterationsSaved": "Luslimiet opgeslagen"
     },
     "confirm": {
-      "execute": "Tool uitvoeren?\n{tool}\n\n{args}",
+      "execute": "Gereedschap uitvoeren?\n{tool}\n\n{args}",
       "clearChat": "Chatgeschiedenis wissen?",
       "clearMemory": "Geheugen wissen?"
     },
     "messages": {
-      "toolLimitReached": "I reached the tool limit for this message (max. {max} steps)."
+      "toolLimitReached": "Ik heb de gereedschapslimiet voor dit bericht bereikt (max. {max} stappen)."
     },
     "errors": {
-      "toolDeniedByUser": "Tool execution denied by user",
-      "unknownToolError": "Unknown tool error",
-      "unknown": "Unknown",
-      "invalidHost": "Invalid host. Only http/https URLs are allowed.",
-      "invalidMemory": "Memory is invalid. Use JSON or \"key: value\" lines."
+      "toolDeniedByUser": "Uitvoering van gereedschap geweigerd door gebruiker",
+      "unknownToolError": "Onbekende gereedschapsfout",
+      "unknown": "Onbekend",
+      "invalidHost": "Ongeldige host. Alleen http/https-URL's zijn toegestaan.",
+      "invalidMemory": "Geheugen is ongeldig. Gebruik JSON- of \"key: value\"-regels."
     },
     "systemPrompt": {
       "name": "Naam: Startpage Agent",
       "embedded": "Je bent ingebed in een lokale Startpage.",
-      "jsonOnly": "If you must take an action, reply ONLY with exactly one JSON line in the format {\"tool\":\"<name>\",\"args\":{...}}.",
-      "noExtra": "No extra words, no Markdown, no code block for tool calls.",
-      "allowedTools": "Use only these tools: {tools}.",
-      "normalReply": "If no action is needed, respond normally.",
-      "askMissing": "If information is missing or a tool call would be invalid, ask follow-up questions as normal text.",
+      "jsonOnly": "Als u actie moet ondernemen, antwoord dan ALLEEN met precies één JSON-regel in de indeling {\"tool\":\"<name>\",\"args\":{...}}.",
+      "noExtra": "Geen extra woorden, geen Markdown, geen codeblok voor tooloproepen.",
+      "allowedTools": "Gebruik alleen deze hulpmiddelen: {tools}.",
+      "normalReply": "Als er geen actie nodig is, reageer dan normaal.",
+      "askMissing": "Als er informatie ontbreekt of een tool call ongeldig zou zijn, stel dan vervolgvragen als normale tekst.",
       "customPromptSection": "CUSTOM_PROMPT",
-      "memorySection": "PERSISTENT_MEMORY"
+      "memorySection": "PERSISTENT_GEHEUGEN"
     },
     "tools": {
       "descriptions": {
-        "open_url": "Open a URL",
-        "search_web": "Search with engine",
-        "set_theme_accent": "Set accent color",
-        "set_theme_mode": "auto/dark/light",
-        "set_card_style": "glass/solid/transparent/minimal",
-        "load_preset": "Load data preset",
-        "set_background_preset": "Set background preset",
-        "toggle_background_rotation": "Toggle rotation",
-        "toggle_widget": "Enable/disable widget",
-        "show_all_widgets": "Enable all widgets",
-        "hide_all_widgets": "Disable all widgets",
-        "add_quicklink": "Add quicklink",
-        "remove_quicklink": "Remove quicklink",
-        "add_todo": "Create todo",
-        "toggle_todo": "Mark todo done/undone",
-        "remove_todo": "Delete todo",
-        "clear_done_todos": "Delete completed todos",
-        "append_note": "Append notes text",
-        "set_notes": "Replace notes",
-        "clear_notes": "Clear notes",
-        "set_search_engine": "Set default engine",
-        "set_locale": "Set language",
-        "set_ui_font": "Set UI font",
-        "set_engine_enabled": "Enable/disable engine",
-        "set_shortcuts": "Set shortcuts",
-        "set_custom_feeds": "Set custom feeds",
-        "set_wordlist_inline": "Set inline wordlist",
-        "set_widget_color": "Set widget color",
-        "set_surface_color": "Set header/search color",
-        "set_weather_cities": "Set weather cities",
-        "set_transport_duration": "Set transport duration",
-        "set_transport_default_name": "Set transport default stop",
-        "set_agent_enabled": "Enable/disable Startpage Agent",
-        "set_agent_host": "Set Startpage Agent host",
-        "set_agent_confirm_mode": "Set Startpage Agent confirm mode",
-        "set_agent_model": "Set Startpage Agent model",
-        "set_agent_custom_prompt": "Set custom prompt",
-        "set_agent_memory": "Replace memory",
-        "append_agent_memory": "Append memory",
-        "clear_agent_memory": "Clear memory",
-        "read_agent_memory": "Read memory",
-        "set_news_source": "Set news source",
-        "refresh_data": "Refresh widgets",
-        "read_widget_data": "Read one widget",
-        "read_all_widgets": "Read all widgets",
-        "read_weather_data": "Read weather data",
-        "read_transport_data": "Read transport data",
-        "read_todo_data": "Read todos",
-        "read_notes_data": "Read notes",
-        "read_tiles_data": "Read favorites",
-        "read_news_data": "Read news",
-        "read_quote_data": "Read quote",
-        "read_recent_data": "Read recent actions",
-        "read_system_data": "Read system status",
-        "set_weather_station_active": "Activate weather station",
-        "add_weather_station": "Add weather station",
-        "remove_weather_station": "Remove weather station",
-        "set_weather_city": "Set/activate city"
+        "open_url": "Open een URL",
+        "search_web": "Zoeken met motor",
+        "set_theme_accent": "Accentkleur instellen",
+        "set_theme_mode": "automatisch/donker/licht",
+        "set_card_style": "glas/massief/transparant/minimaal",
+        "load_preset": "Gegevensvoorinstelling laden",
+        "set_background_preset": "Achtergrondvoorinstelling instellen",
+        "toggle_background_rotation": "Schakel rotatie in",
+        "toggle_widget": "Widget in-/uitschakelen",
+        "show_all_widgets": "Schakel alle widgets in",
+        "hide_all_widgets": "Schakel alle widgets uit",
+        "add_quicklink": "Snellink toevoegen",
+        "remove_quicklink": "Snellink verwijderen",
+        "add_todo": "Maak een taak",
+        "toggle_todo": "Markeer de taak als voltooid/ongedaan",
+        "remove_todo": "Verwijder taak",
+        "clear_done_todos": "Verwijder voltooide taken",
+        "append_note": "Voeg notitietekst toe",
+        "set_notes": "Vervang notities",
+        "clear_notes": "Duidelijke notities",
+        "set_search_engine": "Standaardengine instellen",
+        "set_locale": "Taal instellen",
+        "set_ui_font": "Stel het UI-lettertype in",
+        "set_engine_enabled": "Motor in-/uitschakelen",
+        "set_shortcuts": "Snelkoppelingen instellen",
+        "set_custom_feeds": "Stel aangepaste feeds in",
+        "set_wordlist_inline": "Inline woordenlijst instellen",
+        "set_widget_color": "Stel de widgetkleur in",
+        "set_surface_color": "Koptekst/zoekkleur instellen",
+        "set_weather_cities": "Stel weersteden in",
+        "set_transport_duration": "Transportduur instellen",
+        "set_transport_default_name": "Standaard transportstop instellen",
+        "set_agent_enabled": "Startpaginaagent in-/uitschakelen",
+        "set_agent_host": "Stel de Startpage Agent-host in",
+        "set_agent_confirm_mode": "Stel de Startpage Agent-bevestigingsmodus in",
+        "set_agent_model": "Stel het Startpage Agent-model in",
+        "set_agent_custom_prompt": "Aangepaste prompt instellen",
+        "set_agent_memory": "Vervang geheugen",
+        "append_agent_memory": "Geheugen toevoegen",
+        "clear_agent_memory": "Geheugen wissen",
+        "read_agent_memory": "Geheugen lezen",
+        "set_news_source": "Nieuwsbron instellen",
+        "refresh_data": "Widgets vernieuwen",
+        "read_widget_data": "Lees één widget",
+        "read_all_widgets": "Lees alle widgets",
+        "read_weather_data": "Weergegevens lezen",
+        "read_transport_data": "Transportgegevens lezen",
+        "read_todo_data": "Lees alles",
+        "read_notes_data": "Lees notities",
+        "read_tiles_data": "Lees favorieten",
+        "read_news_data": "Lees nieuws",
+        "read_quote_data": "Citaat lezen",
+        "read_recent_data": "Lees recente acties",
+        "read_system_data": "Systeemstatus lezen",
+        "set_weather_station_active": "Activeer het weerstation",
+        "add_weather_station": "Weerstation toevoegen",
+        "remove_weather_station": "Weerstation verwijderen",
+        "set_weather_city": "Stad instellen/activeren"
       }
     }
   }

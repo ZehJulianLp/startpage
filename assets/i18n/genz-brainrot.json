@@ -42,13 +42,13 @@
         "word": "Word [ngl]"
       }
     },
-    "recentShortcut": "Shortcut {shortcut} â€“ {query}",
-    "recentSearch": "Search ({engine}) â€“ {query}",
+    "recentShortcut": "Shortcut {shortcut} – {query}",
+    "recentSearch": "Search ({engine}) – {query}",
     "submitAria": "Run search [based]"
   },
   "todo": {
     "title": "Quest Log [fr]",
-    "placeholder": "New taskâ€¦ [vibes]",
+    "placeholder": "New task… [vibes]",
     "add": "Drop in [based]",
     "clearDoneTitle": "Clear out completed [based]",
     "clearDone": "x clear",
@@ -57,7 +57,7 @@
   },
   "notes": {
     "title": "Brain Dump [vibes]",
-    "placeholder": "Jot something downâ€¦ [ngl]",
+    "placeholder": "Jot something down… [ngl]",
     "prompt": "Thought [based]"
   },
   "tiles": {
@@ -69,7 +69,7 @@
     "promptUrl": "URL [for-real]",
     "invalidUrl": "Invalid URL [lowkey]",
     "promptTitleNew": "Fave title [vibes]",
-    "promptUrlNew": "URL (https://â€¦)",
+    "promptUrlNew": "URL (https://…)",
     "resetConfirm": "Reset default faves? [ngl]",
     "dialog": {
       "titleLabel": "Title [lowkey]",
@@ -80,11 +80,11 @@
   },
   "weather": {
     "title": "Sky Check [for-real]",
-    "cityPlaceholder": "Enter cityâ€¦ [for-real]",
+    "cityPlaceholder": "Enter city… [for-real]",
     "setCity": "Set city [realtalk]",
-    "pickLocation": "Pick a locationâ€¦ [fr]",
+    "pickLocation": "Pick a location… [fr]",
     "source": "Source: Open-Meteo [vibes]",
-    "loading": "Loading weatherâ€¦ [ngl]",
+    "loading": "Loading weather… [ngl]",
     "prompt": "Enter a city to load weather. [ngl]",
     "tempEmpty": "-- degC",
     "tempEmptyShort": "-- deg",
@@ -124,7 +124,7 @@
     "duration90": "90 min [fr]",
     "duration120": "120 min [for-real]",
     "refreshTitle": "Reload [ngl]",
-    "searchPlaceholder": "Search stationâ€¦ [for-real]",
+    "searchPlaceholder": "Search station… [for-real]",
     "noneSelected": "No stop selected [fr]",
     "source": "Source: transport.rest [fr]",
     "minQuery": "At least {count} characters",
@@ -132,7 +132,7 @@
     "proxyTimeout": "Proxy timeout [fr]",
     "loadError": "Load flopped [vibes]",
     "noDepartures": "No departures rn [vibes]",
-    "selectStation": "Select a stationâ€¦ [realtalk]",
+    "selectStation": "Select a station… [realtalk]",
     "type": {
       "station": "Station [vibes]",
       "stop": "Stop [based]"
@@ -145,7 +145,7 @@
     "title": "Quote / Brain Fuel [ngl]",
     "list": [
       "Move fast, refactor often. [for-real]",
-      "Accessibility isn't a feature â€“ it's the default. [realtalk]",
+      "Accessibility isn't a feature – it's the default. [realtalk]",
       "Done > Perfect. Iterate.",
       "If it's not monitored, it doesn't exist. [vibes]",
       "Good UX is invisible. Bad UX is unforgettable. [ngl]",
@@ -164,11 +164,11 @@
   },
   "system": {
     "title": "System Check [based]",
-    "loading": "Loadingâ€¦ [realtalk]",
+    "loading": "Loading… [realtalk]",
     "ram": "RAM: {value} GB",
     "cpu": "CPU cores: {value}",
-    "network": "Network: {downlink} Mbit/s Â· {type}{saveData}",
-    "saveData": "Â· SaveData [ngl]",
+    "network": "Network: {downlink} Mbit/s · {type}{saveData}",
+    "saveData": "· SaveData [ngl]",
     "noData": "No data available [ngl]"
   },
   "news": {
@@ -224,7 +224,7 @@
       "defaultCityLabel": "Base weather city [for-real]",
       "defaultCityPlaceholder": "e.g. Hanover [lowkey]",
       "defaultTransportLabel": "Base transit stop [for-real]",
-      "defaultTransportPlaceholder": "Search stationâ€¦ [lowkey]",
+      "defaultTransportPlaceholder": "Search station… [lowkey]",
       "cardStyleLabel": "Card style [vibes]",
       "cardStyleGlass": "Glass (default) [vibes]",
       "cardStyleSolid": "Solid [legit]",

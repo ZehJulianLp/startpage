@@ -1,23 +1,23 @@
 {
   "app": {
-    "title": "Startpage"
+    "title": "Başlangıç ​​sayfası"
   },
   "common": {
-    "link": "Baclant?",
+    "link": "Bağlantı",
     "delete": "Sil",
     "remove": "Kaldir",
     "save": "Kaydet",
     "loading": "Yikleniyor...",
     "loadError": "Yukleme basarisiz",
     "noMatches": "Eileime yok",
-    "emptyDash": "?",
-    "dash": "?",
+    "emptyDash": "—",
+    "dash": "–",
     "cancel": "Iptal",
     "ok": "Tamam",
     "default": "Varsayilan"
   },
   "header": {
-    "themeToggleTitle": "Koyu/A??k",
+    "themeToggleTitle": "Koyu/Açık",
     "settingsTitle": "Ayarlar",
     "themeAria": "Temayi degistir",
     "settingsAria": "Ayarlari ac"
@@ -36,80 +36,80 @@
       "bang": "{bang} (Bang)",
       "shortcut": "{shortcut} (Kisayol)",
       "type": {
-        "bang": "Bang",
+        "bang": "Patlama",
         "shortcut": "Kisayol",
         "recent": "Son",
         "word": "Kelime"
       }
     },
-    "recentShortcut": "Kisayol {shortcut} ? {query}",
-    "recentSearch": "Arama ({engine}) ? {query}",
+    "recentShortcut": "Kısayol {shortcut} – {query}",
+    "recentSearch": "Arama ({engine}) – {query}",
     "submitAria": "Aramayi baslat"
   },
   "todo": {
     "title": "Yapilacaklar",
     "placeholder": "Yeni gorev...",
     "add": "Ekle",
-    "clearDoneTitle": "Tamamlananlar? kaldir",
-    "clearDone": "? temizle",
+    "clearDoneTitle": "Tamamlananları kaldır",
+    "clearDone": "✓ temizle",
     "doneAria": "Tamam",
     "prompt": "Gorev"
   },
   "notes": {
     "title": "Notlar",
-    "placeholder": "Bir ?ey not et...",
+    "placeholder": "Bir şeyler not edin…",
     "prompt": "Not"
   },
   "tiles": {
     "title": "Favoriler",
     "add": "+ Kutucuk",
-    "resetTitle": "Varsayilanlar? geri yukle",
+    "resetTitle": "Varsayılanları geri yükle",
     "edit": "Dizenle",
     "promptTitle": "Baclik",
-    "promptUrl": "URL",
+    "promptUrl": "URL'si",
     "invalidUrl": "Geiersiz URL",
-    "promptTitleNew": "Kutucuk bacl???",
-    "promptUrlNew": "URL (https://?)",
-    "resetConfirm": "Varsayilan kutucuklar geri yuklensin mi?",
+    "promptTitleNew": "Döşeme başlığı",
+    "promptUrlNew": "URL (https://…)",
+    "resetConfirm": "Varsayılan döşemeler geri yüklensin mi?",
     "dialog": {
       "titleLabel": "Baslik",
-      "urlLabel": "URL",
+      "urlLabel": "URL'si",
       "save": "Kaydet"
     },
     "resetAria": "Kutucuklari sifirla"
   },
   "weather": {
-    "title": "Bugink? hava",
-    "cityPlaceholder": "?ehir gir...",
+    "title": "Bugünkü hava durumu",
+    "cityPlaceholder": "Şehir girin…",
     "setCity": "Ayarla",
     "pickLocation": "Konum sec...",
     "source": "Kaynak: Open-Meteo",
     "loading": "Hava yukleniyor...",
-    "prompt": "Havay? yuklemek icin konum girin.",
-    "tempEmpty": "??C",
-    "tempEmptyShort": "??",
-    "minmaxEmpty": "? / ? ?C",
+    "prompt": "Hava durumunu yüklemek için bir konum girin.",
+    "tempEmpty": "—°C",
+    "tempEmptyShort": "—°",
+    "minmaxEmpty": "— / — °C",
     "noForecast": "Tahmin yok",
     "errors": {
       "geocodingFailed": "Jeokodlama basarisiz",
-      "locationNotFound": "Konum bulunamad?",
-      "cityMissing": "?ehir eksik",
-      "fetchFailed": "Hava alinamad?",
+      "locationNotFound": "Konum bulunamadı",
+      "cityMissing": "Şehir eksik",
+      "fetchFailed": "Hava durumu getirme işlemi başarısız oldu",
       "loadFailed": "Hava yuklenemedi"
     },
     "codes": {
-      "0": "A??k",
-      "1": "?oiunlukla acik",
-      "2": "Parial? bulutlu",
+      "0": "Temizlemek",
+      "1": "Çoğunlukla açık",
+      "2": "Parçalı bulutlu",
       "3": "Bulutlu",
       "45": "Sis",
       "48": "Sis",
-      "51": "?iseleme",
-      "53": "?iseleme",
-      "55": "?iseleme",
+      "51": "Çiseleyen yağmur",
+      "53": "Çiseleyen yağmur",
+      "55": "Çiseleyen yağmur",
       "61": "Yacmur",
       "63": "Yacmur",
-      "65": "?iddetli yacmur",
+      "65": "Şiddetli yağmur",
       "71": "Kar",
       "80": "Sacanak",
       "95": "Gik gurultulu",
@@ -129,31 +129,31 @@
     "source": "Kaynak: transport.rest",
     "minQuery": "En az {count} karakter",
     "noMatches": "Eileime yok",
-    "proxyTimeout": "Proxy zaman acim?",
+    "proxyTimeout": "Proxy zaman aşımı",
     "loadError": "Yukleme basarisiz",
-    "noDepartures": "Kalk?? yok",
+    "noDepartures": "Kalkış yok",
     "selectStation": "Istasyon sec...",
     "type": {
       "station": "Istasyon",
       "stop": "Durak"
     },
     "platform": "Peron {platform}",
-    "cancelled": "?ptal",
+    "cancelled": "İptal edildi",
     "refreshAria": "Ulasimi yenile"
   },
   "quote": {
     "title": "Alinti / Nerd durtusu",
     "list": [
-      "Hizl? git, sik sik refactor et.",
+      "Hızlı hareket edin, sık sık yeniden düzenleme yapın.",
       "Eriiilebilirlik bir ozellik degil, varsayilandir.",
       "Bitti > Mukemmel. Iterasyon yap.",
-      "?zlenmiyorsa, yoktur.",
+      "Eğer izlenmiyorsa yoktur.",
       "Iyi UX gorunmezdir. Kotu UX unutulmazdir.",
       "Once calistir, sonra duzelt, sonra hizlandir.",
-      "K???k adimlar. Biyik sonuilar.",
-      "Sadelik ?lieklenir. Karmaciklik ??ker.",
+      "Küçük adımlar. Büyük sonuçlar.",
+      "Basitlik ölçekleri. Karmaşıklık başarısız olur.",
       "Sikici iileri otomatiklestir.",
-      "?ki kez ?l?, bir kez yayinla."
+      "İki kez ölçün, bir kez konuşlandırın."
     ]
   },
   "recent": {
@@ -166,20 +166,20 @@
     "title": "Sistem durumu",
     "loading": "Yikleniyor...",
     "ram": "RAM: {value} GB",
-    "cpu": "CPU ?ekirdeii: {value}",
-    "network": "A?: {downlink} Mbit/s ? {type}{saveData}",
-    "saveData": " ? Veri tasarrufu",
+    "cpu": "CPU çekirdekleri: {value}",
+    "network": "Ağ: {downlink} Mbit/s · {type}{saveData}",
+    "saveData": "· Veriyi Kaydet",
     "noData": "Veri yok"
   },
   "news": {
     "title": "Haberler",
     "refreshTitle": "Yenile",
-    "source": "Startpage proxy ?zerinden RSS (CORS proxy)",
-    "noItems": "??e yok",
+    "source": "Startpage Proxy'si aracılığıyla RSS (CORS proxy'si)",
+    "noItems": "Öğe yok",
     "refreshAria": "Haberlari yenile"
   },
   "footer": {
-    "tagline": "Yerel Oncelikli panel ? sadece tarayicida saklar (localStorage)"
+    "tagline": "Önce yerel kontrol paneli · yalnızca tarayıcıda depolar (localStorage)"
   },
   "settings": {
     "title": "Ayarlar",
@@ -187,23 +187,23 @@
     "tabs": {
       "general": "Genel",
       "background": "Arka plan ve gorunum",
-      "search": "Arama ve ak??lar",
+      "search": "Arama ve Yayınlar",
       "widgets": "Widget'lar",
       "data": "Veri",
       "guide": "Kilavuz",
-      "ai": "Startpage Agent"
+      "ai": "Başlangıç ​​Sayfası Temsilcisi"
     },
     "theme": {
       "label": "Tema",
       "auto": "Auto (sistem)",
       "dark": "Koyu",
-      "light": "A??k"
+      "light": "Işık"
     },
     "background": {
       "label": "Arka plan"
     },
     "search": {
-      "engines": "Arama motorlar?",
+      "engines": "Arama motorları",
       "bangsNote": "Desteklenen bang kisayollari: <code>!g !ddg !bing !yt !wiki !maps</code> - Ozel kisayollar asagida",
       "wordlistLabel": "Otomatik tamamlama kelime listesi",
       "wordlistPlaceholder": "Terimler satir satir veya virgulle",
@@ -212,17 +212,17 @@
       "wordlistNote": "Global kelime listesi (assets/wordlist.json) ve preset listesi birlestirilir. Yalnizca global liste icin bos birakin.",
       "shortcutsLabel": "Ozel !kisayollar",
       "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
-      "shortcutsNote": "<code>{q}</code> yer tutucu olarak kullanin. <code>{q}</code> yoksa <code>?q=...</code> eklenir.",
-      "feedsLabel": "Ozel RSS ak??lar?",
+      "shortcutsNote": "Arama ifadesi için yer tutucu olarak <code>{q}</code> kullanın. <code>{q}</code> olmadan, <code>?q=...</code> eklenir.",
+      "feedsLabel": "Özel RSS beslemeleri",
       "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
-      "feedsNote": "JSON: ad - ak?? URL'si. Bu liste varsayilan ak??larla birlestirilir.",
+      "feedsNote": "JSON: ad - yayın URL'si. Bu liste varsayılan yayınlarla birleştirilmiştir.",
       "invalidShortcuts": "Geiersiz kisayol JSON",
-      "invalidFeeds": "Geiersiz ak?? JSON"
+      "invalidFeeds": "Geçersiz feed'ler JSON"
     },
     "widgets": {
-      "visible": "Widget'lar? gister",
-      "defaultCityLabel": "Varsayilan ?ehir (hava)",
-      "defaultCityPlaceholder": "?rn. Hannover",
+      "visible": "Widget'ları göster",
+      "defaultCityLabel": "Varsayılan şehir (hava durumu)",
+      "defaultCityPlaceholder": "örneğin Hannover",
       "defaultTransportLabel": "Varsayilan durak (ulacim)",
       "defaultTransportPlaceholder": "Istasyon ara...",
       "cardStyleLabel": "Kart stili",
@@ -234,28 +234,28 @@
       "clockColorLabel": "Saat ve tarih",
       "searchColorLabel": "Arama",
       "reset": "Sifirla",
-      "clockColorNote": "Baclik arka planin? ayarlar (bos = stil varsayilan?).",
-      "searchColorNote": "Arama alan? rengi (bos = stil varsayilan?).",
+      "clockColorNote": "Başlık arka planını ayarlar (boş = varsayılan stil).",
+      "searchColorNote": "Arama alanının rengi (boş = varsayılan stil).",
       "widgetColorsLabel": "Widget renkleri",
-      "weatherCitiesLabel": "Weather cities",
-      "weatherCitiesPlaceholder": "One city per line, e.g. Hanover\nBerlin\nHamburg",
-      "weatherCitiesNote": "One city per line. The first entry becomes active if the previous active city is not included.",
-      "recentEntriesLabel": "Son kayitlar",
-      "recentEntriesDecAria": "Son kayitlari azalt",
-      "recentEntriesIncAria": "Son kayitlari artir"
+      "weatherCitiesLabel": "Hava şehirleri",
+      "weatherCitiesPlaceholder": "Hat başına bir şehir, ör. Hannover\nberlin\nHamburg",
+      "weatherCitiesNote": "Hat başına bir şehir. Önceki aktif şehir dahil edilmezse ilk giriş aktif olur.",
+      "recentEntriesLabel": "Son girdiler",
+      "recentEntriesDecAria": "Son girdileri azalt",
+      "recentEntriesIncAria": "Son girişleri artırın"
     },
     "data": {
       "label": "Veri",
-      "export": "D??a aktar (.json)",
-      "import": "??e aktar (.json)",
+      "export": "Dışa aktar (.json)",
+      "import": "İçe Aktarma (.json)",
       "presetsLabel": "Veri presetleri",
       "applyPreset": "Preset yukle",
-      "presetMeta": "Presetler assets/presets/ altinda disa aktarilm?? JSON'lardir. assets/user-presets/ altindaki kullanic? presetleri otomatik birlestirilir.",
+      "presetMeta": "Ön ayarlar, asset/presets/ altında dışa aktarılan JSON'lardır. Varlıklardan/kullanıcı ön ayarlarından/ kullanıcı ön ayarları otomatik olarak birleştirilir.",
       "setupLabel": "Kurulum",
       "restartOnboarding": "Kurulumu yeniden baclat",
       "restartNote": "Kompakt kurulum penceresini yeniden acar.",
       "noteLabel": "Not",
-      "noteText": "D??a aktarma tim ayarlar? ve verileri JSON olarak yerel kaydeder. ??e aktarma mevcut kayitlar? uzerine yazar."
+      "noteText": "Dışa aktarma, tüm ayarları ve verileri yerel olarak JSON olarak saklar. İçe aktarma mevcut girişlerin üzerine yazar."
     },
     "language": {
       "label": "Dil",
@@ -273,11 +273,26 @@
       "empty": "Yerel yazi tipleri dondurulmedi.",
       "loadFailed": "Yerel yazi tipleri yuklenemedi: {error}"
     },
-    "guideHtml": "<div class=\"row\"><label>Kullanic? kilavuzu</label><div><h5>Genel bakis</h5><ul><li>Arama, favoriler, yapilacaklar, notlar, hava ve haberler iceren baslangic sayfas?.</li><li>Her sey yerel: veriler tarayicida kalir (localStorage).</li></ul><h5>Kisayollar</h5><ul><li>Ctrl/Cmd+K: komut paletini ac</li><li>1-9: ilk 9 favoriyi ac (yazmiyorsaniz)</li><li>/ : aramaya odaklan (palet ?zerinden de)</li><li>Enter ile arama: aramayi baclatir</li><li>ESC: modallar? kapatir</li><li>Palet: widget, tema, arka plan, veri, favoriler icin hizli eylemler</li><li>Palet: C tuiu kart stilini degistirir, \"Baclik renklerini sifirla\" arama ve saati sifirlar</li></ul><h5>Arama ve otomatik tamamlama</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>Ozel kisayollar: ayarlarda JSON; {q} yer tutucu</li><li>Otomatik tamamlama: bang'ler, kisayollar, son aramalar, kelime listesi (global + preset)</li><li>Tab oneriyi kabul eder, Enter aramayi baclatir</li></ul><h5>Kutucuklar</h5><ul><li>Siralama icin surukle & birak, acmak icin tikla</li><li>+ Kutucuk: yeni favori ekle</li><li>Sifirla: varsayilan favorileri geri yukle</li></ul><h5>Widget'lar ve duzen</h5><ul><li>Her widget icin gorunurluk</li><li>Kart stili global (cam, dolu, seffaf, yumuiak minimal)</li><li>Saat/arama icin Ozel renkler; sifirla varsayilan stili geri getirir</li><li>Widget renkleri ve \"Widget'lar? renklendir\" dugmesi kart basina vurgu ayarlar</li></ul><h5>Arka plan</h5><ul><li>Presetler, yuklemeler, koleksiyonlar, rotasyon (zaman/tema/aralik)</li><li>Vurgu rengi aktif arka plandan ?cikarilir</li></ul><h5>Veri</h5><ul><li>JSON olarak disa aktar/ice aktar</li><li>Veri presetlerini yukle (assets/presets/*.json repoda)</li></ul><h5>Startpage Agent</h5><ul><li>Yerel Ollama ile entegre AI sohbeti (host/model ayarlarda).</li><li>Akan yanıtlar, durdurma (buton/ESC), kalıcı geçmiş ve Markdown desteklenir.</li><li>Ajan araçları widget ve ayarları okuyup değiştirebilir (onay moduna bağlı).</li></ul></div></div>",
+    "guideHtml": "<div class=\"row\"><label>Kullanıcı Kılavuzu</label><div><h5>Genel Bakış</h5><ul><li>Arama, favoriler, yapılacaklar, notlar, hava durumu, haberler içeren başlangıç sayfası.</li><li>Tüm yerel: veriler tarayıcınızda kalır (localStorage).</li></ul><h5>Kısayollar</h5><ul><li>Ctrl/Cmd+K: komut paletini aç</li><li>1-9: ilk 9 favoriyi aç (yazmadığın zaman)</li><li>/ : odak arama (ayrıca aracılığıyla) paleti)</li><li>Aramaya girin: aramayı başlatın</li><li>ESC: kipleri kapat</li><li>Palette: widget'lar, tema, arka plan, veriler, favoriler için hızlı eylemler</li><li>Palette: C tuşu kart stilini değiştirir, \"Başlık renklerini sıfırla\" aramayı sıfırlar ve saat</li></ul><h5>Arama ve Otomatik Tamamlama</h5><ul><li>Bangs: !g !ddg !bing !yt !yt !wiki !maps</li><li>Özel kısayollar: Ayarlarda JSON; {q} yer tutucu olarak</li><li>Otomatik tamamlama: patlamalar, kısayollar, son aramalar, kelime listesi (genel + ön ayar)</li><li>Sekme öneriyi kabul eder, Enter aramayı başlatır</li></ul><h5>Tiles</h5><ul><li>Sıralamak için sürükleyip bırakın, tıklayın open</li><li>+ Döşeme: yeni bir favori ekle</li><li>Sıfırla: varsayılan favorileri geri yükle</li></ul><h5>Widget'lar ve Düzen</h5><ul><li>Widget başına görünürlük</li><li>Kart stili geneldir (cam, katı, şeffaf, yumuşak) minimum)</li><li>Saat/arama için özel renkler; sıfırlama stil varsayılanlarını geri yükler</li><li>Widget renkleri ve \"Renk tonu widget'ları\" kart başına aksanı ayarlar</li></ul><h5>Arka plan</h5><ul><li>Ön ayarlar, yüklemeler, koleksiyonlar, döndürme (zaman/tema/aralık)</li><li>Vurgu rengi etkin renkten çıkarılır arka plan</li></ul><h5>Data</h5><ul><li>JSON olarak dışa/içe aktarma</li><li>Veri ön ayarlarını yükleyin (depodaki varlıklar/ön ayarlar/*.json)</li></ul><h5>Başlangıç sayfası Agent</h5><ul><li>Yerel Ollama ile entegre AI sohbeti (ayarlarda ana makine/model).</li><li>Akış yanıtlarını, durdurmayı (düğme/ESC), kalıcı geçmişi ve İşaretlemeyi destekler.</li><li>Ajantik araçlar, widget'ları ve ayarları okuyabilir/değiştirebilir (onaylamaya bağlı olarak) modu).</li></ul></div></div>",
     "general": {
-      "agentLabel": "Startpage Agent",
+      "agentLabel": "Başlangıç ​​Sayfası Temsilcisi",
       "agentEnabled": "Aracı etkin",
       "agentHint": "Devre dışıysa Ollama'ya hiçbir şey gönderilmez."
+    },
+    "externalSources": {
+      "label": "Harici kaynaklar",
+      "title": "Harici Hizmetler ve Amaç",
+      "note": "Aramalar yalnızca ilgili widget/özellik kullanıldığında gerçekleşir.",
+      "items": {
+        "openMeteoForecast": "Seçilen yerler için hava tahmini verileri.",
+        "openMeteoGeocoding": "Hava durumu widget'ı için şehir/konum araması.",
+        "startpageProxy": "Aktarım ve RSS/haber talepleri için proxy.",
+        "transportRest": "Proxy aracılığıyla kullanılan toplu taşıma arka ucu.",
+        "googleFavicons": "Favori döşemeler için favicons.",
+        "unsplashImages": "Arka plan resimleri (seçiliyse).",
+        "searchEngines": "Bir arama başlatıldığında açılan harici arama hedefleri.",
+        "ollamaLocal": "Startpage Agent için yerel AI uç noktası (etkinse)."
+      }
     }
   },
   "onboarding": {
@@ -286,11 +301,11 @@
     "skip": "Atla",
     "close": "Kapat",
     "preset": {
-      "title": "Preset se?",
-      "hint": "Bir preset se? veya bu adim? atla.",
+      "title": "Ön ayarı seç",
+      "hint": "Bir ön ayar seçin veya bu adımı atlayın.",
       "apply": "Preset uygula",
       "meta": "Preset uygula veya atla.",
-      "optional": "Preset isteie bacl?.",
+      "optional": "İsteğe bağlı ön ayar.",
       "context": "Kurulum preset"
     },
     "appearance": {
@@ -308,19 +323,19 @@
     "widgets": {
       "title": "Widget'lar",
       "defaultTransport": "Varsayilan durak (ulacim)",
-      "tint": "Widget'lar? vurgu ile renklendir"
+      "tint": "Vurgulu renk tonu widget'ları"
     },
     "weather": {
       "title": "Hava",
-      "defaultCity": "Varsayilan ?ehir",
+      "defaultCity": "Varsayılan şehir",
       "note": "Her seyi daha sonra ayarlardan deiiitirebilirsiniz."
     },
     "prev": "Geri",
-    "next": "?leri",
+    "next": "Sonraki",
     "finish": "Bitti"
   },
   "palette": {
-    "placeholder": "Komut veya favori ara... (Ctrl/?+K)",
+    "placeholder": "Arama komutu veya favori… (Ctrl/⌘+K)",
     "groups": {
       "command": "Komutlar",
       "settings": "Ayarlar",
@@ -330,7 +345,7 @@
       "data": "Veri",
       "tiles": "Kutucuklar",
       "tile": "Favoriler",
-      "quick": "Hizl?"
+      "quick": "Hızlı"
     },
     "search": {
       "focus": "Aramaya odaklan",
@@ -338,7 +353,7 @@
       "engine": "Motor: {engine}"
     },
     "settings": {
-      "open": "Ayarlar? ac",
+      "open": "Ayarları aç",
       "general": "Ayarlar: Genel",
       "background": "Ayarlar: Arka plan",
       "search": "Ayarlar: Arama",
@@ -347,10 +362,10 @@
       "guide": "Ayarlar: Kilavuz"
     },
     "theme": {
-      "cycle": "Temay? deiiitir (Auto/Koyu/A??k)",
+      "cycle": "Döngü teması (Otomatik/Koyu/Açık)",
       "auto": "Tema: Auto",
       "dark": "Tema: Koyu",
-      "light": "Tema: A??k",
+      "light": "Tema: Işık",
       "resetHeader": "Baclik renklerini sifirla",
       "recalcAccent": "Vurgu renklerini yeniden hesapla"
     },
@@ -377,14 +392,14 @@
     },
     "tiles": {
       "add": "Kutucuk ekle",
-      "reset": "Kutucuklar? sifirla"
+      "reset": "Döşemeleri sıfırla"
     },
     "refresh": {
-      "weather": "Havay? yenile",
+      "weather": "Hava durumunu yenile",
       "news": "Haberleri yenile",
-      "transport": "Ulacim? yenile",
+      "transport": "Taşımayı yenile",
       "system": "Sistemi yenile",
-      "all": "Tim widget'lar? yenile"
+      "all": "Tüm widget'ları yenile"
     },
     "data": {
       "export": "Veriyi disa aktar",
@@ -417,12 +432,12 @@
       "empty": "Henuz favori yok. Preset veya yukleme iiaretleyin."
     },
     "subtitle": {
-      "preset": "Preset"
+      "preset": "Ön ayar"
     },
     "upload": "Yikle",
-    "uploadDrop": "Dosyalar? buraya birak",
-    "uploadBrowse": "Dosya se?",
-    "uploadNote": "Girintileri otomatik olarak k???ltiyoruz (16:9, maks 2560px) ve yerel kaydediyoruz. En fazla {max} dosya.",
+    "uploadDrop": "Dosyaları buraya bırakın",
+    "uploadBrowse": "Dosya seç",
+    "uploadNote": "Görüntüleri otomatik olarak yeniden boyutlandırıyoruz (16:9, maksimum 2560 piksel) ve yerel olarak saklıyoruz. Maksimum {max} dosya.",
     "uploads": {
       "empty": "Henuz yukleme yok."
     },
@@ -430,12 +445,12 @@
       "count": "{count} kaynak",
       "random": "Rastgele",
       "cache": "Offline kaydet",
-      "viewSources": "Kaynaklar? girintile",
+      "viewSources": "Kaynakları görüntüle",
       "useRotation": "Rotasyonda kullan",
       "newLabel": "Yeni koleksiyon",
       "namePlaceholder": "Koleksiyonum",
       "urlsPlaceholder": "Her satira bir girsel URL",
-      "clear": "Alanlar? temizle",
+      "clear": "Alanları temizle",
       "note": "URL'ler yerel kaydedilir. Uzak kaynaklar CORS gerektirir.",
       "empty": "Koleksiyon yok.",
       "minOneUrl": "En az bir URL girin.",
@@ -444,10 +459,10 @@
       "defaultName": "Koleksiyon {index}"
     },
     "rotation": {
-      "optionPreset": "Preset: {label}",
+      "optionPreset": "Ön ayar: {label}",
       "optionUpload": "Yukleme: {label}",
       "optionFavorite": "Favori: {label}",
-      "optionCustom": "Ozel: kayitl? URL",
+      "optionCustom": "Özel: kayıtlı URL",
       "noFixed": "Sabit girsel yok",
       "enabled": "Otomatik rotasyonu etkinleitir",
       "locked": "Rotasyon kilitli.",
@@ -460,10 +475,10 @@
       "intervalNote": "Sadece aralik modunda geierli.",
       "sourcesLabel": "Rastgele kaynaklar",
       "scheduleLabel": "Program",
-      "themePlan": "Tema plan?",
-      "themeLight": "A??k tema",
+      "themePlan": "Tema planı",
+      "themeLight": "Tema ışığı",
       "themeDark": "Koyu tema",
-      "themeNote": "Mod Tema olduiunda tema plan? kullanilir.",
+      "themeNote": "Mod Tema olduğunda Tema planı kullanılır.",
       "slot": {
         "morning": "Sabah 05-11",
         "day": "Gindiz 11-17",
@@ -486,7 +501,7 @@
       "random": "Rastgele yukle",
       "undo": "Son girseli geri yukle",
       "lock": "Rotasyonu kilitle",
-      "tint": "Widget'lar? renklendir"
+      "tint": "Renk tonu widget'ları"
     },
     "tabs": {
       "presets": "Presetler",
@@ -496,33 +511,33 @@
       "rotation": "Rotasyon",
       "custom": "Ozel"
     },
-    "loadError": "Yukleme basarisiz. CORS ayarlarin? kontrol edin.",
+    "loadError": "Yükleme başarısız oldu. CORS ayarlarını kontrol edin.",
     "noneAvailable": "Arka plan yok.",
     "imageLoadError": "Girsel yuklenemedi."
   },
   "data": {
     "import": {
-      "confirm": "Veri ice aktarilsin m?? Mevcut girdiler uzerine yazilacak.",
-      "failed": "??e aktarma basarisiz: {error}"
+      "confirm": "Veri içe aktarılsın mı? Mevcut girişlerin üzerine yazılacaktır.",
+      "failed": "İçe aktarma başarısız oldu: {error}"
     },
     "presets": {
       "none": "Preset yok.",
-      "missingFile": "Preset dosyas? eksik.",
-      "fileMissing": "Dosya bulunamad?",
+      "missingFile": "Ön ayar dosyası eksik.",
+      "fileMissing": "Dosya bulunamadı",
       "invalid": "Geiersiz preset",
-      "confirmApply": "{context} \"{name}\" uygulansin m?? Mevcut girdiler uzerine yazilacak.",
+      "confirmApply": "{context} \"{name}\" uygulansın mı? Mevcut girişlerin üzerine yazılacaktır.",
       "loadFailed": "Preset yukleme basarisiz: {error}",
       "loading": "Presetler yukleniyor...",
-      "noneFound": "Preset bulunamad?",
-      "hint": "D??a aktarilm?? JSON'lar? assets/presets/ altina (manifest: assets/data-presets.json) veya yerel olarak assets/user-presets/ altina koyun.",
+      "noneFound": "Ön ayar bulunamadı",
+      "hint": "Dışa aktarılan JSON'ları asset/presets/ (manifest: asset/data-presets.json) altına veya yerel olarak asset/user-presets/ altına yerleştirin.",
       "hintShort": "assets/presets/ veya assets/user-presets/ altina preset ekleyin.",
-      "userPrefix": "Kullanic?: ",
+      "userPrefix": "Kullanıcı:",
       "userApply": "Yerel preset uygula",
       "apply": "Preset uygula",
       "noneSelected": "Preset secilmedi.",
-      "label": "Preset",
-      "defaultLabel": "Preset {index}",
-      "userDefault": "Kullanic? preset {index}",
+      "label": "Ön ayar",
+      "defaultLabel": "Ön ayar {index}",
+      "userDefault": "Kullanıcı ön ayarı {index}",
       "userDescription": "assets/user-presets/ icinden yerel preset",
       "tags": " (Etiketler: {tags})"
     }
@@ -534,9 +549,9 @@
   },
   "agent": {
     "ui": {
-      "title": "Startpage Agent",
-      "fabAria": "Startpage Agent",
-      "fabTitle": "Startpage Agent",
+      "title": "Başlangıç ​​Sayfası Temsilcisi",
+      "fabAria": "Başlangıç ​​Sayfası Temsilcisi",
+      "fabTitle": "Başlangıç ​​Sayfası Temsilcisi",
       "openSettingsAria": "Ajan ayarlarını aç",
       "openSettingsTitle": "Ayarlar",
       "closeAria": "Ajanı kapat",
@@ -545,145 +560,145 @@
       "inputPlaceholder": "Startpage Agent'e mesaj...",
       "send": "Gönder",
       "stop": "Durdur",
-      "hostLabel": "Host",
-      "modelLabel": "Model",
+      "hostLabel": "Ev sahibi",
+      "modelLabel": "Modeli",
       "emptyModel": "-"
     },
     "settings": {
-      "modelLabel": "Model",
+      "modelLabel": "Modeli",
       "loadModels": "Modelleri yükle",
-      "hostLabel": "Ollama host",
+      "hostLabel": "Ollama sunucusu",
       "confirmModeLabel": "Araç onayı",
       "confirmNever": "Asla",
       "confirmAlways": "Her zaman",
-      "confirmRisky": "Only risky (open_url)",
+      "confirmRisky": "Yalnızca riskli (open_url)",
       "maxIterationsLabel": "Ajan döngü limiti",
-      "maxIterationsDecAria": "Decrease loop limit",
-      "maxIterationsIncAria": "Increase loop limit",
-      "maxIterationsHint": "Maximum tool iterations per user message (1-10).",
+      "maxIterationsDecAria": "Döngü sınırını azalt",
+      "maxIterationsIncAria": "Döngü sınırını artır",
+      "maxIterationsHint": "Kullanıcı mesajı başına maksimum araç yinelemesi (1-10).",
       "customPromptLabel": "Özel istem",
-      "customPromptPlaceholder": "Additional instructions for Startpage Agent...",
-      "customPromptHint": "Used in addition to the system prompt for every request.",
+      "customPromptPlaceholder": "Startpage Agent için ek talimatlar...",
+      "customPromptHint": "Her istek için sistem istemine ek olarak kullanılır.",
       "memoryLabel": "Hafıza / Notlar",
-      "memoryPlaceholder": "Persistent notes for the agent...",
-      "clearMemory": "Clear memory",
+      "memoryPlaceholder": "Temsilci için kalıcı notlar...",
+      "clearMemory": "Belleği temizle",
       "actionsLabel": "Eylemler",
       "save": "Kaydet",
       "clearChat": "Sohbeti temizle",
       "capabilitiesLabel": "Yetenekler",
       "availableToolsTitle": "Kullanılabilir araçlar",
-      "noModels": "No models"
+      "noModels": "Model yok"
     },
     "status": {
       "ready": "Hazır",
       "loadingModels": "Modeller yükleniyor...",
       "modelsLoaded": "Modeller yüklendi",
       "noModelsFound": "Model bulunamadı",
-      "loadModelsError": "Error loading models: {error}",
-      "disabledNamed": "Startpage Agent disabled",
-      "ollamaUnavailableDisabled": "Ollama unavailable - Startpage Agent disabled",
+      "loadModelsError": "Modeller yüklenirken hata oluştu: {error}",
+      "disabledNamed": "Başlangıç ​​Sayfası Aracısı devre dışı bırakıldı",
+      "ollamaUnavailableDisabled": "Ollama kullanılamıyor - Başlangıç ​​Sayfası Aracısı devre dışı",
       "disabled": "Ajan devre dışı",
       "chooseModel": "Lütfen model seçin",
-      "streaming": "Streaming...",
+      "streaming": "Akış...",
       "toolDenied": "Araç reddedildi",
-      "toolRunning": "Tool: {tool}",
-      "toolDone": "Tool done: {tool}",
-      "toolError": "Tool error: {tool}",
+      "toolRunning": "Araç: {tool}",
+      "toolDone": "Araç tamamlandı: {tool}",
+      "toolError": "Takım hatası: {tool}",
       "toolLimitReached": "Araç limiti aşıldı",
       "aborted": "İptal edildi",
-      "error": "Error: {error}",
+      "error": "Hata: {error}",
       "settingsSaved": "Ayarlar kaydedildi",
-      "chatCleared": "Chat cleared",
-      "memoryCleared": "Memory cleared",
-      "confirmSaved": "Tool confirm saved",
-      "maxIterationsSaved": "Loop limit saved"
+      "chatCleared": "Sohbet temizlendi",
+      "memoryCleared": "Bellek temizlendi",
+      "confirmSaved": "Araç onayı kaydedildi",
+      "maxIterationsSaved": "Döngü sınırı kaydedildi"
     },
     "confirm": {
-      "execute": "Araç çalıştırılsın mı?\n{tool}\n\n{args}",
+      "execute": "Aracı çalıştır?\n{tool}\n\n{args}",
       "clearChat": "Sohbet geçmişi temizlensin mi?",
-      "clearMemory": "Hafıza temizlensin mi?"
+      "clearMemory": "Bellek temizlensin mi?"
     },
     "messages": {
-      "toolLimitReached": "I reached the tool limit for this message (max. {max} steps)."
+      "toolLimitReached": "Bu mesaj için araç sınırına ulaştım (maks. {max} adım)."
     },
     "errors": {
-      "toolDeniedByUser": "Tool execution denied by user",
-      "unknownToolError": "Unknown tool error",
-      "unknown": "Unknown",
-      "invalidHost": "Invalid host. Only http/https URLs are allowed.",
-      "invalidMemory": "Memory is invalid. Use JSON or \"key: value\" lines."
+      "toolDeniedByUser": "Aracın yürütülmesi kullanıcı tarafından reddedildi",
+      "unknownToolError": "Bilinmeyen alet hatası",
+      "unknown": "Bilinmiyor",
+      "invalidHost": "Geçersiz ana bilgisayar. Yalnızca http/https URL'lerine izin verilir.",
+      "invalidMemory": "Bellek geçersiz. JSON veya \"anahtar: değer\" satırlarını kullanın."
     },
     "systemPrompt": {
-      "name": "Name: Startpage Agent",
-      "embedded": "You are embedded in a local Startpage instance.",
-      "jsonOnly": "If you must take an action, reply ONLY with exactly one JSON line in the format {\"tool\":\"<name>\",\"args\":{...}}.",
-      "noExtra": "No extra words, no Markdown, no code block for tool calls.",
-      "allowedTools": "Use only these tools: {tools}.",
-      "normalReply": "If no action is needed, respond normally.",
-      "askMissing": "If information is missing or a tool call would be invalid, ask follow-up questions as normal text.",
+      "name": "Ad: Başlangıç ​​Sayfası Temsilcisi",
+      "embedded": "Yerel bir Startpage örneğine katıştırılmışsınız.",
+      "jsonOnly": "Bir işlem yapmanız gerekiyorsa YALNIZCA {\"tool\":\"<name>\",\"args\":{...}} biçiminde tam olarak bir JSON satırıyla yanıt verin.",
+      "noExtra": "Fazladan kelime yok, Markdown yok, araç çağrıları için kod bloğu yok.",
+      "allowedTools": "Yalnızca şu araçları kullanın: {tools}.",
+      "normalReply": "Herhangi bir eyleme gerek yoksa normal şekilde yanıt verin.",
+      "askMissing": "Bilgi eksikse veya araç çağrısı geçersiz olacaksa, takip sorularını normal metin olarak sorun.",
       "customPromptSection": "CUSTOM_PROMPT",
       "memorySection": "PERSISTENT_MEMORY"
     },
     "tools": {
       "descriptions": {
-        "open_url": "Open a URL",
-        "search_web": "Search with engine",
-        "set_theme_accent": "Set accent color",
-        "set_theme_mode": "auto/dark/light",
-        "set_card_style": "glass/solid/transparent/minimal",
-        "load_preset": "Load data preset",
-        "set_background_preset": "Set background preset",
-        "toggle_background_rotation": "Toggle rotation",
-        "toggle_widget": "Enable/disable widget",
-        "show_all_widgets": "Enable all widgets",
-        "hide_all_widgets": "Disable all widgets",
-        "add_quicklink": "Add quicklink",
-        "remove_quicklink": "Remove quicklink",
-        "add_todo": "Create todo",
-        "toggle_todo": "Mark todo done/undone",
-        "remove_todo": "Delete todo",
-        "clear_done_todos": "Delete completed todos",
-        "append_note": "Append notes text",
-        "set_notes": "Replace notes",
-        "clear_notes": "Clear notes",
-        "set_search_engine": "Set default engine",
-        "set_locale": "Set language",
-        "set_ui_font": "Set UI font",
-        "set_engine_enabled": "Enable/disable engine",
-        "set_shortcuts": "Set shortcuts",
-        "set_custom_feeds": "Set custom feeds",
-        "set_wordlist_inline": "Set inline wordlist",
-        "set_widget_color": "Set widget color",
-        "set_surface_color": "Set header/search color",
-        "set_weather_cities": "Set weather cities",
-        "set_transport_duration": "Set transport duration",
-        "set_transport_default_name": "Set transport default stop",
-        "set_agent_enabled": "Enable/disable Startpage Agent",
-        "set_agent_host": "Set Startpage Agent host",
-        "set_agent_confirm_mode": "Set Startpage Agent confirm mode",
-        "set_agent_model": "Set Startpage Agent model",
-        "set_agent_custom_prompt": "Set custom prompt",
-        "set_agent_memory": "Replace memory",
-        "append_agent_memory": "Append memory",
-        "clear_agent_memory": "Clear memory",
-        "read_agent_memory": "Read memory",
-        "set_news_source": "Set news source",
-        "refresh_data": "Refresh widgets",
-        "read_widget_data": "Read one widget",
-        "read_all_widgets": "Read all widgets",
-        "read_weather_data": "Read weather data",
-        "read_transport_data": "Read transport data",
-        "read_todo_data": "Read todos",
-        "read_notes_data": "Read notes",
-        "read_tiles_data": "Read favorites",
-        "read_news_data": "Read news",
-        "read_quote_data": "Read quote",
-        "read_recent_data": "Read recent actions",
-        "read_system_data": "Read system status",
-        "set_weather_station_active": "Activate weather station",
-        "add_weather_station": "Add weather station",
-        "remove_weather_station": "Remove weather station",
-        "set_weather_city": "Set/activate city"
+        "open_url": "Bir URL açın",
+        "search_web": "Motorla ara",
+        "set_theme_accent": "Vurgu rengini ayarla",
+        "set_theme_mode": "otomatik/karanlık/açık",
+        "set_card_style": "cam/düz/şeffaf/minimum",
+        "load_preset": "Veri ön ayarını yükle",
+        "set_background_preset": "Arka plan ön ayarını ayarla",
+        "toggle_background_rotation": "Döndürmeyi değiştir",
+        "toggle_widget": "Widget'ı etkinleştirme/devre dışı bırakma",
+        "show_all_widgets": "Tüm widget'ları etkinleştir",
+        "hide_all_widgets": "Tüm widget'ları devre dışı bırak",
+        "add_quicklink": "Hızlı bağlantı ekle",
+        "remove_quicklink": "Hızlı bağlantıyı kaldır",
+        "add_todo": "Yapılacak iş oluştur",
+        "toggle_todo": "Yapılacak işi yapıldı/geri alındı ​​olarak işaretle",
+        "remove_todo": "Yapılacak işi sil",
+        "clear_done_todos": "Tamamlanan işleri sil",
+        "append_note": "Not metnini ekle",
+        "set_notes": "Notları değiştir",
+        "clear_notes": "Notları temizle",
+        "set_search_engine": "Varsayılan motoru ayarla",
+        "set_locale": "Dili ayarla",
+        "set_ui_font": "Kullanıcı arayüzü yazı tipini ayarla",
+        "set_engine_enabled": "Motoru etkinleştirme/devre dışı bırakma",
+        "set_shortcuts": "Kısayolları ayarla",
+        "set_custom_feeds": "Özel yayınları ayarlayın",
+        "set_wordlist_inline": "Satır içi kelime listesini ayarla",
+        "set_widget_color": "Widget rengini ayarla",
+        "set_surface_color": "Başlığı/arama rengini ayarla",
+        "set_weather_cities": "Hava durumu şehirlerini ayarlayın",
+        "set_transport_duration": "Taşıma süresini ayarlayın",
+        "set_transport_default_name": "Aktarım varsayılan durağını ayarla",
+        "set_agent_enabled": "Startpage Agent'ı etkinleştirme/devre dışı bırakma",
+        "set_agent_host": "Startpage Agent ana bilgisayarını ayarla",
+        "set_agent_confirm_mode": "Startpage Agent onaylama modunu ayarlayın",
+        "set_agent_model": "Startpage Agent modelini ayarlayın",
+        "set_agent_custom_prompt": "Özel istemi ayarla",
+        "set_agent_memory": "Belleği değiştirin",
+        "append_agent_memory": "Bellek ekle",
+        "clear_agent_memory": "Belleği temizle",
+        "read_agent_memory": "Belleği oku",
+        "set_news_source": "Haber kaynağını ayarla",
+        "refresh_data": "Widget'ları yenile",
+        "read_widget_data": "Bir widget'ı oku",
+        "read_all_widgets": "Tüm widget'ları oku",
+        "read_weather_data": "Hava durumu verilerini oku",
+        "read_transport_data": "Taşıma verilerini okuyun",
+        "read_todo_data": "Yapılacakları oku",
+        "read_notes_data": "Notları oku",
+        "read_tiles_data": "Favorileri oku",
+        "read_news_data": "Haberleri oku",
+        "read_quote_data": "Alıntıyı oku",
+        "read_recent_data": "Son eylemleri okuyun",
+        "read_system_data": "Sistem durumunu oku",
+        "set_weather_station_active": "Hava durumu istasyonunu etkinleştir",
+        "add_weather_station": "Hava durumu istasyonu ekle",
+        "remove_weather_station": "Hava durumu istasyonunu kaldır",
+        "set_weather_city": "Şehri ayarla/etkinleştir"
       }
     }
   }

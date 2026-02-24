@@ -1710,7 +1710,7 @@
       el.className='tile';
       el.draggable = true;
       const host = (new URL(tile.url)).hostname;
-      const firstLetter = host.split('.')[0][0]?.toUpperCase() || 'Ã‚Â·';
+      const firstLetter = host.split('.')[0][0]?.toUpperCase() || '\u00b7';
       el.innerHTML = `
         <div class="favicon"><img alt="favicon" src="https://www.google.com/s2/favicons?sz=64&domain_url=${encodeURIComponent(tile.url)}"></div>
         <div class="meta">
@@ -1722,7 +1722,7 @@
           <button class="icon-only" title="${escapeHtml(t('common.delete'))}" aria-label="${escapeHtml(t('common.delete'))}">${iconSvg('trash')}</button>
         </div>`;
 
-      // Fallback, wenn Favicon nicht lÃƒÂ¤dt Ã¢â€ â€™ Buchstabe zeigen
+      // Fallback, when favicon fails to load, show first letter
       const img = el.querySelector('.favicon img');
       img.addEventListener('error', ()=>{ const fv=el.querySelector('.favicon'); fv.textContent=firstLetter; img.remove(); });
 
@@ -1817,7 +1817,7 @@
     })
   }
 
-  // ===== Weather (OpenÃ¢â‚¬â€˜Meteo)
+  // ===== Weather (Open-Meteo)
   async function lookupCity(name){
     const lang = getLocaleLang();
     const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(name)}&count=1&language=${encodeURIComponent(lang)}&format=json`);
@@ -1988,8 +1988,8 @@
     const hourlyEl = $('#hourly');
     if(!tempEl || !textEl || !minmaxEl || !hourlyEl) return;
     textEl.textContent = city ? t('weather.loading') : t('weather.prompt');
-    tempEl.textContent = t('weather.tempEmpty', null, 'Ã¢â‚¬â€Ã‚Â°C');
-    minmaxEl.textContent = t('weather.minmaxEmpty', null, 'Ã¢â‚¬â€ / Ã¢â‚¬â€ Ã‚Â°C');
+    tempEl.textContent = t('weather.tempEmpty', null, '\u2014\u00b0C');
+    minmaxEl.textContent = t('weather.minmaxEmpty', null, '\u2014 / \u2014 \u00b0C');
     hourlyEl.innerHTML = '';
     updateWeatherIcon(null);
     if(!city) return;
@@ -2004,11 +2004,11 @@
       const curr = data.current_weather || {};
       updateWeatherIcon(curr.weathercode);
       const tempNow = Math.round(curr.temperature ?? NaN);
-      tempEl.textContent = isFinite(tempNow) ? `${tempNow}Ã‚Â°C` : t('weather.tempEmpty', null, 'Ã¢â‚¬â€Ã‚Â°C');
-      textEl.textContent = `${loc.name} Ã‚Â· ${wmoText(curr.weathercode)}`;
+      tempEl.textContent = isFinite(tempNow) ? `${tempNow}\u00b0C` : t('weather.tempEmpty', null, '\u2014\u00b0C');
+      textEl.textContent = `${loc.name} \u00b7 ${wmoText(curr.weathercode)}`;
       const dmax = Math.round((data.daily?.temperature_2m_max?.[0]) ?? NaN);
       const dmin = Math.round((data.daily?.temperature_2m_min?.[0]) ?? NaN);
-      minmaxEl.textContent = isFinite(dmin)&&isFinite(dmax) ? `${dmin} / ${dmax} Ã‚Â°C` : t('weather.minmaxEmpty', null, 'Ã¢â‚¬â€ / Ã¢â‚¬â€ Ã‚Â°C');
+      minmaxEl.textContent = isFinite(dmin)&&isFinite(dmax) ? `${dmin} / ${dmax} \u00b0C` : t('weather.minmaxEmpty', null, '\u2014 / \u2014 \u00b0C');
 
       const hours = data.hourly?.time || [];
       const temps = data.hourly?.temperature_2m || [];
@@ -2033,7 +2033,7 @@
         chip.className='chip';
         const timeLabel = tDate.toLocaleTimeString([], {hour:'2-digit'});
         const tempVal = Math.round(temps[i]);
-        chip.innerHTML = `<div class="chip-top"><span>${timeLabel}</span><span class="chip-temp">${isFinite(tempVal)? tempVal+'Ã‚Â°' : t('weather.tempEmptyShort', null, 'Ã¢â‚¬â€Ã‚Â°')}</span></div><div class="chip-text">${wmoText(codes[i])}</div>`;
+        chip.innerHTML = `<div class="chip-top"><span>${timeLabel}</span><span class="chip-temp">${isFinite(tempVal)? tempVal+'\u00b0' : t('weather.tempEmptyShort', null, '\u2014\u00b0')}</span></div><div class="chip-text">${wmoText(codes[i])}</div>`;
         container.appendChild(chip);
         added++;
       }
@@ -2041,16 +2041,16 @@
       // Normalize degree symbols / overwrite any garbled text
       try {
         const t2 = Math.round((data.current_weather||{}).temperature ?? NaN);
-        tempEl.textContent = isFinite(t2) ? `${t2}Ã‚Â°C` : '-Ã‚Â°C';
+        tempEl.textContent = isFinite(t2) ? `${t2}\u00b0C` : '-\u00b0C';
         const dmax2 = Math.round((data.daily?.temperature_2m_max?.[0]) ?? NaN);
         const dmin2 = Math.round((data.daily?.temperature_2m_min?.[0]) ?? NaN);
-        minmaxEl.textContent = isFinite(dmin2)&&isFinite(dmax2) ? `${dmin2} / ${dmax2} Ã‚Â°C` : '- / - Ã‚Â°C';
+        minmaxEl.textContent = isFinite(dmin2)&&isFinite(dmax2) ? `${dmin2} / ${dmax2} \u00b0C` : '- / - \u00b0C';
       } catch {}
     } catch(err){
       console.warn(err);
       textEl.textContent = err.message === t('weather.errors.cityMissing') ? t('weather.prompt') : t('weather.errors.loadFailed');
-      tempEl.textContent = t('weather.tempEmpty', null, 'Ã¢â‚¬â€Ã‚Â°C');
-      minmaxEl.textContent = t('weather.minmaxEmpty', null, 'Ã¢â‚¬â€ / Ã¢â‚¬â€ Ã‚Â°C');
+      tempEl.textContent = t('weather.tempEmpty', null, '\u2014\u00b0C');
+      minmaxEl.textContent = t('weather.minmaxEmpty', null, '\u2014 / \u2014 \u00b0C');
       hourlyEl.innerHTML='';
       updateWeatherIcon(null);
     }
@@ -2203,7 +2203,7 @@
     const line = dep && dep.line ? dep.line : null;
     const raw = String((line && (line.product || line.mode || line.name || line.id)) || '').toLowerCase();
     if(!raw) return false;
-    return raw.includes('bus') || raw.includes('tram') || raw.includes('street') || raw.includes('strassen') || raw.includes('straÃƒÅ¸e') || raw.includes('strasse') || raw.includes('u-bahn') || raw.includes('ubahn') || raw.includes('subway') || raw.includes('metro') || raw.includes('stadtbahn') || raw.includes('urban') || raw.includes('s-bahn') || raw.includes('sbahn');
+    return raw.includes('bus') || raw.includes('tram') || raw.includes('street') || raw.includes('strassen') || raw.includes('stra\u00dfe') || raw.includes('strasse') || raw.includes('u-bahn') || raw.includes('ubahn') || raw.includes('subway') || raw.includes('metro') || raw.includes('stadtbahn') || raw.includes('urban') || raw.includes('s-bahn') || raw.includes('sbahn');
   }
   function renderTransportList(items){
     const ul = $('#transportList'); if(!ul) return;
@@ -2403,7 +2403,7 @@
   // ===== Quote of the day (local)
   const QUOTES = [
     'Move fast, refactor often.',
-    'Accessibility isn\'t a feature Ã¢â‚¬â€œ it\'s the default.',
+    'Accessibility isn\'t a feature \u2013 it\'s the default.',
     'Done > Perfect. Iterate.',
     'If it\'s not monitored, it doesn\'t exist.',
     'Good UX is invisible. Bad UX is unforgettable.',
@@ -2457,7 +2457,7 @@
       const ul = $('#newsList'); ul.innerHTML='';
       const max = 8;
       items.forEach((it,i)=>{ if(i<max){
-        const title = it.querySelector('title')?.textContent || 'Ã¢â‚¬â€';
+        const title = it.querySelector('title')?.textContent || '\u2014';
         const link = it.querySelector('link')?.textContent || '#';
         const li = document.createElement('li');
         li.innerHTML = `<a href="${link}" target="_blank" rel="noopener">${title}</a>`;
@@ -2468,6 +2468,58 @@
   }
 
   // ===== Settings UI
+  function buildGuideExternalSourcesHtml(){
+    const label = t('settings.externalSources.label', null, 'External Sources');
+    const title = t('settings.externalSources.title', null, 'External Services and Purpose');
+    const note = t('settings.externalSources.note', null, 'Calls happen only when the related widget/feature is used.');
+    const sources = [
+      {
+        key: 'openMeteoForecast',
+        name: 'Open-Meteo Forecast API',
+        url: 'https://api.open-meteo.com/v1/forecast'
+      },
+      {
+        key: 'openMeteoGeocoding',
+        name: 'Open-Meteo Geocoding API',
+        url: 'https://geocoding-api.open-meteo.com/v1/search'
+      },
+      {
+        key: 'startpageProxy',
+        name: 'Startpage Proxy API',
+        url: 'https://api-startpage.julianverse.de/api'
+      },
+      {
+        key: 'transportRest',
+        name: 'transport.rest',
+        url: 'https://transport.rest/'
+      },
+      {
+        key: 'googleFavicons',
+        name: 'Google Favicon Service',
+        url: 'https://www.google.com/s2/favicons'
+      },
+      {
+        key: 'unsplashImages',
+        name: 'Unsplash Images',
+        url: 'https://images.unsplash.com/'
+      },
+      {
+        key: 'searchEngines',
+        name: 'Configured Search Engines',
+        url: 'https://duckduckgo.com/'
+      },
+      {
+        key: 'ollamaLocal',
+        name: 'Ollama (local)',
+        url: 'http://localhost:11434'
+      }
+    ];
+    const items = sources.map(src=>{
+      const desc = t(`settings.externalSources.items.${src.key}`, null, '');
+      return `<li><a href="${src.url}" target="_blank" rel="noopener">${escapeHtml(src.name)}</a>: ${escapeHtml(desc)}</li>`;
+    }).join('');
+    return `<div class="row"><label>${escapeHtml(label)}</label><div><h5>${escapeHtml(title)}</h5><ul>${items}</ul><div class="muted">${escapeHtml(note)}</div></div></div>`;
+  }
   function openSettings(){
     const modal = $('#settingsModal');
     modal.classList.add('open');
@@ -2667,7 +2719,7 @@
     });
 
     // Build static guide content
-    panelGuide.innerHTML = t('settings.guideHtml');
+    panelGuide.innerHTML = t('settings.guideHtml') + buildGuideExternalSourcesHtml();
 
     tabs.insertAdjacentElement('afterend', panelGeneral);
     panelGeneral.insertAdjacentElement('afterend', panelAi);
@@ -4311,7 +4363,7 @@
     if('hardwareConcurrency' in navigator) info.push(t('system.cpu', { value: navigator.hardwareConcurrency }));
     if('connection' in navigator && navigator.connection){
       const c = navigator.connection;
-      info.push(t('system.network', { downlink: c.downlink ?? t('common.dash', null, 'Ã¢â‚¬â€œ'), type: c.effectiveType ?? t('common.dash', null, 'Ã¢â‚¬â€œ'), saveData: c.saveData ? t('system.saveData') : '' }));
+      info.push(t('system.network', { downlink: c.downlink ?? t('common.dash', null, '\u2013'), type: c.effectiveType ?? t('common.dash', null, '\u2013'), saveData: c.saveData ? t('system.saveData') : '' }));
     }
     $('#systemInfo').innerHTML = info.length? info.join('<br>') : t('system.noData');
   }

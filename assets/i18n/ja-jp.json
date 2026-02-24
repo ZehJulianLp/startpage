@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "Startpage"
+    "title": "スタートページ"
   },
   "common": {
     "link": "リンク",
@@ -12,15 +12,15 @@
     "noMatches": "一致しません",
     "emptyDash": "—",
     "dash": "–",
-    "cancel": "?????",
-    "ok": "OK",
-    "default": "?????"
+    "cancel": "キャンセル",
+    "ok": "わかりました",
+    "default": "デフォルト"
   },
   "header": {
     "themeToggleTitle": "ダーク/ライト",
     "settingsTitle": "設定",
-    "themeAria": "????????",
-    "settingsAria": "?????"
+    "themeAria": "テーマの切り替え",
+    "settingsAria": "設定を開く"
   },
   "search": {
     "placeholder": "検索… (例:!yt ローファイ、!etc ホーム)",
@@ -44,7 +44,7 @@
     },
     "recentShortcut": "ショートカット {shortcut} – {query}",
     "recentSearch": "検索 ({engine}) – {query}",
-    "submitAria": "?????"
+    "submitAria": "検索を開始する"
   },
   "todo": {
     "title": "やるべきこと",
@@ -72,11 +72,11 @@
     "promptUrlNew": "URL（https://…）",
     "resetConfirm": "デフォルトのタイルを復元しますか?",
     "dialog": {
-      "titleLabel": "????",
+      "titleLabel": "タイトル",
       "urlLabel": "URL",
-      "save": "??"
+      "save": "保存"
     },
-    "resetAria": "????????"
+    "resetAria": "タイルをリセットする"
   },
   "weather": {
     "title": "今日の天気",
@@ -139,7 +139,7 @@
     },
     "platform": "プラットフォーム {platform}",
     "cancelled": "キャンセル",
-    "refreshAria": "???????"
+    "refreshAria": "リフレッシュトランスポート"
   },
   "quote": {
     "title": "引用 / オタクナッジ",
@@ -159,8 +159,8 @@
   "recent": {
     "title": "最近の",
     "note": "注: このスタート ページからのアクションのみ (タイルのクリックと検索)。",
-    "clear": "Recent data o sakujyo",
-    "clearConfirm": "Recent data o sakujyo shimasu ka?"
+    "clear": "データのクリア",
+    "clearConfirm": "最近のデータを削除しますか?"
   },
   "system": {
     "title": "システムステータス",
@@ -176,7 +176,7 @@
     "refreshTitle": "リロード",
     "source": "スタートページ プロキシ (CORS プロキシ) 経由の RSS",
     "noItems": "アイテムがありません",
-    "refreshAria": "???????"
+    "refreshAria": "ニュースを更新"
   },
   "footer": {
     "tagline": "ローカルファーストのダッシュボード · ブラウザーのみに保存 (localStorage)"
@@ -191,7 +191,7 @@
       "widgets": "ウィジェット",
       "data": "データ",
       "guide": "ガイド",
-      "ai": "Startpage Agent"
+      "ai": "スタートページエージェント"
     },
     "theme": {
       "label": "テーマ",
@@ -212,7 +212,7 @@
       "wordlistNote": "グローバルワードリスト（assets/wordlist.json）とプリセットワードリストがマージされます。グローバル リストのみを使用する場合は、空のままにします。",
       "shortcutsLabel": "カスタム! ショートカット",
       "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
-      "shortcutsNote": "使用<code>{q}</code>検索フレーズのプレースホルダーとして使用します。それなし<code>{q}</code>、<code>?q=...</code>が追加されます。",
+      "shortcutsNote": "<code>{q}</code> を検索フレーズのプレースホルダーとして使用します。 <code>{q}</code> がない場合、<code>?q=...</code> が追加されます。",
       "feedsLabel": "カスタム RSS フィード",
       "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
       "feedsNote": "JSON: 名前 - フィード URL。このリストはデフォルトのフィードとマージされます。",
@@ -237,12 +237,12 @@
       "clockColorNote": "ヘッダーの背景を設定します (空 = スタイルのデフォルト)。",
       "searchColorNote": "検索領域の色 (空 = スタイルのデフォルト)。",
       "widgetColorsLabel": "ウィジェットの色",
-      "weatherCitiesLabel": "Weather cities",
-      "weatherCitiesPlaceholder": "One city per line, e.g. Hanover\nBerlin\nHamburg",
-      "weatherCitiesNote": "One city per line. The first entry becomes active if the previous active city is not included.",
-      "recentEntriesLabel": "Recent entries",
-      "recentEntriesDecAria": "Recent entries o herasu",
-      "recentEntriesIncAria": "Recent entries o fuyasu"
+      "weatherCitiesLabel": "気象都市",
+      "weatherCitiesPlaceholder": "1 行に 1 つの都市、例:ハノーバー\nベルリン\nハンブルク",
+      "weatherCitiesNote": "1 行に 1 つの都市。以前のアクティブな都市が含まれていない場合、最初のエントリがアクティブになります。",
+      "recentEntriesLabel": "最近のエントリー",
+      "recentEntriesDecAria": "最近のエントリを減らす",
+      "recentEntriesIncAria": "最近のエントリーを増やす"
     },
     "data": {
       "label": "データ",
@@ -262,22 +262,37 @@
       "auto": "自動(システム)"
     },
     "font": {
-      "label": "????",
-      "searchPlaceholder": "???????...",
-      "loadLocal": "?????????????",
-      "systemDefault": "??????",
-      "noResults": "??????????????",
-      "note": "????????????????????????????????????????????????",
-      "unsupported": "????????? Local Font Access (queryLocalFonts) ??????????",
-      "permissionDenied": "??????????????????????????????",
-      "empty": "???????????????????",
-      "loadFailed": "???????????????????: {error}"
+      "label": "フォント",
+      "searchPlaceholder": "フォントを検索...",
+      "loadLocal": "システムフォントをロードする",
+      "systemDefault": "システムのデフォルト",
+      "noResults": "一致するフォントがありません",
+      "note": "ローカル システム フォント (利用可能な場合) を表示します。それ以外の場合は、検出されたフォールバック リストを表示します。",
+      "unsupported": "お使いのブラウザはローカル フォント アクセス (queryLocalFonts) をサポートしていません。",
+      "permissionDenied": "ローカル フォントへのアクセスが拒否またはブロックされました。",
+      "empty": "ローカル フォントは返されませんでした。",
+      "loadFailed": "ローカル フォントを読み込めませんでした: {error}"
     },
     "guideHtml": "<div class=\"row\"><label>ユーザーガイド</label><div><h5>概要</h5><ul><li>検索、お気に入り、To-Do、メモ、天気、ニュースを備えたスタートページです。</li><li>データはすべてローカル保存（localStorage）です。</li></ul><h5>ショートカット</h5><ul><li>Ctrl/Cmd+K: コマンドパレットを開く</li><li>1-9: 先頭9件のお気に入りを開く（入力中を除く）</li><li>/ : 検索にフォーカス（パレットからも可）</li><li>検索欄でEnter: 検索を実行</li><li>ESC: モーダルを閉じる</li></ul><h5>検索と補完</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>カスタムショートカット: 設定にJSONで記述し、{q}をプレースホルダーとして使用</li><li>候補: Bang、ショートカット、最近の検索、単語リスト（グローバル + プリセット）</li><li>Tabで候補確定、Enterで検索開始</li></ul><h5>タイル</h5><ul><li>ドラッグ&ドロップで並び替え、クリックで開く</li><li>+ タイル: お気に入りを追加</li><li>リセット: 既定のお気に入りを復元</li></ul><h5>背景</h5><ul><li>プリセット、アップロード、コレクション、ローテーション（時間/テーマ/間隔）</li><li>アクセント色は現在の背景から抽出されます</li></ul><h5>データ</h5><ul><li>JSONでエクスポート/インポート</li><li>データプリセットを読み込み（assets/presets/*.json）</li></ul><h5>Startpage Agent</h5><ul><li>ローカルOllamaと統合されたAIチャット（host/modelは設定で変更）。</li><li>ストリーミング応答、停止（ボタン/ESC）、履歴保持、Markdownに対応。</li><li>エージェントツールはウィジェットや設定の読み取り/変更が可能（確認モードによる）。</li></ul></div></div>",
     "general": {
-      "agentLabel": "Startpage Agent",
+      "agentLabel": "スタートページエージェント",
       "agentEnabled": "エージェントを有効化",
       "agentHint": "無効の場合、Ollamaには送信されません。"
+    },
+    "externalSources": {
+      "label": "外部ソース",
+      "title": "外部サービスと目的",
+      "note": "呼び出しは、関連するウィジェット/機能が使用されている場合にのみ発生します。",
+      "items": {
+        "openMeteoForecast": "選択した場所の天気予報データ。",
+        "openMeteoGeocoding": "天気ウィジェットの都市/場所の検索。",
+        "startpageProxy": "トランスポートおよび RSS/ニュース リクエストのプロキシ。",
+        "transportRest": "プロキシ経由で使用される公共交通機関のバックエンド。",
+        "googleFavicons": "お気に入りのタイルのファビコン。",
+        "unsplashImages": "背景画像 (選択した場合)。",
+        "searchEngines": "検索の開始時に開かれる外部検索ターゲット。",
+        "ollamaLocal": "Startpage Agent のローカル AI エンドポイント (有効な場合)。"
+      }
     }
   },
   "onboarding": {
@@ -510,7 +525,7 @@
       "missingFile": "プリセットファイルがありません。",
       "fileMissing": "ファイルが見つかりません",
       "invalid": "無効なプリセット",
-      "confirmApply": "{context}「{name}」を適用しますか?既存のエントリは上書きされます。",
+      "confirmApply": "{context} \"{name}\" を適用しますか?既存のエントリは上書きされます。",
       "loadFailed": "プリセットのロードに失敗しました: {error}",
       "loading": "プリセットをロード中...",
       "noneFound": "プリセットが見つかりません",
@@ -528,15 +543,15 @@
     }
   },
   "dialogs": {
-    "alertTitle": "??",
-    "confirmTitle": "??",
-    "promptTitle": "??"
+    "alertTitle": "知らせ",
+    "confirmTitle": "確認する",
+    "promptTitle": "入力"
   },
   "agent": {
     "ui": {
-      "title": "Startpage Agent",
-      "fabAria": "Startpage Agent",
-      "fabTitle": "Startpage Agent",
+      "title": "スタートページエージェント",
+      "fabAria": "スタートページエージェント",
+      "fabTitle": "スタートページエージェント",
       "openSettingsAria": "エージェント設定を開く",
       "openSettingsTitle": "設定",
       "closeAria": "エージェントを閉じる",
@@ -545,145 +560,145 @@
       "inputPlaceholder": "Startpage Agentへのメッセージ...",
       "send": "送信",
       "stop": "停止",
-      "hostLabel": "Host",
+      "hostLabel": "ホスト",
       "modelLabel": "モデル",
       "emptyModel": "-"
     },
     "settings": {
       "modelLabel": "モデル",
       "loadModels": "モデルを読み込む",
-      "hostLabel": "Ollama host",
+      "hostLabel": "オラマのホスト",
       "confirmModeLabel": "ツール確認",
       "confirmNever": "しない",
       "confirmAlways": "常に",
-      "confirmRisky": "Only risky (open_url)",
+      "confirmRisky": "危険のみ (open_url)",
       "maxIterationsLabel": "エージェントループ上限",
-      "maxIterationsDecAria": "Decrease loop limit",
-      "maxIterationsIncAria": "Increase loop limit",
-      "maxIterationsHint": "Maximum tool iterations per user message (1-10).",
+      "maxIterationsDecAria": "ループ制限を下げる",
+      "maxIterationsIncAria": "ループ制限を増やす",
+      "maxIterationsHint": "ユーザー メッセージごとのツールの最大反復数 (1 ～ 10)。",
       "customPromptLabel": "カスタムプロンプト",
-      "customPromptPlaceholder": "Additional instructions for Startpage Agent...",
-      "customPromptHint": "Used in addition to the system prompt for every request.",
+      "customPromptPlaceholder": "スタートページ エージェントの追加手順...",
+      "customPromptHint": "すべてのリクエストのシステム プロンプトに加えて使用されます。",
       "memoryLabel": "メモリ / メモ",
-      "memoryPlaceholder": "Persistent notes for the agent...",
-      "clearMemory": "Clear memory",
+      "memoryPlaceholder": "エージェント向けの永続的なメモ...",
+      "clearMemory": "メモリをクリアする",
       "actionsLabel": "操作",
       "save": "保存",
       "clearChat": "チャットを消去",
       "capabilitiesLabel": "機能",
       "availableToolsTitle": "使用可能なツール",
-      "noModels": "No models"
+      "noModels": "モデルがありません"
     },
     "status": {
       "ready": "準備完了",
       "loadingModels": "モデルを読み込み中...",
       "modelsLoaded": "モデルを読み込みました",
       "noModelsFound": "モデルが見つかりません",
-      "loadModelsError": "Error loading models: {error}",
-      "disabledNamed": "Startpage Agent disabled",
-      "ollamaUnavailableDisabled": "Ollama unavailable - Startpage Agent disabled",
+      "loadModelsError": "モデルの読み込みエラー: {error}",
+      "disabledNamed": "スタートページエージェントが無効になっています",
+      "ollamaUnavailableDisabled": "Ollama が利用できません - Startpage エージェントが無効になっています",
       "disabled": "エージェントは無効です",
       "chooseModel": "モデルを選択してください",
-      "streaming": "Streaming...",
+      "streaming": "ストリーミング中...",
       "toolDenied": "ツールは拒否されました",
-      "toolRunning": "Tool: {tool}",
-      "toolDone": "Tool done: {tool}",
-      "toolError": "Tool error: {tool}",
+      "toolRunning": "ツール: {tool}",
+      "toolDone": "完了したツール: {tool}",
+      "toolError": "ツールエラー: {tool}",
       "toolLimitReached": "ツール上限に到達",
       "aborted": "中止しました",
-      "error": "Error: {error}",
+      "error": "エラー: {error}",
       "settingsSaved": "設定を保存しました",
-      "chatCleared": "Chat cleared",
-      "memoryCleared": "Memory cleared",
-      "confirmSaved": "Tool confirm saved",
-      "maxIterationsSaved": "Loop limit saved"
+      "chatCleared": "チャットがクリアされました",
+      "memoryCleared": "メモリがクリアされました",
+      "confirmSaved": "ツール確認保存",
+      "maxIterationsSaved": "ループ制限が保存されました"
     },
     "confirm": {
       "execute": "ツールを実行しますか?\n{tool}\n\n{args}",
       "clearChat": "チャット履歴を消去しますか?",
-      "clearMemory": "メモリを消去しますか?"
+      "clearMemory": "記憶が鮮明ですか？"
     },
     "messages": {
-      "toolLimitReached": "I reached the tool limit for this message (max. {max} steps)."
+      "toolLimitReached": "このメッセージのツール制限 (最大 {max} ステップ) に達しました。"
     },
     "errors": {
-      "toolDeniedByUser": "Tool execution denied by user",
-      "unknownToolError": "Unknown tool error",
-      "unknown": "Unknown",
-      "invalidHost": "Invalid host. Only http/https URLs are allowed.",
-      "invalidMemory": "Memory is invalid. Use JSON or \"key: value\" lines."
+      "toolDeniedByUser": "ツールの実行がユーザーによって拒否されました",
+      "unknownToolError": "不明なツールエラー",
+      "unknown": "未知",
+      "invalidHost": "無効なホストです。 http/https URL のみが許可されます。",
+      "invalidMemory": "メモリが無効です。 JSON または「key:value」行を使用します。"
     },
     "systemPrompt": {
-      "name": "Name: Startpage Agent",
-      "embedded": "You are embedded in a local Startpage instance.",
-      "jsonOnly": "If you must take an action, reply ONLY with exactly one JSON line in the format {\"tool\":\"<name>\",\"args\":{...}}.",
-      "noExtra": "No extra words, no Markdown, no code block for tool calls.",
-      "allowedTools": "Use only these tools: {tools}.",
-      "normalReply": "If no action is needed, respond normally.",
-      "askMissing": "If information is missing or a tool call would be invalid, ask follow-up questions as normal text.",
-      "customPromptSection": "CUSTOM_PROMPT",
+      "name": "名前: スタートページエージェント",
+      "embedded": "あなたはローカルのスタートページインスタンスに埋め込まれています。",
+      "jsonOnly": "アクションを実行する必要がある場合は、{\"tool\":\"<name>\",\"args\":{...}} 形式の JSON 行を 1 行だけ返信してください。",
+      "noExtra": "余分な単語、マークダウン、ツール呼び出しのコード ブロックはありません。",
+      "allowedTools": "次のツールのみを使用してください: {tools}。",
+      "normalReply": "アクションが必要ない場合は、通常どおりに応答してください。",
+      "askMissing": "情報が不足している場合、またはツール呼び出しが無効になる場合は、通常のテキストとしてフォローアップの質問をしてください。",
+      "customPromptSection": "カスタムプロンプト",
       "memorySection": "PERSISTENT_MEMORY"
     },
     "tools": {
       "descriptions": {
-        "open_url": "Open a URL",
-        "search_web": "Search with engine",
-        "set_theme_accent": "Set accent color",
-        "set_theme_mode": "auto/dark/light",
-        "set_card_style": "glass/solid/transparent/minimal",
-        "load_preset": "Load data preset",
-        "set_background_preset": "Set background preset",
-        "toggle_background_rotation": "Toggle rotation",
-        "toggle_widget": "Enable/disable widget",
-        "show_all_widgets": "Enable all widgets",
-        "hide_all_widgets": "Disable all widgets",
-        "add_quicklink": "Add quicklink",
-        "remove_quicklink": "Remove quicklink",
-        "add_todo": "Create todo",
-        "toggle_todo": "Mark todo done/undone",
-        "remove_todo": "Delete todo",
-        "clear_done_todos": "Delete completed todos",
-        "append_note": "Append notes text",
-        "set_notes": "Replace notes",
-        "clear_notes": "Clear notes",
-        "set_search_engine": "Set default engine",
-        "set_locale": "Set language",
-        "set_ui_font": "Set UI font",
-        "set_engine_enabled": "Enable/disable engine",
-        "set_shortcuts": "Set shortcuts",
-        "set_custom_feeds": "Set custom feeds",
-        "set_wordlist_inline": "Set inline wordlist",
-        "set_widget_color": "Set widget color",
-        "set_surface_color": "Set header/search color",
-        "set_weather_cities": "Set weather cities",
-        "set_transport_duration": "Set transport duration",
-        "set_transport_default_name": "Set transport default stop",
-        "set_agent_enabled": "Enable/disable Startpage Agent",
-        "set_agent_host": "Set Startpage Agent host",
-        "set_agent_confirm_mode": "Set Startpage Agent confirm mode",
-        "set_agent_model": "Set Startpage Agent model",
-        "set_agent_custom_prompt": "Set custom prompt",
-        "set_agent_memory": "Replace memory",
-        "append_agent_memory": "Append memory",
-        "clear_agent_memory": "Clear memory",
-        "read_agent_memory": "Read memory",
-        "set_news_source": "Set news source",
-        "refresh_data": "Refresh widgets",
-        "read_widget_data": "Read one widget",
-        "read_all_widgets": "Read all widgets",
-        "read_weather_data": "Read weather data",
-        "read_transport_data": "Read transport data",
-        "read_todo_data": "Read todos",
-        "read_notes_data": "Read notes",
-        "read_tiles_data": "Read favorites",
-        "read_news_data": "Read news",
-        "read_quote_data": "Read quote",
-        "read_recent_data": "Read recent actions",
-        "read_system_data": "Read system status",
-        "set_weather_station_active": "Activate weather station",
-        "add_weather_station": "Add weather station",
-        "remove_weather_station": "Remove weather station",
-        "set_weather_city": "Set/activate city"
+        "open_url": "URLを開く",
+        "search_web": "エンジンで検索",
+        "set_theme_accent": "アクセントカラーを設定する",
+        "set_theme_mode": "オート/ダーク/ライト",
+        "set_card_style": "ガラス/固体/透明/ミニマル",
+        "load_preset": "データプリセットをロードする",
+        "set_background_preset": "背景のプリセットを設定する",
+        "toggle_background_rotation": "回転の切り替え",
+        "toggle_widget": "ウィジェットの有効化/無効化",
+        "show_all_widgets": "すべてのウィジェットを有効にする",
+        "hide_all_widgets": "すべてのウィジェットを無効にする",
+        "add_quicklink": "クイックリンクを追加",
+        "remove_quicklink": "クイックリンクを削除する",
+        "add_todo": "Todoを作成する",
+        "toggle_todo": "Todo を完了/元に戻すマークを付ける",
+        "remove_todo": "Todoを削除する",
+        "clear_done_todos": "完了したTodoを削除する",
+        "append_note": "メモのテキストを追加する",
+        "set_notes": "メモを置き換える",
+        "clear_notes": "クリアノート",
+        "set_search_engine": "デフォルトのエンジンを設定する",
+        "set_locale": "言語を設定する",
+        "set_ui_font": "UIフォントを設定する",
+        "set_engine_enabled": "エンジンの有効化/無効化",
+        "set_shortcuts": "ショートカットを設定する",
+        "set_custom_feeds": "カスタムフィードを設定する",
+        "set_wordlist_inline": "インライン単語リストを設定する",
+        "set_widget_color": "ウィジェットの色の設定",
+        "set_surface_color": "ヘッダー/検索色の設定",
+        "set_weather_cities": "気象都市を設定する",
+        "set_transport_duration": "転送時間を設定する",
+        "set_transport_default_name": "トランスポートのデフォルト停止を設定する",
+        "set_agent_enabled": "スタートページエージェントを有効/無効にする",
+        "set_agent_host": "スタートページエージェントホストの設定",
+        "set_agent_confirm_mode": "スタートページエージェント確認モードを設定する",
+        "set_agent_model": "スタートページエージェントモデルの設定",
+        "set_agent_custom_prompt": "カスタムプロンプトを設定する",
+        "set_agent_memory": "メモリを交換する",
+        "append_agent_memory": "メモリの追加",
+        "clear_agent_memory": "メモリをクリアする",
+        "read_agent_memory": "メモリの読み取り",
+        "set_news_source": "ニュースソースを設定する",
+        "refresh_data": "ウィジェットを更新する",
+        "read_widget_data": "1 つのウィジェットを読む",
+        "read_all_widgets": "すべてのウィジェットを読む",
+        "read_weather_data": "気象データの読み取り",
+        "read_transport_data": "トランスポートデータの読み取り",
+        "read_todo_data": "Todoを読む",
+        "read_notes_data": "メモを読む",
+        "read_tiles_data": "お気に入りを読む",
+        "read_news_data": "ニュースを読む",
+        "read_quote_data": "引用を読む",
+        "read_recent_data": "最近のアクションを読む",
+        "read_system_data": "システムステータスの読み取り",
+        "set_weather_station_active": "気象ステーションをアクティブにする",
+        "add_weather_station": "気象観測所を追加",
+        "remove_weather_station": "気象観測所を削除する",
+        "set_weather_city": "都市の設定/有効化"
       }
     }
   }
