@@ -37,6 +37,14 @@
   font-display: swap;
   src: url("assets/fonts/Inter-700.ttf") format("truetype");
 }
+
+@font-face {
+  font-family: "SF Hollywood Hills";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/SF Hollywood Hills.ttf") format("truetype");
+}
     :root {
       --font-ui: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
       --bg: #0f1220;
