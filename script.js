@@ -126,6 +126,7 @@
   }
 
   function getFallbackFontFamilies(){
+    const bundledCandidates = ['Inter', 'SF Hollywood Hills'];
     const fallbackCandidates = [
       'Arial', 'Arial Nova', 'Verdana', 'Tahoma', 'Trebuchet MS', 'Helvetica', 'Helvetica Neue',
       'Segoe UI', 'Segoe UI Variable', 'Calibri', 'Cambria', 'Candara', 'Corbel', 'Constantia',
@@ -136,7 +137,10 @@
       'JetBrains Mono', 'Source Sans Pro', 'Source Serif Pro', 'Source Code Pro',
       'Comic Sans MS', 'Impact', 'Lucida Sans Unicode', 'Lucida Console', 'Courier New'
     ];
-    return detectInstalledFonts(fallbackCandidates)
+    return Array.from(new Set([
+      ...bundledCandidates,
+      ...detectInstalledFonts(fallbackCandidates)
+    ]))
       .sort((a,b)=> a.localeCompare(b, undefined, { sensitivity: 'base' }));
   }
 
@@ -198,6 +202,7 @@
       if(!families.size){
         getFallbackFontFamilies().forEach(name=> families.add(name));
       }
+      ['Inter', 'SF Hollywood Hills'].forEach(name=> families.add(name));
       const sorted = Array.from(families).sort((a,b)=> a.localeCompare(b, undefined, { sensitivity: 'base' }));
       uiFontListCache = sorted;
       uiFontListSource = loadedFromLocalApi ? 'queryLocalFonts' : 'fallback';
