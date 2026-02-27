@@ -1814,9 +1814,31 @@
     const raw = store.get('recent', []);
     return Array.isArray(raw) ? raw : [];
   }
+  function normalizeRecentUrl(url){
+    const raw = String(url || '').trim();
+    if(!raw) return '';
+    try {
+      return new URL(raw, window.location.href).href;
+    } catch {
+      return raw;
+    }
+  }
+  function dedupeRecentEntries(list){
+    if(!Array.isArray(list)) return [];
+    const out = [];
+    const seenUrls = new Set();
+    list.forEach(entry=>{
+      if(!entry || typeof entry !== 'object') return;
+      const normalizedUrl = normalizeRecentUrl(entry.url);
+      if(!normalizedUrl || seenUrls.has(normalizedUrl)) return;
+      seenUrls.add(normalizedUrl);
+      out.push({ ...entry, url: normalizedUrl });
+    });
+    return out;
+  }
   function persistRecentEntries(list){
     const max = getRecentMax();
-    const trimmed = list.slice(0, max);
+    const trimmed = dedupeRecentEntries(list).slice(0, max);
     store.set('recent', trimmed);
     return trimmed;
   }
