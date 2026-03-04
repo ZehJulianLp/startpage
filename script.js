@@ -1321,6 +1321,12 @@
     };
   }
 
+  function getPresetDescription(preset){
+    if(!preset) return '';
+    const fallback = preset.description || (preset.source === 'user' ? t('data.presets.userApply') : t('data.presets.apply'));
+    return preset.descriptionKey ? t(preset.descriptionKey, null, fallback) : fallback;
+  }
+
   async function loadPresetManifest(url, source){
     try{
       const res = await fetch(url);
@@ -1436,7 +1442,7 @@
       const tags = Array.isArray(current.tags) ? [...current.tags] : [];
       if(current.source === 'user' && !tags.includes('user')) tags.unshift('user');
       const tagText = tags.length ? t('data.presets.tags', { tags: tags.join(', ') }) : '';
-      const description = current.description || (current.source === 'user' ? t('data.presets.userApply') : t('data.presets.apply'));
+      const description = getPresetDescription(current);
       meta.textContent = description + tagText;
       select.value = current.id || select.value;
     } else {
@@ -2859,7 +2865,7 @@
     const presets = await loadDataPresets();
     const current = presets.find(p => String(p.id||'') === select.value) || presets[0];
     if(current){
-      meta.textContent = current.description || t('onboarding.preset.meta');
+      meta.textContent = getPresetDescription(current) || t('onboarding.preset.meta');
     } else {
       meta.textContent = t('onboarding.preset.optional');
     }
