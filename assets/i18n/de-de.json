@@ -539,7 +539,39 @@
       "defaultLabel": "Voreinstellung {index}",
       "userDefault": "User Preset {index}",
       "userDescription": "Lokales Preset aus assets/user-presets/",
-      "tags": "(Tags: {tags})"
+      "tags": "(Tags: {tags})",
+      "catalog": {
+        "starter": {
+          "description": "Reset auf das Standard-Setup mit Default-Kacheln und neutralen Farben."
+        },
+        "coding": {
+          "description": "Dark-Setup mit Dev-Kacheln, Tech-Feeds und Neon-City-Hintergrund."
+        },
+        "gaming": {
+          "description": "Gaming- und Streaming-Favoriten, Game-Feeds und ein Neon-Look."
+        },
+        "minimal": {
+          "description": "Helles oder automatisches Theme, weiche minimale Transparenz, Fokus auf Suche und Notizen."
+        },
+        "productivity": {
+          "description": "Klarer Solid-Stil mit Todos, Notizen, System-Widgets, Office- und Dev-Kacheln sowie Tech- und News-Feeds."
+        },
+        "reading": {
+          "description": "Lesemodus mit weichem Minimalstil, Pocket-, Kindle- und Feedly-Kacheln sowie newslastigen Feeds."
+        },
+        "art": {
+          "description": "Visueller Stil mit Art- und Foto-Links, rotierenden Hintergründen und satten Farben."
+        },
+        "privacy": {
+          "description": "Privacy-first mit DDG als Standard, schlanken Kacheln, keinen News und einem dunklen transparenten Stil."
+        },
+        "student": {
+          "description": "Campus- und Study-Links, helles Kartenlayout, Notion-, Overleaf- und Moodle-Kacheln sowie Uni- und Tech-Feeds."
+        },
+        "finance": {
+          "description": "Markt- und Portfolio-Kacheln, Finanz-Feeds und ein dunkler Stil mit prägnanten Akzenten."
+        }
+      }
     }
   },
   "dialogs": {

@@ -539,7 +539,39 @@
       "defaultLabel": "Preset {index}",
       "userDefault": "User preset {index}",
       "userDescription": "Local preset from assets/user-presets/",
-      "tags": " (Tags: {tags})"
+      "tags": " (Tags: {tags})",
+      "catalog": {
+        "starter": {
+          "description": "Reset to the default setup with default tiles and neutral colors."
+        },
+        "coding": {
+          "description": "Dark setup with developer tiles, tech feeds, and the Neon City background."
+        },
+        "gaming": {
+          "description": "Gaming and streaming favorites, game feeds, and a neon look."
+        },
+        "minimal": {
+          "description": "Light or auto theme, soft minimal transparency, focused on search and notes."
+        },
+        "productivity": {
+          "description": "Clean solid style with todos, notes, system widgets, office and dev tiles, plus tech and news feeds."
+        },
+        "reading": {
+          "description": "Reading mode with a soft minimal style, Pocket, Kindle, and Feedly tiles, plus news-heavy feeds."
+        },
+        "art": {
+          "description": "Visual style with art and photo links, rotating backgrounds, and rich colors."
+        },
+        "privacy": {
+          "description": "Privacy-first with DDG as default, lean tiles, no news, and a dark transparent style."
+        },
+        "student": {
+          "description": "Campus and study links, a light card layout, Notion, Overleaf, and Moodle tiles, plus university and tech feeds."
+        },
+        "finance": {
+          "description": "Market and portfolio tiles, finance feeds, and a dark style with sharp accents."
+        }
+      }
     }
   },
   "dialogs": {
