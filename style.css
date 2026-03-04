@@ -784,6 +784,10 @@
     }
     .ollama-guide {
       scroll-margin-top: 18px;
+      padding: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.02);
     }
     .ollama-guide-header {
       display: flex;
@@ -792,19 +796,6 @@
       justify-content: space-between;
       flex-wrap: wrap;
       margin-bottom: 12px;
-    }
-    .ollama-guide-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-size: 11px;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      color: var(--muted);
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.03);
     }
     .ollama-guide-status {
       min-width: 240px;
@@ -826,26 +817,29 @@
       border-color: rgba(255,255,255,0.14);
       box-shadow: none;
     }
-    .ollama-os summary {
+    .ollama-os-toggle {
+      width: 100%;
+      background: transparent;
+      border: 0;
+      color: inherit;
       cursor: pointer;
-      list-style: none;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
       padding: 12px 14px;
       font-weight: 500;
+      text-align: left;
     }
-    .ollama-os summary::-webkit-details-marker {
-      display: none;
-    }
-    .ollama-os summary::after {
+    .ollama-os-toggle::after {
       content: '+';
       font-size: 18px;
       color: var(--muted);
+      transition: transform 220ms var(--anim-ease), opacity 160ms ease;
     }
-    .ollama-os[open] summary::after {
+    .ollama-os.is-open .ollama-os-toggle::after {
       content: '-';
+      transform: rotate(180deg);
     }
     .ollama-os-meta {
       display: inline-flex;
@@ -856,10 +850,23 @@
       color: var(--muted);
     }
     .ollama-os-body {
-      padding: 0 14px 14px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 280ms var(--anim-ease);
+    }
+    .ollama-os-body-inner {
+      padding: 0 14px 0;
       display: flex;
       flex-direction: column;
       gap: 12px;
+      opacity: 0;
+      transform: translateY(-6px);
+      transition: opacity 180ms ease, transform 220ms var(--anim-ease), padding 220ms var(--anim-ease);
+    }
+    .ollama-os.is-open .ollama-os-body-inner {
+      padding: 0 14px 14px;
+      opacity: 1;
+      transform: translateY(0);
     }
     .ollama-step h6 {
       margin-bottom: 8px;
@@ -884,15 +891,8 @@
     .ollama-guide li {
       line-height: 1.45;
     }
-    .ollama-guide > .ollama-guide-header,
     .ollama-guide > .ollama-guide-os-list {
-      padding: 14px;
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 14px;
-      background: rgba(255,255,255,0.02);
-    }
-    .ollama-guide > .ollama-guide-os-list {
-      padding: 10px;
+      padding: 10px 0 0;
     }
     .settings-guide-card > .row {
       margin-bottom: 0;
