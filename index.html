@@ -189,10 +189,15 @@
               <span data-i18n="settings.general.agentEnabled">Agent aktiv</span>
             </label>
             <div class="muted" data-i18n="settings.general.agentHint">Wenn deaktiviert, wird nichts an Ollama gesendet.</div>
+            <button class="btn" type="button" id="openOllamaGuideFromGeneral" data-i18n="settings.general.agentGuideButton">Ollama Setup Guide</button>
           </div>
         </div>
       </div>
       <div id="tab-ai" class="tab-panel" role="tabpanel">
+        <div class="row">
+          <label data-i18n="agent.settings.localSetupLabel">Lokales Setup</label>
+          <div class="muted" data-i18n="agent.settings.localSetupHint">Der Startpage Agent laeuft lokal ueber Ollama auf deinem Rechner. Host und Modell unten konfigurieren.</div>
+        </div>
         <div class="row">
           <label for="startpageAgentModel" data-i18n="agent.settings.modelLabel">Modell</label>
           <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">

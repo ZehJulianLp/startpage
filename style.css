@@ -732,6 +732,187 @@
     }
     #settingsModal .tab-panel.active { display: block; }
     #settingsModal .tab-panel > :last-child { margin-bottom: 0; }
+    .settings-guide-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .settings-guide-card {
+      padding: 0;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
+    .settings-guide-card h5,
+    .settings-guide-card h6 {
+      margin: 0 0 10px;
+    }
+    .settings-guide-card p,
+    .settings-guide-card ul,
+    .settings-guide-card ol {
+      margin: 0 0 12px;
+    }
+    .settings-guide-card ul,
+    .settings-guide-card ol {
+      padding-left: 20px;
+    }
+    .settings-guide-card code,
+    .settings-guide-card pre {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    .settings-guide-card pre {
+      margin: 0;
+      padding: 12px 14px;
+      overflow: auto;
+      border-radius: 12px;
+      background: rgba(0,0,0,0.28);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .settings-guide-card a {
+      color: var(--accent-2);
+    }
+    .settings-guide-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 10px 0;
+    }
+    .settings-guide-note {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .ollama-guide {
+      scroll-margin-top: 18px;
+    }
+    .ollama-guide-header {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .ollama-guide-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+    }
+    .ollama-guide-status {
+      min-width: 240px;
+      margin: 0;
+    }
+    .ollama-guide-os-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .ollama-os {
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.02);
+      overflow: hidden;
+    }
+    .ollama-os.is-detected {
+      border-color: rgba(255,255,255,0.14);
+      box-shadow: none;
+    }
+    .ollama-os summary {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      font-weight: 500;
+    }
+    .ollama-os summary::-webkit-details-marker {
+      display: none;
+    }
+    .ollama-os summary::after {
+      content: '+';
+      font-size: 18px;
+      color: var(--muted);
+    }
+    .ollama-os[open] summary::after {
+      content: '-';
+    }
+    .ollama-os-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .ollama-os-body {
+      padding: 0 14px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .ollama-step h6 {
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+    .ollama-code-block {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .ollama-code-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .ollama-guide .settings-guide-note,
+    .ollama-guide p,
+    .ollama-guide li {
+      line-height: 1.45;
+    }
+    .ollama-guide > .ollama-guide-header,
+    .ollama-guide > .ollama-guide-os-list {
+      padding: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.02);
+    }
+    .ollama-guide > .ollama-guide-os-list {
+      padding: 10px;
+    }
+    .settings-guide-card > .row {
+      margin-bottom: 0;
+      padding: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.02);
+    }
+    @media (max-width: 780px) {
+      .ollama-guide-header {
+        flex-direction: column;
+      }
+      .ollama-guide-status {
+        min-width: 0;
+        width: 100%;
+      }
+      .settings-guide-card > .row {
+        grid-template-columns: 1fr;
+      }
+    }
     @media (max-width: 780px) {
       #settingsModal .sheet {
         height: min(90vh, 900px);

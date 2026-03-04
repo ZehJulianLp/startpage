@@ -277,7 +277,64 @@
     "general": {
       "agentLabel": "Startpage-Agent",
       "agentEnabled": "Agent aktiv",
-      "agentHint": "Wenn deaktiviert, wird nichts an Ollama gesendet."
+      "agentHint": "Wenn deaktiviert, wird nichts an Ollama gesendet.",
+      "agentGuideButton": "Ollama-Setup-Guide oeffnen"
+    },
+    "ollamaGuide": {
+      "localLabel": "Lokales KI-Setup",
+      "title": "Ollama-Setup fuer den Startpage Agent",
+      "intro": "Der Startpage Agent laeuft lokal ueber Ollama auf deinem Rechner. Installiere Ollama, starte den lokalen Dienst, lade ein Modell und stelle sicher, dass Startpage {host} erreichen kann.",
+      "hostInfo": "Aktuell konfigurierter Host: {host}",
+      "jumpNote": "Dieser Guide bleibt unter Einstellungen > Guide sichtbar, auch wenn der AI-Tab ausgeblendet ist.",
+      "alternativeLabel": "Alternative",
+      "downloadHint": "Lade den Installer von der offiziellen Ollama-Website herunter.",
+      "modelHint": "Du kannst auch andere Ollama-Modelle installieren, aber ministral-3:8b ist die empfohlene Voreinstellung fuer dieses Startpage-Setup.",
+      "detectedBadge": "Auf diesem Geraet erkannt",
+      "steps": {
+        "install": "Ollama installieren",
+        "origins": "Startpage-Origin freigeben",
+        "start": "Ollama starten",
+        "model": "Modell installieren",
+        "test": "Modell testen",
+        "network": "Port- und Netzwerkzugriff"
+      },
+      "actions": {
+        "check": "Setup pruefen",
+        "copy": "Befehl kopieren",
+        "copied": "Kopiert",
+        "copyError": "Der Befehl konnte nicht in die Zwischenablage kopiert werden.",
+        "download": "Download-Seite oeffnen"
+      },
+      "check": {
+        "idle": "Nutze \"Setup pruefen\", um den konfigurierten Ollama-Host zu testen.",
+        "checking": "Der konfigurierte Ollama-Host wird geprueft...",
+        "success": "Ollama antwortet erfolgreich unter {host}.",
+        "unavailable": "Keine Antwort von {host}. Pruefe, ob Ollama laeuft und ob Port 11434 erreichbar ist.",
+        "error": "Ollama-Pruefung fehlgeschlagen: {error}"
+      },
+      "os": {
+        "linux": "Linux",
+        "macos": "macOS",
+        "windows": "Windows"
+      },
+      "osNotes": {
+        "linux": "Wenn du einen Paketmanager deiner Distribution nutzt, halte die offiziellen Ollama-Dokumente bereit, weil Paketstaende hinterherhaengen koennen.",
+        "macos": "Homebrew ist auf Entwickler-Rechnern praktisch; der Direktdownload ist fuer das erste Setup meist einfacher.",
+        "windows": "Auf verwalteten Windows-Systemen koennen der Installer oder der erste Ollama-Start Rueckfragen von Windows Defender oder der Firewall ausloesen."
+      },
+      "originsIntro": "Ollama erlaubt standardmaessig nur localhost-aehnliche Origins. Wenn deine Startpage unter einer anderen Origin laeuft, musst du sie explizit mit OLLAMA_ORIGINS freigeben und fuer entfernten Zugriff meist OLLAMA_HOST auf 0.0.0.0:11434 setzen.",
+      "originLinux": "Wenn deine Startpage unter {pageUrl} laeuft, trage die Origin {origin} in OLLAMA_ORIGINS ein.",
+      "originMacos": "Wenn deine Startpage unter {pageUrl} laeuft, trage die Origin {origin} in OLLAMA_ORIGINS ein.",
+      "originWindows": "Wenn deine Startpage unter {pageUrl} laeuft, trage die Origin {origin} in OLLAMA_ORIGINS ein.",
+      "restartMacos": "Starte die Ollama-App nach dem Aendern der launchctl-Umgebungsvariablen neu.",
+      "restartWindows": "Beende und starte die Ollama-App nach dem Speichern der Umgebungsvariablen neu.",
+      "networkLinux": "Wenn Startpage in einem anderen Browser-Profil, einer VM oder einem Container laeuft, stelle sicher, dass {host} erreichbar ist und die lokale Firewall Port 11434 erlaubt.",
+      "networkMacos": "Wenn der Browser {host} nicht erreicht, pruefe macOS-Firewall-Prompts und erlaube lokale eingehende Verbindungen fuer Ollama.",
+      "networkWindows": "Wenn Startpage {host} nicht erreicht, erlaube Ollama in der Windows Defender Firewall und halte Port 11434 lokal frei.",
+      "windows": {
+        "downloadStep": "Lade Ollama von der offiziellen Website herunter.",
+        "runInstaller": "Starte den Installer und schliesse den Setup-Assistenten ab."
+      }
     },
     "externalSources": {
       "label": "Externe Quellen",
@@ -597,6 +654,8 @@
       "emptyModel": "—"
     },
     "settings": {
+      "localSetupLabel": "Lokales Setup",
+      "localSetupHint": "Der Startpage Agent laeuft lokal ueber Ollama auf deinem Rechner. Konfiguriere Host und Modell unten.",
       "modelLabel": "Modell",
       "loadModels": "Modelle laden",
       "hostLabel": "Ollama Host",

@@ -292,7 +292,64 @@
     "general": {
       "agentLabel": "Startpage Agent",
       "agentEnabled": "Agent enabled",
-      "agentHint": "If disabled, nothing is sent to Ollama."
+      "agentHint": "If disabled, nothing is sent to Ollama.",
+      "agentGuideButton": "Open Ollama setup guide"
+    },
+    "ollamaGuide": {
+      "localLabel": "Local AI setup",
+      "title": "Ollama setup for Startpage Agent",
+      "intro": "Startpage Agent runs locally through Ollama on your machine. Install Ollama, start the local service, pull a model, and make sure Startpage can reach {host}.",
+      "hostInfo": "Current configured host: {host}",
+      "jumpNote": "This guide stays available in Settings > Guide, even if the AI tab is hidden.",
+      "alternativeLabel": "Alternative",
+      "downloadHint": "Download the installer from the official Ollama website.",
+      "modelHint": "You can install other Ollama models as well, but ministral-3:8b is the recommended default for this Startpage setup.",
+      "detectedBadge": "Detected on this device",
+      "steps": {
+        "install": "Install Ollama",
+        "origins": "Allow your Startpage origin",
+        "start": "Start Ollama",
+        "model": "Install a model",
+        "test": "Test the model",
+        "network": "Port and network access"
+      },
+      "actions": {
+        "check": "Check setup",
+        "copy": "Copy command",
+        "copied": "Copied",
+        "copyError": "Could not copy the command to the clipboard.",
+        "download": "Open download page"
+      },
+      "check": {
+        "idle": "Use \"Check setup\" to test the configured Ollama host.",
+        "checking": "Checking the configured Ollama host...",
+        "success": "Ollama responded successfully at {host}.",
+        "unavailable": "No response from {host}. Check whether Ollama is running and whether port 11434 is reachable.",
+        "error": "Ollama check failed: {error}"
+      },
+      "os": {
+        "linux": "Linux",
+        "macos": "macOS",
+        "windows": "Windows"
+      },
+      "osNotes": {
+        "linux": "If you use a distro package manager, keep the official Ollama docs nearby because package versions may lag behind.",
+        "macos": "Homebrew is useful on developer machines; the direct download is usually simpler for first-time setup.",
+        "windows": "On managed Windows systems, the installer or the first Ollama launch may trigger Windows Defender or firewall prompts."
+      },
+      "originsIntro": "Ollama allows localhost-style origins by default. If your Startpage runs from another origin, you must explicitly allow it with OLLAMA_ORIGINS and, for remote access, usually bind OLLAMA_HOST to 0.0.0.0:11434.",
+      "originLinux": "If your Startpage runs from {pageUrl}, add the origin {origin} to OLLAMA_ORIGINS.",
+      "originMacos": "If your Startpage runs from {pageUrl}, add the origin {origin} to OLLAMA_ORIGINS.",
+      "originWindows": "If your Startpage runs from {pageUrl}, add the origin {origin} to OLLAMA_ORIGINS.",
+      "restartMacos": "Restart the Ollama app after changing launchctl environment variables.",
+      "restartWindows": "Quit and restart the Ollama app after saving the environment variables.",
+      "networkLinux": "If Startpage runs in another browser profile, VM, or container, make sure {host} is reachable and the local firewall allows port 11434.",
+      "networkMacos": "If the browser cannot reach {host}, check macOS firewall prompts and allow local incoming connections for Ollama.",
+      "networkWindows": "If Startpage cannot reach {host}, allow Ollama through Windows Defender Firewall and keep port 11434 available locally.",
+      "windows": {
+        "downloadStep": "Download Ollama from the official website.",
+        "runInstaller": "Run the installer and complete the setup wizard."
+      }
     }
   },
   "onboarding": {
@@ -597,6 +654,8 @@
       "emptyModel": "-"
     },
     "settings": {
+      "localSetupLabel": "Local setup",
+      "localSetupHint": "Startpage Agent runs locally through Ollama on your machine. Configure the host and model below.",
       "modelLabel": "Model",
       "loadModels": "Load models",
       "hostLabel": "Ollama host",
