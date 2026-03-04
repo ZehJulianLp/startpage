@@ -1732,6 +1732,284 @@
     return s.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[m]));
   }
 
+  const OLLAMA_GUIDE_OS_IDS = ['linux', 'macos', 'windows'];
+  let ollamaGuideState = {
+    detectedOs: '',
+    expanded: {},
+    checkStatus: 'idle',
+    checkMessage: ''
+  };
+
+  function detectGuideOs(){
+    const platform = String((navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '').toLowerCase();
+    const ua = String(navigator.userAgent || '').toLowerCase();
+    if(platform.includes('win') || ua.includes('windows')) return 'windows';
+    if(platform.includes('mac') || platform.includes('iphone') || platform.includes('ipad') || ua.includes('mac os')) return 'macos';
+    if(platform.includes('linux') || platform.includes('x11') || ua.includes('linux')) return 'linux';
+    return '';
+  }
+
+  function getGuideDetectedOs(){
+    if(!ollamaGuideState.detectedOs) ollamaGuideState.detectedOs = detectGuideOs();
+    return ollamaGuideState.detectedOs;
+  }
+
+  function getGuideExpandedState(osId){
+    if(Object.prototype.hasOwnProperty.call(ollamaGuideState.expanded, osId)) return !!ollamaGuideState.expanded[osId];
+    return getGuideDetectedOs() === osId;
+  }
+
+  function escapeAttr(value){
+    return escapeHtml(String(value || ''));
+  }
+
+  async function copyText(text){
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      await navigator.clipboard.writeText(String(text || ''));
+      return true;
+    }
+    const el = document.createElement('textarea');
+    el.value = String(text || '');
+    el.setAttribute('readonly', 'readonly');
+    el.style.position = 'fixed';
+    el.style.opacity = '0';
+    document.body.appendChild(el);
+    el.select();
+    const ok = document.execCommand('copy');
+    document.body.removeChild(el);
+    if(!ok) throw new Error('copy failed');
+    return true;
+  }
+
+  function guideCheckStatusHtml(){
+    const text = ollamaGuideState.checkMessage || t('settings.ollamaGuide.check.idle', null, 'Use "Check setup" to test the configured Ollama host.');
+    return `<p class="muted ollama-guide-status">${escapeHtml(text)}</p>`;
+  }
+
+  function buildGuideCodeBlock(command, label){
+    return '' +
+      '<div class="ollama-code-block">' +
+        `<div class="ollama-code-header"><span>${escapeHtml(label)}</span><button class="btn" type="button" data-copy="${escapeAttr(command)}">${escapeHtml(t('settings.ollamaGuide.actions.copy', null, 'Copy command'))}</button></div>` +
+        `<pre><code>${escapeHtml(command)}</code></pre>` +
+      '</div>';
+  }
+
+  function getCurrentStartpageInfo(){
+    const fallback = {
+      pageUrl: 'https://julianverse.de/startpage/',
+      origin: 'https://julianverse.de',
+      isLocal: false
+    };
+    try {
+      const loc = window.location;
+      const protocol = String(loc && loc.protocol || '').toLowerCase();
+      if(protocol !== 'http:' && protocol !== 'https:') return fallback;
+      const pageUrl = String(loc.href || '').trim() || fallback.pageUrl;
+      const origin = String(loc.origin || '').trim() || fallback.origin;
+      const host = String(loc.hostname || '').toLowerCase();
+      const isLocal = host === 'localhost' || host === '127.0.0.1' || host === '::1' || host.endsWith('.localhost');
+      return { pageUrl, origin, isLocal };
+    } catch {
+      return fallback;
+    }
+  }
+
+  function buildGuideOsSection(osId){
+    const installTitle = t('settings.ollamaGuide.steps.install', null, 'Install Ollama');
+    const originTitle = t('settings.ollamaGuide.steps.origins', null, 'Allow your Startpage origin');
+    const startTitle = t('settings.ollamaGuide.steps.start', null, 'Start Ollama');
+    const modelTitle = t('settings.ollamaGuide.steps.model', null, 'Install a model');
+    const testTitle = t('settings.ollamaGuide.steps.test', null, 'Test the model');
+    const firewallTitle = t('settings.ollamaGuide.steps.network', null, 'Port and network access');
+    const alternativeLabel = t('settings.ollamaGuide.alternativeLabel', null, 'Alternative');
+    const host = getAgentHost();
+    const startpageInfo = getCurrentStartpageInfo();
+    const examplePageUrl = startpageInfo.pageUrl;
+    const exampleOrigin = startpageInfo.origin;
+    const originEnvValue = startpageInfo.isLocal ? exampleOrigin : exampleOrigin;
+    const originIntro = startpageInfo.isLocal
+      ? t('settings.ollamaGuide.originsIntroLocal', { origin: exampleOrigin }, `Your current Startpage origin is ${exampleOrigin}. Localhost-style origins are usually allowed by Ollama already, so OLLAMA_ORIGINS is often not needed during local development.`)
+      : t('settings.ollamaGuide.originsIntro', null, 'Ollama allows localhost-style origins by default. If your Startpage runs from another origin, you must explicitly allow it with OLLAMA_ORIGINS and, for remote access, usually bind OLLAMA_HOST to 0.0.0.0:11434.');
+    const sections = {
+      linux: {
+        name: t('settings.ollamaGuide.os.linux', null, 'Linux'),
+        installBody: buildGuideCodeBlock('curl -fsSL https://ollama.com/install.sh | sh', installTitle),
+        installNote: t('settings.ollamaGuide.osNotes.linux', null, 'If you use a distro package manager, keep the official Ollama docs nearby because package versions may lag behind.'),
+        alternatives: '',
+        originBody:
+          `<p class="settings-guide-note">${escapeHtml(t('settings.ollamaGuide.linuxServiceHint', null, 'If Ollama runs as a systemd service, create an override instead of editing the main unit file directly.'))}</p>` +
+          buildGuideCodeBlock(`[Service]\nEnvironment="OLLAMA_HOST=0.0.0.0:11434"\nEnvironment="OLLAMA_ORIGINS=${originEnvValue}"`, 'systemd override') +
+          buildGuideCodeBlock('sudo systemctl edit ollama', 'open override editor') +
+          buildGuideCodeBlock('sudo systemctl daemon-reload\nsudo systemctl restart ollama', 'reload and restart service'),
+        originNote: startpageInfo.isLocal
+          ? t('settings.ollamaGuide.originLinuxLocal', { pageUrl: examplePageUrl, origin: exampleOrigin }, `Your current Startpage runs from ${examplePageUrl}. If you later deploy it under another domain, replace OLLAMA_ORIGINS with that deployed origin.`)
+          : t('settings.ollamaGuide.originLinux', { pageUrl: examplePageUrl, origin: exampleOrigin }, `If your Startpage runs from ${examplePageUrl}, add the origin ${exampleOrigin} to OLLAMA_ORIGINS.`),
+        networkNote: t('settings.ollamaGuide.networkLinux', { host }, `If Startpage runs in another browser profile, VM, or container, make sure ${host} is reachable and the local firewall allows port 11434.`)
+      },
+      macos: {
+        name: t('settings.ollamaGuide.os.macos', null, 'macOS'),
+        installBody:
+          `<p>${escapeHtml(t('settings.ollamaGuide.downloadHint', null, 'Download the installer from the official Ollama website.'))}</p>` +
+          `<div class="settings-guide-actions"><a class="btn" href="https://ollama.com/download" target="_blank" rel="noopener">${escapeHtml(t('settings.ollamaGuide.actions.download', null, 'Open download page'))}</a></div>`,
+        installNote: t('settings.ollamaGuide.osNotes.macos', null, 'Homebrew is useful on developer machines; the direct download is usually simpler for first-time setup.'),
+        alternatives: buildGuideCodeBlock('brew install ollama', `${alternativeLabel}: Homebrew`),
+        originBody:
+          buildGuideCodeBlock(`launchctl setenv OLLAMA_HOST "0.0.0.0:11434"\nlaunchctl setenv OLLAMA_ORIGINS "${originEnvValue}"`, 'launchctl') +
+          `<p class="settings-guide-note">${escapeHtml(t('settings.ollamaGuide.restartMacos', null, 'Restart the Ollama app after changing launchctl environment variables.'))}</p>`,
+        originNote: startpageInfo.isLocal
+          ? t('settings.ollamaGuide.originMacosLocal', { pageUrl: examplePageUrl, origin: exampleOrigin }, `Your current Startpage runs from ${examplePageUrl}. If you later deploy it under another domain, replace OLLAMA_ORIGINS with that deployed origin.`)
+          : t('settings.ollamaGuide.originMacos', { pageUrl: examplePageUrl, origin: exampleOrigin }, `If your Startpage runs from ${examplePageUrl}, add the origin ${exampleOrigin} to OLLAMA_ORIGINS.`),
+        networkNote: t('settings.ollamaGuide.networkMacos', { host }, `If the browser cannot reach ${host}, check macOS firewall prompts and allow local incoming connections for Ollama.`)
+      },
+      windows: {
+        name: t('settings.ollamaGuide.os.windows', null, 'Windows'),
+        installBody:
+          `<ol><li>${escapeHtml(t('settings.ollamaGuide.windows.downloadStep', null, 'Download Ollama from the official website.'))}</li><li>${escapeHtml(t('settings.ollamaGuide.windows.runInstaller', null, 'Run the installer and complete the setup wizard.'))}</li></ol>` +
+          `<div class="settings-guide-actions"><a class="btn" href="https://ollama.com/download" target="_blank" rel="noopener">${escapeHtml(t('settings.ollamaGuide.actions.download', null, 'Open download page'))}</a></div>`,
+        installNote: t('settings.ollamaGuide.osNotes.windows', null, 'On managed Windows systems, the installer or the first Ollama launch may trigger Windows Defender or firewall prompts.'),
+        alternatives: buildGuideCodeBlock('winget install Ollama.Ollama', `${alternativeLabel}: winget`),
+        originBody:
+          `<p class="settings-guide-note">${escapeHtml(t('settings.ollamaGuide.windowsEnvHint', null, 'Open Windows environment variables, create user variables named OLLAMA_HOST and OLLAMA_ORIGINS, then restart the Ollama app.'))}</p>` +
+          buildGuideCodeBlock(`OLLAMA_HOST=0.0.0.0:11434\nOLLAMA_ORIGINS=${originEnvValue}`, 'User environment variables') +
+          buildGuideCodeBlock('taskkill /IM ollama.exe /F', 'optional full restart') +
+          `<p class="settings-guide-note">${escapeHtml(t('settings.ollamaGuide.restartWindows', null, 'Quit and restart the Ollama app after saving the environment variables.'))}</p>`,
+        originNote: startpageInfo.isLocal
+          ? t('settings.ollamaGuide.originWindowsLocal', { pageUrl: examplePageUrl, origin: exampleOrigin }, `Your current Startpage runs from ${examplePageUrl}. If you later deploy it under another domain, replace OLLAMA_ORIGINS with that deployed origin.`)
+          : t('settings.ollamaGuide.originWindows', { pageUrl: examplePageUrl, origin: exampleOrigin }, `If your Startpage runs from ${examplePageUrl}, add the origin ${exampleOrigin} to OLLAMA_ORIGINS.`),
+        networkNote: t('settings.ollamaGuide.networkWindows', { host }, `If Startpage cannot reach ${host}, allow Ollama through Windows Defender Firewall and keep port 11434 available locally.`)
+      }
+    };
+    const item = sections[osId];
+    if(!item) return '';
+    const detected = getGuideDetectedOs() === osId;
+    const detectedLabel = detected ? `<span class="ollama-os-meta"><span>${escapeHtml(t('settings.ollamaGuide.detectedBadge', null, 'Detected on this device'))}</span></span>` : '';
+    return '' +
+      `<section class="ollama-os${detected ? ' is-detected' : ''}${getGuideExpandedState(osId) ? ' is-open' : ''}" data-os="${escapeAttr(osId)}">` +
+        `<button class="ollama-os-toggle" type="button" aria-expanded="${getGuideExpandedState(osId) ? 'true' : 'false'}"><span>${escapeHtml(item.name)}</span>${detectedLabel}</button>` +
+        '<div class="ollama-os-body">' +
+          '<div class="ollama-os-body-inner">' +
+            `<div class="ollama-step"><h6>${escapeHtml(installTitle)}</h6>${item.installBody}${item.alternatives ? item.alternatives : ''}<p class="settings-guide-note">${escapeHtml(item.installNote)}</p></div>` +
+            `<div class="ollama-step"><h6>${escapeHtml(originTitle)}</h6><p class="settings-guide-note">${escapeHtml(originIntro)}</p>${item.originBody}<p class="settings-guide-note">${escapeHtml(item.originNote)}</p></div>` +
+            `<div class="ollama-step"><h6>${escapeHtml(startTitle)}</h6>${buildGuideCodeBlock('ollama serve', startTitle)}</div>` +
+            `<div class="ollama-step"><h6>${escapeHtml(modelTitle)}</h6>${buildGuideCodeBlock('ollama pull ministral-3:8b', 'ministral-3:8b')}<p class="settings-guide-note">${escapeHtml(t('settings.ollamaGuide.modelHint', null, 'You can install other Ollama models as well, but ministral-3:8b is the recommended default for this Startpage setup.'))}</p></div>` +
+            `<div class="ollama-step"><h6>${escapeHtml(testTitle)}</h6>${buildGuideCodeBlock('ollama run ministral-3:8b', testTitle)}</div>` +
+            `<div class="ollama-step"><h6>${escapeHtml(firewallTitle)}</h6><p class="settings-guide-note">${escapeHtml(item.networkNote)}</p></div>` +
+          '</div>' +
+        '</div>' +
+      '</section>';
+  }
+
+  function buildOllamaGuideHtml(){
+    const host = getAgentHost();
+    return '' +
+      '<section class="settings-guide-card ollama-guide" id="ollama-guide">' +
+        '<div class="ollama-guide-header">' +
+          '<div>' +
+            `<h5>${escapeHtml(t('settings.ollamaGuide.title', null, 'Ollama setup for Startpage Agent'))}</h5>` +
+            `<p>${escapeHtml(t('settings.ollamaGuide.intro', { host }, `Startpage Agent runs locally through Ollama on your machine. Install Ollama, start the local service, pull a model, and make sure Startpage can reach ${host}.`))}</p>` +
+            `<p class="settings-guide-note">${escapeHtml(t('settings.ollamaGuide.hostInfo', { host }, `Current configured host: ${host}`))}</p>` +
+            `<p class="settings-guide-note">${escapeHtml(t('settings.ollamaGuide.jumpNote', null, 'This guide stays available in Settings > Guide, even if the AI tab is hidden.'))}</p>` +
+          '</div>' +
+          '<div>' +
+            `<div class="settings-guide-actions"><button class="btn" type="button" data-action="check-ollama-guide">${escapeHtml(t('settings.ollamaGuide.actions.check', null, 'Check setup'))}</button></div>` +
+            guideCheckStatusHtml() +
+          '</div>' +
+        '</div>' +
+        `<div class="ollama-guide-os-list">${OLLAMA_GUIDE_OS_IDS.map(buildGuideOsSection).join('')}</div>` +
+      '</section>';
+  }
+
+  function buildSettingsGuideHtml(){
+    return '' +
+      '<div class="settings-guide-stack">' +
+        `<section class="settings-guide-card">${t('settings.guideHtml')}</section>` +
+        buildOllamaGuideHtml() +
+        buildGuideExternalSourcesHtml() +
+      '</div>';
+  }
+
+  function renderSettingsGuide(){
+    const panelGuide = $('#tab-guide');
+    if(!panelGuide) return;
+    const openStates = {};
+    $$('.ollama-os', panelGuide).forEach(el => {
+      const os = el.getAttribute('data-os');
+      if(os) openStates[os] = el.classList.contains('is-open');
+    });
+    if(Object.keys(openStates).length) ollamaGuideState.expanded = openStates;
+    panelGuide.innerHTML = buildSettingsGuideHtml();
+    syncOllamaAccordionHeights(panelGuide);
+  }
+
+  function syncOllamaAccordionHeights(root=document){
+    $$('.ollama-os', root).forEach(section => {
+      const body = $('.ollama-os-body', section);
+      const toggle = $('.ollama-os-toggle', section);
+      if(!body || !toggle) return;
+      const open = section.classList.contains('is-open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      body.style.maxHeight = open ? 'none' : '0px';
+    });
+  }
+
+  function animateOllamaAccordion(section, nextOpen){
+    if(!section) return;
+    const body = $('.ollama-os-body', section);
+    const inner = $('.ollama-os-body-inner', section);
+    const toggle = $('.ollama-os-toggle', section);
+    if(!body || !inner || !toggle) return;
+
+    body.style.overflow = 'hidden';
+    body.style.maxHeight = `${inner.scrollHeight}px`;
+
+    requestAnimationFrame(()=>{
+      section.classList.toggle('is-open', nextOpen);
+      toggle.setAttribute('aria-expanded', nextOpen ? 'true' : 'false');
+      const targetHeight = nextOpen ? `${inner.scrollHeight}px` : '0px';
+      requestAnimationFrame(()=>{
+        body.style.maxHeight = targetHeight;
+      });
+    });
+
+    const onEnd = ev => {
+      if(ev.propertyName !== 'max-height') return;
+      body.removeEventListener('transitionend', onEnd);
+      if(section.classList.contains('is-open')){
+        body.style.maxHeight = 'none';
+      }
+    };
+    body.addEventListener('transitionend', onEnd);
+  }
+
+  function openOllamaGuide(){
+    openSettingsTab('guide');
+    requestAnimationFrame(()=>{
+      const target = $('#ollama-guide');
+      if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
+  async function checkOllamaGuideConnection(){
+    ollamaGuideState.checkStatus = 'checking';
+    ollamaGuideState.checkMessage = t('settings.ollamaGuide.check.checking', null, 'Checking the configured Ollama host...');
+    renderSettingsGuide();
+    try {
+      const available = await checkOllamaAvailable();
+      if(available){
+        ollamaGuideState.checkStatus = 'success';
+        ollamaGuideState.checkMessage = t('settings.ollamaGuide.check.success', { host: getAgentHost() }, `Ollama responded successfully at ${getAgentHost()}.`);
+      } else {
+        ollamaGuideState.checkStatus = 'error';
+        ollamaGuideState.checkMessage = t('settings.ollamaGuide.check.unavailable', { host: getAgentHost() }, `No response from ${getAgentHost()}. Check whether Ollama is running and whether port 11434 is reachable.`);
+      }
+    } catch (err){
+      const message = err && err.message ? err.message : 'unknown error';
+      ollamaGuideState.checkStatus = 'error';
+      ollamaGuideState.checkMessage = t('settings.ollamaGuide.check.error', { error: message }, `Ollama check failed: ${message}`);
+    }
+    renderSettingsGuide();
+  }
+
   function iconSvg(name){
     const icons = {
       trash: '<path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M6 6l1 14h10l1-14"/><path d="M10 11v6M14 11v6"/>',
@@ -2580,7 +2858,7 @@
       const desc = t(`settings.externalSources.items.${src.key}`, null, '');
       return `<li><a href="${src.url}" target="_blank" rel="noopener">${escapeHtml(src.name)}</a>: ${escapeHtml(desc)}</li>`;
     }).join('');
-    return `<div class="row"><label>${escapeHtml(label)}</label><div><h5>${escapeHtml(title)}</h5><ul>${items}</ul><div class="muted">${escapeHtml(note)}</div></div></div>`;
+    return `<section class="settings-guide-card"><div class="row"><label>${escapeHtml(label)}</label><div><h5>${escapeHtml(title)}</h5><ul>${items}</ul><div class="muted">${escapeHtml(note)}</div></div></div></section>`;
   }
   function openSettings(){
     const modal = $('#settingsModal');
@@ -2606,6 +2884,7 @@
     $('#themeSelect').value = theme;
     const aiToggle = $('#aiEnabledToggle');
     if(aiToggle) aiToggle.checked = isAgentEnabled();
+    renderSettingsGuide();
     syncAgentSettingsTabVisibility();
     const hostInput = $('#startpageAgentHost');
     if(hostInput) hostInput.value = getAgentHost();
@@ -2780,8 +3059,8 @@
       else assign(row, panelGeneral);
     });
 
-    // Build static guide content
-    panelGuide.innerHTML = t('settings.guideHtml') + buildGuideExternalSourcesHtml();
+    // Build guide content
+    panelGuide.innerHTML = buildSettingsGuideHtml();
 
     tabs.insertAdjacentElement('afterend', panelGeneral);
     panelGeneral.insertAdjacentElement('afterend', panelAi);
@@ -4612,6 +4891,50 @@
     openSettings();
     selectSettingsTab(name);
   }
+  async function onSettingsModalClick(e){
+    const osToggle = e.target.closest('.ollama-os-toggle');
+    if(osToggle && $('#settingsModal').contains(osToggle)){
+      e.preventDefault();
+      const section = osToggle.closest('.ollama-os');
+      if(section){
+        const next = !section.classList.contains('is-open');
+        animateOllamaAccordion(section, next);
+        const os = section.getAttribute('data-os');
+        if(os) ollamaGuideState.expanded[os] = next;
+      }
+      return;
+    }
+    const guideLink = e.target.closest('#openOllamaGuideFromGeneral');
+    if(guideLink){
+      e.preventDefault();
+      openOllamaGuide();
+      return;
+    }
+    const actionEl = e.target.closest('[data-action]');
+    if(actionEl && $('#settingsModal').contains(actionEl)){
+      const action = actionEl.getAttribute('data-action');
+      if(action === 'check-ollama-guide'){
+        e.preventDefault();
+        actionEl.disabled = true;
+        await checkOllamaGuideConnection();
+        return;
+      }
+    }
+    const copyEl = e.target.closest('[data-copy]');
+    if(copyEl && $('#settingsModal').contains(copyEl)){
+      e.preventDefault();
+      const text = copyEl.getAttribute('data-copy') || '';
+      try {
+        await copyText(text);
+        const original = copyEl.textContent;
+        copyEl.textContent = t('settings.ollamaGuide.actions.copied', null, 'Copied');
+        setTimeout(()=>{ copyEl.textContent = original; }, 1200);
+      } catch {
+        await uiAlert(t('settings.ollamaGuide.actions.copyError', null, 'Could not copy the command to the clipboard.'));
+      }
+    }
+  }
+
   function toggleWidget(key, force){
     const defaults = widgetDefaults();
     const conf = store.get('widgets', defaults);
@@ -6689,6 +7012,7 @@
     });
     $('#openSettings').addEventListener('click', openSettings);
     $('#closeSettings').addEventListener('click', closeSettings);
+    $('#settingsModal').addEventListener('click', e=>{ void onSettingsModalClick(e); });
     $('#themeSelect').addEventListener('change', e=>{ store.set('theme', e.target.value); applyTheme(e.target.value); });
     const aiEnabledToggle = $('#aiEnabledToggle');
     if(aiEnabledToggle){
