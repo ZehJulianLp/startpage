@@ -207,7 +207,7 @@
       "engines": "Search engines",
       "bangsNote": "Supported bang shortcuts: <code>!g !ddg !bing !yt !wiki !maps !sx</code> - Custom shortcuts below",
       "searxngUrlLabel": "Searxng URL",
-      "searxngUrlPlaceholder": "https://searx.be/search",
+      "searxngUrlPlaceholder": "https://searx.tiekoetter.com/search",
       "searxngUrlNote": "Any Searxng instance URL. Optional: use <code>{q}</code> as query placeholder; otherwise <code>?q=...</code> is appended.",
       "wordlistLabel": "Autocomplete wordlist",
       "wordlistPlaceholder": "Terms line by line or comma-separated",

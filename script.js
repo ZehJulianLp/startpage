@@ -1490,7 +1490,7 @@
   }
 
   // ===== Search with engines + bangs + custom shortcuts
-  const SEARXNG_DEFAULT_BASE_URL = 'https://searx.be/search';
+  const SEARXNG_DEFAULT_BASE_URL = 'https://searx.tiekoetter.com/search';
 
   function normalizeSearxngBaseUrl(raw){
     const input = String(raw || '').trim();
