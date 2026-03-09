@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.13.0](https://github.com/ZehJulianLp/startpage/compare/v1.12.0...v1.13.0) (2026-03-09)
+
+
+### Features
+
+* add configurable searxng search option ([62289cb](https://github.com/ZehJulianLp/startpage/commit/62289cb9aa00b93dfb8ae2ff002acc1fe6882eeb))
+
+
+### Bug Fixes
+
+* persist selected search engine across reloads ([abde9c8](https://github.com/ZehJulianLp/startpage/commit/abde9c8165f4b065c32f0454b54fa95dc3db39c1))
+* switch default searxng instance to tiekoetter ([2dd994a](https://github.com/ZehJulianLp/startpage/commit/2dd994a9317e7d2e1dc5e66bec7b3360cd58a7cd))
+* use SearXNG naming in ui labels ([5641d7d](https://github.com/ZehJulianLp/startpage/commit/5641d7de719534585d6913f098d0af46f8348576))
+
 ## [1.12.0](https://github.com/ZehJulianLp/startpage/compare/v1.11.5...v1.12.0) (2026-03-04)
 
 
