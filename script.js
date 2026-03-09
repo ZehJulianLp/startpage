@@ -1490,15 +1490,66 @@
   }
 
   // ===== Search with engines + bangs + custom shortcuts
+  const SEARXNG_DEFAULT_BASE_URL = 'https://searx.tiekoetter.com/search';
+  const SEARCH_ENGINE_SELECTED_KEY = 'search.engine.selected';
+
+  function normalizeSearxngBaseUrl(raw){
+    const input = String(raw || '').trim();
+    if(!input) return null;
+    const withScheme = /^[a-z]+:\/\//i.test(input) ? input : `https://${input}`;
+    const marker = '__STARTPAGE_QUERY__';
+    const parseTarget = withScheme.includes('{q}') ? withScheme.replaceAll('{q}', marker) : withScheme;
+    try{
+      const url = new URL(parseTarget);
+      if(!/^https?:$/i.test(url.protocol)) return null;
+      url.hash = '';
+      let out = url.toString();
+      if(withScheme.includes('{q}')) out = out.replaceAll(marker, '{q}');
+      return out;
+    }catch{
+      return null;
+    }
+  }
+
+  function getSearxngBaseUrl(){
+    const stored = store.get('search.searxng.baseUrl', SEARXNG_DEFAULT_BASE_URL);
+    return normalizeSearxngBaseUrl(stored) || SEARXNG_DEFAULT_BASE_URL;
+  }
+
+  function buildSearxngSearchUrl(query){
+    const base = getSearxngBaseUrl();
+    if(base.includes('{q}')) return base.replaceAll('{q}', encodeURIComponent(query));
+    return base + (base.includes('?') ? '&' : '?') + 'q=' + encodeURIComponent(query);
+  }
+
+  function ensureSearxngEngineEnabled(){
+    if(store.get('search.searxng.enabledMigration.v1', false)) return;
+    const enabledStored = store.get('engines.enabled', Object.keys(ENGINES));
+    const enabled = Array.isArray(enabledStored) ? enabledStored.filter(key=> key in ENGINES) : Object.keys(ENGINES);
+    if(!enabled.includes('searxng')) enabled.push('searxng');
+    store.set('engines.enabled', enabled);
+    store.set('search.searxng.enabledMigration.v1', true);
+  }
+
+  function getSelectedSearchEngine(){
+    const engine = String(store.get(SEARCH_ENGINE_SELECTED_KEY, '') || '').trim();
+    return (engine in ENGINES) ? engine : '';
+  }
+
+  function setSelectedSearchEngine(engine){
+    if(engine in ENGINES) store.set(SEARCH_ENGINE_SELECTED_KEY, engine);
+  }
+
   const ENGINES = {
     google: q => `https://www.google.com/search?q=${encodeURIComponent(q)}`,
     ddg: q => `https://duckduckgo.com/?q=${encodeURIComponent(q)}`,
     bing: q => `https://www.bing.com/search?q=${encodeURIComponent(q)}`,
+    searxng: q => buildSearxngSearchUrl(q),
     yt: q => `https://www.youtube.com/results?search_query=${encodeURIComponent(q)}`,
     wikipedia: q => `https://${getLocaleLang()}.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(q)}`,
     maps: q => `https://www.google.com/maps/search/${encodeURIComponent(q)}`
   };
-  const BANGS = { '!g':'google', '!ddg':'ddg', '!bing':'bing', '!yt':'yt', '!wiki':'wikipedia', '!maps':'maps' };
+  const BANGS = { '!g':'google', '!ddg':'ddg', '!bing':'bing', '!sx':'searxng', '!yt':'yt', '!wiki':'wikipedia', '!maps':'maps' };
   const WORDLIST_URL = 'assets/wordlist.json';
   let globalWordlistPromise = null;
   let searchSuggest = { box:null, items:[], active:-1 };
@@ -2931,6 +2982,8 @@
     });
 
     // Shortcuts
+    const searxngBaseUrl = $('#searxngBaseUrl');
+    if(searxngBaseUrl) searxngBaseUrl.value = getSearxngBaseUrl();
     $('#shortcutConfig').value = JSON.stringify(getShortcuts(), null, 2);
 
     // Wordlist
@@ -3053,7 +3106,7 @@
       else if(has('#aiEnabledToggle')) assign(row, panelGeneral);
       else if(has('#startpageAgentModel') || has('#startpageAgentLoadModels') || has('#startpageAgentHost') || has('#startpageAgentConfirmMode') || has('#startpageAgentMaxIterations') || has('#startpageAgentCustomPrompt') || has('#startpageAgentMemory') || has('#startpageAgentClearMemory') || has('#startpageAgentSaveSettings') || has('#startpageAgentClearChat') || has('#startpageAgentCapabilities')) assign(row, panelAi);
       else if(has('#bgEngine') || has('#cardStyle') || has('#clockColor') || has('#searchColor') || has('#widgetColorEditor')) assign(row, panelBackground);
-      else if(has('#enginePills') || has('#shortcutConfig') || has('#feedsConfig') || has('#wordlistEditor')) assign(row, panelSearch);
+      else if(has('#enginePills') || has('#searxngBaseUrl') || has('#shortcutConfig') || has('#feedsConfig') || has('#wordlistEditor')) assign(row, panelSearch);
       else if(has('#widgetToggles') || has('#defaultCities') || has('#transportDefaultInput') || has('#recentMaxSetting') || has('#recentClearSetting')) assign(row, panelWidgets);
       else if(has('#exportData') || has('#importData') || has('#dataNote') || has('#dataPresetSelect') || has('#applyPreset') || has('#restartOnboarding')) assign(row, panelData);
       else assign(row, panelGeneral);
@@ -3078,13 +3131,17 @@
     const enabled = store.get('engines.enabled', Object.keys(ENGINES));
     const select = $('#engine');
     const current = select.value;
+    const preferred = getSelectedSearchEngine();
     select.innerHTML = '';
     enabled.forEach(k=>{
       const opt = document.createElement('option');
-      opt.value = k; opt.textContent = t(`search.engine.${k}`, null, ({google:'Google',ddg:'DuckDuckGo',bing:'Bing',yt:'YouTube',wikipedia:'Wikipedia',maps:'Google Maps'})[k]||k);
+      opt.value = k; opt.textContent = t(`search.engine.${k}`, null, ({google:'Google',ddg:'DuckDuckGo',bing:'Bing',searxng:'SearXNG',yt:'YouTube',wikipedia:'Wikipedia',maps:'Google Maps'})[k]||k);
       select.appendChild(opt);
     });
-    if(enabled.includes(current)) select.value = current; else select.value = enabled[0];
+    if(enabled.includes(current)) select.value = current;
+    else if(enabled.includes(preferred)) select.value = preferred;
+    else select.value = enabled[0];
+    setSelectedSearchEngine(select.value);
     refreshUiSelects(select.parentElement || document);
   }
 
@@ -4982,12 +5039,13 @@
     }
     const select = $('#engine');
     if(select) select.value = key;
+    setSelectedSearchEngine(key);
   }
   async function buildPaletteItems(){
       const items = [];
       const add = (t, opts)=> items.push({ t, ...opts });
       const widgetNames = { todo:t('widgets.todo'), notes:t('widgets.notes'), tiles:t('widgets.tiles'), weather:t('widgets.weather'), transport:t('widgets.transport'), quote:t('widgets.quote'), recent:t('widgets.recent'), system:t('widgets.system'), news:t('widgets.news') };
-      const engineLabels = { google:t('search.engine.google', null, 'Google'), ddg:t('search.engine.ddg', null, 'DuckDuckGo'), bing:t('search.engine.bing', null, 'Bing'), yt:t('search.engine.yt', null, 'YouTube'), wikipedia:t('search.engine.wikipedia', null, 'Wikipedia'), maps:t('search.engine.maps', null, 'Google Maps') };
+      const engineLabels = { google:t('search.engine.google', null, 'Google'), ddg:t('search.engine.ddg', null, 'DuckDuckGo'), bing:t('search.engine.bing', null, 'Bing'), searxng:t('search.engine.searxng', null, 'SearXNG'), yt:t('search.engine.yt', null, 'YouTube'), wikipedia:t('search.engine.wikipedia', null, 'Wikipedia'), maps:t('search.engine.maps', null, 'Google Maps') };
 
       // Commands
       add(t('palette.search.focus'), { k:'/', g:'command', a: ()=> $('#query').focus() });
@@ -7107,7 +7165,10 @@
     const searchReset = $('#searchColorReset'); if(searchReset) searchReset.addEventListener('click', ()=>{ store.set('ui.search.color',''); applySurfaceColors(); fillSettings(); });
 
     // Engines & Search
+    ensureSearxngEngineEnabled();
     renderEngines();
+    const engineSelect = $('#engine');
+    if(engineSelect) engineSelect.addEventListener('change', ()=> setSelectedSearchEngine(engineSelect.value));
     const suggestBox = document.createElement('div');
     suggestBox.id = 'searchSuggest';
     suggestBox.className = 'search-suggest hidden';
@@ -7217,6 +7278,18 @@
     }
 
     // Persist settings fields (shortcuts, feeds, wordlist)
+    $('#searxngBaseUrl').addEventListener('change', async ()=>{
+      const input = $('#searxngBaseUrl');
+      if(!input) return;
+      const normalized = normalizeSearxngBaseUrl(input.value);
+      if(!normalized){
+        input.value = getSearxngBaseUrl();
+        await uiAlert(t('settings.search.invalidSearxngUrl'));
+        return;
+      }
+      store.set('search.searxng.baseUrl', normalized);
+      input.value = normalized;
+    });
     $('#shortcutConfig').addEventListener('change', async ()=>{ try{ const j=JSON.parse($('#shortcutConfig').value); store.set('shortcuts', j);}catch{ await uiAlert(t('settings.search.invalidShortcuts')); } });
     $('#feedsConfig').addEventListener('change', async ()=>{ try{ const j=JSON.parse($('#feedsConfig').value); store.set('news.custom', j); fillNewsSources(); loadNews(); }catch{ await uiAlert(t('settings.search.invalidFeeds')); } });
     const wordlistEditor = $('#wordlistEditor');

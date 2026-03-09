@@ -7,10 +7,10 @@ Startpage is a **local-first browser start page** designed to replace the tradit
 
 Everything runs entirely in the browser — no accounts, no backend, no tracking. Search, widgets, notes, weather, and the integrated Startpage Agent live locally in your browser and adapt to your workflow and style.
 
-Version: **v1.12** · Live: https://julianverse.de/startpage/
+Version: **v1.13** · Live: https://julianverse.de/startpage/
 
 ## Core Features
-- Quick search: Multiple engines, bang shortcuts (`!g`, `!ddg`, `!bing`, `!yt`, `!wiki`, `!maps`), custom shortcuts, and autocomplete (bangs, shortcuts, recent searches, global wordlist + preset wordlist).
+- Quick search: Multiple engines, bang shortcuts (`!g`, `!ddg`, `!bing`, `!sx`, `!yt`, `!wiki`, `!maps`), custom shortcuts, and autocomplete (bangs, shortcuts, recent searches, global wordlist + preset wordlist).
 - Background engine: Presets, uploads, collections, rotation (time/theme/interval), quick actions (random, undo, lock), and automatic accent color extraction from the active background.
 - Favorite tiles: Drag and drop, quick access keys `1-9`, and reset to defaults.
 - To-do and notes: Persistent to-do list and notes field.
