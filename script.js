@@ -1491,6 +1491,7 @@
 
   // ===== Search with engines + bangs + custom shortcuts
   const SEARXNG_DEFAULT_BASE_URL = 'https://searx.tiekoetter.com/search';
+  const SEARCH_ENGINE_SELECTED_KEY = 'search.engine.selected';
 
   function normalizeSearxngBaseUrl(raw){
     const input = String(raw || '').trim();
@@ -1528,6 +1529,15 @@
     if(!enabled.includes('searxng')) enabled.push('searxng');
     store.set('engines.enabled', enabled);
     store.set('search.searxng.enabledMigration.v1', true);
+  }
+
+  function getSelectedSearchEngine(){
+    const engine = String(store.get(SEARCH_ENGINE_SELECTED_KEY, '') || '').trim();
+    return (engine in ENGINES) ? engine : '';
+  }
+
+  function setSelectedSearchEngine(engine){
+    if(engine in ENGINES) store.set(SEARCH_ENGINE_SELECTED_KEY, engine);
   }
 
   const ENGINES = {
@@ -3121,13 +3131,17 @@
     const enabled = store.get('engines.enabled', Object.keys(ENGINES));
     const select = $('#engine');
     const current = select.value;
+    const preferred = getSelectedSearchEngine();
     select.innerHTML = '';
     enabled.forEach(k=>{
       const opt = document.createElement('option');
       opt.value = k; opt.textContent = t(`search.engine.${k}`, null, ({google:'Google',ddg:'DuckDuckGo',bing:'Bing',searxng:'Searxng',yt:'YouTube',wikipedia:'Wikipedia',maps:'Google Maps'})[k]||k);
       select.appendChild(opt);
     });
-    if(enabled.includes(current)) select.value = current; else select.value = enabled[0];
+    if(enabled.includes(current)) select.value = current;
+    else if(enabled.includes(preferred)) select.value = preferred;
+    else select.value = enabled[0];
+    setSelectedSearchEngine(select.value);
     refreshUiSelects(select.parentElement || document);
   }
 
@@ -5025,6 +5039,7 @@
     }
     const select = $('#engine');
     if(select) select.value = key;
+    setSelectedSearchEngine(key);
   }
   async function buildPaletteItems(){
       const items = [];
@@ -7152,6 +7167,8 @@
     // Engines & Search
     ensureSearxngEngineEnabled();
     renderEngines();
+    const engineSelect = $('#engine');
+    if(engineSelect) engineSelect.addEventListener('change', ()=> setSelectedSearchEngine(engineSelect.value));
     const suggestBox = document.createElement('div');
     suggestBox.id = 'searchSuggest';
     suggestBox.className = 'search-suggest hidden';
