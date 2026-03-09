@@ -300,8 +300,15 @@
         <div class="row">
           <label data-i18n="settings.search.engines">Suchmaschinen</label>
           <div>
-            <div class="muted" style="margin-bottom:6px" data-i18n-html="settings.search.bangsNote">Unterstützte Bang-Shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Eigene Shortcuts unten</div>
+            <div class="muted" style="margin-bottom:6px" data-i18n-html="settings.search.bangsNote">Unterstützte Bang-Shortcuts: <code>!g !ddg !bing !yt !wiki !maps !sx</code> - Eigene Shortcuts unten</div>
             <div style="display:flex; gap:8px; flex-wrap:wrap" id="enginePills"></div>
+          </div>
+        </div>
+        <div class="row">
+          <label for="searxngBaseUrl" data-i18n="settings.search.searxngUrlLabel">Searxng-URL</label>
+          <div>
+            <input id="searxngBaseUrl" type="text" placeholder="https://searx.be/search" data-i18n-placeholder="settings.search.searxngUrlPlaceholder" autocomplete="off" />
+            <div class="muted" style="margin-top:6px" data-i18n-html="settings.search.searxngUrlNote">Beliebige Searxng-Instanz. Optional <code>{q}</code> als Query-Platzhalter nutzen, sonst wird <code>?q=...</code> angehängt.</div>
           </div>
         </div>
         <div class="row">
@@ -491,6 +498,7 @@
               <option value="google">Google</option>
               <option value="ddg">DuckDuckGo</option>
               <option value="bing">Bing</option>
+              <option value="searxng">Searxng</option>
               <option value="yt">YouTube</option>
               <option value="wikipedia">Wikipedia</option>
               <option value="maps">Google Maps</option>

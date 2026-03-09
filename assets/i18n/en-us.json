@@ -28,6 +28,7 @@
       "google": "Google",
       "ddg": "DuckDuckGo",
       "bing": "Bing",
+      "searxng": "Searxng",
       "yt": "YouTube",
       "wikipedia": "Wikipedia",
       "maps": "Google Maps"
@@ -204,7 +205,10 @@
     },
     "search": {
       "engines": "Search engines",
-      "bangsNote": "Supported bang shortcuts: <code>!g !ddg !bing !yt !wiki !maps</code> - Custom shortcuts below",
+      "bangsNote": "Supported bang shortcuts: <code>!g !ddg !bing !yt !wiki !maps !sx</code> - Custom shortcuts below",
+      "searxngUrlLabel": "Searxng URL",
+      "searxngUrlPlaceholder": "https://searx.be/search",
+      "searxngUrlNote": "Any Searxng instance URL. Optional: use <code>{q}</code> as query placeholder; otherwise <code>?q=...</code> is appended.",
       "wordlistLabel": "Autocomplete wordlist",
       "wordlistPlaceholder": "Terms line by line or comma-separated",
       "wordlistSave": "Save",
@@ -216,6 +220,7 @@
       "feedsLabel": "Custom RSS feeds",
       "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
       "feedsNote": "JSON: name - feed URL. This list is merged with the default feeds.",
+      "invalidSearxngUrl": "Invalid Searxng URL",
       "invalidShortcuts": "Invalid shortcuts JSON",
       "invalidFeeds": "Invalid feeds JSON"
     },
@@ -273,7 +278,7 @@
       "empty": "No local fonts were returned.",
       "loadFailed": "Could not load local fonts: {error}"
     },
-    "guideHtml": "<div class=\"row\"><label>User Guide</label><div><h5>Overview</h5><ul><li>Start page with search, favorites, to-do, notes, weather, news.</li><li>All local: data stays in your browser (localStorage).</li></ul><h5>Shortcuts</h5><ul><li>Ctrl/Cmd+K: open command palette</li><li>1-9: open first 9 favorites (when not typing)</li><li>/ : focus search (also via palette)</li><li>Enter in search: start search</li><li>ESC: close modals</li><li>Palette: quick actions for widgets, theme, background, data, favorites</li><li>Palette: key C switches card style, \"Reset header colors\" resets search & clock</li></ul><h5>Search & Autocomplete</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps</li><li>Custom shortcuts: JSON in settings; {q} as placeholder</li><li>Autocomplete: bangs, shortcuts, recent searches, wordlist (global + preset)</li><li>Tab accepts suggestion, Enter starts search</li></ul><h5>Tiles</h5><ul><li>Drag & drop to sort, click to open</li><li>+ Tile: add a new favorite</li><li>Reset: restore default favorites</li></ul><h5>Widgets & Layout</h5><ul><li>Visibility per widget</li><li>Card style is global (glass, solid, transparent, soft minimal)</li><li>Custom colors for clock/search; reset restores style defaults</li><li>Widget colors & \"Tint widgets\" set the accent per card</li></ul><h5>Background</h5><ul><li>Presets, uploads, collections, rotation (time/theme/interval)</li><li>Accent color is extracted from the active background</li></ul><h5>Data</h5><ul><li>Export/Import as JSON</li><li>Load data presets (assets/presets/*.json in the repo)</li></ul><h5>Startpage Agent</h5><ul><li>Integrated AI chat with local Ollama (host/model in settings).</li><li>Supports streaming responses, stop (button/ESC), persistent history, and Markdown.</li><li>Agentic tools can read/change widgets and settings (depending on confirm mode).</li></ul></div></div>",
+    "guideHtml": "<div class=\"row\"><label>User Guide</label><div><h5>Overview</h5><ul><li>Start page with search, favorites, to-do, notes, weather, news.</li><li>All local: data stays in your browser (localStorage).</li></ul><h5>Shortcuts</h5><ul><li>Ctrl/Cmd+K: open command palette</li><li>1-9: open first 9 favorites (when not typing)</li><li>/ : focus search (also via palette)</li><li>Enter in search: start search</li><li>ESC: close modals</li><li>Palette: quick actions for widgets, theme, background, data, favorites</li><li>Palette: key C switches card style, \"Reset header colors\" resets search & clock</li></ul><h5>Search & Autocomplete</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps !sx</li><li>Custom shortcuts: JSON in settings; {q} as placeholder</li><li>Autocomplete: bangs, shortcuts, recent searches, wordlist (global + preset)</li><li>Tab accepts suggestion, Enter starts search</li></ul><h5>Tiles</h5><ul><li>Drag & drop to sort, click to open</li><li>+ Tile: add a new favorite</li><li>Reset: restore default favorites</li></ul><h5>Widgets & Layout</h5><ul><li>Visibility per widget</li><li>Card style is global (glass, solid, transparent, soft minimal)</li><li>Custom colors for clock/search; reset restores style defaults</li><li>Widget colors & \"Tint widgets\" set the accent per card</li></ul><h5>Background</h5><ul><li>Presets, uploads, collections, rotation (time/theme/interval)</li><li>Accent color is extracted from the active background</li></ul><h5>Data</h5><ul><li>Export/Import as JSON</li><li>Load data presets (assets/presets/*.json in the repo)</li></ul><h5>Startpage Agent</h5><ul><li>Integrated AI chat with local Ollama (host/model in settings).</li><li>Supports streaming responses, stop (button/ESC), persistent history, and Markdown.</li><li>Agentic tools can read/change widgets and settings (depending on confirm mode).</li></ul></div></div>",
     "externalSources": {
       "label": "External Sources",
       "title": "External Services and Purpose",
