@@ -3135,7 +3135,7 @@
     select.innerHTML = '';
     enabled.forEach(k=>{
       const opt = document.createElement('option');
-      opt.value = k; opt.textContent = t(`search.engine.${k}`, null, ({google:'Google',ddg:'DuckDuckGo',bing:'Bing',searxng:'Searxng',yt:'YouTube',wikipedia:'Wikipedia',maps:'Google Maps'})[k]||k);
+      opt.value = k; opt.textContent = t(`search.engine.${k}`, null, ({google:'Google',ddg:'DuckDuckGo',bing:'Bing',searxng:'SearXNG',yt:'YouTube',wikipedia:'Wikipedia',maps:'Google Maps'})[k]||k);
       select.appendChild(opt);
     });
     if(enabled.includes(current)) select.value = current;
@@ -5045,7 +5045,7 @@
       const items = [];
       const add = (t, opts)=> items.push({ t, ...opts });
       const widgetNames = { todo:t('widgets.todo'), notes:t('widgets.notes'), tiles:t('widgets.tiles'), weather:t('widgets.weather'), transport:t('widgets.transport'), quote:t('widgets.quote'), recent:t('widgets.recent'), system:t('widgets.system'), news:t('widgets.news') };
-      const engineLabels = { google:t('search.engine.google', null, 'Google'), ddg:t('search.engine.ddg', null, 'DuckDuckGo'), bing:t('search.engine.bing', null, 'Bing'), searxng:t('search.engine.searxng', null, 'Searxng'), yt:t('search.engine.yt', null, 'YouTube'), wikipedia:t('search.engine.wikipedia', null, 'Wikipedia'), maps:t('search.engine.maps', null, 'Google Maps') };
+      const engineLabels = { google:t('search.engine.google', null, 'Google'), ddg:t('search.engine.ddg', null, 'DuckDuckGo'), bing:t('search.engine.bing', null, 'Bing'), searxng:t('search.engine.searxng', null, 'SearXNG'), yt:t('search.engine.yt', null, 'YouTube'), wikipedia:t('search.engine.wikipedia', null, 'Wikipedia'), maps:t('search.engine.maps', null, 'Google Maps') };
 
       // Commands
       add(t('palette.search.focus'), { k:'/', g:'command', a: ()=> $('#query').focus() });

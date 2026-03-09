@@ -28,7 +28,7 @@
       "google": "Google",
       "ddg": "DuckDuckGo",
       "bing": "Bing",
-      "searxng": "Searxng",
+      "searxng": "SearXNG",
       "yt": "YouTube",
       "wikipedia": "Wikipedia",
       "maps": "Google Maps"
@@ -206,9 +206,9 @@
     "search": {
       "engines": "Search engines",
       "bangsNote": "Supported bang shortcuts: <code>!g !ddg !bing !yt !wiki !maps !sx</code> - Custom shortcuts below",
-      "searxngUrlLabel": "Searxng URL",
+      "searxngUrlLabel": "SearXNG URL",
       "searxngUrlPlaceholder": "https://searx.tiekoetter.com/search",
-      "searxngUrlNote": "Any Searxng instance URL. Optional: use <code>{q}</code> as query placeholder; otherwise <code>?q=...</code> is appended.",
+      "searxngUrlNote": "Any SearXNG instance URL. Optional: use <code>{q}</code> as query placeholder; otherwise <code>?q=...</code> is appended.",
       "wordlistLabel": "Autocomplete wordlist",
       "wordlistPlaceholder": "Terms line by line or comma-separated",
       "wordlistSave": "Save",
@@ -220,7 +220,7 @@
       "feedsLabel": "Custom RSS feeds",
       "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
       "feedsNote": "JSON: name - feed URL. This list is merged with the default feeds.",
-      "invalidSearxngUrl": "Invalid Searxng URL",
+      "invalidSearxngUrl": "Invalid SearXNG URL",
       "invalidShortcuts": "Invalid shortcuts JSON",
       "invalidFeeds": "Invalid feeds JSON"
     },
