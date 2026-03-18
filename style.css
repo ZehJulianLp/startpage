@@ -78,6 +78,17 @@
       --search-border: var(--card-border-current);
       --search-shadow: var(--card-shadow-current);
       --search-backdrop: var(--card-backdrop-current);
+      --button-bg: var(--tile-bg-current);
+      --button-border: var(--tile-border-current);
+      --button-shadow: var(--tile-shadow-current);
+      --button-backdrop: var(--tile-backdrop-current);
+      --input-bg: var(--bg-soft);
+      --input-border-default: rgba(255,255,255,.08);
+      --input-border: var(--input-border-default);
+      --modal-bg: var(--card);
+      --modal-panel-bg:
+        radial-gradient(900px 300px at 0% -20%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 60%),
+        linear-gradient(180deg, color-mix(in srgb, var(--card) 88%, transparent), color-mix(in srgb, var(--bg-soft) 82%, transparent));
       --anim-fast: 180ms;
       --anim-base: 420ms;
       --anim-ease: cubic-bezier(.22,.68,0,1);
@@ -100,6 +111,7 @@
       --link-visited: var(--accent);
       --card-border-current: rgba(0,0,0,.06);
       --tile-border-current: rgba(0,0,0,.08);
+      --input-border-default: rgba(0,0,0,.10);
     }
     * { box-sizing: border-box }
     html, body { height: 100% }
@@ -215,16 +227,16 @@
 
     .controls { display: flex; gap: 8px; align-items: center }
     .btn {
-      background: var(--tile-bg-current);
-      border: 1px solid var(--tile-border-current);
+      background: var(--button-bg);
+      border: 1px solid var(--button-border);
       color: var(--fg);
       border-radius: 12px;
       padding: 10px 14px;
       cursor: pointer;
-      box-shadow: var(--tile-shadow-current);
+      box-shadow: var(--button-shadow);
       transition: transform .06s ease, background .2s ease, border-color .2s ease;
       user-select: none;
-      backdrop-filter: var(--tile-backdrop-current);
+      backdrop-filter: var(--button-backdrop);
     }
     .icon {
       width: 18px;
@@ -277,9 +289,9 @@
     .suggest-text { flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color: var(--fg); }
     select, input[type="text"], textarea {
       width: 100%;
-      background: var(--bg-soft);
+      background: var(--input-bg);
       color: var(--fg);
-      border: 1px solid rgba(255,255,255,.08);
+      border: 1px solid var(--input-border);
       border-radius: 12px;
       padding: 12px 14px;
       font-size: 16px;
@@ -308,8 +320,8 @@
       gap: 10px;
       padding: 11px 14px;
       border-radius: 12px;
-      border: 1px solid rgba(255,255,255,.08);
-      background: var(--bg-soft);
+      border: 1px solid var(--input-border);
+      background: var(--input-bg);
       color: var(--fg);
       font-size: 16px;
       cursor: pointer;
@@ -362,8 +374,8 @@
     .ui-select-search {
       width: 100%;
       border-radius: 9px;
-      border: 1px solid rgba(255,255,255,.08);
-      background: var(--bg-soft);
+      border: 1px solid var(--input-border);
+      background: var(--input-bg);
       color: var(--fg);
       font-size: 14px;
       padding: 8px 10px;
@@ -389,21 +401,30 @@
     .ui-select-option:disabled { opacity: .5; cursor: not-allowed; }
     .ui-color {
       position: relative;
-      width: max-content;
+      width: min(220px, 100%);
       min-width: 180px;
     }
     .ui-color-trigger {
+      width: 100%;
       min-height: 42px;
       display: inline-flex;
       align-items: center;
       gap: 10px;
       padding: 9px 12px;
       border-radius: 12px;
-      border: 1px solid rgba(255,255,255,.08);
-      background: var(--bg-soft);
+      border: 1px solid var(--input-border);
+      background: var(--input-bg);
       color: var(--fg);
       font-size: 14px;
       cursor: pointer;
+    }
+    .ui-color-label {
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: left;
+      flex: 1 1 auto;
     }
     .ui-color-trigger .swatch {
       width: 16px;
@@ -447,9 +468,9 @@
     }
     .ui-color-hex {
       width: 100%;
-      background: var(--bg-soft);
+      background: var(--input-bg);
       color: var(--fg);
-      border: 1px solid rgba(255,255,255,.08);
+      border: 1px solid var(--input-border);
       border-radius: 10px;
       padding: 8px 10px;
       font-size: 13px;
@@ -506,7 +527,7 @@
     .todo-item.done .title { text-decoration: line-through; color: var(--muted) }
 
     /* Notes */
-    .notes { width: 100%; min-height: 200px; background: var(--bg-soft); color: var(--fg); border:1px solid rgba(255,255,255,.06); border-radius: 12px; padding:12px; resize: vertical }
+    .notes { width: 100%; min-height: 200px; background: var(--input-bg); color: var(--fg); border:1px solid var(--input-border); border-radius: 12px; padding:12px; resize: vertical }
 
     
     /* Tiles */
@@ -618,7 +639,7 @@
     .modal { position: fixed; inset:0; display:none; align-items:center; justify-content:center; background: rgba(0,0,0,.5); padding:20px; z-index: 1000 }
     .modal.open { display:flex }
     .modal.closing { display:flex; pointer-events:none; animation: modal-overlay-out 110ms ease-out both; }
-    .modal .sheet { background: var(--card); border:1px solid rgba(255,255,255,.08); padding:16px; border-radius:16px; width:min(780px, 96vw); max-height: min(90vh, 900px); overflow: auto }
+    .modal .sheet { background: var(--modal-bg); border:1px solid rgba(255,255,255,.08); padding:16px; border-radius:16px; width:min(780px, 96vw); max-height: min(90vh, 900px); overflow: auto }
     .modal.open .sheet { animation: modal-pop var(--anim-fast) var(--anim-ease); }
     .modal.closing .sheet { animation: modal-close 110ms ease-out both; }
     .ui-dialog .ui-dialog-sheet { width: min(460px, 96vw); display:flex; flex-direction:column; gap:12px; }
@@ -628,6 +649,24 @@
     .ui-dialog #uiDialogMessage { white-space: pre-wrap; line-height: 1.45; }
     .sheet h4 { margin:0 0 10px }
     .row { display:grid; grid-template-columns: 220px 1fr; gap:10px; align-items:center; margin-bottom:10px }
+    .row.row-heading {
+      grid-template-columns: 1fr;
+      margin: 18px 0 12px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .row.row-heading:first-child {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: 0;
+    }
+    .settings-row-heading {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
     .bg-engine { display:flex; flex-direction:column; gap:12px; background: rgba(0,0,0,0.18); border:1px solid rgba(255,255,255,0.08); padding:14px; border-radius:16px; }
     .bg-current { display:flex; gap:12px; align-items:stretch; }
     .bg-current-preview { width:160px; min-width:160px; aspect-ratio:16/9; border-radius:12px; background-color: var(--bg-soft); background-size:cover; background-position:center; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08); }
@@ -696,9 +735,38 @@
     .sheet input[type="checkbox"]:checked::after{ content:'\2713'; color:#fff; font-size:12px; line-height:1; }
 
     /* Tabs */
+    .settings-header {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 12px;
+    }
+    .settings-header h4 {
+      margin: 0;
+      flex: 0 0 auto;
+    }
+    .settings-header #closeSettings {
+      justify-self: end;
+    }
     .tabs { display:flex; gap:8px; border-bottom: 1px solid rgba(255,255,255,.08); margin: 10px 0 12px; position: sticky; top: 0; background: inherit; padding-bottom: 8px; z-index: 2 }
     .tab-btn { background: var(--glass); border:1px solid rgba(255,255,255,.08); color: var(--fg); padding:8px 12px; border-radius:999px; cursor:pointer }
     .tab-btn.active { background: var(--accent); border-color: var(--accent); color: #fff }
+    .settings-search {
+      width: min(320px, 100%);
+      min-width: 0;
+      max-width: 320px;
+      justify-self: center;
+    }
+    .settings-search input {
+      height: 40px;
+    }
+    .settings-search-status {
+      display: none;
+      min-height: 0;
+      font-size: 11px;
+      line-height: 1.25;
+    }
+    #settingsModal.searching .settings-search-status { display: block; }
     .tab-panel { display: none }
     .tab-panel.active { display: block }
     body:not(.reduce-motion) #settingsModal .tab-panel.active {
@@ -711,13 +779,13 @@
       max-height: min(88vh, 860px);
       overflow: hidden;
       display: grid;
-      grid-template-rows: auto auto 1fr;
+      grid-template-rows: auto auto auto 1fr;
       gap: 10px;
     }
     #settingsModal .tabs {
       margin: 0;
       top: 0;
-      background: var(--card);
+      background: var(--modal-bg);
     }
     #settingsModal .tab-panel {
       display: none;
@@ -726,11 +794,26 @@
       padding: 14px;
       border: 1px solid rgba(255,255,255,.08);
       border-radius: 14px;
-      background:
-        radial-gradient(900px 300px at 0% -20%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 60%),
-        linear-gradient(180deg, color-mix(in srgb, var(--card) 88%, transparent), color-mix(in srgb, var(--bg-soft) 82%, transparent));
+      background: var(--modal-panel-bg);
     }
     #settingsModal .tab-panel.active { display: block; }
+    #settingsModal.searching .tabs { display: none; }
+    #settingsModal.searching .tab-panel { display: none; }
+    #settingsModal.searching .sheet {
+      grid-template-rows: auto auto auto 1fr;
+    }
+    #settingsModal.searching #settingsSearchResults {
+      display: block;
+      height: 100%;
+      min-height: 0;
+      align-self: stretch;
+      overflow: auto;
+      padding: 14px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 14px;
+      background: var(--modal-bg);
+    }
+    .settings-search-results { display: none; }
     #settingsModal .tab-panel > :last-child { margin-bottom: 0; }
     .settings-guide-stack {
       display: flex;
@@ -918,13 +1001,24 @@
         height: min(90vh, 900px);
         max-height: min(90vh, 900px);
       }
+      .settings-header {
+        flex-wrap: wrap;
+        align-items: stretch;
+      }
+      .settings-header h4 {
+        width: 100%;
+      }
+      .settings-search {
+        order: 3;
+        width: 100%;
+      }
       #settingsModal .tab-panel { padding: 12px; }
     }
     body.modal-open { overflow: hidden }
 
     /* Command Palette */
     #palette .sheet { width: min(640px, 96vw); }
-    .palette-input { width:100%; background: var(--bg-soft); color: var(--fg); border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:12px 14px; font-size:16px; margin-bottom:10px }
+    .palette-input { width:100%; background: var(--input-bg); color: var(--fg); border:1px solid var(--input-border); border-radius:12px; padding:12px 14px; font-size:16px; margin-bottom:10px }
     .palette-list { list-style:none; margin:0; padding:0; max-height: 360px; overflow:auto }
     .palette-section { padding:6px 8px; font-size:12px; text-transform:uppercase; letter-spacing:.08em; color: var(--muted); }
     .palette-item { padding:10px 12px; border-radius:10px; display:flex; gap:8px; align-items:center; cursor:pointer }
@@ -1318,4 +1412,3 @@
       body { scroll-behavior: auto; }
     }
   
-

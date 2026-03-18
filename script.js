@@ -262,6 +262,8 @@
   let uiActiveColor = null;
   let uiDialogResolve = null;
   let uiColorWheelCache = null;
+  let settingsSearchQuery = '';
+  let settingsSearchRestore = [];
   const UI_MENU_CLOSE_MS = 160;
   const UI_MODAL_CLOSE_MS = 110;
 
@@ -738,7 +740,7 @@
       const activeHex = hsvToHex(state.h, state.s, state.v);
       const value = normalizeHex(input.value);
       swatch.style.background = value || fallback;
-      label.textContent = value || t('common.default', null, 'Default');
+      label.textContent = value || fallback;
       hexInput.value = value || '';
       valueSlider.value = String(Math.round(state.v * 100));
       drawWheel();
@@ -1486,6 +1488,10 @@
     } else {
       root.setAttribute('data-theme', mode);
     }
+    applySurfaceColors();
+    applyControlColors();
+    applyWidgetColors();
+    applyAccentTint();
     bgOnThemeChange();
   }
 
@@ -2913,6 +2919,7 @@
   }
   function openSettings(){
     const modal = $('#settingsModal');
+    settingsSearchQuery = '';
     modal.classList.add('open');
     modal.setAttribute('aria-hidden','false');
     syncModalOpenState();
@@ -2920,11 +2927,13 @@
     fillSettings();
     bgRenderSettings();
     initSettingsTabs();
+    initSettingsSearch();
     const last = store.get('settings.tab','general');
     selectSettingsTab(last);
     enhanceUiSelects(modal);
     enhanceUiColorInputs(modal);
     refreshUiSelects(modal);
+    applySettingsSearch();
   }
   function closeSettings(){
     const modal = $('#settingsModal');
@@ -3006,24 +3015,15 @@
         wrap.appendChild(label);
       });
 
-    // Widget colors editor
-    const editor = $('#widgetColorEditor'); editor.innerHTML='';
-      const names = { todo:t('widgets.todo'), notes:t('widgets.notes'), tiles:t('widgets.tiles'), weather:t('widgets.weather'), transport:t('widgets.transport'), quote:t('widgets.quote'), recent:t('widgets.recent'), system:t('widgets.system'), news:t('widgets.news') };
-      const colors = store.get('widget.colors', widgetColorDefaults());
-      Object.keys(names).forEach(k=>{
-        const box = document.createElement('div'); box.style.display='inline-flex'; box.style.alignItems='center'; box.style.gap='6px'; box.style.padding='6px 8px'; box.style.background='var(--glass)'; box.style.border='1px solid rgba(255,255,255,.08)'; box.style.borderRadius='10px';
-        const label = document.createElement('span'); label.textContent = names[k];
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.value = (colors[k] && /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(colors[k])) ? colors[k] : '';
-        input.setAttribute('data-ui-color', '');
-        input.setAttribute('data-color-default', '#7c5cff');
-        input.addEventListener('input', ()=>{ const cur = store.get('widget.colors', widgetColorDefaults()); cur[k]=normalizeHex(input.value); store.set('widget.colors', cur); applyWidgetColors(); });
-        const clear = document.createElement('button'); clear.className='btn'; clear.textContent = t('settings.widgets.reset');
-        clear.addEventListener('click', ()=>{ const cur = store.get('widget.colors', widgetColorDefaults()); cur[k]=''; store.set('widget.colors', cur); applyWidgetColors(); fillSettings(); });
-        box.appendChild(label); box.appendChild(input); box.appendChild(clear);
-        editor.appendChild(box);
-      });
+    const colors = store.get('widget.colors', widgetColorDefaults());
+    ensureWidgetColorRows().forEach(row=>{
+      const key = row.getAttribute('data-widget-color-row');
+      const input = row.querySelector('input');
+      if(!input || !key) return;
+      const value = colors[key];
+      input.value = (value && /^#([0-9a-f]{6})$/i.test(value)) ? value : '';
+      if(input.__uiColorSync) input.__uiColorSync();
+    });
 
     const cardStyle = store.get('ui.cardStyle', 'glass');
     const styleSelect = $('#cardStyle'); if(styleSelect) styleSelect.value = ['glass','solid','transparent','minimal'].includes(cardStyle) ? cardStyle : 'glass';
@@ -3038,9 +3038,32 @@
       searchInput.value = value && /^#([0-9a-f]{6})$/i.test(value) ? value : '';
       if(searchInput.__uiColorSync) searchInput.__uiColorSync();
     }
-    enhanceUiColorInputs(editor);
+    const accentInput = $('#accentColor'); if(accentInput){
+      const value = store.get('ui.accent.color','');
+      accentInput.value = value && /^#([0-9a-f]{6})$/i.test(value) ? value : '';
+      if(accentInput.__uiColorSync) accentInput.__uiColorSync();
+    }
+    const modalInput = $('#modalColor'); if(modalInput){
+      const value = store.get('ui.modal.color','');
+      modalInput.value = value && /^#([0-9a-f]{6})$/i.test(value) ? value : '';
+      if(modalInput.__uiColorSync) modalInput.__uiColorSync();
+    }
+    const buttonInput = $('#buttonColor'); if(buttonInput){
+      const value = store.get('ui.button.color','');
+      buttonInput.value = value && /^#([0-9a-f]{6})$/i.test(value) ? value : '';
+      if(buttonInput.__uiColorSync) buttonInput.__uiColorSync();
+    }
+    const inputColorInput = $('#inputColor'); if(inputColorInput){
+      const value = store.get('ui.input.color','');
+      inputColorInput.value = value && /^#([0-9a-f]{6})$/i.test(value) ? value : '';
+      if(inputColorInput.__uiColorSync) inputColorInput.__uiColorSync();
+    }
+    const settingsSearchInput = $('#settingsSearch');
+    if(settingsSearchInput && settingsSearchInput.value !== settingsSearchQuery) settingsSearchInput.value = settingsSearchQuery;
+    enhanceUiColorInputs($('#settingsModal'));
     enhanceUiSelects($('#settingsModal'));
     refreshUiSelects($('#settingsModal'));
+    applySettingsSearch();
   }
 
   function syncAgentSettingsTabVisibility(){
@@ -3074,10 +3097,266 @@
     store.set('settings.tab', name);
     if(name === 'background') bgRenderSettings();
   }
+
+  function panelRowsForSearch(panel){
+    return panel ? Array.from(panel.querySelectorAll(':scope > .row')) : [];
+  }
+
+  function widgetColorSettingKeys(){
+    return ['todo', 'notes', 'tiles', 'weather', 'transport', 'quote', 'recent', 'system', 'news'];
+  }
+
+  function ensureWidgetColorRows(){
+    const heading = $('#widgetColorHeading');
+    if(!heading || !heading.parentNode) return [];
+    const parent = heading.parentNode;
+    const orderedRows = [];
+    const knownKeys = widgetColorSettingKeys();
+    const existingRows = new Map($$('[data-widget-color-row]').map(row=> [row.getAttribute('data-widget-color-row'), row]));
+    let insertAfter = heading;
+
+    knownKeys.forEach(key=>{
+      let row = existingRows.get(key);
+      if(!row){
+        row = document.createElement('div');
+        row.className = 'row';
+        row.setAttribute('data-widget-color-row', key);
+        row.setAttribute('data-settings-panel', 'background');
+
+        const label = document.createElement('label');
+        label.setAttribute('for', `widgetColor_${key}`);
+
+        const content = document.createElement('div');
+        const controls = document.createElement('div');
+        controls.style.display = 'flex';
+        controls.style.gap = '8px';
+        controls.style.alignItems = 'center';
+        controls.style.flexWrap = 'wrap';
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.id = `widgetColor_${key}`;
+        input.setAttribute('data-ui-color', '');
+        input.setAttribute('data-color-default', '#7c5cff');
+        input.setAttribute('autocomplete', 'off');
+        input.addEventListener('input', ()=>{
+          const cur = store.get('widget.colors', widgetColorDefaults());
+          cur[key] = normalizeHex(input.value);
+          store.set('widget.colors', cur);
+          applyWidgetColors();
+        });
+
+        const clear = document.createElement('button');
+        clear.className = 'btn';
+        clear.type = 'button';
+        clear.setAttribute('data-widget-color-reset', key);
+        clear.addEventListener('click', ()=>{
+          const cur = store.get('widget.colors', widgetColorDefaults());
+          cur[key] = '';
+          store.set('widget.colors', cur);
+          applyWidgetColors();
+          fillSettings();
+        });
+
+        const note = document.createElement('div');
+        note.className = 'muted';
+        note.style.marginTop = '6px';
+
+        controls.appendChild(input);
+        controls.appendChild(clear);
+        content.appendChild(controls);
+        content.appendChild(note);
+        row.appendChild(label);
+        row.appendChild(content);
+      }
+
+      const label = row.querySelector(':scope > label');
+      if(label) label.textContent = t(`widgets.${key}`, null, key);
+      const note = row.querySelector('.muted');
+      if(note) note.textContent = t('settings.widgets.widgetColorNote', null, 'Farbe fuer dieses Widget (leer = Stil-Vorgabe).');
+      const clear = row.querySelector('[data-widget-color-reset]');
+      if(clear) clear.textContent = t('settings.widgets.reset', null, 'Reset');
+
+      if(insertAfter.nextSibling !== row){
+        parent.insertBefore(row, insertAfter.nextSibling);
+      }
+      insertAfter = row;
+      orderedRows.push(row);
+    });
+
+    existingRows.forEach((row, key)=>{
+      if(knownKeys.includes(key)) return;
+      row.remove();
+    });
+
+    return orderedRows;
+  }
+
+  function normalizeSearchText(value){
+    return String(value || '')
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .trim();
+  }
+
+  function getSettingsSearchSubItems(row){
+    if(!row) return [];
+    if(row.querySelector('#startpageAgentCapabilities')) return $$('.startpage-agent-cap-item', row);
+    if(row.querySelector('#widgetToggles')) return $$('#widgetToggles > label', row);
+    if(row.querySelector('#enginePills')) return $$('#enginePills > button', row);
+    return [];
+  }
+
+  function getSettingsSearchLabelText(row){
+    if(!row) return '';
+    const label = row.querySelector(':scope > label, :scope > .settings-row-heading');
+    return label ? normalizeSearchText(label.textContent) : '';
+  }
+
+  function getSettingsSearchText(row){
+    if(!row) return '';
+    const parts = [];
+    const labelText = getSettingsSearchLabelText(row);
+    if(labelText) parts.push(labelText);
+    $$('.muted', row).forEach(el=>{
+      const text = normalizeSearchText(el.textContent);
+      if(text) parts.push(text);
+    });
+    $$('input, textarea, select, button', row).forEach(el=>{
+      if(el.closest('#widgetToggles, #enginePills, #startpageAgentCapabilities')) return;
+      const placeholder = normalizeSearchText(el.getAttribute('placeholder') || el.getAttribute('data-i18n-placeholder') || '');
+      if(placeholder) parts.push(placeholder);
+      if(el.tagName === 'SELECT'){
+        Array.from(el.options || []).forEach(opt=>{
+          const text = normalizeSearchText(opt.textContent);
+          if(text) parts.push(text);
+        });
+      } else if(el.tagName === 'TEXTAREA' || el.tagName === 'INPUT'){
+        const value = normalizeSearchText(el.value || '');
+        if(value) parts.push(value);
+      } else if(el.tagName === 'BUTTON'){
+        const text = normalizeSearchText(el.textContent);
+        if(text) parts.push(text);
+      }
+    });
+    return parts.join(' ');
+  }
+
+  function resetSettingsSearchSubItems(row){
+    getSettingsSearchSubItems(row).forEach(item=> item.hidden = false);
+  }
+
+  function filterSettingsSearchSubItems(row, query){
+    const items = getSettingsSearchSubItems(row);
+    if(!items.length) return null;
+    const labelMatches = getSettingsSearchLabelText(row).includes(query);
+    let matches = 0;
+    items.forEach(item=>{
+      const itemMatches = normalizeSearchText(item.textContent).includes(query);
+      item.hidden = !itemMatches;
+      if(itemMatches) matches += 1;
+    });
+    if(matches === 0 && labelMatches){
+      items.forEach(item=> item.hidden = false);
+    return items.length;
+    }
+    return matches;
+  }
+
+  function restoreSettingsSearchRows(){
+    settingsSearchRestore.forEach(entry=>{
+      if(!entry || !entry.row || !entry.parent) return;
+      resetSettingsSearchSubItems(entry.row);
+      entry.row.hidden = false;
+      if(entry.placeholder && entry.placeholder.parentNode){
+        entry.placeholder.parentNode.insertBefore(entry.row, entry.placeholder);
+        entry.placeholder.remove();
+      } else {
+        entry.parent.appendChild(entry.row);
+      }
+    });
+    settingsSearchRestore = [];
+  }
+
+  function applySettingsSearch(){
+    const modal = $('#settingsModal');
+    if(!modal) return;
+    const query = normalizeSearchText(settingsSearchQuery);
+    const status = $('#settingsSearchStatus');
+    const resultsEl = $('#settingsSearchResults');
+    const panels = [
+      $('#tab-general'),
+      $('#tab-ai'),
+      $('#tab-background'),
+      $('#tab-search'),
+      $('#tab-widgets'),
+      $('#tab-data'),
+      $('#tab-guide')
+    ].filter(Boolean);
+    restoreSettingsSearchRows();
+    if(!query){
+      modal.classList.remove('searching');
+      if(resultsEl) resultsEl.innerHTML = '';
+      if(status) status.textContent = t('settings.searchSettingsHint', null, 'Filtert Einträge über alle Tabs.');
+      return;
+    }
+
+    modal.classList.add('searching');
+    let totalMatches = 0;
+    let matchedSections = 0;
+    if(resultsEl) resultsEl.innerHTML = '';
+    panels.forEach(panel=>{
+      const rows = panelRowsForSearch(panel);
+      let panelMatched = false;
+      rows.forEach(row=>{
+        if(row.classList.contains('row-heading')) return;
+        const subItemMatches = filterSettingsSearchSubItems(row, query);
+        const text = getSettingsSearchText(row);
+        const match = typeof subItemMatches === 'number' ? subItemMatches > 0 : text.includes(query);
+        if(!match) return;
+        panelMatched = true;
+        totalMatches += typeof subItemMatches === 'number' ? subItemMatches : 1;
+        if(resultsEl){
+          const placeholder = document.createComment('settings-search-placeholder');
+          const parent = row.parentNode;
+          if(parent){
+            parent.insertBefore(placeholder, row);
+            settingsSearchRestore.push({ row, parent, placeholder });
+          }
+          resultsEl.appendChild(row);
+          row.hidden = false;
+        }
+      });
+      if(panelMatched) matchedSections += 1;
+    });
+    if(status){
+      status.textContent = totalMatches
+        ? t('settings.searchSettingsResults', { count: totalMatches, sections: matchedSections }, '{count} Treffer in {sections} Bereichen.')
+        : t('settings.searchSettingsNoResults', null, 'Keine Treffer in den Einstellungen.');
+    }
+  }
+
+  function initSettingsSearch(){
+    const input = $('#settingsSearch');
+    if(!input || input.dataset.bound === '1') return;
+    input.dataset.bound = '1';
+    input.value = settingsSearchQuery;
+    input.addEventListener('input', ()=>{
+      settingsSearchQuery = input.value;
+      applySettingsSearch();
+    });
+  }
+
   function initSettingsTabs(){
     const root = $('#settingsModal'); if(!root) return;
     $$('.tab-btn', root).forEach(btn=>{
-      btn.addEventListener('click', ()=> selectSettingsTab(btn.getAttribute('data-tab')));
+      if(btn.dataset.bound === '1') return;
+      btn.dataset.bound = '1';
+      btn.addEventListener('click', ()=>{
+        selectSettingsTab(btn.getAttribute('data-tab'));
+        if(settingsSearchQuery) applySettingsSearch();
+      });
     });
   }
 
@@ -3085,11 +3364,15 @@
   function rebuildSettingsPanels(){
     const sheet = $('#settingsModal .sheet'); if(!sheet) return;
     const tabs = sheet.querySelector('.tabs'); if(!tabs) return;
+    const searchResults = sheet.querySelector('#settingsSearchResults');
     // Collect rows from root and any pre-existing panels BEFORE removing them
     const rows = Array.from(sheet.querySelectorAll(':scope > .row, :scope > .tab-panel > .row'))
       .filter(row=> !row.closest('#tab-guide'));
     // Remove old panels
-    sheet.querySelectorAll(':scope > .tab-panel').forEach(p=> p.remove());
+    sheet.querySelectorAll(':scope > .tab-panel').forEach(p=>{
+      if(searchResults && p === searchResults) return;
+      p.remove();
+    });
 
     const panelGeneral = document.createElement('div'); panelGeneral.id='tab-general'; panelGeneral.className='tab-panel';
     const panelAi = document.createElement('div'); panelAi.id='tab-ai'; panelAi.className='tab-panel';
@@ -3101,11 +3384,19 @@
 
     const assign = (row, target)=>{ if(!row) return; if(row.parentElement) row.parentElement.removeChild(row); target.appendChild(row); };
     rows.forEach(row=>{
+      const explicitPanel = row.getAttribute('data-settings-panel');
+      if(explicitPanel === 'background'){ assign(row, panelBackground); return; }
+      if(explicitPanel === 'general'){ assign(row, panelGeneral); return; }
+      if(explicitPanel === 'ai'){ assign(row, panelAi); return; }
+      if(explicitPanel === 'search'){ assign(row, panelSearch); return; }
+      if(explicitPanel === 'widgets'){ assign(row, panelWidgets); return; }
+      if(explicitPanel === 'data'){ assign(row, panelData); return; }
+      if(explicitPanel === 'guide'){ assign(row, panelGuide); return; }
       const has = sel => row.querySelector(sel);
       if(has('#themeSelect')) assign(row, panelGeneral);
       else if(has('#aiEnabledToggle')) assign(row, panelGeneral);
       else if(has('#startpageAgentModel') || has('#startpageAgentLoadModels') || has('#startpageAgentHost') || has('#startpageAgentConfirmMode') || has('#startpageAgentMaxIterations') || has('#startpageAgentCustomPrompt') || has('#startpageAgentMemory') || has('#startpageAgentClearMemory') || has('#startpageAgentSaveSettings') || has('#startpageAgentClearChat') || has('#startpageAgentCapabilities')) assign(row, panelAi);
-      else if(has('#bgEngine') || has('#cardStyle') || has('#clockColor') || has('#searchColor') || has('#widgetColorEditor')) assign(row, panelBackground);
+      else if(has('#bgEngine') || has('#cardStyle') || has('#accentColor') || has('#modalColor') || has('#buttonColor') || has('#inputColor') || has('#clockColor') || has('#searchColor')) assign(row, panelBackground);
       else if(has('#enginePills') || has('#searxngBaseUrl') || has('#shortcutConfig') || has('#feedsConfig') || has('#wordlistEditor')) assign(row, panelSearch);
       else if(has('#widgetToggles') || has('#defaultCities') || has('#transportDefaultInput') || has('#recentMaxSetting') || has('#recentClearSetting')) assign(row, panelWidgets);
       else if(has('#exportData') || has('#importData') || has('#dataNote') || has('#dataPresetSelect') || has('#applyPreset') || has('#restartOnboarding')) assign(row, panelData);
@@ -3562,8 +3853,10 @@
   function bgApplyAccentVars(primary, secondary){
     const root = document.documentElement; if(!root) return;
     const fallback = bgAccentFallback();
-    const p = normalizeHex(primary) || fallback.primary;
+    const override = normalizeHex(store.get('ui.accent.color',''));
+    const p = override || normalizeHex(primary) || fallback.primary;
     let s = normalizeHex(secondary);
+    if(override) s = bgAdjustHex(p, 0.18);
     if(!s) s = bgAdjustHex(p, 0.18);
     if(!s) s = fallback.secondary;
     root.style.setProperty('--accent', p);
@@ -4746,8 +5039,8 @@
 
   function bgOnThemeChange(){
     bgEvaluateRotation('theme');
-    if(bgCurrentAccent) bgApplyAccentVars(bgCurrentAccent.primary, bgCurrentAccent.secondary);
-    else bgApplyAccentVars();
+    applyAccentPreference();
+    applyModalColors();
   }
 
   function applyBackground(ref){
@@ -4913,6 +5206,82 @@
     applySurfaceColor('search', store.get('ui.search.color',''));
   }
 
+  function applyControlColor(prefix, raw, options={}){
+    const root = document.documentElement; if(!root) return;
+    const body = document.body;
+    const bodyStyle = body ? getComputedStyle(body) : null;
+    const rootStyle = getComputedStyle(root);
+    const baseBg = (bodyStyle && bodyStyle.getPropertyValue(options.baseBgVar).trim()) || rootStyle.getPropertyValue(options.baseBgVar).trim() || 'transparent';
+    const baseBorder = (bodyStyle && bodyStyle.getPropertyValue(options.baseBorderVar).trim()) || rootStyle.getPropertyValue(options.baseBorderVar).trim() || 'transparent';
+    const baseShadow = options.baseShadowVar
+      ? ((bodyStyle && bodyStyle.getPropertyValue(options.baseShadowVar).trim()) || rootStyle.getPropertyValue(options.baseShadowVar).trim() || 'none')
+      : '';
+    const baseBackdrop = options.baseBackdropVar
+      ? ((bodyStyle && bodyStyle.getPropertyValue(options.baseBackdropVar).trim()) || rootStyle.getPropertyValue(options.baseBackdropVar).trim() || 'none')
+      : '';
+    const hex = normalizeHex(raw);
+    if(hex){
+      const tint = hexToRgba(hex, options.tintAlpha ?? 0.18);
+      const border = hexToRgba(hex, options.borderAlpha ?? 0.28) || baseBorder;
+      const bgLayer = tint ? `linear-gradient(0deg, ${tint}, ${tint}), ${baseBg}` : baseBg;
+      root.style.setProperty(`--${prefix}-bg`, bgLayer);
+      root.style.setProperty(`--${prefix}-border`, border || baseBorder);
+    } else {
+      root.style.setProperty(`--${prefix}-bg`, baseBg);
+      root.style.setProperty(`--${prefix}-border`, baseBorder);
+    }
+    if(options.baseShadowVar) root.style.setProperty(`--${prefix}-shadow`, baseShadow);
+    if(options.baseBackdropVar) root.style.setProperty(`--${prefix}-backdrop`, baseBackdrop);
+  }
+
+  function applyControlColors(){
+    applyControlColor('button', store.get('ui.button.color',''), {
+      baseBgVar: '--tile-bg-current',
+      baseBorderVar: '--tile-border-current',
+      baseShadowVar: '--tile-shadow-current',
+      baseBackdropVar: '--tile-backdrop-current',
+      tintAlpha: 0.24,
+      borderAlpha: 0.36
+    });
+    applyControlColor('input', store.get('ui.input.color',''), {
+      baseBgVar: '--bg-soft',
+      baseBorderVar: '--input-border-default',
+      tintAlpha: 0.18,
+      borderAlpha: 0.30
+    });
+  }
+
+  function applyModalColors(){
+    const root = document.documentElement; if(!root) return;
+    const body = document.body;
+    const bodyStyle = body ? getComputedStyle(body) : null;
+    const rootStyle = getComputedStyle(root);
+    const baseCard = (bodyStyle && bodyStyle.getPropertyValue('--card').trim()) || rootStyle.getPropertyValue('--card').trim() || 'transparent';
+    const baseSoft = (bodyStyle && bodyStyle.getPropertyValue('--bg-soft').trim()) || rootStyle.getPropertyValue('--bg-soft').trim() || baseCard;
+    const modalHex = normalizeHex(store.get('ui.modal.color',''));
+    if(modalHex){
+      const modalTint = hexToRgba(modalHex, 0.28);
+      const panelTint = hexToRgba(modalHex, 0.20);
+      root.style.setProperty('--modal-bg', `linear-gradient(0deg, ${modalTint}, ${modalTint}), ${baseCard}`);
+      root.style.setProperty('--modal-panel-bg',
+        `radial-gradient(900px 300px at 0% -20%, color-mix(in srgb, ${modalHex} 18%, transparent), transparent 60%), linear-gradient(180deg, color-mix(in srgb, ${panelTint} 72%, ${baseCard}), color-mix(in srgb, ${panelTint} 58%, ${baseSoft}))`);
+    } else {
+      root.style.setProperty('--modal-bg', baseCard);
+      root.style.setProperty('--modal-panel-bg',
+        `radial-gradient(900px 300px at 0% -20%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 60%), linear-gradient(180deg, color-mix(in srgb, ${baseCard} 88%, transparent), color-mix(in srgb, ${baseSoft} 82%, transparent))`);
+    }
+  }
+
+  function applyAccentPreference(){
+    const override = normalizeHex(store.get('ui.accent.color',''));
+    if(override){
+      bgApplyAccentVars(override, bgAdjustHex(override, 0.18));
+      return;
+    }
+    if(bgCurrentAccent) bgApplyAccentVars(bgCurrentAccent.primary, bgCurrentAccent.secondary);
+    else bgApplyAccentVars();
+  }
+
   function applyCardStyle(){
     const body = document.body; if(!body) return;
     const current = store.get('ui.cardStyle','glass');
@@ -4920,7 +5289,10 @@
     const value = allowed.includes(current) ? current : 'glass';
     body.setAttribute('data-card-style', value);
     applySurfaceColors();
+    applyControlColors();
+    applyModalColors();
     applyWidgetColors();
+    applyAccentPreference();
     applyAccentTint();
   }
 
@@ -7163,6 +7535,18 @@
     const searchColorInput = $('#searchColor');
     if(searchColorInput) searchColorInput.addEventListener('input', ()=>{ const val = normalizeHex(searchColorInput.value); store.set('ui.search.color', val); applySurfaceColors(); });
     const searchReset = $('#searchColorReset'); if(searchReset) searchReset.addEventListener('click', ()=>{ store.set('ui.search.color',''); applySurfaceColors(); fillSettings(); });
+    const accentColorInput = $('#accentColor');
+    if(accentColorInput) accentColorInput.addEventListener('input', ()=>{ const val = normalizeHex(accentColorInput.value); store.set('ui.accent.color', val); applyAccentPreference(); applyModalColors(); });
+    const accentReset = $('#accentColorReset'); if(accentReset) accentReset.addEventListener('click', ()=>{ store.set('ui.accent.color',''); applyAccentPreference(); applyModalColors(); fillSettings(); });
+    const modalColorInput = $('#modalColor');
+    if(modalColorInput) modalColorInput.addEventListener('input', ()=>{ const val = normalizeHex(modalColorInput.value); store.set('ui.modal.color', val); applyModalColors(); });
+    const modalReset = $('#modalColorReset'); if(modalReset) modalReset.addEventListener('click', ()=>{ store.set('ui.modal.color',''); applyModalColors(); fillSettings(); });
+    const buttonColorInput = $('#buttonColor');
+    if(buttonColorInput) buttonColorInput.addEventListener('input', ()=>{ const val = normalizeHex(buttonColorInput.value); store.set('ui.button.color', val); applyControlColors(); });
+    const buttonReset = $('#buttonColorReset'); if(buttonReset) buttonReset.addEventListener('click', ()=>{ store.set('ui.button.color',''); applyControlColors(); fillSettings(); });
+    const inputColorInput = $('#inputColor');
+    if(inputColorInput) inputColorInput.addEventListener('input', ()=>{ const val = normalizeHex(inputColorInput.value); store.set('ui.input.color', val); applyControlColors(); });
+    const inputReset = $('#inputColorReset'); if(inputReset) inputReset.addEventListener('click', ()=>{ store.set('ui.input.color',''); applyControlColors(); fillSettings(); });
 
     // Engines & Search
     ensureSearxngEngineEnabled();
@@ -7401,6 +7785,7 @@
 
     // Widgets visibility
     applyWidgets();
+    applyControlColors();
     applyWidgetColors();
 
     // Close modal on Escape / overlay click

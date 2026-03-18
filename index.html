@@ -138,17 +138,22 @@
 
     <footer class="muted" style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:6px">
       <div data-i18n="footer.tagline">Local-first Dashboard · speichert nur im Browser (localStorage)</div>
-      <div>v1.13</div>
+      <div>v1.14.0</div>
     </footer>
   </div>
 
   <!-- Settings Modal -->
   <div class="modal" id="settingsModal" aria-hidden="true">
     <div class="sheet">
-      <div style="display:flex; align-items:center; justify-content:space-between">
+      <div class="settings-header">
         <h4 data-i18n="settings.title">Einstellungen</h4>
+        <div class="settings-search">
+          <input id="settingsSearch" type="text" placeholder="Einstellungen durchsuchen…" data-i18n-placeholder="settings.searchSettingsPlaceholder" autocomplete="off" />
+        </div>
         <button class="btn" id="closeSettings" data-i18n="settings.close">Schließen</button>
       </div>
+      <div class="muted settings-search-status" id="settingsSearchStatus" data-i18n="settings.searchSettingsHint">Filtert Einträge über alle Tabs.</div>
+      <div class="tab-panel settings-search-results" id="settingsSearchResults" aria-live="polite"></div>
       <div class="tabs" role="tablist">
         <button class="tab-btn" data-tab="general" role="tab" aria-selected="true" data-i18n="settings.tabs.general">Allgemein</button>
         <button class="tab-btn" data-tab="ai" role="tab" id="settingsTabAi" data-i18n="settings.tabs.ai">Startpage Agent</button>
@@ -261,6 +266,9 @@
         </div>
       </div>
       <div id="tab-background" class="tab-panel" role="tabpanel">
+        <div class="row row-heading" data-settings-panel="background">
+          <div class="settings-row-heading" data-i18n="settings.background.sections.background">Hintergrund</div>
+        </div>
         <div class="row">
           <label for="bgEngine" data-i18n="settings.background.label">Hintergrund</label>
           <div id="bgEngine" class="bg-engine">
@@ -294,6 +302,67 @@
               <div class="bg-panel" id="bgPanel-custom"></div>
             </div>
           </div>
+        </div>
+        <div class="row row-heading" data-settings-panel="background">
+          <div class="settings-row-heading" data-i18n="settings.background.sections.layout">Layout &amp; Akzente</div>
+        </div>
+        <div class="row">
+          <label for="cardStyle" data-i18n="settings.widgets.cardStyleLabel">Kachel-Stil</label>
+          <div>
+            <select id="cardStyle">
+              <option value="glass" data-i18n="settings.widgets.cardStyleGlass">Glas (Standard)</option>
+              <option value="solid" data-i18n="settings.widgets.cardStyleSolid">Vollfläche</option>
+              <option value="transparent" data-i18n="settings.widgets.cardStyleTransparent">Transparent</option>
+              <option value="minimal" data-i18n="settings.widgets.cardStyleMinimal">Soft Minimal</option>
+            </select>
+            <div class="muted" style="margin-top:6px" data-i18n="settings.widgets.cardStyleNote">Wirkt auf alle Widgets & Favoriten-Kacheln.</div>
+          </div>
+        </div>
+        <div class="row">
+          <label for="accentColor" data-i18n="settings.widgets.accentColorLabel">Akzentfarbe</label>
+          <div>
+            <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
+              <input type="text" id="accentColor" data-ui-color data-color-default="#7c5cff" autocomplete="off" />
+              <button class="btn" id="accentColorReset" type="button" data-i18n="settings.widgets.reset">Reset</button>
+            </div>
+            <div class="muted" style="margin-top:6px" data-i18n="settings.widgets.accentColorNote">Globale Akzentfarbe für Highlights, aktive Tabs und Links (leer = automatisch aus Theme/Hintergrund).</div>
+          </div>
+        </div>
+        <div class="row row-heading" data-settings-panel="background">
+          <div class="settings-row-heading" data-i18n="settings.background.sections.ui">UI-Oberflächen</div>
+        </div>
+        <div class="row">
+          <label for="modalColor" data-i18n="settings.widgets.modalColorLabel">Modals</label>
+          <div>
+            <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
+              <input type="text" id="modalColor" data-ui-color data-color-default="#171b31" autocomplete="off" />
+              <button class="btn" id="modalColorReset" type="button" data-i18n="settings.widgets.reset">Reset</button>
+            </div>
+            <div class="muted" style="margin-top:6px" data-i18n="settings.widgets.modalColorNote">Hintergrundfarbe für Settings-, Dialog- und Palette-Modals (leer = Stil-Vorgabe).</div>
+          </div>
+        </div>
+        <div class="row">
+          <label for="buttonColor" data-i18n="settings.widgets.buttonColorLabel">Buttons</label>
+          <div>
+            <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
+              <input type="text" id="buttonColor" data-ui-color data-color-default="#7c5cff" autocomplete="off" />
+              <button class="btn" id="buttonColorReset" type="button" data-i18n="settings.widgets.reset">Reset</button>
+            </div>
+            <div class="muted" style="margin-top:6px" data-i18n="settings.widgets.buttonColorNote">Farbe für Buttons (leer = Stil-Vorgabe).</div>
+          </div>
+        </div>
+        <div class="row">
+          <label for="inputColor" data-i18n="settings.widgets.inputColorLabel">Eingabefelder</label>
+          <div>
+            <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
+              <input type="text" id="inputColor" data-ui-color data-color-default="#54d6ff" autocomplete="off" />
+              <button class="btn" id="inputColorReset" type="button" data-i18n="settings.widgets.reset">Reset</button>
+            </div>
+            <div class="muted" style="margin-top:6px" data-i18n="settings.widgets.inputColorNote">Farbe für Input-, Select- und Textarea-Felder (leer = Stil-Vorgabe).</div>
+          </div>
+        </div>
+        <div class="row row-heading" data-settings-panel="background">
+          <div class="settings-row-heading" data-i18n="settings.background.sections.widgetSurfaces">Header &amp; Widgets</div>
         </div>
       </div>
       <div id="tab-search" class="tab-panel" role="tabpanel">
@@ -367,19 +436,7 @@
             <button class="btn" id="recentClearSetting" type="button" data-i18n="recent.clear">Daten löschen</button>
           </div>
         </div>
-        <div class="row">
-          <label for="cardStyle" data-i18n="settings.widgets.cardStyleLabel">Kachel-Stil</label>
-          <div>
-            <select id="cardStyle">
-              <option value="glass" data-i18n="settings.widgets.cardStyleGlass">Glas (Standard)</option>
-              <option value="solid" data-i18n="settings.widgets.cardStyleSolid">Vollfläche</option>
-              <option value="transparent" data-i18n="settings.widgets.cardStyleTransparent">Transparent</option>
-              <option value="minimal" data-i18n="settings.widgets.cardStyleMinimal">Soft Minimal</option>
-            </select>
-            <div class="muted" style="margin-top:6px" data-i18n="settings.widgets.cardStyleNote">Wirkt auf alle Widgets & Favoriten-Kacheln.</div>
-          </div>
-        </div>
-        <div class="row">
+        <div class="row" data-settings-panel="background">
           <label for="clockColor" data-i18n="settings.widgets.clockColorLabel">Zeit & Datum</label>       
           <div>
             <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
@@ -389,7 +446,7 @@
             <div class="muted" style="margin-top:6px" data-i18n="settings.widgets.clockColorNote">Legt den Hintergrund der Kopfzeile fest (leer = Stil-Vorgabe).</div>
           </div>
         </div>
-        <div class="row">
+        <div class="row" data-settings-panel="background">
           <label for="searchColor" data-i18n="settings.widgets.searchColorLabel">Suche</label>
           <div>
             <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
@@ -399,9 +456,8 @@
             <div class="muted" style="margin-top:6px" data-i18n="settings.widgets.searchColorNote">Farbe für den Suchbereich (leer = Stil-Vorgabe).</div>
           </div>
         </div>
-        <div class="row">
-          <label data-i18n="settings.widgets.widgetColorsLabel">Widget-Farben</label>
-          <div id="widgetColorEditor" style="display:flex; gap:12px; flex-wrap:wrap"></div>
+        <div class="row row-heading" id="widgetColorHeading" data-settings-panel="background">
+          <div class="settings-row-heading" data-i18n="settings.widgets.widgetColorsLabel">Widget-Farben</div>
         </div>
       </div>
       <div id="tab-data" class="tab-panel" role="tabpanel">

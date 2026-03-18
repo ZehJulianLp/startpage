@@ -185,9 +185,14 @@
   "settings": {
     "title": "Einstellungen",
     "close": "Schließen",
-    "tabs": {
-      "general": "Allgemein",
-      "background": "Hintergrund & Erscheinung",
+    "searchSettingsPlaceholder": "Einstellungen durchsuchen…",
+    "searchSettingsHint": "Filtert Einträge über alle Tabs.",
+    "searchSettingsOpen": "Öffnen",
+    "searchSettingsResults": "{count} Treffer in {sections} Bereichen.",
+    "searchSettingsNoResults": "Keine Treffer in den Einstellungen.",
+      "tabs": {
+        "general": "Allgemein",
+        "background": "Hintergrund & Erscheinung",
       "search": "Suche & Feeds",
       "widgets": "Widgets",
       "data": "Daten",
@@ -201,7 +206,13 @@
       "light": "Licht"
     },
     "background": {
-      "label": "Hintergrund"
+      "label": "Hintergrund",
+      "sections": {
+        "background": "Hintergrund",
+        "layout": "Layout & Akzente",
+        "ui": "UI-Oberflächen",
+        "widgetSurfaces": "Header & Widgets"
+      }
     },
     "search": {
       "engines": "Suchmaschinen",
@@ -238,10 +249,19 @@
       "cardStyleNote": "Wirkt auf alle Widgets & Favoriten-Kacheln.",
       "clockColorLabel": "Zeit & Datum",
       "searchColorLabel": "Suche",
+      "accentColorLabel": "Akzentfarbe",
+      "modalColorLabel": "Modals",
+      "buttonColorLabel": "Buttons",
+      "inputColorLabel": "Eingabefelder",
       "reset": "Zurücksetzen",
       "clockColorNote": "Legt den Hintergrund der Kopfzeile fest (leer = Stil-Vorgabe).",
       "searchColorNote": "Farbe für den Suchbereich (leer = Stil-Vorgabe).",
+      "accentColorNote": "Globale Akzentfarbe für Highlights, aktive Tabs und Links (leer = automatisch aus Theme/Hintergrund).",
+      "modalColorNote": "Hintergrundfarbe für Settings-, Dialog- und Palette-Modals (leer = Stil-Vorgabe).",
+      "buttonColorNote": "Farbe für Buttons (leer = Stil-Vorgabe).",
+      "inputColorNote": "Farbe für Input-, Select- und Textarea-Felder (leer = Stil-Vorgabe).",
       "widgetColorsLabel": "Widget-Farben",
+      "widgetColorNote": "Farbe für dieses Widget (leer = Stil-Vorgabe).",
       "weatherCitiesLabel": "Wetter-Städte",
       "weatherCitiesPlaceholder": "Eine Stadt pro Zeile, z.B. Hannover\nBerlin\nHamburg",
       "weatherCitiesNote": "Eine Stadt pro Zeile. Der erste Eintrag wird aktiv, falls die bisher aktive Stadt nicht enthalten ist.",
