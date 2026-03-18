@@ -145,14 +145,14 @@
   <!-- Settings Modal -->
   <div class="modal" id="settingsModal" aria-hidden="true">
     <div class="sheet">
-      <div style="display:flex; align-items:center; justify-content:space-between">
+      <div class="settings-header">
         <h4 data-i18n="settings.title">Einstellungen</h4>
+        <div class="settings-search">
+          <input id="settingsSearch" type="text" placeholder="Einstellungen durchsuchen…" data-i18n-placeholder="settings.searchSettingsPlaceholder" autocomplete="off" />
+        </div>
         <button class="btn" id="closeSettings" data-i18n="settings.close">Schließen</button>
       </div>
-      <div class="settings-search">
-        <input id="settingsSearch" type="text" placeholder="Einstellungen durchsuchen…" data-i18n-placeholder="settings.searchSettingsPlaceholder" autocomplete="off" />
-        <div class="muted settings-search-status" id="settingsSearchStatus" data-i18n="settings.searchSettingsHint">Filtert Einträge über alle Tabs.</div>
-      </div>
+      <div class="muted settings-search-status" id="settingsSearchStatus" data-i18n="settings.searchSettingsHint">Filtert Einträge über alle Tabs.</div>
       <div class="tab-panel settings-search-results" id="settingsSearchResults" aria-live="polite"></div>
       <div class="tabs" role="tablist">
         <button class="tab-btn" data-tab="general" role="tab" aria-selected="true" data-i18n="settings.tabs.general">Allgemein</button>

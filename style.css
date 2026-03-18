@@ -735,18 +735,38 @@
     .sheet input[type="checkbox"]:checked::after{ content:'\2713'; color:#fff; font-size:12px; line-height:1; }
 
     /* Tabs */
+    .settings-header {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 12px;
+    }
+    .settings-header h4 {
+      margin: 0;
+      flex: 0 0 auto;
+    }
+    .settings-header #closeSettings {
+      justify-self: end;
+    }
     .tabs { display:flex; gap:8px; border-bottom: 1px solid rgba(255,255,255,.08); margin: 10px 0 12px; position: sticky; top: 0; background: inherit; padding-bottom: 8px; z-index: 2 }
     .tab-btn { background: var(--glass); border:1px solid rgba(255,255,255,.08); color: var(--fg); padding:8px 12px; border-radius:999px; cursor:pointer }
     .tab-btn.active { background: var(--accent); border-color: var(--accent); color: #fff }
     .settings-search {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
+      width: min(320px, 100%);
+      min-width: 0;
+      max-width: 320px;
+      justify-self: center;
+    }
+    .settings-search input {
+      height: 40px;
     }
     .settings-search-status {
-      min-height: 18px;
-      font-size: 12px;
+      display: none;
+      min-height: 0;
+      font-size: 11px;
+      line-height: 1.25;
     }
+    #settingsModal.searching .settings-search-status { display: block; }
     .tab-panel { display: none }
     .tab-panel.active { display: block }
     body:not(.reduce-motion) #settingsModal .tab-panel.active {
@@ -980,6 +1000,17 @@
       #settingsModal .sheet {
         height: min(90vh, 900px);
         max-height: min(90vh, 900px);
+      }
+      .settings-header {
+        flex-wrap: wrap;
+        align-items: stretch;
+      }
+      .settings-header h4 {
+        width: 100%;
+      }
+      .settings-search {
+        order: 3;
+        width: 100%;
       }
       #settingsModal .tab-panel { padding: 12px; }
     }
