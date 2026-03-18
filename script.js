@@ -1486,6 +1486,10 @@
     } else {
       root.setAttribute('data-theme', mode);
     }
+    applySurfaceColors();
+    applyControlColors();
+    applyWidgetColors();
+    applyAccentTint();
     bgOnThemeChange();
   }
 
@@ -3038,6 +3042,16 @@
       searchInput.value = value && /^#([0-9a-f]{6})$/i.test(value) ? value : '';
       if(searchInput.__uiColorSync) searchInput.__uiColorSync();
     }
+    const buttonInput = $('#buttonColor'); if(buttonInput){
+      const value = store.get('ui.button.color','');
+      buttonInput.value = value && /^#([0-9a-f]{6})$/i.test(value) ? value : '';
+      if(buttonInput.__uiColorSync) buttonInput.__uiColorSync();
+    }
+    const inputColorInput = $('#inputColor'); if(inputColorInput){
+      const value = store.get('ui.input.color','');
+      inputColorInput.value = value && /^#([0-9a-f]{6})$/i.test(value) ? value : '';
+      if(inputColorInput.__uiColorSync) inputColorInput.__uiColorSync();
+    }
     enhanceUiColorInputs(editor);
     enhanceUiSelects($('#settingsModal'));
     refreshUiSelects($('#settingsModal'));
@@ -3105,7 +3119,7 @@
       if(has('#themeSelect')) assign(row, panelGeneral);
       else if(has('#aiEnabledToggle')) assign(row, panelGeneral);
       else if(has('#startpageAgentModel') || has('#startpageAgentLoadModels') || has('#startpageAgentHost') || has('#startpageAgentConfirmMode') || has('#startpageAgentMaxIterations') || has('#startpageAgentCustomPrompt') || has('#startpageAgentMemory') || has('#startpageAgentClearMemory') || has('#startpageAgentSaveSettings') || has('#startpageAgentClearChat') || has('#startpageAgentCapabilities')) assign(row, panelAi);
-      else if(has('#bgEngine') || has('#cardStyle') || has('#clockColor') || has('#searchColor') || has('#widgetColorEditor')) assign(row, panelBackground);
+      else if(has('#bgEngine') || has('#cardStyle') || has('#clockColor') || has('#searchColor') || has('#buttonColor') || has('#inputColor') || has('#widgetColorEditor')) assign(row, panelBackground);
       else if(has('#enginePills') || has('#searxngBaseUrl') || has('#shortcutConfig') || has('#feedsConfig') || has('#wordlistEditor')) assign(row, panelSearch);
       else if(has('#widgetToggles') || has('#defaultCities') || has('#transportDefaultInput') || has('#recentMaxSetting') || has('#recentClearSetting')) assign(row, panelWidgets);
       else if(has('#exportData') || has('#importData') || has('#dataNote') || has('#dataPresetSelect') || has('#applyPreset') || has('#restartOnboarding')) assign(row, panelData);
@@ -4913,6 +4927,51 @@
     applySurfaceColor('search', store.get('ui.search.color',''));
   }
 
+  function applyControlColor(prefix, raw, options={}){
+    const root = document.documentElement; if(!root) return;
+    const body = document.body;
+    const bodyStyle = body ? getComputedStyle(body) : null;
+    const rootStyle = getComputedStyle(root);
+    const baseBg = (bodyStyle && bodyStyle.getPropertyValue(options.baseBgVar).trim()) || rootStyle.getPropertyValue(options.baseBgVar).trim() || 'transparent';
+    const baseBorder = (bodyStyle && bodyStyle.getPropertyValue(options.baseBorderVar).trim()) || rootStyle.getPropertyValue(options.baseBorderVar).trim() || 'transparent';
+    const baseShadow = options.baseShadowVar
+      ? ((bodyStyle && bodyStyle.getPropertyValue(options.baseShadowVar).trim()) || rootStyle.getPropertyValue(options.baseShadowVar).trim() || 'none')
+      : '';
+    const baseBackdrop = options.baseBackdropVar
+      ? ((bodyStyle && bodyStyle.getPropertyValue(options.baseBackdropVar).trim()) || rootStyle.getPropertyValue(options.baseBackdropVar).trim() || 'none')
+      : '';
+    const hex = normalizeHex(raw);
+    if(hex){
+      const tint = hexToRgba(hex, options.tintAlpha ?? 0.18);
+      const border = hexToRgba(hex, options.borderAlpha ?? 0.28) || baseBorder;
+      const bgLayer = tint ? `linear-gradient(0deg, ${tint}, ${tint}), ${baseBg}` : baseBg;
+      root.style.setProperty(`--${prefix}-bg`, bgLayer);
+      root.style.setProperty(`--${prefix}-border`, border || baseBorder);
+    } else {
+      root.style.setProperty(`--${prefix}-bg`, baseBg);
+      root.style.setProperty(`--${prefix}-border`, baseBorder);
+    }
+    if(options.baseShadowVar) root.style.setProperty(`--${prefix}-shadow`, baseShadow);
+    if(options.baseBackdropVar) root.style.setProperty(`--${prefix}-backdrop`, baseBackdrop);
+  }
+
+  function applyControlColors(){
+    applyControlColor('button', store.get('ui.button.color',''), {
+      baseBgVar: '--tile-bg-current',
+      baseBorderVar: '--tile-border-current',
+      baseShadowVar: '--tile-shadow-current',
+      baseBackdropVar: '--tile-backdrop-current',
+      tintAlpha: 0.24,
+      borderAlpha: 0.36
+    });
+    applyControlColor('input', store.get('ui.input.color',''), {
+      baseBgVar: '--bg-soft',
+      baseBorderVar: '--input-border-default',
+      tintAlpha: 0.18,
+      borderAlpha: 0.30
+    });
+  }
+
   function applyCardStyle(){
     const body = document.body; if(!body) return;
     const current = store.get('ui.cardStyle','glass');
@@ -4920,6 +4979,7 @@
     const value = allowed.includes(current) ? current : 'glass';
     body.setAttribute('data-card-style', value);
     applySurfaceColors();
+    applyControlColors();
     applyWidgetColors();
     applyAccentTint();
   }
@@ -7163,6 +7223,12 @@
     const searchColorInput = $('#searchColor');
     if(searchColorInput) searchColorInput.addEventListener('input', ()=>{ const val = normalizeHex(searchColorInput.value); store.set('ui.search.color', val); applySurfaceColors(); });
     const searchReset = $('#searchColorReset'); if(searchReset) searchReset.addEventListener('click', ()=>{ store.set('ui.search.color',''); applySurfaceColors(); fillSettings(); });
+    const buttonColorInput = $('#buttonColor');
+    if(buttonColorInput) buttonColorInput.addEventListener('input', ()=>{ const val = normalizeHex(buttonColorInput.value); store.set('ui.button.color', val); applyControlColors(); });
+    const buttonReset = $('#buttonColorReset'); if(buttonReset) buttonReset.addEventListener('click', ()=>{ store.set('ui.button.color',''); applyControlColors(); fillSettings(); });
+    const inputColorInput = $('#inputColor');
+    if(inputColorInput) inputColorInput.addEventListener('input', ()=>{ const val = normalizeHex(inputColorInput.value); store.set('ui.input.color', val); applyControlColors(); });
+    const inputReset = $('#inputColorReset'); if(inputReset) inputReset.addEventListener('click', ()=>{ store.set('ui.input.color',''); applyControlColors(); fillSettings(); });
 
     // Engines & Search
     ensureSearxngEngineEnabled();
@@ -7401,6 +7467,7 @@
 
     // Widgets visibility
     applyWidgets();
+    applyControlColors();
     applyWidgetColors();
 
     // Close modal on Escape / overlay click

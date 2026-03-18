@@ -78,6 +78,13 @@
       --search-border: var(--card-border-current);
       --search-shadow: var(--card-shadow-current);
       --search-backdrop: var(--card-backdrop-current);
+      --button-bg: var(--tile-bg-current);
+      --button-border: var(--tile-border-current);
+      --button-shadow: var(--tile-shadow-current);
+      --button-backdrop: var(--tile-backdrop-current);
+      --input-bg: var(--bg-soft);
+      --input-border-default: rgba(255,255,255,.08);
+      --input-border: var(--input-border-default);
       --anim-fast: 180ms;
       --anim-base: 420ms;
       --anim-ease: cubic-bezier(.22,.68,0,1);
@@ -100,6 +107,7 @@
       --link-visited: var(--accent);
       --card-border-current: rgba(0,0,0,.06);
       --tile-border-current: rgba(0,0,0,.08);
+      --input-border-default: rgba(0,0,0,.10);
     }
     * { box-sizing: border-box }
     html, body { height: 100% }
@@ -215,16 +223,16 @@
 
     .controls { display: flex; gap: 8px; align-items: center }
     .btn {
-      background: var(--tile-bg-current);
-      border: 1px solid var(--tile-border-current);
+      background: var(--button-bg);
+      border: 1px solid var(--button-border);
       color: var(--fg);
       border-radius: 12px;
       padding: 10px 14px;
       cursor: pointer;
-      box-shadow: var(--tile-shadow-current);
+      box-shadow: var(--button-shadow);
       transition: transform .06s ease, background .2s ease, border-color .2s ease;
       user-select: none;
-      backdrop-filter: var(--tile-backdrop-current);
+      backdrop-filter: var(--button-backdrop);
     }
     .icon {
       width: 18px;
@@ -277,9 +285,9 @@
     .suggest-text { flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color: var(--fg); }
     select, input[type="text"], textarea {
       width: 100%;
-      background: var(--bg-soft);
+      background: var(--input-bg);
       color: var(--fg);
-      border: 1px solid rgba(255,255,255,.08);
+      border: 1px solid var(--input-border);
       border-radius: 12px;
       padding: 12px 14px;
       font-size: 16px;
@@ -308,8 +316,8 @@
       gap: 10px;
       padding: 11px 14px;
       border-radius: 12px;
-      border: 1px solid rgba(255,255,255,.08);
-      background: var(--bg-soft);
+      border: 1px solid var(--input-border);
+      background: var(--input-bg);
       color: var(--fg);
       font-size: 16px;
       cursor: pointer;
@@ -362,8 +370,8 @@
     .ui-select-search {
       width: 100%;
       border-radius: 9px;
-      border: 1px solid rgba(255,255,255,.08);
-      background: var(--bg-soft);
+      border: 1px solid var(--input-border);
+      background: var(--input-bg);
       color: var(--fg);
       font-size: 14px;
       padding: 8px 10px;
@@ -399,8 +407,8 @@
       gap: 10px;
       padding: 9px 12px;
       border-radius: 12px;
-      border: 1px solid rgba(255,255,255,.08);
-      background: var(--bg-soft);
+      border: 1px solid var(--input-border);
+      background: var(--input-bg);
       color: var(--fg);
       font-size: 14px;
       cursor: pointer;
@@ -447,9 +455,9 @@
     }
     .ui-color-hex {
       width: 100%;
-      background: var(--bg-soft);
+      background: var(--input-bg);
       color: var(--fg);
-      border: 1px solid rgba(255,255,255,.08);
+      border: 1px solid var(--input-border);
       border-radius: 10px;
       padding: 8px 10px;
       font-size: 13px;
@@ -506,7 +514,7 @@
     .todo-item.done .title { text-decoration: line-through; color: var(--muted) }
 
     /* Notes */
-    .notes { width: 100%; min-height: 200px; background: var(--bg-soft); color: var(--fg); border:1px solid rgba(255,255,255,.06); border-radius: 12px; padding:12px; resize: vertical }
+    .notes { width: 100%; min-height: 200px; background: var(--input-bg); color: var(--fg); border:1px solid var(--input-border); border-radius: 12px; padding:12px; resize: vertical }
 
     
     /* Tiles */
@@ -924,7 +932,7 @@
 
     /* Command Palette */
     #palette .sheet { width: min(640px, 96vw); }
-    .palette-input { width:100%; background: var(--bg-soft); color: var(--fg); border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:12px 14px; font-size:16px; margin-bottom:10px }
+    .palette-input { width:100%; background: var(--input-bg); color: var(--fg); border:1px solid var(--input-border); border-radius:12px; padding:12px 14px; font-size:16px; margin-bottom:10px }
     .palette-list { list-style:none; margin:0; padding:0; max-height: 360px; overflow:auto }
     .palette-section { padding:6px 8px; font-size:12px; text-transform:uppercase; letter-spacing:.08em; color: var(--muted); }
     .palette-item { padding:10px 12px; border-radius:10px; display:flex; gap:8px; align-items:center; cursor:pointer }
@@ -1318,4 +1326,3 @@
       body { scroll-behavior: auto; }
     }
   
-
