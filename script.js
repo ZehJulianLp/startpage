@@ -262,6 +262,8 @@
   let uiActiveColor = null;
   let uiDialogResolve = null;
   let uiColorWheelCache = null;
+  let settingsSearchQuery = '';
+  let settingsSearchRestore = [];
   const UI_MENU_CLOSE_MS = 160;
   const UI_MODAL_CLOSE_MS = 110;
 
@@ -738,7 +740,7 @@
       const activeHex = hsvToHex(state.h, state.s, state.v);
       const value = normalizeHex(input.value);
       swatch.style.background = value || fallback;
-      label.textContent = value || t('common.default', null, 'Default');
+      label.textContent = value || fallback;
       hexInput.value = value || '';
       valueSlider.value = String(Math.round(state.v * 100));
       drawWheel();
@@ -2917,6 +2919,7 @@
   }
   function openSettings(){
     const modal = $('#settingsModal');
+    settingsSearchQuery = '';
     modal.classList.add('open');
     modal.setAttribute('aria-hidden','false');
     syncModalOpenState();
@@ -2924,11 +2927,13 @@
     fillSettings();
     bgRenderSettings();
     initSettingsTabs();
+    initSettingsSearch();
     const last = store.get('settings.tab','general');
     selectSettingsTab(last);
     enhanceUiSelects(modal);
     enhanceUiColorInputs(modal);
     refreshUiSelects(modal);
+    applySettingsSearch();
   }
   function closeSettings(){
     const modal = $('#settingsModal');
@@ -3010,24 +3015,15 @@
         wrap.appendChild(label);
       });
 
-    // Widget colors editor
-    const editor = $('#widgetColorEditor'); editor.innerHTML='';
-      const names = { todo:t('widgets.todo'), notes:t('widgets.notes'), tiles:t('widgets.tiles'), weather:t('widgets.weather'), transport:t('widgets.transport'), quote:t('widgets.quote'), recent:t('widgets.recent'), system:t('widgets.system'), news:t('widgets.news') };
-      const colors = store.get('widget.colors', widgetColorDefaults());
-      Object.keys(names).forEach(k=>{
-        const box = document.createElement('div'); box.style.display='inline-flex'; box.style.alignItems='center'; box.style.gap='6px'; box.style.padding='6px 8px'; box.style.background='var(--glass)'; box.style.border='1px solid rgba(255,255,255,.08)'; box.style.borderRadius='10px';
-        const label = document.createElement('span'); label.textContent = names[k];
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.value = (colors[k] && /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(colors[k])) ? colors[k] : '';
-        input.setAttribute('data-ui-color', '');
-        input.setAttribute('data-color-default', '#7c5cff');
-        input.addEventListener('input', ()=>{ const cur = store.get('widget.colors', widgetColorDefaults()); cur[k]=normalizeHex(input.value); store.set('widget.colors', cur); applyWidgetColors(); });
-        const clear = document.createElement('button'); clear.className='btn'; clear.textContent = t('settings.widgets.reset');
-        clear.addEventListener('click', ()=>{ const cur = store.get('widget.colors', widgetColorDefaults()); cur[k]=''; store.set('widget.colors', cur); applyWidgetColors(); fillSettings(); });
-        box.appendChild(label); box.appendChild(input); box.appendChild(clear);
-        editor.appendChild(box);
-      });
+    const colors = store.get('widget.colors', widgetColorDefaults());
+    ensureWidgetColorRows().forEach(row=>{
+      const key = row.getAttribute('data-widget-color-row');
+      const input = row.querySelector('input');
+      if(!input || !key) return;
+      const value = colors[key];
+      input.value = (value && /^#([0-9a-f]{6})$/i.test(value)) ? value : '';
+      if(input.__uiColorSync) input.__uiColorSync();
+    });
 
     const cardStyle = store.get('ui.cardStyle', 'glass');
     const styleSelect = $('#cardStyle'); if(styleSelect) styleSelect.value = ['glass','solid','transparent','minimal'].includes(cardStyle) ? cardStyle : 'glass';
@@ -3062,9 +3058,12 @@
       inputColorInput.value = value && /^#([0-9a-f]{6})$/i.test(value) ? value : '';
       if(inputColorInput.__uiColorSync) inputColorInput.__uiColorSync();
     }
-    enhanceUiColorInputs(editor);
+    const settingsSearchInput = $('#settingsSearch');
+    if(settingsSearchInput && settingsSearchInput.value !== settingsSearchQuery) settingsSearchInput.value = settingsSearchQuery;
+    enhanceUiColorInputs($('#settingsModal'));
     enhanceUiSelects($('#settingsModal'));
     refreshUiSelects($('#settingsModal'));
+    applySettingsSearch();
   }
 
   function syncAgentSettingsTabVisibility(){
@@ -3098,10 +3097,266 @@
     store.set('settings.tab', name);
     if(name === 'background') bgRenderSettings();
   }
+
+  function panelRowsForSearch(panel){
+    return panel ? Array.from(panel.querySelectorAll(':scope > .row')) : [];
+  }
+
+  function widgetColorSettingKeys(){
+    return ['todo', 'notes', 'tiles', 'weather', 'transport', 'quote', 'recent', 'system', 'news'];
+  }
+
+  function ensureWidgetColorRows(){
+    const heading = $('#widgetColorHeading');
+    if(!heading || !heading.parentNode) return [];
+    const parent = heading.parentNode;
+    const orderedRows = [];
+    const knownKeys = widgetColorSettingKeys();
+    const existingRows = new Map($$('[data-widget-color-row]').map(row=> [row.getAttribute('data-widget-color-row'), row]));
+    let insertAfter = heading;
+
+    knownKeys.forEach(key=>{
+      let row = existingRows.get(key);
+      if(!row){
+        row = document.createElement('div');
+        row.className = 'row';
+        row.setAttribute('data-widget-color-row', key);
+        row.setAttribute('data-settings-panel', 'background');
+
+        const label = document.createElement('label');
+        label.setAttribute('for', `widgetColor_${key}`);
+
+        const content = document.createElement('div');
+        const controls = document.createElement('div');
+        controls.style.display = 'flex';
+        controls.style.gap = '8px';
+        controls.style.alignItems = 'center';
+        controls.style.flexWrap = 'wrap';
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.id = `widgetColor_${key}`;
+        input.setAttribute('data-ui-color', '');
+        input.setAttribute('data-color-default', '#7c5cff');
+        input.setAttribute('autocomplete', 'off');
+        input.addEventListener('input', ()=>{
+          const cur = store.get('widget.colors', widgetColorDefaults());
+          cur[key] = normalizeHex(input.value);
+          store.set('widget.colors', cur);
+          applyWidgetColors();
+        });
+
+        const clear = document.createElement('button');
+        clear.className = 'btn';
+        clear.type = 'button';
+        clear.setAttribute('data-widget-color-reset', key);
+        clear.addEventListener('click', ()=>{
+          const cur = store.get('widget.colors', widgetColorDefaults());
+          cur[key] = '';
+          store.set('widget.colors', cur);
+          applyWidgetColors();
+          fillSettings();
+        });
+
+        const note = document.createElement('div');
+        note.className = 'muted';
+        note.style.marginTop = '6px';
+
+        controls.appendChild(input);
+        controls.appendChild(clear);
+        content.appendChild(controls);
+        content.appendChild(note);
+        row.appendChild(label);
+        row.appendChild(content);
+      }
+
+      const label = row.querySelector(':scope > label');
+      if(label) label.textContent = t(`widgets.${key}`, null, key);
+      const note = row.querySelector('.muted');
+      if(note) note.textContent = t('settings.widgets.widgetColorNote', null, 'Farbe fuer dieses Widget (leer = Stil-Vorgabe).');
+      const clear = row.querySelector('[data-widget-color-reset]');
+      if(clear) clear.textContent = t('settings.widgets.reset', null, 'Reset');
+
+      if(insertAfter.nextSibling !== row){
+        parent.insertBefore(row, insertAfter.nextSibling);
+      }
+      insertAfter = row;
+      orderedRows.push(row);
+    });
+
+    existingRows.forEach((row, key)=>{
+      if(knownKeys.includes(key)) return;
+      row.remove();
+    });
+
+    return orderedRows;
+  }
+
+  function normalizeSearchText(value){
+    return String(value || '')
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .trim();
+  }
+
+  function getSettingsSearchSubItems(row){
+    if(!row) return [];
+    if(row.querySelector('#startpageAgentCapabilities')) return $$('.startpage-agent-cap-item', row);
+    if(row.querySelector('#widgetToggles')) return $$('#widgetToggles > label', row);
+    if(row.querySelector('#enginePills')) return $$('#enginePills > button', row);
+    return [];
+  }
+
+  function getSettingsSearchLabelText(row){
+    if(!row) return '';
+    const label = row.querySelector(':scope > label, :scope > .settings-row-heading');
+    return label ? normalizeSearchText(label.textContent) : '';
+  }
+
+  function getSettingsSearchText(row){
+    if(!row) return '';
+    const parts = [];
+    const labelText = getSettingsSearchLabelText(row);
+    if(labelText) parts.push(labelText);
+    $$('.muted', row).forEach(el=>{
+      const text = normalizeSearchText(el.textContent);
+      if(text) parts.push(text);
+    });
+    $$('input, textarea, select, button', row).forEach(el=>{
+      if(el.closest('#widgetToggles, #enginePills, #startpageAgentCapabilities')) return;
+      const placeholder = normalizeSearchText(el.getAttribute('placeholder') || el.getAttribute('data-i18n-placeholder') || '');
+      if(placeholder) parts.push(placeholder);
+      if(el.tagName === 'SELECT'){
+        Array.from(el.options || []).forEach(opt=>{
+          const text = normalizeSearchText(opt.textContent);
+          if(text) parts.push(text);
+        });
+      } else if(el.tagName === 'TEXTAREA' || el.tagName === 'INPUT'){
+        const value = normalizeSearchText(el.value || '');
+        if(value) parts.push(value);
+      } else if(el.tagName === 'BUTTON'){
+        const text = normalizeSearchText(el.textContent);
+        if(text) parts.push(text);
+      }
+    });
+    return parts.join(' ');
+  }
+
+  function resetSettingsSearchSubItems(row){
+    getSettingsSearchSubItems(row).forEach(item=> item.hidden = false);
+  }
+
+  function filterSettingsSearchSubItems(row, query){
+    const items = getSettingsSearchSubItems(row);
+    if(!items.length) return null;
+    const labelMatches = getSettingsSearchLabelText(row).includes(query);
+    let matches = 0;
+    items.forEach(item=>{
+      const itemMatches = normalizeSearchText(item.textContent).includes(query);
+      item.hidden = !itemMatches;
+      if(itemMatches) matches += 1;
+    });
+    if(matches === 0 && labelMatches){
+      items.forEach(item=> item.hidden = false);
+    return items.length;
+    }
+    return matches;
+  }
+
+  function restoreSettingsSearchRows(){
+    settingsSearchRestore.forEach(entry=>{
+      if(!entry || !entry.row || !entry.parent) return;
+      resetSettingsSearchSubItems(entry.row);
+      entry.row.hidden = false;
+      if(entry.placeholder && entry.placeholder.parentNode){
+        entry.placeholder.parentNode.insertBefore(entry.row, entry.placeholder);
+        entry.placeholder.remove();
+      } else {
+        entry.parent.appendChild(entry.row);
+      }
+    });
+    settingsSearchRestore = [];
+  }
+
+  function applySettingsSearch(){
+    const modal = $('#settingsModal');
+    if(!modal) return;
+    const query = normalizeSearchText(settingsSearchQuery);
+    const status = $('#settingsSearchStatus');
+    const resultsEl = $('#settingsSearchResults');
+    const panels = [
+      $('#tab-general'),
+      $('#tab-ai'),
+      $('#tab-background'),
+      $('#tab-search'),
+      $('#tab-widgets'),
+      $('#tab-data'),
+      $('#tab-guide')
+    ].filter(Boolean);
+    restoreSettingsSearchRows();
+    if(!query){
+      modal.classList.remove('searching');
+      if(resultsEl) resultsEl.innerHTML = '';
+      if(status) status.textContent = t('settings.searchSettingsHint', null, 'Filtert Einträge über alle Tabs.');
+      return;
+    }
+
+    modal.classList.add('searching');
+    let totalMatches = 0;
+    let matchedSections = 0;
+    if(resultsEl) resultsEl.innerHTML = '';
+    panels.forEach(panel=>{
+      const rows = panelRowsForSearch(panel);
+      let panelMatched = false;
+      rows.forEach(row=>{
+        if(row.classList.contains('row-heading')) return;
+        const subItemMatches = filterSettingsSearchSubItems(row, query);
+        const text = getSettingsSearchText(row);
+        const match = typeof subItemMatches === 'number' ? subItemMatches > 0 : text.includes(query);
+        if(!match) return;
+        panelMatched = true;
+        totalMatches += typeof subItemMatches === 'number' ? subItemMatches : 1;
+        if(resultsEl){
+          const placeholder = document.createComment('settings-search-placeholder');
+          const parent = row.parentNode;
+          if(parent){
+            parent.insertBefore(placeholder, row);
+            settingsSearchRestore.push({ row, parent, placeholder });
+          }
+          resultsEl.appendChild(row);
+          row.hidden = false;
+        }
+      });
+      if(panelMatched) matchedSections += 1;
+    });
+    if(status){
+      status.textContent = totalMatches
+        ? t('settings.searchSettingsResults', { count: totalMatches, sections: matchedSections }, '{count} Treffer in {sections} Bereichen.')
+        : t('settings.searchSettingsNoResults', null, 'Keine Treffer in den Einstellungen.');
+    }
+  }
+
+  function initSettingsSearch(){
+    const input = $('#settingsSearch');
+    if(!input || input.dataset.bound === '1') return;
+    input.dataset.bound = '1';
+    input.value = settingsSearchQuery;
+    input.addEventListener('input', ()=>{
+      settingsSearchQuery = input.value;
+      applySettingsSearch();
+    });
+  }
+
   function initSettingsTabs(){
     const root = $('#settingsModal'); if(!root) return;
     $$('.tab-btn', root).forEach(btn=>{
-      btn.addEventListener('click', ()=> selectSettingsTab(btn.getAttribute('data-tab')));
+      if(btn.dataset.bound === '1') return;
+      btn.dataset.bound = '1';
+      btn.addEventListener('click', ()=>{
+        selectSettingsTab(btn.getAttribute('data-tab'));
+        if(settingsSearchQuery) applySettingsSearch();
+      });
     });
   }
 
@@ -3109,11 +3364,15 @@
   function rebuildSettingsPanels(){
     const sheet = $('#settingsModal .sheet'); if(!sheet) return;
     const tabs = sheet.querySelector('.tabs'); if(!tabs) return;
+    const searchResults = sheet.querySelector('#settingsSearchResults');
     // Collect rows from root and any pre-existing panels BEFORE removing them
     const rows = Array.from(sheet.querySelectorAll(':scope > .row, :scope > .tab-panel > .row'))
       .filter(row=> !row.closest('#tab-guide'));
     // Remove old panels
-    sheet.querySelectorAll(':scope > .tab-panel').forEach(p=> p.remove());
+    sheet.querySelectorAll(':scope > .tab-panel').forEach(p=>{
+      if(searchResults && p === searchResults) return;
+      p.remove();
+    });
 
     const panelGeneral = document.createElement('div'); panelGeneral.id='tab-general'; panelGeneral.className='tab-panel';
     const panelAi = document.createElement('div'); panelAi.id='tab-ai'; panelAi.className='tab-panel';
@@ -3137,7 +3396,7 @@
       if(has('#themeSelect')) assign(row, panelGeneral);
       else if(has('#aiEnabledToggle')) assign(row, panelGeneral);
       else if(has('#startpageAgentModel') || has('#startpageAgentLoadModels') || has('#startpageAgentHost') || has('#startpageAgentConfirmMode') || has('#startpageAgentMaxIterations') || has('#startpageAgentCustomPrompt') || has('#startpageAgentMemory') || has('#startpageAgentClearMemory') || has('#startpageAgentSaveSettings') || has('#startpageAgentClearChat') || has('#startpageAgentCapabilities')) assign(row, panelAi);
-      else if(has('#bgEngine') || has('#cardStyle') || has('#clockColor') || has('#searchColor') || has('#accentColor') || has('#modalColor') || has('#buttonColor') || has('#inputColor') || has('#widgetColorEditor')) assign(row, panelBackground);
+      else if(has('#bgEngine') || has('#cardStyle') || has('#accentColor') || has('#modalColor') || has('#buttonColor') || has('#inputColor') || has('#clockColor') || has('#searchColor')) assign(row, panelBackground);
       else if(has('#enginePills') || has('#searxngBaseUrl') || has('#shortcutConfig') || has('#feedsConfig') || has('#wordlistEditor')) assign(row, panelSearch);
       else if(has('#widgetToggles') || has('#defaultCities') || has('#transportDefaultInput') || has('#recentMaxSetting') || has('#recentClearSetting')) assign(row, panelWidgets);
       else if(has('#exportData') || has('#importData') || has('#dataNote') || has('#dataPresetSelect') || has('#applyPreset') || has('#restartOnboarding')) assign(row, panelData);

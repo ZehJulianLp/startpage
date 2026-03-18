@@ -149,6 +149,11 @@
         <h4 data-i18n="settings.title">Einstellungen</h4>
         <button class="btn" id="closeSettings" data-i18n="settings.close">Schließen</button>
       </div>
+      <div class="settings-search">
+        <input id="settingsSearch" type="text" placeholder="Einstellungen durchsuchen…" data-i18n-placeholder="settings.searchSettingsPlaceholder" autocomplete="off" />
+        <div class="muted settings-search-status" id="settingsSearchStatus" data-i18n="settings.searchSettingsHint">Filtert Einträge über alle Tabs.</div>
+      </div>
+      <div class="tab-panel settings-search-results" id="settingsSearchResults" aria-live="polite"></div>
       <div class="tabs" role="tablist">
         <button class="tab-btn" data-tab="general" role="tab" aria-selected="true" data-i18n="settings.tabs.general">Allgemein</button>
         <button class="tab-btn" data-tab="ai" role="tab" id="settingsTabAi" data-i18n="settings.tabs.ai">Startpage Agent</button>
@@ -356,6 +361,9 @@
             <div class="muted" style="margin-top:6px" data-i18n="settings.widgets.inputColorNote">Farbe für Input-, Select- und Textarea-Felder (leer = Stil-Vorgabe).</div>
           </div>
         </div>
+        <div class="row row-heading" data-settings-panel="background">
+          <div class="settings-row-heading" data-i18n="settings.background.sections.widgetSurfaces">Header &amp; Widgets</div>
+        </div>
       </div>
       <div id="tab-search" class="tab-panel" role="tabpanel">
         <div class="row">
@@ -428,7 +436,7 @@
             <button class="btn" id="recentClearSetting" type="button" data-i18n="recent.clear">Daten löschen</button>
           </div>
         </div>
-        <div class="row">
+        <div class="row" data-settings-panel="background">
           <label for="clockColor" data-i18n="settings.widgets.clockColorLabel">Zeit & Datum</label>       
           <div>
             <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
@@ -438,7 +446,7 @@
             <div class="muted" style="margin-top:6px" data-i18n="settings.widgets.clockColorNote">Legt den Hintergrund der Kopfzeile fest (leer = Stil-Vorgabe).</div>
           </div>
         </div>
-        <div class="row">
+        <div class="row" data-settings-panel="background">
           <label for="searchColor" data-i18n="settings.widgets.searchColorLabel">Suche</label>
           <div>
             <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
@@ -448,9 +456,8 @@
             <div class="muted" style="margin-top:6px" data-i18n="settings.widgets.searchColorNote">Farbe für den Suchbereich (leer = Stil-Vorgabe).</div>
           </div>
         </div>
-        <div class="row">
-          <label data-i18n="settings.widgets.widgetColorsLabel">Widget-Farben</label>
-          <div id="widgetColorEditor" style="display:flex; gap:12px; flex-wrap:wrap"></div>
+        <div class="row row-heading" id="widgetColorHeading" data-settings-panel="background">
+          <div class="settings-row-heading" data-i18n="settings.widgets.widgetColorsLabel">Widget-Farben</div>
         </div>
       </div>
       <div id="tab-data" class="tab-panel" role="tabpanel">

@@ -185,6 +185,11 @@
   "settings": {
     "title": "Settings",
     "close": "Close",
+    "searchSettingsPlaceholder": "Search settings…",
+    "searchSettingsHint": "Filters entries across all tabs.",
+    "searchSettingsOpen": "Open",
+    "searchSettingsResults": "{count} matches across {sections} sections.",
+    "searchSettingsNoResults": "No matches in settings.",
     "tabs": {
       "general": "General",
       "background": "Background & Appearance",
@@ -205,7 +210,8 @@
       "sections": {
         "background": "Background",
         "layout": "Layout & accents",
-        "ui": "UI surfaces"
+        "ui": "UI surfaces",
+        "widgetSurfaces": "Header & Widgets"
       }
     },
     "search": {
@@ -255,6 +261,7 @@
       "buttonColorNote": "Color for buttons (empty = style default).",
       "inputColorNote": "Color for input, select, and textarea fields (empty = style default).",
       "widgetColorsLabel": "Widget colors",
+      "widgetColorNote": "Color for this widget (empty = style default).",
       "weatherCitiesLabel": "Weather cities",
       "weatherCitiesPlaceholder": "One city per line, e.g. Hanover\nBerlin\nHamburg",
       "weatherCitiesNote": "One city per line. The first entry becomes active if the previous active city is not included.",
