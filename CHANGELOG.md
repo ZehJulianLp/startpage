@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.14.0](https://github.com/ZehJulianLp/startpage/compare/v1.13.0...v1.14.0) (2026-03-18)
+
+
+### Features
+
+* add appearance color controls ([9ea7984](https://github.com/ZehJulianLp/startpage/commit/9ea79848beec4707500a50ebfa74a3a96f783f4a))
+* add customizable colors for buttons and inputs ([45878c7](https://github.com/ZehJulianLp/startpage/commit/45878c78fc04dd8f92f44f09cdab9697c534f500))
+* add settings search and refine color controls ([3ada372](https://github.com/ZehJulianLp/startpage/commit/3ada37212a09a295b40de9494e38b9401881ab34))
+
+
+### Bug Fixes
+
+* refine settings header search layout ([5a66cfd](https://github.com/ZehJulianLp/startpage/commit/5a66cfdaf9220a9d3d0d47e4a15fa646b054d0d2))
+* regroup widget appearance settings ([acd5b22](https://github.com/ZehJulianLp/startpage/commit/acd5b22abf4b88e189ffd9898d09d3de2b3ebaaa))
+
 ## [1.13.0](https://github.com/ZehJulianLp/startpage/compare/v1.12.0...v1.13.0) (2026-03-09)
 
 
