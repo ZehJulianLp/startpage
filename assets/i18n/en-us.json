@@ -201,7 +201,12 @@
       "light": "Light"
     },
     "background": {
-      "label": "Background"
+      "label": "Background",
+      "sections": {
+        "background": "Background",
+        "layout": "Layout & accents",
+        "ui": "UI surfaces"
+      }
     },
     "search": {
       "engines": "Search engines",

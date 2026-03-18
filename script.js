@@ -3125,6 +3125,14 @@
 
     const assign = (row, target)=>{ if(!row) return; if(row.parentElement) row.parentElement.removeChild(row); target.appendChild(row); };
     rows.forEach(row=>{
+      const explicitPanel = row.getAttribute('data-settings-panel');
+      if(explicitPanel === 'background'){ assign(row, panelBackground); return; }
+      if(explicitPanel === 'general'){ assign(row, panelGeneral); return; }
+      if(explicitPanel === 'ai'){ assign(row, panelAi); return; }
+      if(explicitPanel === 'search'){ assign(row, panelSearch); return; }
+      if(explicitPanel === 'widgets'){ assign(row, panelWidgets); return; }
+      if(explicitPanel === 'data'){ assign(row, panelData); return; }
+      if(explicitPanel === 'guide'){ assign(row, panelGuide); return; }
       const has = sel => row.querySelector(sel);
       if(has('#themeSelect')) assign(row, panelGeneral);
       else if(has('#aiEnabledToggle')) assign(row, panelGeneral);

@@ -261,6 +261,9 @@
         </div>
       </div>
       <div id="tab-background" class="tab-panel" role="tabpanel">
+        <div class="row row-heading" data-settings-panel="background">
+          <div class="settings-row-heading" data-i18n="settings.background.sections.background">Hintergrund</div>
+        </div>
         <div class="row">
           <label for="bgEngine" data-i18n="settings.background.label">Hintergrund</label>
           <div id="bgEngine" class="bg-engine">
@@ -295,6 +298,9 @@
             </div>
           </div>
         </div>
+        <div class="row row-heading" data-settings-panel="background">
+          <div class="settings-row-heading" data-i18n="settings.background.sections.layout">Layout &amp; Akzente</div>
+        </div>
         <div class="row">
           <label for="cardStyle" data-i18n="settings.widgets.cardStyleLabel">Kachel-Stil</label>
           <div>
@@ -317,25 +323,8 @@
             <div class="muted" style="margin-top:6px" data-i18n="settings.widgets.accentColorNote">Globale Akzentfarbe für Highlights, aktive Tabs und Links (leer = automatisch aus Theme/Hintergrund).</div>
           </div>
         </div>
-        <div class="row">
-          <label for="clockColor" data-i18n="settings.widgets.clockColorLabel">Zeit & Datum</label>       
-          <div>
-            <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
-              <input type="text" id="clockColor" data-ui-color data-color-default="#7c5cff" autocomplete="off" />
-              <button class="btn" id="clockColorReset" type="button" data-i18n="settings.widgets.reset">Reset</button>
-            </div>
-            <div class="muted" style="margin-top:6px" data-i18n="settings.widgets.clockColorNote">Legt den Hintergrund der Kopfzeile fest (leer = Stil-Vorgabe).</div>
-          </div>
-        </div>
-        <div class="row">
-          <label for="searchColor" data-i18n="settings.widgets.searchColorLabel">Suche</label>
-          <div>
-            <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
-              <input type="text" id="searchColor" data-ui-color data-color-default="#54d6ff" autocomplete="off" />
-              <button class="btn" id="searchColorReset" type="button" data-i18n="settings.widgets.reset">Reset</button>
-            </div>
-            <div class="muted" style="margin-top:6px" data-i18n="settings.widgets.searchColorNote">Farbe für den Suchbereich (leer = Stil-Vorgabe).</div>
-          </div>
+        <div class="row row-heading" data-settings-panel="background">
+          <div class="settings-row-heading" data-i18n="settings.background.sections.ui">UI-Oberflächen</div>
         </div>
         <div class="row">
           <label for="modalColor" data-i18n="settings.widgets.modalColorLabel">Modals</label>
@@ -437,6 +426,26 @@
               <button class="btn icon-only" id="recentMaxSettingInc" type="button" aria-label="Increase recent entries" data-i18n-aria-label="settings.widgets.recentEntriesIncAria">+</button>
             </div>
             <button class="btn" id="recentClearSetting" type="button" data-i18n="recent.clear">Daten löschen</button>
+          </div>
+        </div>
+        <div class="row">
+          <label for="clockColor" data-i18n="settings.widgets.clockColorLabel">Zeit & Datum</label>       
+          <div>
+            <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
+              <input type="text" id="clockColor" data-ui-color data-color-default="#7c5cff" autocomplete="off" />
+              <button class="btn" id="clockColorReset" type="button" data-i18n="settings.widgets.reset">Reset</button>
+            </div>
+            <div class="muted" style="margin-top:6px" data-i18n="settings.widgets.clockColorNote">Legt den Hintergrund der Kopfzeile fest (leer = Stil-Vorgabe).</div>
+          </div>
+        </div>
+        <div class="row">
+          <label for="searchColor" data-i18n="settings.widgets.searchColorLabel">Suche</label>
+          <div>
+            <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
+              <input type="text" id="searchColor" data-ui-color data-color-default="#54d6ff" autocomplete="off" />
+              <button class="btn" id="searchColorReset" type="button" data-i18n="settings.widgets.reset">Reset</button>
+            </div>
+            <div class="muted" style="margin-top:6px" data-i18n="settings.widgets.searchColorNote">Farbe für den Suchbereich (leer = Stil-Vorgabe).</div>
           </div>
         </div>
         <div class="row">

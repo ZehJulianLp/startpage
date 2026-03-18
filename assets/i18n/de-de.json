@@ -201,7 +201,12 @@
       "light": "Licht"
     },
     "background": {
-      "label": "Hintergrund"
+      "label": "Hintergrund",
+      "sections": {
+        "background": "Hintergrund",
+        "layout": "Layout & Akzente",
+        "ui": "UI-Oberflächen"
+      }
     },
     "search": {
       "engines": "Suchmaschinen",
