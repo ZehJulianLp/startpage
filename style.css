@@ -85,6 +85,10 @@
       --input-bg: var(--bg-soft);
       --input-border-default: rgba(255,255,255,.08);
       --input-border: var(--input-border-default);
+      --modal-bg: var(--card);
+      --modal-panel-bg:
+        radial-gradient(900px 300px at 0% -20%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 60%),
+        linear-gradient(180deg, color-mix(in srgb, var(--card) 88%, transparent), color-mix(in srgb, var(--bg-soft) 82%, transparent));
       --anim-fast: 180ms;
       --anim-base: 420ms;
       --anim-ease: cubic-bezier(.22,.68,0,1);
@@ -626,7 +630,7 @@
     .modal { position: fixed; inset:0; display:none; align-items:center; justify-content:center; background: rgba(0,0,0,.5); padding:20px; z-index: 1000 }
     .modal.open { display:flex }
     .modal.closing { display:flex; pointer-events:none; animation: modal-overlay-out 110ms ease-out both; }
-    .modal .sheet { background: var(--card); border:1px solid rgba(255,255,255,.08); padding:16px; border-radius:16px; width:min(780px, 96vw); max-height: min(90vh, 900px); overflow: auto }
+    .modal .sheet { background: var(--modal-bg); border:1px solid rgba(255,255,255,.08); padding:16px; border-radius:16px; width:min(780px, 96vw); max-height: min(90vh, 900px); overflow: auto }
     .modal.open .sheet { animation: modal-pop var(--anim-fast) var(--anim-ease); }
     .modal.closing .sheet { animation: modal-close 110ms ease-out both; }
     .ui-dialog .ui-dialog-sheet { width: min(460px, 96vw); display:flex; flex-direction:column; gap:12px; }
@@ -725,7 +729,7 @@
     #settingsModal .tabs {
       margin: 0;
       top: 0;
-      background: var(--card);
+      background: var(--modal-bg);
     }
     #settingsModal .tab-panel {
       display: none;
@@ -734,9 +738,7 @@
       padding: 14px;
       border: 1px solid rgba(255,255,255,.08);
       border-radius: 14px;
-      background:
-        radial-gradient(900px 300px at 0% -20%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 60%),
-        linear-gradient(180deg, color-mix(in srgb, var(--card) 88%, transparent), color-mix(in srgb, var(--bg-soft) 82%, transparent));
+      background: var(--modal-panel-bg);
     }
     #settingsModal .tab-panel.active { display: block; }
     #settingsModal .tab-panel > :last-child { margin-bottom: 0; }
