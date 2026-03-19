@@ -1541,7 +1541,7 @@
   }
 
   // ===== Search with engines + bangs + custom shortcuts
-  const SEARXNG_DEFAULT_BASE_URL = 'https://searx.tiekoetter.com/search';
+  const SEARXNG_DEFAULT_BASE_URL = 'https://search.julianverse.de/';
   const SEARCH_ENGINE_SELECTED_KEY = 'search.engine.selected';
 
   function normalizeSearxngBaseUrl(raw){
