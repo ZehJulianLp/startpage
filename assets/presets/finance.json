@@ -90,7 +90,7 @@
   ],
   "news.custom": {
     "Bloomberg Markets": "https://feeds.bloomberg.com/markets/news.rss",
-    "FT Markets": "https://www.ft.com/rss/markets",
+    "Investing.com Markets": "https://www.investing.com/rss/news_25.rss",
     "MarketWatch": "https://www.marketwatch.com/rss/topstories"
   },
   "news.source": "Bloomberg Markets",
