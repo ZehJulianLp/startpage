@@ -708,6 +708,43 @@
     host.appendChild(menu);
 
     const state = { h: 0, s: 0, v: 1 };
+    const widgetSelectorMap = {
+      todo: '#todo',
+      notes: '#notes',
+      tiles: '#tilesCard',
+      weather: '#weather',
+      transport: '#transportCard',
+      quote: '#quoteCard',
+      recent: '#recent',
+      system: '#systemCard',
+      news: '#newsCard'
+    };
+    const readCssVar = name=>{
+      const root = document.documentElement;
+      const body = document.body;
+      const bodyStyle = body ? getComputedStyle(body) : null;
+      const rootStyle = root ? getComputedStyle(root) : null;
+      return (bodyStyle && bodyStyle.getPropertyValue(name).trim()) || (rootStyle && rootStyle.getPropertyValue(name).trim()) || '';
+    };
+    const getDefaultSwatch = ()=>{
+      if(input.id === 'accentColor') return normalizeHex(readCssVar('--accent')) || fallback;
+      if(input.id === 'clockColor') return readCssVar('--clock-bg') || readCssVar('--card-bg-current') || fallback;
+      if(input.id === 'searchColor') return readCssVar('--search-bg') || readCssVar('--card-bg-current') || fallback;
+      if(input.id === 'modalColor') return readCssVar('--modal-bg') || readCssVar('--card') || fallback;
+      if(input.id === 'buttonColor') return readCssVar('--button-bg') || readCssVar('--tile-bg-current') || fallback;
+      if(input.id === 'inputColor') return readCssVar('--input-bg') || readCssVar('--bg-soft') || fallback;
+      if(input.id && input.id.startsWith('widgetColor_')){
+        const key = input.id.slice('widgetColor_'.length);
+        const selector = widgetSelectorMap[key];
+        const el = selector ? $(selector) : null;
+        return (el && getComputedStyle(el).background) || readCssVar('--card-bg-current') || fallback;
+      }
+      return fallback;
+    };
+    const getDefaultLabel = ()=>{
+      if(input.id === 'accentColor') return t('settings.widgets.colorAuto', null, 'Auto');
+      return t('settings.widgets.colorStyleDefault', null, 'Style default');
+    };
 
     const drawWheel = ()=>{
       const ctx = wheel.getContext('2d');
@@ -739,16 +776,24 @@
     const render = ()=>{
       const activeHex = hsvToHex(state.h, state.s, state.v);
       const value = normalizeHex(input.value);
-      swatch.style.background = value || fallback;
-      label.textContent = value || fallback;
+      swatch.style.background = value || getDefaultSwatch();
+      label.textContent = value || getDefaultLabel();
       hexInput.value = value || '';
       valueSlider.value = String(Math.round(state.v * 100));
       drawWheel();
-      if(!value){
-        swatch.style.background = fallback;
-      } else {
+      if(value){
         swatch.style.background = activeHex;
       }
+    };
+
+    const syncFromInput = ()=>{
+      const hsv = hexToHsv(normalizeHex(input.value) || fallback);
+      if(hsv){
+        state.h = hsv.h;
+        state.s = hsv.s;
+        state.v = hsv.v;
+      }
+      render();
     };
 
     const setValue = (next, emit=false)=>{
@@ -815,8 +860,8 @@
       if(e.key === 'Escape'){ e.preventDefault(); closeUiColor(true); }
     });
     hexInput.addEventListener('change', ()=> setValue(hexInput.value, true));
-    input.addEventListener('input', render);
-    input.__uiColorSync = render;
+    input.addEventListener('input', syncFromInput);
+    input.__uiColorSync = syncFromInput;
     const initial = hexToHsv(normalizeHex(input.value) || fallback) || { h: 0, s: 0, v: 1 };
     state.h = initial.h; state.s = initial.s; state.v = initial.v;
     render();
