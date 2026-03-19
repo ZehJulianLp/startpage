@@ -201,8 +201,8 @@
   "notes": "",
   "news.custom": {
     "PC Gamer": "https://www.pcgamer.com/rss/",
-    "IGN": "https://feeds.ign.com/ign/all",
-    "Kotaku": "https://kotaku.com/rss"
+    "Eurogamer": "https://www.eurogamer.net/feed",
+    "Polygon": "https://www.polygon.com/rss/index.xml"
   },
   "onboarding.step": 0,
   "ui.cardStyle": "glass",
