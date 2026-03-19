@@ -2895,12 +2895,15 @@
       const data = { contents: await res.text() };
       const parser = new DOMParser();
       const xml = parser.parseFromString(data.contents, 'text/xml');
-      const items = xml.querySelectorAll('item');
+      const items = Array.from(xml.querySelectorAll('item'));
+      const entries = items.length ? [] : Array.from(xml.querySelectorAll('entry'));
       const ul = $('#newsList'); ul.innerHTML='';
       const max = 8;
-      items.forEach((it,i)=>{ if(i<max){
-        const title = it.querySelector('title')?.textContent || '\u2014';
-        const link = it.querySelector('link')?.textContent || '#';
+      const list = items.length ? items : entries;
+      list.forEach((it,i)=>{ if(i<max){
+        const title = it.querySelector('title')?.textContent?.trim() || '\u2014';
+        const linkNode = it.querySelector('link');
+        const link = (linkNode?.getAttribute('href') || linkNode?.textContent || '#').trim() || '#';
         const li = document.createElement('li');
         li.innerHTML = `<a href="${link}" target="_blank" rel="noopener">${title}</a>`;
         ul.appendChild(li);
