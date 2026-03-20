@@ -151,9 +151,12 @@
     }
     try{
       const fonts = await window.queryLocalFonts();
-      const families = Array.from(new Set((fonts || [])
-        .map(font=> normalizeUiFontFamily(font && font.family))
-        .filter(Boolean)))
+      const families = Array.from(new Set([
+        ...getFallbackFontFamilies(),
+        ...(fonts || [])
+          .map(font=> normalizeUiFontFamily(font && font.family))
+          .filter(Boolean)
+      ]))
         .sort((a,b)=> a.localeCompare(b, undefined, { sensitivity: 'base' }));
       if(!families.length){
         await uiAlert(t('settings.font.empty'));
@@ -1788,6 +1791,7 @@
     list.forEach((item, i) => {
       const el = document.createElement('div');
       el.className = 'todo-item' + (item.done ? ' done' : '');
+      el.draggable = true;
       el.innerHTML = `
         <input type="checkbox" ${item.done?'checked':''} aria-label="${escapeHtml(t('todo.doneAria'))}">
         <div class="title">${escapeHtml(item.text)}</div>
@@ -1798,6 +1802,22 @@
       });
       el.querySelector('button').addEventListener('click', ()=>{
         list.splice(i,1); store.set('todos', list); renderTodos();
+      });
+      el.addEventListener('dragstart', e=>{
+        e.dataTransfer.setData('text/plain', i.toString());
+        el.classList.add('dragging');
+      });
+      el.addEventListener('dragend', ()=> el.classList.remove('dragging'));
+      el.addEventListener('dragover', e=> e.preventDefault());
+      el.addEventListener('drop', e=>{
+        e.preventDefault();
+        const from = +e.dataTransfer.getData('text/plain');
+        const to = i;
+        if(from === to) return;
+        const moved = list.splice(from, 1)[0];
+        list.splice(to, 0, moved);
+        store.set('todos', list);
+        renderTodos();
       });
       wrap.appendChild(el);
     });
@@ -1814,6 +1834,25 @@
     const area = $('#notesArea');
     area.value = store.get('notes','');
     area.addEventListener('input', ()=> store.set('notes', area.value));
+  }
+
+  function syncTodoViewportHeight(){
+    const notes = $('#notesArea');
+    const list = $('#todoList');
+    if(!notes || !list) return;
+    const height = Math.max(260, Math.round(notes.getBoundingClientRect().height));
+    list.style.maxHeight = `${height}px`;
+  }
+
+  function initTodoViewportSync(){
+    const notes = $('#notesArea');
+    if(!notes) return;
+    syncTodoViewportHeight();
+    if(window.ResizeObserver){
+      const observer = new ResizeObserver(()=> syncTodoViewportHeight());
+      observer.observe(notes);
+    }
+    window.addEventListener('resize', syncTodoViewportHeight);
   }
 
   // ===== Tiles (CRUD + drag&drop + favicons)
@@ -7737,6 +7776,7 @@
 
     // Todo
     renderTodos();
+    initTodoViewportSync();
     $('#todoAdd').addEventListener('click', ()=>{ const v=$('#todoInput').value.trim(); if(v){ addTodo(v); $('#todoInput').value=''; }});
     $('#todoInput').addEventListener('keydown', e=>{ if(e.key==='Enter'){ e.preventDefault(); $('#todoAdd').click(); } });
     $('#todoClearDone').addEventListener('click', ()=>{ const list=store.get('todos',[]).filter(t=>!t.done); store.set('todos', list); renderTodos(); });
