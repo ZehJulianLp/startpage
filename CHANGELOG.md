@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.14.2](https://github.com/ZehJulianLp/startpage/compare/v1.14.1...v1.14.2) (2026-03-20)
+
+
+### Bug Fixes
+
+* add todo drag and drop reordering ([8643652](https://github.com/ZehJulianLp/startpage/commit/8643652eaff86a8ed15116f4df28aed136a20fc4))
+* merge fallback fonts with detected system fonts ([619ee66](https://github.com/ZehJulianLp/startpage/commit/619ee661126f01c519319c3ddc4a36615573ead5))
+* sync todo viewport with notes resize ([ed15d57](https://github.com/ZehJulianLp/startpage/commit/ed15d57d6a17696a6e580bb4df275bd1027bb2b1))
+
 ## [1.14.1](https://github.com/ZehJulianLp/startpage/compare/v1.14.0...v1.14.1) (2026-03-19)
 
 
