@@ -151,9 +151,12 @@
     }
     try{
       const fonts = await window.queryLocalFonts();
-      const families = Array.from(new Set((fonts || [])
-        .map(font=> normalizeUiFontFamily(font && font.family))
-        .filter(Boolean)))
+      const families = Array.from(new Set([
+        ...getFallbackFontFamilies(),
+        ...(fonts || [])
+          .map(font=> normalizeUiFontFamily(font && font.family))
+          .filter(Boolean)
+      ]))
         .sort((a,b)=> a.localeCompare(b, undefined, { sensitivity: 'base' }));
       if(!families.length){
         await uiAlert(t('settings.font.empty'));
