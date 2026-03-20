@@ -1816,6 +1816,25 @@
     area.addEventListener('input', ()=> store.set('notes', area.value));
   }
 
+  function syncTodoViewportHeight(){
+    const notes = $('#notesArea');
+    const list = $('#todoList');
+    if(!notes || !list) return;
+    const height = Math.max(260, Math.round(notes.getBoundingClientRect().height));
+    list.style.maxHeight = `${height}px`;
+  }
+
+  function initTodoViewportSync(){
+    const notes = $('#notesArea');
+    if(!notes) return;
+    syncTodoViewportHeight();
+    if(window.ResizeObserver){
+      const observer = new ResizeObserver(()=> syncTodoViewportHeight());
+      observer.observe(notes);
+    }
+    window.addEventListener('resize', syncTodoViewportHeight);
+  }
+
   // ===== Tiles (CRUD + drag&drop + favicons)
   function defaultTiles(){
     return [
@@ -7737,6 +7756,7 @@
 
     // Todo
     renderTodos();
+    initTodoViewportSync();
     $('#todoAdd').addEventListener('click', ()=>{ const v=$('#todoInput').value.trim(); if(v){ addTodo(v); $('#todoInput').value=''; }});
     $('#todoInput').addEventListener('keydown', e=>{ if(e.key==='Enter'){ e.preventDefault(); $('#todoAdd').click(); } });
     $('#todoClearDone').addEventListener('click', ()=>{ const list=store.get('todos',[]).filter(t=>!t.done); store.set('todos', list); renderTodos(); });
