@@ -521,7 +521,10 @@
     /* Todo */
     .todo-input { display:flex; gap:8px; margin-bottom:10px }
     .todo-list { display:flex; flex-direction:column; gap:8px; max-height: 260px; overflow:auto }
-    .todo-item { display:flex; align-items:center; gap:10px; background: var(--bg-soft); border:1px solid rgba(255,255,255,.06); padding:10px 12px; border-radius:12px }
+    .todo-item { display:flex; align-items:center; gap:10px; background: var(--bg-soft); border:1px solid rgba(255,255,255,.06); padding:10px 12px; border-radius:12px; cursor:grab; transition: border-color .15s ease, transform .15s ease, background .15s ease }
+    .todo-item:active { cursor:grabbing }
+    .todo-item.dragging { opacity:.65 }
+    .todo-item:hover { border-color: color-mix(in srgb, var(--accent) 26%, rgba(255,255,255,.06)) }
     .todo-item input[type="checkbox"]{ width:18px; height:18px }
     .todo-item .title { flex:1 }
     .todo-item.done .title { text-decoration: line-through; color: var(--muted) }

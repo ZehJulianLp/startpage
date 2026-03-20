@@ -1788,6 +1788,7 @@
     list.forEach((item, i) => {
       const el = document.createElement('div');
       el.className = 'todo-item' + (item.done ? ' done' : '');
+      el.draggable = true;
       el.innerHTML = `
         <input type="checkbox" ${item.done?'checked':''} aria-label="${escapeHtml(t('todo.doneAria'))}">
         <div class="title">${escapeHtml(item.text)}</div>
@@ -1798,6 +1799,22 @@
       });
       el.querySelector('button').addEventListener('click', ()=>{
         list.splice(i,1); store.set('todos', list); renderTodos();
+      });
+      el.addEventListener('dragstart', e=>{
+        e.dataTransfer.setData('text/plain', i.toString());
+        el.classList.add('dragging');
+      });
+      el.addEventListener('dragend', ()=> el.classList.remove('dragging'));
+      el.addEventListener('dragover', e=> e.preventDefault());
+      el.addEventListener('drop', e=>{
+        e.preventDefault();
+        const from = +e.dataTransfer.getData('text/plain');
+        const to = i;
+        if(from === to) return;
+        const moved = list.splice(from, 1)[0];
+        list.splice(to, 0, moved);
+        store.set('todos', list);
+        renderTodos();
       });
       wrap.appendChild(el);
     });
