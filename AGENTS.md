@@ -1,12 +1,12 @@
 ﻿# Repository Guidelines
 
 ## Project Structure & Module Organization
-This start page is a single-page application built from `index.html`. The document bundles semantic HTML sections (header, widgets grid, modals) with inline `<style>` and `<script>` blocks. UI widgets (search, weather, todos, news) are broken into functions such as `renderTiles`, `loadWeather`, and `renderSystem`. Keep new assets colocated: drop additional images under `assets/` (create if needed) and reference them with relative paths, and keep reusable scripts near the bottom JavaScript block so initialization logic remains in `init()`.
+This start page is a single-page application built from `index.html`. The document defines semantic HTML sections (header, widgets grid, modals), loads `style.css`, and includes browser scripts from `scripts/` in dependency order. UI widgets (search, weather, todos, news) are broken into functions such as `renderTiles`, `loadWeather`, and `renderSystem`. Keep new assets colocated: drop additional images under `assets/` (create if needed) and reference them with relative paths. Keep initialization logic in `scripts/init.js`, and add feature code to the closest existing script file unless a new feature area is justified.
 
 ## Build, Test, and Development Commands
 - `python -m http.server 4173` — lightweight dev server for local iteration; open `http://localhost:4173` to exercise live widgets.
 - `npx serve .` — optional static server with caching headers disabled for testing theme changes.
-There is no build step; update `index.html` directly and refresh the browser. When adding tooling, document the command in this section.
+There is no build step; update `index.html`, `style.css`, or files under `scripts/` directly and refresh the browser. When adding tooling, document the command in this section.
 
 ## Coding Style & Naming Conventions
 Use two-space indentation for HTML, CSS, and JavaScript to match the existing file. Keep CSS custom properties (`--bg`, `--accent`) grouped at the top of the `<style>` block and favor lowercase, hyphenated class names (e.g. `bg-orbs`, `todo-list`). JavaScript identifiers are camelCase, functions start with verbs (`loadWeather`, `renderTodos`), and persistent keys stored via `store.set` use dotted paths (`weather.city`). Terminate statements with semicolons and avoid mixing double and single quotes within the same block.

@@ -25,8 +25,9 @@ Version: **v1.14.2** · Live: https://julianverse.de/startpage/
 - Startpage Agent: Docked AI chat with Ollama (`/api/tags`, `/api/chat` stream), persistent chat history, model selection, tool-confirm modes, configurable agent loop limit, custom prompt + persistent memory, and agentic tools for reading/updating widgets/settings.
 
 ## Project Structure
-- `index.html` - Main markup.
-- `script.js` / `style.css` - Main logic and styles.
+- `index.html` - Main markup and ordered script includes.
+- `scripts/` - Browser scripts split by feature area.
+- `style.css` - Main styles.
 - `assets/` - Optional assets (wordlists, images, presets, i18n files).
 - `LICENSE` - MIT license.
 
@@ -54,7 +55,7 @@ Then open: `http://localhost:4173`.
 - Setup assistant: Opens on first run, can be skipped, and can be restarted in the Data tab.
 - Command palette: `Ctrl/Cmd+K` for fast actions and navigation.
 
-Follow existing conventions: 2-space indentation, camelCase in JavaScript, hyphen-case in CSS.
+Follow existing conventions: 2-space indentation, camelCase in JavaScript, hyphen-case in CSS. Keep the script include order in `index.html` stable unless dependencies are moved deliberately.
 
 ## Data and Integrations
 - Storage: localStorage only.
