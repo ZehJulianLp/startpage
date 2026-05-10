@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.15.0](https://github.com/ZehJulianLp/startpage/compare/v1.14.2...v1.15.0) (2026-05-10)
+
+
+### Features
+
+* add data transfer dialogs ([aa3e88d](https://github.com/ZehJulianLp/startpage/commit/aa3e88dd22b8e36d3a522a4205571d9f0b8e92eb))
+* add startpage profiles ([856f09f](https://github.com/ZehJulianLp/startpage/commit/856f09f0da05ce62f817e13034f2103994b917ac))
+* expand command palette actions ([6def62a](https://github.com/ZehJulianLp/startpage/commit/6def62a271881db71eee27874fa0c2a24193bf7a))
+* improve data import export ([47575a6](https://github.com/ZehJulianLp/startpage/commit/47575a66aebcf253b5f17278a8a5dbeb20eb116b))
+* refresh setup assistant ([c8d6c3a](https://github.com/ZehJulianLp/startpage/commit/c8d6c3a4e240fe215fb97f3f8c6d5bad51046380))
+* split startpage scripts ([faf6c94](https://github.com/ZehJulianLp/startpage/commit/faf6c94289649599ea016f8504727a09cdb9f14b))
+
 ## [1.14.2](https://github.com/ZehJulianLp/startpage/compare/v1.14.1...v1.14.2) (2026-03-20)
 
 
