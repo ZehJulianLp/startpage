@@ -1310,30 +1310,141 @@
     return true;
   }
 
-  function exportData(){
+  const DATA_EXPORT_SCOPES = {
+    all: {
+      labelKey: 'settings.data.exportScopes.all',
+      match: ()=> true
+    },
+    personal: {
+      labelKey: 'settings.data.exportScopes.personal',
+      match: key => ['tiles','todos','notes','recent'].includes(key)
+    },
+    appearance: {
+      labelKey: 'settings.data.exportScopes.appearance',
+      match: key => key === 'theme' || key === 'bg.state' || key === 'widget.colors' || key.startsWith('ui.')
+    },
+    configuration: {
+      labelKey: 'settings.data.exportScopes.configuration',
+      match: key => (
+        key === 'widgets' ||
+        key === 'shortcuts' ||
+        key === 'wordlist.inline' ||
+        key === 'engines.enabled' ||
+        key === RECENT_MAX_KEY ||
+        key.startsWith('search.') ||
+        key.startsWith('weather.') ||
+        key.startsWith('transport.') ||
+        key.startsWith('news.') ||
+        key.startsWith('onboarding.')
+      )
+    },
+    agent: {
+      labelKey: 'settings.data.exportScopes.agent',
+      match: key => key.startsWith('ai.agent.')
+    }
+  };
+
+  function getDataExportScope(){
+    const select = $('#dataExportScope');
+    const scope = select ? select.value : 'all';
+    return Object.prototype.hasOwnProperty.call(DATA_EXPORT_SCOPES, scope) ? scope : 'all';
+  }
+
+  function getDataImportMode(){
+    const select = $('#dataImportMode');
+    return select && select.value === 'replace' ? 'replace' : 'merge';
+  }
+
+  function readLocalStorageData(scope='all'){
     const data = {};
+    const spec = DATA_EXPORT_SCOPES[scope] || DATA_EXPORT_SCOPES.all;
     for(let i=0;i<localStorage.length;i++){
       const k = localStorage.key(i);
+      if(!spec.match(k)) continue;
       try { data[k] = JSON.parse(localStorage.getItem(k)); } catch { data[k] = localStorage.getItem(k); }
+    }
+    return data;
+  }
+
+  function exportData(){
+    const scope = getDataExportScope();
+    const data = readLocalStorageData(scope);
+    const keys = Object.keys(data);
+    if(!keys.length){
+      void uiAlert(t('data.export.empty', null, 'Nothing to export for this scope.'));
+      return;
     }
     const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
     const a = document.createElement('a');
     const d = new Date();
     const ts = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
     a.href = URL.createObjectURL(blob);
-    a.download = `startpage-backup-${ts}.json`;
+    a.download = `startpage-backup-${scope}-${ts}.json`;
     document.body.appendChild(a); a.click(); URL.revokeObjectURL(a.href); a.remove();
+    const preview = $('#dataImportPreview');
+    if(preview) preview.textContent = t('data.export.done', { count: keys.length, scope }, 'Exported {count} entries.');
+  }
+
+  function normalizeImportedDataPayload(raw){
+    if(!raw || typeof raw !== 'object' || Array.isArray(raw)) throw new Error('Invalid JSON');
+    if(raw.data && typeof raw.data === 'object' && !Array.isArray(raw.data)) return raw.data;
+    return raw;
+  }
+
+  function normalizeImportedDataObject(obj){
+    const out = {};
+    Object.keys(obj).forEach(k=>{
+      if(!k || k === '__startpageBackup') return;
+      out[k] = obj[k];
+    });
+    if(!('wordlist.inline' in out)) out['wordlist.inline'] = [];
+    out['wordlist.inline'] = normalizeInlineWordlist(out['wordlist.inline']);
+    return out;
+  }
+
+  function isStartpageDataKey(key){
+    if(!key) return false;
+    if(key === 'settings.tab' || key === UI_FONT_KEY || key === 'bg.url' || key === 'weather.coords') return true;
+    if(key === 'search.searxng.enabledMigration.v1') return true;
+    return Object.keys(DATA_EXPORT_SCOPES)
+      .filter(scope => scope !== 'all')
+      .some(scope => DATA_EXPORT_SCOPES[scope].match(key));
+  }
+
+  function getImportReplaceRemovalKeys(obj){
+    const importKeys = new Set(Object.keys(obj));
+    const keys = [];
+    for(let i=0;i<localStorage.length;i++){
+      const key = localStorage.key(i);
+      if(importKeys.has(key) || isStartpageDataKey(key)) keys.push(key);
+    }
+    return keys;
+  }
+
+  function summarizeImportData(obj, mode){
+    const keys = Object.keys(obj);
+    const existing = keys.filter(k => localStorage.getItem(k) !== null).length;
+    const added = keys.length - existing;
+    const removeKeys = mode === 'replace' ? getImportReplaceRemovalKeys(obj) : [];
+    const removed = removeKeys.filter(k => !Object.prototype.hasOwnProperty.call(obj, k)).length;
+    return { keys: keys.length, existing, added, removed };
   }
   function importDataFromFile(ev){
     const file = ev.target.files && ev.target.files[0]; if(!file) return;
     const reader = new FileReader();
     reader.onload = async () => {
       try {
-        const obj = JSON.parse(reader.result);
-        if(!obj || typeof obj !== 'object') throw new Error('Invalid JSON');
-        if(!(await uiConfirm(t('data.import.confirm')))) return;
-        if(!('wordlist.inline' in obj)) obj['wordlist.inline'] = [];
-        obj['wordlist.inline'] = normalizeInlineWordlist(obj['wordlist.inline']);
+        const parsed = JSON.parse(reader.result);
+        const obj = normalizeImportedDataObject(normalizeImportedDataPayload(parsed));
+        const mode = getDataImportMode();
+        const summary = summarizeImportData(obj, mode);
+        const preview = $('#dataImportPreview');
+        if(preview){
+          preview.textContent = t('data.import.preview', summary, '{keys} entries: {existing} existing, {added} new.');
+        }
+        const confirmKey = mode === 'replace' ? 'data.import.confirmReplace' : 'data.import.confirmMerge';
+        if(!(await uiConfirm(t(confirmKey, summary, t('data.import.confirm'))))) return;
+        if(mode === 'replace') getImportReplaceRemovalKeys(obj).forEach(k => localStorage.removeItem(k));
         Object.keys(obj).forEach(k=> localStorage.setItem(k, JSON.stringify(obj[k])));
         ensureWeatherStorage();
         location.reload();
@@ -1518,4 +1629,3 @@
     addRecent({ title: label, url });
     window.location.href = url;
   }
-

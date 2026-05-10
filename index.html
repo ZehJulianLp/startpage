@@ -463,9 +463,27 @@
       <div id="tab-data" class="tab-panel" role="tabpanel">
         <div class="row">
           <label data-i18n="settings.data.label">Daten</label>
-          <div style="display:flex; gap:8px; flex-wrap:wrap">
-            <button class="btn" id="exportData" data-i18n="settings.data.export">Export (.json)</button>
-            <button class="btn" id="importData" data-i18n="settings.data.import">Import (.json)</button>
+          <div class="data-tools">
+            <div class="data-tool-row">
+              <label for="dataExportScope" data-i18n="settings.data.exportScopeLabel">Exportumfang</label>
+              <select id="dataExportScope">
+                <option value="all" data-i18n="settings.data.exportScopes.all">Alles</option>
+                <option value="personal" data-i18n="settings.data.exportScopes.personal">Persönliche Daten</option>
+                <option value="appearance" data-i18n="settings.data.exportScopes.appearance">Erscheinung</option>
+                <option value="configuration" data-i18n="settings.data.exportScopes.configuration">Konfiguration</option>
+                <option value="agent" data-i18n="settings.data.exportScopes.agent">Agent</option>
+              </select>
+              <button class="btn" id="exportData" data-i18n="settings.data.export">Export (.json)</button>
+            </div>
+            <div class="data-tool-row">
+              <label for="dataImportMode" data-i18n="settings.data.importModeLabel">Importmodus</label>
+              <select id="dataImportMode">
+                <option value="merge" data-i18n="settings.data.importModes.merge">Zusammenführen</option>
+                <option value="replace" data-i18n="settings.data.importModes.replace">Ersetzen</option>
+              </select>
+              <button class="btn" id="importData" data-i18n="settings.data.import">Import (.json)</button>
+            </div>
+            <div class="muted data-preview" id="dataImportPreview" data-i18n="settings.data.importPreviewEmpty">Noch keine Importdatei gewählt.</div>
             <input type="file" id="importFile" accept="application/json" style="display:none" />
           </div>
         </div>

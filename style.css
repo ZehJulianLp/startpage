@@ -839,6 +839,25 @@
     .settings-guide-card ol {
       margin: 0 0 12px;
     }
+    .data-tools {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .data-tool-row {
+      display: grid;
+      grid-template-columns: minmax(120px, 160px) minmax(180px, 1fr) auto;
+      gap: 8px;
+      align-items: center;
+    }
+    .data-tool-row label {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .data-preview {
+      font-size: 12px;
+      line-height: 1.35;
+    }
     .settings-guide-card ul,
     .settings-guide-card ol {
       padding-left: 20px;
@@ -1014,6 +1033,9 @@
       .settings-search {
         order: 3;
         width: 100%;
+      }
+      .data-tool-row {
+        grid-template-columns: 1fr;
       }
       #settingsModal .tab-panel { padding: 12px; }
     }

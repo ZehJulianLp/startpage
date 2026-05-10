@@ -273,6 +273,20 @@
       "label": "Data",
       "export": "Export (.json)",
       "import": "Import (.json)",
+      "exportScopeLabel": "Export scope",
+      "exportScopes": {
+        "all": "Everything",
+        "personal": "Personal data",
+        "appearance": "Appearance",
+        "configuration": "Configuration",
+        "agent": "Agent"
+      },
+      "importModeLabel": "Import mode",
+      "importModes": {
+        "merge": "Merge",
+        "replace": "Replace"
+      },
+      "importPreviewEmpty": "No import file selected yet.",
       "presetsLabel": "Data presets",
       "applyPreset": "Load preset",
       "presetMeta": "Presets are exported JSONs under assets/presets/. User presets from assets/user-presets/ are merged automatically.",
@@ -280,7 +294,7 @@
       "restartOnboarding": "Restart setup",
       "restartNote": "Reopens the compact setup dialog.",
       "noteLabel": "Note",
-      "noteText": "Export stores all settings & data locally as JSON. Import overwrites existing entries."
+      "noteText": "Export stores the selected scope as JSON. Merge import overwrites matching entries only; replace removes known Startpage data first."
     },
     "language": {
       "label": "Language",
@@ -611,8 +625,15 @@
     "imageLoadError": "Image could not be loaded."
   },
   "data": {
+    "export": {
+      "empty": "There is nothing to export for this scope.",
+      "done": "Exported {count} entries."
+    },
     "import": {
-      "confirm": "Import data? Existing entries will be overwritten.",
+      "confirm": "Import data? Existing matching entries will be overwritten.",
+      "confirmMerge": "Import {keys} entries? {existing} existing entries will be overwritten and {added} new entries will be added.",
+      "confirmReplace": "Import {keys} entries and remove known Startpage data first? {removed} local entries are not included in the import.",
+      "preview": "{keys} entries: {existing} existing, {added} new.",
       "failed": "Import failed: {error}"
     },
     "presets": {

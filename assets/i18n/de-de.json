@@ -273,6 +273,20 @@
       "label": "Daten",
       "export": "Exportieren (.json)",
       "import": "Importieren (.json)",
+      "exportScopeLabel": "Exportumfang",
+      "exportScopes": {
+        "all": "Alles",
+        "personal": "Persönliche Daten",
+        "appearance": "Erscheinung",
+        "configuration": "Konfiguration",
+        "agent": "Agent"
+      },
+      "importModeLabel": "Importmodus",
+      "importModes": {
+        "merge": "Zusammenführen",
+        "replace": "Ersetzen"
+      },
+      "importPreviewEmpty": "Noch keine Importdatei gewählt.",
       "presetsLabel": "Data Presets",
       "applyPreset": "Preset laden",
       "presetMeta": "Presets liegen als exportierte JSONs unter assets/presets/. User-Presets aus assets/user-presets/ werden automatisch gemerged.",
@@ -280,7 +294,7 @@
       "restartOnboarding": "Setup neu starten",
       "restartNote": "Startet den kompakten Einrichtungs-Dialog erneut.",
       "noteLabel": "Hinweis",
-      "noteText": "Export speichert sämtliche Einstellungen & Daten lokal als JSON. Import überschreibt vorhandene Einträge."
+      "noteText": "Export speichert den gewählten Umfang als JSON. Import im Merge-Modus überschreibt nur vorhandene gleiche Einträge; Ersetzen entfernt zuerst bekannte Startpage-Daten."
     },
     "language": {
       "label": "Sprache",
@@ -611,8 +625,15 @@
     "imageLoadError": "Bild konnte nicht geladen werden."
   },
   "data": {
+    "export": {
+      "empty": "Für diesen Umfang gibt es nichts zu exportieren.",
+      "done": "{count} Einträge exportiert."
+    },
     "import": {
-      "confirm": "Daten importieren Bestehende Einträge werden überschrieben.",
+      "confirm": "Daten importieren? Bestehende gleiche Einträge werden überschrieben.",
+      "confirmMerge": "{keys} Einträge importieren? {existing} vorhandene Einträge werden überschrieben, {added} neue werden ergänzt.",
+      "confirmReplace": "{keys} Einträge importieren und vorher bekannte Startpage-Daten entfernen? {removed} lokale Einträge sind nicht im Import enthalten.",
+      "preview": "{keys} Einträge: {existing} vorhanden, {added} neu.",
       "failed": "Import fehlgeschlagen: {error}"
     },
     "presets": {
