@@ -402,9 +402,18 @@
   },
   "onboarding": {
     "title": "Setup starten",
+    "subtitle": "Richte deine Startpage in wenigen Schritten ein.",
     "progress": "Schritt {current} von {total}",
     "skip": "Setup überspringen",
     "close": "Schließen",
+    "nav": {
+      "preset": "Profil",
+      "appearance": "Aussehen",
+      "search": "Suche",
+      "widgets": "Widgets",
+      "weather": "Wetter",
+      "summary": "Review"
+    },
     "preset": {
       "title": "Preset wählen",
       "hint": "Wähle ein Preset oder überspringe diesen Schritt.",
@@ -434,6 +443,17 @@
       "title": "Wetter",
       "defaultCity": "Standard-Stadt",
       "note": "Du kannst später jederzeit alles in den Einstellungen ändern."
+    },
+    "summary": {
+      "title": "Setup prüfen",
+      "hint": "Übernimm die Auswahl oder gehe zurück, um etwas zu ändern.",
+      "theme": "Theme",
+      "cardStyle": "Karten-Stil",
+      "background": "Hintergrund",
+      "search": "Suchmaschine",
+      "widgets": "Widgets",
+      "weather": "Wetter",
+      "transport": "Transport"
     },
     "prev": "Zurück",
     "next": "Weiter",

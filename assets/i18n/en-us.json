@@ -402,9 +402,18 @@
   },
   "onboarding": {
     "title": "Start setup",
+    "subtitle": "Set up your Startpage in a few focused steps.",
     "progress": "Step {current} of {total}",
     "skip": "Skip setup",
     "close": "Close",
+    "nav": {
+      "preset": "Profile",
+      "appearance": "Appearance",
+      "search": "Search",
+      "widgets": "Widgets",
+      "weather": "Weather",
+      "summary": "Review"
+    },
     "preset": {
       "title": "Choose preset",
       "hint": "Pick a preset or skip this step.",
@@ -434,6 +443,17 @@
       "title": "Weather",
       "defaultCity": "Default city",
       "note": "You can change everything later in settings."
+    },
+    "summary": {
+      "title": "Review setup",
+      "hint": "Apply the selection or go back to adjust it.",
+      "theme": "Theme",
+      "cardStyle": "Card style",
+      "background": "Background",
+      "search": "Search engine",
+      "widgets": "Widgets",
+      "weather": "Weather",
+      "transport": "Transport"
     },
     "prev": "Back",
     "next": "Next",

@@ -502,6 +502,7 @@
       <div class="onb-header">
         <div>
           <h4 data-i18n="onboarding.title">Setup starten</h4>
+          <div class="muted onb-subtitle" data-i18n="onboarding.subtitle">Richte deine Startpage in wenigen Schritten ein.</div>
           <div class="muted" id="onbProgressLabel" data-i18n="onboarding.progress">Schritt 1 von 5</div>
         </div>
         <div style="display:flex; gap:8px">
@@ -509,92 +510,105 @@
           <button class="btn" type="button" id="onbClose" data-i18n="onboarding.close">Schließen</button>
         </div>
       </div>
-      <div class="onb-steps">
-        <div class="onb-step active" data-step="preset">
-          <h5 data-i18n="onboarding.preset.title">Preset wählen</h5>
-          <div class="muted" id="onbPresetHint" data-i18n="onboarding.preset.hint">Wähle ein Preset oder überspringe diesen Schritt.</div>
-          <select id="onbPresetSelect"></select>
-          <div class="muted" id="onbPresetMeta"></div>
-          <div style="display:flex; gap:8px; margin-top:8px">
-            <button class="btn" type="button" id="onbApplyPreset" data-i18n="onboarding.preset.apply">Preset anwenden</button>
+      <div class="onb-layout">
+        <nav class="onb-nav" aria-label="Setup">
+          <button class="onb-nav-btn active" type="button" data-onb-step="0" data-i18n="onboarding.nav.preset">Profil</button>
+          <button class="onb-nav-btn" type="button" data-onb-step="1" data-i18n="onboarding.nav.appearance">Aussehen</button>
+          <button class="onb-nav-btn" type="button" data-onb-step="2" data-i18n="onboarding.nav.search">Suche</button>
+          <button class="onb-nav-btn" type="button" data-onb-step="3" data-i18n="onboarding.nav.widgets">Widgets</button>
+          <button class="onb-nav-btn" type="button" data-onb-step="4" data-i18n="onboarding.nav.weather">Wetter</button>
+          <button class="onb-nav-btn" type="button" data-onb-step="5" data-i18n="onboarding.nav.summary">Review</button>
+        </nav>
+        <div class="onb-steps">
+          <div class="onb-step active" data-step="preset">
+            <h5 data-i18n="onboarding.preset.title">Preset wählen</h5>
+            <div class="muted" id="onbPresetHint" data-i18n="onboarding.preset.hint">Wähle ein Preset oder überspringe diesen Schritt.</div>
+            <select id="onbPresetSelect"></select>
+            <div class="onb-preset-grid" id="onbPresetCards"></div>
+            <div class="muted" id="onbPresetMeta"></div>
           </div>
-        </div>
-        <div class="onb-step" data-step="appearance">
-          <h5 data-i18n="onboarding.appearance.title">Darstellung</h5>
-          <div class="onb-field">
-            <label for="onbTheme" data-i18n="onboarding.appearance.theme">Theme</label>
-            <select id="onbTheme">
-              <option value="auto" data-i18n="settings.theme.auto">Auto (System)</option>
-              <option value="dark" data-i18n="settings.theme.dark">Dark</option>
-              <option value="light" data-i18n="settings.theme.light">Light</option>
-            </select>
-          </div>
-          <div class="onb-field">
-            <label for="onbCardStyle" data-i18n="onboarding.appearance.cardStyle">Karten-Stil</label>
-            <select id="onbCardStyle">
-              <option value="glass" data-i18n="settings.widgets.cardStyleGlass">Glas (Standard)</option>
-              <option value="solid" data-i18n="settings.widgets.cardStyleSolid">Vollfläche</option>
-              <option value="transparent" data-i18n="settings.widgets.cardStyleTransparent">Transparent</option>
-              <option value="minimal" data-i18n="settings.widgets.cardStyleMinimal">Soft Minimal</option>
-            </select>
-          </div>
-          <div class="onb-field">
-            <label for="onbBgPreset" data-i18n="onboarding.appearance.background">Hintergrund</label>
-            <select id="onbBgPreset"></select>
-          </div>
-          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap">
-            <label style="display:flex; align-items:center; gap:6px; font-size:14px">
-              <input type="checkbox" id="onbBgRotate" />
-              <span data-i18n="onboarding.appearance.rotation">Rotation aktivieren</span>
-            </label>
-          </div>
-        </div>
-        <div class="onb-step" data-step="search">
-          <h5 data-i18n="onboarding.search.title">Suche</h5>
-          <div class="onb-field">
-            <label for="onbEngine" data-i18n="onboarding.search.engine">Standard-Suchmaschine</label>
-            <select id="onbEngine">
-              <option value="google">Google</option>
-              <option value="ddg">DuckDuckGo</option>
-              <option value="bing">Bing</option>
-              <option value="searxng">SearXNG</option>
-              <option value="yt">YouTube</option>
-              <option value="wikipedia">Wikipedia</option>
-              <option value="maps">Google Maps</option>
-            </select>
-          </div>
-        </div>
-        <div class="onb-step" data-step="widgets">
-          <h5 data-i18n="onboarding.widgets.title">Widgets</h5>
-          <div style="display:flex; flex-wrap:wrap; gap:10px">
-            <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="todo" /> <span data-i18n="widgets.todo">To-Do</span></label>
-            <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="notes" /> <span data-i18n="widgets.notes">Notizen</span></label>
-            <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="tiles" /> <span data-i18n="widgets.tiles">Favoriten</span></label>
-            <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="weather" /> <span data-i18n="widgets.weather">Wetter</span></label>
-            <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="transport" /> <span data-i18n="widgets.transport">Transport</span></label>
-            <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="news" /> <span data-i18n="widgets.news">News</span></label>
-          </div>
-          <div class="onb-field" id="onbTransportField" style="display:none; margin-top:12px">
-            <label for="onbTransportInput" data-i18n="onboarding.widgets.defaultTransport">Standard-Haltestelle (Transport)</label>
-            <div style="position:relative">
-              <input id="onbTransportInput" type="text" placeholder="Station suchen…" data-i18n-placeholder="settings.widgets.defaultTransportPlaceholder" autocomplete="off" />
-              <div id="onbTransportSuggest" class="transport-suggest hidden"></div>
+          <div class="onb-step" data-step="appearance">
+            <h5 data-i18n="onboarding.appearance.title">Darstellung</h5>
+            <div class="onb-field">
+              <label for="onbTheme" data-i18n="onboarding.appearance.theme">Theme</label>
+              <select id="onbTheme">
+                <option value="auto" data-i18n="settings.theme.auto">Auto (System)</option>
+                <option value="dark" data-i18n="settings.theme.dark">Dark</option>
+                <option value="light" data-i18n="settings.theme.light">Light</option>
+              </select>
+            </div>
+            <div class="onb-field">
+              <label for="onbCardStyle" data-i18n="onboarding.appearance.cardStyle">Karten-Stil</label>
+              <select id="onbCardStyle">
+                <option value="glass" data-i18n="settings.widgets.cardStyleGlass">Glas (Standard)</option>
+                <option value="solid" data-i18n="settings.widgets.cardStyleSolid">Vollfläche</option>
+                <option value="transparent" data-i18n="settings.widgets.cardStyleTransparent">Transparent</option>
+                <option value="minimal" data-i18n="settings.widgets.cardStyleMinimal">Soft Minimal</option>
+              </select>
+            </div>
+            <div class="onb-field">
+              <label for="onbBgPreset" data-i18n="onboarding.appearance.background">Hintergrund</label>
+              <select id="onbBgPreset"></select>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap">
+              <label style="display:flex; align-items:center; gap:6px; font-size:14px">
+                <input type="checkbox" id="onbBgRotate" />
+                <span data-i18n="onboarding.appearance.rotation">Rotation aktivieren</span>
+              </label>
             </div>
           </div>
-          <div style="display:flex; align-items:center; gap:8px; margin-top:10px">
-            <label style="display:flex; align-items:center; gap:6px; font-size:14px">
-              <input type="checkbox" id="onbTint" />
-              <span data-i18n="onboarding.widgets.tint">Widgets an Akzent einfärben</span>
-            </label>
+          <div class="onb-step" data-step="search">
+            <h5 data-i18n="onboarding.search.title">Suche</h5>
+            <div class="onb-field">
+              <label for="onbEngine" data-i18n="onboarding.search.engine">Standard-Suchmaschine</label>
+              <select id="onbEngine">
+                <option value="google">Google</option>
+                <option value="ddg">DuckDuckGo</option>
+                <option value="bing">Bing</option>
+                <option value="searxng">SearXNG</option>
+                <option value="yt">YouTube</option>
+                <option value="wikipedia">Wikipedia</option>
+                <option value="maps">Google Maps</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <div class="onb-step" data-step="weather">
-          <h5 data-i18n="onboarding.weather.title">Wetter</h5>
-          <div class="onb-field">
-            <label for="onbCity" data-i18n="onboarding.weather.defaultCity">Standard-Stadt</label>
-            <input id="onbCity" type="text" placeholder="z.B. Hannover" data-i18n-placeholder="settings.widgets.defaultCityPlaceholder" />
+          <div class="onb-step" data-step="widgets">
+            <h5 data-i18n="onboarding.widgets.title">Widgets</h5>
+            <div class="onb-widget-grid">
+              <label class="onb-check-card"><input type="checkbox" class="onb-widget-toggle" data-widget="todo" /> <span data-i18n="widgets.todo">To-Do</span></label>
+              <label class="onb-check-card"><input type="checkbox" class="onb-widget-toggle" data-widget="notes" /> <span data-i18n="widgets.notes">Notizen</span></label>
+              <label class="onb-check-card"><input type="checkbox" class="onb-widget-toggle" data-widget="tiles" /> <span data-i18n="widgets.tiles">Favoriten</span></label>
+              <label class="onb-check-card"><input type="checkbox" class="onb-widget-toggle" data-widget="weather" /> <span data-i18n="widgets.weather">Wetter</span></label>
+              <label class="onb-check-card"><input type="checkbox" class="onb-widget-toggle" data-widget="transport" /> <span data-i18n="widgets.transport">Transport</span></label>
+              <label class="onb-check-card"><input type="checkbox" class="onb-widget-toggle" data-widget="news" /> <span data-i18n="widgets.news">News</span></label>
+            </div>
+            <div class="onb-field" id="onbTransportField" style="display:none; margin-top:12px">
+              <label for="onbTransportInput" data-i18n="onboarding.widgets.defaultTransport">Standard-Haltestelle (Transport)</label>
+              <div style="position:relative">
+                <input id="onbTransportInput" type="text" placeholder="Station suchen…" data-i18n-placeholder="settings.widgets.defaultTransportPlaceholder" autocomplete="off" />
+                <div id="onbTransportSuggest" class="transport-suggest hidden"></div>
+              </div>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px; margin-top:10px">
+              <label style="display:flex; align-items:center; gap:6px; font-size:14px">
+                <input type="checkbox" id="onbTint" />
+                <span data-i18n="onboarding.widgets.tint">Widgets an Akzent einfärben</span>
+              </label>
+            </div>
           </div>
-          <div class="muted" data-i18n="onboarding.weather.note">Du kannst später jederzeit alles in den Einstellungen ändern.</div>
+          <div class="onb-step" data-step="weather">
+            <h5 data-i18n="onboarding.weather.title">Wetter</h5>
+            <div class="onb-field">
+              <label for="onbCity" data-i18n="onboarding.weather.defaultCity">Standard-Stadt</label>
+              <input id="onbCity" type="text" placeholder="z.B. Hannover" data-i18n-placeholder="settings.widgets.defaultCityPlaceholder" />
+            </div>
+            <div class="muted" data-i18n="onboarding.weather.note">Du kannst später jederzeit alles in den Einstellungen ändern.</div>
+          </div>
+          <div class="onb-step" data-step="summary">
+            <h5 data-i18n="onboarding.summary.title">Setup prüfen</h5>
+            <div class="muted" data-i18n="onboarding.summary.hint">Übernimm die Auswahl oder gehe zurück, um etwas zu ändern.</div>
+            <div class="onb-summary" id="onbSummary"></div>
+          </div>
         </div>
       </div>
       <div class="onb-footer">

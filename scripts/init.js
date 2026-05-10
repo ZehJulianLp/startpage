@@ -182,6 +182,7 @@
     const onbPrev = $('#onbPrev'); if(onbPrev) onbPrev.addEventListener('click', onboardingPrev);
     const onbSkip = $('#onbSkip'); if(onbSkip) onbSkip.addEventListener('click', onboardingSkip);
     const onbClose = $('#onbClose'); if(onbClose) onbClose.addEventListener('click', onboardingSkip);
+    $$('.onb-nav-btn').forEach(btn=> btn.addEventListener('click', ()=> onboardingGoToStep(btn.getAttribute('data-onb-step'))));
     const onbPresetSelect = $('#onbPresetSelect'); if(onbPresetSelect) onbPresetSelect.addEventListener('change', onboardingUpdatePresetMeta);
     const onbApplyPresetBtn = $('#onbApplyPreset'); if(onbApplyPresetBtn) onbApplyPresetBtn.addEventListener('click', onboardingApplyPreset);
     const onbTheme = $('#onbTheme'); if(onbTheme) onbTheme.addEventListener('change', e=>{ const v=e.target.value; store.set('theme', v); applyTheme(v); });

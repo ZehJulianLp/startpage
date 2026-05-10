@@ -574,8 +574,10 @@
   async function onboardingRenderPresets(){
     const select = $('#onbPresetSelect');
     const meta = $('#onbPresetMeta');
+    const cards = $('#onbPresetCards');
     if(!select || !meta) return;
     select.innerHTML = '';
+    if(cards) cards.innerHTML = '';
     meta.textContent = t('data.presets.loading');
     const presets = await loadDataPresets();
     if(!presets.length){
@@ -583,6 +585,12 @@
       opt.value = '';
       opt.textContent = t('data.presets.noneFound');
       select.appendChild(opt);
+      if(cards){
+        const empty = document.createElement('div');
+        empty.className = 'onb-preset-empty muted';
+        empty.textContent = t('data.presets.noneFound');
+        cards.appendChild(empty);
+      }
       meta.textContent = t('data.presets.hintShort');
       return;
     }
@@ -593,8 +601,28 @@
       const prefix = p.source === 'user' && !/^user:/i.test(String(label).trim()) ? 'User: ' : '';
       opt.textContent = prefix + label;
       select.appendChild(opt);
+      if(cards){
+        const card = document.createElement('button');
+        card.className = 'onb-preset-card';
+        card.type = 'button';
+        card.dataset.presetId = p.id || 'preset-' + i;
+        const tags = Array.isArray(p.tags) && p.tags.length ? p.tags.join(', ') : (p.source || '');
+        card.innerHTML = `
+          <span class="onb-preset-name">${escapeHtml(prefix + label)}</span>
+          <span class="onb-preset-description">${escapeHtml(getPresetDescription(p) || t('onboarding.preset.meta'))}</span>
+          ${tags ? `<span class="onb-preset-tags">${escapeHtml(tags)}</span>` : ''}
+        `;
+        card.addEventListener('click', ()=>{
+          select.value = card.dataset.presetId;
+          updateUiSelect(select);
+          onboardingUpdatePresetMeta();
+          onboardingApplyPreset();
+        });
+        cards.appendChild(card);
+      }
     });
-    const current = presets[0];
+    const storedPreset = String(store.get('onboarding.preset.id', '') || '');
+    const current = presets.find(p => String(p.id || '') === storedPreset) || presets[0];
     select.value = current ? current.id : select.value;
     refreshUiSelects(select.parentElement || document);
     onboardingUpdatePresetMeta();
@@ -630,6 +658,9 @@
     } else {
       meta.textContent = t('onboarding.preset.optional');
     }
+    $$('.onb-preset-card').forEach(card=>{
+      card.classList.toggle('active', !!current && card.dataset.presetId === String(current.id || ''));
+    });
   }
 
   async function onboardingApplyPreset(){
@@ -637,13 +668,26 @@
     if(!select) return;
     const presets = await loadDataPresets();
     const current = presets.find(p => String(p.id||'') === select.value) || presets[0];
-    await applyPresetFromEntry(current, t('onboarding.preset.context'), { reload:false, markDone:false });
-    store.set('onboarding.done', false);
-    store.set('onboarding.resume', true);
-    store.set('onboarding.step', onboardingState.step);
-    onboardingState.pendingReload = true;
-    onboardingUpdatePresetMeta();
-    location.reload();
+    if(!current || !current.file){ await uiAlert(t('data.presets.missingFile')); return; }
+    try{
+      const res = await fetch(current.file);
+      if(!res.ok) throw new Error(t('data.presets.fileMissing'));
+      const obj = await res.json();
+      if(!obj || typeof obj !== 'object') throw new Error(t('data.presets.invalid'));
+      if(!('wordlist.inline' in obj)) obj['wordlist.inline'] = [];
+      obj['wordlist.inline'] = normalizeInlineWordlist(obj['wordlist.inline']);
+      Object.keys(obj).forEach(k=> localStorage.setItem(k, JSON.stringify(obj[k])));
+      ensureWeatherStorage();
+      store.set('onboarding.preset.id', current.id || select.value || '');
+      store.set('onboarding.done', false);
+      store.set('onboarding.resume', true);
+      store.set('onboarding.step', onboardingState.step);
+      onboardingState.pendingReload = true;
+      onboardingUpdatePresetMeta();
+      location.reload();
+    }catch(err){
+      await uiAlert(t('data.presets.loadFailed', { error: err.message }, 'Preset load failed: {error}'));
+    }
   }
 
   function onboardingUpdateUi(){
@@ -652,6 +696,10 @@
     const steps = $$('.onb-step', modal);
     const total = steps.length || 1;
     steps.forEach((stepEl, idx)=> stepEl.classList.toggle('active', idx === onboardingState.step));
+    $$('.onb-nav-btn', modal).forEach(btn=>{
+      const idx = Number(btn.getAttribute('data-onb-step'));
+      btn.classList.toggle('active', idx === onboardingState.step);
+    });
     const prev = $('#onbPrev'); if(prev) prev.disabled = onboardingState.step === 0;
     const next = $('#onbNext'); if(next) next.textContent = onboardingState.step >= total-1 ? t('onboarding.finish') : t('onboarding.next');
     const label = $('#onbProgressLabel'); if(label) label.textContent = t('onboarding.progress', { current: Math.min(onboardingState.step+1,total), total });
@@ -664,6 +712,18 @@
         dots.appendChild(dot);
       }
     }
+    const current = steps[onboardingState.step];
+    if(current && current.getAttribute('data-step') === 'summary') onboardingRenderSummary();
+  }
+
+  function onboardingGoToStep(index){
+    onboardingCommitStep();
+    const modal = $('#onboarding');
+    if(!modal) return;
+    const steps = $$('.onb-step', modal);
+    const total = steps.length || 1;
+    onboardingState.step = Math.max(0, Math.min(total - 1, Number(index) || 0));
+    onboardingUpdateUi();
   }
 
   function onboardingCommitStep(){
@@ -759,6 +819,42 @@
     onboardingUpdateUi();
   }
 
+  function onboardingRenderSummary(){
+    const wrap = $('#onbSummary');
+    if(!wrap) return;
+    const engine = $('#onbEngine');
+    const theme = $('#onbTheme');
+    const cardStyle = $('#onbCardStyle');
+    const bg = $('#onbBgPreset');
+    const city = $('#onbCity');
+    const transport = $('#onbTransportInput');
+    const widgets = $$('.onb-widget-toggle')
+      .filter(cb => cb.checked)
+      .map(cb => {
+        const key = cb.getAttribute('data-widget');
+        return t(`widgets.${key}`, null, key);
+      });
+    const bgLabel = bg && bg.value
+      ? (BG_PRESETS.find(p => p.id === bg.value) || {}).label || bg.value
+      : t('onboarding.appearance.keepCurrent');
+    const items = [
+      [t('onboarding.summary.theme'), theme ? theme.options[theme.selectedIndex].textContent : ''],
+      [t('onboarding.summary.cardStyle'), cardStyle ? cardStyle.options[cardStyle.selectedIndex].textContent : ''],
+      [t('onboarding.summary.background'), bgLabel],
+      [t('onboarding.summary.search'), engine ? engine.options[engine.selectedIndex].textContent : ''],
+      [t('onboarding.summary.widgets'), widgets.length ? widgets.join(', ') : t('common.emptyDash')],
+      [t('onboarding.summary.weather'), city && city.value.trim() ? city.value.trim() : t('common.emptyDash')],
+      [t('onboarding.summary.transport'), transport && transport.value.trim() ? transport.value.trim() : t('common.emptyDash')]
+    ];
+    wrap.innerHTML = '';
+    items.forEach(([label, value])=>{
+      const row = document.createElement('div');
+      row.className = 'onb-summary-row';
+      row.innerHTML = `<span>${escapeHtml(label)}</span><strong>${escapeHtml(value || t('common.emptyDash'))}</strong>`;
+      wrap.appendChild(row);
+    });
+  }
+
   function onboardingFinish(){
     onboardingCommitStep();
     if(onboardingState.pendingReload){
@@ -844,4 +940,3 @@
     modal.setAttribute('aria-hidden','false');
     syncModalOpenState();
   }
-
