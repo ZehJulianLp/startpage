@@ -1310,11 +1310,8 @@
     return true;
   }
 
+  const DATA_TRANSFER_SCOPE_ORDER = ['personal', 'appearance', 'configuration', 'agent', 'other'];
   const DATA_EXPORT_SCOPES = {
-    all: {
-      labelKey: 'settings.data.exportScopes.all',
-      match: ()=> true
-    },
     personal: {
       labelKey: 'settings.data.exportScopes.personal',
       match: key => ['tiles','todos','notes','recent'].includes(key)
@@ -1341,34 +1338,144 @@
     agent: {
       labelKey: 'settings.data.exportScopes.agent',
       match: key => key.startsWith('ai.agent.')
+    },
+    other: {
+      labelKey: 'settings.data.exportScopes.other',
+      match: ()=> true
     }
   };
 
-  function getDataExportScope(){
-    const select = $('#dataExportScope');
-    const scope = select ? select.value : 'all';
-    return Object.prototype.hasOwnProperty.call(DATA_EXPORT_SCOPES, scope) ? scope : 'all';
+  function getDataScopeForKey(key){
+    const known = DATA_TRANSFER_SCOPE_ORDER.filter(scope => scope !== 'other');
+    return known.find(scope => DATA_EXPORT_SCOPES[scope].match(key)) || 'other';
   }
 
-  function getDataImportMode(){
-    const select = $('#dataImportMode');
-    return select && select.value === 'replace' ? 'replace' : 'merge';
-  }
-
-  function readLocalStorageData(scope='all'){
+  function readLocalStorageData(scopes=DATA_TRANSFER_SCOPE_ORDER){
     const data = {};
-    const spec = DATA_EXPORT_SCOPES[scope] || DATA_EXPORT_SCOPES.all;
+    const allowed = new Set(scopes);
     for(let i=0;i<localStorage.length;i++){
       const k = localStorage.key(i);
-      if(!spec.match(k)) continue;
+      if(!allowed.has(getDataScopeForKey(k))) continue;
       try { data[k] = JSON.parse(localStorage.getItem(k)); } catch { data[k] = localStorage.getItem(k); }
     }
     return data;
   }
 
-  function exportData(){
-    const scope = getDataExportScope();
-    const data = readLocalStorageData(scope);
+  function groupDataKeys(obj){
+    const counts = {};
+    DATA_TRANSFER_SCOPE_ORDER.forEach(scope => { counts[scope] = 0; });
+    Object.keys(obj || {}).forEach(key => {
+      const scope = getDataScopeForKey(key);
+      counts[scope] = (counts[scope] || 0) + 1;
+    });
+    return counts;
+  }
+
+  function getSelectedDataTransferScopes(container){
+    return $$('input[type="checkbox"][data-scope]', container)
+      .filter(input => input.checked && !input.disabled)
+      .map(input => input.getAttribute('data-scope'))
+      .filter(scope => DATA_TRANSFER_SCOPE_ORDER.includes(scope));
+  }
+
+  function setDataTransferDialogMode(mode){
+    const modeWrap = $('#dataTransferMode');
+    const apply = $('#dataTransferApply');
+    if(modeWrap) modeWrap.classList.toggle('hidden', mode !== 'import');
+    if(apply) apply.textContent = mode === 'export' ? t('settings.data.exportAction', null, 'Export') : t('settings.data.importAction', null, 'Import');
+  }
+
+  function renderDataTransferOptions(counts, selectedScopes){
+    const wrap = $('#dataTransferOptions');
+    if(!wrap) return;
+    wrap.innerHTML = '';
+    const selected = new Set(selectedScopes || DATA_TRANSFER_SCOPE_ORDER);
+    DATA_TRANSFER_SCOPE_ORDER.forEach(scope=>{
+      const count = counts[scope] || 0;
+      const label = document.createElement('label');
+      label.className = 'data-transfer-option';
+      const input = document.createElement('input');
+      input.type = 'checkbox';
+      input.dataset.scope = scope;
+      input.checked = selected.has(scope) && count > 0;
+      input.disabled = count === 0;
+      const text = document.createElement('span');
+      text.textContent = t(DATA_EXPORT_SCOPES[scope].labelKey);
+      const meta = document.createElement('span');
+      meta.className = 'muted';
+      meta.textContent = t('settings.data.scopeCount', { count }, '{count} entries');
+      label.append(input, text, meta);
+      wrap.appendChild(label);
+    });
+  }
+
+  function openDataTransferDialog(options){
+    const modal = $('#dataTransferDialog');
+    const title = $('#dataTransferTitle');
+    const message = $('#dataTransferMessage');
+    const optionsWrap = $('#dataTransferOptions');
+    const modeSelect = $('#dataTransferImportMode');
+    const cancel = $('#dataTransferCancel');
+    const apply = $('#dataTransferApply');
+    if(!modal || !title || !message || !optionsWrap || !cancel || !apply){
+      return Promise.resolve(null);
+    }
+    const mode = options && options.mode === 'import' ? 'import' : 'export';
+    title.textContent = options.title || '';
+    message.textContent = options.message || '';
+    if(modeSelect) modeSelect.value = 'merge';
+    renderDataTransferOptions(options.counts || {}, options.selectedScopes);
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    syncModalOpenState();
+    applyI18n(modal);
+    setDataTransferDialogMode(mode);
+    refreshUiSelects(modal);
+    return new Promise(resolve=>{
+      const cleanup = result=>{
+        cancel.removeEventListener('click', onCancel);
+        apply.removeEventListener('click', onApply);
+        modal.removeEventListener('click', onOverlay);
+        document.removeEventListener('keydown', onKey);
+        closeModalAnimated(modal, ()=> resolve(result));
+      };
+      const onCancel = ()=> cleanup(null);
+      const onApply = async ()=>{
+        const scopes = getSelectedDataTransferScopes(optionsWrap);
+        if(!scopes.length){
+          await uiAlert(t('data.transfer.noneSelected', null, 'Select at least one category.'));
+          return;
+        }
+        cleanup({
+          scopes,
+          importMode: modeSelect && modeSelect.value === 'replace' ? 'replace' : 'merge'
+        });
+      };
+      const onOverlay = e=>{ if(e.target === modal) cleanup(null); };
+      const onKey = e=>{
+        if(!modal.classList.contains('open')) return;
+        if(e.key === 'Escape'){
+          e.preventDefault();
+          cleanup(null);
+        }
+      };
+      cancel.addEventListener('click', onCancel);
+      apply.addEventListener('click', onApply);
+      modal.addEventListener('click', onOverlay);
+      document.addEventListener('keydown', onKey);
+    });
+  }
+
+  async function exportData(){
+    const allData = readLocalStorageData(DATA_TRANSFER_SCOPE_ORDER);
+    const choice = await openDataTransferDialog({
+      mode: 'export',
+      title: t('data.export.title', null, 'Export data'),
+      message: t('data.export.message', null, 'Choose what should be included in the JSON export.'),
+      counts: groupDataKeys(allData)
+    });
+    if(!choice) return;
+    const data = readLocalStorageData(choice.scopes);
     const keys = Object.keys(data);
     if(!keys.length){
       void uiAlert(t('data.export.empty', null, 'Nothing to export for this scope.'));
@@ -1379,10 +1486,11 @@
     const d = new Date();
     const ts = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
     a.href = URL.createObjectURL(blob);
-    a.download = `startpage-backup-${scope}-${ts}.json`;
+    const scopeSlug = choice.scopes.length === DATA_TRANSFER_SCOPE_ORDER.length ? 'all' : choice.scopes.join('-');
+    a.download = `startpage-backup-${scopeSlug}-${ts}.json`;
     document.body.appendChild(a); a.click(); URL.revokeObjectURL(a.href); a.remove();
     const preview = $('#dataImportPreview');
-    if(preview) preview.textContent = t('data.export.done', { count: keys.length, scope }, 'Exported {count} entries.');
+    if(preview) preview.textContent = t('data.export.done', { count: keys.length }, 'Exported {count} entries.');
   }
 
   function normalizeImportedDataPayload(raw){
@@ -1407,25 +1515,36 @@
     if(key === 'settings.tab' || key === UI_FONT_KEY || key === 'bg.url' || key === 'weather.coords') return true;
     if(key === 'search.searxng.enabledMigration.v1') return true;
     return Object.keys(DATA_EXPORT_SCOPES)
-      .filter(scope => scope !== 'all')
+      .filter(scope => scope !== 'other')
       .some(scope => DATA_EXPORT_SCOPES[scope].match(key));
   }
 
-  function getImportReplaceRemovalKeys(obj){
+  function getImportReplaceRemovalKeys(obj, scopes){
     const importKeys = new Set(Object.keys(obj));
+    const allowed = new Set(scopes || DATA_TRANSFER_SCOPE_ORDER);
     const keys = [];
     for(let i=0;i<localStorage.length;i++){
       const key = localStorage.key(i);
-      if(importKeys.has(key) || isStartpageDataKey(key)) keys.push(key);
+      const scope = getDataScopeForKey(key);
+      if(importKeys.has(key) || (allowed.has(scope) && isStartpageDataKey(key))) keys.push(key);
     }
     return keys;
   }
 
-  function summarizeImportData(obj, mode){
+  function filterDataByScopes(obj, scopes){
+    const allowed = new Set(scopes || DATA_TRANSFER_SCOPE_ORDER);
+    const out = {};
+    Object.keys(obj || {}).forEach(key=>{
+      if(allowed.has(getDataScopeForKey(key))) out[key] = obj[key];
+    });
+    return out;
+  }
+
+  function summarizeImportData(obj, mode, scopes){
     const keys = Object.keys(obj);
     const existing = keys.filter(k => localStorage.getItem(k) !== null).length;
     const added = keys.length - existing;
-    const removeKeys = mode === 'replace' ? getImportReplaceRemovalKeys(obj) : [];
+    const removeKeys = mode === 'replace' ? getImportReplaceRemovalKeys(obj, scopes) : [];
     const removed = removeKeys.filter(k => !Object.prototype.hasOwnProperty.call(obj, k)).length;
     return { keys: keys.length, existing, added, removed };
   }
@@ -1435,16 +1554,24 @@
     reader.onload = async () => {
       try {
         const parsed = JSON.parse(reader.result);
-        const obj = normalizeImportedDataObject(normalizeImportedDataPayload(parsed));
-        const mode = getDataImportMode();
-        const summary = summarizeImportData(obj, mode);
+        const importData = normalizeImportedDataObject(normalizeImportedDataPayload(parsed));
+        const choice = await openDataTransferDialog({
+          mode: 'import',
+          title: t('data.import.title', null, 'Import data'),
+          message: t('data.import.message', { file: file.name }, 'Choose what should be imported from {file}.'),
+          counts: groupDataKeys(importData)
+        });
+        if(!choice) return;
+        const obj = filterDataByScopes(importData, choice.scopes);
+        const mode = choice.importMode;
+        const summary = summarizeImportData(obj, mode, choice.scopes);
         const preview = $('#dataImportPreview');
         if(preview){
           preview.textContent = t('data.import.preview', summary, '{keys} entries: {existing} existing, {added} new.');
         }
         const confirmKey = mode === 'replace' ? 'data.import.confirmReplace' : 'data.import.confirmMerge';
         if(!(await uiConfirm(t(confirmKey, summary, t('data.import.confirm'))))) return;
-        if(mode === 'replace') getImportReplaceRemovalKeys(obj).forEach(k => localStorage.removeItem(k));
+        if(mode === 'replace') getImportReplaceRemovalKeys(obj, choice.scopes).forEach(k => localStorage.removeItem(k));
         Object.keys(obj).forEach(k=> localStorage.setItem(k, JSON.stringify(obj[k])));
         ensureWeatherStorage();
         location.reload();

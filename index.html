@@ -465,22 +465,7 @@
           <label data-i18n="settings.data.label">Daten</label>
           <div class="data-tools">
             <div class="data-tool-row">
-              <label for="dataExportScope" data-i18n="settings.data.exportScopeLabel">Exportumfang</label>
-              <select id="dataExportScope">
-                <option value="all" data-i18n="settings.data.exportScopes.all">Alles</option>
-                <option value="personal" data-i18n="settings.data.exportScopes.personal">Persönliche Daten</option>
-                <option value="appearance" data-i18n="settings.data.exportScopes.appearance">Erscheinung</option>
-                <option value="configuration" data-i18n="settings.data.exportScopes.configuration">Konfiguration</option>
-                <option value="agent" data-i18n="settings.data.exportScopes.agent">Agent</option>
-              </select>
               <button class="btn" id="exportData" data-i18n="settings.data.export">Export (.json)</button>
-            </div>
-            <div class="data-tool-row">
-              <label for="dataImportMode" data-i18n="settings.data.importModeLabel">Importmodus</label>
-              <select id="dataImportMode">
-                <option value="merge" data-i18n="settings.data.importModes.merge">Zusammenführen</option>
-                <option value="replace" data-i18n="settings.data.importModes.replace">Ersetzen</option>
-              </select>
               <button class="btn" id="importData" data-i18n="settings.data.import">Import (.json)</button>
             </div>
             <div class="muted data-preview" id="dataImportPreview" data-i18n="settings.data.importPreviewEmpty">Noch keine Importdatei gewählt.</div>
@@ -639,6 +624,26 @@
       <div class="ui-dialog-actions">
         <button class="btn" type="button" id="uiDialogCancel">Abbrechen</button>
         <button class="btn" type="button" id="uiDialogOk">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Data Transfer Dialog -->
+  <div class="modal ui-dialog" id="dataTransferDialog" aria-hidden="true">
+    <div class="sheet ui-dialog-sheet data-transfer-sheet" role="dialog" aria-modal="true" aria-labelledby="dataTransferTitle">
+      <h4 id="dataTransferTitle">Daten</h4>
+      <div class="muted" id="dataTransferMessage"></div>
+      <div class="data-transfer-mode" id="dataTransferMode">
+        <label for="dataTransferImportMode" data-i18n="settings.data.importModeLabel">Importmodus</label>
+        <select id="dataTransferImportMode">
+          <option value="merge" data-i18n="settings.data.importModes.merge">Zusammenführen</option>
+          <option value="replace" data-i18n="settings.data.importModes.replace">Ersetzen</option>
+        </select>
+      </div>
+      <div class="data-transfer-options" id="dataTransferOptions"></div>
+      <div class="ui-dialog-actions">
+        <button class="btn" type="button" id="dataTransferCancel" data-i18n="common.cancel">Abbrechen</button>
+        <button class="btn" type="button" id="dataTransferApply" data-i18n="common.ok">OK</button>
       </div>
     </div>
   </div>

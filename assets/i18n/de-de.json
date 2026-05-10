@@ -279,13 +279,17 @@
         "personal": "Persönliche Daten",
         "appearance": "Erscheinung",
         "configuration": "Konfiguration",
-        "agent": "Agent"
+        "agent": "Agent",
+        "other": "Sonstiges"
       },
+      "scopeCount": "{count} Einträge",
       "importModeLabel": "Importmodus",
       "importModes": {
         "merge": "Zusammenführen",
         "replace": "Ersetzen"
       },
+      "exportAction": "Exportieren",
+      "importAction": "Importieren",
       "importPreviewEmpty": "Noch keine Importdatei gewählt.",
       "presetsLabel": "Data Presets",
       "applyPreset": "Preset laden",
@@ -625,11 +629,18 @@
     "imageLoadError": "Bild konnte nicht geladen werden."
   },
   "data": {
+    "transfer": {
+      "noneSelected": "Wähle mindestens eine Kategorie aus."
+    },
     "export": {
+      "title": "Daten exportieren",
+      "message": "Wähle, welche Kategorien in die JSON-Datei geschrieben werden sollen.",
       "empty": "Für diesen Umfang gibt es nichts zu exportieren.",
       "done": "{count} Einträge exportiert."
     },
     "import": {
+      "title": "Daten importieren",
+      "message": "Wähle, welche Kategorien aus {file} importiert werden sollen.",
       "confirm": "Daten importieren? Bestehende gleiche Einträge werden überschrieben.",
       "confirmMerge": "{keys} Einträge importieren? {existing} vorhandene Einträge werden überschrieben, {added} neue werden ergänzt.",
       "confirmReplace": "{keys} Einträge importieren und vorher bekannte Startpage-Daten entfernen? {removed} lokale Einträge sind nicht im Import enthalten.",

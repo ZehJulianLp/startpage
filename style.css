@@ -845,8 +845,8 @@
       gap: 10px;
     }
     .data-tool-row {
-      display: grid;
-      grid-template-columns: minmax(120px, 160px) minmax(180px, 1fr) auto;
+      display: flex;
+      flex-wrap: wrap;
       gap: 8px;
       align-items: center;
     }
@@ -857,6 +857,40 @@
     .data-preview {
       font-size: 12px;
       line-height: 1.35;
+    }
+    .data-transfer-sheet {
+      width: min(520px, 96vw);
+    }
+    .data-transfer-mode {
+      display: grid;
+      grid-template-columns: minmax(120px, 150px) minmax(180px, 1fr);
+      gap: 8px;
+      align-items: center;
+    }
+    .data-transfer-mode.hidden {
+      display: none;
+    }
+    .data-transfer-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .data-transfer-option {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 12px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 10px;
+      background: rgba(255,255,255,.03);
+    }
+    .data-transfer-option:has(input:disabled) {
+      opacity: .55;
+    }
+    .data-transfer-option .muted {
+      font-size: 12px;
+      white-space: nowrap;
     }
     .settings-guide-card ul,
     .settings-guide-card ol {
@@ -1034,7 +1068,8 @@
         order: 3;
         width: 100%;
       }
-      .data-tool-row {
+      .data-tool-row,
+      .data-transfer-mode {
         grid-template-columns: 1fr;
       }
       #settingsModal .tab-panel { padding: 12px; }
