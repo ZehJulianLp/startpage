@@ -1361,6 +1361,245 @@
     return data;
   }
 
+  const PROFILE_ITEMS_KEY = 'profiles.items';
+  const PROFILE_ACTIVE_KEY = 'profiles.activeId';
+
+  function isProfileSystemKey(key){
+    return key === PROFILE_ITEMS_KEY || key === PROFILE_ACTIVE_KEY;
+  }
+
+  function isProfileSnapshotExcludedKey(key){
+    return isProfileSystemKey(key) || key === 'settings.tab' || key.startsWith('onboarding.');
+  }
+
+  function profileId(){
+    return `profile-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+  }
+
+  function normalizeProfile(profile){
+    if(!profile || typeof profile !== 'object') return null;
+    const id = String(profile.id || '').trim() || profileId();
+    const name = String(profile.name || '').trim() || t('profiles.defaultName', null, 'Profile');
+    const data = profile.data && typeof profile.data === 'object' && !Array.isArray(profile.data) ? profile.data : {};
+    return {
+      id,
+      name,
+      data,
+      createdAt: profile.createdAt || new Date().toISOString(),
+      updatedAt: profile.updatedAt || profile.createdAt || new Date().toISOString()
+    };
+  }
+
+  function getProfiles(){
+    const raw = store.get(PROFILE_ITEMS_KEY, []);
+    return Array.isArray(raw) ? raw.map(normalizeProfile).filter(Boolean) : [];
+  }
+
+  function setProfiles(profiles){
+    store.set(PROFILE_ITEMS_KEY, profiles.map(normalizeProfile).filter(Boolean));
+  }
+
+  function getActiveProfileId(){
+    return String(store.get(PROFILE_ACTIVE_KEY, '') || '');
+  }
+
+  function getProfileSnapshot(){
+    const profileScopes = DATA_TRANSFER_SCOPE_ORDER.filter(scope => scope !== 'other');
+    const snapshot = readLocalStorageData(profileScopes);
+    Object.keys(snapshot).forEach(key=>{
+      if(isProfileSnapshotExcludedKey(key)) delete snapshot[key];
+    });
+    return snapshot;
+  }
+
+  function getProfileSummary(profile){
+    return groupDataKeys(profile && profile.data ? profile.data : {});
+  }
+
+  function setActiveProfile(profileIdValue){
+    store.set(PROFILE_ACTIVE_KEY, profileIdValue || '');
+  }
+
+  function saveProfile(profile){
+    const normalized = normalizeProfile(profile);
+    if(!normalized) return null;
+    const profiles = getProfiles();
+    const index = profiles.findIndex(item => item.id === normalized.id);
+    if(index >= 0) profiles[index] = normalized;
+    else profiles.push(normalized);
+    setProfiles(profiles);
+    return normalized;
+  }
+
+  async function createProfile(){
+    const name = await uiPrompt(t('profiles.promptName', null, 'Profile name'), '', t('profiles.create', null, 'Create profile'));
+    const clean = String(name || '').trim();
+    if(!clean) return;
+    const now = new Date().toISOString();
+    const profile = saveProfile({
+      id: profileId(),
+      name: clean,
+      data: getProfileSnapshot(),
+      createdAt: now,
+      updatedAt: now
+    });
+    if(profile) setActiveProfile(profile.id);
+    renderProfiles();
+  }
+
+  async function renameProfile(id){
+    const profiles = getProfiles();
+    const profile = profiles.find(item => item.id === id);
+    if(!profile) return;
+    const name = await uiPrompt(t('profiles.promptName', null, 'Profile name'), profile.name, t('profiles.rename', null, 'Rename'));
+    const clean = String(name || '').trim();
+    if(!clean) return;
+    profile.name = clean;
+    profile.updatedAt = new Date().toISOString();
+    saveProfile(profile);
+    renderProfiles();
+  }
+
+  async function updateProfile(id){
+    const profiles = getProfiles();
+    const profile = profiles.find(item => item.id === id);
+    if(!profile) return;
+    if(!(await uiConfirm(t('profiles.confirmUpdate', { name: profile.name }, 'Update "{name}" with the current Startpage state?')))) return;
+    profile.data = getProfileSnapshot();
+    profile.updatedAt = new Date().toISOString();
+    saveProfile(profile);
+    renderProfiles();
+  }
+
+  async function deleteProfile(id){
+    const profiles = getProfiles();
+    const profile = profiles.find(item => item.id === id);
+    if(!profile) return;
+    if(!(await uiConfirm(t('profiles.confirmDelete', { name: profile.name }, 'Delete profile "{name}"?')))) return;
+    setProfiles(profiles.filter(item => item.id !== id));
+    if(getActiveProfileId() === id) setActiveProfile('');
+    renderProfiles();
+  }
+
+  async function applyProfile(id){
+    const profile = getProfiles().find(item => item.id === id);
+    if(!profile){
+      renderProfileQuickSwitcher();
+      return false;
+    }
+    if(!(await uiConfirm(t('profiles.confirmApply', { name: profile.name }, 'Use profile "{name}"? Current Startpage data will be replaced.')))){
+      renderProfileQuickSwitcher();
+      return false;
+    }
+    const data = profile.data || {};
+    getImportReplaceRemovalKeys(data, DATA_TRANSFER_SCOPE_ORDER)
+      .filter(key => !isProfileSnapshotExcludedKey(key))
+      .forEach(key => localStorage.removeItem(key));
+    Object.keys(data).forEach(key=>{
+      if(!isProfileSnapshotExcludedKey(key)) localStorage.setItem(key, JSON.stringify(data[key]));
+    });
+    setActiveProfile(profile.id);
+    ensureWeatherStorage();
+    location.reload();
+    return true;
+  }
+
+  function formatProfileDate(value){
+    if(!value) return '';
+    const date = new Date(value);
+    if(Number.isNaN(date.getTime())) return '';
+    try{
+      return new Intl.DateTimeFormat(localeToIntl(i18nLocale) || undefined, {
+        year: 'numeric',
+        month: 'short',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit'
+      }).format(date);
+    }catch{
+      return date.toLocaleString();
+    }
+  }
+
+  function renderProfiles(){
+    const list = $('#profilesList');
+    const status = $('#profilesStatus');
+    renderProfileQuickSwitcher();
+    if(!list) return;
+    const profiles = getProfiles();
+    const activeId = getActiveProfileId();
+    list.innerHTML = '';
+    if(status){
+      const active = profiles.find(profile => profile.id === activeId);
+      status.textContent = active
+        ? t('profiles.activeStatus', { name: active.name }, 'Active: {name}')
+        : t('profiles.noneActive', null, 'No active profile');
+    }
+    if(!profiles.length){
+      const empty = document.createElement('div');
+      empty.className = 'profile-empty muted';
+      empty.textContent = t('profiles.empty', null, 'No profiles yet.');
+      list.appendChild(empty);
+      return;
+    }
+    profiles.forEach(profile=>{
+      const summary = getProfileSummary(profile);
+      const total = Object.values(summary).reduce((sum, count)=> sum + count, 0);
+      const card = document.createElement('div');
+      card.className = 'profile-card' + (profile.id === activeId ? ' active' : '');
+      const updated = formatProfileDate(profile.updatedAt);
+      card.innerHTML = `
+        <div class="profile-main">
+          <div class="profile-title">${escapeHtml(profile.name)}</div>
+          <div class="profile-meta">${escapeHtml(t('profiles.meta', { count: total, updated: updated || t('common.emptyDash') }, '{count} entries · {updated}'))}</div>
+        </div>
+        <div class="profile-actions">
+          <button class="btn" type="button" data-profile-action="apply" data-profile-id="${escapeAttr(profile.id)}">${escapeHtml(t('profiles.use', null, 'Use'))}</button>
+          <button class="btn" type="button" data-profile-action="update" data-profile-id="${escapeAttr(profile.id)}">${escapeHtml(t('profiles.update', null, 'Update'))}</button>
+          <button class="btn" type="button" data-profile-action="rename" data-profile-id="${escapeAttr(profile.id)}">${escapeHtml(t('profiles.rename', null, 'Rename'))}</button>
+          <button class="btn" type="button" data-profile-action="delete" data-profile-id="${escapeAttr(profile.id)}">${escapeHtml(t('common.delete', null, 'Delete'))}</button>
+        </div>
+      `;
+      list.appendChild(card);
+    });
+  }
+
+  function renderProfileQuickSwitcher(){
+    const wrap = $('#profileSwitcher');
+    const select = $('#profileQuickSwitch');
+    if(!wrap || !select) return;
+    const profiles = getProfiles();
+    select.innerHTML = '';
+    if(!profiles.length){
+      wrap.hidden = true;
+      refreshUiSelects(wrap);
+      return;
+    }
+    const activeId = getActiveProfileId();
+    const selectedId = profiles.some(profile => profile.id === activeId) ? activeId : profiles[0].id;
+    profiles.forEach(profile=>{
+      const option = document.createElement('option');
+      option.value = profile.id;
+      option.textContent = profile.name;
+      select.appendChild(option);
+    });
+    select.value = selectedId;
+    wrap.hidden = false;
+    refreshUiSelects(wrap);
+  }
+
+  async function onProfileActionClick(event){
+    const actionEl = event.target.closest('[data-profile-action]');
+    if(!actionEl) return;
+    const action = actionEl.getAttribute('data-profile-action');
+    const id = actionEl.getAttribute('data-profile-id') || '';
+    if(action === 'create') await createProfile();
+    else if(action === 'apply') await applyProfile(id);
+    else if(action === 'update') await updateProfile(id);
+    else if(action === 'rename') await renameProfile(id);
+    else if(action === 'delete') await deleteProfile(id);
+  }
+
   function groupDataKeys(obj){
     const counts = {};
     DATA_TRANSFER_SCOPE_ORDER.forEach(scope => { counts[scope] = 0; });

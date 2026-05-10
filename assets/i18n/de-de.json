@@ -531,6 +531,10 @@
       "import": "Daten importieren",
       "preset": "Data Preset: {label}"
     },
+    "profiles": {
+      "create": "Profil: Aktuellen Stand speichern",
+      "use": "Profil: {name}"
+    },
     "inline": {
       "addTodo": "Todo: {text}",
       "addNote": "Notiz: {text}",
@@ -550,6 +554,24 @@
     "recent": "Zuletzt",
     "system": "System",
     "news": "News"
+  },
+  "profiles": {
+    "title": "Profile",
+    "create": "Profil anlegen",
+    "quickSwitchLabel": "Profil wechseln",
+    "use": "Nutzen",
+    "update": "Aktualisieren",
+    "rename": "Umbenennen",
+    "defaultName": "Profil",
+    "promptName": "Profilname",
+    "empty": "Noch keine Profile.",
+    "noneActive": "Kein aktives Profil",
+    "activeStatus": "Aktiv: {name}",
+    "meta": "{count} Einträge · aktualisiert {updated}",
+    "note": "Profile speichern benannte lokale Snapshots deiner Startpage-Daten.",
+    "confirmApply": "Profil \"{name}\" nutzen? Aktuelle Startpage-Daten werden ersetzt.",
+    "confirmUpdate": "Profil \"{name}\" mit dem aktuellen Startpage-Stand aktualisieren?",
+    "confirmDelete": "Profil \"{name}\" löschen?"
   },
   "background": {
     "currentPreview": "Aktuelles Hintergrundbild",

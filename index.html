@@ -15,6 +15,9 @@
         <div class="date" id="date">—</div>
       </div>
       <div class="controls">
+        <div class="profile-switcher" id="profileSwitcher" hidden>
+          <select id="profileQuickSwitch" aria-label="Profil wechseln" data-i18n-aria-label="profiles.quickSwitchLabel"></select>
+        </div>
         <button class="btn icon-only" id="themeToggle" title="Dark/Light" data-i18n-title="header.themeToggleTitle" data-i18n-aria-label="header.themeAria">
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.36 6.36-1.41-1.41M7.05 7.05 5.64 5.64m12.72 0-1.41 1.41M7.05 16.95l-1.41 1.41"/><circle cx="12" cy="12" r="4"/></svg>
         </button>
@@ -480,6 +483,17 @@
               <button class="btn" id="applyPreset" data-i18n="settings.data.applyPreset">Preset laden</button>
             </div>
             <div class="muted" id="dataPresetMeta" data-i18n="settings.data.presetMeta">Presets liegen als exportierte JSONs unter assets/presets/. User-Presets aus assets/user-presets/ werden automatisch gemerged.</div>
+          </div>
+        </div>
+        <div class="row">
+          <label data-i18n="profiles.title">Profile</label>
+          <div class="profiles-panel">
+            <div class="profiles-toolbar">
+              <button class="btn" type="button" id="profileCreate" data-profile-action="create" data-i18n="profiles.create">Profil anlegen</button>
+              <div class="muted" id="profilesStatus" data-i18n="profiles.noneActive">Kein aktives Profil</div>
+            </div>
+            <div class="profiles-list" id="profilesList"></div>
+            <div class="muted" data-i18n="profiles.note">Profile speichern benannte lokale Snapshots deiner Startpage-Daten.</div>
           </div>
         </div>
         <div class="row">

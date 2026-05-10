@@ -106,6 +106,7 @@
     }
     const recentMaxSetting = $('#recentMaxSetting');
     if(recentMaxSetting) recentMaxSetting.value = String(getRecentMax());
+    renderProfiles();
 
     // Engines
     const pills = $('#enginePills'); pills.innerHTML='';

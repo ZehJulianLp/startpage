@@ -16,6 +16,11 @@
     const theme = store.get('theme','auto');
     applyTheme(theme);
     applyCardStyle();
+    renderProfileQuickSwitcher();
+    const profileQuickSwitch = $('#profileQuickSwitch');
+    if(profileQuickSwitch){
+      profileQuickSwitch.addEventListener('change', e=>{ void applyProfile(e.target.value); });
+    }
     $('#themeToggle').addEventListener('click', ()=>{
       const current = store.get('theme','auto');
       const next = current==='dark' ? 'light' : current==='light' ? 'auto' : 'dark';
@@ -175,6 +180,8 @@
     renderDataPresets();
     const presetSelect = $('#dataPresetSelect'); if(presetSelect) presetSelect.addEventListener('change', updateDataPresetMeta);
     const presetApply = $('#applyPreset'); if(presetApply) presetApply.addEventListener('click', applyDataPreset);
+    const profilesList = $('#profilesList'); if(profilesList) profilesList.addEventListener('click', e=>{ void onProfileActionClick(e); });
+    const profileCreate = $('#profileCreate'); if(profileCreate) profileCreate.addEventListener('click', e=>{ void onProfileActionClick(e); });
     const restartOnb = $('#restartOnboarding'); if(restartOnb) restartOnb.addEventListener('click', ()=>{ store.set('onboarding.done', false); onboardingOpen(true); });
 
     // Onboarding modal

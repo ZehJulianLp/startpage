@@ -340,6 +340,10 @@
       // Data actions + presets
       add('data.export', t('palette.data.export'), { group:'data', keywords:['backup', 'export'], run: exportData });
       add('data.import', t('palette.data.import'), { group:'data', keywords:['backup', 'import'], run: ()=>{ const file = $('#importFile'); if(file) file.click(); }});
+      add('profiles.create', t('palette.profiles.create', null, 'Profile: create current'), { group:'data', keywords:['profile', 'profil', 'create'], run: createProfile });
+      getProfiles().forEach(profile=>{
+        add(`profiles.apply.${profile.id}`, t('palette.profiles.use', { name: profile.name }, 'Profile: {name}'), { group:'data', keywords:['profile', 'profil', profile.name], run: ()=> applyProfile(profile.id) });
+      });
       try{
         const presets = await loadDataPresets();
         presets.forEach(p=>{
