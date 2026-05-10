@@ -492,6 +492,14 @@
       "export": "Daten exportieren",
       "import": "Daten importieren",
       "preset": "Data Preset: {label}"
+    },
+    "inline": {
+      "addTodo": "Todo: {text}",
+      "addNote": "Notiz: {text}",
+      "search": "Suchen: {query}",
+      "theme": "Theme setzen: {theme}",
+      "engine": "Suchmaschine setzen: {engine}",
+      "settings": "Einstellungen öffnen: {tab}"
     }
   },
   "widgets": {
