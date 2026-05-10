@@ -273,6 +273,24 @@
       "label": "Data",
       "export": "Export (.json)",
       "import": "Import (.json)",
+      "exportScopeLabel": "Export scope",
+      "exportScopes": {
+        "all": "Everything",
+        "personal": "Personal data",
+        "appearance": "Appearance",
+        "configuration": "Configuration",
+        "agent": "Agent",
+        "other": "Other"
+      },
+      "scopeCount": "{count} entries",
+      "importModeLabel": "Import mode",
+      "importModes": {
+        "merge": "Merge",
+        "replace": "Replace"
+      },
+      "exportAction": "Export",
+      "importAction": "Import",
+      "importPreviewEmpty": "No import file selected yet.",
       "presetsLabel": "Data presets",
       "applyPreset": "Load preset",
       "presetMeta": "Presets are exported JSONs under assets/presets/. User presets from assets/user-presets/ are merged automatically.",
@@ -280,7 +298,7 @@
       "restartOnboarding": "Restart setup",
       "restartNote": "Reopens the compact setup dialog.",
       "noteLabel": "Note",
-      "noteText": "Export stores all settings & data locally as JSON. Import overwrites existing entries."
+      "noteText": "Export stores the selected scope as JSON. Merge import overwrites matching entries only; replace removes known Startpage data first."
     },
     "language": {
       "label": "Language",
@@ -384,9 +402,18 @@
   },
   "onboarding": {
     "title": "Start setup",
+    "subtitle": "Set up your Startpage in a few focused steps.",
     "progress": "Step {current} of {total}",
     "skip": "Skip setup",
     "close": "Close",
+    "nav": {
+      "preset": "Profile",
+      "appearance": "Appearance",
+      "search": "Search",
+      "widgets": "Widgets",
+      "weather": "Weather",
+      "summary": "Review"
+    },
     "preset": {
       "title": "Choose preset",
       "hint": "Pick a preset or skip this step.",
@@ -416,6 +443,17 @@
       "title": "Weather",
       "defaultCity": "Default city",
       "note": "You can change everything later in settings."
+    },
+    "summary": {
+      "title": "Review setup",
+      "hint": "Apply the selection or go back to adjust it.",
+      "theme": "Theme",
+      "cardStyle": "Card style",
+      "background": "Background",
+      "search": "Search engine",
+      "widgets": "Widgets",
+      "weather": "Weather",
+      "transport": "Transport"
     },
     "prev": "Back",
     "next": "Next",
@@ -492,6 +530,18 @@
       "export": "Export data",
       "import": "Import data",
       "preset": "Data preset: {label}"
+    },
+    "profiles": {
+      "create": "Profile: save current state",
+      "use": "Profile: {name}"
+    },
+    "inline": {
+      "addTodo": "Todo: {text}",
+      "addNote": "Note: {text}",
+      "search": "Search: {query}",
+      "theme": "Set theme: {theme}",
+      "engine": "Set engine: {engine}",
+      "settings": "Open settings: {tab}"
     }
   },
   "widgets": {
@@ -504,6 +554,24 @@
     "recent": "Recent",
     "system": "System",
     "news": "News"
+  },
+  "profiles": {
+    "title": "Profiles",
+    "create": "Create profile",
+    "quickSwitchLabel": "Switch profile",
+    "use": "Use",
+    "update": "Update",
+    "rename": "Rename",
+    "defaultName": "Profile",
+    "promptName": "Profile name",
+    "empty": "No profiles yet.",
+    "noneActive": "No active profile",
+    "activeStatus": "Active: {name}",
+    "meta": "{count} entries · updated {updated}",
+    "note": "Profiles store named local snapshots of your Startpage data.",
+    "confirmApply": "Use profile \"{name}\"? Current Startpage data will be replaced.",
+    "confirmUpdate": "Update profile \"{name}\" with the current Startpage state?",
+    "confirmDelete": "Delete profile \"{name}\"?"
   },
   "background": {
     "currentPreview": "Current background image",
@@ -603,8 +671,22 @@
     "imageLoadError": "Image could not be loaded."
   },
   "data": {
+    "transfer": {
+      "noneSelected": "Select at least one category."
+    },
+    "export": {
+      "title": "Export data",
+      "message": "Choose which categories should be written to the JSON file.",
+      "empty": "There is nothing to export for this scope.",
+      "done": "Exported {count} entries."
+    },
     "import": {
-      "confirm": "Import data? Existing entries will be overwritten.",
+      "title": "Import data",
+      "message": "Choose which categories should be imported from {file}.",
+      "confirm": "Import data? Existing matching entries will be overwritten.",
+      "confirmMerge": "Import {keys} entries? {existing} existing entries will be overwritten and {added} new entries will be added.",
+      "confirmReplace": "Import {keys} entries and remove known Startpage data first? {removed} local entries are not included in the import.",
+      "preview": "{keys} entries: {existing} existing, {added} new.",
       "failed": "Import failed: {error}"
     },
     "presets": {

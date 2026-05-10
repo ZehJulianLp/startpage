@@ -7,7 +7,7 @@ Startpage is a **local-first browser start page** designed to replace the tradit
 
 Everything runs entirely in the browser — no accounts, no backend, no tracking. Search, widgets, notes, weather, and the integrated Startpage Agent live locally in your browser and adapt to your workflow and style.
 
-Version: **v1.14.2** · Live: https://julianverse.de/startpage/
+Version: **v1.15.0** · Live: https://julianverse.de/startpage/
 
 ## Core Features
 - Quick search: Multiple engines, bang shortcuts (`!g`, `!ddg`, `!bing`, `!sx`, `!yt`, `!wiki`, `!maps`), custom shortcuts, and autocomplete (bangs, shortcuts, recent searches, global wordlist + preset wordlist).
@@ -18,15 +18,17 @@ Version: **v1.14.2** · Live: https://julianverse.de/startpage/
 - Transport: Station search + departures (via Startpage proxy for transport.rest); configurable default station.
 - News: RSS reader with default sources, extendable with custom feeds (Startpage RSS proxy).
 - Recent actions and system status: History chips plus browser info (RAM, CPU cores, network type).
-- Setup assistant: Compact onboarding with preset selection, theme/style + background, search engine, widgets + transport default, and one weather city (skippable and restartable).
+- Setup assistant: Modern onboarding with direct preset tiles, theme/style + background, search engine, widgets + transport default, and one weather city (skippable and restartable).
 - Layout and styling: Dark/Light/Auto theme, card styles (glass, solid, transparent, soft minimal), widget colors, dedicated header/search colors, and a "Tint widgets" action.
-- Command palette: `Ctrl/Cmd+K` for quick actions (theme, tiles, widget refresh, and more).
-- Data: JSON export/import plus data presets from `assets/presets/` (starter, coding, gaming, minimal, productivity, reading, art, privacy, student, finance); local user presets in `assets/user-presets/` are auto-detected.
+- Command palette: `Ctrl/Cmd+K` for quick actions across settings, themes, widgets, data export/import, presets, and profiles.
+- Profiles: Named local snapshots of the full Startpage setup with create, rename, update, delete, apply, header quick switcher, and command palette support.
+- Data: Scoped JSON export/import with selection dialogs, import replace/merge modes, and data presets from `assets/presets/` (starter, coding, gaming, minimal, productivity, reading, art, privacy, student, finance); local user presets in `assets/user-presets/` are auto-detected.
 - Startpage Agent: Docked AI chat with Ollama (`/api/tags`, `/api/chat` stream), persistent chat history, model selection, tool-confirm modes, configurable agent loop limit, custom prompt + persistent memory, and agentic tools for reading/updating widgets/settings.
 
 ## Project Structure
-- `index.html` - Main markup.
-- `script.js` / `style.css` - Main logic and styles.
+- `index.html` - Main markup and ordered script includes.
+- `scripts/` - Browser scripts split by feature area.
+- `style.css` - Main styles.
 - `assets/` - Optional assets (wordlists, images, presets, i18n files).
 - `LICENSE` - MIT license.
 
@@ -50,11 +52,12 @@ Then open: `http://localhost:4173`.
 - Search and feeds: Enable/disable engines, configure custom `!shortcuts` with `{q}`, manage feed sources.
 - Widgets and layout: Visibility, weather cities (one city per line), default transport station.
 - Appearance (same settings area): Card style, widget colors, dedicated clock/search colors.
-- Data: Export/import all localStorage entries as JSON, or load ready-made data presets (`assets/data-presets.json` + `assets/presets/*`).
+- Data: Export/import selected local data scopes as JSON, choose merge or replace behavior on import, or load ready-made data presets (`assets/data-presets.json` + `assets/presets/*`).
+- Profiles: Create named setup snapshots, update them from the current state, switch from the header, and manage them in the Data tab.
 - Setup assistant: Opens on first run, can be skipped, and can be restarted in the Data tab.
-- Command palette: `Ctrl/Cmd+K` for fast actions and navigation.
+- Command palette: `Ctrl/Cmd+K` for fast actions, settings navigation, data actions, presets, and profile switching.
 
-Follow existing conventions: 2-space indentation, camelCase in JavaScript, hyphen-case in CSS.
+Follow existing conventions: 2-space indentation, camelCase in JavaScript, hyphen-case in CSS. Keep the script include order in `index.html` stable unless dependencies are moved deliberately.
 
 ## Data and Integrations
 - Storage: localStorage only.
@@ -67,6 +70,8 @@ Manual smoke tests:
 - Create todos/notes and reload.
 - Switch theme/card style, verify background rotation + accent updates.
 - Switch feeds and test custom feed loading.
+- Create a profile, change visible settings, apply the profile again, and verify the previous setup is restored after confirmation.
+- Export/import selected data scopes and test both merge and replace behavior with a temporary backup.
 - Clear localStorage when re-testing migration-sensitive flows.
 
 Optional automated E2E tests (Playwright/Cypress) can be placed under `tests/*.e2e.spec.js`.

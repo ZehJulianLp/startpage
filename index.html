@@ -15,6 +15,9 @@
         <div class="date" id="date">—</div>
       </div>
       <div class="controls">
+        <div class="profile-switcher" id="profileSwitcher" hidden>
+          <select id="profileQuickSwitch" aria-label="Profil wechseln" data-i18n-aria-label="profiles.quickSwitchLabel"></select>
+        </div>
         <button class="btn icon-only" id="themeToggle" title="Dark/Light" data-i18n-title="header.themeToggleTitle" data-i18n-aria-label="header.themeAria">
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.36 6.36-1.41-1.41M7.05 7.05 5.64 5.64m12.72 0-1.41 1.41M7.05 16.95l-1.41 1.41"/><circle cx="12" cy="12" r="4"/></svg>
         </button>
@@ -138,7 +141,7 @@
 
     <footer class="muted" style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:6px">
       <div data-i18n="footer.tagline">Local-first Dashboard · speichert nur im Browser (localStorage)</div>
-      <div>v1.14.2</div>
+      <div>v1.15.0</div>
     </footer>
   </div>
 
@@ -463,9 +466,12 @@
       <div id="tab-data" class="tab-panel" role="tabpanel">
         <div class="row">
           <label data-i18n="settings.data.label">Daten</label>
-          <div style="display:flex; gap:8px; flex-wrap:wrap">
-            <button class="btn" id="exportData" data-i18n="settings.data.export">Export (.json)</button>
-            <button class="btn" id="importData" data-i18n="settings.data.import">Import (.json)</button>
+          <div class="data-tools">
+            <div class="data-tool-row">
+              <button class="btn" id="exportData" data-i18n="settings.data.export">Export (.json)</button>
+              <button class="btn" id="importData" data-i18n="settings.data.import">Import (.json)</button>
+            </div>
+            <div class="muted data-preview" id="dataImportPreview" data-i18n="settings.data.importPreviewEmpty">Noch keine Importdatei gewählt.</div>
             <input type="file" id="importFile" accept="application/json" style="display:none" />
           </div>
         </div>
@@ -477,6 +483,17 @@
               <button class="btn" id="applyPreset" data-i18n="settings.data.applyPreset">Preset laden</button>
             </div>
             <div class="muted" id="dataPresetMeta" data-i18n="settings.data.presetMeta">Presets liegen als exportierte JSONs unter assets/presets/. User-Presets aus assets/user-presets/ werden automatisch gemerged.</div>
+          </div>
+        </div>
+        <div class="row">
+          <label data-i18n="profiles.title">Profile</label>
+          <div class="profiles-panel">
+            <div class="profiles-toolbar">
+              <button class="btn" type="button" id="profileCreate" data-profile-action="create" data-i18n="profiles.create">Profil anlegen</button>
+              <div class="muted" id="profilesStatus" data-i18n="profiles.noneActive">Kein aktives Profil</div>
+            </div>
+            <div class="profiles-list" id="profilesList"></div>
+            <div class="muted" data-i18n="profiles.note">Profile speichern benannte lokale Snapshots deiner Startpage-Daten.</div>
           </div>
         </div>
         <div class="row">
@@ -499,6 +516,7 @@
       <div class="onb-header">
         <div>
           <h4 data-i18n="onboarding.title">Setup starten</h4>
+          <div class="muted onb-subtitle" data-i18n="onboarding.subtitle">Richte deine Startpage in wenigen Schritten ein.</div>
           <div class="muted" id="onbProgressLabel" data-i18n="onboarding.progress">Schritt 1 von 5</div>
         </div>
         <div style="display:flex; gap:8px">
@@ -506,92 +524,105 @@
           <button class="btn" type="button" id="onbClose" data-i18n="onboarding.close">Schließen</button>
         </div>
       </div>
-      <div class="onb-steps">
-        <div class="onb-step active" data-step="preset">
-          <h5 data-i18n="onboarding.preset.title">Preset wählen</h5>
-          <div class="muted" id="onbPresetHint" data-i18n="onboarding.preset.hint">Wähle ein Preset oder überspringe diesen Schritt.</div>
-          <select id="onbPresetSelect"></select>
-          <div class="muted" id="onbPresetMeta"></div>
-          <div style="display:flex; gap:8px; margin-top:8px">
-            <button class="btn" type="button" id="onbApplyPreset" data-i18n="onboarding.preset.apply">Preset anwenden</button>
+      <div class="onb-layout">
+        <nav class="onb-nav" aria-label="Setup">
+          <button class="onb-nav-btn active" type="button" data-onb-step="0" data-i18n="onboarding.nav.preset">Profil</button>
+          <button class="onb-nav-btn" type="button" data-onb-step="1" data-i18n="onboarding.nav.appearance">Aussehen</button>
+          <button class="onb-nav-btn" type="button" data-onb-step="2" data-i18n="onboarding.nav.search">Suche</button>
+          <button class="onb-nav-btn" type="button" data-onb-step="3" data-i18n="onboarding.nav.widgets">Widgets</button>
+          <button class="onb-nav-btn" type="button" data-onb-step="4" data-i18n="onboarding.nav.weather">Wetter</button>
+          <button class="onb-nav-btn" type="button" data-onb-step="5" data-i18n="onboarding.nav.summary">Review</button>
+        </nav>
+        <div class="onb-steps">
+          <div class="onb-step active" data-step="preset">
+            <h5 data-i18n="onboarding.preset.title">Preset wählen</h5>
+            <div class="muted" id="onbPresetHint" data-i18n="onboarding.preset.hint">Wähle ein Preset oder überspringe diesen Schritt.</div>
+            <select id="onbPresetSelect"></select>
+            <div class="onb-preset-grid" id="onbPresetCards"></div>
+            <div class="muted" id="onbPresetMeta"></div>
           </div>
-        </div>
-        <div class="onb-step" data-step="appearance">
-          <h5 data-i18n="onboarding.appearance.title">Darstellung</h5>
-          <div class="onb-field">
-            <label for="onbTheme" data-i18n="onboarding.appearance.theme">Theme</label>
-            <select id="onbTheme">
-              <option value="auto" data-i18n="settings.theme.auto">Auto (System)</option>
-              <option value="dark" data-i18n="settings.theme.dark">Dark</option>
-              <option value="light" data-i18n="settings.theme.light">Light</option>
-            </select>
-          </div>
-          <div class="onb-field">
-            <label for="onbCardStyle" data-i18n="onboarding.appearance.cardStyle">Karten-Stil</label>
-            <select id="onbCardStyle">
-              <option value="glass" data-i18n="settings.widgets.cardStyleGlass">Glas (Standard)</option>
-              <option value="solid" data-i18n="settings.widgets.cardStyleSolid">Vollfläche</option>
-              <option value="transparent" data-i18n="settings.widgets.cardStyleTransparent">Transparent</option>
-              <option value="minimal" data-i18n="settings.widgets.cardStyleMinimal">Soft Minimal</option>
-            </select>
-          </div>
-          <div class="onb-field">
-            <label for="onbBgPreset" data-i18n="onboarding.appearance.background">Hintergrund</label>
-            <select id="onbBgPreset"></select>
-          </div>
-          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap">
-            <label style="display:flex; align-items:center; gap:6px; font-size:14px">
-              <input type="checkbox" id="onbBgRotate" />
-              <span data-i18n="onboarding.appearance.rotation">Rotation aktivieren</span>
-            </label>
-          </div>
-        </div>
-        <div class="onb-step" data-step="search">
-          <h5 data-i18n="onboarding.search.title">Suche</h5>
-          <div class="onb-field">
-            <label for="onbEngine" data-i18n="onboarding.search.engine">Standard-Suchmaschine</label>
-            <select id="onbEngine">
-              <option value="google">Google</option>
-              <option value="ddg">DuckDuckGo</option>
-              <option value="bing">Bing</option>
-              <option value="searxng">SearXNG</option>
-              <option value="yt">YouTube</option>
-              <option value="wikipedia">Wikipedia</option>
-              <option value="maps">Google Maps</option>
-            </select>
-          </div>
-        </div>
-        <div class="onb-step" data-step="widgets">
-          <h5 data-i18n="onboarding.widgets.title">Widgets</h5>
-          <div style="display:flex; flex-wrap:wrap; gap:10px">
-            <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="todo" /> <span data-i18n="widgets.todo">To-Do</span></label>
-            <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="notes" /> <span data-i18n="widgets.notes">Notizen</span></label>
-            <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="tiles" /> <span data-i18n="widgets.tiles">Favoriten</span></label>
-            <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="weather" /> <span data-i18n="widgets.weather">Wetter</span></label>
-            <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="transport" /> <span data-i18n="widgets.transport">Transport</span></label>
-            <label style="display:flex; align-items:center; gap:6px; font-size:14px"><input type="checkbox" class="onb-widget-toggle" data-widget="news" /> <span data-i18n="widgets.news">News</span></label>
-          </div>
-          <div class="onb-field" id="onbTransportField" style="display:none; margin-top:12px">
-            <label for="onbTransportInput" data-i18n="onboarding.widgets.defaultTransport">Standard-Haltestelle (Transport)</label>
-            <div style="position:relative">
-              <input id="onbTransportInput" type="text" placeholder="Station suchen…" data-i18n-placeholder="settings.widgets.defaultTransportPlaceholder" autocomplete="off" />
-              <div id="onbTransportSuggest" class="transport-suggest hidden"></div>
+          <div class="onb-step" data-step="appearance">
+            <h5 data-i18n="onboarding.appearance.title">Darstellung</h5>
+            <div class="onb-field">
+              <label for="onbTheme" data-i18n="onboarding.appearance.theme">Theme</label>
+              <select id="onbTheme">
+                <option value="auto" data-i18n="settings.theme.auto">Auto (System)</option>
+                <option value="dark" data-i18n="settings.theme.dark">Dark</option>
+                <option value="light" data-i18n="settings.theme.light">Light</option>
+              </select>
+            </div>
+            <div class="onb-field">
+              <label for="onbCardStyle" data-i18n="onboarding.appearance.cardStyle">Karten-Stil</label>
+              <select id="onbCardStyle">
+                <option value="glass" data-i18n="settings.widgets.cardStyleGlass">Glas (Standard)</option>
+                <option value="solid" data-i18n="settings.widgets.cardStyleSolid">Vollfläche</option>
+                <option value="transparent" data-i18n="settings.widgets.cardStyleTransparent">Transparent</option>
+                <option value="minimal" data-i18n="settings.widgets.cardStyleMinimal">Soft Minimal</option>
+              </select>
+            </div>
+            <div class="onb-field">
+              <label for="onbBgPreset" data-i18n="onboarding.appearance.background">Hintergrund</label>
+              <select id="onbBgPreset"></select>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap">
+              <label style="display:flex; align-items:center; gap:6px; font-size:14px">
+                <input type="checkbox" id="onbBgRotate" />
+                <span data-i18n="onboarding.appearance.rotation">Rotation aktivieren</span>
+              </label>
             </div>
           </div>
-          <div style="display:flex; align-items:center; gap:8px; margin-top:10px">
-            <label style="display:flex; align-items:center; gap:6px; font-size:14px">
-              <input type="checkbox" id="onbTint" />
-              <span data-i18n="onboarding.widgets.tint">Widgets an Akzent einfärben</span>
-            </label>
+          <div class="onb-step" data-step="search">
+            <h5 data-i18n="onboarding.search.title">Suche</h5>
+            <div class="onb-field">
+              <label for="onbEngine" data-i18n="onboarding.search.engine">Standard-Suchmaschine</label>
+              <select id="onbEngine">
+                <option value="google">Google</option>
+                <option value="ddg">DuckDuckGo</option>
+                <option value="bing">Bing</option>
+                <option value="searxng">SearXNG</option>
+                <option value="yt">YouTube</option>
+                <option value="wikipedia">Wikipedia</option>
+                <option value="maps">Google Maps</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <div class="onb-step" data-step="weather">
-          <h5 data-i18n="onboarding.weather.title">Wetter</h5>
-          <div class="onb-field">
-            <label for="onbCity" data-i18n="onboarding.weather.defaultCity">Standard-Stadt</label>
-            <input id="onbCity" type="text" placeholder="z.B. Hannover" data-i18n-placeholder="settings.widgets.defaultCityPlaceholder" />
+          <div class="onb-step" data-step="widgets">
+            <h5 data-i18n="onboarding.widgets.title">Widgets</h5>
+            <div class="onb-widget-grid">
+              <label class="onb-check-card"><input type="checkbox" class="onb-widget-toggle" data-widget="todo" /> <span data-i18n="widgets.todo">To-Do</span></label>
+              <label class="onb-check-card"><input type="checkbox" class="onb-widget-toggle" data-widget="notes" /> <span data-i18n="widgets.notes">Notizen</span></label>
+              <label class="onb-check-card"><input type="checkbox" class="onb-widget-toggle" data-widget="tiles" /> <span data-i18n="widgets.tiles">Favoriten</span></label>
+              <label class="onb-check-card"><input type="checkbox" class="onb-widget-toggle" data-widget="weather" /> <span data-i18n="widgets.weather">Wetter</span></label>
+              <label class="onb-check-card"><input type="checkbox" class="onb-widget-toggle" data-widget="transport" /> <span data-i18n="widgets.transport">Transport</span></label>
+              <label class="onb-check-card"><input type="checkbox" class="onb-widget-toggle" data-widget="news" /> <span data-i18n="widgets.news">News</span></label>
+            </div>
+            <div class="onb-field" id="onbTransportField" style="display:none; margin-top:12px">
+              <label for="onbTransportInput" data-i18n="onboarding.widgets.defaultTransport">Standard-Haltestelle (Transport)</label>
+              <div style="position:relative">
+                <input id="onbTransportInput" type="text" placeholder="Station suchen…" data-i18n-placeholder="settings.widgets.defaultTransportPlaceholder" autocomplete="off" />
+                <div id="onbTransportSuggest" class="transport-suggest hidden"></div>
+              </div>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px; margin-top:10px">
+              <label style="display:flex; align-items:center; gap:6px; font-size:14px">
+                <input type="checkbox" id="onbTint" />
+                <span data-i18n="onboarding.widgets.tint">Widgets an Akzent einfärben</span>
+              </label>
+            </div>
           </div>
-          <div class="muted" data-i18n="onboarding.weather.note">Du kannst später jederzeit alles in den Einstellungen ändern.</div>
+          <div class="onb-step" data-step="weather">
+            <h5 data-i18n="onboarding.weather.title">Wetter</h5>
+            <div class="onb-field">
+              <label for="onbCity" data-i18n="onboarding.weather.defaultCity">Standard-Stadt</label>
+              <input id="onbCity" type="text" placeholder="z.B. Hannover" data-i18n-placeholder="settings.widgets.defaultCityPlaceholder" />
+            </div>
+            <div class="muted" data-i18n="onboarding.weather.note">Du kannst später jederzeit alles in den Einstellungen ändern.</div>
+          </div>
+          <div class="onb-step" data-step="summary">
+            <h5 data-i18n="onboarding.summary.title">Setup prüfen</h5>
+            <div class="muted" data-i18n="onboarding.summary.hint">Übernimm die Auswahl oder gehe zurück, um etwas zu ändern.</div>
+            <div class="onb-summary" id="onbSummary"></div>
+          </div>
         </div>
       </div>
       <div class="onb-footer">
@@ -621,6 +652,26 @@
       <div class="ui-dialog-actions">
         <button class="btn" type="button" id="uiDialogCancel">Abbrechen</button>
         <button class="btn" type="button" id="uiDialogOk">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Data Transfer Dialog -->
+  <div class="modal ui-dialog" id="dataTransferDialog" aria-hidden="true">
+    <div class="sheet ui-dialog-sheet data-transfer-sheet" role="dialog" aria-modal="true" aria-labelledby="dataTransferTitle">
+      <h4 id="dataTransferTitle">Daten</h4>
+      <div class="muted" id="dataTransferMessage"></div>
+      <div class="data-transfer-mode" id="dataTransferMode">
+        <label for="dataTransferImportMode" data-i18n="settings.data.importModeLabel">Importmodus</label>
+        <select id="dataTransferImportMode">
+          <option value="merge" data-i18n="settings.data.importModes.merge">Zusammenführen</option>
+          <option value="replace" data-i18n="settings.data.importModes.replace">Ersetzen</option>
+        </select>
+      </div>
+      <div class="data-transfer-options" id="dataTransferOptions"></div>
+      <div class="ui-dialog-actions">
+        <button class="btn" type="button" id="dataTransferCancel" data-i18n="common.cancel">Abbrechen</button>
+        <button class="btn" type="button" id="dataTransferApply" data-i18n="common.ok">OK</button>
       </div>
     </div>
   </div>
@@ -669,6 +720,12 @@
     </div>
     <div class="startpage-agent-status" id="startpageAgentStatus" data-i18n="agent.status.ready">Bereit</div>
   </aside>
-  <script src="script.js"></script>
+  <script src="scripts/core.js"></script>
+  <script src="scripts/dashboard.js"></script>
+  <script src="scripts/settings-onboarding.js"></script>
+  <script src="scripts/background-widgets.js"></script>
+  <script src="scripts/command-palette.js"></script>
+  <script src="scripts/agent.js"></script>
+  <script src="scripts/init.js"></script>
 </body>
 </html>
