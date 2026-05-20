@@ -87,6 +87,7 @@
     "setCity": "Setzen",
     "pickLocation": "Ort wählen…",
     "source": "Quelle: Open-Meteo",
+    "openApp": "In Julianverse Weather öffnen",
     "loading": "Lade Wetter...",
     "prompt": "Ort eingeben, um Wetter zu laden.",
     "tempEmpty": "—°C",
@@ -418,6 +419,7 @@
       "items": {
         "openMeteoForecast": "Wettervorhersagedaten für ausgewählte Orte.",
         "openMeteoGeocoding": "Stadt-/Standortsuche für das Wetter-Widget.",
+        "julianverseWeather": "Detailansicht der ausgewählten Wetter-Stadt.",
         "startpageProxy": "Proxy für Transport- und RSS-/News-Anfragen.",
         "transportRest": "Über den Proxy genutztes ÖPNV-Backend.",
         "googleFavicons": "Favicons für Favouritenkacheln.",
