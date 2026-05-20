@@ -126,9 +126,10 @@
     const defaults = widgetDefaults();
     const conf = store.get('widgets', defaults);
     const wrap = $('#widgetToggles'); wrap.innerHTML='';
+    wrap.className = 'settings-check-grid';
       Object.keys(defaults).forEach(k=>{
         const id = `w_${k}`;
-        const label = document.createElement('label'); label.style.display='inline-flex'; label.style.alignItems='center'; label.style.gap='6px';
+        const label = document.createElement('label'); label.className = 'settings-check-card';
         const cb = document.createElement('input'); cb.type='checkbox'; cb.id=id; cb.checked = conf[k];
         cb.addEventListener('change', ()=>{ const cur=store.get('widgets', defaults); cur[k]=cb.checked; store.set('widgets', cur); applyWidgets(); });
         label.appendChild(cb); label.appendChild(document.createTextNode(t(`widgets.${k}`, null, k)));
@@ -471,10 +472,7 @@
 
         const content = document.createElement('div');
         const controls = document.createElement('div');
-        controls.style.display = 'flex';
-        controls.style.gap = '8px';
-        controls.style.alignItems = 'center';
-        controls.style.flexWrap = 'wrap';
+        controls.className = 'settings-inline-actions';
 
         const input = document.createElement('input');
         input.type = 'text';
@@ -735,6 +733,7 @@
       if(explicitPanel === 'widgets'){ assign(row, panelWidgets); return; }
       if(explicitPanel === 'data'){ assign(row, panelData); return; }
       if(explicitPanel === 'guide'){ assign(row, panelGuide); return; }
+      if(row.classList.contains('row-heading')){ assign(row, panelGeneral); return; }
       const has = sel => row.querySelector(sel);
       if(has('#themeSelect')) assign(row, panelGeneral);
       else if(has('#aiEnabledToggle')) assign(row, panelGeneral);

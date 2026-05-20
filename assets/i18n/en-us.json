@@ -237,7 +237,12 @@
       "jsonEditor": "Expert mode: edit JSON",
       "invalidSearxngUrl": "Invalid SearXNG URL",
       "invalidShortcuts": "Invalid shortcuts JSON",
-      "invalidFeeds": "Invalid feeds JSON"
+      "invalidFeeds": "Invalid feeds JSON",
+      "sections": {
+        "engines": "Search engines",
+        "autocomplete": "Autocomplete",
+        "customSources": "Custom sources"
+      }
     },
     "widgets": {
       "visible": "Show widgets",
@@ -271,7 +276,11 @@
       "weatherCitiesNote": "One city per line. The first entry becomes active if the previous active city is not included.",
       "recentEntriesLabel": "Recent entries",
       "recentEntriesDecAria": "Decrease recent entries",
-      "recentEntriesIncAria": "Increase recent entries"
+      "recentEntriesIncAria": "Increase recent entries",
+      "sections": {
+        "visibility": "Visibility",
+        "defaults": "Defaults"
+      }
     },
     "data": {
       "label": "Data",
@@ -302,7 +311,11 @@
       "restartOnboarding": "Restart setup",
       "restartNote": "Reopens the compact setup dialog.",
       "noteLabel": "Note",
-      "noteText": "Export stores the selected scope as JSON. Merge import overwrites matching entries only; replace removes known Startpage data first."
+      "noteText": "Export stores the selected scope as JSON. Merge import overwrites matching entries only; replace removes known Startpage data first.",
+      "sections": {
+        "transfer": "Import & Export",
+        "profiles": "Profiles & Setup"
+      }
     },
     "language": {
       "label": "Language",
@@ -340,7 +353,11 @@
       "agentLabel": "Startpage Agent",
       "agentEnabled": "Agent enabled",
       "agentHint": "If disabled, nothing is sent to Ollama.",
-      "agentGuideButton": "Open Ollama setup guide"
+      "agentGuideButton": "Open Ollama setup guide",
+      "sections": {
+        "appearance": "Basics",
+        "agent": "Startpage Agent"
+      }
     },
     "ollamaGuide": {
       "title": "Ollama setup for Startpage Agent",
@@ -794,7 +811,12 @@
       "clearChat": "Clear chat",
       "capabilitiesLabel": "Capabilities",
       "availableToolsTitle": "Available tools",
-      "noModels": "No models"
+      "noModels": "No models",
+      "sections": {
+        "runtime": "Runtime",
+        "behavior": "Behavior",
+        "actions": "Actions & Tools"
+      }
     },
     "status": {
       "ready": "Ready",

@@ -661,6 +661,17 @@
     .ui-dialog #uiDialogMessage { white-space: pre-wrap; line-height: 1.45; }
     .sheet h4 { margin:0 0 10px }
     .row { display:grid; grid-template-columns: 220px 1fr; gap:10px; align-items:center; margin-bottom:10px }
+    #settingsModal .row {
+      align-items: start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    #settingsModal .row > label {
+      padding-top: 10px;
+      color: var(--fg);
+      font-weight: 650;
+      line-height: 1.25;
+    }
     .row.row-full {
       grid-template-columns: minmax(0, 1fr);
       align-items: stretch;
@@ -682,6 +693,29 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--muted);
+    }
+    .settings-note,
+    #settingsModal .row .muted {
+      font-size: 12px;
+      line-height: 1.4;
+    }
+    #settingsModal .row .muted:not(:first-child) {
+      margin-top: 6px;
+    }
+    .settings-actions,
+    .settings-inline-actions,
+    .settings-field-stack {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .settings-field-stack {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .settings-suggest-wrap {
+      position: relative;
     }
     .bg-engine { display:flex; flex-direction:column; gap:12px; background: rgba(0,0,0,0.18); border:1px solid rgba(255,255,255,0.08); padding:14px; border-radius:16px; }
     .bg-current { display:flex; gap:12px; align-items:stretch; }
@@ -895,6 +929,26 @@
     .settings-kv-editor {
       display: grid;
       gap: 8px;
+    }
+    .settings-check-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 8px;
+    }
+    .settings-check-card {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 10px 12px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 10px;
+      background: rgba(255,255,255,.03);
+      font-weight: 600;
+    }
+    .settings-check-card:has(input:checked) {
+      border-color: color-mix(in srgb, var(--accent) 42%, rgba(255,255,255,.12));
+      background: color-mix(in srgb, var(--accent) 10%, transparent);
     }
     .settings-toggle-row {
       width: 100%;

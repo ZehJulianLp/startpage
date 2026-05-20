@@ -237,7 +237,12 @@
       "jsonEditor": "Expertenmodus: JSON bearbeiten",
       "invalidSearxngUrl": "Ungültige SearXNG-URL",
       "invalidShortcuts": "Ungültiges Shortcuts-JSON",
-      "invalidFeeds": "Ungültiges Feeds-JSON"
+      "invalidFeeds": "Ungültiges Feeds-JSON",
+      "sections": {
+        "engines": "Suchmaschinen",
+        "autocomplete": "Autocomplete",
+        "customSources": "Eigene Quellen"
+      }
     },
     "widgets": {
       "visible": "Widgets sichtbar",
@@ -271,7 +276,11 @@
       "weatherCitiesNote": "Eine Stadt pro Zeile. Der erste Eintrag wird aktiv, falls die bisher aktive Stadt nicht enthalten ist.",
       "recentEntriesLabel": "Zuletzt-Widget Einträge",
       "recentEntriesDecAria": "Zuletzt-Widget Einträge verringern",
-      "recentEntriesIncAria": "Zuletzt-Widget Einträge erhöhen"
+      "recentEntriesIncAria": "Zuletzt-Widget Einträge erhöhen",
+      "sections": {
+        "visibility": "Sichtbarkeit",
+        "defaults": "Standardwerte"
+      }
     },
     "data": {
       "label": "Daten",
@@ -302,7 +311,11 @@
       "restartOnboarding": "Setup neu starten",
       "restartNote": "Startet den kompakten Einrichtungs-Dialog erneut.",
       "noteLabel": "Hinweis",
-      "noteText": "Export speichert den gewählten Umfang als JSON. Import im Merge-Modus überschreibt nur vorhandene gleiche Einträge; Ersetzen entfernt zuerst bekannte Startpage-Daten."
+      "noteText": "Export speichert den gewählten Umfang als JSON. Import im Merge-Modus überschreibt nur vorhandene gleiche Einträge; Ersetzen entfernt zuerst bekannte Startpage-Daten.",
+      "sections": {
+        "transfer": "Import & Export",
+        "profiles": "Profile & Setup"
+      }
     },
     "language": {
       "label": "Sprache",
@@ -325,7 +338,11 @@
       "agentLabel": "Startpage-Agent",
       "agentEnabled": "Agent aktiv",
       "agentHint": "Wenn deaktiviert, wird nichts an Ollama gesendet.",
-      "agentGuideButton": "Ollama-Setup-Guide öffnen"
+      "agentGuideButton": "Ollama-Setup-Guide öffnen",
+      "sections": {
+        "appearance": "Basis",
+        "agent": "Startpage Agent"
+      }
     },
     "ollamaGuide": {
       "title": "Ollama-Setup für den Startpage Agent",
@@ -794,7 +811,12 @@
       "clearChat": "Chat leeren",
       "capabilitiesLabel": "Fähigkeiten",
       "availableToolsTitle": "Verfügbare Tools",
-      "noModels": "Keine Modelle"
+      "noModels": "Keine Modelle",
+      "sections": {
+        "runtime": "Laufzeit",
+        "behavior": "Verhalten",
+        "actions": "Aktionen & Tools"
+      }
     },
     "status": {
       "ready": "Bereit",

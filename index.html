@@ -167,6 +167,9 @@
         <button class="tab-btn" data-tab="guide" role="tab" data-i18n="settings.tabs.guide">Guide</button>
       </div>
       <div id="tab-general" class="tab-panel active" role="tabpanel">
+        <div class="row row-heading" data-settings-panel="general">
+          <div class="settings-row-heading" data-i18n="settings.general.sections.appearance">Basis</div>
+        </div>
         <div class="row">
           <label for="themeSelect" data-i18n="settings.theme.label">Theme</label>
           <select id="themeSelect">
@@ -182,17 +185,20 @@
         <div class="row">
           <label for="fontSelect" data-i18n="settings.font.label">Schriftart</label>
           <div>
-            <div style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap">
+            <div class="settings-actions">
               <button class="btn" type="button" id="fontLoadLocal" data-i18n="settings.font.loadLocal">Systemfonts laden</button>
             </div>
             <select id="fontSelect" style="margin-top:8px" data-ui-searchable="1"></select>
             <div class="muted" style="margin-top:6px" data-i18n="settings.font.note">Zeigt lokale System-Schriftarten (falls verfügbar), sonst eine erkannte Standardliste.</div>
           </div>
         </div>
+        <div class="row row-heading" data-settings-panel="general">
+          <div class="settings-row-heading" data-i18n="settings.general.sections.agent">Startpage Agent</div>
+        </div>
         <div class="row">
           <label for="aiEnabledToggle" data-i18n="settings.general.agentLabel">Startpage Agent</label>
-          <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
-            <label style="display:inline-flex; align-items:center; gap:8px">
+          <div class="settings-actions">
+            <label class="settings-check-card">
               <input id="aiEnabledToggle" type="checkbox" />
               <span data-i18n="settings.general.agentEnabled">Agent aktiv</span>
             </label>
@@ -202,13 +208,16 @@
         </div>
       </div>
       <div id="tab-ai" class="tab-panel" role="tabpanel">
+        <div class="row row-heading" data-settings-panel="ai">
+          <div class="settings-row-heading" data-i18n="agent.settings.sections.runtime">Laufzeit</div>
+        </div>
         <div class="row">
           <label data-i18n="agent.settings.localSetupLabel">Lokales Setup</label>
           <div class="muted" data-i18n="agent.settings.localSetupHint">Der Startpage Agent laeuft lokal ueber Ollama auf deinem Rechner. Host und Modell unten konfigurieren.</div>
         </div>
         <div class="row">
           <label for="startpageAgentModel" data-i18n="agent.settings.modelLabel">Modell</label>
-          <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
+          <div class="settings-actions">
             <select id="startpageAgentModel" style="min-width:200px"></select>
             <button class="btn" id="startpageAgentLoadModels" type="button" data-i18n="agent.settings.loadModels">Modelle laden</button>
             <div class="muted" id="startpageAgentSettingsStatus" style="font-size:12px; width:100%" data-i18n="agent.status.ready">Bereit</div>
@@ -237,6 +246,9 @@
             <div class="muted" style="margin-top:6px; font-size:12px" data-i18n="agent.settings.maxIterationsHint">Maximale Anzahl Tool-Iterationen pro User-Nachricht (1-10).</div>
           </div>
         </div>
+        <div class="row row-heading" data-settings-panel="ai">
+          <div class="settings-row-heading" data-i18n="agent.settings.sections.behavior">Verhalten</div>
+        </div>
         <div class="row">
           <label for="startpageAgentCustomPrompt" data-i18n="agent.settings.customPromptLabel">Custom Prompt</label>
           <div>
@@ -248,14 +260,17 @@
           <label for="startpageAgentMemory" data-i18n="agent.settings.memoryLabel">Memory / Erinnerungen</label>
           <div>
             <textarea id="startpageAgentMemory" rows="5" placeholder="Persistente Notizen für den Agenten..." data-i18n-placeholder="agent.settings.memoryPlaceholder"></textarea>
-            <div style="display:flex; gap:8px; margin-top:8px; flex-wrap:wrap">
+            <div class="settings-actions">
               <button class="btn" id="startpageAgentClearMemory" type="button" data-i18n="agent.settings.clearMemory">Memory leeren</button>
             </div>
           </div>
         </div>
+        <div class="row row-heading" data-settings-panel="ai">
+          <div class="settings-row-heading" data-i18n="agent.settings.sections.actions">Aktionen & Tools</div>
+        </div>
         <div class="row">
           <label data-i18n="agent.settings.actionsLabel">Aktionen</label>
-          <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
+          <div class="settings-actions">
             <button class="btn" id="startpageAgentSaveSettings" type="button" data-i18n="agent.settings.save">Speichern</button>
             <button class="btn" id="startpageAgentClearChat" type="button" data-i18n="agent.settings.clearChat">Chat leeren</button>
           </div>
@@ -323,7 +338,7 @@
         <div class="row">
           <label for="accentColor" data-i18n="settings.widgets.accentColorLabel">Akzentfarbe</label>
           <div>
-            <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
+            <div class="settings-inline-actions">
               <input type="text" id="accentColor" data-ui-color data-color-default="#7c5cff" autocomplete="off" />
               <button class="btn" id="accentColorReset" type="button" data-i18n="settings.widgets.reset">Reset</button>
             </div>
@@ -336,7 +351,7 @@
         <div class="row">
           <label for="modalColor" data-i18n="settings.widgets.modalColorLabel">Modals</label>
           <div>
-            <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
+            <div class="settings-inline-actions">
               <input type="text" id="modalColor" data-ui-color data-color-default="#171b31" autocomplete="off" />
               <button class="btn" id="modalColorReset" type="button" data-i18n="settings.widgets.reset">Reset</button>
             </div>
@@ -346,7 +361,7 @@
         <div class="row">
           <label for="buttonColor" data-i18n="settings.widgets.buttonColorLabel">Buttons</label>
           <div>
-            <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
+            <div class="settings-inline-actions">
               <input type="text" id="buttonColor" data-ui-color data-color-default="#7c5cff" autocomplete="off" />
               <button class="btn" id="buttonColorReset" type="button" data-i18n="settings.widgets.reset">Reset</button>
             </div>
@@ -368,6 +383,9 @@
         </div>
       </div>
       <div id="tab-search" class="tab-panel" role="tabpanel">
+        <div class="row row-heading" data-settings-panel="search">
+          <div class="settings-row-heading" data-i18n="settings.search.sections.engines">Suchmaschinen</div>
+        </div>
         <div class="row">
           <label data-i18n="settings.search.engines">Suchmaschinen</label>
           <div>
@@ -382,16 +400,22 @@
             <div class="muted" style="margin-top:6px" data-i18n-html="settings.search.searxngUrlNote">Beliebige SearXNG-Instanz. Optional <code>{q}</code> als Query-Platzhalter nutzen, sonst wird <code>?q=...</code> angehängt.</div>
           </div>
         </div>
+        <div class="row row-heading" data-settings-panel="search">
+          <div class="settings-row-heading" data-i18n="settings.search.sections.autocomplete">Autocomplete</div>
+        </div>
         <div class="row">
           <label for="wordlistEditor" data-i18n="settings.search.wordlistLabel">Wortliste für Autocomplete</label>
           <div>
             <textarea id="wordlistEditor" rows="4" placeholder="Begriffe zeilenweise oder mit Komma getrennt" data-i18n-placeholder="settings.search.wordlistPlaceholder"></textarea>
-            <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:6px">
+            <div class="settings-actions">
               <button class="btn" type="button" id="wordlistSave" data-i18n="settings.search.wordlistSave">Speichern</button>
               <button class="btn" type="button" id="wordlistReset" data-i18n="settings.search.wordlistReset">Leeren</button>
             </div>
             <div class="muted" style="margin-top:6px" data-i18n="settings.search.wordlistNote">Globale Wortliste (assets/wordlist.json) und die Preset-Wortliste werden gemerged. Leer lassen, um nur die globale Liste zu nutzen.</div>
           </div>
+        </div>
+        <div class="row row-heading" data-settings-panel="search">
+          <div class="settings-row-heading" data-i18n="settings.search.sections.customSources">Eigene Quellen</div>
         </div>
         <div class="row">
           <label for="shortcutConfig" data-i18n="settings.search.shortcutsLabel">Eigene !Shortcuts</label>
@@ -427,9 +451,15 @@
         </div>
       </div>
       <div id="tab-widgets" class="tab-panel" role="tabpanel">
+        <div class="row row-heading" data-settings-panel="widgets">
+          <div class="settings-row-heading" data-i18n="settings.widgets.sections.visibility">Sichtbarkeit</div>
+        </div>
         <div class="row">
           <label data-i18n="settings.widgets.visible">Widgets sichtbar</label>
-          <div id="widgetToggles" style="display:flex; gap:12px; flex-wrap:wrap"></div>
+          <div id="widgetToggles" class="settings-check-grid"></div>
+        </div>
+        <div class="row row-heading" data-settings-panel="widgets">
+          <div class="settings-row-heading" data-i18n="settings.widgets.sections.defaults">Standardwerte</div>
         </div>
         <div class="row">
           <label for="defaultCities" data-i18n="settings.widgets.weatherCitiesLabel">Wetter-Städte</label>
@@ -440,14 +470,14 @@
         </div>
         <div class="row">
           <label for="transportDefaultInput" data-i18n="settings.widgets.defaultTransportLabel">Standard-Haltestelle (Transport)</label>
-          <div style="position:relative">
+          <div class="settings-suggest-wrap">
             <input id="transportDefaultInput" type="text" placeholder="Station suchen…" data-i18n-placeholder="settings.widgets.defaultTransportPlaceholder" autocomplete="off" />
             <div id="transportDefaultSuggest" class="transport-suggest hidden"></div>
           </div>
         </div>
         <div class="row">
           <label for="recentMaxSetting" data-i18n="settings.widgets.recentEntriesLabel">Recent entries</label>
-          <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
+          <div class="settings-actions">
             <div class="startpage-agent-stepper">
               <button class="btn icon-only" id="recentMaxSettingDec" type="button" aria-label="Decrease recent entries" data-i18n-aria-label="settings.widgets.recentEntriesDecAria">-</button>
               <input id="recentMaxSetting" type="number" min="0" max="50" step="1" />
@@ -459,7 +489,7 @@
         <div class="row" data-settings-panel="background">
           <label for="clockColor" data-i18n="settings.widgets.clockColorLabel">Zeit & Datum</label>       
           <div>
-            <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
+            <div class="settings-inline-actions">
               <input type="text" id="clockColor" data-ui-color data-color-default="#7c5cff" autocomplete="off" />
               <button class="btn" id="clockColorReset" type="button" data-i18n="settings.widgets.reset">Reset</button>
             </div>
@@ -469,7 +499,7 @@
         <div class="row" data-settings-panel="background">
           <label for="searchColor" data-i18n="settings.widgets.searchColorLabel">Suche</label>
           <div>
-            <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
+            <div class="settings-inline-actions">
               <input type="text" id="searchColor" data-ui-color data-color-default="#54d6ff" autocomplete="off" />
               <button class="btn" id="searchColorReset" type="button" data-i18n="settings.widgets.reset">Reset</button>
             </div>
@@ -481,6 +511,9 @@
         </div>
       </div>
       <div id="tab-data" class="tab-panel" role="tabpanel">
+        <div class="row row-heading" data-settings-panel="data">
+          <div class="settings-row-heading" data-i18n="settings.data.sections.transfer">Import & Export</div>
+        </div>
         <div class="row">
           <label data-i18n="settings.data.label">Daten</label>
           <div class="data-tools">
@@ -494,13 +527,16 @@
         </div>
         <div class="row">
           <label data-i18n="settings.data.presetsLabel">Data Presets</label>
-          <div style="display:flex; flex-direction:column; gap:8px">
-            <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center">
+          <div class="settings-field-stack">
+            <div class="settings-actions">
               <select id="dataPresetSelect"></select>
               <button class="btn" id="applyPreset" data-i18n="settings.data.applyPreset">Preset laden</button>
             </div>
             <div class="muted" id="dataPresetMeta" data-i18n="settings.data.presetMeta">Presets liegen als exportierte JSONs unter assets/presets/. User-Presets aus assets/user-presets/ werden automatisch gemerged.</div>
           </div>
+        </div>
+        <div class="row row-heading" data-settings-panel="data">
+          <div class="settings-row-heading" data-i18n="settings.data.sections.profiles">Profile & Setup</div>
         </div>
         <div class="row">
           <label data-i18n="profiles.title">Profile</label>
@@ -515,7 +551,7 @@
         </div>
         <div class="row">
           <label data-i18n="settings.data.setupLabel">Setup</label>
-          <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center">
+          <div class="settings-actions">
             <button class="btn" id="restartOnboarding" type="button" data-i18n="settings.data.restartOnboarding">Setup neu starten</button>
             <div class="muted" data-i18n="settings.data.restartNote">Startet den kompakten Einrichtungs-Dialog erneut.</div>
           </div>
