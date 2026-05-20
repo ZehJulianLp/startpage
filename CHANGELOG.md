@@ -1,5 +1,31 @@
 # Changelog
 
+## [1.16.0](https://github.com/ZehJulianLp/startpage/compare/v1.15.0...v1.16.0) (2026-05-20)
+
+
+### Features
+
+* add toast notifications ([64a9f81](https://github.com/ZehJulianLp/startpage/commit/64a9f815f729223633677a53095213c7709397b9))
+* add visual search settings editors ([8d1669b](https://github.com/ZehJulianLp/startpage/commit/8d1669bf3a45b6213688477c02e701be692aabcf))
+* scaffold settings editors ([7e14e01](https://github.com/ZehJulianLp/startpage/commit/7e14e019615c1fba624dc430278562b1e232b128))
+
+
+### Bug Fixes
+
+* align preset widget color families ([37e9902](https://github.com/ZehJulianLp/startpage/commit/37e990258219d9a2c718869dc5d4b71212887f8f))
+* align remaining form control styles ([b9a0f07](https://github.com/ZehJulianLp/startpage/commit/b9a0f07097e6abd97d4d01071dc4c24cb7a84201))
+* expand background settings panel ([a5e7f6d](https://github.com/ZehJulianLp/startpage/commit/a5e7f6d92f00ddc7290b1008a533dbdc0757e943))
+* expose all setup widget toggles ([37fd46a](https://github.com/ZehJulianLp/startpage/commit/37fd46a1faf1efa3fba129ebfd6938d6b8f3de12))
+* keep ollama guide sections collapsed ([ab11b71](https://github.com/ZehJulianLp/startpage/commit/ab11b7151e07e182a39ea7c64e46d0d93e3ddd6c))
+* keep profiles in data settings ([613ebc3](https://github.com/ZehJulianLp/startpage/commit/613ebc368f2aeb71575962ed5bdf59044f8f4373))
+* make settings sections consistent ([d83cb15](https://github.com/ZehJulianLp/startpage/commit/d83cb15efd1e96fd54d052458bc2f852ae060677))
+* refresh data preset color palettes ([3463354](https://github.com/ZehJulianLp/startpage/commit/3463354fd7a397fc50af5cf334cacb26187d15bd))
+* restyle settings guide panels ([2edc582](https://github.com/ZehJulianLp/startpage/commit/2edc582d865e2c5657f5069bb0b5824b3d1cbda4))
+* sharpen existing preset profiles ([1a9620f](https://github.com/ZehJulianLp/startpage/commit/1a9620f8c30ce00dbf11bcb35488628212adfb1a))
+* simplify preset color palettes ([b2ee697](https://github.com/ZehJulianLp/startpage/commit/b2ee697751581221364092d58f806efafa9f198c))
+* style background inline action buttons ([5418219](https://github.com/ZehJulianLp/startpage/commit/5418219b8676f701e6566e398362bf8e629d944a))
+* style url inputs in settings editors ([f253d2e](https://github.com/ZehJulianLp/startpage/commit/f253d2e8f2f643b334811d38db3d0f24274fcfff))
+
 ## [1.15.0](https://github.com/ZehJulianLp/startpage/compare/v1.14.2...v1.15.0) (2026-05-10)
 
 
