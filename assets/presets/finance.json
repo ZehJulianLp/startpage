@@ -3,7 +3,7 @@
   "ui.cardStyle": "solid",
   "ui.font.family": "Segoe UI",
   "ui.clock.color": "#14532d",
-  "ui.search.color": "#713f12",
+  "ui.search.color": "#166534",
   "ui.accent.color": "#16a34a",
   "ui.modal.color": "#07140e",
   "ui.button.color": "#15803d",
@@ -20,15 +20,15 @@
     "transport": true
   },
   "widget.colors": {
-    "todo": "#16a34a",
-    "notes": "#ca8a04",
+    "todo": "#14532d",
+    "notes": "#15803d",
     "tiles": "#16a34a",
-    "weather": "#ca8a04",
-    "transport": "#64748b",
-    "quote": "#16a34a",
-    "recent": "#ca8a04",
-    "system": "#64748b",
-    "news": "#ca8a04"
+    "weather": "#22c55e",
+    "transport": "#14532d",
+    "quote": "#15803d",
+    "recent": "#16a34a",
+    "system": "#22c55e",
+    "news": "#14532d"
   },
   "tiles": [
     {

@@ -2,8 +2,8 @@
   "theme": "dark",
   "ui.cardStyle": "solid",
   "ui.font.family": "Trebuchet MS",
-  "ui.clock.color": "#7f1d1d",
-  "ui.search.color": "#312e81",
+  "ui.clock.color": "#9f1239",
+  "ui.search.color": "#be123c",
   "ui.accent.color": "#f43f5e",
   "ui.modal.color": "#1d0b18",
   "ui.button.color": "#be123c",
@@ -20,15 +20,15 @@
     "transport": true
   },
   "widget.colors": {
-    "todo": "#f43f5e",
-    "notes": "#8b5cf6",
-    "tiles": "#f43f5e",
-    "weather": "#8b5cf6",
-    "transport": "#64748b",
-    "quote": "#f43f5e",
-    "recent": "#8b5cf6",
-    "system": "#64748b",
-    "news": "#8b5cf6"
+    "todo": "#9f1239",
+    "notes": "#be123c",
+    "tiles": "#e11d48",
+    "weather": "#f43f5e",
+    "transport": "#9f1239",
+    "quote": "#be123c",
+    "recent": "#e11d48",
+    "system": "#f43f5e",
+    "news": "#9f1239"
   },
   "tiles": [
     {
