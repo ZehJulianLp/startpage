@@ -373,7 +373,7 @@
           <label data-i18n="settings.search.engines">Suchmaschinen</label>
           <div>
             <div class="muted" style="margin-bottom:6px" data-i18n-html="settings.search.bangsNote">Unterstützte Bang-Shortcuts: <code>!g !ddg !bing !yt !wiki !maps !sx</code> - Eigene Shortcuts unten</div>
-            <div style="display:flex; gap:8px; flex-wrap:wrap" id="enginePills"></div>
+            <div class="settings-toggle-list" id="enginePills"></div>
           </div>
         </div>
         <div class="row">
@@ -397,14 +397,32 @@
         <div class="row">
           <label for="shortcutConfig" data-i18n="settings.search.shortcutsLabel">Eigene !Shortcuts</label>
           <div>
-            <textarea id="shortcutConfig" rows="5" placeholder='{"!etc":"https://julianverse.de/etc","!git":"https://github.com/{q}"}' data-i18n-placeholder="settings.search.shortcutsPlaceholder"></textarea>
+            <div class="settings-kv-editor" id="shortcutEditor"></div>
+            <div class="settings-kv-add">
+              <input id="shortcutKeyInput" type="text" placeholder="!git" autocomplete="off" />
+              <input id="shortcutUrlInput" type="url" placeholder="https://github.com/{q}" autocomplete="off" />
+              <button class="btn" type="button" id="shortcutAdd" data-i18n="common.add">Hinzufügen</button>
+            </div>
+            <details class="settings-json-fallback">
+              <summary data-i18n="settings.search.jsonEditor">JSON direkt bearbeiten</summary>
+              <textarea id="shortcutConfig" rows="5" placeholder='{"!etc":"https://julianverse.de/etc","!git":"https://github.com/{q}"}' data-i18n-placeholder="settings.search.shortcutsPlaceholder"></textarea>
+            </details>
             <div class="muted" style="margin-top:6px" data-i18n-html="settings.search.shortcutsNote">Verwende <code>{q}</code> als Platzhalter für die Suchphrase. Ohne <code>{q}</code> wird <code>?q=...</code> angehängt.</div>
           </div>
         </div>
         <div class="row">
           <label for="feedsConfig" data-i18n="settings.search.feedsLabel">Custom RSS-Feeds</label>
           <div>
-            <textarea id="feedsConfig" rows="4" placeholder='{"Heise":"https://www.heise.de/rss/heise-atom.xml","Tagesschau":"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml","TechCrunch":"https://techcrunch.com/feed/"}' data-i18n-placeholder="settings.search.feedsPlaceholder"></textarea>
+            <div class="settings-kv-editor" id="feedsEditor"></div>
+            <div class="settings-kv-add">
+              <input id="feedNameInput" type="text" placeholder="Heise" autocomplete="off" />
+              <input id="feedUrlInput" type="url" placeholder="https://www.heise.de/rss/heise-atom.xml" autocomplete="off" />
+              <button class="btn" type="button" id="feedAdd" data-i18n="common.add">Hinzufügen</button>
+            </div>
+            <details class="settings-json-fallback">
+              <summary data-i18n="settings.search.jsonEditor">JSON direkt bearbeiten</summary>
+              <textarea id="feedsConfig" rows="4" placeholder='{"Heise":"https://www.heise.de/rss/heise-atom.xml","Tagesschau":"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml","TechCrunch":"https://techcrunch.com/feed/"}' data-i18n-placeholder="settings.search.feedsPlaceholder"></textarea>
+            </details>
             <div class="muted" style="margin-top:6px" data-i18n="settings.search.feedsNote">JSON: Name - Feed-URL. Diese Liste wird mit den Standardfeeds gemerged.</div>
           </div>
         </div>
