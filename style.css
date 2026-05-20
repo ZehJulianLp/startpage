@@ -296,7 +296,7 @@
     .suggest-item:hover, .suggest-item.active { background: color-mix(in srgb, var(--accent) 16%, transparent); }
     .suggest-type { font-size:11px; text-transform:uppercase; color: var(--muted); letter-spacing: 0.5px; }
     .suggest-text { flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color: var(--fg); }
-    select, input[type="text"], input[type="url"], textarea {
+    select, input[type="text"], input[type="url"], input[type="number"], textarea {
       width: 100%;
       background: var(--input-bg);
       color: var(--fg);
@@ -766,11 +766,11 @@
     .bg-current-title { font-weight:600; font-size:15px; }
     .bg-current-meta { font-size:12px; color: var(--muted); line-height:1.4; min-height:18px; }
     .bg-quick-actions { display:flex; gap:8px; flex-wrap:wrap; }
-    .bg-quick-actions button { padding:8px 14px; border-radius:999px; border:1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04); color: var(--fg); font-size:13px; cursor:pointer; transition: background .2s, border-color .2s, transform .2s; }
-    .bg-quick-actions button:hover:not([disabled]) { background: rgba(255,255,255,0.12); }
+    .bg-quick-actions button { padding:8px 14px; border-radius:999px; border:1px solid var(--button-border); background: var(--button-bg); color: var(--fg); box-shadow: var(--button-shadow); backdrop-filter: var(--button-backdrop); font-size:13px; cursor:pointer; transition: background .2s, border-color .2s, transform .2s; }
+    .bg-quick-actions button:hover:not([disabled]) { transform: translateY(-1px); border-color: color-mix(in srgb, var(--accent) 42%, var(--button-border)); }
     .bg-quick-actions button[disabled] { opacity:0.5; cursor:not-allowed; }
     .bg-tabs { display:flex; flex-wrap:wrap; gap:8px; }
-    .bg-tab { padding:6px 14px; border-radius:999px; border:1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.04); color: var(--fg); font-size:14px; cursor:pointer; transition: background .2s, border-color .2s, transform .2s; }
+    .bg-tab { padding:6px 14px; border-radius:999px; border:1px solid var(--button-border); background: var(--button-bg); color: var(--fg); box-shadow: var(--button-shadow); backdrop-filter: var(--button-backdrop); font-size:14px; cursor:pointer; transition: background .2s, border-color .2s, transform .2s; }
     .bg-tab:hover { transform: translateY(-1px); }
     .bg-tab.active { background: var(--accent); border-color: var(--accent); color:#fff; }
     .bg-panels { display:block; }
@@ -787,20 +787,20 @@
     .bg-card-title { font-weight:600; font-size:14px; }
     .bg-card-meta { font-size:12px; color: var(--muted); }
     .bg-card-actions { display:flex; gap:8px; flex-wrap:wrap; }
-    .bg-card-actions button { padding:6px 10px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04); color: var(--fg); font-size:13px; cursor:pointer; transition: background .2s, border-color .2s, color .2s; }
-    .bg-card-actions button:hover { background: rgba(255,255,255,0.16); }
+    .bg-card-actions button { padding:6px 10px; border-radius:10px; border:1px solid var(--button-border); background: var(--button-bg); color: var(--fg); box-shadow: var(--button-shadow); backdrop-filter: var(--button-backdrop); font-size:13px; cursor:pointer; transition: background .2s, border-color .2s, color .2s, transform .2s; }
+    .bg-card-actions button:hover { transform: translateY(-1px); border-color: color-mix(in srgb, var(--accent) 42%, var(--button-border)); }
     .bg-card-actions button[data-active="true"] { background: var(--accent); border-color: var(--accent); color:#fff; }
     .bg-upload-drop { border:2px dashed rgba(255,255,255,0.18); border-radius:14px; padding:20px; text-align:center; color: var(--muted); display:flex; flex-direction:column; gap:8px; align-items:center; justify-content:center; background: rgba(0,0,0,0.18); transition: border-color .2s, background .2s, color .2s; }
     .bg-upload-drop.dragging { border-color: var(--accent); background: rgba(124,92,255,0.12); color: var(--fg); }
-    .bg-upload-drop button { padding:8px 16px; border-radius:999px; border:1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.06); color: var(--fg); cursor:pointer; }
+    .bg-upload-drop button { padding:8px 16px; border-radius:999px; border:1px solid var(--button-border); background: var(--button-bg); color: var(--fg); box-shadow: var(--button-shadow); backdrop-filter: var(--button-backdrop); cursor:pointer; }
     .bg-upload-note { font-size:12px; color: var(--muted); text-align:center; }
     .bg-collection { border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px; background: rgba(0,0,0,0.18); display:flex; flex-direction:column; gap:8px; }
     .bg-collection-header { display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:center; }
     .bg-collection-title { font-weight:600; font-size:14px; }
     .bg-collection-count { font-size:12px; color: var(--muted); }
     .bg-collection-actions { display:flex; gap:8px; flex-wrap:wrap; }
-    .bg-collection-actions button { padding:6px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04); color: var(--fg); font-size:13px; cursor:pointer; }
-    .bg-collection-actions button:hover { background: rgba(255,255,255,0.16); }
+    .bg-collection-actions button { padding:6px 12px; border-radius:10px; border:1px solid var(--button-border); background: var(--button-bg); color: var(--fg); box-shadow: var(--button-shadow); backdrop-filter: var(--button-backdrop); font-size:13px; cursor:pointer; transition: border-color .2s, transform .2s; }
+    .bg-collection-actions button:hover { transform: translateY(-1px); border-color: color-mix(in srgb, var(--accent) 42%, var(--button-border)); }
     .bg-collection-list { display:flex; flex-direction:column; gap:12px; margin-top:14px; }
     .bg-rotation-grid { display:grid; gap:12px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
     .bg-rotation-card { background: rgba(0,0,0,0.18); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px; display:flex; flex-direction:column; gap:8px; }
@@ -820,7 +820,7 @@
       .bg-engine { padding:12px; }
     }
 
-    .sheet input[type="text"], .sheet input[type="url"], .sheet textarea, .sheet select { width:100% }
+    .sheet input[type="text"], .sheet input[type="url"], .sheet input[type="number"], .sheet textarea, .sheet select { width:100% }
     .sheet input[type="checkbox"]{ appearance:none; width:16px; height:16px; border-radius:6px; border:1px solid rgba(255,255,255,0.2); background: var(--glass); display:inline-flex; align-items:center; justify-content:center; cursor:pointer; transition: border-color .2s, background .2s, box-shadow .2s; vertical-align: middle; }
     .sheet input[type="checkbox"]:hover{ border-color: var(--accent); box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent); }
     .sheet input[type="checkbox"]:checked{ background: var(--accent); border-color: var(--accent); box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent); }
@@ -1507,7 +1507,7 @@
       height: 46px;
       padding: 10px 12px;
       border-radius: 12px;
-      border: 1px solid rgba(255,255,255,.12);
+      border: 1px solid var(--input-border);
       outline: none;
       color: var(--fg);
       font-weight: 600;
@@ -1515,7 +1515,7 @@
       line-height: 1.2;
       font-variant-numeric: tabular-nums;
       text-align: center;
-      background: var(--bg-soft);
+      background: var(--input-bg);
       appearance: textfield;
       -moz-appearance: textfield;
       padding-right: 12px;
