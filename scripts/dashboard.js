@@ -843,6 +843,24 @@
     try { el.innerHTML = weatherIconSVG(code); } catch { el.textContent = ''; }
   }
 
+  function updateWeatherAppLink(place, loc){
+    const link = $('#weatherAppLink');
+    if(!link) return;
+    const url = new URL('https://julianverse.de/weather/');
+    const name = String((loc && (loc.name || loc.city)) || place || '').trim();
+    const lat = Number(loc && loc.lat);
+    const lon = Number(loc && loc.lon);
+    if(Number.isFinite(lat) && Number.isFinite(lon)){
+      url.searchParams.set('lat', String(lat));
+      url.searchParams.set('lon', String(lon));
+      if(name) url.searchParams.set('name', name);
+    } else if(name){
+      url.searchParams.set('place', name);
+    }
+    link.href = url.toString();
+    link.hidden = !name;
+  }
+
   function parseWeatherTime(str, offsetSeconds){
     if(!str) return null;
     const base = new Date(str + 'Z');
@@ -952,10 +970,12 @@
     minmaxEl.textContent = t('weather.minmaxEmpty', null, '\u2014 / \u2014 \u00b0C');
     hourlyEl.innerHTML = '';
     updateWeatherIcon(null);
+    updateWeatherAppLink(city);
     if(!city) return;
 
     try {
       const loc = await resolveCity(city);
+      updateWeatherAppLink(city, loc);
       const url = `https://api.open-meteo.com/v1/forecast?latitude=${loc.lat}&longitude=${loc.lon}&hourly=temperature_2m,weathercode&current_weather=true&timezone=auto&daily=temperature_2m_max,temperature_2m_min&forecast_days=2`;
       const res = await fetch(url);
       if(!res.ok) throw new Error(t('weather.errors.fetchFailed'));
@@ -1429,4 +1449,3 @@
       if(!ul.children.length){ ul.innerHTML = `<li class="muted">${escapeHtml(t('news.noItems'))}</li>`; }
     }catch(e){ $('#newsList').innerHTML = `<li class="muted">${escapeHtml(t('common.loadError'))}</li>`; }
   }
-

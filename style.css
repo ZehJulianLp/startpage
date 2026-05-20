@@ -617,6 +617,8 @@
     .weather-hourly .chip-top { display:flex; width:100%; align-items:center; justify-content:space-between; gap:8px; font-weight:600 }
     .weather-hourly .chip-temp { font-variant-numeric:tabular-nums }
     .weather-hourly .chip-text { color: var(--muted); font-size:12px }
+    .weather-app-link-wrap { margin-top:10px; display:flex; justify-content:flex-end }
+    .weather-app-link { display:inline-flex; align-items:center; justify-content:center; padding:8px 12px; font-size:12px; text-decoration:none }
 
     /* Transport */
     .transport-top { display:flex; align-items:center; justify-content:space-between; gap:8px }

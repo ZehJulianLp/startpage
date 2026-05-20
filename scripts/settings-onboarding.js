@@ -15,6 +15,11 @@
         url: 'https://geocoding-api.open-meteo.com/v1/search'
       },
       {
+        key: 'julianverseWeather',
+        name: 'Julianverse Weather',
+        url: 'https://julianverse.de/weather/'
+      },
+      {
         key: 'startpageProxy',
         name: 'Startpage Proxy API',
         url: 'https://api-startpage.julianverse.de/api'
