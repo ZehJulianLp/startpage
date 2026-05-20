@@ -263,8 +263,14 @@
       store.set('search.searxng.baseUrl', normalized);
       input.value = normalized;
     });
-    $('#shortcutConfig').addEventListener('change', async ()=>{ try{ const j=JSON.parse($('#shortcutConfig').value); store.set('shortcuts', j);}catch{ await uiAlert(t('settings.search.invalidShortcuts')); } });
-    $('#feedsConfig').addEventListener('change', async ()=>{ try{ const j=JSON.parse($('#feedsConfig').value); store.set('news.custom', j); fillNewsSources(); loadNews(); }catch{ await uiAlert(t('settings.search.invalidFeeds')); } });
+    const shortcutAdd = $('#shortcutAdd');
+    if(shortcutAdd) shortcutAdd.addEventListener('click', addShortcutEntry);
+    const shortcutConfig = $('#shortcutConfig');
+    if(shortcutConfig) shortcutConfig.addEventListener('change', applyShortcutJsonEditor);
+    const feedAdd = $('#feedAdd');
+    if(feedAdd) feedAdd.addEventListener('click', addFeedEntry);
+    const feedsConfig = $('#feedsConfig');
+    if(feedsConfig) feedsConfig.addEventListener('change', applyFeedJsonEditor);
     const wordlistEditor = $('#wordlistEditor');
     const wordlistSave = $('#wordlistSave');
     const wordlistReset = $('#wordlistReset');

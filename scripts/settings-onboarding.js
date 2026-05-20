@@ -108,34 +108,19 @@
     if(recentMaxSetting) recentMaxSetting.value = String(getRecentMax());
     renderProfiles();
 
-    // Engines
-    const pills = $('#enginePills'); pills.innerHTML='';
-      Object.keys(ENGINES).forEach(key=>{
-        const on = (store.get('engines.enabled', Object.keys(ENGINES))).includes(key);
-        const pill = document.createElement('button');
-        const label = t(`search.engine.${key}`, null, key);
-        pill.className='btn';
-        pill.innerHTML = `${escapeHtml(label)} <span aria-hidden="true">${on ? iconSvg('check') : iconSvg('x')}</span>`;
-        pill.addEventListener('click', ()=>{
-          let enabled = store.get('engines.enabled', Object.keys(ENGINES));
-          if(on) enabled = enabled.filter(e=>e!==key); else enabled = Array.from(new Set([...enabled, key]));
-          store.set('engines.enabled', enabled);
-          fillSettings(); renderEngines();
-      });
-      pills.appendChild(pill);
-    });
+    renderEngineSettings();
 
     // Shortcuts
     const searxngBaseUrl = $('#searxngBaseUrl');
     if(searxngBaseUrl) searxngBaseUrl.value = getSearxngBaseUrl();
-    $('#shortcutConfig').value = JSON.stringify(getShortcuts(), null, 2);
+    syncShortcutSettingsUi();
 
     // Wordlist
     const inlineWords = getInlineWordlist();
     const wordlistEditor = $('#wordlistEditor'); if(wordlistEditor) wordlistEditor.value = inlineWords.join('\n');
 
     // Feeds
-    $('#feedsConfig').value = JSON.stringify(store.get('news.custom', {}), null, 2);
+    syncFeedSettingsUi();
 
     // Widgets toggle list
     const defaults = widgetDefaults();
@@ -211,6 +196,229 @@
       const current = store.get('settings.tab', 'general');
       if(current === 'ai') store.set('settings.tab', 'general');
     }
+  }
+
+  function getEnabledEngines(){
+    const stored = store.get('engines.enabled', Object.keys(ENGINES));
+    const enabled = Array.isArray(stored) ? stored.filter(key=> key in ENGINES) : Object.keys(ENGINES);
+    return enabled.length ? enabled : Object.keys(ENGINES);
+  }
+
+  function setEnabledEngines(enabled){
+    const clean = Array.from(new Set((enabled || []).filter(key=> key in ENGINES)));
+    store.set('engines.enabled', clean.length ? clean : Object.keys(ENGINES));
+    renderEngines();
+    renderEngineSettings();
+  }
+
+  function renderEngineSettings(){
+    const wrap = $('#enginePills');
+    if(!wrap) return;
+    const enabled = getEnabledEngines();
+    wrap.innerHTML = '';
+    Object.keys(ENGINES).forEach(key=>{
+      const on = enabled.includes(key);
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'settings-toggle-row';
+      button.classList.toggle('active', on);
+      button.setAttribute('aria-pressed', on ? 'true' : 'false');
+      const label = t(`search.engine.${key}`, null, key);
+      button.innerHTML =
+        `<span class="settings-toggle-name">${escapeHtml(label)}</span>` +
+        `<span class="settings-toggle-state" aria-hidden="true">${on ? iconSvg('check') : iconSvg('x')}</span>`;
+      button.addEventListener('click', ()=>{
+        const current = getEnabledEngines();
+        const next = current.includes(key)
+          ? current.filter(item=> item !== key)
+          : [...current, key];
+        setEnabledEngines(next);
+      });
+      wrap.appendChild(button);
+    });
+  }
+
+  function normalizeSettingsObject(value){
+    return (value && typeof value === 'object' && !Array.isArray(value)) ? value : {};
+  }
+
+  function syncJsonTextarea(id, value){
+    const textarea = $(id);
+    if(textarea) textarea.value = JSON.stringify(normalizeSettingsObject(value), null, 2);
+  }
+
+  function buildKvEditorRow(key, value, options){
+    const row = document.createElement('div');
+    row.className = 'settings-kv-row';
+
+    const keyInput = document.createElement('input');
+    keyInput.type = 'text';
+    keyInput.value = key;
+    keyInput.autocomplete = 'off';
+    keyInput.placeholder = options.keyPlaceholder;
+
+    const valueInput = document.createElement('input');
+    valueInput.type = 'url';
+    valueInput.value = value;
+    valueInput.autocomplete = 'off';
+    valueInput.placeholder = options.valuePlaceholder;
+
+    const remove = document.createElement('button');
+    remove.className = 'btn icon-only';
+    remove.type = 'button';
+    remove.title = t('common.remove', null, 'Remove');
+    remove.setAttribute('aria-label', t('common.remove', null, 'Remove'));
+    remove.innerHTML = iconSvg('x');
+
+    const save = ()=>{
+      const nextKey = keyInput.value.trim();
+      const nextValue = valueInput.value.trim();
+      options.update(key, nextKey, nextValue);
+    };
+    keyInput.addEventListener('change', save);
+    valueInput.addEventListener('change', save);
+    remove.addEventListener('click', ()=> options.remove(key));
+
+    row.appendChild(keyInput);
+    row.appendChild(valueInput);
+    row.appendChild(remove);
+    return row;
+  }
+
+  function syncShortcutSettingsUi(){
+    const shortcuts = normalizeSettingsObject(getShortcuts());
+    syncJsonTextarea('#shortcutConfig', shortcuts);
+    const editor = $('#shortcutEditor');
+    if(!editor) return;
+    const entries = Object.entries(shortcuts);
+    editor.innerHTML = '';
+    if(!entries.length){
+      const empty = document.createElement('div');
+      empty.className = 'settings-kv-empty muted';
+      empty.textContent = t('settings.search.shortcutsEmpty', null, 'No custom shortcuts configured.');
+      editor.appendChild(empty);
+      return;
+    }
+    entries.forEach(([key, value])=>{
+      editor.appendChild(buildKvEditorRow(key, String(value || ''), {
+        keyPlaceholder: '!git',
+        valuePlaceholder: 'https://github.com/{q}',
+        update: updateShortcutEntry,
+        remove: removeShortcutEntry
+      }));
+    });
+  }
+
+  function syncFeedSettingsUi(){
+    const feeds = normalizeSettingsObject(store.get('news.custom', {}));
+    syncJsonTextarea('#feedsConfig', feeds);
+    const editor = $('#feedsEditor');
+    if(!editor) return;
+    const entries = Object.entries(feeds);
+    editor.innerHTML = '';
+    if(!entries.length){
+      const empty = document.createElement('div');
+      empty.className = 'settings-kv-empty muted';
+      empty.textContent = t('settings.search.feedsEmpty', null, 'No custom feeds configured.');
+      editor.appendChild(empty);
+      return;
+    }
+    entries.forEach(([key, value])=>{
+      editor.appendChild(buildKvEditorRow(key, String(value || ''), {
+        keyPlaceholder: 'Heise',
+        valuePlaceholder: 'https://www.heise.de/rss/heise-atom.xml',
+        update: updateFeedEntry,
+        remove: removeFeedEntry
+      }));
+    });
+  }
+
+  async function parseSettingsJsonTextarea(id, errorKey, fallback){
+    try{
+      const value = JSON.parse($(id).value || '{}');
+      if(!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('invalid');
+      return value;
+    }catch{
+      await uiAlert(t(errorKey, null, fallback));
+      return null;
+    }
+  }
+
+  function updateShortcutEntry(oldKey, newKey, url){
+    const key = String(newKey || '').trim();
+    const value = String(url || '').trim();
+    if(!key || !value) return syncShortcutSettingsUi();
+    const shortcuts = normalizeSettingsObject(getShortcuts());
+    if(oldKey !== key) delete shortcuts[oldKey];
+    shortcuts[key.startsWith('!') ? key : `!${key}`] = value;
+    store.set('shortcuts', shortcuts);
+    syncShortcutSettingsUi();
+    updateSearchSuggest();
+  }
+
+  function removeShortcutEntry(key){
+    const shortcuts = normalizeSettingsObject(getShortcuts());
+    delete shortcuts[key];
+    store.set('shortcuts', shortcuts);
+    syncShortcutSettingsUi();
+    updateSearchSuggest();
+  }
+
+  function addShortcutEntry(){
+    const keyInput = $('#shortcutKeyInput');
+    const urlInput = $('#shortcutUrlInput');
+    if(!keyInput || !urlInput) return;
+    updateShortcutEntry('', keyInput.value, urlInput.value);
+    keyInput.value = '';
+    urlInput.value = '';
+  }
+
+  async function applyShortcutJsonEditor(){
+    const value = await parseSettingsJsonTextarea('#shortcutConfig', 'settings.search.invalidShortcuts', 'Invalid shortcuts JSON');
+    if(!value) return;
+    store.set('shortcuts', value);
+    syncShortcutSettingsUi();
+    updateSearchSuggest();
+  }
+
+  function updateFeedEntry(oldKey, newKey, url){
+    const key = String(newKey || '').trim();
+    const value = String(url || '').trim();
+    if(!key || !value) return syncFeedSettingsUi();
+    const feeds = normalizeSettingsObject(store.get('news.custom', {}));
+    if(oldKey !== key) delete feeds[oldKey];
+    feeds[key] = value;
+    store.set('news.custom', feeds);
+    syncFeedSettingsUi();
+    fillNewsSources();
+    loadNews();
+  }
+
+  function removeFeedEntry(key){
+    const feeds = normalizeSettingsObject(store.get('news.custom', {}));
+    delete feeds[key];
+    store.set('news.custom', feeds);
+    syncFeedSettingsUi();
+    fillNewsSources();
+    loadNews();
+  }
+
+  function addFeedEntry(){
+    const nameInput = $('#feedNameInput');
+    const urlInput = $('#feedUrlInput');
+    if(!nameInput || !urlInput) return;
+    updateFeedEntry('', nameInput.value, urlInput.value);
+    nameInput.value = '';
+    urlInput.value = '';
+  }
+
+  async function applyFeedJsonEditor(){
+    const value = await parseSettingsJsonTextarea('#feedsConfig', 'settings.search.invalidFeeds', 'Invalid feeds JSON');
+    if(!value) return;
+    store.set('news.custom', value);
+    syncFeedSettingsUi();
+    fillNewsSources();
+    loadNews();
   }
 
   function selectSettingsTab(name){

@@ -848,6 +848,86 @@
     .settings-guide-card ol {
       margin: 0 0 12px;
     }
+    .settings-toggle-list,
+    .settings-kv-editor {
+      display: grid;
+      gap: 8px;
+    }
+    .settings-toggle-row {
+      width: 100%;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 12px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 10px;
+      background: rgba(255,255,255,.03);
+      color: var(--fg);
+      cursor: pointer;
+      text-align: left;
+    }
+    .settings-toggle-row:hover {
+      border-color: color-mix(in srgb, var(--accent) 40%, rgba(255,255,255,.08));
+      background: color-mix(in srgb, var(--accent) 10%, transparent);
+    }
+    .settings-toggle-row.active {
+      border-color: color-mix(in srgb, var(--accent) 52%, rgba(255,255,255,.12));
+      background: color-mix(in srgb, var(--accent) 12%, transparent);
+    }
+    .settings-toggle-name {
+      min-width: 0;
+      font-weight: 650;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .settings-toggle-state {
+      width: 28px;
+      height: 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      color: var(--muted);
+      background: rgba(255,255,255,.04);
+    }
+    .settings-toggle-row.active .settings-toggle-state {
+      color: #fff;
+      background: var(--accent);
+    }
+    .settings-kv-add,
+    .settings-kv-row {
+      display: grid;
+      grid-template-columns: minmax(90px, 150px) minmax(180px, 1fr) auto;
+      gap: 8px;
+      align-items: center;
+    }
+    .settings-kv-add {
+      margin-top: 8px;
+    }
+    .settings-kv-row {
+      padding: 8px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 10px;
+      background: rgba(255,255,255,.03);
+    }
+    .settings-kv-empty {
+      padding: 10px 0;
+      font-size: 13px;
+    }
+    .settings-json-fallback {
+      margin-top: 10px;
+    }
+    .settings-json-fallback summary {
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 13px;
+      user-select: none;
+    }
+    .settings-json-fallback textarea {
+      margin-top: 8px;
+    }
     .data-tools {
       display: flex;
       flex-direction: column;
@@ -1137,7 +1217,9 @@
         width: 100%;
       }
       .data-tool-row,
-      .data-transfer-mode {
+      .data-transfer-mode,
+      .settings-kv-add,
+      .settings-kv-row {
         grid-template-columns: 1fr;
       }
       .profile-card {
