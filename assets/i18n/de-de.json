@@ -314,7 +314,8 @@
       "noteText": "Export speichert den gewählten Umfang als JSON. Import im Merge-Modus überschreibt nur vorhandene gleiche Einträge; Ersetzen entfernt zuerst bekannte Startpage-Daten.",
       "sections": {
         "transfer": "Import & Export",
-        "profiles": "Profile & Setup"
+        "profiles": "Profile",
+        "setup": "Setup"
       }
     },
     "language": {

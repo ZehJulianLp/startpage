@@ -314,7 +314,8 @@
       "noteText": "Export stores the selected scope as JSON. Merge import overwrites matching entries only; replace removes known Startpage data first.",
       "sections": {
         "transfer": "Import & Export",
-        "profiles": "Profiles & Setup"
+        "profiles": "Profiles",
+        "setup": "Setup"
       }
     },
     "language": {

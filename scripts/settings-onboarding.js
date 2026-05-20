@@ -741,7 +741,7 @@
       else if(has('#bgEngine') || has('#cardStyle') || has('#accentColor') || has('#modalColor') || has('#buttonColor') || has('#inputColor') || has('#clockColor') || has('#searchColor')) assign(row, panelBackground);
       else if(has('#enginePills') || has('#searxngBaseUrl') || has('#shortcutConfig') || has('#feedsConfig') || has('#wordlistEditor')) assign(row, panelSearch);
       else if(has('#widgetToggles') || has('#defaultCities') || has('#transportDefaultInput') || has('#recentMaxSetting') || has('#recentClearSetting')) assign(row, panelWidgets);
-      else if(has('#exportData') || has('#importData') || has('#dataNote') || has('#dataPresetSelect') || has('#applyPreset') || has('#restartOnboarding')) assign(row, panelData);
+      else if(has('#exportData') || has('#importData') || has('#dataNote') || has('#dataPresetSelect') || has('#applyPreset') || has('#profilesList') || has('#profileCreate') || has('#restartOnboarding')) assign(row, panelData);
       else assign(row, panelGeneral);
     });
 
