@@ -661,6 +661,10 @@
     .ui-dialog #uiDialogMessage { white-space: pre-wrap; line-height: 1.45; }
     .sheet h4 { margin:0 0 10px }
     .row { display:grid; grid-template-columns: 220px 1fr; gap:10px; align-items:center; margin-bottom:10px }
+    .row.row-full {
+      grid-template-columns: minmax(0, 1fr);
+      align-items: stretch;
+    }
     .row.row-heading {
       grid-template-columns: 1fr;
       margin: 18px 0 12px;
