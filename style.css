@@ -834,23 +834,62 @@
     .settings-guide-stack {
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 12px;
     }
     .settings-guide-card {
-      padding: 0;
-      background: transparent;
-      border: 0;
-      border-radius: 0;
+      padding: 14px;
+      background: rgba(0,0,0,0.22);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
       box-shadow: none;
+      backdrop-filter: blur(18px);
+    }
+    .settings-guide-card > .row {
+      display: grid;
+      grid-template-columns: 170px minmax(0, 1fr);
+      gap: 14px;
+      margin-bottom: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+    }
+    .settings-guide-card > .row > label {
+      align-self: start;
+      display: inline-flex;
+      width: fit-content;
+      max-width: 100%;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.24);
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
     }
     .settings-guide-card h5,
     .settings-guide-card h6 {
       margin: 0 0 10px;
     }
+    .settings-guide-card h5 {
+      font-size: 15px;
+      font-weight: 700;
+    }
+    .settings-guide-card h5:not(:first-child) {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
     .settings-guide-card p,
     .settings-guide-card ul,
     .settings-guide-card ol {
       margin: 0 0 12px;
+    }
+    .settings-guide-card li {
+      margin: 6px 0;
+      color: var(--muted);
+      line-height: 1.45;
     }
     .settings-toggle-list,
     .settings-kv-editor {
@@ -1066,7 +1105,8 @@
       padding: 14px;
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 14px;
-      background: rgba(255,255,255,0.02);
+      background: rgba(0,0,0,0.22);
+      backdrop-filter: blur(18px);
     }
     .ollama-guide-header {
       display: flex;
@@ -1089,7 +1129,7 @@
     .ollama-os {
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 12px;
-      background: rgba(255,255,255,0.02);
+      background: rgba(0,0,0,0.18);
       overflow: hidden;
     }
     .ollama-os.is-detected {
@@ -1172,13 +1212,6 @@
     }
     .ollama-guide > .ollama-guide-os-list {
       padding: 10px 0 0;
-    }
-    .settings-guide-card > .row {
-      margin-bottom: 0;
-      padding: 14px;
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 14px;
-      background: rgba(255,255,255,0.02);
     }
     @media (max-width: 780px) {
       .ollama-guide-header {
