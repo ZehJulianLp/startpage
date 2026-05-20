@@ -809,6 +809,8 @@
     .bg-mini-text { font-size:12px; color: var(--muted); }
     .bg-badge { display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border-radius:999px; background: rgba(0,0,0,0.24); border:1px solid rgba(255,255,255,0.08); font-size:11px; color: var(--muted); }
     .bg-inline-actions { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+    .bg-inline-actions button { padding:8px 14px; border-radius:10px; border:1px solid var(--button-border); background: var(--button-bg); color: var(--fg); box-shadow: var(--button-shadow); backdrop-filter: var(--button-backdrop); font: inherit; cursor:pointer; transition: border-color .2s, transform .2s; }
+    .bg-inline-actions button:hover { transform: translateY(-1px); border-color: color-mix(in srgb, var(--accent) 42%, var(--button-border)); }
     .bg-selector { display:flex; flex-direction:column; gap:8px; }
     .bg-selector select { width:100%; }
     .bg-favorite-marker { display:inline-flex; align-items:center; gap:4px; font-size:12px; color: var(--muted); }
