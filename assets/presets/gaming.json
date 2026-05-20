@@ -2,29 +2,33 @@
   "theme": "dark",
   "ui.cardStyle": "solid",
   "ui.font.family": "Trebuchet MS",
-  "ui.clock.color": "#0f172a",
-  "ui.search.color": "#0b1224",
+  "ui.clock.color": "#9f1239",
+  "ui.search.color": "#be123c",
+  "ui.accent.color": "#f43f5e",
+  "ui.modal.color": "#1d0b18",
+  "ui.button.color": "#be123c",
+  "ui.input.color": "#251025",
   "widgets": {
     "todo": true,
     "notes": true,
     "tiles": true,
-    "weather": true,
-    "quote": true,
+    "weather": false,
+    "quote": false,
     "recent": true,
     "system": true,
     "news": true,
-    "transport": true
+    "transport": false
   },
   "widget.colors": {
-    "todo": "#e11d48",
-    "notes": "#14b8a6",
+    "todo": "#9f1239",
+    "notes": "#be123c",
     "tiles": "#e11d48",
-    "weather": "#14b8a6",
-    "quote": "#e11d48",
-    "recent": "#14b8a6",
-    "system": "#e11d48",
-    "news": "#14b8a6",
-    "transport": ""
+    "weather": "#f43f5e",
+    "transport": "#9f1239",
+    "quote": "#be123c",
+    "recent": "#e11d48",
+    "system": "#f43f5e",
+    "news": "#9f1239"
   },
   "tiles": [
     {
@@ -79,15 +83,16 @@
     "quest",
     "loot",
     "boss",
-    "fps"
+    "fps",
+    "patch",
+    "ranked",
+    "stream"
   ],
   "engines.enabled": [
     "google",
     "ddg",
-    "bing",
     "yt",
-    "wikipedia",
-    "maps"
+    "wikipedia"
   ],
   "news.custom": {
     "PC Gamer": "https://www.pcgamer.com/rss/",

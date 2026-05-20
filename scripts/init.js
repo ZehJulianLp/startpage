@@ -262,16 +262,23 @@
       }
       store.set('search.searxng.baseUrl', normalized);
       input.value = normalized;
+      uiToast(t('settings.search.searxngSaved', null, 'SearXNG URL saved.'), { type: 'success' });
     });
-    $('#shortcutConfig').addEventListener('change', async ()=>{ try{ const j=JSON.parse($('#shortcutConfig').value); store.set('shortcuts', j);}catch{ await uiAlert(t('settings.search.invalidShortcuts')); } });
-    $('#feedsConfig').addEventListener('change', async ()=>{ try{ const j=JSON.parse($('#feedsConfig').value); store.set('news.custom', j); fillNewsSources(); loadNews(); }catch{ await uiAlert(t('settings.search.invalidFeeds')); } });
+    const shortcutAdd = $('#shortcutAdd');
+    if(shortcutAdd) shortcutAdd.addEventListener('click', addShortcutEntry);
+    const shortcutConfig = $('#shortcutConfig');
+    if(shortcutConfig) shortcutConfig.addEventListener('change', applyShortcutJsonEditor);
+    const feedAdd = $('#feedAdd');
+    if(feedAdd) feedAdd.addEventListener('click', addFeedEntry);
+    const feedsConfig = $('#feedsConfig');
+    if(feedsConfig) feedsConfig.addEventListener('change', applyFeedJsonEditor);
     const wordlistEditor = $('#wordlistEditor');
     const wordlistSave = $('#wordlistSave');
     const wordlistReset = $('#wordlistReset');
-    const applyInlineWordlist = ()=>{ if(!wordlistEditor) return; const words = setInlineWordlist(parseWordlistInput(wordlistEditor.value)); wordlistEditor.value = words.join('\n'); updateSearchSuggest(); };
+    const applyInlineWordlist = ()=>{ if(!wordlistEditor) return; const words = setInlineWordlist(parseWordlistInput(wordlistEditor.value)); wordlistEditor.value = words.join('\n'); updateSearchSuggest(); uiToast(t('settings.search.wordlistSaved', null, 'Wordlist saved.'), { type: 'success' }); };
     if(wordlistSave) wordlistSave.addEventListener('click', applyInlineWordlist);
     if(wordlistEditor) wordlistEditor.addEventListener('change', applyInlineWordlist);
-    if(wordlistReset) wordlistReset.addEventListener('click', ()=>{ setInlineWordlist([]); if(wordlistEditor) wordlistEditor.value=''; updateSearchSuggest(); });
+    if(wordlistReset) wordlistReset.addEventListener('click', ()=>{ setInlineWordlist([]); if(wordlistEditor) wordlistEditor.value=''; updateSearchSuggest(); uiToast(t('settings.search.wordlistResetDone', null, 'Wordlist reset.'), { type: 'success' }); });
 
     // Clock
     tickClock();
@@ -290,7 +297,7 @@
     if(!localStorage.getItem('tiles')) store.set('tiles', defaultTiles());
     renderTiles();
     $('#addTile').addEventListener('click', addTile);
-    $('#resetTiles').addEventListener('click', async ()=>{ if(await uiConfirm(t('tiles.resetConfirm'))){ store.set('tiles', defaultTiles()); renderTiles(); }});
+    $('#resetTiles').addEventListener('click', async ()=>{ if(await uiConfirm(t('tiles.resetConfirm'))){ store.set('tiles', defaultTiles()); renderTiles(); uiToast(t('tiles.resetDone', null, 'Tiles reset.'), { type: 'success' }); }});
 
     // Weather
     $('#setCity').addEventListener('click', ()=>{
@@ -354,6 +361,7 @@
         if(!ok) return;
         clearRecent();
         renderRecent();
+        uiToast(t('recent.clearDone', null, 'Recent data deleted.'), { type: 'success' });
       });
     }
     renderRecent();

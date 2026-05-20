@@ -10,7 +10,7 @@
   {
     "id": "coding",
     "name": "Coding",
-    "description": "Dark setup with developer tiles, tech feeds, and the Neon City background.",
+    "description": "Focused developer setup with dev tiles, code search, tech feeds, recent work, and system status.",
     "descriptionKey": "data.presets.catalog.coding.description",
     "file": "assets/presets/coding.json",
     "tags": ["dark", "dev"]
@@ -18,7 +18,7 @@
   {
     "id": "gaming",
     "name": "Gaming",
-    "description": "Gaming and streaming favorites, game feeds, and a neon look.",
+    "description": "Gaming and streaming setup with launcher tiles, game feeds, recent links, and system status.",
     "descriptionKey": "data.presets.catalog.gaming.description",
     "file": "assets/presets/gaming.json",
     "tags": ["dark", "games"]
@@ -26,7 +26,7 @@
   {
     "id": "minimal",
     "name": "Minimal",
-    "description": "Light or auto theme, soft minimal transparency, focused on search and notes.",
+    "description": "Quiet daily setup with search, notes, todos, weather, and almost no extra panels.",
     "descriptionKey": "data.presets.catalog.minimal.description",
     "file": "assets/presets/minimal.json",
     "tags": ["light", "focus"]
@@ -34,7 +34,7 @@
   {
     "id": "productivity",
     "name": "Productivity",
-    "description": "Clean solid style with todos, notes, system widgets, office and dev tiles, plus tech and news feeds.",
+    "description": "Work setup with todos, notes, office links, recent items, transport, system status, and focused news.",
     "descriptionKey": "data.presets.catalog.productivity.description",
     "file": "assets/presets/productivity.json",
     "tags": ["work", "auto"]
@@ -42,7 +42,7 @@
   {
     "id": "reading",
     "name": "Reading",
-    "description": "Reading mode with a soft minimal style, Pocket, Kindle, and Feedly tiles, plus news-heavy feeds.",
+    "description": "Reading setup with quote, notes, reading links, recent items, and curated article feeds.",
     "descriptionKey": "data.presets.catalog.reading.description",
     "file": "assets/presets/reading.json",
     "tags": ["light", "news"]
@@ -50,7 +50,7 @@
   {
     "id": "art",
     "name": "Art & Photo",
-    "description": "Visual style with art and photo links, rotating backgrounds, and rich colors.",
+    "description": "Visual workspace with design links, quote, notes, recent references, and creative feeds.",
     "descriptionKey": "data.presets.catalog.art.description",
     "file": "assets/presets/art.json",
     "tags": ["visual", "auto"]
@@ -58,7 +58,7 @@
   {
     "id": "privacy",
     "name": "Privacy",
-    "description": "Privacy-first with DDG as default, lean tiles, no news, and a dark transparent style.",
+    "description": "Privacy-first setup with DDG/SearXNG, lean tiles, no news, and local utility widgets.",
     "descriptionKey": "data.presets.catalog.privacy.description",
     "file": "assets/presets/privacy.json",
     "tags": ["privacy", "minimal"]
@@ -66,7 +66,7 @@
   {
     "id": "student",
     "name": "Student",
-    "description": "Campus and study links, a light card layout, Notion, Overleaf, and Moodle tiles, plus university and tech feeds.",
+    "description": "Study setup with campus links, notes, todos, recent material, transport, and research feeds.",
     "descriptionKey": "data.presets.catalog.student.description",
     "file": "assets/presets/student.json",
     "tags": ["study", "light"]
@@ -74,7 +74,7 @@
   {
     "id": "finance",
     "name": "Finance",
-    "description": "Market and portfolio tiles, finance feeds, and a dark style with sharp accents.",
+    "description": "Market setup with portfolio links, finance feeds, notes, recent items, and watchlist terms.",
     "descriptionKey": "data.presets.catalog.finance.description",
     "file": "assets/presets/finance.json",
     "tags": ["finance", "dark"]

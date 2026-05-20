@@ -2,8 +2,12 @@
   "theme": "auto",
   "ui.cardStyle": "glass",
   "ui.font.family": "Inter",
-  "ui.clock.color": "",
-  "ui.search.color": "",
+  "ui.clock.color": "#3b5bdb",
+  "ui.search.color": "#5b7cfa",
+  "ui.accent.color": "#4f6df5",
+  "ui.modal.color": "#162033",
+  "ui.button.color": "#4f6df5",
+  "ui.input.color": "#1c2f55",
   "widgets": {
     "todo": true,
     "notes": true,
@@ -16,15 +20,15 @@
     "transport": true
   },
   "widget.colors": {
-    "todo": "",
-    "notes": "",
-    "tiles": "",
-    "weather": "",
-    "quote": "",
-    "recent": "",
-    "system": "",
-    "news": "",
-    "transport": ""
+    "todo": "#4f6df5",
+    "notes": "#5b7cfa",
+    "tiles": "#6b8cff",
+    "weather": "#3f5fd6",
+    "transport": "#4f6df5",
+    "quote": "#5b7cfa",
+    "recent": "#6b8cff",
+    "system": "#3f5fd6",
+    "news": "#4f6df5"
   },
   "tiles": [
     {
@@ -76,7 +80,9 @@
     "home",
     "welcome",
     "daily",
-    "checklist"
+    "checklist",
+    "weather",
+    "notes"
   ],
   "engines.enabled": [
     "google",

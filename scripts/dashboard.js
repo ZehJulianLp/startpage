@@ -376,7 +376,7 @@
 
   function getGuideExpandedState(osId){
     if(Object.prototype.hasOwnProperty.call(ollamaGuideState.expanded, osId)) return !!ollamaGuideState.expanded[osId];
-    return getGuideDetectedOs() === osId;
+    return false;
   }
 
   function escapeAttr(value){

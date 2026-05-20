@@ -2,29 +2,33 @@
   "theme": "auto",
   "ui.cardStyle": "glass",
   "ui.font.family": "Garamond",
-  "ui.clock.color": "#0f172a",
-  "ui.search.color": "#0b1224",
+  "ui.clock.color": "#86198f",
+  "ui.search.color": "#a21caf",
+  "ui.accent.color": "#c026d3",
+  "ui.modal.color": "#1d102b",
+  "ui.button.color": "#c026d3",
+  "ui.input.color": "#2e174d",
   "widgets": {
     "todo": true,
     "notes": true,
     "tiles": true,
-    "weather": true,
+    "weather": false,
     "quote": true,
     "recent": true,
-    "system": true,
+    "system": false,
     "news": true,
-    "transport": true
+    "transport": false
   },
   "widget.colors": {
-    "todo": "#d946ef",
-    "notes": "#22d3ee",
-    "tiles": "#d946ef",
-    "weather": "#22d3ee",
-    "quote": "#d946ef",
-    "recent": "#22d3ee",
+    "todo": "#86198f",
+    "notes": "#a21caf",
+    "tiles": "#c026d3",
+    "weather": "#d946ef",
+    "transport": "#86198f",
+    "quote": "#a21caf",
+    "recent": "#c026d3",
     "system": "#d946ef",
-    "news": "#22d3ee",
-    "transport": ""
+    "news": "#86198f"
   },
   "tiles": [
     {
@@ -79,15 +83,16 @@
     "canvas",
     "sketch",
     "gallery",
-    "color"
+    "color",
+    "moodboard",
+    "layout",
+    "reference"
   ],
   "engines.enabled": [
     "google",
     "ddg",
-    "bing",
     "yt",
-    "wikipedia",
-    "maps"
+    "wikipedia"
   ],
   "news.custom": {
     "Colossal": "https://www.thisiscolossal.com/feed/",

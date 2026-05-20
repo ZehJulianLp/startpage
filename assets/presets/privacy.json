@@ -2,8 +2,12 @@
   "theme": "dark",
   "ui.cardStyle": "transparent",
   "ui.font.family": "Tahoma",
-  "ui.clock.color": "#0b1224",
-  "ui.search.color": "#0b1224",
+  "ui.clock.color": "#15803d",
+  "ui.search.color": "#16a34a",
+  "ui.accent.color": "#22c55e",
+  "ui.modal.color": "#03120b",
+  "ui.button.color": "#15803d",
+  "ui.input.color": "#092016",
   "widgets": {
     "todo": true,
     "notes": true,
@@ -16,15 +20,15 @@
     "transport": false
   },
   "widget.colors": {
-    "todo": "",
-    "notes": "",
-    "tiles": "",
-    "weather": "",
-    "quote": "",
-    "recent": "",
-    "system": "",
-    "news": "",
-    "transport": ""
+    "todo": "#15803d",
+    "notes": "#16a34a",
+    "tiles": "#22c55e",
+    "weather": "#4ade80",
+    "transport": "#15803d",
+    "quote": "#16a34a",
+    "recent": "#22c55e",
+    "system": "#4ade80",
+    "news": "#15803d"
   },
   "tiles": [
     {
@@ -73,10 +77,14 @@
     "tor",
     "cipher",
     "secure",
-    "anon"
+    "anon",
+    "passkey",
+    "backup",
+    "threat"
   ],
   "engines.enabled": [
     "ddg",
+    "searxng",
     "wikipedia",
     "maps"
   ],

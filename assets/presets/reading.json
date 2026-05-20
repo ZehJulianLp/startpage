@@ -2,29 +2,33 @@
   "theme": "light",
   "ui.cardStyle": "minimal",
   "ui.font.family": "Georgia",
-  "ui.clock.color": "#f3f4f6",
-  "ui.search.color": "#f3f4f6",
+  "ui.clock.color": "#a78bfa",
+  "ui.search.color": "#c4b5fd",
+  "ui.accent.color": "#7c3aed",
+  "ui.modal.color": "#fff7ed",
+  "ui.button.color": "#6d28d9",
+  "ui.input.color": "#f3e8ff",
   "widgets": {
     "todo": false,
     "notes": true,
     "tiles": true,
     "weather": false,
-    "quote": false,
+    "quote": true,
     "recent": true,
     "system": false,
     "news": true,
-    "transport": true
+    "transport": false
   },
   "widget.colors": {
-    "todo": "",
-    "notes": "#0ea5e9",
-    "tiles": "#a855f7",
-    "weather": "",
-    "quote": "",
-    "recent": "#0ea5e9",
-    "system": "",
-    "news": "#a855f7",
-    "transport": ""
+    "todo": "#6d28d9",
+    "notes": "#7c3aed",
+    "tiles": "#8b5cf6",
+    "weather": "#a78bfa",
+    "transport": "#6d28d9",
+    "quote": "#7c3aed",
+    "recent": "#8b5cf6",
+    "system": "#a78bfa",
+    "news": "#6d28d9"
   },
   "tiles": [
     {
@@ -79,12 +83,14 @@
     "essay",
     "bookmark",
     "chapter",
-    "quote"
+    "quote",
+    "archive",
+    "author",
+    "review"
   ],
   "engines.enabled": [
     "google",
     "ddg",
-    "bing",
     "wikipedia"
   ],
   "news.custom": {

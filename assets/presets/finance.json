@@ -2,29 +2,33 @@
   "theme": "dark",
   "ui.cardStyle": "solid",
   "ui.font.family": "Segoe UI",
-  "ui.clock.color": "#0f172a",
-  "ui.search.color": "#0f172a",
+  "ui.clock.color": "#14532d",
+  "ui.search.color": "#166534",
+  "ui.accent.color": "#16a34a",
+  "ui.modal.color": "#07140e",
+  "ui.button.color": "#15803d",
+  "ui.input.color": "#122018",
   "widgets": {
     "todo": true,
     "notes": true,
     "tiles": true,
-    "weather": true,
-    "quote": true,
+    "weather": false,
+    "quote": false,
     "recent": true,
-    "system": true,
+    "system": false,
     "news": true,
-    "transport": true
+    "transport": false
   },
   "widget.colors": {
-    "todo": "#16a34a",
-    "notes": "#f59e0b",
+    "todo": "#14532d",
+    "notes": "#15803d",
     "tiles": "#16a34a",
-    "weather": "#f59e0b",
-    "quote": "#16a34a",
-    "recent": "#f59e0b",
-    "system": "#16a34a",
-    "news": "#f59e0b",
-    "transport": ""
+    "weather": "#22c55e",
+    "transport": "#14532d",
+    "quote": "#15803d",
+    "recent": "#16a34a",
+    "system": "#22c55e",
+    "news": "#14532d"
   },
   "tiles": [
     {
@@ -79,14 +83,16 @@
     "portfolio",
     "stocks",
     "etf",
-    "tax"
+    "tax",
+    "watchlist",
+    "earnings",
+    "macro"
   ],
   "engines.enabled": [
     "google",
     "ddg",
     "bing",
-    "wikipedia",
-    "maps"
+    "wikipedia"
   ],
   "news.custom": {
     "Bloomberg Markets": "https://feeds.bloomberg.com/markets/news.rss",

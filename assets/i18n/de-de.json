@@ -7,6 +7,7 @@
     "delete": "Löschen",
     "remove": "Entfernen",
     "save": "Speichern",
+    "add": "Hinzufügen",
     "loading": "Lade...",
     "loadError": "Fehler beim Laden",
     "noMatches": "Keine Treffer",
@@ -77,7 +78,8 @@
       "urlLabel": "URL",
       "save": "Speichern"
     },
-    "resetAria": "Kacheln zurücksetzen"
+    "resetAria": "Kacheln zurücksetzen",
+    "resetDone": "Kacheln zurückgesetzt."
   },
   "weather": {
     "title": "Wetter heute",
@@ -161,7 +163,8 @@
     "title": "Zuletzt",
     "note": "Hinweis: Zeigt nur Aktionen von dieser Startpage (geklickte Kacheln & Suchen).",
     "clear": "Daten löschen",
-    "clearConfirm": "Aktuelle Daten löschen?"
+    "clearConfirm": "Aktuelle Daten löschen?",
+    "clearDone": "Aktuelle Daten gelöscht."
   },
   "system": {
     "title": "Systemstatus",
@@ -190,9 +193,9 @@
     "searchSettingsOpen": "Öffnen",
     "searchSettingsResults": "{count} Treffer in {sections} Bereichen.",
     "searchSettingsNoResults": "Keine Treffer in den Einstellungen.",
-      "tabs": {
-        "general": "Allgemein",
-        "background": "Hintergrund & Erscheinung",
+    "tabs": {
+      "general": "Allgemein",
+      "background": "Hintergrund & Erscheinung",
       "search": "Suche & Feeds",
       "widgets": "Widgets",
       "data": "Daten",
@@ -220,20 +223,31 @@
       "searxngUrlLabel": "SearXNG-URL",
       "searxngUrlPlaceholder": "https://search.julianverse.de/",
       "searxngUrlNote": "Beliebige SearXNG-Instanz-URL. Optional <code>{q}</code> als Query-Platzhalter nutzen, sonst wird <code>?q=...</code> angehängt.",
+      "searxngSaved": "SearXNG-URL gespeichert.",
       "wordlistLabel": "Wortliste für Autocomplete",
       "wordlistPlaceholder": "Begriffe zeilenweise oder mit Komma getrennt",
       "wordlistSave": "Speichern",
       "wordlistReset": "Leeren",
+      "wordlistSaved": "Wortliste gespeichert.",
+      "wordlistResetDone": "Wortliste geleert.",
       "wordlistNote": "Globale Wortliste (assets/wordlist.json) und die Preset-Wortliste werden gemerged. Leer lassen, um nur die globale Liste zu nutzen.",
       "shortcutsLabel": "Eigene !Shortcuts",
       "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
+      "shortcutsEmpty": "Keine eigenen Shortcuts konfiguriert.",
       "shortcutsNote": "Verwende <code>{q}</code> als Platzhalter für die Suchphrase. Ohne <code>{q}</code> wird <code>q=...</code> angehängt.",
       "feedsLabel": "Custom RSS-Feeds",
       "feedsPlaceholder": "{\"Heise\":\"https://www.heise.de/rss/heise-atom.xml\",\"Tagesschau\":\"https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml\",\"TechCrunch\":\"https://techcrunch.com/feed/\"}",
-      "feedsNote": "JSON: Name - Feed-URL. Diese Liste wird mit den Standardfeeds gemerged.",
+      "feedsEmpty": "Keine eigenen RSS-Feeds konfiguriert.",
+      "feedsNote": "Name und Feed-URL werden mit den Standardfeeds zusammengeführt.",
+      "jsonEditor": "Expertenmodus: JSON bearbeiten",
       "invalidSearxngUrl": "Ungültige SearXNG-URL",
       "invalidShortcuts": "Ungültiges Shortcuts-JSON",
-      "invalidFeeds": "Ungültiges Feeds-JSON"
+      "invalidFeeds": "Ungültiges Feeds-JSON",
+      "sections": {
+        "engines": "Suchmaschinen",
+        "autocomplete": "Autocomplete",
+        "customSources": "Eigene Quellen"
+      }
     },
     "widgets": {
       "visible": "Widgets sichtbar",
@@ -267,7 +281,11 @@
       "weatherCitiesNote": "Eine Stadt pro Zeile. Der erste Eintrag wird aktiv, falls die bisher aktive Stadt nicht enthalten ist.",
       "recentEntriesLabel": "Zuletzt-Widget Einträge",
       "recentEntriesDecAria": "Zuletzt-Widget Einträge verringern",
-      "recentEntriesIncAria": "Zuletzt-Widget Einträge erhöhen"
+      "recentEntriesIncAria": "Zuletzt-Widget Einträge erhöhen",
+      "sections": {
+        "visibility": "Sichtbarkeit",
+        "defaults": "Standardwerte"
+      }
     },
     "data": {
       "label": "Daten",
@@ -298,7 +316,12 @@
       "restartOnboarding": "Setup neu starten",
       "restartNote": "Startet den kompakten Einrichtungs-Dialog erneut.",
       "noteLabel": "Hinweis",
-      "noteText": "Export speichert den gewählten Umfang als JSON. Import im Merge-Modus überschreibt nur vorhandene gleiche Einträge; Ersetzen entfernt zuerst bekannte Startpage-Daten."
+      "noteText": "Export speichert den gewählten Umfang als JSON. Import im Merge-Modus überschreibt nur vorhandene gleiche Einträge; Ersetzen entfernt zuerst bekannte Startpage-Daten.",
+      "sections": {
+        "transfer": "Import & Export",
+        "profiles": "Profile",
+        "setup": "Setup"
+      }
     },
     "language": {
       "label": "Sprache",
@@ -316,22 +339,26 @@
       "empty": "Es wurden keine lokalen Schriftarten zurückgegeben.",
       "loadFailed": "Lokale Schriftarten konnten nicht geladen werden: {error}"
     },
-    "guideHtml": "<div class=\"row\"><label>User Guide</label><div><h5>Überblick</h5><ul><li>Startseite mit Suche, Favoriten, To-Do, Notizen, Wetter, News.</li><li>Alles lokal: Daten bleiben im Browser (localStorage).</li></ul><h5>Shortcuts</h5><ul><li>Ctrl/Cmd+K: Command Palette öffnen</li><li>1-9: Erste 9 Favoriten öffnen (wenn nicht tippen)</li><li>/ : Suche fokussieren (auch über Palette)</li><li>Enter in Suche: Startet die Suche</li><li>ESC: Modals schließen</li><li>Palette: Schnellaktionen für Widgets, Theme, Hintergrund, Daten, Favoriten</li><li>Palette: Taste C wechselt den Kachel-Stil, \"Header-Farben zurücksetzen\" stellt Suche & Uhr zurück</li></ul><h5>Suche & Autocomplete</h5><ul><li>Bangs: !g !ddg !bing !yt !wiki !maps !sx</li><li>Eigene Shortcuts: JSON in den Einstellungen; {q} als Platzhalter</li><li>Autocomplete: Bangs, Shortcuts, Recent-Suchen, Wortliste (global + Preset)</li><li>Tab übernimmt Vorschlag, Enter startet Suche</li></ul><h5>Tiles</h5><ul><li>Drag & Drop zum Sortieren, Klick zum Öffnen</li><li>+ Kachel: Neue Favoriten hinzufügen</li><li>Reset: Standardfavoriten wiederherstellen</li></ul><h5>Widgets & Layout</h5><ul><li>Sichtbarkeit je Widget umschaltbar</li><li>Kachel-Stil global anpassbar (Glas, Vollfläche, Transparent, Soft Minimal)</li><li>Eigene Farben für Uhr/Suche; Reset bringt Stil-Vorgabe zurück</li><li>Widget-Farben & Button \"Widgets einfärben\" setzen Akzent pro Karte</li></ul><h5>Hintergrund</h5><ul><li>Presets, Uploads, Sammlungen, Rotation (Zeit/Thema/Intervall)</li><li>Akzentfarbe wird aus dem aktiven Hintergrund extrahiert</li></ul><h5>Daten</h5><ul><li>Export/Import als JSON</li><li>Data Presets laden (assets/presets/*.json aus dem Repo)</li></ul><h5>Startpage Agent</h5><ul><li>Integrierter KI-Chat mit lokalem Ollama (Host/Modell in den Einstellungen).</li><li>Unterstützt Streaming-Antworten, Stop (Button/ESC), Verlauf-Persistenz und Markdown.</li><li>Agentische Tools können Widgets und Einstellungen lesen/ändern (je nach Confirm-Modus).</li></ul></div></div>",
+    "guideHtml": "<div class=\"row\"><label>User Guide</label><div><h5>Überblick</h5><ul><li>Startseite mit Suche, Favoriten, To-Do, Notizen, Wetter, Transport und News.</li><li>Alles lokal: persönliche Daten und Einstellungen bleiben im Browser (localStorage).</li></ul><h5>Shortcuts</h5><ul><li>Ctrl/Cmd+K: Command Palette öffnen</li><li>1-9: Erste 9 Favoriten öffnen (wenn du nicht gerade tippst)</li><li>/ : Suche fokussieren</li><li>Enter in Suche: Suche starten</li><li>ESC: Modals schließen</li></ul><h5>Suche & Feeds</h5><ul><li>Suchmaschinen werden in den Einstellungen als Zeilen mit Statussymbol ein- und ausgeschaltet.</li><li>Bangs: !g !ddg !bing !yt !wiki !maps !sx</li><li>Eigene !Shortcuts und RSS-Feeds haben Listen mit Name/URL und Entfernen-Button.</li><li>Der aufklappbare Expertenmodus ist nur für direkte Massenbearbeitung gedacht.</li><li>Autocomplete nutzt Bangs, eigene Shortcuts, Recent-Suchen und Wortlisten.</li></ul><h5>Hintergrund & Erscheinung</h5><ul><li>Der Hintergrund-Editor nutzt die volle Breite des Settings-Tabs.</li><li>Presets, Favoriten, Uploads, Sammlungen, Rotation und Custom-URLs liegen im Hintergrund-Bereich.</li><li>Kachel-Stil, Akzentfarbe, Modal-, Button-, Eingabefeld-, Uhr-, Such- und Widget-Farben werden separat gespeichert.</li><li>Data Presets können alle diese Farboptionen setzen; leere Werte fallen auf die Stil-Vorgabe zurück.</li></ul><h5>Widgets & Layout</h5><ul><li>Widgets lassen sich einzeln ein- und ausblenden.</li><li>Wetter-Städte, Transport-Standardhaltestelle und Recent-Limit sind im Widgets-Tab.</li><li>Widget-Farben liegen im Hintergrund-Tab, weil sie zur visuellen Gestaltung gehören.</li></ul><h5>Daten</h5><ul><li>Export/Import speichert Startpage-Daten als JSON.</li><li>Data Presets aus assets/presets/ und User-Presets aus assets/user-presets/ werden zusammen angezeigt.</li><li>Profile speichern lokale Snapshots deiner Startpage-Konfiguration.</li></ul><h5>Startpage Agent</h5><ul><li>Optionaler lokaler KI-Chat über Ollama.</li><li>Host, Modell, Confirm-Modus, Prompt und Memory liegen im Agent-Tab.</li><li>Der Ollama-Setup-Guide bleibt im Guide-Tab verfügbar.</li></ul></div></div>",
     "general": {
       "agentLabel": "Startpage-Agent",
       "agentEnabled": "Agent aktiv",
       "agentHint": "Wenn deaktiviert, wird nichts an Ollama gesendet.",
-      "agentGuideButton": "Ollama-Setup-Guide \u00f6ffnen"
+      "agentGuideButton": "Ollama-Setup-Guide öffnen",
+      "sections": {
+        "appearance": "Basis",
+        "agent": "Startpage Agent"
+      }
     },
     "ollamaGuide": {
-      "title": "Ollama-Setup f\u00fcr den Startpage Agent",
-      "intro": "Der Startpage Agent l\u00e4uft lokal \u00fcber Ollama auf deinem Rechner. Installiere Ollama, starte den lokalen Dienst, lade ein Modell und stelle sicher, dass Startpage {host} erreichen kann.",
+      "title": "Ollama-Setup für den Startpage Agent",
+      "intro": "Der Startpage Agent läuft lokal über Ollama auf deinem Rechner. Installiere Ollama, starte den lokalen Dienst, lade ein Modell und stelle sicher, dass Startpage {host} erreichen kann.",
       "hostInfo": "Aktuell konfigurierter Host: {host}",
       "jumpNote": "Dieser Guide bleibt unter Einstellungen > Guide sichtbar, auch wenn der AI-Tab ausgeblendet ist.",
       "alternativeLabel": "Alternative",
       "downloadHint": "Lade den Installer von der offiziellen Ollama-Website herunter.",
-      "modelHint": "Du kannst auch andere Ollama-Modelle installieren, aber ministral-3:8b ist die empfohlene Voreinstellung f\u00fcr dieses Startpage-Setup.",
-      "detectedBadge": "Auf diesem Ger\u00e4t erkannt",
+      "modelHint": "Du kannst auch andere Ollama-Modelle installieren, aber ministral-3:8b ist die empfohlene Voreinstellung für dieses Startpage-Setup.",
+      "detectedBadge": "Auf diesem Gerät erkannt",
       "steps": {
         "install": "Ollama installieren",
         "origins": "Startpage-Origin freigeben",
@@ -341,18 +368,18 @@
         "network": "Port- und Netzwerkzugriff"
       },
       "actions": {
-        "check": "Setup pr\u00fcfen",
+        "check": "Setup prüfen",
         "copy": "Befehl kopieren",
         "copied": "Kopiert",
         "copyError": "Der Befehl konnte nicht in die Zwischenablage kopiert werden.",
-        "download": "Download-Seite \u00f6ffnen"
+        "download": "Download-Seite öffnen"
       },
       "check": {
-        "idle": "Nutze \"Setup pr\u00fcfen\", um den konfigurierten Ollama-Host zu testen.",
-        "checking": "Der konfigurierte Ollama-Host wird gepr\u00fcft...",
+        "idle": "Nutze \"Setup prüfen\", um den konfigurierten Ollama-Host zu testen.",
+        "checking": "Der konfigurierte Ollama-Host wird geprüft...",
         "success": "Ollama antwortet erfolgreich unter {host}.",
-        "unavailable": "Keine Antwort von {host}. Pr\u00fcfe, ob Ollama l\u00e4uft und ob Port 11434 erreichbar ist.",
-        "error": "Ollama-Pr\u00fcfung fehlgeschlagen: {error}"
+        "unavailable": "Keine Antwort von {host}. Prüfe, ob Ollama läuft und ob Port 11434 erreichbar ist.",
+        "error": "Ollama-Prüfung fehlgeschlagen: {error}"
       },
       "os": {
         "linux": "Linux",
@@ -360,28 +387,28 @@
         "windows": "Windows"
       },
       "osNotes": {
-        "linux": "Wenn du einen Paketmanager deiner Distribution nutzt, halte die offiziellen Ollama-Dokumente bereit, weil Paketst\u00e4nde hinterherh\u00e4ngen k\u00f6nnen.",
-        "macos": "Homebrew ist auf Entwickler-Rechnern praktisch; der Direktdownload ist f\u00fcr das erste Setup meist einfacher.",
-        "windows": "Auf verwalteten Windows-Systemen k\u00f6nnen der Installer oder der erste Ollama-Start R\u00fcckfragen von Windows Defender oder der Firewall ausl\u00f6sen."
+        "linux": "Wenn du einen Paketmanager deiner Distribution nutzt, halte die offiziellen Ollama-Dokumente bereit, weil Paketstände hinterherhängen können.",
+        "macos": "Homebrew ist auf Entwickler-Rechnern praktisch; der Direktdownload ist für das erste Setup meist einfacher.",
+        "windows": "Auf verwalteten Windows-Systemen können der Installer oder der erste Ollama-Start Rückfragen von Windows Defender oder der Firewall auslösen."
       },
-      "originsIntro": "Ollama erlaubt standardm\u00e4\u00dfig nur localhost-\u00e4hnliche Origins. Wenn deine Startpage unter einer anderen Origin l\u00e4uft, musst du sie explizit mit OLLAMA_ORIGINS freigeben und f\u00fcr entfernten Zugriff meist OLLAMA_HOST auf 0.0.0.0:11434 setzen.",
-      "originsIntroLocal": "Deine aktuelle Startpage-Origin ist {origin}. Localhost-\u00e4hnliche Origins sind in Ollama meistens bereits erlaubt, daher wird OLLAMA_ORIGINS f\u00fcr lokale Entwicklung oft nicht ben\u00f6tigt.",
-      "originLinux": "Wenn deine Startpage unter {pageUrl} l\u00e4uft, trage die Origin {origin} in OLLAMA_ORIGINS ein.",
-      "originMacos": "Wenn deine Startpage unter {pageUrl} l\u00e4uft, trage die Origin {origin} in OLLAMA_ORIGINS ein.",
-      "originWindows": "Wenn deine Startpage unter {pageUrl} l\u00e4uft, trage die Origin {origin} in OLLAMA_ORIGINS ein.",
-      "originLinuxLocal": "Deine aktuelle Startpage l\u00e4uft unter {pageUrl}. Wenn du sie sp\u00e4ter unter einer anderen Domain deployest, ersetze OLLAMA_ORIGINS durch diese deployte Origin.",
-      "originMacosLocal": "Deine aktuelle Startpage l\u00e4uft unter {pageUrl}. Wenn du sie sp\u00e4ter unter einer anderen Domain deployest, ersetze OLLAMA_ORIGINS durch diese deployte Origin.",
-      "originWindowsLocal": "Deine aktuelle Startpage l\u00e4uft unter {pageUrl}. Wenn du sie sp\u00e4ter unter einer anderen Domain deployest, ersetze OLLAMA_ORIGINS durch diese deployte Origin.",
-      "linuxServiceHint": "Wenn Ollama als systemd-Service l\u00e4uft, lege ein Override an, statt die eigentliche Unit-Datei direkt zu bearbeiten.",
-      "windowsEnvHint": "\u00d6ffne die Windows-Umgebungsvariablen, lege Benutzervariablen namens OLLAMA_HOST und OLLAMA_ORIGINS an und starte danach die Ollama-App neu.",
-      "restartMacos": "Starte die Ollama-App nach dem \u00c4ndern der launchctl-Umgebungsvariablen neu.",
+      "originsIntro": "Ollama erlaubt standardmäßig nur localhost-ähnliche Origins. Wenn deine Startpage unter einer anderen Origin läuft, musst du sie explizit mit OLLAMA_ORIGINS freigeben und für entfernten Zugriff meist OLLAMA_HOST auf 0.0.0.0:11434 setzen.",
+      "originsIntroLocal": "Deine aktuelle Startpage-Origin ist {origin}. Localhost-ähnliche Origins sind in Ollama meistens bereits erlaubt, daher wird OLLAMA_ORIGINS für lokale Entwicklung oft nicht benötigt.",
+      "originLinux": "Wenn deine Startpage unter {pageUrl} läuft, trage die Origin {origin} in OLLAMA_ORIGINS ein.",
+      "originMacos": "Wenn deine Startpage unter {pageUrl} läuft, trage die Origin {origin} in OLLAMA_ORIGINS ein.",
+      "originWindows": "Wenn deine Startpage unter {pageUrl} läuft, trage die Origin {origin} in OLLAMA_ORIGINS ein.",
+      "originLinuxLocal": "Deine aktuelle Startpage läuft unter {pageUrl}. Wenn du sie später unter einer anderen Domain deployest, ersetze OLLAMA_ORIGINS durch diese deployte Origin.",
+      "originMacosLocal": "Deine aktuelle Startpage läuft unter {pageUrl}. Wenn du sie später unter einer anderen Domain deployest, ersetze OLLAMA_ORIGINS durch diese deployte Origin.",
+      "originWindowsLocal": "Deine aktuelle Startpage läuft unter {pageUrl}. Wenn du sie später unter einer anderen Domain deployest, ersetze OLLAMA_ORIGINS durch diese deployte Origin.",
+      "linuxServiceHint": "Wenn Ollama als systemd-Service läuft, lege ein Override an, statt die eigentliche Unit-Datei direkt zu bearbeiten.",
+      "windowsEnvHint": "Öffne die Windows-Umgebungsvariablen, lege Benutzervariablen namens OLLAMA_HOST und OLLAMA_ORIGINS an und starte danach die Ollama-App neu.",
+      "restartMacos": "Starte die Ollama-App nach dem Ändern der launchctl-Umgebungsvariablen neu.",
       "restartWindows": "Beende und starte die Ollama-App nach dem Speichern der Umgebungsvariablen neu.",
-      "networkLinux": "Wenn Startpage in einem anderen Browser-Profil, einer VM oder einem Container l\u00e4uft, stelle sicher, dass {host} erreichbar ist und die lokale Firewall Port 11434 erlaubt.",
-      "networkMacos": "Wenn der Browser {host} nicht erreicht, pr\u00fcfe macOS-Firewall-Prompts und erlaube lokale eingehende Verbindungen f\u00fcr Ollama.",
+      "networkLinux": "Wenn Startpage in einem anderen Browser-Profil, einer VM oder einem Container läuft, stelle sicher, dass {host} erreichbar ist und die lokale Firewall Port 11434 erlaubt.",
+      "networkMacos": "Wenn der Browser {host} nicht erreicht, prüfe macOS-Firewall-Prompts und erlaube lokale eingehende Verbindungen für Ollama.",
       "networkWindows": "Wenn Startpage {host} nicht erreicht, erlaube Ollama in der Windows Defender Firewall und halte Port 11434 lokal frei.",
       "windows": {
         "downloadStep": "Lade Ollama von der offiziellen Website herunter.",
-        "runInstaller": "Starte den Installer und schlie\u00dfe den Setup-Assistenten ab."
+        "runInstaller": "Starte den Installer und schließe den Setup-Assistenten ab."
       }
     },
     "externalSources": {
@@ -571,7 +598,11 @@
     "note": "Profile speichern benannte lokale Snapshots deiner Startpage-Daten.",
     "confirmApply": "Profil \"{name}\" nutzen? Aktuelle Startpage-Daten werden ersetzt.",
     "confirmUpdate": "Profil \"{name}\" mit dem aktuellen Startpage-Stand aktualisieren?",
-    "confirmDelete": "Profil \"{name}\" löschen?"
+    "confirmDelete": "Profil \"{name}\" löschen?",
+    "created": "Profil \"{name}\" angelegt.",
+    "renamed": "Profil in \"{name}\" umbenannt.",
+    "updated": "Profil \"{name}\" aktualisiert.",
+    "deleted": "Profil \"{name}\" gelöscht."
   },
   "background": {
     "currentPreview": "Aktuelles Hintergrundbild",
@@ -714,31 +745,31 @@
           "description": "Reset auf das Standard-Setup mit Default-Kacheln und neutralen Farben."
         },
         "coding": {
-          "description": "Dark-Setup mit Dev-Kacheln, Tech-Feeds und Neon-City-Hintergrund."
+          "description": "Fokussiertes Dev-Setup mit Entwickler-Kacheln, Code-Suche, Tech-Feeds, letzten Arbeitslinks und Systemstatus."
         },
         "gaming": {
-          "description": "Gaming- und Streaming-Favoriten, Game-Feeds und ein Neon-Look."
+          "description": "Gaming- und Streaming-Setup mit Launcher-Kacheln, Game-Feeds, letzten Links und Systemstatus."
         },
         "minimal": {
-          "description": "Helles oder automatisches Theme, weiche minimale Transparenz, Fokus auf Suche und Notizen."
+          "description": "Ruhiges Daily-Setup mit Suche, Notizen, Todos, Wetter und fast keinen Zusatzpanels."
         },
         "productivity": {
-          "description": "Klarer Solid-Stil mit Todos, Notizen, System-Widgets, Office- und Dev-Kacheln sowie Tech- und News-Feeds."
+          "description": "Work-Setup mit Todos, Notizen, Office-Links, letzten Einträgen, Transport, Systemstatus und fokussierten News."
         },
         "reading": {
-          "description": "Lesemodus mit weichem Minimalstil, Pocket-, Kindle- und Feedly-Kacheln sowie newslastigen Feeds."
+          "description": "Lese-Setup mit Zitat, Notizen, Reading-Links, letzten Einträgen und kuratierten Artikel-Feeds."
         },
         "art": {
-          "description": "Visueller Stil mit Art- und Foto-Links, rotierenden Hintergründen und satten Farben."
+          "description": "Visueller Workspace mit Design-Links, Zitat, Notizen, letzten Referenzen und Kreativ-Feeds."
         },
         "privacy": {
-          "description": "Privacy-first mit DDG als Standard, schlanken Kacheln, keinen News und einem dunklen transparenten Stil."
+          "description": "Privacy-first-Setup mit DDG/SearXNG, schlanken Kacheln, keinen News und lokalen Utility-Widgets."
         },
         "student": {
-          "description": "Campus- und Study-Links, helles Kartenlayout, Notion-, Overleaf- und Moodle-Kacheln sowie Uni- und Tech-Feeds."
+          "description": "Study-Setup mit Campus-Links, Notizen, Todos, letzten Materialien, Transport und Recherche-Feeds."
         },
         "finance": {
-          "description": "Markt- und Portfolio-Kacheln, Finanz-Feeds und ein dunkler Stil mit prägnanten Akzenten."
+          "description": "Markt-Setup mit Portfolio-Links, Finanz-Feeds, Notizen, letzten Einträgen und Watchlist-Begriffen."
         }
       }
     }
@@ -767,7 +798,7 @@
     },
     "settings": {
       "localSetupLabel": "Lokales Setup",
-      "localSetupHint": "Der Startpage Agent l\u00e4uft lokal \u00fcber Ollama auf deinem Rechner. Konfiguriere Host und Modell unten.",
+      "localSetupHint": "Der Startpage Agent läuft lokal über Ollama auf deinem Rechner. Konfiguriere Host und Modell unten.",
       "modelLabel": "Modell",
       "loadModels": "Modelle laden",
       "hostLabel": "Ollama Host",
@@ -790,7 +821,12 @@
       "clearChat": "Chat leeren",
       "capabilitiesLabel": "Fähigkeiten",
       "availableToolsTitle": "Verfügbare Tools",
-      "noModels": "Keine Modelle"
+      "noModels": "Keine Modelle",
+      "sections": {
+        "runtime": "Laufzeit",
+        "behavior": "Verhalten",
+        "actions": "Aktionen & Tools"
+      }
     },
     "status": {
       "ready": "Bereit",

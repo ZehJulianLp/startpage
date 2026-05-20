@@ -2,13 +2,17 @@
   "theme": "auto",
   "ui.cardStyle": "minimal",
   "ui.font.family": "Arial",
-  "ui.clock.color": "#f8fafc",
-  "ui.search.color": "#f8fafc",
+  "ui.clock.color": "#cbd5e1",
+  "ui.search.color": "#e2e8f0",
+  "ui.accent.color": "#64748b",
+  "ui.modal.color": "#f8fafc",
+  "ui.button.color": "#475569",
+  "ui.input.color": "#e2e8f0",
   "widgets": {
-    "todo": false,
+    "todo": true,
     "notes": true,
     "tiles": false,
-    "weather": false,
+    "weather": true,
     "quote": false,
     "recent": false,
     "system": false,
@@ -16,24 +20,29 @@
     "transport": false
   },
   "widget.colors": {
-    "todo": "",
-    "notes": "",
-    "tiles": "",
-    "weather": "",
-    "quote": "",
-    "recent": "",
-    "system": "",
-    "news": "",
-    "transport": ""
+    "todo": "#475569",
+    "notes": "#64748b",
+    "tiles": "#94a3b8",
+    "weather": "#cbd5e1",
+    "transport": "#475569",
+    "quote": "#64748b",
+    "recent": "#94a3b8",
+    "system": "#cbd5e1",
+    "news": "#475569"
   },
   "tiles": [],
-  "shortcuts": {},
+  "shortcuts": {
+    "!cal": "https://calendar.google.com",
+    "!mail": "https://mail.google.com"
+  },
   "wordlist.inline": [
     "focus",
     "calm",
     "clean",
     "simple",
-    "zen"
+    "zen",
+    "note",
+    "today"
   ],
   "engines.enabled": [
     "google",

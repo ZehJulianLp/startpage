@@ -2,29 +2,33 @@
   "theme": "auto",
   "ui.cardStyle": "solid",
   "ui.font.family": "Calibri",
-  "ui.clock.color": "#0b1224",
-  "ui.search.color": "#0f172a",
+  "ui.clock.color": "#1d4ed8",
+  "ui.search.color": "#2f6df6",
+  "ui.accent.color": "#2563eb",
+  "ui.modal.color": "#0b1728",
+  "ui.button.color": "#2563eb",
+  "ui.input.color": "#102a43",
   "widgets": {
     "todo": true,
     "notes": true,
     "tiles": true,
     "weather": true,
-    "quote": true,
+    "quote": false,
     "recent": true,
     "system": true,
     "news": true,
     "transport": true
   },
   "widget.colors": {
-    "todo": "#2563eb",
-    "notes": "#22c55e",
-    "tiles": "#2563eb",
-    "weather": "#22c55e",
+    "todo": "#1d4ed8",
+    "notes": "#2563eb",
+    "tiles": "#3b82f6",
+    "weather": "#5b8def",
+    "transport": "#1d4ed8",
     "quote": "#2563eb",
-    "recent": "#22c55e",
-    "system": "#2563eb",
-    "news": "#22c55e",
-    "transport": ""
+    "recent": "#3b82f6",
+    "system": "#5b8def",
+    "news": "#1d4ed8"
   },
   "tiles": [
     {
@@ -80,7 +84,10 @@
     "kanban",
     "deadline",
     "priority",
-    "focus"
+    "focus",
+    "meeting",
+    "handoff",
+    "roadmap"
   ],
   "engines.enabled": [
     "google",

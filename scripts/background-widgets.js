@@ -788,6 +788,7 @@
     if(nameInput) nameInput.value = '';
     urlsInput.value = '';
     bgRenderSettings();
+    uiToast(t('background.collections.saved'), { type: 'success' });
   }
 
   function bgClearCollectionForm(){
@@ -832,7 +833,7 @@
         }
         return stateUpdate;
       });
-      await uiAlert(t('background.collections.saved'));
+      uiToast(t('background.collections.saved'), { type: 'success' });
     } catch (err) {
       console.error(err);
       await uiAlert(t('background.loadError'));
@@ -1601,4 +1602,3 @@
     const modal = $('#settingsModal');
     if(modal && modal.classList.contains('open')) fillSettings();
   }
-
