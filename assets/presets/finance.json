@@ -2,8 +2,12 @@
   "theme": "dark",
   "ui.cardStyle": "solid",
   "ui.font.family": "Segoe UI",
-  "ui.clock.color": "#0f172a",
-  "ui.search.color": "#0f172a",
+  "ui.clock.color": "#14532d",
+  "ui.search.color": "#713f12",
+  "ui.accent.color": "#16a34a",
+  "ui.modal.color": "#07140e",
+  "ui.button.color": "#15803d",
+  "ui.input.color": "#122018",
   "widgets": {
     "todo": true,
     "notes": true,
@@ -17,14 +21,14 @@
   },
   "widget.colors": {
     "todo": "#16a34a",
-    "notes": "#f59e0b",
-    "tiles": "#16a34a",
-    "weather": "#f59e0b",
-    "quote": "#16a34a",
-    "recent": "#f59e0b",
-    "system": "#16a34a",
-    "news": "#f59e0b",
-    "transport": ""
+    "notes": "#ca8a04",
+    "tiles": "#22c55e",
+    "weather": "#0284c7",
+    "transport": "#f97316",
+    "quote": "#84cc16",
+    "recent": "#65a30d",
+    "system": "#64748b",
+    "news": "#dc2626"
   },
   "tiles": [
     {
