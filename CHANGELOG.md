@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.16.1](https://github.com/ZehJulianLp/startpage/compare/v1.16.0...v1.16.1) (2026-05-20)
+
+
+### Bug Fixes
+
+* add Julianverse Weather link ([76bc350](https://github.com/ZehJulianLp/startpage/commit/76bc350231b37bea41bb2f9a661b83cf70b52ef4))
+
 ## [1.16.0](https://github.com/ZehJulianLp/startpage/compare/v1.15.0...v1.16.0) (2026-05-20)
 
 
