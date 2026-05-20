@@ -22,13 +22,13 @@
   "widget.colors": {
     "todo": "#16a34a",
     "notes": "#ca8a04",
-    "tiles": "#22c55e",
-    "weather": "#0284c7",
-    "transport": "#f97316",
-    "quote": "#84cc16",
-    "recent": "#65a30d",
+    "tiles": "#16a34a",
+    "weather": "#ca8a04",
+    "transport": "#64748b",
+    "quote": "#16a34a",
+    "recent": "#ca8a04",
     "system": "#64748b",
-    "news": "#dc2626"
+    "news": "#ca8a04"
   },
   "tiles": [
     {

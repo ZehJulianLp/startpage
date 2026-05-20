@@ -21,14 +21,14 @@
   },
   "widget.colors": {
     "todo": "#64748b",
-    "notes": "#64748b",
+    "notes": "#94a3b8",
     "tiles": "#64748b",
-    "weather": "#64748b",
+    "weather": "#94a3b8",
     "transport": "#64748b",
     "quote": "#64748b",
-    "recent": "#64748b",
+    "recent": "#94a3b8",
     "system": "#64748b",
-    "news": "#64748b"
+    "news": "#94a3b8"
   },
   "tiles": [],
   "shortcuts": {},

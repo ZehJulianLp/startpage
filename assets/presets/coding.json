@@ -2,7 +2,7 @@
   "theme": "dark",
   "ui.cardStyle": "solid",
   "ui.font.family": "Consolas",
-  "ui.clock.color": "#0f766e",
+  "ui.clock.color": "#0e7490",
   "ui.search.color": "#1d4ed8",
   "ui.accent.color": "#22d3ee",
   "ui.modal.color": "#06121f",
@@ -20,15 +20,15 @@
     "transport": true
   },
   "widget.colors": {
-    "todo": "#14b8a6",
-    "notes": "#38bdf8",
-    "tiles": "#6366f1",
-    "weather": "#0ea5e9",
-    "transport": "#f59e0b",
-    "quote": "#a78bfa",
-    "recent": "#22c55e",
+    "todo": "#22d3ee",
+    "notes": "#3b82f6",
+    "tiles": "#22d3ee",
+    "weather": "#3b82f6",
+    "transport": "#64748b",
+    "quote": "#22d3ee",
+    "recent": "#3b82f6",
     "system": "#64748b",
-    "news": "#06b6d4"
+    "news": "#3b82f6"
   },
   "tiles": [
     {

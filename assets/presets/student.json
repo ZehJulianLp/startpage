@@ -20,15 +20,15 @@
     "transport": true
   },
   "widget.colors": {
-    "todo": "#2563eb",
-    "notes": "#10b981",
-    "tiles": "#7c3aed",
+    "todo": "#4f46e5",
+    "notes": "#0ea5e9",
+    "tiles": "#4f46e5",
     "weather": "#0ea5e9",
-    "transport": "#f59e0b",
-    "quote": "#db2777",
-    "recent": "#22c55e",
+    "transport": "#64748b",
+    "quote": "#4f46e5",
+    "recent": "#0ea5e9",
     "system": "#64748b",
-    "news": "#ef4444"
+    "news": "#0ea5e9"
   },
   "tiles": [
     {

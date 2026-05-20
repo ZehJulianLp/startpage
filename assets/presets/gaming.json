@@ -21,14 +21,14 @@
   },
   "widget.colors": {
     "todo": "#f43f5e",
-    "notes": "#06b6d4",
-    "tiles": "#8b5cf6",
-    "weather": "#22c55e",
-    "transport": "#f97316",
-    "quote": "#ec4899",
-    "recent": "#14b8a6",
+    "notes": "#8b5cf6",
+    "tiles": "#f43f5e",
+    "weather": "#8b5cf6",
+    "transport": "#64748b",
+    "quote": "#f43f5e",
+    "recent": "#8b5cf6",
     "system": "#64748b",
-    "news": "#ef4444"
+    "news": "#8b5cf6"
   },
   "tiles": [
     {
