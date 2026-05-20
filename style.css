@@ -296,7 +296,7 @@
     .suggest-item:hover, .suggest-item.active { background: color-mix(in srgb, var(--accent) 16%, transparent); }
     .suggest-type { font-size:11px; text-transform:uppercase; color: var(--muted); letter-spacing: 0.5px; }
     .suggest-text { flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color: var(--fg); }
-    select, input[type="text"], textarea {
+    select, input[type="text"], input[type="url"], textarea {
       width: 100%;
       background: var(--input-bg);
       color: var(--fg);
@@ -499,7 +499,7 @@
       font-size: 12px;
       cursor: pointer;
     }
-    input[type="text"]::placeholder { color: var(--muted) }
+    input[type="text"]::placeholder, input[type="url"]::placeholder { color: var(--muted) }
     .search .btn-go { height: 44px; display:flex; align-items:center; justify-content:center }
 
     /* Grid */
