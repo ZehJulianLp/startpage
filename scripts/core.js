@@ -962,6 +962,44 @@
     return openUiDialog({ kind:'prompt', title: title || t('dialogs.promptTitle', null, 'Input'), message, value: value || '' });
   }
 
+  function uiToast(message, opts){
+    const text = String(message || '').trim();
+    if(!text) return null;
+    const options = opts || {};
+    const region = $('#toastRegion');
+    if(!region) return null;
+    const toast = document.createElement('div');
+    const type = ['info','success','warning','error'].includes(options.type) ? options.type : 'info';
+    const timeout = Number.isFinite(options.timeout) ? Math.max(1200, options.timeout) : 3600;
+    toast.className = 'toast';
+    toast.dataset.type = type;
+    toast.setAttribute('role', type === 'error' ? 'alert' : 'status');
+    const body = document.createElement('div');
+    body.className = 'toast-message';
+    body.textContent = text;
+    const close = document.createElement('button');
+    close.className = 'btn icon-only toast-close';
+    close.type = 'button';
+    close.setAttribute('aria-label', t('common.remove', null, 'Remove'));
+    close.textContent = '×';
+    toast.append(body, close);
+    let timer = null;
+    const remove = ()=>{
+      if(!toast.isConnected) return;
+      if(timer) clearTimeout(timer);
+      toast.classList.add('closing');
+      setTimeout(()=> toast.remove(), 130);
+    };
+    const startTimer = ()=>{ timer = setTimeout(remove, timeout); };
+    close.addEventListener('click', remove);
+    region.appendChild(toast);
+    while(region.children.length > 4) region.firstElementChild.remove();
+    startTimer();
+    toast.addEventListener('mouseenter', ()=>{ if(timer) clearTimeout(timer); });
+    toast.addEventListener('mouseleave', startTimer);
+    return toast;
+  }
+
   function openTileDialog(initial){
     const modal = $('#tileDialog');
     const title = $('#tileDialogTitle');
@@ -1445,6 +1483,7 @@
     });
     if(profile) setActiveProfile(profile.id);
     renderProfiles();
+    uiToast(t('profiles.created', { name: clean }, 'Profile "{name}" created.'), { type: 'success' });
   }
 
   async function renameProfile(id){
@@ -1458,6 +1497,7 @@
     profile.updatedAt = new Date().toISOString();
     saveProfile(profile);
     renderProfiles();
+    uiToast(t('profiles.renamed', { name: clean }, 'Profile renamed to "{name}".'), { type: 'success' });
   }
 
   async function updateProfile(id){
@@ -1469,6 +1509,7 @@
     profile.updatedAt = new Date().toISOString();
     saveProfile(profile);
     renderProfiles();
+    uiToast(t('profiles.updated', { name: profile.name }, 'Profile "{name}" updated.'), { type: 'success' });
   }
 
   async function deleteProfile(id){
@@ -1479,6 +1520,7 @@
     setProfiles(profiles.filter(item => item.id !== id));
     if(getActiveProfileId() === id) setActiveProfile('');
     renderProfiles();
+    uiToast(t('profiles.deleted', { name: profile.name }, 'Profile "{name}" deleted.'), { type: 'success' });
   }
 
   async function applyProfile(id){
@@ -1730,6 +1772,7 @@
     document.body.appendChild(a); a.click(); URL.revokeObjectURL(a.href); a.remove();
     const preview = $('#dataImportPreview');
     if(preview) preview.textContent = t('data.export.done', { count: keys.length }, 'Exported {count} entries.');
+    uiToast(t('data.export.done', { count: keys.length }, 'Exported {count} entries.'), { type: 'success' });
   }
 
   function normalizeImportedDataPayload(raw){

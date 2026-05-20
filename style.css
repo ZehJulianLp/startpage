@@ -659,6 +659,48 @@
     .ui-dialog #uiDialogInput { display:none; }
     .ui-dialog[data-kind="prompt"] #uiDialogInput { display:block; }
     .ui-dialog #uiDialogMessage { white-space: pre-wrap; line-height: 1.45; }
+    .toast-region {
+      position: fixed;
+      right: 18px;
+      bottom: 86px;
+      z-index: 1300;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: min(360px, calc(100vw - 32px));
+      pointer-events: none;
+    }
+    .toast {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: start;
+      gap: 10px;
+      padding: 12px 12px 12px 14px;
+      color: var(--fg);
+      background: color-mix(in srgb, var(--modal-bg) 92%, transparent);
+      border: 1px solid rgba(255,255,255,.12);
+      border-left: 4px solid var(--accent);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      pointer-events: auto;
+    }
+    .toast[data-type="success"] { border-left-color: var(--ok); }
+    .toast[data-type="warning"] { border-left-color: var(--warn); }
+    .toast[data-type="error"] { border-left-color: var(--danger); }
+    .toast-message {
+      min-width: 0;
+      font-size: 13px;
+      line-height: 1.4;
+      overflow-wrap: anywhere;
+    }
+    .toast-close {
+      width: 26px;
+      height: 26px;
+      padding: 0;
+      border-radius: 8px;
+      line-height: 1;
+    }
     .sheet h4 { margin:0 0 10px }
     .row { display:grid; grid-template-columns: 220px 1fr; gap:10px; align-items:center; margin-bottom:10px }
     #settingsModal .row {
@@ -1789,6 +1831,12 @@
       transform-origin: top center;
       animation: menu-in var(--anim-fast) var(--anim-ease);
     }
+    .toast {
+      animation: toast-in var(--anim-fast) var(--anim-ease) both;
+    }
+    .toast.closing {
+      animation: toast-out 120ms ease-out both;
+    }
 
     @keyframes reveal-in {
       from { opacity:0; transform: translateY(10px) scale(.99); }
@@ -1805,6 +1853,14 @@
     @keyframes settings-tab-in {
       from { opacity:0; transform: translateY(6px); filter: blur(1px); }
       to { opacity:1; transform: translateY(0); filter: blur(0); }
+    }
+    @keyframes toast-in {
+      from { opacity:0; transform: translateY(8px) scale(.98); }
+      to { opacity:1; transform: translateY(0) scale(1); }
+    }
+    @keyframes toast-out {
+      from { opacity:1; transform: translateY(0) scale(1); }
+      to { opacity:0; transform: translateY(6px) scale(.98); }
     }
     @keyframes menu-out {
       from { opacity:1; transform: translateY(0) scale(1); }

@@ -78,7 +78,8 @@
       "urlLabel": "URL",
       "save": "Save"
     },
-    "resetAria": "Reset tiles"
+    "resetAria": "Reset tiles",
+    "resetDone": "Tiles reset."
   },
   "weather": {
     "title": "Weather today",
@@ -162,7 +163,8 @@
     "title": "Recent",
     "note": "Note: Only actions from this start page (clicked tiles & searches).",
     "clear": "Clear data",
-    "clearConfirm": "Delete recent data?"
+    "clearConfirm": "Delete recent data?",
+    "clearDone": "Recent data deleted."
   },
   "system": {
     "title": "System status",
@@ -221,10 +223,13 @@
       "searxngUrlLabel": "SearXNG URL",
       "searxngUrlPlaceholder": "https://search.julianverse.de/",
       "searxngUrlNote": "Any SearXNG instance URL. Optional: use <code>{q}</code> as query placeholder; otherwise <code>?q=...</code> is appended.",
+      "searxngSaved": "SearXNG URL saved.",
       "wordlistLabel": "Autocomplete wordlist",
       "wordlistPlaceholder": "Terms line by line or comma-separated",
       "wordlistSave": "Save",
       "wordlistReset": "Clear",
+      "wordlistSaved": "Wordlist saved.",
+      "wordlistResetDone": "Wordlist cleared.",
       "wordlistNote": "Global wordlist (assets/wordlist.json) and preset wordlist are merged. Leave empty to use only the global list.",
       "shortcutsLabel": "Custom !shortcuts",
       "shortcutsPlaceholder": "{\"!etc\":\"https://julianverse.de/etc\",\"!git\":\"https://github.com/{q}\"}",
@@ -593,7 +598,11 @@
     "note": "Profiles store named local snapshots of your Startpage data.",
     "confirmApply": "Use profile \"{name}\"? Current Startpage data will be replaced.",
     "confirmUpdate": "Update profile \"{name}\" with the current Startpage state?",
-    "confirmDelete": "Delete profile \"{name}\"?"
+    "confirmDelete": "Delete profile \"{name}\"?",
+    "created": "Profile \"{name}\" created.",
+    "renamed": "Profile renamed to \"{name}\".",
+    "updated": "Profile \"{name}\" updated.",
+    "deleted": "Profile \"{name}\" deleted."
   },
   "background": {
     "currentPreview": "Current background image",
