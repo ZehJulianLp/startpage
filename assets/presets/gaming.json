@@ -12,12 +12,12 @@
     "todo": true,
     "notes": true,
     "tiles": true,
-    "weather": true,
-    "quote": true,
+    "weather": false,
+    "quote": false,
     "recent": true,
     "system": true,
     "news": true,
-    "transport": true
+    "transport": false
   },
   "widget.colors": {
     "todo": "#9f1239",
@@ -83,15 +83,16 @@
     "quest",
     "loot",
     "boss",
-    "fps"
+    "fps",
+    "patch",
+    "ranked",
+    "stream"
   ],
   "engines.enabled": [
     "google",
     "ddg",
-    "bing",
     "yt",
-    "wikipedia",
-    "maps"
+    "wikipedia"
   ],
   "news.custom": {
     "PC Gamer": "https://www.pcgamer.com/rss/",

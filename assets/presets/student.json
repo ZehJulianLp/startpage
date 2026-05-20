@@ -13,9 +13,9 @@
     "notes": true,
     "tiles": true,
     "weather": true,
-    "quote": true,
+    "quote": false,
     "recent": true,
-    "system": true,
+    "system": false,
     "news": true,
     "transport": true
   },
@@ -83,12 +83,15 @@
     "exam",
     "notes",
     "campus",
-    "library"
+    "library",
+    "paper",
+    "deadline",
+    "seminar"
   ],
   "engines.enabled": [
     "google",
     "ddg",
-    "bing",
+    "yt",
     "wikipedia",
     "maps"
   ],

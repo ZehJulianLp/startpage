@@ -13,7 +13,7 @@
     "notes": true,
     "tiles": true,
     "weather": true,
-    "quote": true,
+    "quote": false,
     "recent": true,
     "system": true,
     "news": true,
@@ -84,7 +84,10 @@
     "kanban",
     "deadline",
     "priority",
-    "focus"
+    "focus",
+    "meeting",
+    "handoff",
+    "roadmap"
   ],
   "engines.enabled": [
     "google",

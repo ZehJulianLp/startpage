@@ -80,7 +80,9 @@
     "home",
     "welcome",
     "daily",
-    "checklist"
+    "checklist",
+    "weather",
+    "notes"
   ],
   "engines.enabled": [
     "google",

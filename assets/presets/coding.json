@@ -12,12 +12,12 @@
     "todo": true,
     "notes": true,
     "tiles": true,
-    "weather": true,
-    "quote": true,
+    "weather": false,
+    "quote": false,
     "recent": true,
     "system": true,
     "news": true,
-    "transport": true
+    "transport": false
   },
   "widget.colors": {
     "todo": "#0e7490",
@@ -84,15 +84,17 @@
     "commit",
     "deploy",
     "debug",
-    "merge"
+    "merge",
+    "api",
+    "branch",
+    "release"
   ],
   "engines.enabled": [
     "google",
     "ddg",
-    "bing",
+    "searxng",
     "yt",
-    "wikipedia",
-    "maps"
+    "wikipedia"
   ],
   "news.custom": {
     "GitHub Changelog": "https://github.blog/changelog/feed/",

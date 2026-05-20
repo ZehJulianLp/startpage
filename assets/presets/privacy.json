@@ -77,10 +77,14 @@
     "tor",
     "cipher",
     "secure",
-    "anon"
+    "anon",
+    "passkey",
+    "backup",
+    "threat"
   ],
   "engines.enabled": [
     "ddg",
+    "searxng",
     "wikipedia",
     "maps"
   ],

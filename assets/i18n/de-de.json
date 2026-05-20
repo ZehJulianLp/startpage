@@ -736,31 +736,31 @@
           "description": "Reset auf das Standard-Setup mit Default-Kacheln und neutralen Farben."
         },
         "coding": {
-          "description": "Dark-Setup mit Dev-Kacheln, Tech-Feeds und Neon-City-Hintergrund."
+          "description": "Fokussiertes Dev-Setup mit Entwickler-Kacheln, Code-Suche, Tech-Feeds, letzten Arbeitslinks und Systemstatus."
         },
         "gaming": {
-          "description": "Gaming- und Streaming-Favoriten, Game-Feeds und ein Neon-Look."
+          "description": "Gaming- und Streaming-Setup mit Launcher-Kacheln, Game-Feeds, letzten Links und Systemstatus."
         },
         "minimal": {
-          "description": "Helles oder automatisches Theme, weiche minimale Transparenz, Fokus auf Suche und Notizen."
+          "description": "Ruhiges Daily-Setup mit Suche, Notizen, Todos, Wetter und fast keinen Zusatzpanels."
         },
         "productivity": {
-          "description": "Klarer Solid-Stil mit Todos, Notizen, System-Widgets, Office- und Dev-Kacheln sowie Tech- und News-Feeds."
+          "description": "Work-Setup mit Todos, Notizen, Office-Links, letzten Einträgen, Transport, Systemstatus und fokussierten News."
         },
         "reading": {
-          "description": "Lesemodus mit weichem Minimalstil, Pocket-, Kindle- und Feedly-Kacheln sowie newslastigen Feeds."
+          "description": "Lese-Setup mit Zitat, Notizen, Reading-Links, letzten Einträgen und kuratierten Artikel-Feeds."
         },
         "art": {
-          "description": "Visueller Stil mit Art- und Foto-Links, rotierenden Hintergründen und satten Farben."
+          "description": "Visueller Workspace mit Design-Links, Zitat, Notizen, letzten Referenzen und Kreativ-Feeds."
         },
         "privacy": {
-          "description": "Privacy-first mit DDG als Standard, schlanken Kacheln, keinen News und einem dunklen transparenten Stil."
+          "description": "Privacy-first-Setup mit DDG/SearXNG, schlanken Kacheln, keinen News und lokalen Utility-Widgets."
         },
         "student": {
-          "description": "Campus- und Study-Links, helles Kartenlayout, Notion-, Overleaf- und Moodle-Kacheln sowie Uni- und Tech-Feeds."
+          "description": "Study-Setup mit Campus-Links, Notizen, Todos, letzten Materialien, Transport und Recherche-Feeds."
         },
         "finance": {
-          "description": "Markt- und Portfolio-Kacheln, Finanz-Feeds und ein dunkler Stil mit prägnanten Akzenten."
+          "description": "Markt-Setup mit Portfolio-Links, Finanz-Feeds, Notizen, letzten Einträgen und Watchlist-Begriffen."
         }
       }
     }

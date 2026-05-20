@@ -12,12 +12,12 @@
     "todo": true,
     "notes": true,
     "tiles": true,
-    "weather": true,
-    "quote": true,
+    "weather": false,
+    "quote": false,
     "recent": true,
-    "system": true,
+    "system": false,
     "news": true,
-    "transport": true
+    "transport": false
   },
   "widget.colors": {
     "todo": "#14532d",
@@ -83,14 +83,16 @@
     "portfolio",
     "stocks",
     "etf",
-    "tax"
+    "tax",
+    "watchlist",
+    "earnings",
+    "macro"
   ],
   "engines.enabled": [
     "google",
     "ddg",
     "bing",
-    "wikipedia",
-    "maps"
+    "wikipedia"
   ],
   "news.custom": {
     "Bloomberg Markets": "https://feeds.bloomberg.com/markets/news.rss",

@@ -13,11 +13,11 @@
     "notes": true,
     "tiles": true,
     "weather": false,
-    "quote": false,
+    "quote": true,
     "recent": true,
     "system": false,
     "news": true,
-    "transport": true
+    "transport": false
   },
   "widget.colors": {
     "todo": "#6d28d9",
@@ -83,12 +83,14 @@
     "essay",
     "bookmark",
     "chapter",
-    "quote"
+    "quote",
+    "archive",
+    "author",
+    "review"
   ],
   "engines.enabled": [
     "google",
     "ddg",
-    "bing",
     "wikipedia"
   ],
   "news.custom": {

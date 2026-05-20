@@ -12,12 +12,12 @@
     "todo": true,
     "notes": true,
     "tiles": true,
-    "weather": true,
+    "weather": false,
     "quote": true,
     "recent": true,
-    "system": true,
+    "system": false,
     "news": true,
-    "transport": true
+    "transport": false
   },
   "widget.colors": {
     "todo": "#86198f",
@@ -83,15 +83,16 @@
     "canvas",
     "sketch",
     "gallery",
-    "color"
+    "color",
+    "moodboard",
+    "layout",
+    "reference"
   ],
   "engines.enabled": [
     "google",
     "ddg",
-    "bing",
     "yt",
-    "wikipedia",
-    "maps"
+    "wikipedia"
   ],
   "news.custom": {
     "Colossal": "https://www.thisiscolossal.com/feed/",

@@ -9,10 +9,10 @@
   "ui.button.color": "#475569",
   "ui.input.color": "#e2e8f0",
   "widgets": {
-    "todo": false,
+    "todo": true,
     "notes": true,
     "tiles": false,
-    "weather": false,
+    "weather": true,
     "quote": false,
     "recent": false,
     "system": false,
@@ -31,13 +31,18 @@
     "news": "#475569"
   },
   "tiles": [],
-  "shortcuts": {},
+  "shortcuts": {
+    "!cal": "https://calendar.google.com",
+    "!mail": "https://mail.google.com"
+  },
   "wordlist.inline": [
     "focus",
     "calm",
     "clean",
     "simple",
-    "zen"
+    "zen",
+    "note",
+    "today"
   ],
   "engines.enabled": [
     "google",
