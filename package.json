@@ -1,0 +1,12 @@
+{
+  "name": "startpage",
+  "version": "1.16.1",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "test:e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.54.1"
+  }
+}

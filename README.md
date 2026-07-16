@@ -64,6 +64,14 @@ Follow existing conventions: 2-space indentation, camelCase in JavaScript, hyphe
 - APIs and services: Open-Meteo (weather/geocoding), Startpage proxy (transport.rest + RSS), Google Fonts.
 
 ## Testing
+Install the test dependency and run the browser smoke suite:
+
+```bash
+npm install
+npx playwright install chromium
+npm test
+```
+
 Manual smoke tests:
 - Verify search/bangs/shortcuts + autocomplete.
 - Add multiple weather cities, switch active city, remove one city (`x` and middle-click), press `Enter` in weather input, then reload.
