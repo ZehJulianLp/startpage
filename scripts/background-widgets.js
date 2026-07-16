@@ -63,8 +63,8 @@
 
   function bgCssBg(url){
     if(!url) return '';
-    const safe = String(url).replace(/'/g, "\'");
-    return "background-image:url('" + safe + "')";
+    const css = "background-image:url('" + String(url).replace(/['\\\n\r]/g, '\\$&') + "')";
+    return escapeHtml(css);
   }
 
   function bgDefaultState(){
@@ -766,7 +766,7 @@
     const urlsInput = document.getElementById('bgCollectionUrls');
     if(!urlsInput) return;
     const name = nameInput ? nameInput.value.trim() : '';
-    const urls = urlsInput.value.split(/\r?\n/).map(v => v.trim()).filter(Boolean);
+    const urls = urlsInput.value.split(/\r?\n/).map(normalizeHttpUrl).filter(Boolean);
     if(!urls.length){
       await uiAlert(t('background.collections.minOneUrl'));
       return;
@@ -846,7 +846,7 @@
   async function bgHandleCustom(action){
     const input = document.getElementById('bgCustomUrl');
     if(!input) return;
-    const value = input.value.trim();
+    const value = normalizeHttpUrl(input.value);
     if(action === 'save'){
       bgUpdateState(state => { state.customUrl = value; return state; });
       bgRenderSettings();

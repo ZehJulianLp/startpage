@@ -88,7 +88,14 @@
   let searchSuggest = { box:null, items:[], active:-1 };
 
   function getShortcuts(){
-    return store.get('shortcuts', { '!etc':'https://julianverse.de/etc' });
+    const raw = store.get('shortcuts', { '!etc':'https://julianverse.de/etc' });
+    if(!raw || typeof raw !== 'object' || Array.isArray(raw)) return {};
+    const safe = {};
+    Object.entries(raw).forEach(([key, value])=>{
+      const url = normalizeHttpUrlTemplate(value);
+      if(String(key || '').startsWith('!') && url) safe[key] = url;
+    });
+    return safe;
   }
 
   function normalizeDirectUrlCandidate(raw){
@@ -350,6 +357,23 @@
 
   function escapeHtml(s){
     return s.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[m]));
+  }
+
+  function normalizeHttpUrl(value){
+    try{
+      const url = new URL(String(value || '').trim());
+      if(url.protocol !== 'http:' && url.protocol !== 'https:') return '';
+      return url.href;
+    }catch{
+      return '';
+    }
+  }
+
+  function normalizeHttpUrlTemplate(value){
+    const marker = '__STARTPAGE_QUERY__';
+    const raw = String(value || '').trim();
+    const safe = normalizeHttpUrl(raw.replaceAll('{q}', marker));
+    return safe ? safe.replaceAll(marker, '{q}') : '';
   }
 
   const OLLAMA_GUIDE_OS_IDS = ['linux', 'macos', 'windows'];
@@ -644,13 +668,15 @@
     const data = store.get('tiles', defaultTiles());
     const grid = $('#tiles'); grid.innerHTML = '';
     data.forEach((tile, i)=>{
+      const safeUrl = normalizeHttpUrl(tile && tile.url);
+      if(!safeUrl) return;
       const el = document.createElement('div');
       el.className='tile';
       el.draggable = true;
-      const host = (new URL(tile.url)).hostname;
+      const host = (new URL(safeUrl)).hostname;
       const firstLetter = host.split('.')[0][0]?.toUpperCase() || '\u00b7';
       el.innerHTML = `
-        <div class="favicon"><img alt="favicon" src="https://www.google.com/s2/favicons?sz=64&domain_url=${encodeURIComponent(tile.url)}"></div>
+        <div class="favicon"><img alt="favicon" src="https://www.google.com/s2/favicons?sz=64&domain_url=${encodeURIComponent(safeUrl)}"></div>
         <div class="meta">
           <a href="#" class="title">${escapeHtml(tile.title)}</a>
           <div class="url">${escapeHtml(host)}</div>
@@ -664,7 +690,7 @@
       const img = el.querySelector('.favicon img');
       img.addEventListener('error', ()=>{ const fv=el.querySelector('.favicon'); fv.textContent=firstLetter; img.remove(); });
 
-      el.querySelector('.title').addEventListener('click', (e)=>{ e.preventDefault(); openUrl(tile.url, tile.title); });
+      el.querySelector('.title').addEventListener('click', (e)=>{ e.preventDefault(); openUrl(safeUrl, tile.title); });
       el.querySelectorAll('button')[1].addEventListener('click', ()=>{ data.splice(i,1); store.set('tiles', data); renderTiles(); });
       el.querySelectorAll('button')[0].addEventListener('click', ()=> editTile(i));
 
@@ -695,8 +721,9 @@
     const next = await openTileDialog({ mode:'edit', title: tile.title, url: tile.url });
     if(!next) return;
     if(!next.title || !next.url) return;
-    try { new URL(next.url) } catch { await uiAlert(t('tiles.invalidUrl')); return; }
-    data[index] = { ...tile, title: next.title, url: next.url };
+    const safeUrl = normalizeHttpUrl(next.url);
+    if(!safeUrl){ await uiAlert(t('tiles.invalidUrl')); return; }
+    data[index] = { ...tile, title: next.title, url: safeUrl };
     store.set('tiles', data); renderTiles();
   }
 
@@ -704,9 +731,10 @@
     const next = await openTileDialog({ mode:'add', title:'', url:'' });
     if(!next) return;
     if(!next.title || !next.url) return;
-    try { new URL(next.url) } catch { await uiAlert(t('tiles.invalidUrl')); return; }
+    const safeUrl = normalizeHttpUrl(next.url);
+    if(!safeUrl){ await uiAlert(t('tiles.invalidUrl')); return; }
     const data = store.get('tiles', defaultTiles());
-    data.unshift({ title: next.title, url: next.url });
+    data.unshift({ title: next.title, url: safeUrl });
     store.set('tiles', data); renderTiles();
   }
 
@@ -724,13 +752,7 @@
     return Array.isArray(raw) ? raw : [];
   }
   function normalizeRecentUrl(url){
-    const raw = String(url || '').trim();
-    if(!raw) return '';
-    try {
-      return new URL(raw, window.location.href).href;
-    } catch {
-      return raw;
-    }
+    return normalizeHttpUrl(url);
   }
   function dedupeRecentEntries(list){
     if(!Array.isArray(list)) return [];
@@ -1425,9 +1447,10 @@
   async function loadNews(){
     const sources = getFeeds();
     const sourceName = store.get('news.source', Object.keys(sources)[0]);
-    const feedUrl = sources[sourceName];
+    const feedUrl = normalizeHttpUrl(sources[sourceName]);
     $('#newsList').innerHTML = `<li class="muted">${escapeHtml(t('common.loading'))}</li>`;
     try{
+      if(!feedUrl) throw new Error('Invalid feed URL');
       const res = await fetch(`https://api-startpage.julianverse.de/api/rss?url=${encodeURIComponent(feedUrl)}`);
       if(!res.ok) throw new Error(`RSS proxy error: ${res.status}`);
       const data = { contents: await res.text() };
@@ -1441,9 +1464,18 @@
       list.forEach((it,i)=>{ if(i<max){
         const title = it.querySelector('title')?.textContent?.trim() || '\u2014';
         const linkNode = it.querySelector('link');
-        const link = (linkNode?.getAttribute('href') || linkNode?.textContent || '#').trim() || '#';
+        const link = normalizeHttpUrl(linkNode?.getAttribute('href') || linkNode?.textContent || '');
         const li = document.createElement('li');
-        li.innerHTML = `<a href="${link}" target="_blank" rel="noopener">${title}</a>`;
+        if(link){
+          const anchor = document.createElement('a');
+          anchor.href = link;
+          anchor.target = '_blank';
+          anchor.rel = 'noopener noreferrer';
+          anchor.textContent = title;
+          li.appendChild(anchor);
+        } else {
+          li.textContent = title;
+        }
         ul.appendChild(li);
       }});
       if(!ul.children.length){ ul.innerHTML = `<li class="muted">${escapeHtml(t('news.noItems'))}</li>`; }

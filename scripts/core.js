@@ -2034,7 +2034,9 @@
   }
 
   function openUrl(url, title){
+    const safeUrl = normalizeHttpUrl(url);
+    if(!safeUrl) return;
     const label = title || t('common.link', null, 'Link');
-    addRecent({ title: label, url });
-    window.location.href = url;
+    addRecent({ title: label, url: safeUrl });
+    window.location.href = safeUrl;
   }

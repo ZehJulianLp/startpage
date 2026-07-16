@@ -279,7 +279,7 @@
     const save = ()=>{
       const nextKey = keyInput.value.trim();
       const nextValue = valueInput.value.trim();
-      options.update(key, nextKey, nextValue);
+      void options.update(key, nextKey, nextValue);
     };
     keyInput.addEventListener('change', save);
     valueInput.addEventListener('change', save);
@@ -352,7 +352,7 @@
 
   function updateShortcutEntry(oldKey, newKey, url){
     const key = String(newKey || '').trim();
-    const value = String(url || '').trim();
+    const value = normalizeHttpUrlTemplate(url);
     if(!key || !value) return syncShortcutSettingsUi();
     const shortcuts = normalizeSettingsObject(getShortcuts());
     if(oldKey !== key) delete shortcuts[oldKey];
@@ -382,15 +382,25 @@
   async function applyShortcutJsonEditor(){
     const value = await parseSettingsJsonTextarea('#shortcutConfig', 'settings.search.invalidShortcuts', 'Invalid shortcuts JSON');
     if(!value) return;
-    store.set('shortcuts', value);
+    const safeShortcuts = {};
+    Object.entries(value).forEach(([key, url])=>{
+      const safeUrl = normalizeHttpUrlTemplate(url);
+      const safeKey = String(key || '').trim();
+      if(safeKey && safeUrl) safeShortcuts[safeKey.startsWith('!') ? safeKey : `!${safeKey}`] = safeUrl;
+    });
+    store.set('shortcuts', safeShortcuts);
     syncShortcutSettingsUi();
     updateSearchSuggest();
   }
 
-  function updateFeedEntry(oldKey, newKey, url){
+  async function updateFeedEntry(oldKey, newKey, url){
     const key = String(newKey || '').trim();
-    const value = String(url || '').trim();
-    if(!key || !value) return syncFeedSettingsUi();
+    const value = normalizeHttpUrl(url);
+    if(!key || !value){
+      syncFeedSettingsUi();
+      if(key || String(url || '').trim()) await uiAlert(t('settings.search.invalidFeeds', null, 'Invalid feed URL'));
+      return;
+    }
     const feeds = normalizeSettingsObject(store.get('news.custom', {}));
     if(oldKey !== key) delete feeds[oldKey];
     feeds[key] = value;
@@ -413,7 +423,7 @@
     const nameInput = $('#feedNameInput');
     const urlInput = $('#feedUrlInput');
     if(!nameInput || !urlInput) return;
-    updateFeedEntry('', nameInput.value, urlInput.value);
+    void updateFeedEntry('', nameInput.value, urlInput.value);
     nameInput.value = '';
     urlInput.value = '';
   }
@@ -421,7 +431,12 @@
   async function applyFeedJsonEditor(){
     const value = await parseSettingsJsonTextarea('#feedsConfig', 'settings.search.invalidFeeds', 'Invalid feeds JSON');
     if(!value) return;
-    store.set('news.custom', value);
+    const safeFeeds = {};
+    Object.entries(value).forEach(([name, url])=>{
+      const safeUrl = normalizeHttpUrl(url);
+      if(String(name || '').trim() && safeUrl) safeFeeds[String(name).trim()] = safeUrl;
+    });
+    store.set('news.custom', safeFeeds);
     syncFeedSettingsUi();
     fillNewsSources();
     loadNews();
