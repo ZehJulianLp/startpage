@@ -60,7 +60,7 @@
           fillSettings();
           return;
         }
-        loadWeather();
+        if(isWidgetEnabled('weather')) loadWeather();
         fillSettings();
       });
     }
@@ -295,7 +295,6 @@
 
     // Tiles
     if(!localStorage.getItem('tiles')) store.set('tiles', defaultTiles());
-    renderTiles();
     $('#addTile').addEventListener('click', addTile);
     $('#resetTiles').addEventListener('click', async ()=>{ if(await uiConfirm(t('tiles.resetConfirm'))){ store.set('tiles', defaultTiles()); renderTiles(); uiToast(t('tiles.resetDone', null, 'Tiles reset.'), { type: 'success' }); }});
 
@@ -314,14 +313,6 @@
         $('#setCity').click();
       });
     }
-    loadWeather();
-
-    // Transport
-    initTransport();
-
-    // Quote
-    loadQuote();
-
     // Recent
     const recentMaxSetting = $('#recentMaxSetting');
     if(recentMaxSetting){
@@ -364,8 +355,6 @@
         uiToast(t('recent.clearDone', null, 'Recent data deleted.'), { type: 'success' });
       });
     }
-    renderRecent();
-
     // Background
     bgInitBackgroundEngine();
     applyBackground();
@@ -373,11 +362,9 @@
     if(tintBtn) tintBtn.addEventListener('click', e=>{ e.preventDefault(); tintWidgets(); });
 
     // System
-    renderSystem();
     if(navigator.connection && 'onchange' in navigator.connection){ navigator.connection.addEventListener('change', renderSystem); }
 
     // News
-    fillNewsSources(); loadNews();
     $('#newsSource').addEventListener('change', e=>{ store.set('news.source', e.target.value); loadNews(); });
     $('#refreshNews').addEventListener('click', loadNews);
 

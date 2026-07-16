@@ -1351,10 +1351,40 @@
   function widgetDefaults(){
     return { todo:true, notes:true, tiles:true, weather:true, transport:true, quote:true, recent:true, system:true, news:true };
   }
+  const widgetRuntimeInitialized = {};
+  function getWidgetConfig(){
+    const defaults = widgetDefaults();
+    const stored = store.get('widgets', {});
+    return { ...defaults, ...(stored && typeof stored === 'object' ? stored : {}) };
+  }
+  function isWidgetEnabled(key){
+    return !!getWidgetConfig()[key];
+  }
+  function initializeWidgetRuntime(key){
+    const first = !widgetRuntimeInitialized[key];
+    widgetRuntimeInitialized[key] = true;
+    if(key === 'tiles') renderTiles();
+    else if(key === 'weather') void loadWeather();
+    else if(key === 'transport') first ? initTransport() : void loadTransportDepartures();
+    else if(key === 'quote') loadQuote();
+    else if(key === 'recent') renderRecent();
+    else if(key === 'system') renderSystem();
+    else if(key === 'news'){
+      fillNewsSources();
+      void loadNews();
+    }
+  }
   function applyWidgets(){
-    const conf = store.get('widgets', widgetDefaults());
+    const conf = getWidgetConfig();
     const map = { todo:'#todo', notes:'#notes', tiles:'#tilesCard', weather:'#weather', transport:'#transportCard', quote:'#quoteCard', recent:'#recent', system:'#systemCard', news:'#newsCard' };
-    Object.entries(map).forEach(([k,sel])=>{ const el=$(sel); if(el) el.style.display = conf[k] ? '' : 'none'; });
+    Object.entries(map).forEach(([k,sel])=>{
+      const el = $(sel);
+      if(!el) return;
+      const wasHidden = el.style.display === 'none';
+      const enabled = !!conf[k];
+      el.style.display = enabled ? '' : 'none';
+      if(enabled && (!widgetRuntimeInitialized[k] || wasHidden)) initializeWidgetRuntime(k);
+    });
   }
 
   // ===== Widget colors

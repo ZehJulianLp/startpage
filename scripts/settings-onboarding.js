@@ -136,7 +136,7 @@
         const id = `w_${k}`;
         const label = document.createElement('label'); label.className = 'settings-check-card';
         const cb = document.createElement('input'); cb.type='checkbox'; cb.id=id; cb.checked = conf[k];
-        cb.addEventListener('change', ()=>{ const cur=store.get('widgets', defaults); cur[k]=cb.checked; store.set('widgets', cur); applyWidgets(); });
+        cb.addEventListener('change', ()=>{ const cur=getWidgetConfig(); cur[k]=cb.checked; store.set('widgets', cur); applyWidgets(); });
         label.appendChild(cb); label.appendChild(document.createTextNode(t(`widgets.${k}`, null, k)));
         wrap.appendChild(label);
       });
@@ -407,7 +407,7 @@
     store.set('news.custom', feeds);
     syncFeedSettingsUi();
     fillNewsSources();
-    loadNews();
+    if(isWidgetEnabled('news')) loadNews();
   }
 
   function removeFeedEntry(key){
@@ -416,7 +416,7 @@
     store.set('news.custom', feeds);
     syncFeedSettingsUi();
     fillNewsSources();
-    loadNews();
+    if(isWidgetEnabled('news')) loadNews();
   }
 
   function addFeedEntry(){
@@ -439,7 +439,7 @@
     store.set('news.custom', safeFeeds);
     syncFeedSettingsUi();
     fillNewsSources();
-    loadNews();
+    if(isWidgetEnabled('news')) loadNews();
   }
 
   function selectSettingsTab(name){
@@ -1010,7 +1010,7 @@
             store.set('transport.query', val);
             const transportQuery = $('#transportQuery');
             if(transportQuery) transportQuery.value = val;
-            initTransport();
+            loadTransportDepartures();
           }
         } else {
           store.set('transport.default', null);
@@ -1022,7 +1022,7 @@
         const val = city.value.trim();
         if(val){
           const entry = upsertWeatherEntry(val);
-          loadWeather(entry ? entry.id : undefined);
+          if(isWidgetEnabled('weather')) loadWeather(entry ? entry.id : undefined);
         }
       }
     }
