@@ -57,7 +57,8 @@
     "clearDoneTitle": "Remove completed",
     "clearDone": "✓ clear",
     "doneAria": "Done",
-    "prompt": "Todo"
+    "prompt": "Todo",
+    "reorderAria": "Reorder {task} with Alt and arrow keys"
   },
   "notes": {
     "title": "Notes",
@@ -81,7 +82,8 @@
       "save": "Save"
     },
     "resetAria": "Reset tiles",
-    "resetDone": "Tiles reset."
+    "resetDone": "Tiles reset.",
+    "reorderAria": "Reorder {tile} with Alt and arrow keys"
   },
   "weather": {
     "title": "Weather today",

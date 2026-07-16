@@ -57,7 +57,8 @@
     "clearDoneTitle": "Erledigte entfernen",
     "clearDone": "✓ löschen",
     "doneAria": "Fertig",
-    "prompt": "Todo"
+    "prompt": "Todo",
+    "reorderAria": "{task} mit Alt und Pfeiltasten verschieben"
   },
   "notes": {
     "title": "Notizen",
@@ -81,7 +82,8 @@
       "save": "Speichern"
     },
     "resetAria": "Kacheln zurücksetzen",
-    "resetDone": "Kacheln zurückgesetzt."
+    "resetDone": "Kacheln zurückgesetzt.",
+    "reorderAria": "{tile} mit Alt und Pfeiltasten verschieben"
   },
   "weather": {
     "title": "Wetter heute",

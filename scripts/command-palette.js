@@ -476,6 +476,7 @@
       applyFilter();
     }
     modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
+    syncModalOpenState();
     input.value=''; input.focus(); render();
     input.addEventListener('input', applyFilter);
     input.addEventListener('keydown', onKey);

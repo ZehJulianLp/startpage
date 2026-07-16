@@ -150,9 +150,9 @@
 
   <!-- Settings Modal -->
   <div class="modal" id="settingsModal" aria-hidden="true">
-    <div class="sheet">
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="settingsDialogTitle">
       <div class="settings-header">
-        <h4 data-i18n="settings.title">Einstellungen</h4>
+        <h4 id="settingsDialogTitle" data-i18n="settings.title">Einstellungen</h4>
         <div class="settings-search">
           <input id="settingsSearch" type="text" placeholder="Einstellungen durchsuchen…" data-i18n-placeholder="settings.searchSettingsPlaceholder" autocomplete="off" />
         </div>
@@ -581,10 +581,10 @@
 
   <!-- Onboarding Modal -->
   <div class="modal" id="onboarding" aria-hidden="true">
-    <div class="sheet onboarding-sheet">
+    <div class="sheet onboarding-sheet" role="dialog" aria-modal="true" aria-labelledby="onboardingDialogTitle">
       <div class="onb-header">
         <div>
-          <h4 data-i18n="onboarding.title">Setup starten</h4>
+          <h4 id="onboardingDialogTitle" data-i18n="onboarding.title">Setup starten</h4>
           <div class="muted onb-subtitle" data-i18n="onboarding.subtitle">Richte deine Startpage in wenigen Schritten ein.</div>
           <div class="muted" id="onbProgressLabel" data-i18n="onboarding.progress">Schritt 1 von 5</div>
         </div>
@@ -709,7 +709,7 @@
 
   <!-- Command Palette -->
   <div class="modal" id="palette" aria-hidden="true">
-    <div class="sheet">
+    <div class="sheet" role="dialog" aria-modal="true" aria-label="Command Palette">
       <input class="palette-input" id="paletteInput" type="text" placeholder="Befehl oder Favorit suchen… (Strg/?+K)" data-i18n-placeholder="palette.placeholder" autocomplete="off" aria-controls="paletteList" aria-autocomplete="list" aria-activedescendant="" />
       <ul id="paletteList" class="palette-list" role="listbox"></ul>
     </div>

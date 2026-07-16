@@ -269,10 +269,64 @@
   let settingsSearchRestore = [];
   const UI_MENU_CLOSE_MS = 160;
   const UI_MODAL_CLOSE_MS = 110;
+  const modalFocusOrigins = new WeakMap();
+  let modalFocusTrapBound = false;
+
+  function modalFocusableElements(modal){
+    if(!modal) return [];
+    return $$('button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])', modal)
+      .filter(el=> el.offsetParent !== null && !el.hidden);
+  }
+
+  function trapModalFocus(event){
+    if(event.key !== 'Tab') return;
+    const open = $$('.modal.open');
+    const modal = open[open.length - 1];
+    if(!modal) return;
+    const focusable = modalFocusableElements(modal);
+    if(!focusable.length){
+      event.preventDefault();
+      const sheet = $('.sheet', modal);
+      if(sheet) sheet.focus();
+      return;
+    }
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if(event.shiftKey && document.activeElement === first){ event.preventDefault(); last.focus(); }
+    else if(!event.shiftKey && document.activeElement === last){ event.preventDefault(); first.focus(); }
+  }
 
   function syncModalOpenState(){
     const anyOpen = $$('.modal.open, .modal.closing').length > 0;
     document.body.classList.toggle('modal-open', anyOpen);
+    $$('.modal').forEach(modal=>{
+      const active = modal.classList.contains('open');
+      const closing = modal.classList.contains('closing');
+      if(active && modal.dataset.modalA11yOpen !== '1'){
+        modal.dataset.modalA11yOpen = '1';
+        modalFocusOrigins.set(modal, document.activeElement);
+        const sheet = $('.sheet', modal);
+        if(sheet){
+          if(!sheet.hasAttribute('role')) sheet.setAttribute('role', 'dialog');
+          sheet.setAttribute('aria-modal', 'true');
+          if(!sheet.hasAttribute('tabindex')) sheet.tabIndex = -1;
+        }
+        setTimeout(()=>{
+          if(!modal.classList.contains('open') || modal.contains(document.activeElement)) return;
+          const focusable = modalFocusableElements(modal);
+          (focusable[0] || sheet)?.focus();
+        }, 0);
+      } else if(!active && !closing && modal.dataset.modalA11yOpen === '1'){
+        delete modal.dataset.modalA11yOpen;
+        const origin = modalFocusOrigins.get(modal);
+        modalFocusOrigins.delete(modal);
+        if(origin && origin.isConnected) setTimeout(()=> origin.focus({ preventScroll:true }), 0);
+      }
+    });
+    if(!modalFocusTrapBound){
+      document.addEventListener('keydown', trapModalFocus);
+      modalFocusTrapBound = true;
+    }
   }
 
   function closeModalAnimated(modal, done){

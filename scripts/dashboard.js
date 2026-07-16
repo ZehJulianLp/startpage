@@ -278,6 +278,8 @@
       const el = document.createElement('div');
       el.className = 'todo-item' + (item.done ? ' done' : '');
       el.draggable = true;
+      el.tabIndex = 0;
+      el.setAttribute('aria-label', t('todo.reorderAria', { task:item.text }, `Reorder ${item.text} with Alt and arrow keys`));
       el.innerHTML = `
         <input type="checkbox" ${item.done?'checked':''} aria-label="${escapeHtml(t('todo.doneAria'))}">
         <div class="title">${escapeHtml(item.text)}</div>
@@ -304,6 +306,17 @@
         list.splice(to, 0, moved);
         store.set('todos', list);
         renderTodos();
+      });
+      el.addEventListener('keydown', e=>{
+        if(e.target !== el || !e.altKey || !['ArrowUp','ArrowDown'].includes(e.key)) return;
+        e.preventDefault();
+        const to = Math.max(0, Math.min(list.length - 1, i + (e.key === 'ArrowDown' ? 1 : -1)));
+        if(to === i) return;
+        list.splice(to, 0, list.splice(i, 1)[0]);
+        store.set('todos', list);
+        renderTodos();
+        const next = $('#todoList').children[to];
+        if(next) next.focus();
       });
       wrap.appendChild(el);
     });
@@ -673,6 +686,8 @@
       const el = document.createElement('div');
       el.className='tile';
       el.draggable = true;
+      el.tabIndex = 0;
+      el.setAttribute('aria-label', t('tiles.reorderAria', { tile:tile.title }, `Reorder ${tile.title} with Alt and arrow keys`));
       const host = (new URL(safeUrl)).hostname;
       const firstLetter = host.split('.')[0][0]?.toUpperCase() || '\u00b7';
       el.innerHTML = `
@@ -708,6 +723,18 @@
         const item = data.splice(from,1)[0];
         data.splice(to,0,item);
         store.set('tiles', data); renderTiles();
+      });
+      el.addEventListener('keydown', e=>{
+        if(e.target !== el || !e.altKey || !['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)) return;
+        e.preventDefault();
+        const direction = ['ArrowRight','ArrowDown'].includes(e.key) ? 1 : -1;
+        const to = Math.max(0, Math.min(data.length - 1, i + direction));
+        if(to === i) return;
+        data.splice(to, 0, data.splice(i, 1)[0]);
+        store.set('tiles', data);
+        renderTiles();
+        const next = $('#tiles').children[to];
+        if(next) next.focus();
       });
 
       grid.appendChild(el);

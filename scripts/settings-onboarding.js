@@ -501,8 +501,13 @@
       {n:'data', el: $('#tab-data')},
       {n:'guide', el: $('#tab-guide')},
     ];
-    buttons.forEach(b=>{ const on = b.getAttribute('data-tab')===name; b.classList.toggle('active', on); b.setAttribute('aria-selected', on?'true':'false'); });
-    panels.forEach(p=>{ if(p.el) p.el.classList.toggle('active', p.n===name); });
+    buttons.forEach(b=>{
+      const on = b.getAttribute('data-tab')===name;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-selected', on?'true':'false');
+      b.tabIndex = on ? 0 : -1;
+    });
+    panels.forEach(p=>{ if(p.el){ p.el.classList.toggle('active', p.n===name); p.el.hidden = p.n !== name; } });
     store.set('settings.tab', name);
     if(name === 'background') bgRenderSettings();
   }
@@ -756,12 +761,30 @@
 
   function initSettingsTabs(){
     const root = $('#settingsModal'); if(!root) return;
-    $$('.tab-btn', root).forEach(btn=>{
+    const buttons = $$('.tab-btn', root).filter(btn=> btn.style.display !== 'none');
+    buttons.forEach((btn, index)=>{
+      const name = btn.getAttribute('data-tab');
+      const panel = $(`#tab-${name}`);
+      const buttonId = `settingsTab-${name}`;
+      btn.id = btn.id || buttonId;
+      btn.setAttribute('aria-controls', `tab-${name}`);
+      if(panel){ panel.setAttribute('role', 'tabpanel'); panel.setAttribute('aria-labelledby', btn.id); }
       if(btn.dataset.bound === '1') return;
       btn.dataset.bound = '1';
       btn.addEventListener('click', ()=>{
         selectSettingsTab(btn.getAttribute('data-tab'));
         if(settingsSearchQuery) applySettingsSearch();
+      });
+      btn.addEventListener('keydown', event=>{
+        if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) return;
+        event.preventDefault();
+        let next = index;
+        if(event.key === 'Home') next = 0;
+        else if(event.key === 'End') next = buttons.length - 1;
+        else next = (index + (event.key === 'ArrowRight' ? 1 : -1) + buttons.length) % buttons.length;
+        const target = buttons[next];
+        selectSettingsTab(target.getAttribute('data-tab'));
+        target.focus();
       });
     });
   }
