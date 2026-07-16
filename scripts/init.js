@@ -356,7 +356,7 @@
       });
     }
     // Background
-    bgInitBackgroundEngine();
+    await bgInitBackgroundEngine();
     applyBackground();
     const tintBtn = document.getElementById('bgActionTintWidgets');
     if(tintBtn) tintBtn.addEventListener('click', e=>{ e.preventDefault(); tintWidgets(); });

@@ -60,7 +60,7 @@ Then open: `http://localhost:4173`.
 Follow existing conventions: 2-space indentation, camelCase in JavaScript, hyphen-case in CSS. Keep the script include order in `index.html` stable unless dependencies are moved deliberately.
 
 ## Data and Integrations
-- Storage: localStorage only.
+- Storage: localStorage for settings and widget data; IndexedDB for uploaded and cached background images.
 - APIs and services: Open-Meteo (weather/geocoding), Startpage proxy (transport.rest + RSS), Google Fonts.
 
 ## Testing

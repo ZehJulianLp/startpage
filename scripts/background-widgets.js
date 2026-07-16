@@ -49,6 +49,8 @@
     { id: 'night', label: 'Night 21-05' }
   ];
   const BG_MAX_UPLOADS = 8;
+  const BG_ASSET_DB = 'startpage-assets';
+  const BG_ASSET_STORE = 'backgrounds';
   const BG_ACCENT_DEFAULTS = {
     dark: { primary: '#7c5cff', secondary: '#54d6ff' },
     light: { primary: '#5b43ff', secondary: '#17a4da' }
@@ -56,6 +58,63 @@
   let bgCurrentAccent = null;
   let bgAccentCache = {};
   let bgRotationTimer = null;
+  let bgAssetDbPromise = null;
+  const bgAssetUrls = {};
+
+  function bgOpenAssetDb(){
+    if(bgAssetDbPromise) return bgAssetDbPromise;
+    bgAssetDbPromise = new Promise((resolve, reject)=>{
+      if(!window.indexedDB){ reject(new Error('IndexedDB unavailable')); return; }
+      const request = indexedDB.open(BG_ASSET_DB, 1);
+      request.onupgradeneeded = ()=>{
+        const db = request.result;
+        if(!db.objectStoreNames.contains(BG_ASSET_STORE)) db.createObjectStore(BG_ASSET_STORE);
+      };
+      request.onsuccess = ()=> resolve(request.result);
+      request.onerror = ()=> reject(request.error || new Error('IndexedDB open failed'));
+    });
+    return bgAssetDbPromise;
+  }
+
+  async function bgAssetPut(key, value){
+    const db = await bgOpenAssetDb();
+    await new Promise((resolve, reject)=>{
+      const tx = db.transaction(BG_ASSET_STORE, 'readwrite');
+      tx.objectStore(BG_ASSET_STORE).put(value, key);
+      tx.oncomplete = resolve;
+      tx.onerror = ()=> reject(tx.error || new Error('IndexedDB write failed'));
+      tx.onabort = ()=> reject(tx.error || new Error('IndexedDB write aborted'));
+    });
+    bgAssetUrls[key] = value;
+  }
+
+  async function bgAssetGet(key){
+    if(!key) return '';
+    if(bgAssetUrls[key]) return bgAssetUrls[key];
+    const db = await bgOpenAssetDb();
+    const value = await new Promise((resolve, reject)=>{
+      const tx = db.transaction(BG_ASSET_STORE, 'readonly');
+      const request = tx.objectStore(BG_ASSET_STORE).get(key);
+      request.onsuccess = ()=> resolve(request.result || '');
+      request.onerror = ()=> reject(request.error || new Error('IndexedDB read failed'));
+    });
+    if(value) bgAssetUrls[key] = value;
+    return value;
+  }
+
+  async function bgAssetDelete(key){
+    if(!key) return;
+    delete bgAssetUrls[key];
+    try{
+      const db = await bgOpenAssetDb();
+      await new Promise((resolve, reject)=>{
+        const tx = db.transaction(BG_ASSET_STORE, 'readwrite');
+        tx.objectStore(BG_ASSET_STORE).delete(key);
+        tx.oncomplete = resolve;
+        tx.onerror = ()=> reject(tx.error || new Error('IndexedDB delete failed'));
+      });
+    }catch{}
+  }
 
   function bgCloneRef(ref){
     return ref ? JSON.parse(JSON.stringify(ref)) : null;
@@ -242,11 +301,12 @@
     state.uploads = Array.isArray(raw.uploads) ? raw.uploads.filter(Boolean).map(u => ({
       id: String(u.id || 'upload-' + Date.now()),
       name: typeof u.name === 'string' ? u.name : 'Upload',
+      assetKey: typeof u.assetKey === 'string' ? u.assetKey : '',
       dataUrl: typeof u.dataUrl === 'string' ? u.dataUrl : '',
       width: Number(u.width) || 0,
       height: Number(u.height) || 0,
       created: Number(u.created) || Date.now()
-    })).filter(u => u.dataUrl).slice(0, BG_MAX_UPLOADS) : [];
+    })).filter(u => u.assetKey || u.dataUrl).slice(0, BG_MAX_UPLOADS) : [];
     state.favorites = Array.isArray(raw.favorites) ? raw.favorites.map(bgCloneRef).filter(Boolean).slice(0, 32) : base.favorites;
     state.collections = Array.isArray(raw.collections) ? raw.collections.map(col => ({
       id: String(col.id || 'col-' + Math.random().toString(36).slice(2,8)),
@@ -307,6 +367,40 @@
     return normalized;
   }
 
+  async function bgHydrateAssets(){
+    const state = bgLoadState();
+    let changed = false;
+    for(const upload of state.uploads || []){
+      if(upload.dataUrl){
+        const key = upload.assetKey || `upload:${upload.id}`;
+        try{
+          await bgAssetPut(key, upload.dataUrl);
+          upload.assetKey = key;
+          upload.dataUrl = '';
+          changed = true;
+        }catch{}
+      } else if(upload.assetKey){
+        try { await bgAssetGet(upload.assetKey); } catch {}
+      }
+    }
+    for(const collection of state.collections || []){
+      for(const [url, stored] of Object.entries(collection.cache || {})){
+        if(typeof stored !== 'string' || !stored) continue;
+        if(stored.startsWith('data:')){
+          const key = `collection:${collection.id}:${Math.random().toString(36).slice(2,10)}`;
+          try{
+            await bgAssetPut(key, stored);
+            collection.cache[url] = key;
+            changed = true;
+          }catch{}
+        } else {
+          try { await bgAssetGet(stored); } catch {}
+        }
+      }
+    }
+    if(changed) bgSaveState(state);
+  }
+
   function bgEncodeRef(ref){
     if(!ref || !ref.type) return '';
     if(ref.type === 'preset') return 'preset::' + (ref.id || '');
@@ -348,9 +442,11 @@
     if(ref.type === 'upload'){
       const upload = (state.uploads || []).find(u => u.id === ref.id);
       if(!upload) return null;
+      const assetUrl = (upload.assetKey && bgAssetUrls[upload.assetKey]) || upload.dataUrl;
+      if(!assetUrl) return null;
       return {
         ref: { type: 'upload', id: upload.id },
-        url: upload.dataUrl,
+        url: assetUrl,
         title: upload.name || 'Upload',
         subtitle: 'Upload',
         meta: upload.width && upload.height ? Math.round(upload.width) + 'x' + Math.round(upload.height) : ''
@@ -361,7 +457,8 @@
       if(!collection || !collection.urls.length) return null;
       const url = ref.url || collection.urls[0];
       if(!url) return null;
-      const cached = collection.cache && collection.cache[url];
+      const cachedRef = collection.cache && collection.cache[url];
+      const cached = cachedRef && (String(cachedRef).startsWith('data:') ? cachedRef : bgAssetUrls[cachedRef]);
       return {
         ref: { type: 'collection', collectionId: collection.id, url },
         url: cached || url,
@@ -492,7 +589,7 @@
       const isActive = key === activeKey;
       const size = upload.width && upload.height ? Math.round(upload.width) + 'x' + Math.round(upload.height) : '';
       return '<div class="bg-card' + (isActive ? ' highlight' : '') + '">' +
-        '<div class="bg-thumb" style="' + bgCssBg(upload.dataUrl) + '"></div>' +
+        '<div class="bg-thumb" style="' + bgCssBg((upload.assetKey && bgAssetUrls[upload.assetKey]) || upload.dataUrl) + '"></div>' +
           '<div class="bg-card-title">' + escapeHtml(upload.name || t('background.upload')) + '</div>' +
           '<div class="bg-card-meta">' + escapeHtml(size) + '</div>' +
           '<div class="bg-card-actions">' +
@@ -517,7 +614,8 @@
     if(!panel) return;
     const cards = (state.collections || []).map(col => {
       const count = col.urls.length;
-      const previewUrl = col.urls.length ? (col.cache && col.cache[col.urls[0]]) || col.urls[0] : '';
+      const cachedRef = col.urls.length && col.cache ? col.cache[col.urls[0]] : '';
+      const previewUrl = col.urls.length ? (cachedRef && (String(cachedRef).startsWith('data:') ? cachedRef : bgAssetUrls[cachedRef])) || col.urls[0] : '';
       return '<div class="bg-collection" data-collection="' + col.id + '">' +
         '<div class="bg-collection-header">' +
           '<div>' +
@@ -745,10 +843,13 @@
     bgRenderSettings();
   }
 
-  function bgDeleteUpload(id){
+  async function bgDeleteUpload(id){
     if(!id) return;
     let removedActive = false;
+    let assetKey = '';
     bgUpdateState(state => {
+      const upload = (state.uploads || []).find(u => u.id === id);
+      assetKey = upload && upload.assetKey ? upload.assetKey : '';
       state.uploads = (state.uploads || []).filter(u => u.id !== id);
       state.history = (state.history || []).filter(r => !(r && r.type === 'upload' && r.id === id));
       if(state.active && state.active.type === 'upload' && state.active.id === id){
@@ -757,6 +858,7 @@
       }
       return state;
     });
+    await bgAssetDelete(assetKey);
     if(removedActive) bgApply(null, { skipHistory: true });
     bgRenderSettings();
   }
@@ -820,10 +922,15 @@
     const button = document.querySelector('[data-action="bg-collection-cache"][data-collection="' + id + '"]');
     if(button) button.disabled = true;
     const cached = {};
+    const previousAssetKeys = Object.values(collection.cache || {}).filter(value=> typeof value === 'string' && !value.startsWith('data:'));
     try {
       for(const url of collection.urls){
         const data = await bgFetchImageData(url);
-        if(data) cached[url] = data;
+        if(data){
+          const key = `collection:${collection.id}:${Math.random().toString(36).slice(2,10)}`;
+          await bgAssetPut(key, data);
+          cached[url] = key;
+        }
       }
       bgUpdateState(stateUpdate => {
         const target = stateUpdate.collections.find(c => c.id === id);
@@ -833,6 +940,8 @@
         }
         return stateUpdate;
       });
+      const retained = new Set(Object.values(cached));
+      await Promise.all(previousAssetKeys.filter(key=> !retained.has(key)).map(bgAssetDelete));
       uiToast(t('background.collections.saved'), { type: 'success' });
     } catch (err) {
       console.error(err);
@@ -911,7 +1020,7 @@
       return;
     }
     if(action === 'bg-delete-upload'){
-      bgDeleteUpload(target.dataset.upload);
+      await bgDeleteUpload(target.dataset.upload);
       return;
     }
     if(action === 'bg-upload-browse'){
@@ -937,6 +1046,8 @@
     }
     if(action === 'bg-collection-remove'){
       const id = target.dataset.collection;
+      const current = bgLoadState().collections.find(c => c.id === id);
+      const assetKeys = current ? Object.values(current.cache || {}).filter(value=> typeof value === 'string' && !value.startsWith('data:')) : [];
       bgUpdateState(state => {
         state.collections = (state.collections || []).filter(c => c.id !== id);
         state.history = (state.history || []).filter(ref => !(ref && ref.type === 'collection' && ref.collectionId === id));
@@ -945,6 +1056,7 @@
         }
         return state;
       });
+      await Promise.all(assetKeys.map(bgAssetDelete));
       bgApply(null, { skipHistory: true });
       bgRenderSettings();
       return;
@@ -1065,19 +1177,30 @@
     const dataUrl = await bgReadFileAsDataUrl(file);
     const img = await bgLoadImage(dataUrl);
     const scaled = bgResizeImage(img);
+    const id = 'upload-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2,6);
+    const assetKey = `upload:${id}`;
+    let storedInDb = false;
+    try{
+      await bgAssetPut(assetKey, scaled.dataUrl);
+      storedInDb = true;
+    }catch{}
     const entry = {
-      id: 'upload-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2,6),
+      id,
       name: file.name ? file.name.replace(/\.[^.]+$/, '') : 'Upload',
-      dataUrl: scaled.dataUrl,
+      assetKey: storedInDb ? assetKey : '',
+      dataUrl: storedInDb ? '' : scaled.dataUrl,
       width: scaled.width,
       height: scaled.height,
       created: Date.now()
     };
+    let evictedAssetKeys = [];
     bgUpdateState(state => {
       state.uploads.unshift(entry);
+      evictedAssetKeys = state.uploads.slice(BG_MAX_UPLOADS).map(item=> item.assetKey).filter(Boolean);
       state.uploads = state.uploads.slice(0, BG_MAX_UPLOADS);
       return state;
     });
+    await Promise.all(evictedAssetKeys.map(bgAssetDelete));
   }
 
   function bgReadFileAsDataUrl(file){
@@ -1310,9 +1433,10 @@
     bgRestartTimer(bgLoadState());
   }
 
-  function bgInitBackgroundEngine(){
+  async function bgInitBackgroundEngine(){
     const engine = document.getElementById('bgEngine');
     if(!engine) return;
+    await bgHydrateAssets();
     engine.addEventListener('click', bgHandleClick);
     engine.addEventListener('change', bgHandleChange);
     engine.addEventListener('dragover', bgHandleDrag);
