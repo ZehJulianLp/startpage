@@ -68,7 +68,9 @@
     "priorityNormal": "Normal",
     "priorityHigh": "Hoch",
     "priorityLow": "Niedrig",
-    "dueAria": "Fälligkeitsdatum"
+    "dueAria": "Fälligkeitsdatum",
+    "detailsPriority": "Priorität",
+    "detailsDue": "Fällig"
   },
   "notes": {
     "title": "Notizen",

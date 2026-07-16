@@ -68,7 +68,9 @@
     "priorityNormal": "Normal",
     "priorityHigh": "High",
     "priorityLow": "Low",
-    "dueAria": "Due date"
+    "dueAria": "Due date",
+    "detailsPriority": "Priority",
+    "detailsDue": "Due"
   },
   "notes": {
     "title": "Notes",
