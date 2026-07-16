@@ -60,7 +60,7 @@
           fillSettings();
           return;
         }
-        loadWeather();
+        if(isWidgetEnabled('weather')) loadWeather();
         fillSettings();
       });
     }
@@ -183,6 +183,12 @@
     const profilesList = $('#profilesList'); if(profilesList) profilesList.addEventListener('click', e=>{ void onProfileActionClick(e); });
     const profileCreate = $('#profileCreate'); if(profileCreate) profileCreate.addEventListener('click', e=>{ void onProfileActionClick(e); });
     const restartOnb = $('#restartOnboarding'); if(restartOnb) restartOnb.addEventListener('click', ()=>{ store.set('onboarding.done', false); onboardingOpen(true); });
+    const widgetLayoutToggle = $('#widgetLayoutToggle'); if(widgetLayoutToggle) widgetLayoutToggle.addEventListener('click', toggleWidgetLayoutEditing);
+    const widgetLayoutEdit = $('#widgetLayoutEdit'); if(widgetLayoutEdit) widgetLayoutEdit.addEventListener('click', ()=>{
+      closeSettings();
+      setWidgetLayoutEditing(true);
+    });
+    const widgetLayoutReset = $('#widgetLayoutReset'); if(widgetLayoutReset) widgetLayoutReset.addEventListener('click', resetWidgetLayout);
 
     // Onboarding modal
     const onbNext = $('#onbNext'); if(onbNext) onbNext.addEventListener('click', onboardingNext);
@@ -295,7 +301,6 @@
 
     // Tiles
     if(!localStorage.getItem('tiles')) store.set('tiles', defaultTiles());
-    renderTiles();
     $('#addTile').addEventListener('click', addTile);
     $('#resetTiles').addEventListener('click', async ()=>{ if(await uiConfirm(t('tiles.resetConfirm'))){ store.set('tiles', defaultTiles()); renderTiles(); uiToast(t('tiles.resetDone', null, 'Tiles reset.'), { type: 'success' }); }});
 
@@ -314,14 +319,6 @@
         $('#setCity').click();
       });
     }
-    loadWeather();
-
-    // Transport
-    initTransport();
-
-    // Quote
-    loadQuote();
-
     // Recent
     const recentMaxSetting = $('#recentMaxSetting');
     if(recentMaxSetting){
@@ -364,25 +361,26 @@
         uiToast(t('recent.clearDone', null, 'Recent data deleted.'), { type: 'success' });
       });
     }
-    renderRecent();
-
     // Background
-    bgInitBackgroundEngine();
+    await bgInitBackgroundEngine();
     applyBackground();
     const tintBtn = document.getElementById('bgActionTintWidgets');
     if(tintBtn) tintBtn.addEventListener('click', e=>{ e.preventDefault(); tintWidgets(); });
 
     // System
-    renderSystem();
     if(navigator.connection && 'onchange' in navigator.connection){ navigator.connection.addEventListener('change', renderSystem); }
 
     // News
-    fillNewsSources(); loadNews();
     $('#newsSource').addEventListener('change', e=>{ store.set('news.source', e.target.value); loadNews(); });
     $('#refreshNews').addEventListener('click', loadNews);
 
     // Widgets visibility
     applyWidgets();
+    window.addEventListener('online', ()=>{
+      if(isWidgetEnabled('weather')) void loadWeather();
+      if(isWidgetEnabled('transport')) void loadTransportDepartures();
+      if(isWidgetEnabled('news')) void loadNews();
+    });
     applyControlColors();
     applyWidgetColors();
 
@@ -390,6 +388,7 @@
     $('#settingsModal').addEventListener('click', e=>{ if(e.target.id==='settingsModal') closeSettings(); });
     document.addEventListener('keydown', e=>{
       if(e.key==='Escape'){
+        if(widgetLayoutEditing){ setWidgetLayoutEditing(false); return; }
         if($('#uiDialog') && $('#uiDialog').classList.contains('open')){ closeUiDialog(undefined); return; }
         if($('#tileDialog') && $('#tileDialog').classList.contains('open')){
           closeModalAnimated($('#tileDialog'));

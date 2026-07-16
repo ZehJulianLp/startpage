@@ -15,7 +15,9 @@
     "dash": "–",
     "cancel": "Cancel",
     "ok": "OK",
-    "default": "Default"
+    "default": "Default",
+    "updatedAt": "Updated · {time}",
+    "cachedAt": "Cached · {time}"
   },
   "header": {
     "themeToggleTitle": "Dark/Light",
@@ -55,7 +57,8 @@
     "clearDoneTitle": "Remove completed",
     "clearDone": "✓ clear",
     "doneAria": "Done",
-    "prompt": "Todo"
+    "prompt": "Todo",
+    "reorderAria": "Reorder {task} with Alt and arrow keys"
   },
   "notes": {
     "title": "Notes",
@@ -79,7 +82,8 @@
       "save": "Save"
     },
     "resetAria": "Reset tiles",
-    "resetDone": "Tiles reset."
+    "resetDone": "Tiles reset.",
+    "reorderAria": "Reorder {tile} with Alt and arrow keys"
   },
   "weather": {
     "title": "Weather today",
@@ -133,8 +137,10 @@
     "source": "Source: transport.rest",
     "minQuery": "At least {count} characters",
     "noMatches": "No matches",
-    "proxyTimeout": "Proxy timeout",
-    "loadError": "Load failed",
+    "proxyTimeout": "The transport service is not responding right now.",
+    "loadError": "Departures could not be loaded.",
+    "retry": "Retry",
+    "delayMinutes": "{value} min",
     "noDepartures": "No departures",
     "selectStation": "Select a station…",
     "type": {
@@ -184,7 +190,7 @@
     "refreshAria": "Refresh news"
   },
   "footer": {
-    "tagline": "Local-first dashboard · stores only in the browser (localStorage)"
+    "tagline": "Local-first dashboard · stores only in the browser"
   },
   "settings": {
     "title": "Settings",
@@ -283,6 +289,23 @@
       "recentEntriesLabel": "Recent entries",
       "recentEntriesDecAria": "Decrease recent entries",
       "recentEntriesIncAria": "Increase recent entries",
+      "layoutSection": "Dashboard layout",
+      "layoutHint": "Arrange and resize widgets directly on the dashboard.",
+      "layoutEdit": "Edit layout",
+      "layoutDone": "Done",
+      "layoutEditingHint": "Drag widgets or resize them directly on the card.",
+      "layoutReset": "Reset layout",
+      "layoutDrag": "Move {widget}",
+      "layoutWidthDecrease": "Make {widget} narrower",
+      "layoutWidthIncrease": "Make {widget} wider",
+      "layoutHeightCycle": "Change the height of {widget}",
+      "layoutMoveUp": "Move {widget} up",
+      "layoutMoveDown": "Move {widget} down",
+      "layoutWidth": "Width",
+      "layoutHeight": "Height",
+      "layoutHeightAuto": "Automatic",
+      "layoutHeightCompact": "Compact",
+      "layoutHeightTall": "Tall",
       "sections": {
         "visibility": "Visibility",
         "defaults": "Defaults"

@@ -112,6 +112,7 @@
     const recentMaxSetting = $('#recentMaxSetting');
     if(recentMaxSetting) recentMaxSetting.value = String(getRecentMax());
     renderProfiles();
+    renderWidgetLayoutEditor();
 
     renderEngineSettings();
 
@@ -136,7 +137,7 @@
         const id = `w_${k}`;
         const label = document.createElement('label'); label.className = 'settings-check-card';
         const cb = document.createElement('input'); cb.type='checkbox'; cb.id=id; cb.checked = conf[k];
-        cb.addEventListener('change', ()=>{ const cur=store.get('widgets', defaults); cur[k]=cb.checked; store.set('widgets', cur); applyWidgets(); });
+        cb.addEventListener('change', ()=>{ const cur=getWidgetConfig(); cur[k]=cb.checked; store.set('widgets', cur); applyWidgets(); });
         label.appendChild(cb); label.appendChild(document.createTextNode(t(`widgets.${k}`, null, k)));
         wrap.appendChild(label);
       });
@@ -190,6 +191,10 @@
     enhanceUiSelects($('#settingsModal'));
     refreshUiSelects($('#settingsModal'));
     applySettingsSearch();
+  }
+
+  function renderWidgetLayoutEditor(){
+    syncWidgetLayoutEditor();
   }
 
   function syncAgentSettingsTabVisibility(){
@@ -279,7 +284,7 @@
     const save = ()=>{
       const nextKey = keyInput.value.trim();
       const nextValue = valueInput.value.trim();
-      options.update(key, nextKey, nextValue);
+      void options.update(key, nextKey, nextValue);
     };
     keyInput.addEventListener('change', save);
     valueInput.addEventListener('change', save);
@@ -352,7 +357,7 @@
 
   function updateShortcutEntry(oldKey, newKey, url){
     const key = String(newKey || '').trim();
-    const value = String(url || '').trim();
+    const value = normalizeHttpUrlTemplate(url);
     if(!key || !value) return syncShortcutSettingsUi();
     const shortcuts = normalizeSettingsObject(getShortcuts());
     if(oldKey !== key) delete shortcuts[oldKey];
@@ -382,22 +387,32 @@
   async function applyShortcutJsonEditor(){
     const value = await parseSettingsJsonTextarea('#shortcutConfig', 'settings.search.invalidShortcuts', 'Invalid shortcuts JSON');
     if(!value) return;
-    store.set('shortcuts', value);
+    const safeShortcuts = {};
+    Object.entries(value).forEach(([key, url])=>{
+      const safeUrl = normalizeHttpUrlTemplate(url);
+      const safeKey = String(key || '').trim();
+      if(safeKey && safeUrl) safeShortcuts[safeKey.startsWith('!') ? safeKey : `!${safeKey}`] = safeUrl;
+    });
+    store.set('shortcuts', safeShortcuts);
     syncShortcutSettingsUi();
     updateSearchSuggest();
   }
 
-  function updateFeedEntry(oldKey, newKey, url){
+  async function updateFeedEntry(oldKey, newKey, url){
     const key = String(newKey || '').trim();
-    const value = String(url || '').trim();
-    if(!key || !value) return syncFeedSettingsUi();
+    const value = normalizeHttpUrl(url);
+    if(!key || !value){
+      syncFeedSettingsUi();
+      if(key || String(url || '').trim()) await uiAlert(t('settings.search.invalidFeeds', null, 'Invalid feed URL'));
+      return;
+    }
     const feeds = normalizeSettingsObject(store.get('news.custom', {}));
     if(oldKey !== key) delete feeds[oldKey];
     feeds[key] = value;
     store.set('news.custom', feeds);
     syncFeedSettingsUi();
     fillNewsSources();
-    loadNews();
+    if(isWidgetEnabled('news')) loadNews();
   }
 
   function removeFeedEntry(key){
@@ -406,14 +421,14 @@
     store.set('news.custom', feeds);
     syncFeedSettingsUi();
     fillNewsSources();
-    loadNews();
+    if(isWidgetEnabled('news')) loadNews();
   }
 
   function addFeedEntry(){
     const nameInput = $('#feedNameInput');
     const urlInput = $('#feedUrlInput');
     if(!nameInput || !urlInput) return;
-    updateFeedEntry('', nameInput.value, urlInput.value);
+    void updateFeedEntry('', nameInput.value, urlInput.value);
     nameInput.value = '';
     urlInput.value = '';
   }
@@ -421,10 +436,15 @@
   async function applyFeedJsonEditor(){
     const value = await parseSettingsJsonTextarea('#feedsConfig', 'settings.search.invalidFeeds', 'Invalid feeds JSON');
     if(!value) return;
-    store.set('news.custom', value);
+    const safeFeeds = {};
+    Object.entries(value).forEach(([name, url])=>{
+      const safeUrl = normalizeHttpUrl(url);
+      if(String(name || '').trim() && safeUrl) safeFeeds[String(name).trim()] = safeUrl;
+    });
+    store.set('news.custom', safeFeeds);
     syncFeedSettingsUi();
     fillNewsSources();
-    loadNews();
+    if(isWidgetEnabled('news')) loadNews();
   }
 
   function selectSettingsTab(name){
@@ -441,8 +461,13 @@
       {n:'data', el: $('#tab-data')},
       {n:'guide', el: $('#tab-guide')},
     ];
-    buttons.forEach(b=>{ const on = b.getAttribute('data-tab')===name; b.classList.toggle('active', on); b.setAttribute('aria-selected', on?'true':'false'); });
-    panels.forEach(p=>{ if(p.el) p.el.classList.toggle('active', p.n===name); });
+    buttons.forEach(b=>{
+      const on = b.getAttribute('data-tab')===name;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-selected', on?'true':'false');
+      b.tabIndex = on ? 0 : -1;
+    });
+    panels.forEach(p=>{ if(p.el){ p.el.classList.toggle('active', p.n===name); p.el.hidden = p.n !== name; } });
     store.set('settings.tab', name);
     if(name === 'background') bgRenderSettings();
   }
@@ -696,12 +721,30 @@
 
   function initSettingsTabs(){
     const root = $('#settingsModal'); if(!root) return;
-    $$('.tab-btn', root).forEach(btn=>{
+    const buttons = $$('.tab-btn', root).filter(btn=> btn.style.display !== 'none');
+    buttons.forEach((btn, index)=>{
+      const name = btn.getAttribute('data-tab');
+      const panel = $(`#tab-${name}`);
+      const buttonId = `settingsTab-${name}`;
+      btn.id = btn.id || buttonId;
+      btn.setAttribute('aria-controls', `tab-${name}`);
+      if(panel){ panel.setAttribute('role', 'tabpanel'); panel.setAttribute('aria-labelledby', btn.id); }
       if(btn.dataset.bound === '1') return;
       btn.dataset.bound = '1';
       btn.addEventListener('click', ()=>{
         selectSettingsTab(btn.getAttribute('data-tab'));
         if(settingsSearchQuery) applySettingsSearch();
+      });
+      btn.addEventListener('keydown', event=>{
+        if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) return;
+        event.preventDefault();
+        let next = index;
+        if(event.key === 'Home') next = 0;
+        else if(event.key === 'End') next = buttons.length - 1;
+        else next = (index + (event.key === 'ArrowRight' ? 1 : -1) + buttons.length) % buttons.length;
+        const target = buttons[next];
+        selectSettingsTab(target.getAttribute('data-tab'));
+        target.focus();
       });
     });
   }
@@ -745,7 +788,7 @@
       else if(has('#startpageAgentModel') || has('#startpageAgentLoadModels') || has('#startpageAgentHost') || has('#startpageAgentConfirmMode') || has('#startpageAgentMaxIterations') || has('#startpageAgentCustomPrompt') || has('#startpageAgentMemory') || has('#startpageAgentClearMemory') || has('#startpageAgentSaveSettings') || has('#startpageAgentClearChat') || has('#startpageAgentCapabilities')) assign(row, panelAi);
       else if(has('#bgEngine') || has('#cardStyle') || has('#accentColor') || has('#modalColor') || has('#buttonColor') || has('#inputColor') || has('#clockColor') || has('#searchColor')) assign(row, panelBackground);
       else if(has('#enginePills') || has('#searxngBaseUrl') || has('#shortcutConfig') || has('#feedsConfig') || has('#wordlistEditor')) assign(row, panelSearch);
-      else if(has('#widgetToggles') || has('#defaultCities') || has('#transportDefaultInput') || has('#recentMaxSetting') || has('#recentClearSetting')) assign(row, panelWidgets);
+      else if(has('#widgetToggles') || has('#widgetLayoutEdit') || has('#widgetLayoutReset') || has('#defaultCities') || has('#transportDefaultInput') || has('#recentMaxSetting') || has('#recentClearSetting')) assign(row, panelWidgets);
       else if(has('#exportData') || has('#importData') || has('#dataNote') || has('#dataPresetSelect') || has('#applyPreset') || has('#profilesList') || has('#profileCreate') || has('#restartOnboarding')) assign(row, panelData);
       else assign(row, panelGeneral);
     });
@@ -995,7 +1038,7 @@
             store.set('transport.query', val);
             const transportQuery = $('#transportQuery');
             if(transportQuery) transportQuery.value = val;
-            initTransport();
+            loadTransportDepartures();
           }
         } else {
           store.set('transport.default', null);
@@ -1007,7 +1050,7 @@
         const val = city.value.trim();
         if(val){
           const entry = upsertWeatherEntry(val);
-          loadWeather(entry ? entry.id : undefined);
+          if(isWidgetEnabled('weather')) loadWeather(entry ? entry.id : undefined);
         }
       }
     }

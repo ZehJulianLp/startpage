@@ -15,7 +15,9 @@
     "dash": "–",
     "cancel": "Abbrechen",
     "ok": "OK",
-    "default": "Standard"
+    "default": "Standard",
+    "updatedAt": "Aktualisiert · {time}",
+    "cachedAt": "Gespeichert · {time}"
   },
   "header": {
     "themeToggleTitle": "Dunkel/Hell",
@@ -55,7 +57,8 @@
     "clearDoneTitle": "Erledigte entfernen",
     "clearDone": "✓ löschen",
     "doneAria": "Fertig",
-    "prompt": "Todo"
+    "prompt": "Todo",
+    "reorderAria": "{task} mit Alt und Pfeiltasten verschieben"
   },
   "notes": {
     "title": "Notizen",
@@ -79,7 +82,8 @@
       "save": "Speichern"
     },
     "resetAria": "Kacheln zurücksetzen",
-    "resetDone": "Kacheln zurückgesetzt."
+    "resetDone": "Kacheln zurückgesetzt.",
+    "reorderAria": "{tile} mit Alt und Pfeiltasten verschieben"
   },
   "weather": {
     "title": "Wetter heute",
@@ -133,8 +137,10 @@
     "source": "Quelle: transport.rest",
     "minQuery": "Mindestens {count} Zeichen",
     "noMatches": "Keine Treffer",
-    "proxyTimeout": "Proxy Timeout",
-    "loadError": "Fehler beim Laden",
+    "proxyTimeout": "Der Transportdienst antwortet gerade nicht.",
+    "loadError": "Abfahrten konnten nicht geladen werden.",
+    "retry": "Erneut versuchen",
+    "delayMinutes": "{value} Min",
     "noDepartures": "Keine Abfahrten",
     "selectStation": "Station auswählen...",
     "type": {
@@ -184,7 +190,7 @@
     "refreshAria": "News neu laden"
   },
   "footer": {
-    "tagline": "Local-first Dashboard · speichert nur im Browser (localStorage)"
+    "tagline": "Local-first Dashboard · speichert nur im Browser"
   },
   "settings": {
     "title": "Einstellungen",
@@ -283,6 +289,23 @@
       "recentEntriesLabel": "Zuletzt-Widget Einträge",
       "recentEntriesDecAria": "Zuletzt-Widget Einträge verringern",
       "recentEntriesIncAria": "Zuletzt-Widget Einträge erhöhen",
+      "layoutSection": "Dashboard-Layout",
+      "layoutHint": "Widgets direkt auf dem Dashboard anordnen und skalieren.",
+      "layoutEdit": "Layout bearbeiten",
+      "layoutDone": "Fertig",
+      "layoutEditingHint": "Widgets ziehen oder direkt an der Karte skalieren.",
+      "layoutReset": "Layout zurücksetzen",
+      "layoutDrag": "{widget} verschieben",
+      "layoutWidthDecrease": "{widget} schmaler machen",
+      "layoutWidthIncrease": "{widget} breiter machen",
+      "layoutHeightCycle": "Höhe von {widget} ändern",
+      "layoutMoveUp": "{widget} nach oben verschieben",
+      "layoutMoveDown": "{widget} nach unten verschieben",
+      "layoutWidth": "Breite",
+      "layoutHeight": "Höhe",
+      "layoutHeightAuto": "Automatisch",
+      "layoutHeightCompact": "Kompakt",
+      "layoutHeightTall": "Hoch",
       "sections": {
         "visibility": "Sichtbarkeit",
         "defaults": "Standardwerte"

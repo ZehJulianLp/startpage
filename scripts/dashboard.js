@@ -88,7 +88,14 @@
   let searchSuggest = { box:null, items:[], active:-1 };
 
   function getShortcuts(){
-    return store.get('shortcuts', { '!etc':'https://julianverse.de/etc' });
+    const raw = store.get('shortcuts', { '!etc':'https://julianverse.de/etc' });
+    if(!raw || typeof raw !== 'object' || Array.isArray(raw)) return {};
+    const safe = {};
+    Object.entries(raw).forEach(([key, value])=>{
+      const url = normalizeHttpUrlTemplate(value);
+      if(String(key || '').startsWith('!') && url) safe[key] = url;
+    });
+    return safe;
   }
 
   function normalizeDirectUrlCandidate(raw){
@@ -271,6 +278,8 @@
       const el = document.createElement('div');
       el.className = 'todo-item' + (item.done ? ' done' : '');
       el.draggable = true;
+      el.tabIndex = 0;
+      el.setAttribute('aria-label', t('todo.reorderAria', { task:item.text }, `Reorder ${item.text} with Alt and arrow keys`));
       el.innerHTML = `
         <input type="checkbox" ${item.done?'checked':''} aria-label="${escapeHtml(t('todo.doneAria'))}">
         <div class="title">${escapeHtml(item.text)}</div>
@@ -297,6 +306,17 @@
         list.splice(to, 0, moved);
         store.set('todos', list);
         renderTodos();
+      });
+      el.addEventListener('keydown', e=>{
+        if(e.target !== el || !e.altKey || !['ArrowUp','ArrowDown'].includes(e.key)) return;
+        e.preventDefault();
+        const to = Math.max(0, Math.min(list.length - 1, i + (e.key === 'ArrowDown' ? 1 : -1)));
+        if(to === i) return;
+        list.splice(to, 0, list.splice(i, 1)[0]);
+        store.set('todos', list);
+        renderTodos();
+        const next = $('#todoList').children[to];
+        if(next) next.focus();
       });
       wrap.appendChild(el);
     });
@@ -350,6 +370,23 @@
 
   function escapeHtml(s){
     return s.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[m]));
+  }
+
+  function normalizeHttpUrl(value){
+    try{
+      const url = new URL(String(value || '').trim());
+      if(url.protocol !== 'http:' && url.protocol !== 'https:') return '';
+      return url.href;
+    }catch{
+      return '';
+    }
+  }
+
+  function normalizeHttpUrlTemplate(value){
+    const marker = '__STARTPAGE_QUERY__';
+    const raw = String(value || '').trim();
+    const safe = normalizeHttpUrl(raw.replaceAll('{q}', marker));
+    return safe ? safe.replaceAll(marker, '{q}') : '';
   }
 
   const OLLAMA_GUIDE_OS_IDS = ['linux', 'macos', 'windows'];
@@ -644,13 +681,17 @@
     const data = store.get('tiles', defaultTiles());
     const grid = $('#tiles'); grid.innerHTML = '';
     data.forEach((tile, i)=>{
+      const safeUrl = normalizeHttpUrl(tile && tile.url);
+      if(!safeUrl) return;
       const el = document.createElement('div');
       el.className='tile';
       el.draggable = true;
-      const host = (new URL(tile.url)).hostname;
+      el.tabIndex = 0;
+      el.setAttribute('aria-label', t('tiles.reorderAria', { tile:tile.title }, `Reorder ${tile.title} with Alt and arrow keys`));
+      const host = (new URL(safeUrl)).hostname;
       const firstLetter = host.split('.')[0][0]?.toUpperCase() || '\u00b7';
       el.innerHTML = `
-        <div class="favicon"><img alt="favicon" src="https://www.google.com/s2/favicons?sz=64&domain_url=${encodeURIComponent(tile.url)}"></div>
+        <div class="favicon"><img alt="favicon" src="https://www.google.com/s2/favicons?sz=64&domain_url=${encodeURIComponent(safeUrl)}"></div>
         <div class="meta">
           <a href="#" class="title">${escapeHtml(tile.title)}</a>
           <div class="url">${escapeHtml(host)}</div>
@@ -664,7 +705,7 @@
       const img = el.querySelector('.favicon img');
       img.addEventListener('error', ()=>{ const fv=el.querySelector('.favicon'); fv.textContent=firstLetter; img.remove(); });
 
-      el.querySelector('.title').addEventListener('click', (e)=>{ e.preventDefault(); openUrl(tile.url, tile.title); });
+      el.querySelector('.title').addEventListener('click', (e)=>{ e.preventDefault(); openUrl(safeUrl, tile.title); });
       el.querySelectorAll('button')[1].addEventListener('click', ()=>{ data.splice(i,1); store.set('tiles', data); renderTiles(); });
       el.querySelectorAll('button')[0].addEventListener('click', ()=> editTile(i));
 
@@ -683,6 +724,18 @@
         data.splice(to,0,item);
         store.set('tiles', data); renderTiles();
       });
+      el.addEventListener('keydown', e=>{
+        if(e.target !== el || !e.altKey || !['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)) return;
+        e.preventDefault();
+        const direction = ['ArrowRight','ArrowDown'].includes(e.key) ? 1 : -1;
+        const to = Math.max(0, Math.min(data.length - 1, i + direction));
+        if(to === i) return;
+        data.splice(to, 0, data.splice(i, 1)[0]);
+        store.set('tiles', data);
+        renderTiles();
+        const next = $('#tiles').children[to];
+        if(next) next.focus();
+      });
 
       grid.appendChild(el);
     });
@@ -695,8 +748,9 @@
     const next = await openTileDialog({ mode:'edit', title: tile.title, url: tile.url });
     if(!next) return;
     if(!next.title || !next.url) return;
-    try { new URL(next.url) } catch { await uiAlert(t('tiles.invalidUrl')); return; }
-    data[index] = { ...tile, title: next.title, url: next.url };
+    const safeUrl = normalizeHttpUrl(next.url);
+    if(!safeUrl){ await uiAlert(t('tiles.invalidUrl')); return; }
+    data[index] = { ...tile, title: next.title, url: safeUrl };
     store.set('tiles', data); renderTiles();
   }
 
@@ -704,9 +758,10 @@
     const next = await openTileDialog({ mode:'add', title:'', url:'' });
     if(!next) return;
     if(!next.title || !next.url) return;
-    try { new URL(next.url) } catch { await uiAlert(t('tiles.invalidUrl')); return; }
+    const safeUrl = normalizeHttpUrl(next.url);
+    if(!safeUrl){ await uiAlert(t('tiles.invalidUrl')); return; }
     const data = store.get('tiles', defaultTiles());
-    data.unshift({ title: next.title, url: next.url });
+    data.unshift({ title: next.title, url: safeUrl });
     store.set('tiles', data); renderTiles();
   }
 
@@ -724,13 +779,7 @@
     return Array.isArray(raw) ? raw : [];
   }
   function normalizeRecentUrl(url){
-    const raw = String(url || '').trim();
-    if(!raw) return '';
-    try {
-      return new URL(raw, window.location.href).href;
-    } catch {
-      return raw;
-    }
+    return normalizeHttpUrl(url);
   }
   function dedupeRecentEntries(list){
     if(!Array.isArray(list)) return [];
@@ -778,6 +827,26 @@
   }
 
   // ===== Weather (Open-Meteo)
+  function setWidgetDataStatus(id, timestamp, stale=false){
+    const el = $(id);
+    if(!el) return;
+    el.className = 'widget-data-status' + (stale ? ' stale' : '');
+    if(!timestamp){ el.textContent = ''; return; }
+    const time = new Date(timestamp).toLocaleTimeString(localeToIntl(i18nLocale) || undefined, { hour:'2-digit', minute:'2-digit' });
+    el.textContent = stale
+      ? t('common.cachedAt', { time }, `Cached · ${time}`)
+      : t('common.updatedAt', { time }, `Updated · ${time}`);
+  }
+
+  function getDataCache(key){
+    const value = store.get(`cache.${key}`, null);
+    return value && typeof value === 'object' ? value : null;
+  }
+
+  function setDataCache(key, value){
+    store.set(`cache.${key}`, value);
+  }
+
   async function lookupCity(name){
     const lang = getLocaleLang();
     const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(name)}&count=1&language=${encodeURIComponent(lang)}&format=json`);
@@ -949,6 +1018,52 @@
     return next;
   }
 
+  function renderWeatherPayload(city, loc, data, timestamp, stale=false){
+    const tempEl = $('#tempNow');
+    const textEl = $('#weatherText');
+    const minmaxEl = $('#minmax');
+    const hourlyEl = $('#hourly');
+    if(!tempEl || !textEl || !minmaxEl || !hourlyEl) return;
+    updateWeatherAppLink(city, loc);
+    const offset = Number(data.utc_offset_seconds) || 0;
+    const curr = data.current_weather || {};
+    updateWeatherIcon(curr.weathercode);
+    const tempNow = Math.round(curr.temperature ?? NaN);
+    tempEl.textContent = isFinite(tempNow) ? `${tempNow}\u00b0C` : t('weather.tempEmpty', null, '\u2014\u00b0C');
+    textEl.textContent = `${loc.name} \u00b7 ${wmoText(curr.weathercode)}`;
+    const dmax = Math.round((data.daily?.temperature_2m_max?.[0]) ?? NaN);
+    const dmin = Math.round((data.daily?.temperature_2m_min?.[0]) ?? NaN);
+    minmaxEl.textContent = isFinite(dmin)&&isFinite(dmax) ? `${dmin} / ${dmax} \u00b0C` : t('weather.minmaxEmpty', null, '\u2014 / \u2014 \u00b0C');
+    const hours = data.hourly?.time || [];
+    const temps = data.hourly?.temperature_2m || [];
+    const codes = data.hourly?.weathercode || [];
+    hourlyEl.innerHTML = '';
+    const now = Date.now();
+    const horizon = now + (24 * 60 * 60 * 1000);
+    const upcoming = [];
+    for(let i=0;i<hours.length;i++){
+      const tDate = parseWeatherTime(hours[i], offset);
+      if(!tDate) continue;
+      const ts = tDate.getTime();
+      if(ts < now || ts > horizon) continue;
+      upcoming.push({ i, tDate });
+    }
+    let added = 0;
+    for(let n=0;n<upcoming.length;n++){
+      if(n % 3 !== 0) continue;
+      const i = upcoming[n].i;
+      const chip = document.createElement('div');
+      chip.className = 'chip';
+      const timeLabel = upcoming[n].tDate.toLocaleTimeString([], {hour:'2-digit'});
+      const tempVal = Math.round(temps[i]);
+      chip.innerHTML = `<div class="chip-top"><span>${timeLabel}</span><span class="chip-temp">${isFinite(tempVal)? tempVal+'\u00b0' : t('weather.tempEmptyShort', null, '\u2014\u00b0')}</span></div><div class="chip-text">${wmoText(codes[i])}</div>`;
+      hourlyEl.appendChild(chip);
+      added++;
+    }
+    if(!added) hourlyEl.innerHTML = `<div class="muted">${escapeHtml(t('weather.noForecast'))}</div>`;
+    setWidgetDataStatus('#weatherDataStatus', timestamp, stale);
+  }
+
   async function loadWeather(entryId){
     ensureWeatherStorage();
     if(entryId){
@@ -974,65 +1089,28 @@
     if(!city) return;
 
     try {
+      if(!navigator.onLine) throw new Error('offline');
       const loc = await resolveCity(city);
-      updateWeatherAppLink(city, loc);
       const url = `https://api.open-meteo.com/v1/forecast?latitude=${loc.lat}&longitude=${loc.lon}&hourly=temperature_2m,weathercode&current_weather=true&timezone=auto&daily=temperature_2m_max,temperature_2m_min&forecast_days=2`;
       const res = await fetch(url);
       if(!res.ok) throw new Error(t('weather.errors.fetchFailed'));
       const data = await res.json();
-      const offset = Number(data.utc_offset_seconds) || 0;
-      const curr = data.current_weather || {};
-      updateWeatherIcon(curr.weathercode);
-      const tempNow = Math.round(curr.temperature ?? NaN);
-      tempEl.textContent = isFinite(tempNow) ? `${tempNow}\u00b0C` : t('weather.tempEmpty', null, '\u2014\u00b0C');
-      textEl.textContent = `${loc.name} \u00b7 ${wmoText(curr.weathercode)}`;
-      const dmax = Math.round((data.daily?.temperature_2m_max?.[0]) ?? NaN);
-      const dmin = Math.round((data.daily?.temperature_2m_min?.[0]) ?? NaN);
-      minmaxEl.textContent = isFinite(dmin)&&isFinite(dmax) ? `${dmin} / ${dmax} \u00b0C` : t('weather.minmaxEmpty', null, '\u2014 / \u2014 \u00b0C');
-
-      const hours = data.hourly?.time || [];
-      const temps = data.hourly?.temperature_2m || [];
-      const codes = data.hourly?.weathercode || [];
-      const container = hourlyEl; container.innerHTML='';
-      const now = Date.now();
-      const horizon = now + (24 * 60 * 60 * 1000);
-      const upcoming = [];
-      for(let i=0;i<hours.length;i++){
-        const tDate = parseWeatherTime(hours[i], offset);
-        if(!tDate) continue;
-        const ts = tDate.getTime();
-        if(ts < now || ts > horizon) continue;
-        upcoming.push({ i, tDate });
-      }
-      let added = 0;
-      for(let n=0;n<upcoming.length;n++){
-        if(n % 3 !== 0) continue;
-        const i = upcoming[n].i;
-        const tDate = upcoming[n].tDate;
-        const chip = document.createElement('div');
-        chip.className='chip';
-        const timeLabel = tDate.toLocaleTimeString([], {hour:'2-digit'});
-        const tempVal = Math.round(temps[i]);
-        chip.innerHTML = `<div class="chip-top"><span>${timeLabel}</span><span class="chip-temp">${isFinite(tempVal)? tempVal+'\u00b0' : t('weather.tempEmptyShort', null, '\u2014\u00b0')}</span></div><div class="chip-text">${wmoText(codes[i])}</div>`;
-        container.appendChild(chip);
-        added++;
-      }
-      if(!added) container.innerHTML = `<div class="muted">${escapeHtml(t('weather.noForecast'))}</div>`;
-      // Normalize degree symbols / overwrite any garbled text
-      try {
-        const t2 = Math.round((data.current_weather||{}).temperature ?? NaN);
-        tempEl.textContent = isFinite(t2) ? `${t2}\u00b0C` : '-\u00b0C';
-        const dmax2 = Math.round((data.daily?.temperature_2m_max?.[0]) ?? NaN);
-        const dmin2 = Math.round((data.daily?.temperature_2m_min?.[0]) ?? NaN);
-        minmaxEl.textContent = isFinite(dmin2)&&isFinite(dmax2) ? `${dmin2} / ${dmax2} \u00b0C` : '- / - \u00b0C';
-      } catch {}
+      const timestamp = Date.now();
+      setDataCache('weather', { entryId:active.id, city, loc, data, timestamp });
+      renderWeatherPayload(city, loc, data, timestamp, false);
     } catch(err){
       console.warn(err);
+      const cached = getDataCache('weather');
+      if(cached && cached.entryId === active.id && cached.loc && cached.data){
+        renderWeatherPayload(city, cached.loc, cached.data, cached.timestamp, true);
+        return;
+      }
       textEl.textContent = err.message === t('weather.errors.cityMissing') ? t('weather.prompt') : t('weather.errors.loadFailed');
       tempEl.textContent = t('weather.tempEmpty', null, '\u2014\u00b0C');
       minmaxEl.textContent = t('weather.minmaxEmpty', null, '\u2014 / \u2014 \u00b0C');
       hourlyEl.innerHTML='';
       updateWeatherIcon(null);
+      setWidgetDataStatus('#weatherDataStatus', 0);
     }
   }
 
@@ -1075,9 +1153,11 @@
     return d.toLocaleTimeString(localeToIntl(i18nLocale) || undefined, { hour:'2-digit', minute:'2-digit' });
   }
   function formatTransportDelay(raw){
-    const n = Number(raw);
-    if(!Number.isFinite(n) || n === 0) return '';
-    return n > 0 ? `+${n}` : `${n}`;
+    const seconds = Number(raw);
+    if(!Number.isFinite(seconds) || seconds === 0) return '';
+    const minutes = Math.max(1, Math.ceil(Math.abs(seconds) / 60)) * Math.sign(seconds);
+    const value = minutes > 0 ? `+${minutes}` : String(minutes);
+    return t('transport.delayMinutes', { value }, `${value} min`);
   }
   function transportTypeLabel(type){
     if(type === 'station') return t('transport.type.station');
@@ -1179,22 +1259,27 @@
     renderTransportSuggest([]);
     loadTransportDepartures();
   }
-  function isLocalTransit(dep){
-    const line = dep && dep.line ? dep.line : null;
-    const raw = String((line && (line.product || line.mode || line.name || line.id)) || '').toLowerCase();
-    if(!raw) return false;
-    return raw.includes('bus') || raw.includes('tram') || raw.includes('street') || raw.includes('strassen') || raw.includes('stra\u00dfe') || raw.includes('strasse') || raw.includes('u-bahn') || raw.includes('ubahn') || raw.includes('subway') || raw.includes('metro') || raw.includes('stadtbahn') || raw.includes('urban') || raw.includes('s-bahn') || raw.includes('sbahn');
+  function renderTransportLoadError(message){
+    const ul = $('#transportList');
+    if(!ul) return;
+    ul.innerHTML = '';
+    const item = document.createElement('li');
+    item.className = 'transport-error';
+    const text = document.createElement('span');
+    text.className = 'muted';
+    text.textContent = message;
+    const retry = document.createElement('button');
+    retry.type = 'button';
+    retry.className = 'btn';
+    retry.textContent = t('transport.retry', null, 'Retry');
+    retry.addEventListener('click', ()=>{ void loadTransportDepartures(); });
+    item.append(text, retry);
+    ul.appendChild(item);
   }
   function renderTransportList(items){
     const ul = $('#transportList'); if(!ul) return;
     ul.innerHTML = '';
-    const filtered = (items || []).filter(dep=>{
-      if(dep && dep.cancelled) return true;
-      const delayVal = (typeof dep.delay === 'number') ? dep.delay : (dep.stop && typeof dep.stop.departureDelay === 'number' ? dep.stop.departureDelay : 0);
-      if(!Number.isFinite(delayVal)) return true;
-      if(isLocalTransit(dep)) return delayVal <= 60;
-      return true;
-    });
+    const filtered = Array.isArray(items) ? items : [];
     if(!filtered.length){
       ul.innerHTML = `<li class="muted">${escapeHtml(t('transport.noDepartures'))}</li>`;
       return;
@@ -1208,6 +1293,10 @@
       if(Number.isNaN(t)) return true;
       return t <= cutoff;
     });
+    if(!within.length){
+      ul.innerHTML = `<li class="muted">${escapeHtml(t('transport.noDepartures'))}</li>`;
+      return;
+    }
     within.forEach(dep=>{
       const li = document.createElement('li');
       li.className = 'transport-item';
@@ -1259,18 +1348,20 @@
       ul.appendChild(li);
     });
   }
-  async function loadTransportDepartures(){
+  async function loadTransportDepartures(attempt=0){
     const ul = $('#transportList'); if(!ul) return;
     const station = store.get('transport.station', null);
     if(!station || !station.id){
       ul.innerHTML = `<li class="muted">${escapeHtml(t('transport.selectStation'))}</li>`;
       setTransportSelectedText(t('transport.noneSelected'));
+      setWidgetDataStatus('#transportDataStatus', 0);
       return;
     }
     const duration = getTransportDuration();
     setTransportSelectedText(station.place ? `${station.name} - ${station.place}` : station.name);
     ul.innerHTML = `<li class="muted">${escapeHtml(t('common.loading'))}</li>`;
     try{
+      if(!navigator.onLine) throw new Error('offline');
       const preferStation = (station.type === 'station' || station.isStation);
       const first = preferStation ? 'stations' : 'stops';
       const second = preferStation ? 'stops' : 'stations';
@@ -1284,12 +1375,28 @@
         const retry = await fetchDepartures(second);
         res = retry.res;
       }
+      if(res.status === 504 && attempt < 1){
+        await new Promise(resolve=> setTimeout(resolve, 400));
+        return loadTransportDepartures(attempt + 1);
+      }
       if(!res.ok) throw new Error(`Transport error: ${res.status}`);
       const data = await res.json();
       const list = Array.isArray(data) ? data : (data.departures || data.results || []);
-      renderTransportList(Array.isArray(list) ? list : []);
+      const safeList = Array.isArray(list) ? list : [];
+      const timestamp = Date.now();
+      setDataCache('transport', { stationId:station.id, duration, list:safeList, timestamp });
+      renderTransportList(safeList);
+      setWidgetDataStatus('#transportDataStatus', timestamp, false);
     }catch(err){
-      ul.innerHTML = `<li class="muted">${escapeHtml(t('common.loadError'))}</li>`;
+      const cached = getDataCache('transport');
+      if(cached && cached.stationId === station.id && cached.duration === duration && Array.isArray(cached.list)){
+        renderTransportList(cached.list);
+        setWidgetDataStatus('#transportDataStatus', cached.timestamp, true);
+        return;
+      }
+      const message = /504/.test(String(err && err.message)) ? t('transport.proxyTimeout') : t('transport.loadError');
+      renderTransportLoadError(message);
+      setWidgetDataStatus('#transportDataStatus', 0);
     }
   }
   function initTransport(){
@@ -1401,6 +1508,9 @@
   }
 
   // ===== News (RSS)
+  const NEWS_ITEM_LIMITS = { compact:4, auto:8, tall:16 };
+  const NEWS_MAX_ITEMS = Math.max(...Object.values(NEWS_ITEM_LIMITS));
+  let newsRenderState = null;
   function defaultFeeds(){
     return {
       'Heise': 'https://www.heise.de/rss/heise-atom.xml',
@@ -1422,12 +1532,43 @@
     });
     refreshUiSelects(select.parentElement || document);
   }
+  function renderNewsItems(items, timestamp, stale=false){
+    const ul = $('#newsList');
+    if(!ul) return;
+    newsRenderState = { items:Array.isArray(items) ? items : [], timestamp, stale };
+    const height = $('#newsCard')?.dataset.widgetHeight || 'auto';
+    const limit = NEWS_ITEM_LIMITS[height] || NEWS_ITEM_LIMITS.auto;
+    ul.innerHTML = '';
+    newsRenderState.items.slice(0, limit).forEach(item=>{
+      const li = document.createElement('li');
+      const link = normalizeHttpUrl(item.link);
+      if(link){
+        const anchor = document.createElement('a');
+        anchor.href = link;
+        anchor.target = '_blank';
+        anchor.rel = 'noopener noreferrer';
+        anchor.textContent = String(item.title || '\u2014');
+        li.appendChild(anchor);
+      } else {
+        li.textContent = String(item.title || '\u2014');
+      }
+      ul.appendChild(li);
+    });
+    if(!ul.children.length) ul.innerHTML = `<li class="muted">${escapeHtml(t('news.noItems'))}</li>`;
+    setWidgetDataStatus('#newsDataStatus', timestamp, stale);
+  }
+  function renderNewsForWidgetHeight(){
+    if(!newsRenderState) return;
+    renderNewsItems(newsRenderState.items, newsRenderState.timestamp, newsRenderState.stale);
+  }
   async function loadNews(){
     const sources = getFeeds();
     const sourceName = store.get('news.source', Object.keys(sources)[0]);
-    const feedUrl = sources[sourceName];
+    const feedUrl = normalizeHttpUrl(sources[sourceName]);
     $('#newsList').innerHTML = `<li class="muted">${escapeHtml(t('common.loading'))}</li>`;
     try{
+      if(!feedUrl) throw new Error('Invalid feed URL');
+      if(!navigator.onLine) throw new Error('offline');
       const res = await fetch(`https://api-startpage.julianverse.de/api/rss?url=${encodeURIComponent(feedUrl)}`);
       if(!res.ok) throw new Error(`RSS proxy error: ${res.status}`);
       const data = { contents: await res.text() };
@@ -1435,17 +1576,23 @@
       const xml = parser.parseFromString(data.contents, 'text/xml');
       const items = Array.from(xml.querySelectorAll('item'));
       const entries = items.length ? [] : Array.from(xml.querySelectorAll('entry'));
-      const ul = $('#newsList'); ul.innerHTML='';
-      const max = 8;
       const list = items.length ? items : entries;
-      list.forEach((it,i)=>{ if(i<max){
+      const normalized = list.slice(0, NEWS_MAX_ITEMS).map(it=>{
         const title = it.querySelector('title')?.textContent?.trim() || '\u2014';
         const linkNode = it.querySelector('link');
-        const link = (linkNode?.getAttribute('href') || linkNode?.textContent || '#').trim() || '#';
-        const li = document.createElement('li');
-        li.innerHTML = `<a href="${link}" target="_blank" rel="noopener">${title}</a>`;
-        ul.appendChild(li);
-      }});
-      if(!ul.children.length){ ul.innerHTML = `<li class="muted">${escapeHtml(t('news.noItems'))}</li>`; }
-    }catch(e){ $('#newsList').innerHTML = `<li class="muted">${escapeHtml(t('common.loadError'))}</li>`; }
+        const link = normalizeHttpUrl(linkNode?.getAttribute('href') || linkNode?.textContent || '');
+        return { title, link };
+      });
+      const timestamp = Date.now();
+      setDataCache('news', { feedUrl, items:normalized, timestamp });
+      renderNewsItems(normalized, timestamp, false);
+    }catch(e){
+      const cached = getDataCache('news');
+      if(cached && cached.feedUrl === feedUrl && Array.isArray(cached.items)){
+        renderNewsItems(cached.items, cached.timestamp, true);
+        return;
+      }
+      $('#newsList').innerHTML = `<li class="muted">${escapeHtml(t('common.loadError'))}</li>`;
+      setWidgetDataStatus('#newsDataStatus', 0);
+    }
   }

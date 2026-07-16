@@ -49,6 +49,8 @@
     { id: 'night', label: 'Night 21-05' }
   ];
   const BG_MAX_UPLOADS = 8;
+  const BG_ASSET_DB = 'startpage-assets';
+  const BG_ASSET_STORE = 'backgrounds';
   const BG_ACCENT_DEFAULTS = {
     dark: { primary: '#7c5cff', secondary: '#54d6ff' },
     light: { primary: '#5b43ff', secondary: '#17a4da' }
@@ -56,6 +58,63 @@
   let bgCurrentAccent = null;
   let bgAccentCache = {};
   let bgRotationTimer = null;
+  let bgAssetDbPromise = null;
+  const bgAssetUrls = {};
+
+  function bgOpenAssetDb(){
+    if(bgAssetDbPromise) return bgAssetDbPromise;
+    bgAssetDbPromise = new Promise((resolve, reject)=>{
+      if(!window.indexedDB){ reject(new Error('IndexedDB unavailable')); return; }
+      const request = indexedDB.open(BG_ASSET_DB, 1);
+      request.onupgradeneeded = ()=>{
+        const db = request.result;
+        if(!db.objectStoreNames.contains(BG_ASSET_STORE)) db.createObjectStore(BG_ASSET_STORE);
+      };
+      request.onsuccess = ()=> resolve(request.result);
+      request.onerror = ()=> reject(request.error || new Error('IndexedDB open failed'));
+    });
+    return bgAssetDbPromise;
+  }
+
+  async function bgAssetPut(key, value){
+    const db = await bgOpenAssetDb();
+    await new Promise((resolve, reject)=>{
+      const tx = db.transaction(BG_ASSET_STORE, 'readwrite');
+      tx.objectStore(BG_ASSET_STORE).put(value, key);
+      tx.oncomplete = resolve;
+      tx.onerror = ()=> reject(tx.error || new Error('IndexedDB write failed'));
+      tx.onabort = ()=> reject(tx.error || new Error('IndexedDB write aborted'));
+    });
+    bgAssetUrls[key] = value;
+  }
+
+  async function bgAssetGet(key){
+    if(!key) return '';
+    if(bgAssetUrls[key]) return bgAssetUrls[key];
+    const db = await bgOpenAssetDb();
+    const value = await new Promise((resolve, reject)=>{
+      const tx = db.transaction(BG_ASSET_STORE, 'readonly');
+      const request = tx.objectStore(BG_ASSET_STORE).get(key);
+      request.onsuccess = ()=> resolve(request.result || '');
+      request.onerror = ()=> reject(request.error || new Error('IndexedDB read failed'));
+    });
+    if(value) bgAssetUrls[key] = value;
+    return value;
+  }
+
+  async function bgAssetDelete(key){
+    if(!key) return;
+    delete bgAssetUrls[key];
+    try{
+      const db = await bgOpenAssetDb();
+      await new Promise((resolve, reject)=>{
+        const tx = db.transaction(BG_ASSET_STORE, 'readwrite');
+        tx.objectStore(BG_ASSET_STORE).delete(key);
+        tx.oncomplete = resolve;
+        tx.onerror = ()=> reject(tx.error || new Error('IndexedDB delete failed'));
+      });
+    }catch{}
+  }
 
   function bgCloneRef(ref){
     return ref ? JSON.parse(JSON.stringify(ref)) : null;
@@ -63,8 +122,8 @@
 
   function bgCssBg(url){
     if(!url) return '';
-    const safe = String(url).replace(/'/g, "\'");
-    return "background-image:url('" + safe + "')";
+    const css = "background-image:url('" + String(url).replace(/['\\\n\r]/g, '\\$&') + "')";
+    return escapeHtml(css);
   }
 
   function bgDefaultState(){
@@ -242,11 +301,12 @@
     state.uploads = Array.isArray(raw.uploads) ? raw.uploads.filter(Boolean).map(u => ({
       id: String(u.id || 'upload-' + Date.now()),
       name: typeof u.name === 'string' ? u.name : 'Upload',
+      assetKey: typeof u.assetKey === 'string' ? u.assetKey : '',
       dataUrl: typeof u.dataUrl === 'string' ? u.dataUrl : '',
       width: Number(u.width) || 0,
       height: Number(u.height) || 0,
       created: Number(u.created) || Date.now()
-    })).filter(u => u.dataUrl).slice(0, BG_MAX_UPLOADS) : [];
+    })).filter(u => u.assetKey || u.dataUrl).slice(0, BG_MAX_UPLOADS) : [];
     state.favorites = Array.isArray(raw.favorites) ? raw.favorites.map(bgCloneRef).filter(Boolean).slice(0, 32) : base.favorites;
     state.collections = Array.isArray(raw.collections) ? raw.collections.map(col => ({
       id: String(col.id || 'col-' + Math.random().toString(36).slice(2,8)),
@@ -307,6 +367,40 @@
     return normalized;
   }
 
+  async function bgHydrateAssets(){
+    const state = bgLoadState();
+    let changed = false;
+    for(const upload of state.uploads || []){
+      if(upload.dataUrl){
+        const key = upload.assetKey || `upload:${upload.id}`;
+        try{
+          await bgAssetPut(key, upload.dataUrl);
+          upload.assetKey = key;
+          upload.dataUrl = '';
+          changed = true;
+        }catch{}
+      } else if(upload.assetKey){
+        try { await bgAssetGet(upload.assetKey); } catch {}
+      }
+    }
+    for(const collection of state.collections || []){
+      for(const [url, stored] of Object.entries(collection.cache || {})){
+        if(typeof stored !== 'string' || !stored) continue;
+        if(stored.startsWith('data:')){
+          const key = `collection:${collection.id}:${Math.random().toString(36).slice(2,10)}`;
+          try{
+            await bgAssetPut(key, stored);
+            collection.cache[url] = key;
+            changed = true;
+          }catch{}
+        } else {
+          try { await bgAssetGet(stored); } catch {}
+        }
+      }
+    }
+    if(changed) bgSaveState(state);
+  }
+
   function bgEncodeRef(ref){
     if(!ref || !ref.type) return '';
     if(ref.type === 'preset') return 'preset::' + (ref.id || '');
@@ -348,9 +442,11 @@
     if(ref.type === 'upload'){
       const upload = (state.uploads || []).find(u => u.id === ref.id);
       if(!upload) return null;
+      const assetUrl = (upload.assetKey && bgAssetUrls[upload.assetKey]) || upload.dataUrl;
+      if(!assetUrl) return null;
       return {
         ref: { type: 'upload', id: upload.id },
-        url: upload.dataUrl,
+        url: assetUrl,
         title: upload.name || 'Upload',
         subtitle: 'Upload',
         meta: upload.width && upload.height ? Math.round(upload.width) + 'x' + Math.round(upload.height) : ''
@@ -361,7 +457,8 @@
       if(!collection || !collection.urls.length) return null;
       const url = ref.url || collection.urls[0];
       if(!url) return null;
-      const cached = collection.cache && collection.cache[url];
+      const cachedRef = collection.cache && collection.cache[url];
+      const cached = cachedRef && (String(cachedRef).startsWith('data:') ? cachedRef : bgAssetUrls[cachedRef]);
       return {
         ref: { type: 'collection', collectionId: collection.id, url },
         url: cached || url,
@@ -492,7 +589,7 @@
       const isActive = key === activeKey;
       const size = upload.width && upload.height ? Math.round(upload.width) + 'x' + Math.round(upload.height) : '';
       return '<div class="bg-card' + (isActive ? ' highlight' : '') + '">' +
-        '<div class="bg-thumb" style="' + bgCssBg(upload.dataUrl) + '"></div>' +
+        '<div class="bg-thumb" style="' + bgCssBg((upload.assetKey && bgAssetUrls[upload.assetKey]) || upload.dataUrl) + '"></div>' +
           '<div class="bg-card-title">' + escapeHtml(upload.name || t('background.upload')) + '</div>' +
           '<div class="bg-card-meta">' + escapeHtml(size) + '</div>' +
           '<div class="bg-card-actions">' +
@@ -517,7 +614,8 @@
     if(!panel) return;
     const cards = (state.collections || []).map(col => {
       const count = col.urls.length;
-      const previewUrl = col.urls.length ? (col.cache && col.cache[col.urls[0]]) || col.urls[0] : '';
+      const cachedRef = col.urls.length && col.cache ? col.cache[col.urls[0]] : '';
+      const previewUrl = col.urls.length ? (cachedRef && (String(cachedRef).startsWith('data:') ? cachedRef : bgAssetUrls[cachedRef])) || col.urls[0] : '';
       return '<div class="bg-collection" data-collection="' + col.id + '">' +
         '<div class="bg-collection-header">' +
           '<div>' +
@@ -745,10 +843,13 @@
     bgRenderSettings();
   }
 
-  function bgDeleteUpload(id){
+  async function bgDeleteUpload(id){
     if(!id) return;
     let removedActive = false;
+    let assetKey = '';
     bgUpdateState(state => {
+      const upload = (state.uploads || []).find(u => u.id === id);
+      assetKey = upload && upload.assetKey ? upload.assetKey : '';
       state.uploads = (state.uploads || []).filter(u => u.id !== id);
       state.history = (state.history || []).filter(r => !(r && r.type === 'upload' && r.id === id));
       if(state.active && state.active.type === 'upload' && state.active.id === id){
@@ -757,6 +858,7 @@
       }
       return state;
     });
+    await bgAssetDelete(assetKey);
     if(removedActive) bgApply(null, { skipHistory: true });
     bgRenderSettings();
   }
@@ -766,7 +868,7 @@
     const urlsInput = document.getElementById('bgCollectionUrls');
     if(!urlsInput) return;
     const name = nameInput ? nameInput.value.trim() : '';
-    const urls = urlsInput.value.split(/\r?\n/).map(v => v.trim()).filter(Boolean);
+    const urls = urlsInput.value.split(/\r?\n/).map(normalizeHttpUrl).filter(Boolean);
     if(!urls.length){
       await uiAlert(t('background.collections.minOneUrl'));
       return;
@@ -820,10 +922,15 @@
     const button = document.querySelector('[data-action="bg-collection-cache"][data-collection="' + id + '"]');
     if(button) button.disabled = true;
     const cached = {};
+    const previousAssetKeys = Object.values(collection.cache || {}).filter(value=> typeof value === 'string' && !value.startsWith('data:'));
     try {
       for(const url of collection.urls){
         const data = await bgFetchImageData(url);
-        if(data) cached[url] = data;
+        if(data){
+          const key = `collection:${collection.id}:${Math.random().toString(36).slice(2,10)}`;
+          await bgAssetPut(key, data);
+          cached[url] = key;
+        }
       }
       bgUpdateState(stateUpdate => {
         const target = stateUpdate.collections.find(c => c.id === id);
@@ -833,6 +940,8 @@
         }
         return stateUpdate;
       });
+      const retained = new Set(Object.values(cached));
+      await Promise.all(previousAssetKeys.filter(key=> !retained.has(key)).map(bgAssetDelete));
       uiToast(t('background.collections.saved'), { type: 'success' });
     } catch (err) {
       console.error(err);
@@ -846,7 +955,7 @@
   async function bgHandleCustom(action){
     const input = document.getElementById('bgCustomUrl');
     if(!input) return;
-    const value = input.value.trim();
+    const value = normalizeHttpUrl(input.value);
     if(action === 'save'){
       bgUpdateState(state => { state.customUrl = value; return state; });
       bgRenderSettings();
@@ -911,7 +1020,7 @@
       return;
     }
     if(action === 'bg-delete-upload'){
-      bgDeleteUpload(target.dataset.upload);
+      await bgDeleteUpload(target.dataset.upload);
       return;
     }
     if(action === 'bg-upload-browse'){
@@ -937,6 +1046,8 @@
     }
     if(action === 'bg-collection-remove'){
       const id = target.dataset.collection;
+      const current = bgLoadState().collections.find(c => c.id === id);
+      const assetKeys = current ? Object.values(current.cache || {}).filter(value=> typeof value === 'string' && !value.startsWith('data:')) : [];
       bgUpdateState(state => {
         state.collections = (state.collections || []).filter(c => c.id !== id);
         state.history = (state.history || []).filter(ref => !(ref && ref.type === 'collection' && ref.collectionId === id));
@@ -945,6 +1056,7 @@
         }
         return state;
       });
+      await Promise.all(assetKeys.map(bgAssetDelete));
       bgApply(null, { skipHistory: true });
       bgRenderSettings();
       return;
@@ -1065,19 +1177,30 @@
     const dataUrl = await bgReadFileAsDataUrl(file);
     const img = await bgLoadImage(dataUrl);
     const scaled = bgResizeImage(img);
+    const id = 'upload-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2,6);
+    const assetKey = `upload:${id}`;
+    let storedInDb = false;
+    try{
+      await bgAssetPut(assetKey, scaled.dataUrl);
+      storedInDb = true;
+    }catch{}
     const entry = {
-      id: 'upload-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2,6),
+      id,
       name: file.name ? file.name.replace(/\.[^.]+$/, '') : 'Upload',
-      dataUrl: scaled.dataUrl,
+      assetKey: storedInDb ? assetKey : '',
+      dataUrl: storedInDb ? '' : scaled.dataUrl,
       width: scaled.width,
       height: scaled.height,
       created: Date.now()
     };
+    let evictedAssetKeys = [];
     bgUpdateState(state => {
       state.uploads.unshift(entry);
+      evictedAssetKeys = state.uploads.slice(BG_MAX_UPLOADS).map(item=> item.assetKey).filter(Boolean);
       state.uploads = state.uploads.slice(0, BG_MAX_UPLOADS);
       return state;
     });
+    await Promise.all(evictedAssetKeys.map(bgAssetDelete));
   }
 
   function bgReadFileAsDataUrl(file){
@@ -1310,9 +1433,10 @@
     bgRestartTimer(bgLoadState());
   }
 
-  function bgInitBackgroundEngine(){
+  async function bgInitBackgroundEngine(){
     const engine = document.getElementById('bgEngine');
     if(!engine) return;
+    await bgHydrateAssets();
     engine.addEventListener('click', bgHandleClick);
     engine.addEventListener('change', bgHandleChange);
     engine.addEventListener('dragover', bgHandleDrag);
@@ -1351,10 +1475,280 @@
   function widgetDefaults(){
     return { todo:true, notes:true, tiles:true, weather:true, transport:true, quote:true, recent:true, system:true, news:true };
   }
+  const WIDGET_LAYOUT_ORDER_KEY = 'layout.widgets.order';
+  const WIDGET_LAYOUT_SIZES_KEY = 'layout.widgets.sizes';
+  const WIDGET_LAYOUT_DEFAULT_ORDER = ['todo','notes','tiles','weather','transport','quote','recent','system','news'];
+  const WIDGET_LAYOUT_MAP = { todo:'#todo', notes:'#notes', tiles:'#tilesCard', weather:'#weather', transport:'#transportCard', quote:'#quoteCard', recent:'#recent', system:'#systemCard', news:'#newsCard' };
+  const WIDGET_LAYOUT_WIDTHS = [4,6,8,12];
+  const WIDGET_LAYOUT_HEIGHTS = ['auto','compact','tall'];
+  let widgetLayoutEditing = false;
+  let widgetLayoutDraggedKey = '';
+  let widgetLayoutTouchTarget = null;
+  const WIDGET_LAYOUT_DEFAULT_SIZES = {
+    todo: { width:6, height:'auto' }, notes: { width:6, height:'auto' },
+    tiles: { width:8, height:'auto' }, weather: { width:4, height:'auto' },
+    transport: { width:8, height:'auto' }, quote: { width:4, height:'auto' },
+    recent: { width:8, height:'auto' }, system: { width:4, height:'auto' },
+    news: { width:12, height:'auto' }
+  };
+  function getWidgetLayout(){
+    const storedOrder = store.get(WIDGET_LAYOUT_ORDER_KEY, []);
+    const order = Array.isArray(storedOrder) ? [...new Set(storedOrder.filter(key=> WIDGET_LAYOUT_DEFAULT_ORDER.includes(key)))] : [];
+    WIDGET_LAYOUT_DEFAULT_ORDER.forEach(key=>{ if(!order.includes(key)) order.push(key); });
+    const storedSizes = store.get(WIDGET_LAYOUT_SIZES_KEY, {});
+    const sizes = {};
+    order.forEach(key=>{
+      const value = storedSizes && storedSizes[key] ? storedSizes[key] : {};
+      const width = WIDGET_LAYOUT_WIDTHS.includes(Number(value.width)) ? Number(value.width) : WIDGET_LAYOUT_DEFAULT_SIZES[key].width;
+      const height = WIDGET_LAYOUT_HEIGHTS.includes(value.height) ? value.height : WIDGET_LAYOUT_DEFAULT_SIZES[key].height;
+      sizes[key] = { width, height };
+    });
+    return { order, sizes };
+  }
+  function saveWidgetLayout(layout){
+    store.set(WIDGET_LAYOUT_ORDER_KEY, layout.order);
+    store.set(WIDGET_LAYOUT_SIZES_KEY, layout.sizes);
+  }
+  function applyWidgetLayout(){
+    const grid = $('main.grid');
+    if(!grid) return;
+    const layout = getWidgetLayout();
+    layout.order.forEach(key=>{
+      const el = $(WIDGET_LAYOUT_MAP[key]);
+      if(!el) return;
+      el.classList.remove('col-4','col-6','col-8','col-12');
+      el.classList.add(`col-${layout.sizes[key].width}`);
+      el.dataset.widgetHeight = layout.sizes[key].height;
+      grid.appendChild(el);
+    });
+    syncWidgetLayoutEditor();
+    if(typeof renderNewsForWidgetHeight === 'function') renderNewsForWidgetHeight();
+  }
+  function updateWidgetLayout(key, patch){
+    const layout = getWidgetLayout();
+    if(!layout.sizes[key]) return;
+    layout.sizes[key] = { ...layout.sizes[key], ...patch };
+    saveWidgetLayout(layout);
+    applyWidgetLayout();
+  }
+  function moveWidgetLayout(key, delta){
+    const layout = getWidgetLayout();
+    const from = layout.order.indexOf(key);
+    const to = Math.max(0, Math.min(layout.order.length - 1, from + delta));
+    if(from < 0 || from === to) return;
+    layout.order.splice(to, 0, layout.order.splice(from, 1)[0]);
+    saveWidgetLayout(layout);
+    applyWidgetLayout();
+  }
+  function resetWidgetLayout(){
+    localStorage.removeItem(WIDGET_LAYOUT_ORDER_KEY);
+    localStorage.removeItem(WIDGET_LAYOUT_SIZES_KEY);
+    applyWidgetLayout();
+  }
+  function getWidgetLayoutKey(el){
+    return Object.keys(WIDGET_LAYOUT_MAP).find(key=> el.matches(WIDGET_LAYOUT_MAP[key])) || '';
+  }
+  function clearWidgetLayoutDropTargets(){
+    $$('.widget-layout-drop-before, .widget-layout-drop-after').forEach(el=> el.classList.remove('widget-layout-drop-before','widget-layout-drop-after'));
+    widgetLayoutTouchTarget = null;
+  }
+  function getWidgetLayoutDropPosition(card, clientX, clientY){
+    const rect = card.getBoundingClientRect();
+    const sameRow = Math.abs(clientY - (rect.top + rect.height / 2)) < rect.height * 0.3;
+    return sameRow ? clientX >= rect.left + rect.width / 2 : clientY >= rect.top + rect.height / 2;
+  }
+  function markWidgetLayoutDropTarget(card, after){
+    clearWidgetLayoutDropTargets();
+    widgetLayoutTouchTarget = { key:getWidgetLayoutKey(card), after };
+    card.classList.add(after ? 'widget-layout-drop-after' : 'widget-layout-drop-before');
+  }
+  function reorderWidgetLayout(sourceKey, targetKey, after=false){
+    if(!sourceKey || !targetKey || sourceKey === targetKey) return;
+    const layout = getWidgetLayout();
+    const from = layout.order.indexOf(sourceKey);
+    if(from < 0) return;
+    layout.order.splice(from, 1);
+    const target = layout.order.indexOf(targetKey);
+    if(target < 0) return;
+    layout.order.splice(target + (after ? 1 : 0), 0, sourceKey);
+    saveWidgetLayout(layout);
+    applyWidgetLayout();
+  }
+  function cycleWidgetLayoutSize(key, type, delta=1){
+    const layout = getWidgetLayout();
+    if(!layout.sizes[key]) return;
+    const values = type === 'width' ? WIDGET_LAYOUT_WIDTHS : WIDGET_LAYOUT_HEIGHTS;
+    const current = layout.sizes[key][type];
+    const index = values.indexOf(current);
+    const next = values[Math.max(0, Math.min(values.length - 1, index + delta))];
+    if(next === current && type === 'height') layout.sizes[key].height = values[(index + 1) % values.length];
+    else layout.sizes[key][type] = next;
+    saveWidgetLayout(layout);
+    applyWidgetLayout();
+  }
+  function createWidgetLayoutButton(className, text, label, onClick){
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = `widget-layout-control ${className}`;
+    button.textContent = text;
+    button.setAttribute('aria-label', label);
+    button.addEventListener('click', e=>{ e.preventDefault(); e.stopPropagation(); onClick(); });
+    return button;
+  }
+  function ensureWidgetLayoutControls(){
+    Object.entries(WIDGET_LAYOUT_MAP).forEach(([key, selector])=>{
+      const card = $(selector);
+      if(!card || $('.widget-layout-controls', card)) return;
+      const name = t(`widgets.${key}`, null, key);
+      const controls = document.createElement('div');
+      controls.className = 'widget-layout-controls';
+      const handle = createWidgetLayoutButton('widget-layout-drag', '\u2630', t('settings.widgets.layoutDrag', { widget:name }, `Move ${name}`), ()=>{});
+      handle.draggable = true;
+      handle.addEventListener('dragstart', e=>{
+        if(!widgetLayoutEditing){ e.preventDefault(); return; }
+        widgetLayoutDraggedKey = key;
+        card.classList.add('widget-layout-dragging');
+        e.dataTransfer.effectAllowed = 'move';
+        e.dataTransfer.setData('text/plain', key);
+      });
+      handle.addEventListener('dragend', ()=>{
+        widgetLayoutDraggedKey = '';
+        card.classList.remove('widget-layout-dragging');
+        clearWidgetLayoutDropTargets();
+      });
+      handle.addEventListener('keydown', e=>{
+        if(!widgetLayoutEditing || !['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key)) return;
+        e.preventDefault();
+        moveWidgetLayout(key, ['ArrowUp','ArrowLeft'].includes(e.key) ? -1 : 1);
+        handle.focus();
+      });
+      handle.addEventListener('pointerdown', e=>{
+        if(e.pointerType === 'mouse' || !widgetLayoutEditing) return;
+        widgetLayoutDraggedKey = key;
+        card.classList.add('widget-layout-dragging');
+        handle.setPointerCapture(e.pointerId);
+      });
+      handle.addEventListener('pointermove', e=>{
+        if(e.pointerType === 'mouse' || widgetLayoutDraggedKey !== key) return;
+        const target = document.elementFromPoint(e.clientX, e.clientY);
+        const targetCard = target && target.closest ? target.closest('main.grid > .card') : null;
+        if(targetCard && targetCard !== card) markWidgetLayoutDropTarget(targetCard, getWidgetLayoutDropPosition(targetCard, e.clientX, e.clientY));
+      });
+      const finishTouchDrag = e=>{
+        if(e.pointerType === 'mouse' || widgetLayoutDraggedKey !== key) return;
+        const target = widgetLayoutTouchTarget;
+        widgetLayoutDraggedKey = '';
+        card.classList.remove('widget-layout-dragging');
+        clearWidgetLayoutDropTargets();
+        if(target) reorderWidgetLayout(key, target.key, target.after);
+      };
+      handle.addEventListener('pointerup', finishTouchDrag);
+      handle.addEventListener('pointercancel', finishTouchDrag);
+      const narrower = createWidgetLayoutButton('widget-layout-width', '\u2212', t('settings.widgets.layoutWidthDecrease', { widget:name }, `Make ${name} narrower`), ()=> cycleWidgetLayoutSize(key, 'width', -1));
+      const size = document.createElement('span');
+      size.className = 'widget-layout-size';
+      const wider = createWidgetLayoutButton('widget-layout-width', '+', t('settings.widgets.layoutWidthIncrease', { widget:name }, `Make ${name} wider`), ()=> cycleWidgetLayoutSize(key, 'width', 1));
+      const height = createWidgetLayoutButton('widget-layout-height', '\u2195', t('settings.widgets.layoutHeightCycle', { widget:name }, `Change the height of ${name}`), ()=> cycleWidgetLayoutSize(key, 'height'));
+      controls.append(handle, narrower, size, wider, height);
+      card.appendChild(controls);
+      card.addEventListener('dragover', e=>{
+        if(!widgetLayoutEditing || !widgetLayoutDraggedKey || widgetLayoutDraggedKey === key) return;
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+        markWidgetLayoutDropTarget(card, getWidgetLayoutDropPosition(card, e.clientX, e.clientY));
+      });
+      card.addEventListener('drop', e=>{
+        if(!widgetLayoutEditing || !widgetLayoutDraggedKey || widgetLayoutDraggedKey === key) return;
+        e.preventDefault();
+        const sourceKey = widgetLayoutDraggedKey;
+        const after = getWidgetLayoutDropPosition(card, e.clientX, e.clientY);
+        widgetLayoutDraggedKey = '';
+        clearWidgetLayoutDropTargets();
+        reorderWidgetLayout(sourceKey, key, after);
+      });
+    });
+  }
+  function ensureWidgetLayoutToolbar(){
+    let toolbar = $('#widgetLayoutToolbar');
+    if(toolbar) return toolbar;
+    toolbar = document.createElement('div');
+    toolbar.id = 'widgetLayoutToolbar';
+    toolbar.className = 'widget-layout-toolbar';
+    toolbar.innerHTML = `<span>${escapeHtml(t('settings.widgets.layoutEditingHint', null, 'Drag widgets or resize them directly on the card.'))}</span>`;
+    const reset = createWidgetLayoutButton('btn', t('settings.widgets.layoutReset', null, 'Reset layout'), t('settings.widgets.layoutReset', null, 'Reset layout'), resetWidgetLayout);
+    const done = createWidgetLayoutButton('btn widget-layout-done', t('settings.widgets.layoutDone', null, 'Done'), t('settings.widgets.layoutDone', null, 'Done'), ()=> setWidgetLayoutEditing(false));
+    toolbar.append(reset, done);
+    document.body.appendChild(toolbar);
+    return toolbar;
+  }
+  function syncWidgetLayoutEditor(){
+    ensureWidgetLayoutControls();
+    const layout = getWidgetLayout();
+    Object.entries(WIDGET_LAYOUT_MAP).forEach(([key, selector])=>{
+      const card = $(selector);
+      if(!card) return;
+      const size = $('.widget-layout-size', card);
+      const controls = $('.widget-layout-controls', card);
+      if(size) size.textContent = `${layout.sizes[key].width}/12`;
+      if(controls) controls.setAttribute('aria-hidden', widgetLayoutEditing ? 'false' : 'true');
+    });
+    const toggle = $('#widgetLayoutToggle');
+    if(toggle){
+      toggle.classList.toggle('active', widgetLayoutEditing);
+      toggle.setAttribute('aria-pressed', String(widgetLayoutEditing));
+      toggle.setAttribute('aria-label', t(widgetLayoutEditing ? 'settings.widgets.layoutDone' : 'settings.widgets.layoutEdit'));
+      toggle.title = t(widgetLayoutEditing ? 'settings.widgets.layoutDone' : 'settings.widgets.layoutEdit');
+    }
+    const edit = $('#widgetLayoutEdit');
+    if(edit) edit.textContent = t(widgetLayoutEditing ? 'settings.widgets.layoutDone' : 'settings.widgets.layoutEdit');
+    const toolbar = widgetLayoutEditing ? ensureWidgetLayoutToolbar() : $('#widgetLayoutToolbar');
+    if(toolbar) toolbar.hidden = !widgetLayoutEditing;
+  }
+  function setWidgetLayoutEditing(enabled){
+    widgetLayoutEditing = !!enabled;
+    if(widgetLayoutEditing) finishInitialAnimations();
+    document.body.classList.toggle('widget-layout-editing', widgetLayoutEditing);
+    clearWidgetLayoutDropTargets();
+    syncWidgetLayoutEditor();
+    if(widgetLayoutEditing) ensureWidgetLayoutToolbar();
+  }
+  function toggleWidgetLayoutEditing(){
+    setWidgetLayoutEditing(!widgetLayoutEditing);
+  }
+  const widgetRuntimeInitialized = {};
+  function getWidgetConfig(){
+    const defaults = widgetDefaults();
+    const stored = store.get('widgets', {});
+    return { ...defaults, ...(stored && typeof stored === 'object' ? stored : {}) };
+  }
+  function isWidgetEnabled(key){
+    return !!getWidgetConfig()[key];
+  }
+  function initializeWidgetRuntime(key){
+    const first = !widgetRuntimeInitialized[key];
+    widgetRuntimeInitialized[key] = true;
+    if(key === 'tiles') renderTiles();
+    else if(key === 'weather') void loadWeather();
+    else if(key === 'transport') first ? initTransport() : void loadTransportDepartures();
+    else if(key === 'quote') loadQuote();
+    else if(key === 'recent') renderRecent();
+    else if(key === 'system') renderSystem();
+    else if(key === 'news'){
+      fillNewsSources();
+      void loadNews();
+    }
+  }
   function applyWidgets(){
-    const conf = store.get('widgets', widgetDefaults());
-    const map = { todo:'#todo', notes:'#notes', tiles:'#tilesCard', weather:'#weather', transport:'#transportCard', quote:'#quoteCard', recent:'#recent', system:'#systemCard', news:'#newsCard' };
-    Object.entries(map).forEach(([k,sel])=>{ const el=$(sel); if(el) el.style.display = conf[k] ? '' : 'none'; });
+    applyWidgetLayout();
+    const conf = getWidgetConfig();
+    Object.entries(WIDGET_LAYOUT_MAP).forEach(([k,sel])=>{
+      const el = $(sel);
+      if(!el) return;
+      const wasHidden = el.style.display === 'none';
+      const enabled = !!conf[k];
+      el.style.display = enabled ? '' : 'none';
+      if(enabled && (!widgetRuntimeInitialized[k] || wasHidden)) initializeWidgetRuntime(k);
+    });
   }
 
   // ===== Widget colors
