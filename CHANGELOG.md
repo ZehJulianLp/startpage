@@ -1,5 +1,28 @@
 # Changelog
 
+## [1.17.0](https://github.com/ZehJulianLp/startpage/compare/v1.16.1...v1.17.0) (2026-07-16)
+
+
+### Features
+
+* adapt news count to widget height ([7609791](https://github.com/ZehJulianLp/startpage/commit/760979109b5ff67c5b361c7e5c73ed8ae008309a))
+* add configurable widget layout ([a6f5bd7](https://github.com/ZehJulianLp/startpage/commit/a6f5bd715f403066963a2d3a909a4e14b52d8f73))
+* add richer todo controls ([45be32b](https://github.com/ZehJulianLp/startpage/commit/45be32b5f2ea9b96370afb98fb63446cd28014da))
+* add visual widget layout editing ([02a47b4](https://github.com/ZehJulianLp/startpage/commit/02a47b4a7ed1bd93145851b4a5cea01e9af3b2fd))
+* cache external widget data offline ([c6ddc8a](https://github.com/ZehJulianLp/startpage/commit/c6ddc8a94aa21f6616ef1050fffbd70adab007e2))
+* store background assets in IndexedDB ([c906d6b](https://github.com/ZehJulianLp/startpage/commit/c906d6b000dbe5b3e9a9c7707489d296757382d2))
+
+
+### Bug Fixes
+
+* correct browser storage description ([9da3edb](https://github.com/ZehJulianLp/startpage/commit/9da3edbfd7ad1af46c4c257ba5ade214780c2e11))
+* defer hidden widget network requests ([9262ef5](https://github.com/ZehJulianLp/startpage/commit/9262ef559c21af49fb6a53470df9470a79c8a9c7))
+* harden external content and URLs ([0a72e23](https://github.com/ZehJulianLp/startpage/commit/0a72e23ddaa6fa77818ecdb3202277dc5c6fe953))
+* improve keyboard and modal accessibility ([be9d567](https://github.com/ZehJulianLp/startpage/commit/be9d5673e43faf29cda4770b5deda1781a96951a))
+* improve transport delays and recovery ([c20c6a3](https://github.com/ZehJulianLp/startpage/commit/c20c6a30e640811adcabaa17f574dae0df100c1f))
+* prevent reveal animation on layout changes ([e43db58](https://github.com/ZehJulianLp/startpage/commit/e43db58cf017b304819228682cd37c47db1db244))
+* refine todo widget layout ([02786c3](https://github.com/ZehJulianLp/startpage/commit/02786c36929e325551380ef356e4406ff5f26d9a))
+
 ## [1.16.1](https://github.com/ZehJulianLp/startpage/compare/v1.16.0...v1.16.1) (2026-05-20)
 
 
