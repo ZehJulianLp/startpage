@@ -54,11 +54,21 @@
     "title": "To-Do",
     "placeholder": "Neue Aufgabe…",
     "add": "Hinzufügen",
+    "save": "Speichern",
     "clearDoneTitle": "Erledigte entfernen",
     "clearDone": "✓ löschen",
     "doneAria": "Fertig",
     "prompt": "Todo",
-    "reorderAria": "{task} mit Alt und Pfeiltasten verschieben"
+    "reorderAria": "{task} mit Alt und Pfeiltasten verschieben",
+    "filterAria": "Aufgaben filtern",
+    "filterAll": "Alle",
+    "filterOpen": "Offen",
+    "filterDone": "Erledigt",
+    "priorityAria": "Priorität",
+    "priorityNormal": "Normal",
+    "priorityHigh": "Hoch",
+    "priorityLow": "Niedrig",
+    "dueAria": "Fälligkeitsdatum"
   },
   "notes": {
     "title": "Notizen",

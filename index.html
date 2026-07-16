@@ -37,9 +37,22 @@
 
     <main class="grid">
       <section class="card col-6" id="todo">
-        <h3 data-i18n="todo.title">To-Do</h3>
+        <div class="todo-heading">
+          <h3 data-i18n="todo.title">To-Do</h3>
+          <select id="todoFilter" aria-label="Aufgaben filtern" data-i18n-aria-label="todo.filterAria">
+            <option value="all" data-i18n="todo.filterAll">Alle</option>
+            <option value="open" data-i18n="todo.filterOpen">Offen</option>
+            <option value="done" data-i18n="todo.filterDone">Erledigt</option>
+          </select>
+        </div>
         <div class="todo-input">
           <input id="todoInput" type="text" placeholder="Neue Aufgabe…" data-i18n-placeholder="todo.placeholder" />
+          <select id="todoPriority" aria-label="Priorität" data-i18n-aria-label="todo.priorityAria">
+            <option value="normal" data-i18n="todo.priorityNormal">Normal</option>
+            <option value="high" data-i18n="todo.priorityHigh">Hoch</option>
+            <option value="low" data-i18n="todo.priorityLow">Niedrig</option>
+          </select>
+          <input id="todoDue" type="date" aria-label="Fälligkeitsdatum" data-i18n-aria-label="todo.dueAria" />
           <button class="btn" id="todoAdd" data-i18n="todo.add">Hinzufügen</button>
           <button class="btn" id="todoClearDone" title="Erledigte entfernen" data-i18n-title="todo.clearDoneTitle" data-i18n="todo.clearDone">? löschen</button>
         </div>
