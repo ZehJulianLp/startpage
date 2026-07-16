@@ -337,11 +337,11 @@
       el.tabIndex = filter === 'all' ? 0 : -1;
       if(filter === 'all') el.setAttribute('aria-label', t('todo.reorderAria', { task:item.text }, `Reorder ${item.text} with Alt and arrow keys`));
       const dueLabel = item.due ? new Date(`${item.due}T00:00:00`).toLocaleDateString(localeToIntl(i18nLocale) || undefined, { day:'2-digit', month:'short' }) : '';
-      const priorityLabel = item.priority !== 'normal' ? `<span class="todo-priority ${item.priority}">${escapeHtml(t(`todo.priority${item.priority[0].toUpperCase()}${item.priority.slice(1)}`, null, item.priority))}</span>` : '';
       el.innerHTML = `
         <input class="todo-check" type="checkbox" ${item.done?'checked':''} aria-label="${escapeHtml(t('todo.doneAria'))}">
-        <div class="todo-title-wrap"><div class="title">${escapeHtml(item.text)}</div>${priorityLabel || dueLabel ? `<div class="todo-meta">${priorityLabel}${dueLabel ? `<span class="todo-due">${escapeHtml(dueLabel)}</span>` : ''}</div>` : ''}</div>
-        <div class="todo-actions"><button class="btn icon-only todo-edit" title="${escapeHtml(t('tiles.edit'))}" aria-label="${escapeHtml(t('tiles.edit'))}">${iconSvg('edit')}</button><button class="btn icon-only todo-delete" title="${escapeHtml(t('common.delete'))}" aria-label="${escapeHtml(t('common.delete'))}">${iconSvg('trash')}</button></div>
+        <div class="todo-title-wrap"><div class="title">${escapeHtml(item.text)}</div><div class="todo-meta"><span class="todo-priority ${item.priority}">${escapeHtml(t(`todo.priority${item.priority[0].toUpperCase()}${item.priority.slice(1)}`, null, item.priority))}</span>${dueLabel ? `<span class="todo-due">${escapeHtml(dueLabel)}</span>` : ''}</div></div>
+        <button class="btn icon-only todo-edit" title="${escapeHtml(t('tiles.edit'))}" aria-label="${escapeHtml(t('tiles.edit'))}">${iconSvg('edit')}</button>
+        <button class="btn icon-only todo-delete" title="${escapeHtml(t('common.delete'))}" aria-label="${escapeHtml(t('common.delete'))}">${iconSvg('trash')}</button>
       `;
       el.querySelector('.todo-check').addEventListener('change', e=>{
         list[i].done = e.target.checked; store.set('todos', list); renderTodos();
