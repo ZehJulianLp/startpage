@@ -15,7 +15,9 @@
     "dash": "–",
     "cancel": "Abbrechen",
     "ok": "OK",
-    "default": "Standard"
+    "default": "Standard",
+    "updatedAt": "Aktualisiert · {time}",
+    "cachedAt": "Gespeichert · {time}"
   },
   "header": {
     "themeToggleTitle": "Dunkel/Hell",

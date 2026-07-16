@@ -85,7 +85,7 @@
         <div class="weather-app-link-wrap">
           <a class="btn weather-app-link" id="weatherAppLink" href="https://julianverse.de/weather/" target="_blank" rel="noopener noreferrer" data-i18n="weather.openApp">In Julianverse Weather öffnen</a>
         </div>
-        <div class="muted" id="weatherFoot" style="margin-top:8px; font-size:12px" data-i18n="weather.source">Quelle: Open-Meteo</div>
+        <div class="muted widget-source" id="weatherFoot" style="margin-top:8px; font-size:12px"><span data-i18n="weather.source">Quelle: Open-Meteo</span><span id="weatherDataStatus"></span></div>
       </section>
 
       <section class="card col-8" id="transportCard">
@@ -109,7 +109,7 @@
         </div>
         <div class="transport-selected muted" id="transportSelected" data-i18n="transport.noneSelected">Keine Station gewählt</div>
         <ul id="transportList" class="transport-list"></ul>
-        <div class="muted" id="transportFoot" style="margin-top:8px; font-size:12px" data-i18n="transport.source">Quelle: transport.rest</div>
+        <div class="muted widget-source" id="transportFoot" style="margin-top:8px; font-size:12px"><span data-i18n="transport.source">Quelle: transport.rest</span><span id="transportDataStatus"></span></div>
       </section>
 
       <section class="card col-4" id="quoteCard">
@@ -138,7 +138,7 @@
           </div>
         </div>
         <ul id="newsList"></ul>
-        <div class="muted" style="margin-top:8px; font-size:12px" data-i18n="news.source">RSS via Startpage Proxy (CORS-Proxy)</div>
+        <div class="muted widget-source" style="margin-top:8px; font-size:12px"><span data-i18n="news.source">RSS via Startpage Proxy (CORS-Proxy)</span><span id="newsDataStatus"></span></div>
       </section>
     </main>
 

@@ -638,6 +638,8 @@
     .transport-selected { margin-top:6px; font-size:12px }
     .transport-list { list-style:none; padding:0; margin:10px 0 0; display:flex; flex-direction:column; gap:8px; max-height:260px; overflow:auto }
     .transport-error { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+    .widget-source { display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap; }
+    .widget-data-status.stale { color:#f59e0b; }
     .transport-item { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:8px 10px; border-radius:12px; background: var(--bg-soft); border:1px solid rgba(255,255,255,.06); }
     .transport-main { display:flex; flex-direction:column; gap:2px; min-width:0 }
     .transport-line { font-weight:600 }

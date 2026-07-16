@@ -1394,6 +1394,7 @@
     const allowed = new Set(scopes);
     for(let i=0;i<localStorage.length;i++){
       const k = localStorage.key(i);
+      if(k.startsWith('cache.')) continue;
       if(!allowed.has(getDataScopeForKey(k))) continue;
       try { data[k] = JSON.parse(localStorage.getItem(k)); } catch { data[k] = localStorage.getItem(k); }
     }

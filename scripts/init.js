@@ -371,6 +371,11 @@
 
     // Widgets visibility
     applyWidgets();
+    window.addEventListener('online', ()=>{
+      if(isWidgetEnabled('weather')) void loadWeather();
+      if(isWidgetEnabled('transport')) void loadTransportDepartures();
+      if(isWidgetEnabled('news')) void loadNews();
+    });
     applyControlColors();
     applyWidgetColors();
 

@@ -800,6 +800,26 @@
   }
 
   // ===== Weather (Open-Meteo)
+  function setWidgetDataStatus(id, timestamp, stale=false){
+    const el = $(id);
+    if(!el) return;
+    el.className = 'widget-data-status' + (stale ? ' stale' : '');
+    if(!timestamp){ el.textContent = ''; return; }
+    const time = new Date(timestamp).toLocaleTimeString(localeToIntl(i18nLocale) || undefined, { hour:'2-digit', minute:'2-digit' });
+    el.textContent = stale
+      ? t('common.cachedAt', { time }, `Cached · ${time}`)
+      : t('common.updatedAt', { time }, `Updated · ${time}`);
+  }
+
+  function getDataCache(key){
+    const value = store.get(`cache.${key}`, null);
+    return value && typeof value === 'object' ? value : null;
+  }
+
+  function setDataCache(key, value){
+    store.set(`cache.${key}`, value);
+  }
+
   async function lookupCity(name){
     const lang = getLocaleLang();
     const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(name)}&count=1&language=${encodeURIComponent(lang)}&format=json`);
@@ -971,6 +991,52 @@
     return next;
   }
 
+  function renderWeatherPayload(city, loc, data, timestamp, stale=false){
+    const tempEl = $('#tempNow');
+    const textEl = $('#weatherText');
+    const minmaxEl = $('#minmax');
+    const hourlyEl = $('#hourly');
+    if(!tempEl || !textEl || !minmaxEl || !hourlyEl) return;
+    updateWeatherAppLink(city, loc);
+    const offset = Number(data.utc_offset_seconds) || 0;
+    const curr = data.current_weather || {};
+    updateWeatherIcon(curr.weathercode);
+    const tempNow = Math.round(curr.temperature ?? NaN);
+    tempEl.textContent = isFinite(tempNow) ? `${tempNow}\u00b0C` : t('weather.tempEmpty', null, '\u2014\u00b0C');
+    textEl.textContent = `${loc.name} \u00b7 ${wmoText(curr.weathercode)}`;
+    const dmax = Math.round((data.daily?.temperature_2m_max?.[0]) ?? NaN);
+    const dmin = Math.round((data.daily?.temperature_2m_min?.[0]) ?? NaN);
+    minmaxEl.textContent = isFinite(dmin)&&isFinite(dmax) ? `${dmin} / ${dmax} \u00b0C` : t('weather.minmaxEmpty', null, '\u2014 / \u2014 \u00b0C');
+    const hours = data.hourly?.time || [];
+    const temps = data.hourly?.temperature_2m || [];
+    const codes = data.hourly?.weathercode || [];
+    hourlyEl.innerHTML = '';
+    const now = Date.now();
+    const horizon = now + (24 * 60 * 60 * 1000);
+    const upcoming = [];
+    for(let i=0;i<hours.length;i++){
+      const tDate = parseWeatherTime(hours[i], offset);
+      if(!tDate) continue;
+      const ts = tDate.getTime();
+      if(ts < now || ts > horizon) continue;
+      upcoming.push({ i, tDate });
+    }
+    let added = 0;
+    for(let n=0;n<upcoming.length;n++){
+      if(n % 3 !== 0) continue;
+      const i = upcoming[n].i;
+      const chip = document.createElement('div');
+      chip.className = 'chip';
+      const timeLabel = upcoming[n].tDate.toLocaleTimeString([], {hour:'2-digit'});
+      const tempVal = Math.round(temps[i]);
+      chip.innerHTML = `<div class="chip-top"><span>${timeLabel}</span><span class="chip-temp">${isFinite(tempVal)? tempVal+'\u00b0' : t('weather.tempEmptyShort', null, '\u2014\u00b0')}</span></div><div class="chip-text">${wmoText(codes[i])}</div>`;
+      hourlyEl.appendChild(chip);
+      added++;
+    }
+    if(!added) hourlyEl.innerHTML = `<div class="muted">${escapeHtml(t('weather.noForecast'))}</div>`;
+    setWidgetDataStatus('#weatherDataStatus', timestamp, stale);
+  }
+
   async function loadWeather(entryId){
     ensureWeatherStorage();
     if(entryId){
@@ -996,65 +1062,28 @@
     if(!city) return;
 
     try {
+      if(!navigator.onLine) throw new Error('offline');
       const loc = await resolveCity(city);
-      updateWeatherAppLink(city, loc);
       const url = `https://api.open-meteo.com/v1/forecast?latitude=${loc.lat}&longitude=${loc.lon}&hourly=temperature_2m,weathercode&current_weather=true&timezone=auto&daily=temperature_2m_max,temperature_2m_min&forecast_days=2`;
       const res = await fetch(url);
       if(!res.ok) throw new Error(t('weather.errors.fetchFailed'));
       const data = await res.json();
-      const offset = Number(data.utc_offset_seconds) || 0;
-      const curr = data.current_weather || {};
-      updateWeatherIcon(curr.weathercode);
-      const tempNow = Math.round(curr.temperature ?? NaN);
-      tempEl.textContent = isFinite(tempNow) ? `${tempNow}\u00b0C` : t('weather.tempEmpty', null, '\u2014\u00b0C');
-      textEl.textContent = `${loc.name} \u00b7 ${wmoText(curr.weathercode)}`;
-      const dmax = Math.round((data.daily?.temperature_2m_max?.[0]) ?? NaN);
-      const dmin = Math.round((data.daily?.temperature_2m_min?.[0]) ?? NaN);
-      minmaxEl.textContent = isFinite(dmin)&&isFinite(dmax) ? `${dmin} / ${dmax} \u00b0C` : t('weather.minmaxEmpty', null, '\u2014 / \u2014 \u00b0C');
-
-      const hours = data.hourly?.time || [];
-      const temps = data.hourly?.temperature_2m || [];
-      const codes = data.hourly?.weathercode || [];
-      const container = hourlyEl; container.innerHTML='';
-      const now = Date.now();
-      const horizon = now + (24 * 60 * 60 * 1000);
-      const upcoming = [];
-      for(let i=0;i<hours.length;i++){
-        const tDate = parseWeatherTime(hours[i], offset);
-        if(!tDate) continue;
-        const ts = tDate.getTime();
-        if(ts < now || ts > horizon) continue;
-        upcoming.push({ i, tDate });
-      }
-      let added = 0;
-      for(let n=0;n<upcoming.length;n++){
-        if(n % 3 !== 0) continue;
-        const i = upcoming[n].i;
-        const tDate = upcoming[n].tDate;
-        const chip = document.createElement('div');
-        chip.className='chip';
-        const timeLabel = tDate.toLocaleTimeString([], {hour:'2-digit'});
-        const tempVal = Math.round(temps[i]);
-        chip.innerHTML = `<div class="chip-top"><span>${timeLabel}</span><span class="chip-temp">${isFinite(tempVal)? tempVal+'\u00b0' : t('weather.tempEmptyShort', null, '\u2014\u00b0')}</span></div><div class="chip-text">${wmoText(codes[i])}</div>`;
-        container.appendChild(chip);
-        added++;
-      }
-      if(!added) container.innerHTML = `<div class="muted">${escapeHtml(t('weather.noForecast'))}</div>`;
-      // Normalize degree symbols / overwrite any garbled text
-      try {
-        const t2 = Math.round((data.current_weather||{}).temperature ?? NaN);
-        tempEl.textContent = isFinite(t2) ? `${t2}\u00b0C` : '-\u00b0C';
-        const dmax2 = Math.round((data.daily?.temperature_2m_max?.[0]) ?? NaN);
-        const dmin2 = Math.round((data.daily?.temperature_2m_min?.[0]) ?? NaN);
-        minmaxEl.textContent = isFinite(dmin2)&&isFinite(dmax2) ? `${dmin2} / ${dmax2} \u00b0C` : '- / - \u00b0C';
-      } catch {}
+      const timestamp = Date.now();
+      setDataCache('weather', { entryId:active.id, city, loc, data, timestamp });
+      renderWeatherPayload(city, loc, data, timestamp, false);
     } catch(err){
       console.warn(err);
+      const cached = getDataCache('weather');
+      if(cached && cached.entryId === active.id && cached.loc && cached.data){
+        renderWeatherPayload(city, cached.loc, cached.data, cached.timestamp, true);
+        return;
+      }
       textEl.textContent = err.message === t('weather.errors.cityMissing') ? t('weather.prompt') : t('weather.errors.loadFailed');
       tempEl.textContent = t('weather.tempEmpty', null, '\u2014\u00b0C');
       minmaxEl.textContent = t('weather.minmaxEmpty', null, '\u2014 / \u2014 \u00b0C');
       hourlyEl.innerHTML='';
       updateWeatherIcon(null);
+      setWidgetDataStatus('#weatherDataStatus', 0);
     }
   }
 
@@ -1298,12 +1327,14 @@
     if(!station || !station.id){
       ul.innerHTML = `<li class="muted">${escapeHtml(t('transport.selectStation'))}</li>`;
       setTransportSelectedText(t('transport.noneSelected'));
+      setWidgetDataStatus('#transportDataStatus', 0);
       return;
     }
     const duration = getTransportDuration();
     setTransportSelectedText(station.place ? `${station.name} - ${station.place}` : station.name);
     ul.innerHTML = `<li class="muted">${escapeHtml(t('common.loading'))}</li>`;
     try{
+      if(!navigator.onLine) throw new Error('offline');
       const preferStation = (station.type === 'station' || station.isStation);
       const first = preferStation ? 'stations' : 'stops';
       const second = preferStation ? 'stops' : 'stations';
@@ -1324,10 +1355,21 @@
       if(!res.ok) throw new Error(`Transport error: ${res.status}`);
       const data = await res.json();
       const list = Array.isArray(data) ? data : (data.departures || data.results || []);
-      renderTransportList(Array.isArray(list) ? list : []);
+      const safeList = Array.isArray(list) ? list : [];
+      const timestamp = Date.now();
+      setDataCache('transport', { stationId:station.id, duration, list:safeList, timestamp });
+      renderTransportList(safeList);
+      setWidgetDataStatus('#transportDataStatus', timestamp, false);
     }catch(err){
+      const cached = getDataCache('transport');
+      if(cached && cached.stationId === station.id && cached.duration === duration && Array.isArray(cached.list)){
+        renderTransportList(cached.list);
+        setWidgetDataStatus('#transportDataStatus', cached.timestamp, true);
+        return;
+      }
       const message = /504/.test(String(err && err.message)) ? t('transport.proxyTimeout') : t('transport.loadError');
       renderTransportLoadError(message);
+      setWidgetDataStatus('#transportDataStatus', 0);
     }
   }
   function initTransport(){
@@ -1460,6 +1502,28 @@
     });
     refreshUiSelects(select.parentElement || document);
   }
+  function renderNewsItems(items, timestamp, stale=false){
+    const ul = $('#newsList');
+    if(!ul) return;
+    ul.innerHTML = '';
+    (items || []).slice(0, 8).forEach(item=>{
+      const li = document.createElement('li');
+      const link = normalizeHttpUrl(item.link);
+      if(link){
+        const anchor = document.createElement('a');
+        anchor.href = link;
+        anchor.target = '_blank';
+        anchor.rel = 'noopener noreferrer';
+        anchor.textContent = String(item.title || '\u2014');
+        li.appendChild(anchor);
+      } else {
+        li.textContent = String(item.title || '\u2014');
+      }
+      ul.appendChild(li);
+    });
+    if(!ul.children.length) ul.innerHTML = `<li class="muted">${escapeHtml(t('news.noItems'))}</li>`;
+    setWidgetDataStatus('#newsDataStatus', timestamp, stale);
+  }
   async function loadNews(){
     const sources = getFeeds();
     const sourceName = store.get('news.source', Object.keys(sources)[0]);
@@ -1467,6 +1531,7 @@
     $('#newsList').innerHTML = `<li class="muted">${escapeHtml(t('common.loading'))}</li>`;
     try{
       if(!feedUrl) throw new Error('Invalid feed URL');
+      if(!navigator.onLine) throw new Error('offline');
       const res = await fetch(`https://api-startpage.julianverse.de/api/rss?url=${encodeURIComponent(feedUrl)}`);
       if(!res.ok) throw new Error(`RSS proxy error: ${res.status}`);
       const data = { contents: await res.text() };
@@ -1474,26 +1539,23 @@
       const xml = parser.parseFromString(data.contents, 'text/xml');
       const items = Array.from(xml.querySelectorAll('item'));
       const entries = items.length ? [] : Array.from(xml.querySelectorAll('entry'));
-      const ul = $('#newsList'); ul.innerHTML='';
-      const max = 8;
       const list = items.length ? items : entries;
-      list.forEach((it,i)=>{ if(i<max){
+      const normalized = list.slice(0, 8).map(it=>{
         const title = it.querySelector('title')?.textContent?.trim() || '\u2014';
         const linkNode = it.querySelector('link');
         const link = normalizeHttpUrl(linkNode?.getAttribute('href') || linkNode?.textContent || '');
-        const li = document.createElement('li');
-        if(link){
-          const anchor = document.createElement('a');
-          anchor.href = link;
-          anchor.target = '_blank';
-          anchor.rel = 'noopener noreferrer';
-          anchor.textContent = title;
-          li.appendChild(anchor);
-        } else {
-          li.textContent = title;
-        }
-        ul.appendChild(li);
-      }});
-      if(!ul.children.length){ ul.innerHTML = `<li class="muted">${escapeHtml(t('news.noItems'))}</li>`; }
-    }catch(e){ $('#newsList').innerHTML = `<li class="muted">${escapeHtml(t('common.loadError'))}</li>`; }
+        return { title, link };
+      });
+      const timestamp = Date.now();
+      setDataCache('news', { feedUrl, items:normalized, timestamp });
+      renderNewsItems(normalized, timestamp, false);
+    }catch(e){
+      const cached = getDataCache('news');
+      if(cached && cached.feedUrl === feedUrl && Array.isArray(cached.items)){
+        renderNewsItems(cached.items, cached.timestamp, true);
+        return;
+      }
+      $('#newsList').innerHTML = `<li class="muted">${escapeHtml(t('common.loadError'))}</li>`;
+      setWidgetDataStatus('#newsDataStatus', 0);
+    }
   }

@@ -15,7 +15,9 @@
     "dash": "–",
     "cancel": "Cancel",
     "ok": "OK",
-    "default": "Default"
+    "default": "Default",
+    "updatedAt": "Updated · {time}",
+    "cachedAt": "Cached · {time}"
   },
   "header": {
     "themeToggleTitle": "Dark/Light",
