@@ -1097,9 +1097,11 @@
     return d.toLocaleTimeString(localeToIntl(i18nLocale) || undefined, { hour:'2-digit', minute:'2-digit' });
   }
   function formatTransportDelay(raw){
-    const n = Number(raw);
-    if(!Number.isFinite(n) || n === 0) return '';
-    return n > 0 ? `+${n}` : `${n}`;
+    const seconds = Number(raw);
+    if(!Number.isFinite(seconds) || seconds === 0) return '';
+    const minutes = Math.max(1, Math.ceil(Math.abs(seconds) / 60)) * Math.sign(seconds);
+    const value = minutes > 0 ? `+${minutes}` : String(minutes);
+    return t('transport.delayMinutes', { value }, `${value} min`);
   }
   function transportTypeLabel(type){
     if(type === 'station') return t('transport.type.station');
@@ -1201,22 +1203,27 @@
     renderTransportSuggest([]);
     loadTransportDepartures();
   }
-  function isLocalTransit(dep){
-    const line = dep && dep.line ? dep.line : null;
-    const raw = String((line && (line.product || line.mode || line.name || line.id)) || '').toLowerCase();
-    if(!raw) return false;
-    return raw.includes('bus') || raw.includes('tram') || raw.includes('street') || raw.includes('strassen') || raw.includes('stra\u00dfe') || raw.includes('strasse') || raw.includes('u-bahn') || raw.includes('ubahn') || raw.includes('subway') || raw.includes('metro') || raw.includes('stadtbahn') || raw.includes('urban') || raw.includes('s-bahn') || raw.includes('sbahn');
+  function renderTransportLoadError(message){
+    const ul = $('#transportList');
+    if(!ul) return;
+    ul.innerHTML = '';
+    const item = document.createElement('li');
+    item.className = 'transport-error';
+    const text = document.createElement('span');
+    text.className = 'muted';
+    text.textContent = message;
+    const retry = document.createElement('button');
+    retry.type = 'button';
+    retry.className = 'btn';
+    retry.textContent = t('transport.retry', null, 'Retry');
+    retry.addEventListener('click', ()=>{ void loadTransportDepartures(); });
+    item.append(text, retry);
+    ul.appendChild(item);
   }
   function renderTransportList(items){
     const ul = $('#transportList'); if(!ul) return;
     ul.innerHTML = '';
-    const filtered = (items || []).filter(dep=>{
-      if(dep && dep.cancelled) return true;
-      const delayVal = (typeof dep.delay === 'number') ? dep.delay : (dep.stop && typeof dep.stop.departureDelay === 'number' ? dep.stop.departureDelay : 0);
-      if(!Number.isFinite(delayVal)) return true;
-      if(isLocalTransit(dep)) return delayVal <= 60;
-      return true;
-    });
+    const filtered = Array.isArray(items) ? items : [];
     if(!filtered.length){
       ul.innerHTML = `<li class="muted">${escapeHtml(t('transport.noDepartures'))}</li>`;
       return;
@@ -1230,6 +1237,10 @@
       if(Number.isNaN(t)) return true;
       return t <= cutoff;
     });
+    if(!within.length){
+      ul.innerHTML = `<li class="muted">${escapeHtml(t('transport.noDepartures'))}</li>`;
+      return;
+    }
     within.forEach(dep=>{
       const li = document.createElement('li');
       li.className = 'transport-item';
@@ -1281,7 +1292,7 @@
       ul.appendChild(li);
     });
   }
-  async function loadTransportDepartures(){
+  async function loadTransportDepartures(attempt=0){
     const ul = $('#transportList'); if(!ul) return;
     const station = store.get('transport.station', null);
     if(!station || !station.id){
@@ -1306,12 +1317,17 @@
         const retry = await fetchDepartures(second);
         res = retry.res;
       }
+      if(res.status === 504 && attempt < 1){
+        await new Promise(resolve=> setTimeout(resolve, 400));
+        return loadTransportDepartures(attempt + 1);
+      }
       if(!res.ok) throw new Error(`Transport error: ${res.status}`);
       const data = await res.json();
       const list = Array.isArray(data) ? data : (data.departures || data.results || []);
       renderTransportList(Array.isArray(list) ? list : []);
     }catch(err){
-      ul.innerHTML = `<li class="muted">${escapeHtml(t('common.loadError'))}</li>`;
+      const message = /504/.test(String(err && err.message)) ? t('transport.proxyTimeout') : t('transport.loadError');
+      renderTransportLoadError(message);
     }
   }
   function initTransport(){

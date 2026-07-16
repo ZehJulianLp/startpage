@@ -133,8 +133,10 @@
     "source": "Quelle: transport.rest",
     "minQuery": "Mindestens {count} Zeichen",
     "noMatches": "Keine Treffer",
-    "proxyTimeout": "Proxy Timeout",
-    "loadError": "Fehler beim Laden",
+    "proxyTimeout": "Der Transportdienst antwortet gerade nicht.",
+    "loadError": "Abfahrten konnten nicht geladen werden.",
+    "retry": "Erneut versuchen",
+    "delayMinutes": "{value} Min",
     "noDepartures": "Keine Abfahrten",
     "selectStation": "Station auswählen...",
     "type": {

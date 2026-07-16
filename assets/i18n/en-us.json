@@ -133,8 +133,10 @@
     "source": "Source: transport.rest",
     "minQuery": "At least {count} characters",
     "noMatches": "No matches",
-    "proxyTimeout": "Proxy timeout",
-    "loadError": "Load failed",
+    "proxyTimeout": "The transport service is not responding right now.",
+    "loadError": "Departures could not be loaded.",
+    "retry": "Retry",
+    "delayMinutes": "{value} min",
     "noDepartures": "No departures",
     "selectStation": "Select a station…",
     "type": {
