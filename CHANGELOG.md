@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.17.1](https://github.com/ZehJulianLp/startpage/compare/v1.17.0...v1.17.1) (2026-07-16)
+
+
+### Bug Fixes
+
+* scope data transfer to Startpage keys ([c4a49fe](https://github.com/ZehJulianLp/startpage/commit/c4a49feb32526b6c4f0741807a1f5384f6fe5cd1)), closes [#30](https://github.com/ZehJulianLp/startpage/issues/30)
+
 ## [1.17.0](https://github.com/ZehJulianLp/startpage/compare/v1.16.1...v1.17.0) (2026-07-16)
 
 
