@@ -285,6 +285,16 @@
       "recentEntriesLabel": "Zuletzt-Widget Einträge",
       "recentEntriesDecAria": "Zuletzt-Widget Einträge verringern",
       "recentEntriesIncAria": "Zuletzt-Widget Einträge erhöhen",
+      "layoutSection": "Dashboard-Layout",
+      "layoutHint": "Reihenfolge, Breite und Höhe der Widgets festlegen.",
+      "layoutReset": "Layout zurücksetzen",
+      "layoutMoveUp": "{widget} nach oben verschieben",
+      "layoutMoveDown": "{widget} nach unten verschieben",
+      "layoutWidth": "Breite",
+      "layoutHeight": "Höhe",
+      "layoutHeightAuto": "Automatisch",
+      "layoutHeightCompact": "Kompakt",
+      "layoutHeightTall": "Hoch",
       "sections": {
         "visibility": "Sichtbarkeit",
         "defaults": "Standardwerte"

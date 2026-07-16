@@ -285,6 +285,16 @@
       "recentEntriesLabel": "Recent entries",
       "recentEntriesDecAria": "Decrease recent entries",
       "recentEntriesIncAria": "Increase recent entries",
+      "layoutSection": "Dashboard layout",
+      "layoutHint": "Set the order, width, and height of widgets.",
+      "layoutReset": "Reset layout",
+      "layoutMoveUp": "Move {widget} up",
+      "layoutMoveDown": "Move {widget} down",
+      "layoutWidth": "Width",
+      "layoutHeight": "Height",
+      "layoutHeightAuto": "Automatic",
+      "layoutHeightCompact": "Compact",
+      "layoutHeightTall": "Tall",
       "sections": {
         "visibility": "Visibility",
         "defaults": "Defaults"

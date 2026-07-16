@@ -1475,6 +1475,72 @@
   function widgetDefaults(){
     return { todo:true, notes:true, tiles:true, weather:true, transport:true, quote:true, recent:true, system:true, news:true };
   }
+  const WIDGET_LAYOUT_ORDER_KEY = 'layout.widgets.order';
+  const WIDGET_LAYOUT_SIZES_KEY = 'layout.widgets.sizes';
+  const WIDGET_LAYOUT_DEFAULT_ORDER = ['todo','notes','tiles','weather','transport','quote','recent','system','news'];
+  const WIDGET_LAYOUT_DEFAULT_SIZES = {
+    todo: { width:6, height:'auto' }, notes: { width:6, height:'auto' },
+    tiles: { width:8, height:'auto' }, weather: { width:4, height:'auto' },
+    transport: { width:8, height:'auto' }, quote: { width:4, height:'auto' },
+    recent: { width:8, height:'auto' }, system: { width:4, height:'auto' },
+    news: { width:12, height:'auto' }
+  };
+  function getWidgetLayout(){
+    const storedOrder = store.get(WIDGET_LAYOUT_ORDER_KEY, []);
+    const order = Array.isArray(storedOrder) ? [...new Set(storedOrder.filter(key=> WIDGET_LAYOUT_DEFAULT_ORDER.includes(key)))] : [];
+    WIDGET_LAYOUT_DEFAULT_ORDER.forEach(key=>{ if(!order.includes(key)) order.push(key); });
+    const storedSizes = store.get(WIDGET_LAYOUT_SIZES_KEY, {});
+    const sizes = {};
+    order.forEach(key=>{
+      const value = storedSizes && storedSizes[key] ? storedSizes[key] : {};
+      const width = [4,6,8,12].includes(Number(value.width)) ? Number(value.width) : WIDGET_LAYOUT_DEFAULT_SIZES[key].width;
+      const height = ['auto','compact','tall'].includes(value.height) ? value.height : WIDGET_LAYOUT_DEFAULT_SIZES[key].height;
+      sizes[key] = { width, height };
+    });
+    return { order, sizes };
+  }
+  function saveWidgetLayout(layout){
+    store.set(WIDGET_LAYOUT_ORDER_KEY, layout.order);
+    store.set(WIDGET_LAYOUT_SIZES_KEY, layout.sizes);
+  }
+  function applyWidgetLayout(){
+    const grid = $('main.grid');
+    if(!grid) return;
+    const layout = getWidgetLayout();
+    const map = { todo:'#todo', notes:'#notes', tiles:'#tilesCard', weather:'#weather', transport:'#transportCard', quote:'#quoteCard', recent:'#recent', system:'#systemCard', news:'#newsCard' };
+    layout.order.forEach(key=>{
+      const el = $(map[key]);
+      if(!el) return;
+      el.classList.remove('col-4','col-6','col-8','col-12');
+      el.classList.add(`col-${layout.sizes[key].width}`);
+      el.dataset.widgetHeight = layout.sizes[key].height;
+      grid.appendChild(el);
+    });
+  }
+  function updateWidgetLayout(key, patch){
+    const layout = getWidgetLayout();
+    if(!layout.sizes[key]) return;
+    layout.sizes[key] = { ...layout.sizes[key], ...patch };
+    saveWidgetLayout(layout);
+    applyWidgetLayout();
+    renderWidgetLayoutEditor();
+  }
+  function moveWidgetLayout(key, delta){
+    const layout = getWidgetLayout();
+    const from = layout.order.indexOf(key);
+    const to = Math.max(0, Math.min(layout.order.length - 1, from + delta));
+    if(from < 0 || from === to) return;
+    layout.order.splice(to, 0, layout.order.splice(from, 1)[0]);
+    saveWidgetLayout(layout);
+    applyWidgetLayout();
+    renderWidgetLayoutEditor();
+  }
+  function resetWidgetLayout(){
+    localStorage.removeItem(WIDGET_LAYOUT_ORDER_KEY);
+    localStorage.removeItem(WIDGET_LAYOUT_SIZES_KEY);
+    applyWidgetLayout();
+    renderWidgetLayoutEditor();
+  }
   const widgetRuntimeInitialized = {};
   function getWidgetConfig(){
     const defaults = widgetDefaults();
@@ -1499,6 +1565,7 @@
     }
   }
   function applyWidgets(){
+    applyWidgetLayout();
     const conf = getWidgetConfig();
     const map = { todo:'#todo', notes:'#notes', tiles:'#tilesCard', weather:'#weather', transport:'#transportCard', quote:'#quoteCard', recent:'#recent', system:'#systemCard', news:'#newsCard' };
     Object.entries(map).forEach(([k,sel])=>{

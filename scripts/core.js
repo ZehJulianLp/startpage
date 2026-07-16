@@ -1362,6 +1362,7 @@
       labelKey: 'settings.data.exportScopes.configuration',
       match: key => (
         key === 'widgets' ||
+        key.startsWith('layout.') ||
         key === 'shortcuts' ||
         key === 'wordlist.inline' ||
         key === 'engines.enabled' ||

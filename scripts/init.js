@@ -183,6 +183,7 @@
     const profilesList = $('#profilesList'); if(profilesList) profilesList.addEventListener('click', e=>{ void onProfileActionClick(e); });
     const profileCreate = $('#profileCreate'); if(profileCreate) profileCreate.addEventListener('click', e=>{ void onProfileActionClick(e); });
     const restartOnb = $('#restartOnboarding'); if(restartOnb) restartOnb.addEventListener('click', ()=>{ store.set('onboarding.done', false); onboardingOpen(true); });
+    const widgetLayoutReset = $('#widgetLayoutReset'); if(widgetLayoutReset) widgetLayoutReset.addEventListener('click', resetWidgetLayout);
 
     // Onboarding modal
     const onbNext = $('#onbNext'); if(onbNext) onbNext.addEventListener('click', onboardingNext);

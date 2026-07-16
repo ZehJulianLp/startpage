@@ -112,6 +112,7 @@
     const recentMaxSetting = $('#recentMaxSetting');
     if(recentMaxSetting) recentMaxSetting.value = String(getRecentMax());
     renderProfiles();
+    renderWidgetLayoutEditor();
 
     renderEngineSettings();
 
@@ -190,6 +191,50 @@
     enhanceUiSelects($('#settingsModal'));
     refreshUiSelects($('#settingsModal'));
     applySettingsSearch();
+  }
+
+  function renderWidgetLayoutEditor(){
+    const wrap = $('#widgetLayoutEditor');
+    if(!wrap) return;
+    const layout = getWidgetLayout();
+    wrap.innerHTML = '';
+    layout.order.forEach((key, index)=>{
+      const row = document.createElement('div');
+      row.className = 'widget-layout-row';
+      const label = document.createElement('strong');
+      label.textContent = t(`widgets.${key}`, null, key);
+      const move = document.createElement('div');
+      move.className = 'widget-layout-move';
+      const up = document.createElement('button');
+      up.type = 'button'; up.className = 'btn icon-only'; up.textContent = '\u2191'; up.disabled = index === 0;
+      up.setAttribute('aria-label', t('settings.widgets.layoutMoveUp', { widget: label.textContent }, 'Move {widget} up'));
+      up.addEventListener('click', ()=> moveWidgetLayout(key, -1));
+      const down = document.createElement('button');
+      down.type = 'button'; down.className = 'btn icon-only'; down.textContent = '\u2193'; down.disabled = index === layout.order.length - 1;
+      down.setAttribute('aria-label', t('settings.widgets.layoutMoveDown', { widget: label.textContent }, 'Move {widget} down'));
+      down.addEventListener('click', ()=> moveWidgetLayout(key, 1));
+      move.append(up, down);
+      const width = document.createElement('select');
+      width.setAttribute('aria-label', t('settings.widgets.layoutWidth', null, 'Width'));
+      [[4,'1/3'],[6,'1/2'],[8,'2/3'],[12,'1/1']].forEach(([value, text])=>{
+        const option = document.createElement('option'); option.value = String(value); option.textContent = text; width.appendChild(option);
+      });
+      width.value = String(layout.sizes[key].width);
+      width.addEventListener('change', ()=> updateWidgetLayout(key, { width:Number(width.value) }));
+      const height = document.createElement('select');
+      height.setAttribute('aria-label', t('settings.widgets.layoutHeight', null, 'Height'));
+      ['auto','compact','tall'].forEach(value=>{
+        const option = document.createElement('option');
+        option.value = value;
+        option.textContent = t(`settings.widgets.layoutHeight${value[0].toUpperCase()}${value.slice(1)}`, null, value);
+        height.appendChild(option);
+      });
+      height.value = layout.sizes[key].height;
+      height.addEventListener('change', ()=> updateWidgetLayout(key, { height:height.value }));
+      row.append(label, move, width, height);
+      wrap.appendChild(row);
+    });
+    refreshUiSelects(wrap);
   }
 
   function syncAgentSettingsTabVisibility(){
@@ -760,7 +805,7 @@
       else if(has('#startpageAgentModel') || has('#startpageAgentLoadModels') || has('#startpageAgentHost') || has('#startpageAgentConfirmMode') || has('#startpageAgentMaxIterations') || has('#startpageAgentCustomPrompt') || has('#startpageAgentMemory') || has('#startpageAgentClearMemory') || has('#startpageAgentSaveSettings') || has('#startpageAgentClearChat') || has('#startpageAgentCapabilities')) assign(row, panelAi);
       else if(has('#bgEngine') || has('#cardStyle') || has('#accentColor') || has('#modalColor') || has('#buttonColor') || has('#inputColor') || has('#clockColor') || has('#searchColor')) assign(row, panelBackground);
       else if(has('#enginePills') || has('#searxngBaseUrl') || has('#shortcutConfig') || has('#feedsConfig') || has('#wordlistEditor')) assign(row, panelSearch);
-      else if(has('#widgetToggles') || has('#defaultCities') || has('#transportDefaultInput') || has('#recentMaxSetting') || has('#recentClearSetting')) assign(row, panelWidgets);
+      else if(has('#widgetToggles') || has('#widgetLayoutEditor') || has('#widgetLayoutReset') || has('#defaultCities') || has('#transportDefaultInput') || has('#recentMaxSetting') || has('#recentClearSetting')) assign(row, panelWidgets);
       else if(has('#exportData') || has('#importData') || has('#dataNote') || has('#dataPresetSelect') || has('#applyPreset') || has('#profilesList') || has('#profileCreate') || has('#restartOnboarding')) assign(row, panelData);
       else assign(row, panelGeneral);
     });
