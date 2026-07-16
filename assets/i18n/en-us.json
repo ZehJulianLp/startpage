@@ -54,21 +54,11 @@
     "title": "To-Do",
     "placeholder": "New task…",
     "add": "Add",
-    "save": "Save",
     "clearDoneTitle": "Remove completed",
     "clearDone": "✓ clear",
     "doneAria": "Done",
     "prompt": "Todo",
-    "reorderAria": "Reorder {task} with Alt and arrow keys",
-    "filterAria": "Filter tasks",
-    "filterAll": "All",
-    "filterOpen": "Open",
-    "filterDone": "Done",
-    "priorityAria": "Priority",
-    "priorityNormal": "Normal",
-    "priorityHigh": "High",
-    "priorityLow": "Low",
-    "dueAria": "Due date"
+    "reorderAria": "Reorder {task} with Alt and arrow keys"
   },
   "notes": {
     "title": "Notes",

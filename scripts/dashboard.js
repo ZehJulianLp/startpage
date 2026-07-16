@@ -270,86 +270,26 @@
   }
 
   // ===== Todo
-  function normalizeTodos(raw){
-    return (Array.isArray(raw) ? raw : []).map(item=>({
-      text: String(item && item.text || '').trim(),
-      done: !!(item && item.done),
-      priority: ['low','normal','high'].includes(item && item.priority) ? item.priority : 'normal',
-      due: /^\d{4}-\d{2}-\d{2}$/.test(String(item && item.due || '')) ? item.due : '',
-      ts: Number(item && item.ts) || Date.now()
-    })).filter(item=> item.text);
-  }
-
-  function getTodos(){
-    return normalizeTodos(store.get('todos', []));
-  }
-
-  function resetTodoForm(){
-    const input = $('#todoInput');
-    const priority = $('#todoPriority');
-    const due = $('#todoDue');
-    const add = $('#todoAdd');
-    if(input) input.value = '';
-    if(priority) priority.value = 'normal';
-    if(due) due.value = '';
-    if(add){ add.dataset.editIndex = ''; add.textContent = t('todo.add'); }
-  }
-
-  function startTodoEdit(index){
-    const item = getTodos()[index];
-    if(!item) return;
-    $('#todoInput').value = item.text;
-    $('#todoPriority').value = item.priority;
-    $('#todoDue').value = item.due;
-    const add = $('#todoAdd');
-    add.dataset.editIndex = String(index);
-    add.textContent = t('todo.save', null, 'Save');
-    $('#todoInput').focus();
-  }
-
-  function submitTodoForm(){
-    const input = $('#todoInput');
-    const text = String(input && input.value || '').trim();
-    if(!text) return;
-    const priority = $('#todoPriority')?.value || 'normal';
-    const due = $('#todoDue')?.value || '';
-    const add = $('#todoAdd');
-    const editIndex = add && /^\d+$/.test(add.dataset.editIndex || '') ? Number(add.dataset.editIndex) : -1;
-    const list = getTodos();
-    if(editIndex >= 0 && editIndex < list.length) list[editIndex] = { ...list[editIndex], text, priority, due };
-    else list.unshift({ text, priority, due, done:false, ts:Date.now() });
-    store.set('todos', list);
-    resetTodoForm();
-    renderTodos();
-  }
-
   function renderTodos(){
-    const list = getTodos();
+    const list = store.get('todos', []);
     const wrap = $('#todoList');
     wrap.innerHTML = '';
-    const filter = $('#todoFilter')?.value || 'all';
-    const visible = list.map((item, index)=>({ item, index })).filter(({ item })=> filter === 'all' || (filter === 'done' ? item.done : !item.done));
-    visible.forEach(({ item, index:i }) => {
+    list.forEach((item, i) => {
       const el = document.createElement('div');
-      const overdue = item.due && !item.done && item.due < new Date().toISOString().slice(0,10);
-      el.className = 'todo-item' + (item.done ? ' done' : '') + (overdue ? ' overdue' : '');
-      el.draggable = filter === 'all';
-      el.tabIndex = filter === 'all' ? 0 : -1;
-      if(filter === 'all') el.setAttribute('aria-label', t('todo.reorderAria', { task:item.text }, `Reorder ${item.text} with Alt and arrow keys`));
-      const dueLabel = item.due ? new Date(`${item.due}T00:00:00`).toLocaleDateString(localeToIntl(i18nLocale) || undefined, { day:'2-digit', month:'short' }) : '';
+      el.className = 'todo-item' + (item.done ? ' done' : '');
+      el.draggable = true;
+      el.tabIndex = 0;
+      el.setAttribute('aria-label', t('todo.reorderAria', { task:item.text }, `Reorder ${item.text} with Alt and arrow keys`));
       el.innerHTML = `
-        <input class="todo-check" type="checkbox" ${item.done?'checked':''} aria-label="${escapeHtml(t('todo.doneAria'))}">
-        <div class="todo-title-wrap"><div class="title">${escapeHtml(item.text)}</div><div class="todo-meta"><span class="todo-priority ${item.priority}">${escapeHtml(t(`todo.priority${item.priority[0].toUpperCase()}${item.priority.slice(1)}`, null, item.priority))}</span>${dueLabel ? `<span class="todo-due">${escapeHtml(dueLabel)}</span>` : ''}</div></div>
-        <button class="btn icon-only todo-edit" title="${escapeHtml(t('tiles.edit'))}" aria-label="${escapeHtml(t('tiles.edit'))}">${iconSvg('edit')}</button>
-        <button class="btn icon-only todo-delete" title="${escapeHtml(t('common.delete'))}" aria-label="${escapeHtml(t('common.delete'))}">${iconSvg('trash')}</button>
+        <input type="checkbox" ${item.done?'checked':''} aria-label="${escapeHtml(t('todo.doneAria'))}">
+        <div class="title">${escapeHtml(item.text)}</div>
+        <button class="btn icon-only" title="${escapeHtml(t('common.delete'))}" aria-label="${escapeHtml(t('common.delete'))}">${iconSvg('trash')}</button>
       `;
-      el.querySelector('.todo-check').addEventListener('change', e=>{
+      el.querySelector('input').addEventListener('change', e=>{
         list[i].done = e.target.checked; store.set('todos', list); renderTodos();
       });
-      el.querySelector('.todo-edit').addEventListener('click', ()=> startTodoEdit(i));
-      el.querySelector('.title').addEventListener('dblclick', ()=> startTodoEdit(i));
-      el.querySelector('.todo-delete').addEventListener('click', ()=>{
-        list.splice(i,1); store.set('todos', list); resetTodoForm(); renderTodos();
+      el.querySelector('button').addEventListener('click', ()=>{
+        list.splice(i,1); store.set('todos', list); renderTodos();
       });
       el.addEventListener('dragstart', e=>{
         e.dataTransfer.setData('text/plain', i.toString());
@@ -368,7 +308,7 @@
         renderTodos();
       });
       el.addEventListener('keydown', e=>{
-        if(filter !== 'all' || e.target !== el || !e.altKey || !['ArrowUp','ArrowDown'].includes(e.key)) return;
+        if(e.target !== el || !e.altKey || !['ArrowUp','ArrowDown'].includes(e.key)) return;
         e.preventDefault();
         const to = Math.max(0, Math.min(list.length - 1, i + (e.key === 'ArrowDown' ? 1 : -1)));
         if(to === i) return;
@@ -383,8 +323,8 @@
   }
 
   function addTodo(text){
-    const list = getTodos();
-    list.unshift({ text, priority:'normal', due:'', done:false, ts: Date.now() });
+    const list = store.get('todos', []);
+    list.unshift({ text, done:false, ts: Date.now() });
     store.set('todos', list); renderTodos();
   }
 

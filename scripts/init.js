@@ -287,10 +287,9 @@
     // Todo
     renderTodos();
     initTodoViewportSync();
-    $('#todoAdd').addEventListener('click', submitTodoForm);
+    $('#todoAdd').addEventListener('click', ()=>{ const v=$('#todoInput').value.trim(); if(v){ addTodo(v); $('#todoInput').value=''; }});
     $('#todoInput').addEventListener('keydown', e=>{ if(e.key==='Enter'){ e.preventDefault(); $('#todoAdd').click(); } });
-    $('#todoClearDone').addEventListener('click', ()=>{ const list=getTodos().filter(t=>!t.done); store.set('todos', list); resetTodoForm(); renderTodos(); });
-    $('#todoFilter').addEventListener('change', renderTodos);
+    $('#todoClearDone').addEventListener('click', ()=>{ const list=store.get('todos',[]).filter(t=>!t.done); store.set('todos', list); renderTodos(); });
 
     // Notes
     initNotes();
