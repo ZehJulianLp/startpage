@@ -1508,6 +1508,9 @@
   }
 
   // ===== News (RSS)
+  const NEWS_ITEM_LIMITS = { compact:4, auto:8, tall:16 };
+  const NEWS_MAX_ITEMS = Math.max(...Object.values(NEWS_ITEM_LIMITS));
+  let newsRenderState = null;
   function defaultFeeds(){
     return {
       'Heise': 'https://www.heise.de/rss/heise-atom.xml',
@@ -1532,8 +1535,11 @@
   function renderNewsItems(items, timestamp, stale=false){
     const ul = $('#newsList');
     if(!ul) return;
+    newsRenderState = { items:Array.isArray(items) ? items : [], timestamp, stale };
+    const height = $('#newsCard')?.dataset.widgetHeight || 'auto';
+    const limit = NEWS_ITEM_LIMITS[height] || NEWS_ITEM_LIMITS.auto;
     ul.innerHTML = '';
-    (items || []).slice(0, 8).forEach(item=>{
+    newsRenderState.items.slice(0, limit).forEach(item=>{
       const li = document.createElement('li');
       const link = normalizeHttpUrl(item.link);
       if(link){
@@ -1551,6 +1557,10 @@
     if(!ul.children.length) ul.innerHTML = `<li class="muted">${escapeHtml(t('news.noItems'))}</li>`;
     setWidgetDataStatus('#newsDataStatus', timestamp, stale);
   }
+  function renderNewsForWidgetHeight(){
+    if(!newsRenderState) return;
+    renderNewsItems(newsRenderState.items, newsRenderState.timestamp, newsRenderState.stale);
+  }
   async function loadNews(){
     const sources = getFeeds();
     const sourceName = store.get('news.source', Object.keys(sources)[0]);
@@ -1567,7 +1577,7 @@
       const items = Array.from(xml.querySelectorAll('item'));
       const entries = items.length ? [] : Array.from(xml.querySelectorAll('entry'));
       const list = items.length ? items : entries;
-      const normalized = list.slice(0, 8).map(it=>{
+      const normalized = list.slice(0, NEWS_MAX_ITEMS).map(it=>{
         const title = it.querySelector('title')?.textContent?.trim() || '\u2014';
         const linkNode = it.querySelector('link');
         const link = normalizeHttpUrl(linkNode?.getAttribute('href') || linkNode?.textContent || '');

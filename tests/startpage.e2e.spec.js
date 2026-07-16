@@ -53,6 +53,27 @@ test('renders untrusted RSS content as text and blocks unsafe links', async ({ p
   expect(await page.evaluate(()=> window.__rssPwned || 0)).toBe(0);
 });
 
+test('adapts the number of news items to the widget height', async ({ page })=>{
+  const items = Array.from({ length:20 }, (_, index)=> `<item><title>News ${index + 1}</title><link>https://example.com/${index + 1}</link></item>`).join('');
+  await seedStartpage(page, {
+    widgets: { todo:false, notes:false, tiles:false, weather:false, transport:false, quote:false, recent:false, system:false, news:true },
+    'news.custom': { Test:'https://feed.test/rss' },
+    'news.source': 'Test',
+    'layout.widgets.sizes': { news:{ width:12, height:'tall' } }
+  });
+  await page.route('https://api-startpage.julianverse.de/api/rss**', route=> route.fulfill({
+    contentType: 'application/xml',
+    body: `<rss><channel>${items}</channel></rss>`
+  }));
+  await page.goto('/');
+  await expect(page.locator('#newsList > li')).toHaveCount(16);
+
+  await page.locator('#widgetLayoutToggle').click();
+  await page.locator('#newsCard .widget-layout-height').click();
+  await expect(page.locator('#newsCard')).toHaveAttribute('data-widget-height', 'auto');
+  await expect(page.locator('#newsList > li')).toHaveCount(8);
+});
+
 test('formats transport delays in minutes', async ({ page })=>{
   await seedStartpage(page, {
     widgets: { todo:false, notes:false, tiles:false, weather:false, transport:true, quote:false, recent:false, system:false, news:false },

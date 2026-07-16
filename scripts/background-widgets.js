@@ -1522,6 +1522,7 @@
       grid.appendChild(el);
     });
     syncWidgetLayoutEditor();
+    if(typeof renderNewsForWidgetHeight === 'function') renderNewsForWidgetHeight();
   }
   function updateWidgetLayout(key, patch){
     const layout = getWidgetLayout();
