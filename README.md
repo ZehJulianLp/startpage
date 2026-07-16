@@ -7,7 +7,7 @@ Startpage is a **local-first browser start page** designed to replace the tradit
 
 Configuration and personal content stay in the browser without accounts or tracking. Network widgets only contact their documented data providers; transport and RSS use the Startpage proxy to handle browser API restrictions.
 
-Version: **v1.17.0** · Live: https://julianverse.de/startpage/
+Version: **v1.17.1** · Live: https://julianverse.de/startpage/
 
 ## Core Features
 - Quick search: Multiple engines, bang shortcuts (`!g`, `!ddg`, `!bing`, `!sx`, `!yt`, `!wiki`, `!maps`), custom shortcuts, and autocomplete (bangs, shortcuts, recent searches, global wordlist + preset wordlist).
@@ -24,7 +24,7 @@ Version: **v1.17.0** · Live: https://julianverse.de/startpage/
 - Layout and styling: Dark/Light/Auto theme, card styles (glass, solid, transparent, soft minimal), widget colors, dedicated header/search colors, and a "Tint widgets" action.
 - Command palette: `Ctrl/Cmd+K` for quick actions across settings, themes, widgets, data export/import, presets, and profiles.
 - Profiles: Named local snapshots of the full Startpage setup with create, rename, update, delete, apply, header quick switcher, and command palette support.
-- Data: Scoped JSON export/import with selection dialogs, import replace/merge modes, and data presets from `assets/presets/` (starter, coding, gaming, minimal, productivity, reading, art, privacy, student, finance); local user presets in `assets/user-presets/` are auto-detected.
+- Data: Scoped JSON export/import with selection dialogs, import replace/merge modes, and data presets from `assets/presets/` (starter, coding, gaming, minimal, productivity, reading, art, privacy, student, finance). Transfers are restricted to Startpage-owned storage keys, and local user presets in `assets/user-presets/` are auto-detected.
 - Accessibility and safety: Labelled modal dialogs, focus trapping/restoration, keyboard ordering, safe external URL handling, and text-only rendering for untrusted feed content.
 - Optional local Agent: An opt-in Ollama chat is available but disabled by default and is not required for any dashboard feature.
 
@@ -35,7 +35,8 @@ Version: **v1.17.0** · Live: https://julianverse.de/startpage/
 - `assets/` - Optional assets (wordlists, images, presets, i18n files).
 - `tests/` - Playwright browser smoke tests.
 - `package.json` / `playwright.config.js` - Test tooling; the application itself still has no build step.
-- `LICENSE` - MIT license.
+- `LICENSE` - MIT license for the project code and documentation.
+- `THIRD_PARTY_NOTICES.md` - Licenses and notices for bundled third-party assets.
 
 ## Local Development
 No build step is required. Start a local static server, for example:
@@ -57,7 +58,7 @@ Then open: `http://localhost:4173`.
 - Search and feeds: Enable/disable engines, configure custom `!shortcuts` with `{q}`, manage feed sources.
 - Widgets and layout: Visibility, weather cities (one city per line), default transport station, and reset controls. Start the visual editor from the header or Widget settings to arrange and resize cards directly.
 - Appearance (same settings area): Card style, widget colors, dedicated clock/search colors.
-- Data: Export/import selected local data scopes as JSON, choose merge or replace behavior on import, or load ready-made data presets (`assets/data-presets.json` + `assets/presets/*`).
+- Data: Export/import selected Startpage-owned data scopes as JSON, choose merge or replace behavior on import, or load ready-made data presets (`assets/data-presets.json` + `assets/presets/*`). Unrelated `localStorage` entries from the same origin are excluded.
 - Profiles: Create named setup snapshots, update them from the current state, switch from the header, and manage them in the Data tab.
 - Setup assistant: Opens on first run, can be skipped, and can be restarted in the Data tab.
 - Command palette: `Ctrl/Cmd+K` for fast actions, settings navigation, data actions, presets, and profile switching.
@@ -77,7 +78,7 @@ npx playwright install chromium
 npm test
 ```
 
-The eight current tests cover local persistence, deferred requests for hidden widgets, safe RSS rendering, height-adaptive news, transport delay formatting, saved layouts, the visual widget editor, and modal accessibility.
+The nine current tests cover local persistence, scoped data export, deferred requests for hidden widgets, safe RSS rendering, height-adaptive news, transport delay formatting, saved layouts, the visual widget editor, and modal accessibility.
 
 Manual smoke tests:
 - Verify search/bangs/shortcuts + autocomplete.
@@ -90,4 +91,4 @@ Manual smoke tests:
 - Clear localStorage and the Startpage IndexedDB database when re-testing migration-sensitive storage flows.
 
 ## License
-MIT License (see `LICENSE`).
+The original project code and documentation are available under the MIT License (see `LICENSE`). Bundled third-party assets remain under their respective licenses; see `THIRD_PARTY_NOTICES.md`.
