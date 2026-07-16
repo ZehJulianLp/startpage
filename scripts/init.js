@@ -183,6 +183,11 @@
     const profilesList = $('#profilesList'); if(profilesList) profilesList.addEventListener('click', e=>{ void onProfileActionClick(e); });
     const profileCreate = $('#profileCreate'); if(profileCreate) profileCreate.addEventListener('click', e=>{ void onProfileActionClick(e); });
     const restartOnb = $('#restartOnboarding'); if(restartOnb) restartOnb.addEventListener('click', ()=>{ store.set('onboarding.done', false); onboardingOpen(true); });
+    const widgetLayoutToggle = $('#widgetLayoutToggle'); if(widgetLayoutToggle) widgetLayoutToggle.addEventListener('click', toggleWidgetLayoutEditing);
+    const widgetLayoutEdit = $('#widgetLayoutEdit'); if(widgetLayoutEdit) widgetLayoutEdit.addEventListener('click', ()=>{
+      closeSettings();
+      setWidgetLayoutEditing(true);
+    });
     const widgetLayoutReset = $('#widgetLayoutReset'); if(widgetLayoutReset) widgetLayoutReset.addEventListener('click', resetWidgetLayout);
 
     // Onboarding modal
@@ -383,6 +388,7 @@
     $('#settingsModal').addEventListener('click', e=>{ if(e.target.id==='settingsModal') closeSettings(); });
     document.addEventListener('keydown', e=>{
       if(e.key==='Escape'){
+        if(widgetLayoutEditing){ setWidgetLayoutEditing(false); return; }
         if($('#uiDialog') && $('#uiDialog').classList.contains('open')){ closeUiDialog(undefined); return; }
         if($('#tileDialog') && $('#tileDialog').classList.contains('open')){
           closeModalAnimated($('#tileDialog'));

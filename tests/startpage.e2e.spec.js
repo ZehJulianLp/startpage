@@ -79,6 +79,32 @@ test('applies saved widget order and size', async ({ page })=>{
   await expect(page.locator('#todo')).toHaveAttribute('data-widget-height', 'tall');
 });
 
+test('toggles the visual widget editor and persists direct changes', async ({ page })=>{
+  await seedStartpage(page, {
+    widgets: { todo:true, notes:true, tiles:false, weather:false, transport:false, quote:false, recent:false, system:false, news:false }
+  });
+  await page.goto('/');
+  const todoControls = page.locator('#todo .widget-layout-controls');
+  await expect(todoControls).not.toBeVisible();
+
+  await page.locator('#widgetLayoutToggle').click();
+  await expect(todoControls).toBeVisible();
+  await expect(page.locator('#widgetLayoutToolbar')).toBeVisible();
+  await page.locator('#todo .widget-layout-width').last().click();
+  await expect(page.locator('#todo')).toHaveClass(/col-8/);
+
+  await page.locator('#todo .widget-layout-drag').dragTo(page.locator('#notes'), { targetPosition:{ x:300, y:180 } });
+  await expect(page.locator('main.grid > section').first()).toHaveAttribute('id', 'notes');
+  await page.locator('#widgetLayoutToggle').click();
+  await expect(todoControls).not.toBeVisible();
+  await expect(page.locator('#widgetLayoutToolbar')).toBeHidden();
+
+  await page.reload();
+  await expect(page.locator('#todo')).toHaveClass(/col-8/);
+  await expect(page.locator('main.grid > section').first()).toHaveAttribute('id', 'notes');
+  await expect(todoControls).not.toBeVisible();
+});
+
 test('opens settings as a labelled modal dialog', async ({ page })=>{
   await seedStartpage(page);
   await page.goto('/');

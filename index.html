@@ -15,6 +15,9 @@
         <div class="date" id="date">—</div>
       </div>
       <div class="controls">
+        <button class="btn icon-only" id="widgetLayoutToggle" type="button" title="Layout bearbeiten" aria-pressed="false" data-i18n-title="settings.widgets.layoutEdit" data-i18n-aria-label="settings.widgets.layoutEdit">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="m14 19 5.5-5.5 2 2L16 21h-2z"/></svg>
+        </button>
         <div class="profile-switcher" id="profileSwitcher" hidden>
           <select id="profileQuickSwitch" aria-label="Profil wechseln" data-i18n-aria-label="profiles.quickSwitchLabel"></select>
         </div>
@@ -466,9 +469,11 @@
         </div>
         <div class="row row-full">
           <div class="widget-layout-settings">
-            <div class="muted" data-i18n="settings.widgets.layoutHint">Reihenfolge, Breite und Höhe der Widgets festlegen.</div>
-            <div id="widgetLayoutEditor" class="widget-layout-editor"></div>
-            <button class="btn" id="widgetLayoutReset" type="button" data-i18n="settings.widgets.layoutReset">Layout zurücksetzen</button>
+            <div class="muted" data-i18n="settings.widgets.layoutHint">Widgets direkt auf dem Dashboard anordnen und skalieren.</div>
+            <div class="widget-layout-settings-actions">
+              <button class="btn" id="widgetLayoutEdit" type="button" data-i18n="settings.widgets.layoutEdit">Visuell bearbeiten</button>
+              <button class="btn" id="widgetLayoutReset" type="button" data-i18n="settings.widgets.layoutReset">Layout zurücksetzen</button>
+            </div>
           </div>
         </div>
         <div class="row row-heading" data-settings-panel="widgets">
