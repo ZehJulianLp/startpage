@@ -1706,6 +1706,7 @@
   }
   function setWidgetLayoutEditing(enabled){
     widgetLayoutEditing = !!enabled;
+    if(widgetLayoutEditing) finishInitialAnimations();
     document.body.classList.toggle('widget-layout-editing', widgetLayoutEditing);
     clearWidgetLayoutDropTargets();
     syncWidgetLayoutEditor();

@@ -1894,10 +1894,10 @@
       }
     }
 
-    body:not(.reduce-motion) .time,
-    body:not(.reduce-motion) .search,
-    body:not(.reduce-motion) main.grid .card,
-    body:not(.reduce-motion) footer {
+    body:not(.reduce-motion):not(.ui-revealed) .time,
+    body:not(.reduce-motion):not(.ui-revealed) .search,
+    body:not(.reduce-motion):not(.ui-revealed) main.grid .card,
+    body:not(.reduce-motion):not(.ui-revealed) footer {
       opacity: 0;
       transform: translateY(10px) scale(.99);
     }

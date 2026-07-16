@@ -111,8 +111,10 @@ test('toggles the visual widget editor and persists direct changes', async ({ pa
   await page.locator('#widgetLayoutToggle').click();
   await expect(todoControls).toBeVisible();
   await expect(page.locator('#widgetLayoutToolbar')).toBeVisible();
+  await expect(page.locator('body')).toHaveClass(/ui-revealed/);
   await page.locator('#todo .widget-layout-width').last().click();
   await expect(page.locator('#todo')).toHaveClass(/col-8/);
+  expect(await page.locator('#todo').evaluate(el=> getComputedStyle(el).animationName)).toBe('none');
 
   await page.locator('#todo .widget-layout-drag').dragTo(page.locator('#notes'), { targetPosition:{ x:300, y:180 } });
   await expect(page.locator('main.grid > section').first()).toHaveAttribute('id', 'notes');

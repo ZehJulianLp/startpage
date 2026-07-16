@@ -361,6 +361,13 @@
     ];
     blocks.forEach((el, idx)=> el.style.setProperty('--anim-index', String(idx)));
     requestAnimationFrame(()=> document.body.classList.add('ui-animate'));
+    const revealDuration = 420 + Math.max(0, blocks.length - 1) * 55;
+    setTimeout(finishInitialAnimations, revealDuration + 80);
+  }
+
+  function finishInitialAnimations(){
+    document.body.classList.add('ui-revealed');
+    document.body.classList.remove('ui-animate');
   }
 
   function initButtonMicroAnimations(){
