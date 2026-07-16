@@ -1,2 +1,4 @@
 deploy.sh
 assets/video/
+.agents
+.codex
