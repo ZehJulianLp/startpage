@@ -1441,13 +1441,12 @@
     },
     other: {
       labelKey: 'settings.data.exportScopes.other',
-      match: ()=> true
+      match: key => ['settings.tab', 'bg.url', 'profiles.items', 'profiles.activeId'].includes(key)
     }
   };
 
   function getDataScopeForKey(key){
-    const known = DATA_TRANSFER_SCOPE_ORDER.filter(scope => scope !== 'other');
-    return known.find(scope => DATA_EXPORT_SCOPES[scope].match(key)) || 'other';
+    return DATA_TRANSFER_SCOPE_ORDER.find(scope => DATA_EXPORT_SCOPES[scope].match(key)) || null;
   }
 
   function readLocalStorageData(scopes=DATA_TRANSFER_SCOPE_ORDER){
@@ -1456,7 +1455,8 @@
     for(let i=0;i<localStorage.length;i++){
       const k = localStorage.key(i);
       if(k.startsWith('cache.')) continue;
-      if(!allowed.has(getDataScopeForKey(k))) continue;
+      const scope = getDataScopeForKey(k);
+      if(!scope || !allowed.has(scope)) continue;
       try { data[k] = JSON.parse(localStorage.getItem(k)); } catch { data[k] = localStorage.getItem(k); }
     }
     return data;
@@ -1856,12 +1856,7 @@
   }
 
   function isStartpageDataKey(key){
-    if(!key) return false;
-    if(key === 'settings.tab' || key === UI_FONT_KEY || key === 'bg.url' || key === 'weather.coords') return true;
-    if(key === 'search.searxng.enabledMigration.v1') return true;
-    return Object.keys(DATA_EXPORT_SCOPES)
-      .filter(scope => scope !== 'other')
-      .some(scope => DATA_EXPORT_SCOPES[scope].match(key));
+    return !!getDataScopeForKey(key);
   }
 
   function getImportReplaceRemovalKeys(obj, scopes){
@@ -1880,7 +1875,8 @@
     const allowed = new Set(scopes || DATA_TRANSFER_SCOPE_ORDER);
     const out = {};
     Object.keys(obj || {}).forEach(key=>{
-      if(allowed.has(getDataScopeForKey(key))) out[key] = obj[key];
+      const scope = getDataScopeForKey(key);
+      if(scope && allowed.has(scope)) out[key] = obj[key];
     });
     return out;
   }

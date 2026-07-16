@@ -24,6 +24,30 @@ test('loads the local dashboard and persists a todo', async ({ page })=>{
   await expect(page.locator('#todoList')).toContainText('Smoke test task');
 });
 
+test('exports only Startpage-owned localStorage entries', async ({ page })=>{
+  await seedStartpage(page, {
+    todos: [{ text:'Keep me', done:false }],
+    paymentMethod: 'redstone-bank',
+    lastReceipt: { method:'redstone-bank' }
+  });
+  await page.goto('/');
+  await page.locator('#openSettings').click();
+  await page.locator('[data-tab="data"]').click();
+  await page.locator('#exportData').click();
+
+  const downloadPromise = page.waitForEvent('download');
+  await page.locator('#dataTransferApply').click();
+  const download = await downloadPromise;
+  const stream = await download.createReadStream();
+  const chunks = [];
+  for await (const chunk of stream) chunks.push(chunk);
+  const exported = JSON.parse(Buffer.concat(chunks).toString('utf8'));
+
+  expect(exported.todos).toEqual([{ text:'Keep me', done:false }]);
+  expect(exported).not.toHaveProperty('paymentMethod');
+  expect(exported).not.toHaveProperty('lastReceipt');
+});
+
 test('does not request data or favicons for hidden widgets', async ({ page })=>{
   await seedStartpage(page, {
     widgets: { todo:true, notes:true, tiles:false, weather:false, transport:false, quote:false, recent:false, system:false, news:false }
