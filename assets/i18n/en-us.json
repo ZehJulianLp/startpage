@@ -190,7 +190,7 @@
     "refreshAria": "Refresh news"
   },
   "footer": {
-    "tagline": "Local-first dashboard · stores only in the browser (localStorage)"
+    "tagline": "Local-first dashboard · stores only in the browser"
   },
   "settings": {
     "title": "Settings",

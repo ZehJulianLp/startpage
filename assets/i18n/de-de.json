@@ -190,7 +190,7 @@
     "refreshAria": "News neu laden"
   },
   "footer": {
-    "tagline": "Local-first Dashboard · speichert nur im Browser (localStorage)"
+    "tagline": "Local-first Dashboard · speichert nur im Browser"
   },
   "settings": {
     "title": "Einstellungen",
