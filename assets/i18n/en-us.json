@@ -197,7 +197,10 @@
   "news": {
     "title": "News",
     "refreshTitle": "Reload",
-    "source": "RSS via Startpage Proxy (CORS proxy)",
+    "source": "RSS via Startpage Proxy",
+    "allSources": "All sources",
+    "sourceCount": "{loaded}/{total} sources",
+    "unknownSource": "RSS",
     "noItems": "No items",
     "refreshAria": "Refresh news"
   },

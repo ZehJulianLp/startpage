@@ -570,14 +570,25 @@
   }
 
   function readNewsSnapshot(){
-    const source = store.get('news.source', '');
+    const source = store.get('news.source', NEWS_ALL_SOURCE);
     const feeds = getFeeds();
-    const items = $$('#newsList li a').map(link=>({
-      title: link.textContent ? link.textContent.trim() : '',
-      url: link.getAttribute('href') || ''
+    const items = $$('#newsList .news-item').map(item=>({
+      source: ($('.news-source-badge', item) || {}).textContent?.trim() || '',
+      title: ($('.news-item-title', item) || {}).textContent?.trim() || '',
+      summary: ($('.news-summary', item) || {}).textContent?.trim() || '',
+      published: ($('.news-time', item) || {}).textContent?.trim() || '',
+      url: ($('.news-link', item) || {}).getAttribute?.('href') || '',
+      read: item.classList.contains('read')
     }));
     const listText = ($('#newsList') && $('#newsList').textContent) ? $('#newsList').textContent.trim() : '';
-    return { source, feedUrl: feeds[source] || '', total: items.length, items, listText };
+    return {
+      source,
+      feedUrl: feeds[source] || '',
+      feedUrls:source === NEWS_ALL_SOURCE ? feeds : undefined,
+      total:items.length,
+      items,
+      listText
+    };
   }
 
   function readQuoteSnapshot(){

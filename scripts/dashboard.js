@@ -1771,7 +1771,10 @@
   // ===== News (RSS)
   const NEWS_ITEM_LIMITS = { compact:4, auto:8, tall:16 };
   const NEWS_MAX_ITEMS = Math.max(...Object.values(NEWS_ITEM_LIMITS));
+  const NEWS_ALL_SOURCE = '__all__';
+  const NEWS_READ_LIMIT = 200;
   let newsRenderState = null;
+  let newsLoadController = null;
   function defaultFeeds(){
     return {
       'Heise': 'https://www.heise.de/rss/heise-atom.xml',
@@ -1785,75 +1788,195 @@
   }
   function fillNewsSources(){
     const select = $('#newsSource');
+    if(!select) return;
     const sources = getFeeds();
-    const current = store.get('news.source', Object.keys(sources)[0]);
+    const saved = store.get('news.source', NEWS_ALL_SOURCE);
+    const current = saved === NEWS_ALL_SOURCE || sources[saved] ? saved : NEWS_ALL_SOURCE;
+    if(current !== saved) store.set('news.source', current);
     select.innerHTML='';
+    const all = document.createElement('option');
+    all.value = NEWS_ALL_SOURCE;
+    all.textContent = t('news.allSources', null, 'All sources');
+    all.selected = current === NEWS_ALL_SOURCE;
+    select.appendChild(all);
     Object.keys(sources).forEach(name=>{
       const opt = document.createElement('option'); opt.value=name; opt.textContent=name; if(name===current) opt.selected=true; select.appendChild(opt);
     });
     refreshUiSelects(select.parentElement || document);
   }
-  function renderNewsItems(items, timestamp, stale=false){
+  function newsItemKey(item){
+    return item.link || normalizeTransportSearchText(item.title);
+  }
+  function getReadNews(){
+    const list = store.get('news.read', []);
+    return Array.isArray(list) ? list.filter(Boolean) : [];
+  }
+  function markNewsRead(item, element){
+    const key = newsItemKey(item);
+    if(!key) return;
+    const next = [key, ...getReadNews().filter(value=> value !== key)].slice(0, NEWS_READ_LIMIT);
+    store.set('news.read', next);
+    if(element) element.classList.add('read');
+  }
+  function newsSourceHue(source){
+    let hash = 0;
+    String(source || '').split('').forEach(char=>{ hash = ((hash << 5) - hash) + char.charCodeAt(0); hash |= 0; });
+    return Math.abs(hash) % 360;
+  }
+  function formatNewsRelativeTime(raw){
+    const timestamp = new Date(raw || '').getTime();
+    if(!Number.isFinite(timestamp)) return '';
+    const diff = timestamp - Date.now();
+    const abs = Math.abs(diff);
+    let unit = 'minute';
+    let divisor = 60 * 1000;
+    if(abs >= 24 * 60 * 60 * 1000){ unit = 'day'; divisor = 24 * 60 * 60 * 1000; }
+    else if(abs >= 60 * 60 * 1000){ unit = 'hour'; divisor = 60 * 60 * 1000; }
+    const value = Math.round(diff / divisor);
+    try{
+      return new Intl.RelativeTimeFormat(localeToIntl(i18nLocale) || undefined, { numeric:'auto' }).format(value, unit);
+    }catch{
+      return new Date(timestamp).toLocaleString(localeToIntl(i18nLocale) || undefined);
+    }
+  }
+  function stripNewsMarkup(value){
+    const html = String(value || '').trim();
+    if(!html) return '';
+    const doc = new DOMParser().parseFromString(`<body>${html}</body>`, 'text/html');
+    return String(doc.body.textContent || '').replace(/\s+/g, ' ').trim();
+  }
+  function newsChild(node, names){
+    const wanted = names.map(name=> name.toLowerCase());
+    return Array.from(node.children || []).find(child=> wanted.includes(String(child.localName || child.nodeName || '').toLowerCase()));
+  }
+  function parseNewsFeed(xmlText, source){
+    const parser = new DOMParser();
+    const xml = parser.parseFromString(xmlText, 'text/xml');
+    if(xml.querySelector('parsererror')) throw new Error('Invalid RSS XML');
+    const rssItems = Array.from(xml.querySelectorAll('item'));
+    const nodes = rssItems.length ? rssItems : Array.from(xml.querySelectorAll('entry'));
+    return nodes.slice(0, NEWS_MAX_ITEMS).map((node, index)=>{
+      const titleNode = newsChild(node, ['title']);
+      const linkNode = newsChild(node, ['link']);
+      const summaryNode = newsChild(node, ['description', 'summary', 'encoded', 'content']);
+      const dateNode = newsChild(node, ['pubdate', 'published', 'updated', 'date']);
+      const title = String(titleNode?.textContent || '\u2014').replace(/\s+/g, ' ').trim();
+      const link = normalizeHttpUrl(linkNode?.getAttribute('href') || linkNode?.textContent || '');
+      const summary = stripNewsMarkup(summaryNode?.textContent || '').slice(0, 240);
+      const parsedDate = new Date(dateNode?.textContent || '').getTime();
+      return { title, link, summary, source, publishedAt:Number.isFinite(parsedDate) ? new Date(parsedDate).toISOString() : '', order:index };
+    });
+  }
+  async function fetchNewsFeed(source, feedUrl, signal){
+    const safeUrl = normalizeHttpUrl(feedUrl);
+    if(!safeUrl) throw new Error('Invalid feed URL');
+    const res = await fetch(`https://api-startpage.julianverse.de/api/rss?url=${encodeURIComponent(safeUrl)}`, { signal });
+    if(!res.ok) throw new Error(`RSS proxy error: ${res.status}`);
+    return parseNewsFeed(await res.text(), source);
+  }
+  function renderNewsItems(items, timestamp, stale=false, sourceStatus=''){
     const ul = $('#newsList');
     if(!ul) return;
-    newsRenderState = { items:Array.isArray(items) ? items : [], timestamp, stale };
+    newsRenderState = { items:Array.isArray(items) ? items : [], timestamp, stale, sourceStatus };
     const height = $('#newsCard')?.dataset.widgetHeight || 'auto';
     const limit = NEWS_ITEM_LIMITS[height] || NEWS_ITEM_LIMITS.auto;
+    const read = new Set(getReadNews());
     ul.innerHTML = '';
-    newsRenderState.items.slice(0, limit).forEach(item=>{
+    newsRenderState.items.slice(0, limit).forEach((item, index)=>{
       const li = document.createElement('li');
+      li.className = 'news-item' + (index === 0 ? ' featured' : '') + (read.has(newsItemKey(item)) ? ' read' : '');
+      li.style.setProperty('--news-source-hue', String(newsSourceHue(item.source)));
       const link = normalizeHttpUrl(item.link);
-      if(link){
-        const anchor = document.createElement('a');
-        anchor.href = link;
-        anchor.target = '_blank';
-        anchor.rel = 'noopener noreferrer';
-        anchor.textContent = String(item.title || '\u2014');
-        li.appendChild(anchor);
-      } else {
-        li.textContent = String(item.title || '\u2014');
+      const content = link ? document.createElement('a') : document.createElement('div');
+      content.className = 'news-link';
+      if(link){ content.href = link; content.target = '_blank'; content.rel = 'noopener noreferrer'; }
+      const meta = document.createElement('div');
+      meta.className = 'news-meta';
+      const source = document.createElement('span');
+      source.className = 'news-source-badge';
+      source.textContent = item.source || t('news.unknownSource', null, 'RSS');
+      meta.appendChild(source);
+      const relative = formatNewsRelativeTime(item.publishedAt);
+      if(relative){
+        const time = document.createElement('time');
+        time.className = 'news-time';
+        time.dateTime = item.publishedAt;
+        time.textContent = relative;
+        meta.appendChild(time);
       }
+      const title = document.createElement('div');
+      title.className = 'news-item-title';
+      title.textContent = String(item.title || '\u2014');
+      content.append(meta, title);
+      if(item.summary){
+        const summary = document.createElement('div');
+        summary.className = 'news-summary';
+        summary.textContent = item.summary;
+        content.appendChild(summary);
+      }
+      const arrow = document.createElement('span');
+      arrow.className = 'news-arrow';
+      arrow.setAttribute('aria-hidden', 'true');
+      arrow.textContent = '\u2197';
+      content.appendChild(arrow);
+      if(link) content.addEventListener('click', ()=> markNewsRead(item, li));
+      li.appendChild(content);
       ul.appendChild(li);
     });
     if(!ul.children.length) ul.innerHTML = `<li class="muted">${escapeHtml(t('news.noItems'))}</li>`;
+    const status = $('#newsFeedStatus');
+    if(status) status.textContent = sourceStatus ? ` \u00b7 ${sourceStatus}` : '';
     setWidgetDataStatus('#newsDataStatus', timestamp, stale);
   }
   function renderNewsForWidgetHeight(){
     if(!newsRenderState) return;
-    renderNewsItems(newsRenderState.items, newsRenderState.timestamp, newsRenderState.stale);
+    renderNewsItems(newsRenderState.items, newsRenderState.timestamp, newsRenderState.stale, newsRenderState.sourceStatus);
   }
   async function loadNews(){
     const sources = getFeeds();
-    const sourceName = store.get('news.source', Object.keys(sources)[0]);
-    const feedUrl = normalizeHttpUrl(sources[sourceName]);
+    const selected = store.get('news.source', NEWS_ALL_SOURCE);
+    const entries = selected === NEWS_ALL_SOURCE
+      ? Object.entries(sources)
+      : (sources[selected] ? [[selected, sources[selected]]] : Object.entries(sources));
+    const signature = JSON.stringify(entries.map(([name, url])=> [name, normalizeHttpUrl(url)]));
+    if(newsLoadController) newsLoadController.abort();
+    const controller = new AbortController();
+    newsLoadController = controller;
     $('#newsList').innerHTML = `<li class="muted">${escapeHtml(t('common.loading'))}</li>`;
     try{
-      if(!feedUrl) throw new Error('Invalid feed URL');
       if(!navigator.onLine) throw new Error('offline');
-      const res = await fetch(`https://api-startpage.julianverse.de/api/rss?url=${encodeURIComponent(feedUrl)}`);
-      if(!res.ok) throw new Error(`RSS proxy error: ${res.status}`);
-      const data = { contents: await res.text() };
-      const parser = new DOMParser();
-      const xml = parser.parseFromString(data.contents, 'text/xml');
-      const items = Array.from(xml.querySelectorAll('item'));
-      const entries = items.length ? [] : Array.from(xml.querySelectorAll('entry'));
-      const list = items.length ? items : entries;
-      const normalized = list.slice(0, NEWS_MAX_ITEMS).map(it=>{
-        const title = it.querySelector('title')?.textContent?.trim() || '\u2014';
-        const linkNode = it.querySelector('link');
-        const link = normalizeHttpUrl(linkNode?.getAttribute('href') || linkNode?.textContent || '');
-        return { title, link };
+      const results = await Promise.allSettled(entries.map(([name, url])=> fetchNewsFeed(name, url, controller.signal)));
+      if(controller.signal.aborted) return;
+      const fulfilled = results.filter(result=> result.status === 'fulfilled');
+      if(!fulfilled.length) throw new Error('All RSS feeds failed');
+      const unique = new Map();
+      fulfilled.flatMap(result=> result.value).forEach(item=>{
+        const key = newsItemKey(item);
+        if(!key || unique.has(key)) return;
+        unique.set(key, item);
       });
+      const normalized = Array.from(unique.values()).sort((a, b)=>{
+        const aTime = new Date(a.publishedAt || 0).getTime();
+        const bTime = new Date(b.publishedAt || 0).getTime();
+        return bTime - aTime || a.order - b.order || a.source.localeCompare(b.source);
+      }).slice(0, NEWS_MAX_ITEMS);
       const timestamp = Date.now();
-      setDataCache('news', { feedUrl, items:normalized, timestamp });
-      renderNewsItems(normalized, timestamp, false);
+      const sourceStatus = selected === NEWS_ALL_SOURCE
+        ? t('news.sourceCount', { loaded:fulfilled.length, total:entries.length }, `${fulfilled.length}/${entries.length} sources`)
+        : selected;
+      setDataCache('news', { signature, items:normalized, timestamp, sourceStatus });
+      renderNewsItems(normalized, timestamp, false, sourceStatus);
     }catch(e){
+      if(e && e.name === 'AbortError') return;
       const cached = getDataCache('news');
-      if(cached && cached.feedUrl === feedUrl && Array.isArray(cached.items)){
-        renderNewsItems(cached.items, cached.timestamp, true);
+      if(cached && cached.signature === signature && Array.isArray(cached.items)){
+        renderNewsItems(cached.items, cached.timestamp, true, cached.sourceStatus || '');
         return;
       }
       $('#newsList').innerHTML = `<li class="muted">${escapeHtml(t('common.loadError'))}</li>`;
+      const status = $('#newsFeedStatus'); if(status) status.textContent = '';
       setWidgetDataStatus('#newsDataStatus', 0);
+    }finally{
+      if(newsLoadController === controller) newsLoadController = null;
     }
   }

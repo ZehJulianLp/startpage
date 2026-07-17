@@ -77,6 +77,38 @@ test('renders untrusted RSS content as text and blocks unsafe links', async ({ p
   expect(await page.evaluate(()=> window.__rssPwned || 0)).toBe(0);
 });
 
+test('aggregates, sorts, and deduplicates all news sources', async ({ page })=>{
+  await seedStartpage(page, {
+    widgets: { todo:false, notes:false, tiles:false, weather:false, transport:false, quote:false, recent:false, system:false, news:true },
+    'news.custom': { Alpha:'https://feed-a.test/rss', Beta:'https://feed-b.test/rss' },
+    'news.source': '__all__'
+  });
+  await page.route('https://api-startpage.julianverse.de/api/rss**', route=>{
+    const feedUrl = new URL(route.request().url()).searchParams.get('url') || '';
+    let items = '';
+    if(feedUrl.includes('feed-a.test')){
+      items = [
+        '<item><title>Shared report</title><link>https://example.test/shared</link><pubDate>Fri, 17 Jul 2026 08:00:00 GMT</pubDate><description><![CDATA[<b>Shared</b> summary]]></description></item>',
+        '<item><title>Older Alpha</title><link>https://example.test/alpha</link><pubDate>Fri, 17 Jul 2026 07:00:00 GMT</pubDate></item>'
+      ].join('');
+    }
+    if(feedUrl.includes('feed-b.test')){
+      items = [
+        '<item><title>Newest Beta</title><link>https://example.test/beta</link><pubDate>Fri, 17 Jul 2026 09:00:00 GMT</pubDate><description>Latest summary</description></item>',
+        '<item><title>Shared duplicate</title><link>https://example.test/shared</link><pubDate>Fri, 17 Jul 2026 08:30:00 GMT</pubDate></item>'
+      ].join('');
+    }
+    route.fulfill({ contentType:'application/xml', body:`<rss><channel>${items}</channel></rss>` });
+  });
+  await page.goto('/');
+  await expect(page.locator('#newsSource')).toHaveValue('__all__');
+  await expect(page.locator('#newsList .news-item')).toHaveCount(3);
+  await expect(page.locator('#newsList .news-item').first()).toContainText('Newest Beta');
+  await expect(page.locator('#newsList .news-item').first()).toContainText('Beta');
+  await expect(page.locator('#newsList')).toContainText('Shared summary');
+  await expect(page.locator('#newsFeedStatus')).toContainText('5/5');
+});
+
 test('adapts the number of news items to the widget height', async ({ page })=>{
   const items = Array.from({ length:20 }, (_, index)=> `<item><title>News ${index + 1}</title><link>https://example.com/${index + 1}</link></item>`).join('');
   await seedStartpage(page, {
