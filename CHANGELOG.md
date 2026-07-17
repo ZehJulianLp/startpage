@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.18.0](https://github.com/ZehJulianLp/startpage/compare/v1.17.1...v1.18.0) (2026-07-17)
+
+
+### Features
+
+* add autobahn mode to transport widget ([7b25318](https://github.com/ZehJulianLp/startpage/commit/7b253181e993b67b3af3b15c01a737c27760e5a2))
+* revamp aggregated news widget ([6140b76](https://github.com/ZehJulianLp/startpage/commit/6140b76ca3d2e62b43437fc4bb0b9b794d9928b7))
+
+
+### Bug Fixes
+
+* restore transport endpoint integration ([b058aba](https://github.com/ZehJulianLp/startpage/commit/b058abad066550f20144a9148e1a9ecf762e4186))
+
 ## [1.17.1](https://github.com/ZehJulianLp/startpage/compare/v1.17.0...v1.17.1) (2026-07-16)
 
 
