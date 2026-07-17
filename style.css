@@ -693,6 +693,9 @@
 
     /* Transport */
     .transport-top { display:flex; align-items:center; justify-content:space-between; gap:8px }
+    .transport-mode-tabs { display:flex; gap:6px; margin-top:10px; padding:4px; width:max-content; max-width:100%; border-radius:12px; background:var(--bg-soft); border:1px solid rgba(255,255,255,.06) }
+    .transport-mode-tabs .btn { padding:6px 14px; border-color:transparent; background:transparent }
+    .transport-mode-tabs .btn.active { color:var(--fg); background:color-mix(in srgb, var(--accent) 20%, var(--bg-soft)); border-color:color-mix(in srgb, var(--accent) 35%, transparent) }
     .transport-search { position:relative; margin-top:8px }
     .transport-suggest { position:absolute; left:0; right:0; top: calc(100% - 4px); background: var(--bg); border:1px solid var(--card-border-current); box-shadow: var(--card-shadow-current); border-radius:12px; padding:6px; max-height:220px; overflow:auto; z-index: 20; }
     .transport-suggest.hidden { display:none; }
@@ -716,6 +719,16 @@
     .transport-delay.late { color: var(--danger) }
     .transport-delay.early { color: var(--ok) }
     .transport-cancelled { color: var(--danger); font-weight:600; font-size:12px }
+    .autobahn-list { max-height:320px }
+    .autobahn-item { align-items:flex-start }
+    .autobahn-item .transport-main { flex:1 }
+    .autobahn-road { display:inline-flex; align-items:center; align-self:flex-start; padding:2px 7px; border-radius:7px; color:#fff; background:#2563eb; font-weight:700; font-size:12px; letter-spacing:.3px }
+    .autobahn-item-title { font-weight:600 }
+    .autobahn-item-meta { display:flex; align-items:center; justify-content:flex-end; gap:6px; flex-wrap:wrap }
+    .autobahn-type { padding:3px 7px; border-radius:999px; background:var(--bg); color:var(--muted); font-size:11px; white-space:nowrap }
+    .autobahn-type.closure { color:var(--danger); background:color-mix(in srgb, var(--danger) 14%, transparent) }
+    .autobahn-type.warning { color:#f59e0b; background:color-mix(in srgb, #f59e0b 14%, transparent) }
+    .autobahn-delay { color:var(--danger); font-size:12px; font-weight:600; white-space:nowrap }
     .chip { background: var(--bg-soft); padding:6px 10px; border:1px solid rgba(255,255,255,.06); border-radius:999px; font-size:12px; white-space:nowrap }
     /* Recent */
     .recent-list { display:flex; gap:10px; flex-wrap:wrap }

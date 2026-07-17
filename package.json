@@ -1,6 +1,6 @@
 {
   "name": "startpage",
-  "version": "1.17.1",
+  "version": "1.17.2",
   "private": true,
   "scripts": {
     "test": "playwright test",

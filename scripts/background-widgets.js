@@ -1729,7 +1729,7 @@
     widgetRuntimeInitialized[key] = true;
     if(key === 'tiles') renderTiles();
     else if(key === 'weather') void loadWeather();
-    else if(key === 'transport') first ? initTransport() : void loadTransportDepartures();
+    else if(key === 'transport') first ? initTransport() : void loadActiveTransportView();
     else if(key === 'quote') loadQuote();
     else if(key === 'recent') renderRecent();
     else if(key === 'system') renderSystem();

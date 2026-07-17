@@ -112,6 +112,15 @@
         }
       });
     }
+    const autobahnRoadsInput = $('#autobahnRoads');
+    if(autobahnRoadsInput){
+      autobahnRoadsInput.addEventListener('change', e=>{
+        const roads = setAutobahnRoads(e.target.value);
+        e.target.value = roads.join('\n');
+        setDataCache('autobahn', null);
+        if(isWidgetEnabled('transport') && getTransportMode() === 'autobahn') void loadAutobahnTraffic(true);
+      });
+    }
 
     const cardSelect = $('#cardStyle');
     if(cardSelect) cardSelect.addEventListener('change', e=>{ const allowed = ['glass','solid','transparent','minimal']; const val = allowed.includes(e.target.value) ? e.target.value : 'glass'; store.set('ui.cardStyle', val); applyCardStyle(); if(val !== e.target.value) fillSettings(); });
@@ -378,7 +387,7 @@
     applyWidgets();
     window.addEventListener('online', ()=>{
       if(isWidgetEnabled('weather')) void loadWeather();
-      if(isWidgetEnabled('transport')) void loadTransportDepartures();
+      if(isWidgetEnabled('transport')) void loadActiveTransportView();
       if(isWidgetEnabled('news')) void loadNews();
     });
     applyControlColors();

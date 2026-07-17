@@ -1116,6 +1116,10 @@
 
   // ===== Transport (departures)
   const TRANSPORT_API = 'https://api-startpage.julianverse.de/api';
+  const AUTOBAHN_API = 'https://verkehr.autobahn.de/o/autobahn';
+  const AUTOBAHN_DEFAULT_ROADS = ['A2', 'A7', 'A37'];
+  const AUTOBAHN_CACHE_TTL = 5 * 60 * 1000;
+  const AUTOBAHN_SERVICES = ['warning', 'closure', 'roadworks'];
   const TRANSPORT_MAX_DURATION = 120;
   const TRANSPORT_MIN_INTERVAL = 800;
   const transportSearchSeqs = { main: 0, settings: 0, default: 0, onboarding: 0 };
@@ -1125,6 +1129,7 @@
   let transportSuggestItems = [];
   const TRANSPORT_MIN_QUERY = 3;
   let transportLastRequestAt = 0;
+  let autobahnLoadController = null;
 
   async function transportFetch(url, options){
     const now = Date.now();
@@ -1315,8 +1320,8 @@
     renderTransportSuggest([]);
     loadTransportDepartures();
   }
-  function renderTransportLoadError(message){
-    const ul = $('#transportList');
+  function renderTransportLoadError(message, target='#transportList', retryFn=loadActiveTransportView){
+    const ul = $(target);
     if(!ul) return;
     ul.innerHTML = '';
     const item = document.createElement('li');
@@ -1328,7 +1333,7 @@
     retry.type = 'button';
     retry.className = 'btn';
     retry.textContent = t('transport.retry', null, 'Retry');
-    retry.addEventListener('click', ()=>{ void loadTransportDepartures(); });
+    retry.addEventListener('click', ()=>{ void retryFn(); });
     item.append(text, retry);
     ul.appendChild(item);
   }
@@ -1433,6 +1438,181 @@
       ul.appendChild(li);
     });
   }
+  function normalizeAutobahnRoad(value){
+    const road = String(value || '').trim().toUpperCase().replace(/\s+/g, '');
+    return /^A\d{1,3}$/.test(road) ? road : '';
+  }
+  function normalizeAutobahnRoads(values){
+    const list = Array.isArray(values) ? values : String(values || '').split(/[\n,;]+/);
+    return Array.from(new Set(list.map(normalizeAutobahnRoad).filter(Boolean)));
+  }
+  function getAutobahnRoads(){
+    const saved = normalizeAutobahnRoads(store.get('transport.autobahn.roads', AUTOBAHN_DEFAULT_ROADS));
+    return saved.length ? saved : AUTOBAHN_DEFAULT_ROADS.slice();
+  }
+  function setAutobahnRoads(values){
+    const roads = normalizeAutobahnRoads(values);
+    store.set('transport.autobahn.roads', roads.length ? roads : AUTOBAHN_DEFAULT_ROADS.slice());
+    return getAutobahnRoads();
+  }
+  function autobahnTypeLabel(type){
+    if(type === 'closure') return t('transport.autobahnClosure', null, 'Sperrung');
+    if(type === 'warning') return t('transport.autobahnWarning', null, 'Warnung');
+    return t('transport.autobahnRoadwork', null, 'Baustelle');
+  }
+  function normalizeAutobahnEvent(event, road, type){
+    if(!event || typeof event !== 'object') return null;
+    const title = String(event.title || '').replace(/^\s*A\d{1,3}\s*\|\s*/i, '').trim();
+    return {
+      id: String(event.identifier || `${road}:${type}:${title}:${event.subtitle || ''}`),
+      road,
+      type,
+      title: title || road,
+      subtitle: String(event.subtitle || '').trim(),
+      delay: Number.isFinite(Number(event.delayTimeValue)) ? Number(event.delayTimeValue) : 0,
+      future: Boolean(event.future),
+      blocked: event.isBlocked === true || event.isBlocked === 'true',
+      timestamp: event.startTimestamp || ''
+    };
+  }
+  function sortAutobahnEvents(items){
+    const priority = { closure: 0, warning: 1, roadworks: 2 };
+    return items.sort((a, b)=> Number(a.future) - Number(b.future)
+      || (priority[a.type] ?? 9) - (priority[b.type] ?? 9)
+      || b.delay - a.delay
+      || a.road.localeCompare(b.road, undefined, { numeric:true })
+      || a.title.localeCompare(b.title));
+  }
+  function renderAutobahnEvents(items, roads){
+    const ul = $('#autobahnList');
+    const selected = $('#autobahnSelected');
+    if(selected) selected.textContent = roads.join(' · ');
+    if(!ul) return;
+    ul.innerHTML = '';
+    if(!items.length){
+      ul.innerHTML = `<li class="muted">${escapeHtml(t('transport.autobahnEmpty', null, 'Keine aktuellen Meldungen'))}</li>`;
+      return;
+    }
+    items.slice(0, 60).forEach(event=>{
+      const li = document.createElement('li');
+      li.className = 'transport-item autobahn-item';
+      const road = document.createElement('span');
+      road.className = 'autobahn-road';
+      road.textContent = event.road;
+      const main = document.createElement('div');
+      main.className = 'transport-main';
+      const title = document.createElement('div');
+      title.className = 'autobahn-item-title';
+      title.textContent = event.title;
+      const direction = document.createElement('div');
+      direction.className = 'transport-dir';
+      direction.textContent = event.subtitle || t('transport.autobahnNoDirection', null, 'Keine Richtungsangabe');
+      main.append(title, direction);
+      const meta = document.createElement('div');
+      meta.className = 'autobahn-item-meta';
+      const type = document.createElement('span');
+      type.className = `autobahn-type ${event.type}`;
+      type.textContent = autobahnTypeLabel(event.type);
+      meta.appendChild(type);
+      if(event.blocked){
+        const blocked = document.createElement('span');
+        blocked.className = 'transport-cancelled';
+        blocked.textContent = t('transport.autobahnBlocked', null, 'Gesperrt');
+        meta.appendChild(blocked);
+      }
+      if(event.delay > 0){
+        const delay = document.createElement('span');
+        delay.className = 'autobahn-delay';
+        delay.textContent = t('transport.autobahnDelay', { value:event.delay }, `+${event.delay} Min`);
+        meta.appendChild(delay);
+      }
+      li.append(road, main, meta);
+      ul.appendChild(li);
+    });
+  }
+  async function loadAutobahnTraffic(force=false){
+    const ul = $('#autobahnList');
+    if(!ul) return;
+    const roads = getAutobahnRoads();
+    const cache = getDataCache('autobahn');
+    const sameRoads = cache && Array.isArray(cache.roads) && cache.roads.join(',') === roads.join(',');
+    if(!force && sameRoads && Array.isArray(cache.items) && Date.now() - cache.timestamp < AUTOBAHN_CACHE_TTL){
+      renderAutobahnEvents(cache.items, roads);
+      setWidgetDataStatus('#autobahnDataStatus', cache.timestamp, false);
+      return;
+    }
+    if(autobahnLoadController) autobahnLoadController.abort();
+    const controller = new AbortController();
+    autobahnLoadController = controller;
+    ul.innerHTML = `<li class="muted">${escapeHtml(t('common.loading'))}</li>`;
+    const selected = $('#autobahnSelected');
+    if(selected) selected.textContent = roads.join(' · ');
+    try{
+      if(!navigator.onLine) throw new Error('offline');
+      const requests = roads.flatMap(road=> AUTOBAHN_SERVICES.map(async type=>{
+        const res = await fetch(`${AUTOBAHN_API}/${encodeURIComponent(road)}/services/${type}`, { signal:controller.signal });
+        if(!res.ok) throw new Error(`${road} ${type}: ${res.status}`);
+        const data = await res.json();
+        const list = Array.isArray(data[type]) ? data[type] : [];
+        return list.map(event=> normalizeAutobahnEvent(event, road, type)).filter(Boolean).slice(0, 20);
+      }));
+      const results = await Promise.allSettled(requests);
+      if(controller.signal.aborted) return;
+      const fulfilled = results.filter(result=> result.status === 'fulfilled');
+      if(!fulfilled.length) throw new Error('Autobahn API unavailable');
+      const unique = new Map();
+      fulfilled.flatMap(result=> result.value).forEach(event=>{
+        const key = [event.road, event.type, event.title, event.subtitle]
+          .map(value=> normalizeTransportSearchText(value))
+          .join('|');
+        const existing = unique.get(key);
+        if(!existing){
+          unique.set(key, event);
+          return;
+        }
+        existing.delay = Math.max(existing.delay, event.delay);
+        existing.blocked = existing.blocked || event.blocked;
+        existing.future = existing.future && event.future;
+      });
+      const items = sortAutobahnEvents(Array.from(unique.values())).slice(0, 60);
+      const timestamp = Date.now();
+      setDataCache('autobahn', { roads, items, timestamp });
+      renderAutobahnEvents(items, roads);
+      setWidgetDataStatus('#autobahnDataStatus', timestamp, fulfilled.length !== requests.length);
+    }catch(err){
+      if(err && err.name === 'AbortError') return;
+      if(sameRoads && cache && Array.isArray(cache.items)){
+        renderAutobahnEvents(cache.items, roads);
+        setWidgetDataStatus('#autobahnDataStatus', cache.timestamp, true);
+        return;
+      }
+      renderTransportLoadError(t('transport.autobahnLoadError', null, 'Autobahn-Meldungen konnten nicht geladen werden.'), '#autobahnList', ()=> loadAutobahnTraffic(true));
+      setWidgetDataStatus('#autobahnDataStatus', 0);
+    }finally{
+      if(autobahnLoadController === controller) autobahnLoadController = null;
+    }
+  }
+  function getTransportMode(){
+    return store.get('transport.mode', 'transit') === 'autobahn' ? 'autobahn' : 'transit';
+  }
+  function setTransportMode(mode, load=true){
+    const next = mode === 'autobahn' ? 'autobahn' : 'transit';
+    store.set('transport.mode', next);
+    const transitButton = $('#transportModeTransit');
+    const autobahnButton = $('#transportModeAutobahn');
+    const transitPanel = $('#transportTransitPanel');
+    const autobahnPanel = $('#transportAutobahnPanel');
+    const durationWrap = $('#transportDurationWrap');
+    if(transitButton){ transitButton.classList.toggle('active', next === 'transit'); transitButton.setAttribute('aria-selected', String(next === 'transit')); }
+    if(autobahnButton){ autobahnButton.classList.toggle('active', next === 'autobahn'); autobahnButton.setAttribute('aria-selected', String(next === 'autobahn')); }
+    if(transitPanel) transitPanel.hidden = next !== 'transit';
+    if(autobahnPanel) autobahnPanel.hidden = next !== 'autobahn';
+    if(durationWrap) durationWrap.hidden = next !== 'transit';
+    if(load) void loadActiveTransportView();
+  }
+  function loadActiveTransportView(force=false){
+    return getTransportMode() === 'autobahn' ? loadAutobahnTraffic(force) : loadTransportDepartures();
+  }
   async function loadTransportDepartures(attempt=0){
     const ul = $('#transportList'); if(!ul) return;
     const station = store.get('transport.station', null);
@@ -1479,7 +1659,12 @@
     const input = $('#transportQuery');
     const select = $('#transportDuration');
     const refresh = $('#refreshTransport');
+    const transitMode = $('#transportModeTransit');
+    const autobahnMode = $('#transportModeAutobahn');
     if(store.get('transport.duration', null) == null) store.set('transport.duration', 60);
+    setTransportMode(getTransportMode(), false);
+    if(transitMode) transitMode.addEventListener('click', ()=> setTransportMode('transit'));
+    if(autobahnMode) autobahnMode.addEventListener('click', ()=> setTransportMode('autobahn'));
     if(select){
       const val = getTransportDuration();
       select.value = String(val);
@@ -1538,7 +1723,7 @@
         if(e.key === 'Escape') renderTransportSuggest([]);
       });
     }
-    if(refresh) refresh.addEventListener('click', loadTransportDepartures);
+    if(refresh) refresh.addEventListener('click', ()=> loadActiveTransportView(true));
     document.addEventListener('click', e=>{
       const card = $('#transportCard');
       if(!card) return;
@@ -1546,7 +1731,7 @@
     });
     if(!store.get('transport.station', null)){
       const defaultStation = store.get('transport.default', null);
-      if(defaultStation && defaultStation.name && !defaultStation.id){
+      if(getTransportMode() === 'transit' && defaultStation && defaultStation.name && !defaultStation.id){
         transportSearchCore(defaultStation.name, 0, 'default', (items)=>{
           if(!items || !items.length) return;
           const pick = items[0];
@@ -1560,7 +1745,7 @@
         return;
       }
     }
-    loadTransportDepartures();
+    loadActiveTransportView();
   }
 
   // ===== Quote of the day (local)

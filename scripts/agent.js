@@ -510,6 +510,19 @@
   }
 
   function readTransportSnapshot(){
+    const mode = getTransportMode();
+    if(mode === 'autobahn'){
+      const reports = $$('#autobahnList .autobahn-item').map(item=>({
+        road: ($('.autobahn-road', item) || {}).textContent?.trim() || '',
+        title: ($('.autobahn-item-title', item) || {}).textContent?.trim() || '',
+        direction: ($('.transport-dir', item) || {}).textContent?.trim() || '',
+        type: ($('.autobahn-type', item) || {}).textContent?.trim() || '',
+        delay: ($('.autobahn-delay', item) || {}).textContent?.trim() || '',
+        blocked: !!$('.transport-cancelled', item)
+      }));
+      const listText = ($('#autobahnList') && $('#autobahnList').textContent) ? $('#autobahnList').textContent.trim() : '';
+      return { mode, roads:getAutobahnRoads(), reports, listText };
+    }
     const station = store.get('transport.station', null);
     const duration = getTransportDuration();
     const selectedText = ($('#transportSelected') && $('#transportSelected').textContent) ? $('#transportSelected').textContent.trim() : '';
@@ -531,6 +544,7 @@
     });
     const fallbackHint = ($('#transportList') && $('#transportList').textContent) ? $('#transportList').textContent.trim() : '';
     return {
+      mode,
       station,
       selectedText,
       durationMinutes: duration,
@@ -1363,7 +1377,7 @@
         }
         if(target === 'weather' || target === 'all') await loadWeather();
         if(target === 'news' || target === 'all') await loadNews();
-        if(target === 'transport' || target === 'all') await loadTransportDepartures();
+        if(target === 'transport' || target === 'all') await loadActiveTransportView();
         if(target === 'system' || target === 'all') renderSystem();
         if(target === 'quote' || target === 'all') loadQuote();
         return { ok: true, target };
@@ -1374,7 +1388,7 @@
         const allowRefresh = !!args.refresh;
         if(allowRefresh){
           if(widgetId === 'weather') await loadWeather();
-          if(widgetId === 'transport') await loadTransportDepartures();
+          if(widgetId === 'transport') await loadActiveTransportView();
           if(widgetId === 'news') await loadNews();
           if(widgetId === 'system') renderSystem();
           if(widgetId === 'quote') loadQuote();
@@ -1387,7 +1401,7 @@
         const allowRefresh = !!args.refresh;
         if(allowRefresh){
           await loadWeather();
-          await loadTransportDepartures();
+          await loadActiveTransportView();
           await loadNews();
           renderSystem();
           loadQuote();
@@ -1399,7 +1413,7 @@
         return { ok: true, widgetId: 'weather', data: readWeatherSnapshot() };
       }
       case 'read_transport_data': {
-        if(args.refresh) await loadTransportDepartures();
+        if(args.refresh) await loadActiveTransportView();
         return { ok: true, widgetId: 'transport', data: readTransportSnapshot() };
       }
       case 'read_todo_data': {
@@ -1785,4 +1799,3 @@
       }
     }, true);
   }
-

@@ -322,9 +322,9 @@
       add('tiles.reset', t('palette.tiles.reset'), { group:'tiles', keywords:['tile', 'reset'], run: async ()=>{ if(await uiConfirm(t('tiles.resetConfirm'))){ store.set('tiles', defaultTiles()); renderTiles(); }} });
       add('refresh.weather', t('palette.refresh.weather'), { group:'command', keywords:['refresh', 'reload', 'wetter'], run: loadWeather });
       add('refresh.news', t('palette.refresh.news'), { group:'command', keywords:['refresh', 'reload', 'news'], run: loadNews });
-      add('refresh.transport', t('palette.refresh.transport'), { group:'command', keywords:['refresh', 'reload', 'transport'], run: loadTransportDepartures });
+      add('refresh.transport', t('palette.refresh.transport'), { group:'command', keywords:['refresh', 'reload', 'transport'], run: loadActiveTransportView });
       add('refresh.system', t('palette.refresh.system'), { group:'command', keywords:['refresh', 'reload', 'system'], run: renderSystem });
-      add('refresh.all', t('palette.refresh.all'), { group:'command', keywords:['refresh', 'reload', 'all', 'alle'], run: ()=>{ loadWeather(); loadNews(); loadTransportDepartures(); renderSystem(); }});
+      add('refresh.all', t('palette.refresh.all'), { group:'command', keywords:['refresh', 'reload', 'all', 'alle'], run: ()=>{ loadWeather(); loadNews(); loadActiveTransportView(); renderSystem(); }});
 
       // Search engines
       Object.keys(ENGINES).forEach(key=>{
