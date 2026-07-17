@@ -88,7 +88,7 @@
             transportDefaultSuggest.classList.add('hidden');
             transportDefaultSuggest.innerHTML = '';
           });
-        }), 320);
+        }), 160);
       });
       transportDefaultInput.addEventListener('focus', ()=>{
         const q = transportDefaultInput.value.trim();
@@ -236,7 +236,7 @@
         }
         timer = setTimeout(()=> transportSearchCore(q, 0, 'onboarding', (items, message)=>{
           renderTransportSuggestTo(onbTransportSuggest, items, message, handleSelect);
-        }), 320);
+        }), 160);
       });
       onbTransportInput.addEventListener('focus', ()=>{
         const q = onbTransportInput.value.trim();

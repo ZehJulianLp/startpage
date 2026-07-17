@@ -134,7 +134,7 @@
     "refreshTitle": "Reload",
     "searchPlaceholder": "Search station…",
     "noneSelected": "No station selected",
-    "source": "Source: transport.rest",
+    "source": "Source: Startpage Transport API",
     "minQuery": "At least {count} characters",
     "noMatches": "No matches",
     "proxyTimeout": "The transport service is not responding right now.",

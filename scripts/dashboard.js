@@ -1119,6 +1119,7 @@
   const TRANSPORT_MAX_DURATION = 120;
   const TRANSPORT_MIN_INTERVAL = 800;
   const transportSearchSeqs = { main: 0, settings: 0, default: 0, onboarding: 0 };
+  const transportSearchControllers = { main: null, settings: null, default: null, onboarding: null };
   let transportSearchTimer = null;
   let transportSearchSeq = 0;
   let transportSuggestItems = [];
@@ -1174,8 +1175,60 @@
       id: String(loc.id),
       name: String(loc.name),
       type,
-      place: loc.place || loc.address || (loc.location && loc.location.name) || ''
+      place: loc.locality || loc.place || loc.address || (loc.location && loc.location.name) || '',
+      score: Number.isFinite(Number(loc.score)) ? Number(loc.score) : 0
     };
+  }
+  function dedupeTransportLocations(items){
+    const unique = new Map();
+    items.forEach(item=>{
+      const key = item.name.trim().toLocaleLowerCase();
+      const existing = unique.get(key);
+      if(!existing){
+        unique.set(key, item);
+        return;
+      }
+      if(!existing.place && item.place) existing.place = item.place;
+      if(existing.type !== 'station' && item.type === 'station') existing.type = 'station';
+    });
+    return Array.from(unique.values());
+  }
+  function normalizeTransportSearchText(value){
+    return String(value || '')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLocaleLowerCase()
+      .replace(/ß/g, 'ss')
+      .replace(/[^a-z0-9]+/g, ' ')
+      .trim();
+  }
+  function rankTransportLocations(items, query){
+    const normalizedQuery = normalizeTransportSearchText(query);
+    const queryTokens = Array.from(new Set(normalizedQuery.split(' ').filter(token=> token.length > 1)));
+    if(!queryTokens.length) return items.slice(0, 8);
+    const minimumMatches = Math.max(1, Math.ceil(queryTokens.length / 2));
+    return items.map((item, index)=>{
+      const candidate = normalizeTransportSearchText(`${item.name} ${item.place || ''}`);
+      const candidateTokens = candidate.split(' ').filter(Boolean);
+      let matches = 0;
+      let score = candidate.includes(normalizedQuery) ? 100 : 0;
+      queryTokens.forEach(token=>{
+        if(candidateTokens.includes(token)){
+          matches += 1;
+          score += 12;
+          return;
+        }
+        if(token.length >= 4 && candidateTokens.some(candidateToken=> candidateToken.startsWith(token))){
+          matches += 1;
+          score += 6;
+        }
+      });
+      score += Number.isFinite(Number(item.score)) ? Number(item.score) : 0;
+      return { item, index, matches, score };
+    }).filter(entry=> entry.matches >= minimumMatches)
+      .sort((a, b)=> b.score - a.score || a.index - b.index)
+      .slice(0, 8)
+      .map(entry=> entry.item);
   }
   function setTransportSelectedText(text){
     const el = $('#transportSelected');
@@ -1226,26 +1279,29 @@
       return;
     }
     const seq = ++transportSearchSeqs[seqKey];
+    if(transportSearchControllers[seqKey]) transportSearchControllers[seqKey].abort();
+    const controller = new AbortController();
+    transportSearchControllers[seqKey] = controller;
     try{
-      const url = `${TRANSPORT_API}/locations?query=${encodeURIComponent(q)}&results=8&stops=true&addresses=false&poi=false`;
-      const res = await transportFetch(url);
+      const url = `${TRANSPORT_API}/transport/locations?query=${encodeURIComponent(q)}&limit=8`;
+      const res = await fetch(url, { signal: controller.signal });
       if(!res.ok){
-        if(res.status === 504 && attempt < 1){
-          await new Promise(r=> setTimeout(r, 350));
-          return transportSearchCore(q, attempt + 1, seqKey, renderFn);
-        }
         throw new Error(`Transport search error: ${res.status}`);
       }
       const data = await res.json();
       if(seq !== transportSearchSeqs[seqKey]) return;
       const list = Array.isArray(data) ? data : (data.locations || data.data || data.results || []);
-      const items = (Array.isArray(list) ? list : []).map(normalizeTransportLocation).filter(Boolean);
+      const normalized = (Array.isArray(list) ? list : []).map(normalizeTransportLocation).filter(Boolean);
+      const items = rankTransportLocations(dedupeTransportLocations(normalized), q);
       if(!items.length) renderFn([], t('transport.noMatches'));
       else renderFn(items);
     }catch(e){
+      if(e && e.name === 'AbortError') return;
       if(seq !== transportSearchSeqs[seqKey]) return;
       const msg = e && /504/.test(String(e.message)) ? t('transport.proxyTimeout') : t('transport.loadError');
       renderFn([], msg);
+    }finally{
+      if(transportSearchControllers[seqKey] === controller) transportSearchControllers[seqKey] = null;
     }
   }
   async function transportSearch(query, attempt=0){
@@ -1276,10 +1332,39 @@
     item.append(text, retry);
     ul.appendChild(item);
   }
+  function transportDepartureLine(dep){
+    return (typeof dep.line === 'string' ? dep.line : (dep.line && (dep.line.name || dep.line.id || dep.line.product || dep.line.mode))) || dep.product || '-';
+  }
+  function transportDepartureWhen(dep, planned=false){
+    if(planned) return dep.plannedWhen || (dep.stop && dep.stop.plannedDeparture) || dep.when || (dep.stop && dep.stop.departure) || '';
+    return dep.when || dep.plannedWhen || (dep.stop && (dep.stop.departure || dep.stop.plannedDeparture)) || '';
+  }
+  function dedupeTransportDepartures(items){
+    const unique = new Map();
+    items.forEach(dep=>{
+      if(!dep) return;
+      const key = [
+        transportDepartureLine(dep),
+        dep.direction || dep.destination || dep.provenance || '',
+        transportDepartureWhen(dep, true),
+        dep.product || '',
+        dep.cancelled ? 'cancelled' : 'active'
+      ].map(value=> String(value).trim().toLocaleLowerCase()).join('|');
+      if(!unique.has(key)) unique.set(key, dep);
+    });
+    return Array.from(unique.values()).sort((a, b)=>{
+      const aTime = new Date(transportDepartureWhen(a)).getTime();
+      const bTime = new Date(transportDepartureWhen(b)).getTime();
+      if(!Number.isFinite(aTime) && !Number.isFinite(bTime)) return 0;
+      if(!Number.isFinite(aTime)) return 1;
+      if(!Number.isFinite(bTime)) return -1;
+      return aTime - bTime;
+    });
+  }
   function renderTransportList(items){
     const ul = $('#transportList'); if(!ul) return;
     ul.innerHTML = '';
-    const filtered = Array.isArray(items) ? items : [];
+    const filtered = dedupeTransportDepartures(Array.isArray(items) ? items : []);
     if(!filtered.length){
       ul.innerHTML = `<li class="muted">${escapeHtml(t('transport.noDepartures'))}</li>`;
       return;
@@ -1287,7 +1372,7 @@
     const duration = getTransportDuration();
     const cutoff = Date.now() + (duration * 60 * 1000);
     const within = filtered.filter(dep=>{
-      const whenRaw = dep.when || dep.plannedWhen || (dep.stop && (dep.stop.departure || dep.stop.plannedDeparture));
+      const whenRaw = transportDepartureWhen(dep);
       if(!whenRaw) return true;
       const t = new Date(whenRaw).getTime();
       if(Number.isNaN(t)) return true;
@@ -1304,7 +1389,7 @@
       main.className = 'transport-main';
       const line = document.createElement('div');
       line.className = 'transport-line';
-      line.textContent = (dep.line && (dep.line.name || dep.line.id || dep.line.product || dep.line.mode)) || '-';
+      line.textContent = transportDepartureLine(dep);
       const dir = document.createElement('div');
       dir.className = 'transport-dir';
       dir.textContent = dep.direction || dep.destination || dep.provenance || '-';
@@ -1315,7 +1400,7 @@
       meta.className = 'transport-meta';
       const time = document.createElement('div');
       time.className = 'transport-time';
-      const whenRaw = dep.when || dep.plannedWhen || (dep.stop && (dep.stop.departure || dep.stop.plannedDeparture));
+      const whenRaw = transportDepartureWhen(dep);
       time.textContent = formatTransportTime(whenRaw);
       meta.appendChild(time);
 
@@ -1327,7 +1412,7 @@
         meta.appendChild(platform);
       }
 
-      const delayVal = (typeof dep.delay === 'number') ? dep.delay : (dep.stop && typeof dep.stop.departureDelay === 'number' ? dep.stop.departureDelay : null);
+      const delayVal = (typeof dep.delaySeconds === 'number') ? dep.delaySeconds : ((typeof dep.delay === 'number') ? dep.delay : (dep.stop && typeof dep.stop.departureDelay === 'number' ? dep.stop.departureDelay : null));
       const delayText = formatTransportDelay(delayVal);
       if(delayText){
         const delay = document.createElement('div');
@@ -1362,31 +1447,22 @@
     ul.innerHTML = `<li class="muted">${escapeHtml(t('common.loading'))}</li>`;
     try{
       if(!navigator.onLine) throw new Error('offline');
-      const preferStation = (station.type === 'station' || station.isStation);
-      const first = preferStation ? 'stations' : 'stops';
-      const second = preferStation ? 'stops' : 'stations';
-      const fetchDepartures = async (kind)=>{
-        const url = `${TRANSPORT_API}/${kind}/${encodeURIComponent(station.id)}/departures?duration=${duration}`;
-        const res = await transportFetch(url);
-        return { res, kind };
-      };
-      let { res } = await fetchDepartures(first);
-      if(res.status === 404){
-        const retry = await fetchDepartures(second);
-        res = retry.res;
-      }
+      const params = new URLSearchParams({ query: station.name, limit: '60' });
+      const res = await transportFetch(`${TRANSPORT_API}/departures?${params.toString()}`);
       if(res.status === 504 && attempt < 1){
         await new Promise(resolve=> setTimeout(resolve, 400));
         return loadTransportDepartures(attempt + 1);
       }
       if(!res.ok) throw new Error(`Transport error: ${res.status}`);
       const data = await res.json();
+      if(data && data.ok === false) throw new Error(data.error || 'Transport live data unavailable');
       const list = Array.isArray(data) ? data : (data.departures || data.results || []);
-      const safeList = Array.isArray(list) ? list : [];
-      const timestamp = Date.now();
+      const safeList = dedupeTransportDepartures(Array.isArray(list) ? list : []);
+      const updatedAt = data && data.updatedAt ? new Date(data.updatedAt).getTime() : NaN;
+      const timestamp = Number.isFinite(updatedAt) ? updatedAt : Date.now();
       setDataCache('transport', { stationId:station.id, duration, list:safeList, timestamp });
       renderTransportList(safeList);
-      setWidgetDataStatus('#transportDataStatus', timestamp, false);
+      setWidgetDataStatus('#transportDataStatus', timestamp, Boolean(data && data.stale));
     }catch(err){
       const cached = getDataCache('transport');
       if(cached && cached.stationId === station.id && cached.duration === duration && Array.isArray(cached.list)){
@@ -1442,7 +1518,7 @@
           store.set('transport.station', null);
           setTransportSelectedText(t('transport.noneSelected'));
         }
-        transportSearchTimer = setTimeout(()=> transportSearch(q), 320);
+        transportSearchTimer = setTimeout(()=> transportSearch(q), 160);
       });
       input.addEventListener('focus', ()=>{
         const q=input.value.trim();

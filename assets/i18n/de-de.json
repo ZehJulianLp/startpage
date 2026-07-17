@@ -134,7 +134,7 @@
     "refreshTitle": "Neu laden",
     "searchPlaceholder": "Station suchen…",
     "noneSelected": "Keine Station gewählt",
-    "source": "Quelle: transport.rest",
+    "source": "Quelle: Startpage Transport API",
     "minQuery": "Mindestens {count} Zeichen",
     "noMatches": "Keine Treffer",
     "proxyTimeout": "Der Transportdienst antwortet gerade nicht.",
