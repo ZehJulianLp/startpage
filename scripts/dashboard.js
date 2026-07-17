@@ -1116,14 +1116,20 @@
 
   // ===== Transport (departures)
   const TRANSPORT_API = 'https://api-startpage.julianverse.de/api';
+  const AUTOBAHN_API = 'https://verkehr.autobahn.de/o/autobahn';
+  const AUTOBAHN_DEFAULT_ROADS = ['A2', 'A7', 'A37'];
+  const AUTOBAHN_CACHE_TTL = 5 * 60 * 1000;
+  const AUTOBAHN_SERVICES = ['warning', 'closure', 'roadworks'];
   const TRANSPORT_MAX_DURATION = 120;
   const TRANSPORT_MIN_INTERVAL = 800;
   const transportSearchSeqs = { main: 0, settings: 0, default: 0, onboarding: 0 };
+  const transportSearchControllers = { main: null, settings: null, default: null, onboarding: null };
   let transportSearchTimer = null;
   let transportSearchSeq = 0;
   let transportSuggestItems = [];
   const TRANSPORT_MIN_QUERY = 3;
   let transportLastRequestAt = 0;
+  let autobahnLoadController = null;
 
   async function transportFetch(url, options){
     const now = Date.now();
@@ -1174,8 +1180,60 @@
       id: String(loc.id),
       name: String(loc.name),
       type,
-      place: loc.place || loc.address || (loc.location && loc.location.name) || ''
+      place: loc.locality || loc.place || loc.address || (loc.location && loc.location.name) || '',
+      score: Number.isFinite(Number(loc.score)) ? Number(loc.score) : 0
     };
+  }
+  function dedupeTransportLocations(items){
+    const unique = new Map();
+    items.forEach(item=>{
+      const key = item.name.trim().toLocaleLowerCase();
+      const existing = unique.get(key);
+      if(!existing){
+        unique.set(key, item);
+        return;
+      }
+      if(!existing.place && item.place) existing.place = item.place;
+      if(existing.type !== 'station' && item.type === 'station') existing.type = 'station';
+    });
+    return Array.from(unique.values());
+  }
+  function normalizeTransportSearchText(value){
+    return String(value || '')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLocaleLowerCase()
+      .replace(/ß/g, 'ss')
+      .replace(/[^a-z0-9]+/g, ' ')
+      .trim();
+  }
+  function rankTransportLocations(items, query){
+    const normalizedQuery = normalizeTransportSearchText(query);
+    const queryTokens = Array.from(new Set(normalizedQuery.split(' ').filter(token=> token.length > 1)));
+    if(!queryTokens.length) return items.slice(0, 8);
+    const minimumMatches = Math.max(1, Math.ceil(queryTokens.length / 2));
+    return items.map((item, index)=>{
+      const candidate = normalizeTransportSearchText(`${item.name} ${item.place || ''}`);
+      const candidateTokens = candidate.split(' ').filter(Boolean);
+      let matches = 0;
+      let score = candidate.includes(normalizedQuery) ? 100 : 0;
+      queryTokens.forEach(token=>{
+        if(candidateTokens.includes(token)){
+          matches += 1;
+          score += 12;
+          return;
+        }
+        if(token.length >= 4 && candidateTokens.some(candidateToken=> candidateToken.startsWith(token))){
+          matches += 1;
+          score += 6;
+        }
+      });
+      score += Number.isFinite(Number(item.score)) ? Number(item.score) : 0;
+      return { item, index, matches, score };
+    }).filter(entry=> entry.matches >= minimumMatches)
+      .sort((a, b)=> b.score - a.score || a.index - b.index)
+      .slice(0, 8)
+      .map(entry=> entry.item);
   }
   function setTransportSelectedText(text){
     const el = $('#transportSelected');
@@ -1226,26 +1284,29 @@
       return;
     }
     const seq = ++transportSearchSeqs[seqKey];
+    if(transportSearchControllers[seqKey]) transportSearchControllers[seqKey].abort();
+    const controller = new AbortController();
+    transportSearchControllers[seqKey] = controller;
     try{
-      const url = `${TRANSPORT_API}/locations?query=${encodeURIComponent(q)}&results=8&stops=true&addresses=false&poi=false`;
-      const res = await transportFetch(url);
+      const url = `${TRANSPORT_API}/transport/locations?query=${encodeURIComponent(q)}&limit=8`;
+      const res = await fetch(url, { signal: controller.signal });
       if(!res.ok){
-        if(res.status === 504 && attempt < 1){
-          await new Promise(r=> setTimeout(r, 350));
-          return transportSearchCore(q, attempt + 1, seqKey, renderFn);
-        }
         throw new Error(`Transport search error: ${res.status}`);
       }
       const data = await res.json();
       if(seq !== transportSearchSeqs[seqKey]) return;
       const list = Array.isArray(data) ? data : (data.locations || data.data || data.results || []);
-      const items = (Array.isArray(list) ? list : []).map(normalizeTransportLocation).filter(Boolean);
+      const normalized = (Array.isArray(list) ? list : []).map(normalizeTransportLocation).filter(Boolean);
+      const items = rankTransportLocations(dedupeTransportLocations(normalized), q);
       if(!items.length) renderFn([], t('transport.noMatches'));
       else renderFn(items);
     }catch(e){
+      if(e && e.name === 'AbortError') return;
       if(seq !== transportSearchSeqs[seqKey]) return;
       const msg = e && /504/.test(String(e.message)) ? t('transport.proxyTimeout') : t('transport.loadError');
       renderFn([], msg);
+    }finally{
+      if(transportSearchControllers[seqKey] === controller) transportSearchControllers[seqKey] = null;
     }
   }
   async function transportSearch(query, attempt=0){
@@ -1259,8 +1320,8 @@
     renderTransportSuggest([]);
     loadTransportDepartures();
   }
-  function renderTransportLoadError(message){
-    const ul = $('#transportList');
+  function renderTransportLoadError(message, target='#transportList', retryFn=loadActiveTransportView){
+    const ul = $(target);
     if(!ul) return;
     ul.innerHTML = '';
     const item = document.createElement('li');
@@ -1272,14 +1333,43 @@
     retry.type = 'button';
     retry.className = 'btn';
     retry.textContent = t('transport.retry', null, 'Retry');
-    retry.addEventListener('click', ()=>{ void loadTransportDepartures(); });
+    retry.addEventListener('click', ()=>{ void retryFn(); });
     item.append(text, retry);
     ul.appendChild(item);
+  }
+  function transportDepartureLine(dep){
+    return (typeof dep.line === 'string' ? dep.line : (dep.line && (dep.line.name || dep.line.id || dep.line.product || dep.line.mode))) || dep.product || '-';
+  }
+  function transportDepartureWhen(dep, planned=false){
+    if(planned) return dep.plannedWhen || (dep.stop && dep.stop.plannedDeparture) || dep.when || (dep.stop && dep.stop.departure) || '';
+    return dep.when || dep.plannedWhen || (dep.stop && (dep.stop.departure || dep.stop.plannedDeparture)) || '';
+  }
+  function dedupeTransportDepartures(items){
+    const unique = new Map();
+    items.forEach(dep=>{
+      if(!dep) return;
+      const key = [
+        transportDepartureLine(dep),
+        dep.direction || dep.destination || dep.provenance || '',
+        transportDepartureWhen(dep, true),
+        dep.product || '',
+        dep.cancelled ? 'cancelled' : 'active'
+      ].map(value=> String(value).trim().toLocaleLowerCase()).join('|');
+      if(!unique.has(key)) unique.set(key, dep);
+    });
+    return Array.from(unique.values()).sort((a, b)=>{
+      const aTime = new Date(transportDepartureWhen(a)).getTime();
+      const bTime = new Date(transportDepartureWhen(b)).getTime();
+      if(!Number.isFinite(aTime) && !Number.isFinite(bTime)) return 0;
+      if(!Number.isFinite(aTime)) return 1;
+      if(!Number.isFinite(bTime)) return -1;
+      return aTime - bTime;
+    });
   }
   function renderTransportList(items){
     const ul = $('#transportList'); if(!ul) return;
     ul.innerHTML = '';
-    const filtered = Array.isArray(items) ? items : [];
+    const filtered = dedupeTransportDepartures(Array.isArray(items) ? items : []);
     if(!filtered.length){
       ul.innerHTML = `<li class="muted">${escapeHtml(t('transport.noDepartures'))}</li>`;
       return;
@@ -1287,7 +1377,7 @@
     const duration = getTransportDuration();
     const cutoff = Date.now() + (duration * 60 * 1000);
     const within = filtered.filter(dep=>{
-      const whenRaw = dep.when || dep.plannedWhen || (dep.stop && (dep.stop.departure || dep.stop.plannedDeparture));
+      const whenRaw = transportDepartureWhen(dep);
       if(!whenRaw) return true;
       const t = new Date(whenRaw).getTime();
       if(Number.isNaN(t)) return true;
@@ -1304,7 +1394,7 @@
       main.className = 'transport-main';
       const line = document.createElement('div');
       line.className = 'transport-line';
-      line.textContent = (dep.line && (dep.line.name || dep.line.id || dep.line.product || dep.line.mode)) || '-';
+      line.textContent = transportDepartureLine(dep);
       const dir = document.createElement('div');
       dir.className = 'transport-dir';
       dir.textContent = dep.direction || dep.destination || dep.provenance || '-';
@@ -1315,7 +1405,7 @@
       meta.className = 'transport-meta';
       const time = document.createElement('div');
       time.className = 'transport-time';
-      const whenRaw = dep.when || dep.plannedWhen || (dep.stop && (dep.stop.departure || dep.stop.plannedDeparture));
+      const whenRaw = transportDepartureWhen(dep);
       time.textContent = formatTransportTime(whenRaw);
       meta.appendChild(time);
 
@@ -1327,7 +1417,7 @@
         meta.appendChild(platform);
       }
 
-      const delayVal = (typeof dep.delay === 'number') ? dep.delay : (dep.stop && typeof dep.stop.departureDelay === 'number' ? dep.stop.departureDelay : null);
+      const delayVal = (typeof dep.delaySeconds === 'number') ? dep.delaySeconds : ((typeof dep.delay === 'number') ? dep.delay : (dep.stop && typeof dep.stop.departureDelay === 'number' ? dep.stop.departureDelay : null));
       const delayText = formatTransportDelay(delayVal);
       if(delayText){
         const delay = document.createElement('div');
@@ -1348,6 +1438,181 @@
       ul.appendChild(li);
     });
   }
+  function normalizeAutobahnRoad(value){
+    const road = String(value || '').trim().toUpperCase().replace(/\s+/g, '');
+    return /^A\d{1,3}$/.test(road) ? road : '';
+  }
+  function normalizeAutobahnRoads(values){
+    const list = Array.isArray(values) ? values : String(values || '').split(/[\n,;]+/);
+    return Array.from(new Set(list.map(normalizeAutobahnRoad).filter(Boolean)));
+  }
+  function getAutobahnRoads(){
+    const saved = normalizeAutobahnRoads(store.get('transport.autobahn.roads', AUTOBAHN_DEFAULT_ROADS));
+    return saved.length ? saved : AUTOBAHN_DEFAULT_ROADS.slice();
+  }
+  function setAutobahnRoads(values){
+    const roads = normalizeAutobahnRoads(values);
+    store.set('transport.autobahn.roads', roads.length ? roads : AUTOBAHN_DEFAULT_ROADS.slice());
+    return getAutobahnRoads();
+  }
+  function autobahnTypeLabel(type){
+    if(type === 'closure') return t('transport.autobahnClosure', null, 'Sperrung');
+    if(type === 'warning') return t('transport.autobahnWarning', null, 'Warnung');
+    return t('transport.autobahnRoadwork', null, 'Baustelle');
+  }
+  function normalizeAutobahnEvent(event, road, type){
+    if(!event || typeof event !== 'object') return null;
+    const title = String(event.title || '').replace(/^\s*A\d{1,3}\s*\|\s*/i, '').trim();
+    return {
+      id: String(event.identifier || `${road}:${type}:${title}:${event.subtitle || ''}`),
+      road,
+      type,
+      title: title || road,
+      subtitle: String(event.subtitle || '').trim(),
+      delay: Number.isFinite(Number(event.delayTimeValue)) ? Number(event.delayTimeValue) : 0,
+      future: Boolean(event.future),
+      blocked: event.isBlocked === true || event.isBlocked === 'true',
+      timestamp: event.startTimestamp || ''
+    };
+  }
+  function sortAutobahnEvents(items){
+    const priority = { closure: 0, warning: 1, roadworks: 2 };
+    return items.sort((a, b)=> Number(a.future) - Number(b.future)
+      || (priority[a.type] ?? 9) - (priority[b.type] ?? 9)
+      || b.delay - a.delay
+      || a.road.localeCompare(b.road, undefined, { numeric:true })
+      || a.title.localeCompare(b.title));
+  }
+  function renderAutobahnEvents(items, roads){
+    const ul = $('#autobahnList');
+    const selected = $('#autobahnSelected');
+    if(selected) selected.textContent = roads.join(' · ');
+    if(!ul) return;
+    ul.innerHTML = '';
+    if(!items.length){
+      ul.innerHTML = `<li class="muted">${escapeHtml(t('transport.autobahnEmpty', null, 'Keine aktuellen Meldungen'))}</li>`;
+      return;
+    }
+    items.slice(0, 60).forEach(event=>{
+      const li = document.createElement('li');
+      li.className = 'transport-item autobahn-item';
+      const road = document.createElement('span');
+      road.className = 'autobahn-road';
+      road.textContent = event.road;
+      const main = document.createElement('div');
+      main.className = 'transport-main';
+      const title = document.createElement('div');
+      title.className = 'autobahn-item-title';
+      title.textContent = event.title;
+      const direction = document.createElement('div');
+      direction.className = 'transport-dir';
+      direction.textContent = event.subtitle || t('transport.autobahnNoDirection', null, 'Keine Richtungsangabe');
+      main.append(title, direction);
+      const meta = document.createElement('div');
+      meta.className = 'autobahn-item-meta';
+      const type = document.createElement('span');
+      type.className = `autobahn-type ${event.type}`;
+      type.textContent = autobahnTypeLabel(event.type);
+      meta.appendChild(type);
+      if(event.blocked){
+        const blocked = document.createElement('span');
+        blocked.className = 'transport-cancelled';
+        blocked.textContent = t('transport.autobahnBlocked', null, 'Gesperrt');
+        meta.appendChild(blocked);
+      }
+      if(event.delay > 0){
+        const delay = document.createElement('span');
+        delay.className = 'autobahn-delay';
+        delay.textContent = t('transport.autobahnDelay', { value:event.delay }, `+${event.delay} Min`);
+        meta.appendChild(delay);
+      }
+      li.append(road, main, meta);
+      ul.appendChild(li);
+    });
+  }
+  async function loadAutobahnTraffic(force=false){
+    const ul = $('#autobahnList');
+    if(!ul) return;
+    const roads = getAutobahnRoads();
+    const cache = getDataCache('autobahn');
+    const sameRoads = cache && Array.isArray(cache.roads) && cache.roads.join(',') === roads.join(',');
+    if(!force && sameRoads && Array.isArray(cache.items) && Date.now() - cache.timestamp < AUTOBAHN_CACHE_TTL){
+      renderAutobahnEvents(cache.items, roads);
+      setWidgetDataStatus('#autobahnDataStatus', cache.timestamp, false);
+      return;
+    }
+    if(autobahnLoadController) autobahnLoadController.abort();
+    const controller = new AbortController();
+    autobahnLoadController = controller;
+    ul.innerHTML = `<li class="muted">${escapeHtml(t('common.loading'))}</li>`;
+    const selected = $('#autobahnSelected');
+    if(selected) selected.textContent = roads.join(' · ');
+    try{
+      if(!navigator.onLine) throw new Error('offline');
+      const requests = roads.flatMap(road=> AUTOBAHN_SERVICES.map(async type=>{
+        const res = await fetch(`${AUTOBAHN_API}/${encodeURIComponent(road)}/services/${type}`, { signal:controller.signal });
+        if(!res.ok) throw new Error(`${road} ${type}: ${res.status}`);
+        const data = await res.json();
+        const list = Array.isArray(data[type]) ? data[type] : [];
+        return list.map(event=> normalizeAutobahnEvent(event, road, type)).filter(Boolean).slice(0, 20);
+      }));
+      const results = await Promise.allSettled(requests);
+      if(controller.signal.aborted) return;
+      const fulfilled = results.filter(result=> result.status === 'fulfilled');
+      if(!fulfilled.length) throw new Error('Autobahn API unavailable');
+      const unique = new Map();
+      fulfilled.flatMap(result=> result.value).forEach(event=>{
+        const key = [event.road, event.type, event.title, event.subtitle]
+          .map(value=> normalizeTransportSearchText(value))
+          .join('|');
+        const existing = unique.get(key);
+        if(!existing){
+          unique.set(key, event);
+          return;
+        }
+        existing.delay = Math.max(existing.delay, event.delay);
+        existing.blocked = existing.blocked || event.blocked;
+        existing.future = existing.future && event.future;
+      });
+      const items = sortAutobahnEvents(Array.from(unique.values())).slice(0, 60);
+      const timestamp = Date.now();
+      setDataCache('autobahn', { roads, items, timestamp });
+      renderAutobahnEvents(items, roads);
+      setWidgetDataStatus('#autobahnDataStatus', timestamp, fulfilled.length !== requests.length);
+    }catch(err){
+      if(err && err.name === 'AbortError') return;
+      if(sameRoads && cache && Array.isArray(cache.items)){
+        renderAutobahnEvents(cache.items, roads);
+        setWidgetDataStatus('#autobahnDataStatus', cache.timestamp, true);
+        return;
+      }
+      renderTransportLoadError(t('transport.autobahnLoadError', null, 'Autobahn-Meldungen konnten nicht geladen werden.'), '#autobahnList', ()=> loadAutobahnTraffic(true));
+      setWidgetDataStatus('#autobahnDataStatus', 0);
+    }finally{
+      if(autobahnLoadController === controller) autobahnLoadController = null;
+    }
+  }
+  function getTransportMode(){
+    return store.get('transport.mode', 'transit') === 'autobahn' ? 'autobahn' : 'transit';
+  }
+  function setTransportMode(mode, load=true){
+    const next = mode === 'autobahn' ? 'autobahn' : 'transit';
+    store.set('transport.mode', next);
+    const transitButton = $('#transportModeTransit');
+    const autobahnButton = $('#transportModeAutobahn');
+    const transitPanel = $('#transportTransitPanel');
+    const autobahnPanel = $('#transportAutobahnPanel');
+    const durationWrap = $('#transportDurationWrap');
+    if(transitButton){ transitButton.classList.toggle('active', next === 'transit'); transitButton.setAttribute('aria-selected', String(next === 'transit')); }
+    if(autobahnButton){ autobahnButton.classList.toggle('active', next === 'autobahn'); autobahnButton.setAttribute('aria-selected', String(next === 'autobahn')); }
+    if(transitPanel) transitPanel.hidden = next !== 'transit';
+    if(autobahnPanel) autobahnPanel.hidden = next !== 'autobahn';
+    if(durationWrap) durationWrap.hidden = next !== 'transit';
+    if(load) void loadActiveTransportView();
+  }
+  function loadActiveTransportView(force=false){
+    return getTransportMode() === 'autobahn' ? loadAutobahnTraffic(force) : loadTransportDepartures();
+  }
   async function loadTransportDepartures(attempt=0){
     const ul = $('#transportList'); if(!ul) return;
     const station = store.get('transport.station', null);
@@ -1362,31 +1627,22 @@
     ul.innerHTML = `<li class="muted">${escapeHtml(t('common.loading'))}</li>`;
     try{
       if(!navigator.onLine) throw new Error('offline');
-      const preferStation = (station.type === 'station' || station.isStation);
-      const first = preferStation ? 'stations' : 'stops';
-      const second = preferStation ? 'stops' : 'stations';
-      const fetchDepartures = async (kind)=>{
-        const url = `${TRANSPORT_API}/${kind}/${encodeURIComponent(station.id)}/departures?duration=${duration}`;
-        const res = await transportFetch(url);
-        return { res, kind };
-      };
-      let { res } = await fetchDepartures(first);
-      if(res.status === 404){
-        const retry = await fetchDepartures(second);
-        res = retry.res;
-      }
+      const params = new URLSearchParams({ query: station.name, limit: '60' });
+      const res = await transportFetch(`${TRANSPORT_API}/departures?${params.toString()}`);
       if(res.status === 504 && attempt < 1){
         await new Promise(resolve=> setTimeout(resolve, 400));
         return loadTransportDepartures(attempt + 1);
       }
       if(!res.ok) throw new Error(`Transport error: ${res.status}`);
       const data = await res.json();
+      if(data && data.ok === false) throw new Error(data.error || 'Transport live data unavailable');
       const list = Array.isArray(data) ? data : (data.departures || data.results || []);
-      const safeList = Array.isArray(list) ? list : [];
-      const timestamp = Date.now();
+      const safeList = dedupeTransportDepartures(Array.isArray(list) ? list : []);
+      const updatedAt = data && data.updatedAt ? new Date(data.updatedAt).getTime() : NaN;
+      const timestamp = Number.isFinite(updatedAt) ? updatedAt : Date.now();
       setDataCache('transport', { stationId:station.id, duration, list:safeList, timestamp });
       renderTransportList(safeList);
-      setWidgetDataStatus('#transportDataStatus', timestamp, false);
+      setWidgetDataStatus('#transportDataStatus', timestamp, Boolean(data && data.stale));
     }catch(err){
       const cached = getDataCache('transport');
       if(cached && cached.stationId === station.id && cached.duration === duration && Array.isArray(cached.list)){
@@ -1403,7 +1659,12 @@
     const input = $('#transportQuery');
     const select = $('#transportDuration');
     const refresh = $('#refreshTransport');
+    const transitMode = $('#transportModeTransit');
+    const autobahnMode = $('#transportModeAutobahn');
     if(store.get('transport.duration', null) == null) store.set('transport.duration', 60);
+    setTransportMode(getTransportMode(), false);
+    if(transitMode) transitMode.addEventListener('click', ()=> setTransportMode('transit'));
+    if(autobahnMode) autobahnMode.addEventListener('click', ()=> setTransportMode('autobahn'));
     if(select){
       const val = getTransportDuration();
       select.value = String(val);
@@ -1442,7 +1703,7 @@
           store.set('transport.station', null);
           setTransportSelectedText(t('transport.noneSelected'));
         }
-        transportSearchTimer = setTimeout(()=> transportSearch(q), 320);
+        transportSearchTimer = setTimeout(()=> transportSearch(q), 160);
       });
       input.addEventListener('focus', ()=>{
         const q=input.value.trim();
@@ -1462,7 +1723,7 @@
         if(e.key === 'Escape') renderTransportSuggest([]);
       });
     }
-    if(refresh) refresh.addEventListener('click', loadTransportDepartures);
+    if(refresh) refresh.addEventListener('click', ()=> loadActiveTransportView(true));
     document.addEventListener('click', e=>{
       const card = $('#transportCard');
       if(!card) return;
@@ -1470,7 +1731,7 @@
     });
     if(!store.get('transport.station', null)){
       const defaultStation = store.get('transport.default', null);
-      if(defaultStation && defaultStation.name && !defaultStation.id){
+      if(getTransportMode() === 'transit' && defaultStation && defaultStation.name && !defaultStation.id){
         transportSearchCore(defaultStation.name, 0, 'default', (items)=>{
           if(!items || !items.length) return;
           const pick = items[0];
@@ -1484,7 +1745,7 @@
         return;
       }
     }
-    loadTransportDepartures();
+    loadActiveTransportView();
   }
 
   // ===== Quote of the day (local)
@@ -1510,7 +1771,10 @@
   // ===== News (RSS)
   const NEWS_ITEM_LIMITS = { compact:4, auto:8, tall:16 };
   const NEWS_MAX_ITEMS = Math.max(...Object.values(NEWS_ITEM_LIMITS));
+  const NEWS_ALL_SOURCE = '__all__';
+  const NEWS_READ_LIMIT = 200;
   let newsRenderState = null;
+  let newsLoadController = null;
   function defaultFeeds(){
     return {
       'Heise': 'https://www.heise.de/rss/heise-atom.xml',
@@ -1524,75 +1788,195 @@
   }
   function fillNewsSources(){
     const select = $('#newsSource');
+    if(!select) return;
     const sources = getFeeds();
-    const current = store.get('news.source', Object.keys(sources)[0]);
+    const saved = store.get('news.source', NEWS_ALL_SOURCE);
+    const current = saved === NEWS_ALL_SOURCE || sources[saved] ? saved : NEWS_ALL_SOURCE;
+    if(current !== saved) store.set('news.source', current);
     select.innerHTML='';
+    const all = document.createElement('option');
+    all.value = NEWS_ALL_SOURCE;
+    all.textContent = t('news.allSources', null, 'All sources');
+    all.selected = current === NEWS_ALL_SOURCE;
+    select.appendChild(all);
     Object.keys(sources).forEach(name=>{
       const opt = document.createElement('option'); opt.value=name; opt.textContent=name; if(name===current) opt.selected=true; select.appendChild(opt);
     });
     refreshUiSelects(select.parentElement || document);
   }
-  function renderNewsItems(items, timestamp, stale=false){
+  function newsItemKey(item){
+    return item.link || normalizeTransportSearchText(item.title);
+  }
+  function getReadNews(){
+    const list = store.get('news.read', []);
+    return Array.isArray(list) ? list.filter(Boolean) : [];
+  }
+  function markNewsRead(item, element){
+    const key = newsItemKey(item);
+    if(!key) return;
+    const next = [key, ...getReadNews().filter(value=> value !== key)].slice(0, NEWS_READ_LIMIT);
+    store.set('news.read', next);
+    if(element) element.classList.add('read');
+  }
+  function newsSourceHue(source){
+    let hash = 0;
+    String(source || '').split('').forEach(char=>{ hash = ((hash << 5) - hash) + char.charCodeAt(0); hash |= 0; });
+    return Math.abs(hash) % 360;
+  }
+  function formatNewsRelativeTime(raw){
+    const timestamp = new Date(raw || '').getTime();
+    if(!Number.isFinite(timestamp)) return '';
+    const diff = timestamp - Date.now();
+    const abs = Math.abs(diff);
+    let unit = 'minute';
+    let divisor = 60 * 1000;
+    if(abs >= 24 * 60 * 60 * 1000){ unit = 'day'; divisor = 24 * 60 * 60 * 1000; }
+    else if(abs >= 60 * 60 * 1000){ unit = 'hour'; divisor = 60 * 60 * 1000; }
+    const value = Math.round(diff / divisor);
+    try{
+      return new Intl.RelativeTimeFormat(localeToIntl(i18nLocale) || undefined, { numeric:'auto' }).format(value, unit);
+    }catch{
+      return new Date(timestamp).toLocaleString(localeToIntl(i18nLocale) || undefined);
+    }
+  }
+  function stripNewsMarkup(value){
+    const html = String(value || '').trim();
+    if(!html) return '';
+    const doc = new DOMParser().parseFromString(`<body>${html}</body>`, 'text/html');
+    return String(doc.body.textContent || '').replace(/\s+/g, ' ').trim();
+  }
+  function newsChild(node, names){
+    const wanted = names.map(name=> name.toLowerCase());
+    return Array.from(node.children || []).find(child=> wanted.includes(String(child.localName || child.nodeName || '').toLowerCase()));
+  }
+  function parseNewsFeed(xmlText, source){
+    const parser = new DOMParser();
+    const xml = parser.parseFromString(xmlText, 'text/xml');
+    if(xml.querySelector('parsererror')) throw new Error('Invalid RSS XML');
+    const rssItems = Array.from(xml.querySelectorAll('item'));
+    const nodes = rssItems.length ? rssItems : Array.from(xml.querySelectorAll('entry'));
+    return nodes.slice(0, NEWS_MAX_ITEMS).map((node, index)=>{
+      const titleNode = newsChild(node, ['title']);
+      const linkNode = newsChild(node, ['link']);
+      const summaryNode = newsChild(node, ['description', 'summary', 'encoded', 'content']);
+      const dateNode = newsChild(node, ['pubdate', 'published', 'updated', 'date']);
+      const title = String(titleNode?.textContent || '\u2014').replace(/\s+/g, ' ').trim();
+      const link = normalizeHttpUrl(linkNode?.getAttribute('href') || linkNode?.textContent || '');
+      const summary = stripNewsMarkup(summaryNode?.textContent || '').slice(0, 240);
+      const parsedDate = new Date(dateNode?.textContent || '').getTime();
+      return { title, link, summary, source, publishedAt:Number.isFinite(parsedDate) ? new Date(parsedDate).toISOString() : '', order:index };
+    });
+  }
+  async function fetchNewsFeed(source, feedUrl, signal){
+    const safeUrl = normalizeHttpUrl(feedUrl);
+    if(!safeUrl) throw new Error('Invalid feed URL');
+    const res = await fetch(`https://api-startpage.julianverse.de/api/rss?url=${encodeURIComponent(safeUrl)}`, { signal });
+    if(!res.ok) throw new Error(`RSS proxy error: ${res.status}`);
+    return parseNewsFeed(await res.text(), source);
+  }
+  function renderNewsItems(items, timestamp, stale=false, sourceStatus=''){
     const ul = $('#newsList');
     if(!ul) return;
-    newsRenderState = { items:Array.isArray(items) ? items : [], timestamp, stale };
+    newsRenderState = { items:Array.isArray(items) ? items : [], timestamp, stale, sourceStatus };
     const height = $('#newsCard')?.dataset.widgetHeight || 'auto';
     const limit = NEWS_ITEM_LIMITS[height] || NEWS_ITEM_LIMITS.auto;
+    const read = new Set(getReadNews());
     ul.innerHTML = '';
-    newsRenderState.items.slice(0, limit).forEach(item=>{
+    newsRenderState.items.slice(0, limit).forEach((item, index)=>{
       const li = document.createElement('li');
+      li.className = 'news-item' + (index === 0 ? ' featured' : '') + (read.has(newsItemKey(item)) ? ' read' : '');
+      li.style.setProperty('--news-source-hue', String(newsSourceHue(item.source)));
       const link = normalizeHttpUrl(item.link);
-      if(link){
-        const anchor = document.createElement('a');
-        anchor.href = link;
-        anchor.target = '_blank';
-        anchor.rel = 'noopener noreferrer';
-        anchor.textContent = String(item.title || '\u2014');
-        li.appendChild(anchor);
-      } else {
-        li.textContent = String(item.title || '\u2014');
+      const content = link ? document.createElement('a') : document.createElement('div');
+      content.className = 'news-link';
+      if(link){ content.href = link; content.target = '_blank'; content.rel = 'noopener noreferrer'; }
+      const meta = document.createElement('div');
+      meta.className = 'news-meta';
+      const source = document.createElement('span');
+      source.className = 'news-source-badge';
+      source.textContent = item.source || t('news.unknownSource', null, 'RSS');
+      meta.appendChild(source);
+      const relative = formatNewsRelativeTime(item.publishedAt);
+      if(relative){
+        const time = document.createElement('time');
+        time.className = 'news-time';
+        time.dateTime = item.publishedAt;
+        time.textContent = relative;
+        meta.appendChild(time);
       }
+      const title = document.createElement('div');
+      title.className = 'news-item-title';
+      title.textContent = String(item.title || '\u2014');
+      content.append(meta, title);
+      if(item.summary){
+        const summary = document.createElement('div');
+        summary.className = 'news-summary';
+        summary.textContent = item.summary;
+        content.appendChild(summary);
+      }
+      const arrow = document.createElement('span');
+      arrow.className = 'news-arrow';
+      arrow.setAttribute('aria-hidden', 'true');
+      arrow.textContent = '\u2197';
+      content.appendChild(arrow);
+      if(link) content.addEventListener('click', ()=> markNewsRead(item, li));
+      li.appendChild(content);
       ul.appendChild(li);
     });
     if(!ul.children.length) ul.innerHTML = `<li class="muted">${escapeHtml(t('news.noItems'))}</li>`;
+    const status = $('#newsFeedStatus');
+    if(status) status.textContent = sourceStatus ? ` \u00b7 ${sourceStatus}` : '';
     setWidgetDataStatus('#newsDataStatus', timestamp, stale);
   }
   function renderNewsForWidgetHeight(){
     if(!newsRenderState) return;
-    renderNewsItems(newsRenderState.items, newsRenderState.timestamp, newsRenderState.stale);
+    renderNewsItems(newsRenderState.items, newsRenderState.timestamp, newsRenderState.stale, newsRenderState.sourceStatus);
   }
   async function loadNews(){
     const sources = getFeeds();
-    const sourceName = store.get('news.source', Object.keys(sources)[0]);
-    const feedUrl = normalizeHttpUrl(sources[sourceName]);
+    const selected = store.get('news.source', NEWS_ALL_SOURCE);
+    const entries = selected === NEWS_ALL_SOURCE
+      ? Object.entries(sources)
+      : (sources[selected] ? [[selected, sources[selected]]] : Object.entries(sources));
+    const signature = JSON.stringify(entries.map(([name, url])=> [name, normalizeHttpUrl(url)]));
+    if(newsLoadController) newsLoadController.abort();
+    const controller = new AbortController();
+    newsLoadController = controller;
     $('#newsList').innerHTML = `<li class="muted">${escapeHtml(t('common.loading'))}</li>`;
     try{
-      if(!feedUrl) throw new Error('Invalid feed URL');
       if(!navigator.onLine) throw new Error('offline');
-      const res = await fetch(`https://api-startpage.julianverse.de/api/rss?url=${encodeURIComponent(feedUrl)}`);
-      if(!res.ok) throw new Error(`RSS proxy error: ${res.status}`);
-      const data = { contents: await res.text() };
-      const parser = new DOMParser();
-      const xml = parser.parseFromString(data.contents, 'text/xml');
-      const items = Array.from(xml.querySelectorAll('item'));
-      const entries = items.length ? [] : Array.from(xml.querySelectorAll('entry'));
-      const list = items.length ? items : entries;
-      const normalized = list.slice(0, NEWS_MAX_ITEMS).map(it=>{
-        const title = it.querySelector('title')?.textContent?.trim() || '\u2014';
-        const linkNode = it.querySelector('link');
-        const link = normalizeHttpUrl(linkNode?.getAttribute('href') || linkNode?.textContent || '');
-        return { title, link };
+      const results = await Promise.allSettled(entries.map(([name, url])=> fetchNewsFeed(name, url, controller.signal)));
+      if(controller.signal.aborted) return;
+      const fulfilled = results.filter(result=> result.status === 'fulfilled');
+      if(!fulfilled.length) throw new Error('All RSS feeds failed');
+      const unique = new Map();
+      fulfilled.flatMap(result=> result.value).forEach(item=>{
+        const key = newsItemKey(item);
+        if(!key || unique.has(key)) return;
+        unique.set(key, item);
       });
+      const normalized = Array.from(unique.values()).sort((a, b)=>{
+        const aTime = new Date(a.publishedAt || 0).getTime();
+        const bTime = new Date(b.publishedAt || 0).getTime();
+        return bTime - aTime || a.order - b.order || a.source.localeCompare(b.source);
+      }).slice(0, NEWS_MAX_ITEMS);
       const timestamp = Date.now();
-      setDataCache('news', { feedUrl, items:normalized, timestamp });
-      renderNewsItems(normalized, timestamp, false);
+      const sourceStatus = selected === NEWS_ALL_SOURCE
+        ? t('news.sourceCount', { loaded:fulfilled.length, total:entries.length }, `${fulfilled.length}/${entries.length} sources`)
+        : selected;
+      setDataCache('news', { signature, items:normalized, timestamp, sourceStatus });
+      renderNewsItems(normalized, timestamp, false, sourceStatus);
     }catch(e){
+      if(e && e.name === 'AbortError') return;
       const cached = getDataCache('news');
-      if(cached && cached.feedUrl === feedUrl && Array.isArray(cached.items)){
-        renderNewsItems(cached.items, cached.timestamp, true);
+      if(cached && cached.signature === signature && Array.isArray(cached.items)){
+        renderNewsItems(cached.items, cached.timestamp, true, cached.sourceStatus || '');
         return;
       }
       $('#newsList').innerHTML = `<li class="muted">${escapeHtml(t('common.loadError'))}</li>`;
+      const status = $('#newsFeedStatus'); if(status) status.textContent = '';
       setWidgetDataStatus('#newsDataStatus', 0);
+    }finally{
+      if(newsLoadController === controller) newsLoadController = null;
     }
   }

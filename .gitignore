@@ -2,3 +2,4 @@ deploy.sh
 assets/video/
 .agents
 .codex
+node_modules/

@@ -1268,7 +1268,7 @@
     fillNewsSources();
     loadNews();
     loadWeather();
-    loadTransportDepartures();
+    loadActiveTransportView();
     updateAgentHostDisplay();
     renderAgentCapabilities();
     refreshUiSelects();

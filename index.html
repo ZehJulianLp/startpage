@@ -95,24 +95,37 @@
         <div class="transport-top">
           <h3 data-i18n="transport.title">Transport</h3>
           <div style="display:flex; gap:8px; align-items:center">
-            <select id="transportDuration" aria-label="Zeitraum" data-i18n-aria-label="transport.durationAria" style="width: 110px">
-              <option value="30" data-i18n="transport.duration30">30 min</option>
-              <option value="60" data-i18n="transport.duration60">60 min</option>
-              <option value="90" data-i18n="transport.duration90">90 min</option>
-              <option value="120" data-i18n="transport.duration120">120 min</option>
-            </select>
+            <div id="transportDurationWrap">
+              <select id="transportDuration" aria-label="Zeitraum" data-i18n-aria-label="transport.durationAria" style="width: 110px">
+                <option value="30" data-i18n="transport.duration30">30 min</option>
+                <option value="60" data-i18n="transport.duration60">60 min</option>
+                <option value="90" data-i18n="transport.duration90">90 min</option>
+                <option value="120" data-i18n="transport.duration120">120 min</option>
+              </select>
+            </div>
             <button class="btn icon-only" id="refreshTransport" title="Neu laden" data-i18n-title="transport.refreshTitle" data-i18n-aria-label="transport.refreshAria">
               <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.3-6.3"/><path d="M21 12a9 9 0 0 1-15.3 6.3"/><path d="M18.3 5.7H21V3"/><path d="M5.7 18.3H3V21"/></svg>
             </button>
           </div>
         </div>
-        <div class="transport-search">
-          <input type="text" id="transportQuery" placeholder="Station suchen…" data-i18n-placeholder="transport.searchPlaceholder" autocomplete="off" />
-          <div id="transportSuggest" class="transport-suggest hidden"></div>
+        <div class="transport-mode-tabs" role="tablist" aria-label="Transportansicht" data-i18n-aria-label="transport.modeAria">
+          <button class="btn active" id="transportModeTransit" type="button" role="tab" aria-selected="true" data-i18n="transport.modeTransit">ÖPNV</button>
+          <button class="btn" id="transportModeAutobahn" type="button" role="tab" aria-selected="false" data-i18n="transport.modeAutobahn">Autobahn</button>
         </div>
-        <div class="transport-selected muted" id="transportSelected" data-i18n="transport.noneSelected">Keine Station gewählt</div>
-        <ul id="transportList" class="transport-list"></ul>
-        <div class="muted widget-source" id="transportFoot" style="margin-top:8px; font-size:12px"><span data-i18n="transport.source">Quelle: transport.rest</span><span id="transportDataStatus"></span></div>
+        <div id="transportTransitPanel" role="tabpanel" aria-labelledby="transportModeTransit">
+          <div class="transport-search">
+            <input type="text" id="transportQuery" placeholder="Station suchen…" data-i18n-placeholder="transport.searchPlaceholder" autocomplete="off" />
+            <div id="transportSuggest" class="transport-suggest hidden"></div>
+          </div>
+          <div class="transport-selected muted" id="transportSelected" data-i18n="transport.noneSelected">Keine Station gewählt</div>
+          <ul id="transportList" class="transport-list"></ul>
+          <div class="muted widget-source" id="transportFoot" style="margin-top:8px; font-size:12px"><span data-i18n="transport.source">Quelle: Startpage Transport API</span><span id="transportDataStatus"></span></div>
+        </div>
+        <div id="transportAutobahnPanel" role="tabpanel" aria-labelledby="transportModeAutobahn" hidden>
+          <div class="transport-selected muted" id="autobahnSelected"></div>
+          <ul id="autobahnList" class="transport-list autobahn-list"></ul>
+          <div class="muted widget-source" id="autobahnFoot" style="margin-top:8px; font-size:12px"><span data-i18n="transport.autobahnSource">Quelle: Autobahn GmbH</span><span id="autobahnDataStatus"></span></div>
+        </div>
       </section>
 
       <section class="card col-4" id="quoteCard">
@@ -140,14 +153,14 @@
             </button>
           </div>
         </div>
-        <ul id="newsList"></ul>
-        <div class="muted widget-source" style="margin-top:8px; font-size:12px"><span data-i18n="news.source">RSS via Startpage Proxy (CORS-Proxy)</span><span id="newsDataStatus"></span></div>
+        <ul id="newsList" class="news-grid"></ul>
+        <div class="muted widget-source news-foot" style="margin-top:8px; font-size:12px"><span><span data-i18n="news.source">RSS via Startpage Proxy</span><span id="newsFeedStatus"></span></span><span id="newsDataStatus"></span></div>
       </section>
     </main>
 
     <footer class="muted" style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:6px">
       <div data-i18n="footer.tagline">Local-first Dashboard · speichert nur im Browser</div>
-      <div>v1.17.1</div>
+      <div>v1.17.2</div>
     </footer>
   </div>
 
@@ -491,6 +504,13 @@
           <div class="settings-suggest-wrap">
             <input id="transportDefaultInput" type="text" placeholder="Station suchen…" data-i18n-placeholder="settings.widgets.defaultTransportPlaceholder" autocomplete="off" />
             <div id="transportDefaultSuggest" class="transport-suggest hidden"></div>
+          </div>
+        </div>
+        <div class="row">
+          <label for="autobahnRoads" data-i18n="settings.widgets.autobahnRoadsLabel">Autobahnen</label>
+          <div>
+            <textarea id="autobahnRoads" rows="4" placeholder="Eine Autobahn pro Zeile, z.B. A2&#10;A7&#10;A37" data-i18n-placeholder="settings.widgets.autobahnRoadsPlaceholder"></textarea>
+            <div class="muted" style="margin-top:6px" data-i18n="settings.widgets.autobahnRoadsNote">Zeigt Warnungen, Baustellen und Sperrungen für diese Autobahnen.</div>
           </div>
         </div>
         <div class="row">

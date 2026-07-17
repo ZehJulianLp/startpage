@@ -30,6 +30,11 @@
         url: 'https://transport.rest/'
       },
       {
+        key: 'autobahnApp',
+        name: 'Autobahn GmbH Verkehr API',
+        url: 'https://verkehr.autobahn.de/'
+      },
+      {
         key: 'googleFavicons',
         name: 'Google Favicon Service',
         url: 'https://www.google.com/s2/favicons'
@@ -109,6 +114,8 @@
     if(transportDefaultInput){
       transportDefaultInput.value = defaultTransport && defaultTransport.name ? defaultTransport.name : '';
     }
+    const autobahnRoads = $('#autobahnRoads');
+    if(autobahnRoads) autobahnRoads.value = getAutobahnRoads().join('\n');
     const recentMaxSetting = $('#recentMaxSetting');
     if(recentMaxSetting) recentMaxSetting.value = String(getRecentMax());
     renderProfiles();
@@ -788,7 +795,7 @@
       else if(has('#startpageAgentModel') || has('#startpageAgentLoadModels') || has('#startpageAgentHost') || has('#startpageAgentConfirmMode') || has('#startpageAgentMaxIterations') || has('#startpageAgentCustomPrompt') || has('#startpageAgentMemory') || has('#startpageAgentClearMemory') || has('#startpageAgentSaveSettings') || has('#startpageAgentClearChat') || has('#startpageAgentCapabilities')) assign(row, panelAi);
       else if(has('#bgEngine') || has('#cardStyle') || has('#accentColor') || has('#modalColor') || has('#buttonColor') || has('#inputColor') || has('#clockColor') || has('#searchColor')) assign(row, panelBackground);
       else if(has('#enginePills') || has('#searxngBaseUrl') || has('#shortcutConfig') || has('#feedsConfig') || has('#wordlistEditor')) assign(row, panelSearch);
-      else if(has('#widgetToggles') || has('#widgetLayoutEdit') || has('#widgetLayoutReset') || has('#defaultCities') || has('#transportDefaultInput') || has('#recentMaxSetting') || has('#recentClearSetting')) assign(row, panelWidgets);
+      else if(has('#widgetToggles') || has('#widgetLayoutEdit') || has('#widgetLayoutReset') || has('#defaultCities') || has('#transportDefaultInput') || has('#autobahnRoads') || has('#recentMaxSetting') || has('#recentClearSetting')) assign(row, panelWidgets);
       else if(has('#exportData') || has('#importData') || has('#dataNote') || has('#dataPresetSelect') || has('#applyPreset') || has('#profilesList') || has('#profileCreate') || has('#restartOnboarding')) assign(row, panelData);
       else assign(row, panelGeneral);
     });

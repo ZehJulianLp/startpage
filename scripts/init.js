@@ -88,7 +88,7 @@
             transportDefaultSuggest.classList.add('hidden');
             transportDefaultSuggest.innerHTML = '';
           });
-        }), 320);
+        }), 160);
       });
       transportDefaultInput.addEventListener('focus', ()=>{
         const q = transportDefaultInput.value.trim();
@@ -110,6 +110,15 @@
         if(!transportDefaultSuggest.contains(e.target) && e.target !== transportDefaultInput){
           transportDefaultSuggest.classList.add('hidden');
         }
+      });
+    }
+    const autobahnRoadsInput = $('#autobahnRoads');
+    if(autobahnRoadsInput){
+      autobahnRoadsInput.addEventListener('change', e=>{
+        const roads = setAutobahnRoads(e.target.value);
+        e.target.value = roads.join('\n');
+        setDataCache('autobahn', null);
+        if(isWidgetEnabled('transport') && getTransportMode() === 'autobahn') void loadAutobahnTraffic(true);
       });
     }
 
@@ -236,7 +245,7 @@
         }
         timer = setTimeout(()=> transportSearchCore(q, 0, 'onboarding', (items, message)=>{
           renderTransportSuggestTo(onbTransportSuggest, items, message, handleSelect);
-        }), 320);
+        }), 160);
       });
       onbTransportInput.addEventListener('focus', ()=>{
         const q = onbTransportInput.value.trim();
@@ -378,7 +387,7 @@
     applyWidgets();
     window.addEventListener('online', ()=>{
       if(isWidgetEnabled('weather')) void loadWeather();
-      if(isWidgetEnabled('transport')) void loadTransportDepartures();
+      if(isWidgetEnabled('transport')) void loadActiveTransportView();
       if(isWidgetEnabled('news')) void loadNews();
     });
     applyControlColors();

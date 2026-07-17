@@ -54,7 +54,7 @@ test('does not request data or favicons for hidden widgets', async ({ page })=>{
   });
   const externalWidgetRequests = [];
   page.on('request', request=>{
-    if(/open-meteo|api-startpage\.julianverse|google\.com\/s2\/favicons/.test(request.url())) externalWidgetRequests.push(request.url());
+    if(/open-meteo|api-startpage\.julianverse|verkehr\.autobahn|google\.com\/s2\/favicons/.test(request.url())) externalWidgetRequests.push(request.url());
   });
   await page.goto('/');
   await page.waitForTimeout(500);
@@ -75,6 +75,38 @@ test('renders untrusted RSS content as text and blocks unsafe links', async ({ p
   await expect(page.locator('#newsList')).toContainText('<img src=x');
   await expect(page.locator('#newsList a')).toHaveCount(0);
   expect(await page.evaluate(()=> window.__rssPwned || 0)).toBe(0);
+});
+
+test('aggregates, sorts, and deduplicates all news sources', async ({ page })=>{
+  await seedStartpage(page, {
+    widgets: { todo:false, notes:false, tiles:false, weather:false, transport:false, quote:false, recent:false, system:false, news:true },
+    'news.custom': { Alpha:'https://feed-a.test/rss', Beta:'https://feed-b.test/rss' },
+    'news.source': '__all__'
+  });
+  await page.route('https://api-startpage.julianverse.de/api/rss**', route=>{
+    const feedUrl = new URL(route.request().url()).searchParams.get('url') || '';
+    let items = '';
+    if(feedUrl.includes('feed-a.test')){
+      items = [
+        '<item><title>Shared report</title><link>https://example.test/shared</link><pubDate>Fri, 17 Jul 2026 08:00:00 GMT</pubDate><description><![CDATA[<b>Shared</b> summary]]></description></item>',
+        '<item><title>Older Alpha</title><link>https://example.test/alpha</link><pubDate>Fri, 17 Jul 2026 07:00:00 GMT</pubDate></item>'
+      ].join('');
+    }
+    if(feedUrl.includes('feed-b.test')){
+      items = [
+        '<item><title>Newest Beta</title><link>https://example.test/beta</link><pubDate>Fri, 17 Jul 2026 09:00:00 GMT</pubDate><description>Latest summary</description></item>',
+        '<item><title>Shared duplicate</title><link>https://example.test/shared</link><pubDate>Fri, 17 Jul 2026 08:30:00 GMT</pubDate></item>'
+      ].join('');
+    }
+    route.fulfill({ contentType:'application/xml', body:`<rss><channel>${items}</channel></rss>` });
+  });
+  await page.goto('/');
+  await expect(page.locator('#newsSource')).toHaveValue('__all__');
+  await expect(page.locator('#newsList .news-item')).toHaveCount(3);
+  await expect(page.locator('#newsList .news-item').first()).toContainText('Newest Beta');
+  await expect(page.locator('#newsList .news-item').first()).toContainText('Beta');
+  await expect(page.locator('#newsList')).toContainText('Shared summary');
+  await expect(page.locator('#newsFeedStatus')).toContainText('5/5');
 });
 
 test('adapts the number of news items to the widget height', async ({ page })=>{
@@ -104,12 +136,53 @@ test('formats transport delays in minutes', async ({ page })=>{
     'transport.station': { id:'test-stop', name:'Test Stop', type:'station' },
     'transport.duration': 30
   });
-  await page.route('https://api-startpage.julianverse.de/api/stations/test-stop/departures**', route=> route.fulfill({
+  await page.route('https://api-startpage.julianverse.de/api/departures**', route=> route.fulfill({
     contentType: 'application/json',
-    body: JSON.stringify([{ when:new Date(Date.now() + 600000).toISOString(), delay:120, direction:'Center', line:{ name:'S1' } }])
+    body: JSON.stringify({
+      ok:true,
+      updatedAt:new Date().toISOString(),
+      departures:[{ when:new Date(Date.now() + 600000).toISOString(), delaySeconds:120, direction:'Center', line:'S1' }]
+    })
   }));
   await page.goto('/');
   await expect(page.locator('#transportList')).toContainText(/\+2 min/i);
+});
+
+test('switches the transport widget to deduplicated autobahn reports and saves roads', async ({ page })=>{
+  await seedStartpage(page, {
+    widgets: { todo:false, notes:false, tiles:false, weather:false, transport:true, quote:false, recent:false, system:false, news:false },
+    'transport.autobahn.roads': ['A7']
+  });
+  await page.route('https://verkehr.autobahn.de/o/autobahn/**', route=>{
+    const type = route.request().url().split('/').pop();
+    const event = {
+      identifier:'shared-event',
+      title:'A7 | Hannover - Hamburg',
+      subtitle:'Hannover -> Hamburg',
+      delayTimeValue:'8',
+      isBlocked:'false',
+      future:false
+    };
+    route.fulfill({
+      contentType:'application/json',
+      body:JSON.stringify({ [type]:type === 'warning' ? [event, event] : [] })
+    });
+  });
+  await page.goto('/');
+  await page.locator('#transportModeAutobahn').click();
+  await expect(page.locator('#transportAutobahnPanel')).toBeVisible();
+  await expect(page.locator('#transportTransitPanel')).toBeHidden();
+  await expect(page.locator('#transportDurationWrap')).toBeHidden();
+  await expect(page.locator('#autobahnList .autobahn-item')).toHaveCount(1);
+  await expect(page.locator('#autobahnList')).toContainText('Hannover - Hamburg');
+  await expect(page.locator('#autobahnList')).toContainText('+8 min');
+
+  await page.locator('#openSettings').click();
+  await page.locator('[data-tab="widgets"]').click();
+  await page.locator('#autobahnRoads').fill('a2\nA7\ninvalid');
+  await page.locator('#autobahnRoads').blur();
+  await expect(page.locator('#autobahnRoads')).toHaveValue('A2\nA7');
+  expect(await page.evaluate(()=> JSON.parse(localStorage.getItem('transport.autobahn.roads')))).toEqual(['A2', 'A7']);
 });
 
 test('applies saved widget order and size', async ({ page })=>{
