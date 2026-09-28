@@ -205,7 +205,7 @@
     "refreshAria": "News neu laden"
   },
   "footer": {
-    "tagline": "Local-first Dashboard · speichert nur im Browser"
+    "tagline": "Local-first Dashboard · optionaler ownCloud-Sync"
   },
   "settings": {
     "title": "Einstellungen",

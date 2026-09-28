@@ -205,7 +205,7 @@
     "refreshAria": "Refresh news"
   },
   "footer": {
-    "tagline": "Local-first dashboard · stores only in the browser"
+    "tagline": "Local-first dashboard · optional ownCloud sync"
   },
   "settings": {
     "title": "Settings",

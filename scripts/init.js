@@ -423,6 +423,26 @@
     });
     setTimeout(()=> onboardingOpen(false), 350);
     applyAccentTint();
+    window.julianverseApply = async resource => {
+      if(resource === 'notes') $('#notesArea').value = store.get('notes', '');
+      if(resource === 'tasks') renderTodos();
+      if(resource === 'bookmarks') renderTiles();
+      if(resource === 'settings') {
+        applyTheme(store.get('theme', 'auto'));
+        applyCardStyle();
+        applyWidgets();
+        applyWidgetColors();
+        applySurfaceColors();
+        applyControlColors();
+        applyModalColors();
+        applyAccentPreference();
+        renderEngines();
+        await initI18n();
+        fillSettings();
+      }
+    };
+    window.julianverseReady = true;
+    window.dispatchEvent(new Event('julianverse:ready'));
     await initStartpageAgent();
   }
 

@@ -92,3 +92,27 @@ Manual smoke tests:
 
 ## License
 The original project code and documentation are available under the MIT License (see `LICENSE`). Bundled third-party assets remain under their respective licenses; see `THIRD_PARTY_NOTICES.md`.
+
+## Optional Julianverse Account sync
+
+Open **Julianverse Account · Cloud-Sync** below the clock to sign in through a popup.
+Enable the desired categories in Account, then explicitly choose **Upload local data**
+or **Use cloud data** for each category. Signing in alone does not upload app content.
+The open app then syncs changes with ownCloud, retaining offline edits locally.
+Conflicts require choosing a version; both versions and local backups can be downloaded.
+
+Supported: notes, tasks, bookmarks, theme, language, visible widgets, colors and enabled
+search engines. Profiles, backgrounds, images, search history, API keys and agent
+configuration remain local. Files are stored in `Julianverse/startpage/` in ownCloud.
+
+**Tokens stay in memory. Reloading requires signing in and selecting categories again.**
+Turning sync off or signing out preserves local data. A different account in another tab
+stops the previous account's sync. Local use does not require an account or a reachable
+Account server.
+
+The dependency-free modules in `account/` are copied from
+[Julianverse Account](https://github.com/ZehJulianLp/julianverse-account/tree/main/integrations).
+To host another copy, register a public OIDC client with its exact HTTPS
+`account-callback.html` URL, then update `account/config.mjs` (public configuration only).
+No client secret belongs in this app. The callback must retain access to its opener;
+do not add a restrictive Cross-Origin-Opener-Policy without adapting the login flow.

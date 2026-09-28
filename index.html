@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Startpage</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="account/panel.css">
+  <script type="module" src="account/app.mjs"></script>
 </head>
 <body>
   <div class="bg-orbs"><span class="o1"></span><span class="o2"></span><span class="o3"></span></div>
@@ -29,6 +31,10 @@
         </button>
       </div>
     </header>
+    <details class="jv-account">
+      <summary>Julianverse Account · Cloud-Sync</summary>
+      <div id="julianverse-account"><p>Optionaler Cloud-Sync. Deine Daten bleiben zunächst lokal.</p></div>
+    </details>
 
     <section class="search" id="searchBox">
       <select id="engine"></select>
@@ -159,7 +165,7 @@
     </main>
 
     <footer class="muted" style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:6px">
-      <div data-i18n="footer.tagline">Local-first Dashboard · speichert nur im Browser</div>
+      <div data-i18n="footer.tagline">Local-first Dashboard · optionaler ownCloud-Sync</div>
       <div>v1.18.0</div>
     </footer>
   </div>
