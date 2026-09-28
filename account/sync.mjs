@@ -44,7 +44,32 @@ export class IndexedDBStore {
   }
 }
 
-const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+export function sameJSON(a, b) {
+  if (a === b) return true;
+  if (!a || !b || typeof a !== "object" || typeof b !== "object") return false;
+  if (Array.isArray(a) || Array.isArray(b))
+    return (
+      Array.isArray(a) &&
+      Array.isArray(b) &&
+      a.length === b.length &&
+      a.every((value, index) => sameJSON(value, b[index]))
+    );
+  const keys = Object.keys(a);
+  return (
+    keys.length === Object.keys(b).length &&
+    keys.every((key) => Object.hasOwn(b, key) && sameJSON(a[key], b[key]))
+  );
+}
+const same = sameJSON;
+
+function legacyGzipVersion(previous, current) {
+  // Repair only the exact legacy ownCloud/Apache representation observed before
+  // Account requested identity encoding. All other ETags remain opaque.
+  return (
+    /^"[0-9a-f]{32}"$/i.test(current || "") &&
+    previous === current.slice(0, -1) + '-gzip"'
+  );
+}
 const documentFor = (data, deleted = false) => ({
   schemaVersion: 1,
   data,
@@ -232,7 +257,6 @@ export class JulianverseSync {
       this.check(context);
       const record = await this.store.get(context.key);
       const remote = await this.remote(context);
-      if (record.conflict) return record;
       // The host can still be edited while GET is in flight. Preserve the old
       // ETag so an overlapping cloud edit becomes a conflict, not an overwrite.
       if (readLocal) {
@@ -240,6 +264,26 @@ export class JulianverseSync {
         if (!same(latest, localData)) {
           record.document = documentFor(latest);
           record.dirty = true;
+        }
+      }
+      if (legacyGzipVersion(record.etag, remote.etag))
+        record.etag = remote.etag;
+      if (record.conflict) {
+        if (same(record.document, remote.document)) {
+          record.conflict = null;
+          record.dirty = false;
+          record.etag = remote.etag;
+        } else if (
+          record.etag === remote.etag &&
+          legacyGzipVersion(record.conflict.etag, remote.etag) &&
+          same(record.conflict.document, remote.document)
+        ) {
+          record.previous = record.conflict.document;
+          record.conflict = null;
+        } else {
+          this.check(context);
+          await this.store.set(context.key, record);
+          return record;
         }
       }
       if (record.dirty) {

@@ -1,4 +1,4 @@
-import { JulianverseSync } from "./sync.mjs";
+import { JulianverseSync, sameJSON as same } from "./sync.mjs";
 import { beginLogin, finishLogin } from "./oidc-client.mjs";
 import { browserSession, readStored, fingerprint } from "./session.mjs";
 
@@ -92,7 +92,6 @@ const messages = {
     stopped: "Sync is off. Local data is preserved.",
   },
 };
-const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 const doc = (data) => ({ schemaVersion: 1, data, deleted: false });
 function element(tag, text, className) {
   const node = document.createElement(tag);
