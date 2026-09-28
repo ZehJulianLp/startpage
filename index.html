@@ -31,10 +31,6 @@
         </button>
       </div>
     </header>
-    <details class="jv-account">
-      <summary>Julianverse Account · Cloud-Sync</summary>
-      <div id="julianverse-account"><p>Optionaler Cloud-Sync. Deine Daten bleiben zunächst lokal.</p></div>
-    </details>
 
     <section class="search" id="searchBox">
       <select id="engine"></select>
@@ -184,6 +180,7 @@
       <div class="tab-panel settings-search-results" id="settingsSearchResults" aria-live="polite"></div>
       <div class="tabs" role="tablist">
         <button class="tab-btn" data-tab="general" role="tab" aria-selected="true" data-i18n="settings.tabs.general">Allgemein</button>
+        <button class="tab-btn" data-tab="account" role="tab">Account</button>
         <button class="tab-btn" data-tab="ai" role="tab" id="settingsTabAi" data-i18n="settings.tabs.ai">Startpage Agent</button>
         <button class="tab-btn" data-tab="background" role="tab" data-i18n="settings.tabs.background">Hintergrund &amp; Erscheinung</button>
         <button class="tab-btn" data-tab="search" role="tab" data-i18n="settings.tabs.search">Suche &amp; Feeds</button>
@@ -230,6 +227,14 @@
             <div class="muted" data-i18n="settings.general.agentHint">Wenn deaktiviert, wird nichts an Ollama gesendet.</div>
             <button class="btn" type="button" id="openOllamaGuideFromGeneral" data-i18n="settings.general.agentGuideButton">Ollama Setup Guide</button>
           </div>
+        </div>
+      </div>
+      <div id="tab-account" class="tab-panel" role="tabpanel">
+        <div class="row account-settings-row" data-settings-panel="account">
+          <section class="jv-account" aria-labelledby="accountSettingsTitle">
+            <h3 id="accountSettingsTitle">Julianverse Account · Cloud-Sync</h3>
+            <div id="julianverse-account"><p>Optionaler Cloud-Sync. Deine Daten bleiben zunächst lokal.</p></div>
+          </section>
         </div>
       </div>
       <div id="tab-ai" class="tab-panel" role="tabpanel">

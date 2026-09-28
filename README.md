@@ -95,7 +95,7 @@ The original project code and documentation are available under the MIT License 
 
 ## Optional Julianverse Account sync
 
-Open **Julianverse Account · Cloud-Sync** below the clock to sign in through a popup.
+Open **Settings → Account** to sign in to Julianverse through a popup.
 Enable the desired categories in Account, then explicitly choose **Upload local data**
 or **Use cloud data** for each category. Signing in alone does not upload app content.
 The open app then syncs changes with ownCloud, retaining offline edits locally.

@@ -991,7 +991,9 @@
       grid-template-rows: auto auto auto 1fr;
       gap: 10px;
     }
+    #settingsModal .account-settings-row { display: block; }
     #settingsModal .tabs {
+      flex-wrap: wrap;
       margin: 0;
       top: 0;
       background: var(--modal-bg);
