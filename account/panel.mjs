@@ -374,7 +374,6 @@ export class AccountPanel {
         section.append(controls);
         if (state.conflict) {
           const conflict = element("div", "", "jv-conflict");
-          conflict.append(element("p", this.t("conflict")));
           const choices = element("div", "", "jv-actions");
           choices.append(
             this.button("previewLocal", () =>
