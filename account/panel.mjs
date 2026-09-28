@@ -10,6 +10,10 @@ const messages = {
     logout: "App abmelden",
     permissions: "Freigaben im Account verwalten",
     connected: "Angemeldet als",
+    saved: "Gespeichertes Konto:",
+    reconnect: "Erneut verbinden",
+    reconnecting:
+      "Anmeldung wird wiederhergestellt. Bei einer Verbindungsstörung versuchen wir es automatisch erneut.",
     local: "Nur lokal",
     off: "Sync aus",
     on: "Sync aktiv",
@@ -56,6 +60,10 @@ const messages = {
     logout: "Sign out of app",
     permissions: "Manage permissions in Account",
     connected: "Signed in as",
+    saved: "Remembered account:",
+    reconnect: "Reconnect",
+    reconnecting:
+      "Restoring sign-in. Connection failures will be retried automatically.",
     local: "Local only",
     off: "Sync off",
     on: "Sync on",
@@ -223,6 +231,8 @@ export class AccountPanel {
       return;
     }
     this.restoring = true;
+    this.message = this.t("reconnecting");
+    this.render();
     const session = this.session;
     try {
       const result = await browserSession(this.config, "token");
@@ -240,11 +250,17 @@ export class AccountPanel {
       await this.resumeChoices();
     } catch (error) {
       if (session === this.session) {
-        this.expire();
-        if (error.status === 401 || error.status === 403)
+        if (error.status === 401 || error.status === 403) {
           localStorage.removeItem(this.rememberKey);
-        else
-          this.message = navigator.onLine ? this.t("error") : this.t("offline");
+          this.expire();
+        } else {
+          // Keep the remembered account and sync choices through transient outages.
+          this.tokens = null;
+          this.sync.disconnect();
+          this.message = navigator.onLine
+            ? this.t("reconnecting")
+            : this.t("offline");
+        }
       }
     } finally {
       this.restoring = false;
@@ -293,11 +309,15 @@ export class AccountPanel {
   }
   render() {
     const active = Boolean(this.tokens);
-    const remembered = Boolean(readStored(this.rememberKey)?.user);
+    const remembered = Boolean(
+      this.user &&
+        readStored(this.rememberKey)?.user?.sub === this.user.sub &&
+        localStorage.getItem(this.ownerKey) === this.user.sub,
+    );
     const heading = element(
       "p",
       active || (remembered && this.user)
-        ? `${this.t("connected")} ${this.user.preferred_username || this.user.name || this.user.sub}`
+        ? `${this.t(active ? "connected" : "saved")} ${this.user.preferred_username || this.user.name || this.user.sub}`
         : this.t("intro"),
     );
     const actions = element("div", "", "jv-actions");
@@ -305,7 +325,11 @@ export class AccountPanel {
     const login = element("button", this.t("login"), "jv-button");
     login.type = "button";
     login.addEventListener("click", () => this.login());
-    if (!active) actions.append(login);
+    if (!active && !remembered) actions.append(login);
+    if (!active && remembered)
+      actions.append(
+        this.button("reconnect", () => this.restore(), this.restoring),
+      );
     if (active || remembered)
       actions.append(this.button("logout", () => this.logout()));
     const link = element("a", this.t("permissions"));
@@ -496,49 +520,67 @@ export class AccountPanel {
       if (session === this.session) this.render();
     }
   }
+  async renew() {
+    const session = this.session;
+    if (!this.refreshing || this.refreshingSession !== session) {
+      this.refreshingSession = session;
+      const renewing = browserSession(this.config, "token")
+        .then((tokens) => {
+          if (session !== this.session) throw new Error(this.t("expired"));
+          if (
+            tokens.user.sub !== this.user.sub ||
+            localStorage.getItem(this.ownerKey) !== this.user.sub
+          ) {
+            const error = new Error(this.t("expired"));
+            error.status = 401;
+            throw error;
+          }
+          this.tokens = tokens;
+          this.sync.token = tokens.access_token;
+          this.expires = Date.now() + tokens.expires_in * 1000;
+        })
+        .catch((error) => {
+          if (session === this.session && [401, 403].includes(error.status)) {
+            localStorage.removeItem(this.rememberKey);
+            this.expire();
+          }
+          throw error;
+        })
+        .finally(() => {
+          if (this.refreshing === renewing) this.refreshing = null;
+        });
+      this.refreshing = renewing;
+    }
+    await this.refreshing;
+  }
   async fetch(url, options = {}) {
     const session = this.session;
     if (!this.tokens || localStorage.getItem(this.ownerKey) !== this.user?.sub)
       throw new Error(this.t("expired"));
-    if (Date.now() > this.expires - 30000) {
-      if (!this.refreshing) {
-        this.refreshing = browserSession(this.config, "token")
-          .then((tokens) => {
-            if (session !== this.session) throw new Error(this.t("expired"));
-            if (tokens.user.sub !== this.user.sub) {
-              localStorage.removeItem(this.rememberKey);
-              this.expire();
-              throw new Error(this.t("expired"));
-            }
-            this.tokens = tokens;
-            this.sync.token = tokens.access_token;
-            this.expires = Date.now() + tokens.expires_in * 1000;
-          })
-          .finally(() => {
-            this.refreshing = null;
-          });
-      }
-      try {
-        await this.refreshing;
-      } catch (error) {
-        if (session === this.session && [401, 403].includes(error.status)) {
-          localStorage.removeItem(this.rememberKey);
-          this.expire();
-        }
-        throw error;
+    if (Date.now() > this.expires - 30000) await this.renew();
+    const send = () => {
+      if (session !== this.session || !this.tokens)
+        throw new Error(this.t("expired"));
+      return fetch(url, {
+        ...options,
+        headers: {
+          ...options.headers,
+          Authorization: `Bearer ${this.tokens.access_token}`,
+        },
+        signal: AbortSignal.timeout(20000),
+      });
+    };
+    let response = await send();
+    if (response.status === 401 && session === this.session) {
+      // A sleeping tab or a rejected short-lived token does not invalidate the
+      // remembered browser session. Authenticate again and retry once.
+      await this.renew();
+      response = await send();
+      if (response.status === 401 && session === this.session) {
+        localStorage.removeItem(this.rememberKey);
+        this.expire();
       }
     }
-    if (session !== this.session || !this.tokens)
-      throw new Error(this.t("expired"));
-    const response = await fetch(url, {
-      ...options,
-      headers: {
-        ...options.headers,
-        Authorization: `Bearer ${this.tokens.access_token}`,
-      },
-      signal: AbortSignal.timeout(20000),
-    });
-    if (response.status === 401 && session === this.session) this.expire();
     return response;
   }
   expire() {
