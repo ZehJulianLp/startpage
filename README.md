@@ -105,7 +105,9 @@ Supported: notes, tasks, bookmarks, theme, language, visible widgets, colors and
 search engines. Profiles, backgrounds, images, search history, API keys and agent
 configuration remain local. Files are stored in `Julianverse/startpage/` in ownCloud.
 
-**Tokens stay in memory. Reloading requires signing in and selecting categories again.**
+Sign-in and enabled categories survive reloads and browser restarts on this device.
+A Secure/HttpOnly Account cookie renews short-lived access tokens held only in memory.
+The session lasts up to 30 days, unless revoked earlier.
 Turning sync off or signing out preserves local data. A different account in another tab
 stops the previous account's sync. Local use does not require an account or a reachable
 Account server.
@@ -116,3 +118,7 @@ To host another copy, register a public OIDC client with its exact HTTPS
 `account-callback.html` URL, then update `account/config.mjs` (public configuration only).
 No client secret belongs in this app. The callback must retain access to its opener;
 do not add a restrictive Cross-Origin-Opener-Policy without adapting the login flow.
+
+Remembered sign-in requires the app and Account to share a site (as with
+`julianverse.de` and `account.julianverse.de`). Other hosts need a matching deployment;
+this integration does not depend on third-party cookies.

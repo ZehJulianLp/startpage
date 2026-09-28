@@ -86,7 +86,10 @@ export function validate(resource, document) {
         assert(
           isObject(item) && isText(item.title, 1000) && isText(item.url, 4096),
         );
-        assert(Object.keys(item).every((k) => ["title", "url"].includes(k)));
+        assert(
+          Object.keys(item).every((k) => ["title", "url", "key"].includes(k)),
+        );
+        if (item.key !== undefined) assert(isText(item.key, 100));
         const url = new URL(item.url);
         assert(
           ["https:", "http:"].includes(url.protocol) &&

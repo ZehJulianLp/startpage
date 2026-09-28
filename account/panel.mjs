@@ -1,5 +1,6 @@
 import { JulianverseSync } from "./sync.mjs";
-import { beginLogin, finishLogin, refresh, revoke } from "./oidc-client.mjs";
+import { beginLogin, finishLogin } from "./oidc-client.mjs";
+import { browserSession, readStored, fingerprint } from "./session.mjs";
 
 const messages = {
   de: {
@@ -17,7 +18,7 @@ const messages = {
     download: "Cloud-Daten übernehmen",
     now: "Jetzt abgleichen",
     stop: "Sync ausschalten",
-    hint: "Wähle pro Datenart die erste Übertragung. Danach werden Änderungen bei geöffneter App automatisch abgeglichen. Nach einem Neuladen sind Anmeldung und Auswahl erneut nötig.",
+    hint: "Wähle pro Datenart die erste Übertragung. Anmeldung und Sync-Auswahl bleiben auf diesem Gerät erhalten. Änderungen werden bei geöffneter App automatisch abgeglichen.",
     permissionHint:
       "Gib die gewünschten Datenarten zuerst unter „Freigaben im Account verwalten“ frei.",
     uploadConfirm:
@@ -63,7 +64,7 @@ const messages = {
     download: "Use cloud data",
     now: "Sync now",
     stop: "Turn sync off",
-    hint: "Choose the first transfer for each category. Changes then sync automatically while the app is open. Reloading requires signing in and selecting categories again.",
+    hint: "Choose the first transfer for each category. Sign-in and sync choices are remembered on this device. Changes sync automatically while the app is open.",
     permissionHint:
       "First enable the categories you want under “Manage permissions in Account”.",
     uploadConfirm:
@@ -130,6 +131,7 @@ export class AccountPanel {
     );
     this.session = 0;
     this.ownerKey = `julianverse:${config.app}:sync-owner`;
+    this.rememberKey = `julianverse:${config.app}:${config.issuer}:session`;
     this.storageKey = `julianverse-pending-login:${config.app}`;
     this.sync = new JulianverseSync({
       ...config,
@@ -143,12 +145,28 @@ export class AccountPanel {
     window.addEventListener("storage", (event) => {
       if (event.storageArea === localStorage) {
         if (
+          event.key === this.rememberKey &&
+          !readStored(this.rememberKey)?.user
+        ) {
+          this.expire();
+          return;
+        }
+        if (
           event.key === this.ownerKey &&
           this.tokens &&
           localStorage.getItem(this.ownerKey) !== this.user?.sub
         )
           this.expire();
-        else this.changed(event.key);
+        else {
+          for (const resource of this.adapter.resources) {
+            if (
+              event.key === this.choiceKey(resource) &&
+              !readStored(event.key)
+            )
+              this.stop(resource);
+          }
+          this.changed(event.key);
+        }
       }
     });
     window.addEventListener("online", () => this.tick());
@@ -162,6 +180,95 @@ export class AccountPanel {
     this.interval = setInterval(() => {
       if (!document.hidden) this.tick();
     }, 30000);
+    void this.restore();
+  }
+  choiceKey(resource) {
+    return `julianverse:${this.config.app}:${this.config.issuer}:${this.user?.sub}:sync:${resource}`;
+  }
+  async rememberChoice(resource, baseline) {
+    const session = this.session;
+    const value = { baseline: await fingerprint(baseline) };
+    if (session === this.session && this.states[resource].active)
+      localStorage.setItem(this.choiceKey(resource), JSON.stringify(value));
+  }
+  async attach(result) {
+    this.user = result.user;
+    this.tokens = { access_token: result.access_token };
+    this.expires = Date.now() + result.expires_in * 1000;
+    const user = await this.sync.attach(result.access_token);
+    if (user.sub !== result.user.sub) throw new Error(this.t("expired"));
+  }
+  async restore() {
+    if (this.restoring || this.tokens || this.popup) return;
+    const remembered = readStored(this.rememberKey);
+    if (!remembered) return; // Local-only use makes no Account request.
+    if (remembered.logout) {
+      try {
+        await browserSession(this.config, "logout");
+        if (readStored(this.rememberKey)?.logout)
+          localStorage.removeItem(this.rememberKey);
+      } catch {
+        /* Retry explicit offline logout on the next connection. */
+      }
+      return;
+    }
+    if (
+      !remembered.user ||
+      localStorage.getItem(this.ownerKey) !== remembered.user.sub
+    )
+      return;
+    this.user = remembered.user;
+    if (!navigator.onLine) {
+      this.message = this.t("offline");
+      this.render();
+      return;
+    }
+    this.restoring = true;
+    const session = this.session;
+    try {
+      const result = await browserSession(this.config, "token");
+      if (session !== this.session) return;
+      if (
+        result.user.sub !== remembered.user.sub ||
+        localStorage.getItem(this.ownerKey) !== remembered.user.sub
+      ) {
+        localStorage.removeItem(this.rememberKey);
+        throw new Error(this.t("expired"));
+      }
+      await this.attach(result);
+      if (session !== this.session) return;
+      this.message = "";
+      await this.resumeChoices();
+    } catch (error) {
+      if (session === this.session) {
+        this.expire();
+        if (error.status === 401 || error.status === 403)
+          localStorage.removeItem(this.rememberKey);
+        else
+          this.message = navigator.onLine ? this.t("error") : this.t("offline");
+      }
+    } finally {
+      this.restoring = false;
+      this.render();
+    }
+  }
+  async resumeChoices() {
+    for (const resource of this.adapter.resources) {
+      const choice = readStored(this.choiceKey(resource));
+      if (!choice || this.states[resource].active) continue;
+      await this.guard(resource, async (state) => {
+        await this.sync.enable(resource, { source: "resume" });
+        if (!readStored(this.choiceKey(resource))) {
+          this.sync.stop(resource);
+          return;
+        }
+        state.active = true;
+        const baseline = this.adapter.snapshot(resource);
+        if ((await fingerprint(baseline)) !== choice.baseline)
+          state.pending = baseline;
+      });
+      await this.cycle(resource);
+    }
   }
   get language() {
     return document.documentElement.lang.toLowerCase().startsWith("de")
@@ -187,9 +294,10 @@ export class AccountPanel {
   }
   render() {
     const active = Boolean(this.tokens);
+    const remembered = Boolean(readStored(this.rememberKey)?.user);
     const heading = element(
       "p",
-      active
+      active || (remembered && this.user)
         ? `${this.t("connected")} ${this.user.preferred_username || this.user.name || this.user.sub}`
         : this.t("intro"),
     );
@@ -198,7 +306,9 @@ export class AccountPanel {
     const login = element("button", this.t("login"), "jv-button");
     login.type = "button";
     login.addEventListener("click", () => this.login());
-    actions.append(active ? this.button("logout", () => this.logout()) : login);
+    if (!active) actions.append(login);
+    if (active || remembered)
+      actions.append(this.button("logout", () => this.logout()));
     const link = element("a", this.t("permissions"));
     link.href = `${this.config.issuer}/sync`;
     link.target = "_blank";
@@ -357,13 +467,26 @@ export class AccountPanel {
         storageKey: this.storageKey,
       });
       if (session !== this.session) return;
-      localStorage.setItem(this.ownerKey, result.user.sub);
-      this.user = result.user;
-      this.tokens = result.tokens;
-      this.expires = Date.now() + result.tokens.expires_in * 1000;
-      this.user = await this.sync.attach(this.tokens.access_token);
+      const remembered = await browserSession(
+        this.config,
+        "remember",
+        result.tokens.access_token,
+      );
+      if (session !== this.session) return;
+      this.user = remembered.user;
+      if (localStorage.getItem(this.ownerKey) !== this.user.sub) {
+        for (const resource of this.adapter.resources)
+          localStorage.removeItem(this.choiceKey(resource));
+      }
+      localStorage.setItem(this.ownerKey, this.user.sub);
+      localStorage.setItem(
+        this.rememberKey,
+        JSON.stringify({ user: this.user }),
+      );
+      await this.attach(remembered);
       if (session !== this.session) return;
       this.message = this.t("permissionHint");
+      await this.resumeChoices();
     } catch {
       if (session === this.session) {
         this.tokens = null;
@@ -381,12 +504,14 @@ export class AccountPanel {
       throw new Error(this.t("expired"));
     if (Date.now() > this.expires - 30000) {
       if (!this.refreshing) {
-        this.refreshing = refresh({
-          ...this.config,
-          refreshToken: this.tokens.refresh_token,
-        })
+        this.refreshing = browserSession(this.config, "token")
           .then((tokens) => {
             if (session !== this.session) throw new Error(this.t("expired"));
+            if (tokens.user.sub !== this.user.sub) {
+              localStorage.removeItem(this.rememberKey);
+              this.expire();
+              throw new Error(this.t("expired"));
+            }
             this.tokens = tokens;
             this.sync.token = tokens.access_token;
             this.expires = Date.now() + tokens.expires_in * 1000;
@@ -398,7 +523,10 @@ export class AccountPanel {
       try {
         await this.refreshing;
       } catch (error) {
-        if (session === this.session) this.expire();
+        if (session === this.session && [401, 403].includes(error.status)) {
+          localStorage.removeItem(this.rememberKey);
+          this.expire();
+        }
         throw error;
       }
     }
@@ -431,17 +559,16 @@ export class AccountPanel {
     this.render();
   }
   async logout() {
-    const tokens = this.tokens;
+    for (const resource of this.adapter.resources)
+      localStorage.removeItem(this.choiceKey(resource));
+    localStorage.setItem(this.rememberKey, JSON.stringify({ logout: true }));
     this.expire();
     this.message = this.t("local");
     this.render();
-    await Promise.allSettled(
-      [tokens?.access_token, tokens?.refresh_token]
-        .filter(Boolean)
-        .map((token) => revoke({ ...this.config, token })),
-    );
+    await this.restore();
   }
   stop(resource) {
+    localStorage.removeItem(this.choiceKey(resource));
     this.sync.stop(resource);
     Object.assign(this.states[resource], {
       active: false,
@@ -516,6 +643,7 @@ export class AccountPanel {
         }
       }
       state.active = true;
+      await this.rememberChoice(resource, this.adapter.snapshot(resource));
       state.message = this.t("on");
       if (source === "local") state.pending = this.adapter.snapshot(resource);
     });
@@ -561,6 +689,7 @@ export class AccountPanel {
       }
       if (record.document)
         await this.apply(resource, record.document, baseline);
+      await this.rememberChoice(resource, this.adapter.snapshot(resource));
       state.message =
         this.t("success") +
         " · " +
@@ -595,11 +724,16 @@ export class AccountPanel {
         await this.apply(resource, document, baseline);
         state.pending = null;
       } else state.pending = this.adapter.snapshot(resource);
+      await this.rememberChoice(resource, this.adapter.snapshot(resource));
     });
     if (this.states[resource].active) await this.cycle(resource);
   }
   tick() {
-    if (!this.tokens) return;
+    if (!this.tokens) {
+      void this.restore();
+      return;
+    }
+    void this.resumeChoices();
     this.message = navigator.onLine ? "" : this.t("offline");
     for (const resource of this.adapter.resources) void this.cycle(resource);
     this.render();
