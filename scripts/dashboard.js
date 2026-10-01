@@ -1786,6 +1786,21 @@
     const custom = store.get('news.custom', {});
     return { ...defaultFeeds(), ...custom };
   }
+  function updateNewsAppLink(){
+    const link = $('#newsAppLink');
+    if(!link) return;
+    const selected = store.get('news.source', NEWS_ALL_SOURCE);
+    const feed = selected === NEWS_ALL_SOURCE ? '' : normalizeHttpUrl(getFeeds()[selected] || '');
+    const url = new URL('https://julianverse.de/news/');
+    if(feed){
+      const parsed = new URL(feed);
+      if(!parsed.username && !parsed.password && feed.length <= 2048){
+        url.searchParams.set('feed', feed);
+        url.searchParams.set('name', selected.slice(0, 80));
+      }
+    }
+    link.href = url.href;
+  }
   function fillNewsSources(){
     const select = $('#newsSource');
     if(!select) return;
@@ -1803,6 +1818,7 @@
       const opt = document.createElement('option'); opt.value=name; opt.textContent=name; if(name===current) opt.selected=true; select.appendChild(opt);
     });
     refreshUiSelects(select.parentElement || document);
+    updateNewsAppLink();
   }
   function newsItemKey(item){
     return item.link || normalizeTransportSearchText(item.title);
@@ -1933,6 +1949,7 @@
     renderNewsItems(newsRenderState.items, newsRenderState.timestamp, newsRenderState.stale, newsRenderState.sourceStatus);
   }
   async function loadNews(){
+    updateNewsAppLink();
     const sources = getFeeds();
     const selected = store.get('news.source', NEWS_ALL_SOURCE);
     const entries = selected === NEWS_ALL_SOURCE

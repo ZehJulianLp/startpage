@@ -196,6 +196,7 @@
   },
   "news": {
     "title": "News",
+    "openApp": "In Julianverse News öffnen",
     "refreshTitle": "Neu laden",
     "source": "RSS via Startpage Proxy",
     "allSources": "Alle Quellen",

@@ -7,7 +7,7 @@ Startpage is a **local-first browser start page** designed to replace the tradit
 
 Configuration and personal content stay in the browser without accounts or tracking. Network widgets only contact their documented data providers; transport and RSS use the Startpage proxy to handle browser API restrictions.
 
-Version: **v1.18.0** · Live: https://julianverse.de/startpage/
+Version: **v1.18.1** · Live: https://julianverse.de/startpage/
 
 ## Core Features
 - Quick search: Multiple engines, bang shortcuts (`!g`, `!ddg`, `!bing`, `!sx`, `!yt`, `!wiki`, `!maps`), custom shortcuts, and autocomplete (bangs, shortcuts, recent searches, global wordlist + preset wordlist).
@@ -16,7 +16,7 @@ Version: **v1.18.0** · Live: https://julianverse.de/startpage/
 - To-do and notes: Persistent to-do list and notes field.
 - Weather: Multiple cities with quick city chips (switch/remove), current weather + min/max, and a rolling 24-hour forecast in 3-hour steps via Open-Meteo.
 - Transport: Station search, departures, delay handling, retry states, and a configurable default station via the Startpage proxy for transport.rest.
-- News: RSS reader with default and custom feeds via the Startpage RSS proxy; the list adapts to the selected widget height (4/8/16 entries).
+- News: RSS reader with default and custom feeds via the Startpage RSS proxy; the list adapts to the selected widget height (4/8/16 entries). “Open in Julianverse News” opens the selected feed through a Magic Link; “All sources” opens the regular News homepage.
 - Resilient data widgets: Weather, transport, and news keep timestamped browser caches for offline/error fallback. Hidden widgets defer their network requests until enabled.
 - Recent actions and system status: History chips plus browser info (RAM, CPU cores, network type).
 - Setup assistant: Modern onboarding with direct preset tiles, theme/style + background, search engine, widgets + transport default, and one weather city (skippable and restartable).
@@ -124,3 +124,10 @@ do not add a restrictive Cross-Origin-Opener-Policy without adapting the login f
 Remembered sign-in requires the app and Account to share a site (as with
 `julianverse.de` and `account.julianverse.de`). Other hosts need a matching deployment;
 this integration does not depend on third-party cookies.
+
+## Zentrale Rechteseiten
+
+Der Footer verlinkt das [zentrale Impressum](https://julianverse.de/impressum/)
+und die [Datenschutzerklärung](https://julianverse.de/datenschutz/).
+Bei optionalem Account-Sync gelten ergänzend die
+[Account-/ownCloud-Datenschutzhinweise](https://account.julianverse.de/datenschutz).
