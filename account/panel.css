@@ -1,0 +1,87 @@
+.jv-account {
+  margin: 12px 0;
+  border: 1px solid var(--line, #78859666);
+  border-radius: 14px;
+  padding: 14px;
+  color: inherit;
+  min-width: 0;
+}
+.jv-account summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+.jv-account [hidden] {
+  display: none !important;
+}
+.jv-account p {
+  margin: 10px 0;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.jv-account h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+.jv-account .jv-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.jv-account .jv-button {
+  appearance: none;
+  width: auto;
+  min-height: 40px;
+  max-width: 100%;
+  border: 1px solid var(--line, #78859688);
+  border-radius: 9px;
+  padding: 8px 12px;
+  background: var(--panel, #78859618);
+  color: inherit;
+  font: inherit;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  cursor: pointer;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.jv-account .jv-button:hover {
+  border-color: currentColor;
+}
+.jv-account .jv-button:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+.jv-account :is(button, a, summary):focus-visible {
+  outline: 2px solid var(--accent, #4386e8);
+  outline-offset: 3px;
+}
+.jv-account a {
+  color: inherit;
+  text-decoration: underline;
+  font-size: 0.85rem;
+}
+.jv-account .jv-status,
+.jv-account .jv-help {
+  font-size: 0.85rem;
+}
+.jv-account .jv-help {
+  opacity: 0.8;
+}
+.jv-account .jv-resources {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+.jv-account .jv-resource {
+  padding: 12px;
+  min-width: 0;
+  border: 1px solid var(--line, #78859666);
+  border-radius: 10px;
+}
+.jv-account .jv-conflict {
+  border-left: 3px solid #d58c29;
+  margin-top: 12px;
+  padding-left: 10px;
+}

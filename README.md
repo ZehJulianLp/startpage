@@ -7,7 +7,7 @@ Startpage is a **local-first browser start page** designed to replace the tradit
 
 Configuration and personal content stay in the browser without accounts or tracking. Network widgets only contact their documented data providers; transport and RSS use the Startpage proxy to handle browser API restrictions.
 
-Version: **v1.18.0** · Live: https://julianverse.de/startpage/
+Version: **v1.18.1** · Live: https://julianverse.de/startpage/
 
 ## Core Features
 - Quick search: Multiple engines, bang shortcuts (`!g`, `!ddg`, `!bing`, `!sx`, `!yt`, `!wiki`, `!maps`), custom shortcuts, and autocomplete (bangs, shortcuts, recent searches, global wordlist + preset wordlist).
@@ -16,7 +16,7 @@ Version: **v1.18.0** · Live: https://julianverse.de/startpage/
 - To-do and notes: Persistent to-do list and notes field.
 - Weather: Multiple cities with quick city chips (switch/remove), current weather + min/max, and a rolling 24-hour forecast in 3-hour steps via Open-Meteo.
 - Transport: Station search, departures, delay handling, retry states, and a configurable default station via the Startpage proxy for transport.rest.
-- News: RSS reader with default and custom feeds via the Startpage RSS proxy; the list adapts to the selected widget height (4/8/16 entries).
+- News: RSS reader with default and custom feeds via the Startpage RSS proxy; the list adapts to the selected widget height (4/8/16 entries). “Open in Julianverse News” opens the selected feed through a Magic Link; “All sources” opens the regular News homepage.
 - Resilient data widgets: Weather, transport, and news keep timestamped browser caches for offline/error fallback. Hidden widgets defer their network requests until enabled.
 - Recent actions and system status: History chips plus browser info (RAM, CPU cores, network type).
 - Setup assistant: Modern onboarding with direct preset tiles, theme/style + background, search engine, widgets + transport default, and one weather city (skippable and restartable).
@@ -92,3 +92,42 @@ Manual smoke tests:
 
 ## License
 The original project code and documentation are available under the MIT License (see `LICENSE`). Bundled third-party assets remain under their respective licenses; see `THIRD_PARTY_NOTICES.md`.
+
+## Optional Julianverse Account sync
+
+Open **Settings → Account** to sign in to Julianverse through a popup.
+Enable the desired categories in Account, then explicitly choose **Upload local data**
+or **Use cloud data** for each category. Signing in alone does not upload app content.
+The open app then syncs changes with ownCloud, retaining offline edits locally.
+Conflicts require choosing a version; both versions and local backups can be downloaded.
+
+Supported: notes, tasks, bookmarks, theme, language, visible widgets, colors and enabled
+search engines. Profiles, backgrounds, images, search history, API keys and agent
+configuration remain local. Files are stored in `Julianverse/startpage/` in ownCloud.
+
+Sign-in and enabled categories survive reloads and browser restarts on this device.
+A Secure/HttpOnly Account cookie renews short-lived access tokens held only in memory.
+Temporary connection failures show the remembered account and retry automatically.
+An API request rejected with an expired access token is renewed and retried once.
+The session lasts up to 30 days, unless revoked earlier.
+Turning sync off or signing out preserves local data. A different account in another tab
+stops the previous account's sync. Local use does not require an account or a reachable
+Account server.
+
+The dependency-free modules in `account/` are copied from
+[Julianverse Account](https://github.com/ZehJulianLp/julianverse-account/tree/main/integrations).
+To host another copy, register a public OIDC client with its exact HTTPS
+`account-callback.html` URL, then update `account/config.mjs` (public configuration only).
+No client secret belongs in this app. The callback must retain access to its opener;
+do not add a restrictive Cross-Origin-Opener-Policy without adapting the login flow.
+
+Remembered sign-in requires the app and Account to share a site (as with
+`julianverse.de` and `account.julianverse.de`). Other hosts need a matching deployment;
+this integration does not depend on third-party cookies.
+
+## Zentrale Rechteseiten
+
+Der Footer verlinkt das [zentrale Impressum](https://julianverse.de/impressum/)
+und die [Datenschutzerklärung](https://julianverse.de/datenschutz/).
+Bei optionalem Account-Sync gelten ergänzend die
+[Account-/ownCloud-Datenschutzhinweise](https://account.julianverse.de/datenschutz).

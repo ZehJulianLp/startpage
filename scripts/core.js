@@ -3,7 +3,10 @@
   const $$ = (q, el=document) => Array.from(el.querySelectorAll(q));
   const store = {
     get: (k, d) => { try { return JSON.parse(localStorage.getItem(k)) ?? d } catch { return d } },
-    set: (k, v) => localStorage.setItem(k, JSON.stringify(v))
+    set: (k, v) => {
+      localStorage.setItem(k, JSON.stringify(v));
+      window.dispatchEvent(new CustomEvent('julianverse:change', { detail: { key: k } }));
+    }
   };
 
   const I18N_DIR = 'assets/i18n/';

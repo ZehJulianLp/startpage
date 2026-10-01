@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.18.1](https://github.com/ZehJulianLp/startpage/compare/v1.18.0...v1.18.1) (2026-10-01)
+
+### Features
+
+* Add optional Julianverse Account and ownCloud sync in Startpage settings.
+* Open the selected RSS feed in Julianverse News through a Magic Link.
+
+### Bug Fixes
+
+* Preserve remembered sign-in and sync categories across reloads and browser restarts.
+* Recover browser sessions after temporary connection failures and renew expired access tokens.
+* Recover false sync conflicts and show conflict messages only once.
+* Retain account sync and accept default bookmarks.
+* Restore the News app button and its translations and styles in the tracked source.
+* Link the central legal notice and privacy policy in the footer.
+
 ## [1.18.0](https://github.com/ZehJulianLp/startpage/compare/v1.17.1...v1.18.0) (2026-07-17)
 
 

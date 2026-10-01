@@ -455,12 +455,13 @@
   }
 
   function selectSettingsTab(name){
-    const valid = ['general','ai','background','search','widgets','data','guide'];
+    const valid = ['general','account','ai','background','search','widgets','data','guide'];
     if(name === 'ai' && !isAgentEnabled()) name = 'general';
     if(!valid.includes(name)) name = 'general';
     const buttons = $$('.tab-btn', $('#settingsModal'));
     const panels = [
       {n:'general', el: $('#tab-general')},
+      {n:'account', el: $('#tab-account')},
       {n:'ai', el: $('#tab-ai')},
       {n:'background', el: $('#tab-background')},
       {n:'search', el: $('#tab-search')},
@@ -665,6 +666,7 @@
     const resultsEl = $('#settingsSearchResults');
     const panels = [
       $('#tab-general'),
+      $('#tab-account'),
       $('#tab-ai'),
       $('#tab-background'),
       $('#tab-search'),
@@ -761,6 +763,7 @@
     const sheet = $('#settingsModal .sheet'); if(!sheet) return;
     const tabs = sheet.querySelector('.tabs'); if(!tabs) return;
     const searchResults = sheet.querySelector('#settingsSearchResults');
+    restoreSettingsSearchRows();
     // Collect rows from root and any pre-existing panels BEFORE removing them
     const rows = Array.from(sheet.querySelectorAll(':scope > .row, :scope > .tab-panel > .row'))
       .filter(row=> !row.closest('#tab-guide'));
@@ -771,6 +774,7 @@
     });
 
     const panelGeneral = document.createElement('div'); panelGeneral.id='tab-general'; panelGeneral.className='tab-panel';
+    const panelAccount = document.createElement('div'); panelAccount.id='tab-account'; panelAccount.className='tab-panel';
     const panelAi = document.createElement('div'); panelAi.id='tab-ai'; panelAi.className='tab-panel';
     const panelBackground = document.createElement('div'); panelBackground.id='tab-background'; panelBackground.className='tab-panel';
     const panelSearch = document.createElement('div'); panelSearch.id='tab-search'; panelSearch.className='tab-panel';
@@ -783,6 +787,7 @@
       const explicitPanel = row.getAttribute('data-settings-panel');
       if(explicitPanel === 'background'){ assign(row, panelBackground); return; }
       if(explicitPanel === 'general'){ assign(row, panelGeneral); return; }
+      if(explicitPanel === 'account'){ assign(row, panelAccount); return; }
       if(explicitPanel === 'ai'){ assign(row, panelAi); return; }
       if(explicitPanel === 'search'){ assign(row, panelSearch); return; }
       if(explicitPanel === 'widgets'){ assign(row, panelWidgets); return; }
@@ -804,7 +809,8 @@
     panelGuide.innerHTML = buildSettingsGuideHtml();
 
     tabs.insertAdjacentElement('afterend', panelGeneral);
-    panelGeneral.insertAdjacentElement('afterend', panelAi);
+    panelGeneral.insertAdjacentElement('afterend', panelAccount);
+    panelAccount.insertAdjacentElement('afterend', panelAi);
     panelAi.insertAdjacentElement('afterend', panelBackground);
     panelBackground.insertAdjacentElement('afterend', panelSearch);
     panelSearch.insertAdjacentElement('afterend', panelWidgets);

@@ -196,6 +196,7 @@
   },
   "news": {
     "title": "News",
+    "openApp": "In Julianverse News öffnen",
     "refreshTitle": "Neu laden",
     "source": "RSS via Startpage Proxy",
     "allSources": "Alle Quellen",
@@ -205,7 +206,7 @@
     "refreshAria": "News neu laden"
   },
   "footer": {
-    "tagline": "Local-first Dashboard · speichert nur im Browser"
+    "tagline": "Local-first Dashboard · optionaler ownCloud-Sync"
   },
   "settings": {
     "title": "Einstellungen",
